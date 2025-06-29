@@ -1,7 +1,7 @@
 """EWidget简单使用示例"""
 import pandas as pd
 
-from src.ewidget import (
+from email_widget.ewidget import (
     Email, TableWidget, AlertWidget, TextWidget, 
     ProgressWidget, CardWidget, StatusWidget,
     AlertType, StatusType, ProgressTheme, TextAlign
