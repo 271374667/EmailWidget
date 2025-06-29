@@ -1,7 +1,39 @@
 """文本Widget实现"""
-from typing import Optional
+from typing import Optional, Dict, List
 from src.ewidget.base import BaseWidget
 from src.ewidget.enums import TextAlign, TextType
+
+class SectionNumberManager:
+    """章节编号管理器"""
+    _instance = None
+    _counters: Dict[int, int] = {}  # 级别 -> 计数器
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance._counters = {2: 0, 3: 0, 4: 0, 5: 0}
+        return cls._instance
+    
+    def get_next_number(self, level: int) -> str:
+        """获取下一个章节编号"""
+        # 重置低级别计数器
+        for l in range(level + 1, 6):
+            self._counters[l] = 0
+        
+        # 增加当前级别计数器
+        self._counters[level] += 1
+        
+        # 生成编号字符串
+        numbers = []
+        for l in range(2, level + 1):
+            if self._counters[l] > 0:
+                numbers.append(str(self._counters[l]))
+        
+        return '.'.join(numbers) + '.'
+    
+    def reset(self):
+        """重置所有计数器"""
+        self._counters = {2: 0, 3: 0, 4: 0, 5: 0}
 
 class TextWidget(BaseWidget):
     """文本Widget类"""
@@ -18,6 +50,8 @@ class TextWidget(BaseWidget):
         self._font_family: str = "'Segoe UI', Tahoma, Arial, sans-serif"
         self._margin: str = "16px 0"
         self._max_width: Optional[str] = None
+        self._section_number: Optional[str] = None
+        self._section_manager = SectionNumberManager()
     
     def set_content(self, content: str) -> 'TextWidget':
         """设置文本内容"""
@@ -80,6 +114,12 @@ class TextWidget(BaseWidget):
         # 这里可以扩展支持斜体样式
         return self
     
+    @staticmethod
+    def reset_section_numbers():
+        """重置章节编号"""
+        manager = SectionNumberManager()
+        manager.reset()
+    
     def _apply_type_styles(self) -> None:
         """根据文本类型应用样式"""
         if self._text_type == TextType.TITLE_LARGE:
@@ -106,6 +146,34 @@ class TextWidget(BaseWidget):
             self._color = "#8e8e93"
             self._align = TextAlign.LEFT
             self._margin = "8px 0"
+        elif self._text_type == TextType.SECTION_H2:
+            self._font_size = "24px"
+            self._font_weight = "bold"
+            self._color = "#323130"
+            self._align = TextAlign.LEFT
+            self._margin = "20px 0 12px 0"
+            self._section_number = self._section_manager.get_next_number(2)
+        elif self._text_type == TextType.SECTION_H3:
+            self._font_size = "20px"
+            self._font_weight = "600"
+            self._color = "#323130"
+            self._align = TextAlign.LEFT
+            self._margin = "18px 0 10px 0"
+            self._section_number = self._section_manager.get_next_number(3)
+        elif self._text_type == TextType.SECTION_H4:
+            self._font_size = "18px"
+            self._font_weight = "600"
+            self._color = "#323130"
+            self._align = TextAlign.LEFT
+            self._margin = "16px 0 8px 0"
+            self._section_number = self._section_manager.get_next_number(4)
+        elif self._text_type == TextType.SECTION_H5:
+            self._font_size = "16px"
+            self._font_weight = "500"
+            self._color = "#323130"
+            self._align = TextAlign.LEFT
+            self._margin = "14px 0 6px 0"
+            self._section_number = self._section_manager.get_next_number(5)
     
     @property
     def content(self) -> str:
@@ -151,8 +219,13 @@ class TextWidget(BaseWidget):
         
         style_attr = "; ".join(style_parts)
         
+        # 处理内容，如果是章节标题则添加编号
+        content = self._content
+        if self._section_number:
+            content = f"{self._section_number} {content}"
+        
         # 处理多行文本
-        content_lines = self._content.split('\n')
+        content_lines = content.split('\n')
         if len(content_lines) > 1:
             # 多行文本使用div包装
             html = f'<div style="{style_attr}">'
@@ -164,6 +237,6 @@ class TextWidget(BaseWidget):
             html += '</div>'
         else:
             # 单行文本使用p标签
-            html = f'<p style="{style_attr}">{self._content}</p>'
+            html = f'<p style="{style_attr}">{content}</p>'
         
         return html 

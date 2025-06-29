@@ -38,6 +38,10 @@ class TextType(Enum):
     TITLE_SMALL = "title_small"      # 小标题
     BODY = "body"                    # 正文(默认)
     CAPTION = "caption"              # 正文补充
+    SECTION_H2 = "section_h2"        # 二级章节标题
+    SECTION_H3 = "section_h3"        # 三级章节标题
+    SECTION_H4 = "section_h4"        # 四级章节标题
+    SECTION_H5 = "section_h5"        # 五级章节标题
 
 class ProgressTheme(Enum):
     """进度条主题枚举"""

@@ -1,0 +1,139 @@
+# EWidget 配置文件
+# 这是EWidget组件库的配置文件示例
+
+[email]
+# 邮件基本配置
+default_title = "EWidget 邮件报告"
+charset = "UTF-8"
+lang = "zh-CN"
+
+[email.style]
+# 邮件样式配置
+background_color = "#ffffff"
+font_family = "'Segoe UI', Tahoma, Arial, sans-serif"
+base_font_size = "14px"
+line_height = "1.5"
+max_width = "800px"
+
+[widgets]
+# Widget 全局配置
+
+[widgets.text]
+# 文本Widget配置
+default_color = "#323130"
+title_large_size = "28px"
+title_small_size = "20px"
+body_size = "14px"
+caption_size = "12px"
+section_h2_size = "24px"
+section_h3_size = "20px"
+section_h4_size = "18px"
+section_h5_size = "16px"
+
+[widgets.image]
+# 图片Widget配置
+default_border_radius = "4px"
+default_max_width = "100%"
+show_caption = true
+
+[widgets.table]
+# 表格Widget配置
+header_bg_color = "#f8f9fa"
+border_color = "#e1dfdd"
+striped = true
+bordered = true
+hover_effect = true
+
+[widgets.progress]
+# 进度条Widget配置
+default_height = "20px"
+border_radius = "10px"
+background_color = "#e1dfdd"
+
+[widgets.progress.themes]
+# 进度条主题颜色
+primary = "#0078d4"
+success = "#107c10"
+warning = "#ff8c00"
+error = "#d13438"
+info = "#0078d4"
+
+[widgets.log]
+# 日志Widget配置
+background_color = "#1e1e1e"
+border_color = "#333333"
+text_color = "#ffffff"
+max_height = "400px"
+show_timestamp = true
+show_level = true
+show_source = true
+
+[widgets.log.colors]
+# 日志级别颜色
+debug = "#888888"
+info = "#4fc3f7"
+warning = "#ffb74d"
+error = "#f44336"
+critical = "#d32f2f"
+
+[widgets.alert]
+# 警告框Widget配置
+border_radius = "4px"
+padding = "12px 16px"
+
+[widgets.alert.types]
+# 警告框类型配置
+note = { background = "#e6f3ff", border = "#0078d4", icon = "💡" }
+tip = { background = "#f0f9ff", border = "#00a2ed", icon = "💡" }
+important = { background = "#fff4e6", border = "#ff8c00", icon = "⚠️" }
+warning = { background = "#fff3cd", border = "#ffc107", icon = "⚠️" }
+caution = { background = "#f8d7da", border = "#dc3545", icon = "⚠️" }
+
+[widgets.card]
+# 卡片Widget配置
+background_color = "#ffffff"
+border_color = "#e1dfdd"
+border_radius = "4px"
+padding = "16px"
+shadow = "0 2px 8px rgba(0,0,0,0.1)"
+default_icon = "ℹ️"
+
+[widgets.status]
+# 状态Widget配置
+background_color = "#ffffff"
+border_color = "#e1dfdd"
+border_radius = "4px"
+padding = "16px"
+
+[widgets.quote]
+# 引用Widget配置
+border_left_width = "4px"
+padding = "16px 20px"
+background_color = "#f8f9fa"
+border_radius = "4px"
+
+[widgets.chart]
+# 图表Widget配置
+background_color = "#ffffff"
+border_color = "#e1dfdd"
+border_radius = "4px"
+padding = "16px"
+default_dpi = 150
+default_format = "png"
+
+[widgets.chart.fonts]
+# 图表字体配置
+chinese_fonts = ["SimHei", "Microsoft YaHei", "SimSun", "KaiTi", "FangSong"]
+fallback_fonts = ["DejaVu Sans", "Arial", "sans-serif"]
+
+[widgets.column]
+# 列布局Widget配置
+default_columns = 3
+default_gap = "20px"
+max_columns = 6
+
+[development]
+# 开发配置
+debug = false
+output_dir = "output"
+template_dir = "templates" 

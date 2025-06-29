@@ -54,6 +54,15 @@ def create_demo_email():
     caption_text.set_content("本演示包含了最新的功能：TextType枚举、深色日志主题、IconType枚举、base64图片嵌入等").set_type(TextType.CAPTION)
     email.add_widget(caption_text)
     
+    # 5. 章节标题演示
+    section1 = TextWidget()
+    section1.set_content("基础组件展示").set_type(TextType.SECTION_H2)
+    email.add_widget(section1)
+    
+    section1_1 = TextWidget()
+    section1_1.set_content("警告框组件").set_type(TextType.SECTION_H3)
+    email.add_widget(section1_1)
+    
     # 3. 警告框演示
     note_alert = AlertWidget()
     note_alert.set_content("这是一个信息提示框，用于显示重要的提示信息。").set_alert_type(AlertType.NOTE)
@@ -62,6 +71,10 @@ def create_demo_email():
     warning_alert = AlertWidget()
     warning_alert.set_content("这是一个警告提示框，用于显示需要注意的警告信息。").set_alert_type(AlertType.WARNING)
     email.add_widget(warning_alert)
+    
+    section1_2 = TextWidget()
+    section1_2.set_content("表格组件").set_type(TextType.SECTION_H3)
+    email.add_widget(section1_2)
     
     # 4. 表格演示
     table_widget = TableWidget()
@@ -99,6 +112,14 @@ def create_demo_email():
     progress3 = ProgressWidget()
     progress3.set_label("数据验证").set_theme(ProgressTheme.SUCCESS).complete()  # 设为100%
     email.add_widget(progress3)
+    
+    section2 = TextWidget()
+    section2.set_content("高级组件展示").set_type(TextType.SECTION_H2)
+    email.add_widget(section2)
+    
+    section2_1 = TextWidget()
+    section2_1.set_content("状态信息组件").set_type(TextType.SECTION_H3)
+    email.add_widget(section2_1)
     
     # 6. 状态信息演示
     status_widget = StatusWidget()
@@ -197,8 +218,7 @@ def create_demo_email():
     ax.set_xlabel('日期', fontsize=12)
     ax.set_ylabel('采集数量', fontsize=12)
     ax.grid(True, alpha=0.3)
-    plt.tight_layout()
-    
+
     # 设置图表到widget
     chart_widget.set_chart(plt)
     email.add_widget(chart_widget)

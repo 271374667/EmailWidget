@@ -166,7 +166,8 @@ class ImageWidget(BaseWidget):
         style_parts = [
             f"max-width: {self._max_width}",
             "height: auto",
-            "display: block"
+            "display: block",
+            "margin: 0 auto"  # 居中对齐
         ]
         
         if self._width:
@@ -185,9 +186,9 @@ class ImageWidget(BaseWidget):
         if self._show_caption and (self._title or self._description):
             caption_parts = []
             if self._title:
-                caption_parts.append(f'<h4 style="margin: 8px 0 4px 0; font-size: 16px; font-weight: 600; color: #323130;">{self._title}</h4>')
+                caption_parts.append(f'<h4 style="margin: 8px 0 4px 0; font-size: 16px; font-weight: 600; color: #323130; text-align: center;">{self._title}</h4>')
             if self._description:
-                caption_parts.append(f'<p style="margin: 4px 0 8px 0; font-size: 14px; color: #605e5c; line-height: 1.4;">{self._description}</p>')
+                caption_parts.append(f'<p style="margin: 4px 0 8px 0; font-size: 14px; color: #605e5c; line-height: 1.4; text-align: center;">{self._description}</p>')
             
             caption_html = ''.join(caption_parts)
             html = f'''<div style="margin: 16px 0; text-align: center;">
