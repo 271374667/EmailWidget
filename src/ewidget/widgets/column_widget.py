@@ -8,7 +8,7 @@ class ColumnWidget(BaseWidget):
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
         self._widgets: List[BaseWidget] = []
-        self._columns: int = 3
+        self._columns: int = 2
         self._gap: str = "20px"
     
     def add_widget(self, widget: BaseWidget) -> 'ColumnWidget':
@@ -23,7 +23,7 @@ class ColumnWidget(BaseWidget):
     
     def set_columns(self, columns: int) -> 'ColumnWidget':
         """设置列数"""
-        self._columns = max(1, min(columns, 6))  # 限制1-6列
+        self._columns = max(1, min(columns, 4))  # 限制1-4列
         return self
     
     def set_gap(self, gap: str) -> 'ColumnWidget':
