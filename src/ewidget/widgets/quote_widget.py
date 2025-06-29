@@ -33,6 +33,21 @@ class QuoteWidget(BaseWidget):
         self._quote_type = quote_type
         return self
     
+    def set_full_quote(self, content: str, author: str = None, source: str = None) -> 'QuoteWidget':
+        """一次性设置完整引用信息"""
+        self._content = content
+        if author:
+            self._author = author
+        if source:
+            self._source = source
+        return self
+    
+    def clear_attribution(self) -> 'QuoteWidget':
+        """清空作者和来源信息"""
+        self._author = None
+        self._source = None
+        return self
+    
     def _get_quote_color(self) -> str:
         """获取引用颜色"""
         colors = {

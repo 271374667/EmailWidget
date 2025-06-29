@@ -5,8 +5,8 @@
 
 from src.ewidget.email import Email
 from src.ewidget.enums import (
-    LogLevel, StatusType, AlertType, TextAlign, 
-    ProgressTheme, LayoutType
+    LogLevel, StatusType, AlertType, TextAlign, TextType,
+    ProgressTheme, LayoutType, IconType
 )
 from src.ewidget.widgets.table_widget import TableWidget, TableCell
 from src.ewidget.widgets.image_widget import ImageWidget
@@ -29,8 +29,8 @@ __all__ = [
     "Email",
     
     # 枚举
-    "LogLevel", "StatusType", "AlertType", "TextAlign", 
-    "ProgressTheme", "LayoutType",
+    "LogLevel", "StatusType", "AlertType", "TextAlign", "TextType",
+    "ProgressTheme", "LayoutType", "IconType",
     
     # Widget类
     "TableWidget", "TableCell",

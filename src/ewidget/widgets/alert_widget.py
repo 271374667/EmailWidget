@@ -31,6 +31,19 @@ class AlertWidget(BaseWidget):
         self._title = title
         return self
     
+    def set_full_alert(self, content: str, alert_type: AlertType, title: str = None) -> 'AlertWidget':
+        """一次性设置完整警告信息"""
+        self._content = content
+        self._alert_type = alert_type
+        if title:
+            self._title = title
+        return self
+    
+    def clear_title(self) -> 'AlertWidget':
+        """清空标题"""
+        self._title = None
+        return self
+    
     def set_icon(self, icon: str) -> 'AlertWidget':
         """设置图标"""
         self._icon = icon

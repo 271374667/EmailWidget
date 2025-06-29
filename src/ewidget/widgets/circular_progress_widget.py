@@ -40,6 +40,31 @@ class CircularProgressWidget(BaseWidget):
         self._size = size
         return self
     
+    def set_stroke_width(self, width: str) -> 'CircularProgressWidget':
+        """设置线条宽度"""
+        self._stroke_width = width
+        return self
+    
+    def increment(self, amount: float = 1.0) -> 'CircularProgressWidget':
+        """增加进度值"""
+        self._value = min(self._max_value, self._value + amount)
+        return self
+    
+    def decrement(self, amount: float = 1.0) -> 'CircularProgressWidget':
+        """减少进度值"""
+        self._value = max(0.0, self._value - amount)
+        return self
+    
+    def reset(self) -> 'CircularProgressWidget':
+        """重置进度为0"""
+        self._value = 0.0
+        return self
+    
+    def complete(self) -> 'CircularProgressWidget':
+        """设置为完成状态（100%）"""
+        self._value = self._max_value
+        return self
+    
     def _get_theme_color(self) -> str:
         """获取主题颜色"""
         colors = {

@@ -1,7 +1,7 @@
 """文本Widget实现"""
 from typing import Optional
 from src.ewidget.base import BaseWidget
-from src.ewidget.enums import TextAlign
+from src.ewidget.enums import TextAlign, TextType
 
 class TextWidget(BaseWidget):
     """文本Widget类"""
@@ -9,6 +9,7 @@ class TextWidget(BaseWidget):
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
         self._content: str = ""
+        self._text_type: TextType = TextType.BODY
         self._font_size: str = "14px"
         self._align: TextAlign = TextAlign.LEFT
         self._color: str = "#323130"
@@ -21,6 +22,12 @@ class TextWidget(BaseWidget):
     def set_content(self, content: str) -> 'TextWidget':
         """设置文本内容"""
         self._content = content
+        return self
+    
+    def set_type(self, text_type: TextType) -> 'TextWidget':
+        """设置文本类型"""
+        self._text_type = text_type
+        self._apply_type_styles()
         return self
     
     def set_font_size(self, size: str) -> 'TextWidget':
@@ -72,6 +79,33 @@ class TextWidget(BaseWidget):
         """设置斜体"""
         # 这里可以扩展支持斜体样式
         return self
+    
+    def _apply_type_styles(self) -> None:
+        """根据文本类型应用样式"""
+        if self._text_type == TextType.TITLE_LARGE:
+            self._font_size = "28px"
+            self._font_weight = "bold"
+            self._color = "#323130"
+            self._align = TextAlign.CENTER
+            self._margin = "24px 0 16px 0"
+        elif self._text_type == TextType.TITLE_SMALL:
+            self._font_size = "20px"
+            self._font_weight = "600"
+            self._color = "#605e5c"
+            self._align = TextAlign.CENTER
+            self._margin = "20px 0 12px 0"
+        elif self._text_type == TextType.BODY:
+            self._font_size = "14px"
+            self._font_weight = "normal"
+            self._color = "#323130"
+            self._align = TextAlign.LEFT
+            self._margin = "16px 0"
+        elif self._text_type == TextType.CAPTION:
+            self._font_size = "12px"
+            self._font_weight = "normal"
+            self._color = "#8e8e93"
+            self._align = TextAlign.LEFT
+            self._margin = "8px 0"
     
     @property
     def content(self) -> str:

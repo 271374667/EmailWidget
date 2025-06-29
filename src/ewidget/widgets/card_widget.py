@@ -1,7 +1,7 @@
 """卡片Widget实现"""
-from typing import Optional, Dict
+from typing import Optional, Dict, Union
 from src.ewidget.base import BaseWidget
-from src.ewidget.enums import StatusType
+from src.ewidget.enums import StatusType, IconType
 
 class CardWidget(BaseWidget):
     """卡片Widget类"""
@@ -11,7 +11,7 @@ class CardWidget(BaseWidget):
         self._title: Optional[str] = None
         self._content: str = ""
         self._status: Optional[StatusType] = None
-        self._icon: Optional[str] = None
+        self._icon: Optional[str] = IconType.INFO.value  # 默认Info图标
         self._metadata: Dict[str, str] = {}
         self._elevated: bool = True
         self._padding: str = "16px"
@@ -32,9 +32,12 @@ class CardWidget(BaseWidget):
         self._status = status
         return self
     
-    def set_icon(self, icon: str) -> 'CardWidget':
+    def set_icon(self, icon: Union[str, IconType]) -> 'CardWidget':
         """设置图标"""
-        self._icon = icon
+        if isinstance(icon, IconType):
+            self._icon = icon.value
+        else:
+            self._icon = icon
         return self
     
     def add_metadata(self, key: str, value: str) -> 'CardWidget':

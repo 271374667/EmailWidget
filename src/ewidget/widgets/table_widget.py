@@ -120,6 +120,30 @@ class TableWidget(BaseWidget):
         self._border_color = color
         return self
     
+    def add_data_row(self, row_data: list) -> 'TableWidget':
+        """添加数据行（基于DataFrame）"""
+        if self._dataframe is not None:
+            # 如果已有DataFrame，添加新行
+            new_row = pd.Series(row_data, index=self._dataframe.columns)
+            self._dataframe = pd.concat([self._dataframe, new_row.to_frame().T], ignore_index=True)
+        else:
+            # 如果没有DataFrame，创建新的
+            self._dataframe = pd.DataFrame([row_data])
+        return self
+    
+    def clear_data(self) -> 'TableWidget':
+        """清空表格数据"""
+        self._dataframe = None
+        self._rows.clear()
+        return self
+    
+    def set_column_width(self, column: str, width: str) -> 'TableWidget':
+        """设置列宽度"""
+        if not hasattr(self, '_column_widths'):
+            self._column_widths = {}
+        self._column_widths[column] = width
+        return self
+    
     def add_status_cell(self, value: str, status: StatusType) -> TableCell:
         """创建状态单元格"""
         return TableCell(value=value, status=status)

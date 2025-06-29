@@ -78,6 +78,35 @@ class LogWidget(BaseWidget):
         self._max_height = height
         return self
     
+    def set_log_level(self, level: LogLevel) -> 'LogWidget':
+        """设置日志级别过滤"""
+        self._filter_level = level
+        return self
+    
+    def append_log(self, log: str) -> 'LogWidget':
+        """添加单条日志"""
+        log_entry = self._parse_single_log(log)
+        if log_entry:
+            self._logs.append(log_entry)
+        return self
+    
+    def set_logs(self, logs: list[str]) -> 'LogWidget':
+        """设置日志列表"""
+        self._logs.clear()
+        for log_line in logs:
+            self.append_log(log_line)
+        return self
+    
+    def clear(self) -> 'LogWidget':
+        """清空日志"""
+        self._logs.clear()
+        return self
+    
+    def filter_by_level(self, level: LogLevel) -> 'LogWidget':
+        """按级别过滤日志"""
+        self._filter_level = level
+        return self
+    
     def show_timestamp(self, show: bool = True) -> 'LogWidget':
         """设置是否显示时间戳"""
         self._show_timestamp = show
@@ -132,15 +161,15 @@ class LogWidget(BaseWidget):
         return None
     
     def _get_level_color(self, level: LogLevel) -> str:
-        """获取日志级别颜色"""
+        """获取日志级别颜色 - 深色主题适配"""
         colors = {
-            LogLevel.DEBUG: "#8e8e93",
-            LogLevel.INFO: "#007acc",
-            LogLevel.WARNING: "#ff8c00",
-            LogLevel.ERROR: "#d13438",
-            LogLevel.CRITICAL: "#a80000"
+            LogLevel.DEBUG: "#888888",
+            LogLevel.INFO: "#4fc3f7",
+            LogLevel.WARNING: "#ffb74d",
+            LogLevel.ERROR: "#f44336",
+            LogLevel.CRITICAL: "#d32f2f"
         }
-        return colors.get(level, "#323130")
+        return colors.get(level, "#ffffff")
     
     def _get_level_background(self, level: LogLevel) -> str:
         """获取日志级别背景色"""
@@ -186,37 +215,37 @@ class LogWidget(BaseWidget):
         if not self._logs:
             return ""
         
-        # 容器样式
+        # 深色背景的容器样式
         container_style = f"""
-            background: {self._background_color};
-            border: 1px solid {self._border_color};
+            background: #1e1e1e;
+            border: 1px solid #333333;
             border-radius: 4px;
             margin: 16px 0;
             padding: 16px;
             max-height: {self._max_height};
+            overflow-x: auto;
             overflow-y: auto;
             font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             font-size: 13px;
             line-height: 1.4;
+            color: #ffffff;
         """
         
         html = f'<div style="{container_style}">'
         
         # 标题
         if self._title:
-            html += f'<h3 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 600; color: #323130;">{self._title}</h3>'
+            html += f'<h3 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 600; color: #ffffff;">{self._title}</h3>'
         
-        # 日志条目
+        # 日志条目 - 不换行，使用横向滚动
         for log_entry in self.logs:
-            entry_bg = self._get_level_background(log_entry.level)
             level_color = self._get_level_color(log_entry.level)
             
             entry_style = f"""
-                background: {entry_bg};
-                border-left: 3px solid {level_color};
-                padding: 8px 12px;
-                margin: 4px 0;
-                border-radius: 2px;
+                padding: 4px 0;
+                margin: 2px 0;
+                white-space: nowrap;
+                color: #ffffff;
             """
             
             html += f'<div style="{entry_style}">'
@@ -224,7 +253,7 @@ class LogWidget(BaseWidget):
             # 时间戳
             if self._show_timestamp:
                 timestamp_str = log_entry.timestamp.strftime("%Y-%m-%d %H:%M:%S")
-                html += f'<span style="color: #8e8e93; margin-right: 8px;">{timestamp_str}</span>'
+                html += f'<span style="color: #888888; margin-right: 8px;">{timestamp_str}</span>'
             
             # 日志级别
             if self._show_level:
@@ -235,10 +264,10 @@ class LogWidget(BaseWidget):
                 source = f"{log_entry.module}:{log_entry.function}"
                 if log_entry.line_number:
                     source += f":{log_entry.line_number}"
-                html += f'<span style="color: #605e5c; margin-right: 8px;">({source})</span>'
+                html += f'<span style="color: #cccccc; margin-right: 8px;">({source})</span>'
             
             # 消息内容
-            html += f'<span style="color: #323130;">{log_entry.message}</span>'
+            html += f'<span style="color: #ffffff;">{log_entry.message}</span>'
             html += '</div>'
         
         html += '</div>'

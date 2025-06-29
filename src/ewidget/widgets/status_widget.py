@@ -40,6 +40,25 @@ class StatusWidget(BaseWidget):
         self._items.clear()
         return self
     
+    def remove_item(self, label: str) -> 'StatusWidget':
+        """移除指定标签的状态项"""
+        self._items = [item for item in self._items if item.label != label]
+        return self
+    
+    def update_item(self, label: str, value: str, status: StatusType = None) -> 'StatusWidget':
+        """更新指定标签的状态项"""
+        for item in self._items:
+            if item.label == label:
+                item.value = value
+                if status:
+                    item.status = status
+                break
+        return self
+    
+    def get_item_count(self) -> int:
+        """获取状态项数量"""
+        return len(self._items)
+    
     def _get_status_color(self, status: StatusType) -> str:
         """获取状态颜色"""
         colors = {

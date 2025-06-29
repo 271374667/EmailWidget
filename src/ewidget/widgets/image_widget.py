@@ -1,6 +1,9 @@
 """图片Widget实现"""
+import base64
+import requests
 from typing import Optional, Union
 from pathlib import Path
+from urllib.parse import urlparse
 
 from src.ewidget.base import BaseWidget
 
@@ -20,12 +23,60 @@ class ImageWidget(BaseWidget):
         self._max_width: str = "100%"
     
     def set_image_url(self, image_url: Union[str, Path]) -> 'ImageWidget':
-        """设置图片URL"""
-        if isinstance(image_url, Path):
-            self._image_url = str(image_url)
-        else:
-            self._image_url = image_url
+        """设置图片URL，自动转换为base64嵌入"""
+        try:
+            if isinstance(image_url, Path):
+                # 本地文件路径
+                if image_url.exists():
+                    with open(image_url, 'rb') as f:
+                        img_data = f.read()
+                    img_base64 = base64.b64encode(img_data).decode('utf-8')
+                    # 根据文件扩展名确定MIME类型
+                    ext = image_url.suffix.lower()
+                    mime_type = self._get_mime_type(ext)
+                    self._image_url = f"data:{mime_type};base64,{img_base64}"
+                else:
+                    print(f"图片文件不存在: {image_url}")
+                    self._image_url = None
+            else:
+                # URL字符串
+                if image_url.startswith('data:'):
+                    # 已经是base64格式
+                    self._image_url = image_url
+                elif image_url.startswith(('http://', 'https://')):
+                    # 网络URL，下载并转换
+                    response = requests.get(image_url, timeout=10)
+                    if response.status_code == 200:
+                        img_data = response.content
+                        img_base64 = base64.b64encode(img_data).decode('utf-8')
+                        # 从Content-Type获取MIME类型
+                        content_type = response.headers.get('content-type', 'image/png')
+                        self._image_url = f"data:{content_type};base64,{img_base64}"
+                    else:
+                        print(f"下载图片失败: {image_url}")
+                        self._image_url = None
+                else:
+                    # 本地文件路径字符串
+                    local_path = Path(image_url)
+                    return self.set_image_url(local_path)
+        except Exception as e:
+            print(f"处理图片失败: {e}")
+            self._image_url = None
+        
         return self
+    
+    def _get_mime_type(self, ext: str) -> str:
+        """根据文件扩展名获取MIME类型"""
+        mime_types = {
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg',
+            '.jpeg': 'image/jpeg',
+            '.gif': 'image/gif',
+            '.bmp': 'image/bmp',
+            '.webp': 'image/webp',
+            '.svg': 'image/svg+xml'
+        }
+        return mime_types.get(ext, 'image/png')
     
     def set_title(self, title: str) -> 'ImageWidget':
         """设置图片标题"""

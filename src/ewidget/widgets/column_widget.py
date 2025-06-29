@@ -41,6 +41,21 @@ class ColumnWidget(BaseWidget):
         self._widgets = [w for w in self._widgets if w.widget_id != widget_id]
         return self
     
+    def remove_widget_by_index(self, index: int) -> 'ColumnWidget':
+        """移除指定索引的Widget"""
+        if 0 <= index < len(self._widgets):
+            self._widgets.pop(index)
+        return self
+    
+    def get_widget_count(self) -> int:
+        """获取Widget数量"""
+        return len(self._widgets)
+    
+    def set_equal_width(self, equal: bool = True) -> 'ColumnWidget':
+        """设置是否等宽"""
+        self._equal_width = equal
+        return self
+    
     def _get_template_name(self) -> str:
         return "column.html"
     

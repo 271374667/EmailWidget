@@ -1,5 +1,7 @@
 """图表Widget实现"""
-from typing import Optional, Union
+import base64
+import io
+from typing import Optional, Union, Any
 from pathlib import Path
 from src.ewidget.base import BaseWidget
 
@@ -46,6 +48,28 @@ class ChartWidget(BaseWidget):
     def set_max_width(self, max_width: str) -> 'ChartWidget':
         """设置最大宽度"""
         self._max_width = max_width
+        return self
+    
+    def set_chart(self, plt: Any) -> 'ChartWidget':
+        """设置seaborn/matplotlib图表对象，转换为base64嵌入"""
+        try:
+            # 保存图表到内存中的字节流
+            img_buffer = io.BytesIO()
+            plt.savefig(img_buffer, format='png', bbox_inches='tight', dpi=150)
+            img_buffer.seek(0)
+            
+            # 转换为base64
+            img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
+            self._image_url = f"data:image/png;base64,{img_base64}"
+            
+            # 关闭图表以释放内存
+            plt.close()
+            
+            img_buffer.close()
+        except Exception as e:
+            print(f"转换图表失败: {e}")
+            self._image_url = None
+        
         return self
     
     def _get_template_name(self) -> str:

@@ -32,6 +32,13 @@ class TextAlign(Enum):
     RIGHT = "right"
     JUSTIFY = "justify"
 
+class TextType(Enum):
+    """文本类型枚举"""
+    TITLE_LARGE = "title_large"      # 大标题
+    TITLE_SMALL = "title_small"      # 小标题
+    BODY = "body"                    # 正文(默认)
+    CAPTION = "caption"              # 正文补充
+
 class ProgressTheme(Enum):
     """进度条主题枚举"""
     PRIMARY = "primary"
@@ -43,4 +50,37 @@ class ProgressTheme(Enum):
 class LayoutType(Enum):
     """布局类型枚举"""
     HORIZONTAL = "horizontal"
-    VERTICAL = "vertical" 
+    VERTICAL = "vertical"
+
+class IconType(Enum):
+    """图标类型枚举 - 爬虫和数据处理领域常用图标"""
+    # 数据相关
+    DATA = "📊"
+    DATABASE = "🗄️"
+    CHART = "📈"
+    TABLE = "📋"
+    REPORT = "📄"
+    
+    # 爬虫相关
+    SPIDER = "🕷️"
+    WEB = "🌐"
+    LINK = "🔗"
+    SEARCH = "🔍"
+    DOWNLOAD = "⬇️"
+    
+    # 系统相关
+    SERVER = "🖥️"
+    NETWORK = "🌐"
+    STORAGE = "💾"
+    MEMORY = "🧠"
+    CPU = "⚡"
+    
+    # 状态相关
+    SUCCESS = "✅"
+    ERROR = "❌"
+    WARNING = "⚠️"
+    INFO = "ℹ️"
+    PROCESSING = "⚙️"
+    
+    # 默认图标
+    DEFAULT = "📋" 
