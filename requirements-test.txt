@@ -1,0 +1,25 @@
+# 测试依赖包
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-xdist>=3.0.0  # 并行测试
+pytest-html>=3.1.0  # HTML测试报告
+
+# 代码质量工具
+flake8>=5.0.0
+mypy>=1.0.0
+black>=22.0.0  # 代码格式化
+
+# 覆盖率工具
+coverage>=7.0.0
+
+# Mock和测试工具
+responses>=0.22.0  # HTTP请求mock
+freezegun>=1.2.0   # 时间mock
+factory-boy>=3.2.0  # 测试数据工厂
+
+# 性能测试
+pytest-benchmark>=4.0.0
+
+# 测试报告
+pytest-json-report>=1.5.0 
