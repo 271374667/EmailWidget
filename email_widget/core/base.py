@@ -8,7 +8,6 @@ import uuid
 
 from email_widget.core.template_engine import get_template_engine
 from email_widget.core.logger import get_project_logger
-from email_widget.utils.performance import performance_monitor
 
 if TYPE_CHECKING:
     from email_widget.email import Email
