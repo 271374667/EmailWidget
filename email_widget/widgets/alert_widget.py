@@ -1,10 +1,30 @@
 """警告框Widget实现"""
-from typing import Optional, Dict
+from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import AlertType
 
 class AlertWidget(BaseWidget):
     """警告框Widget类 (GitHub风格)"""
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if content %}
+        <div style="{{ container_style }}">
+            <!-- 标题行 -->
+            {% if show_icon %}
+                <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+                    <span style="margin-right: 8px; font-size: 18px;">{{ icon }}</span>
+                    <span>{{ title }}</span>
+                </div>
+            {% else %}
+                <div style="margin-bottom: 8px; font-weight: 600; font-size: 16px;">{{ title }}</div>
+            {% endif %}
+            
+            <!-- 内容 -->
+            <div style="line-height: 1.5; font-size: 14px;">{{ content }}</div>
+        </div>
+    {% endif %}
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -110,10 +130,10 @@ class AlertWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "alert.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._content:
-            return ""
+            return {}
         
         styles = self._get_alert_styles()
         title = self._title or self._get_default_title()
@@ -130,18 +150,10 @@ class AlertWidget(BaseWidget):
             color: {styles['color']};
         """
         
-        html = f'<div style="{container_style}">'
-        
-        # 标题行
-        if self._show_icon:
-            html += f'<div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">'
-            html += f'<span style="margin-right: 8px; font-size: 18px;">{icon}</span>'
-            html += f'<span>{title}</span></div>'
-        else:
-            html += f'<div style="margin-bottom: 8px; font-weight: 600; font-size: 16px;">{title}</div>'
-        
-        # 内容
-        html += f'<div style="line-height: 1.5; font-size: 14px;">{self._content}</div>'
-        html += '</div>'
-        
-        return html 
+        return {
+            'content': self._content,
+            'container_style': container_style,
+            'show_icon': self._show_icon,
+            'title': title,
+            'icon': icon
+        }

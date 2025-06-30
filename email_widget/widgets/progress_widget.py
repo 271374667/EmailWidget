@@ -1,10 +1,25 @@
 """进度条Widget实现"""
-from typing import Optional
+from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import ProgressTheme
 
 class ProgressWidget(BaseWidget):
     """进度条Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    <div style="{{ container_style }}">
+        {% if label %}
+            <div style="{{ label_style }}">{{ label }}</div>
+        {% endif %}
+        <div style="{{ progress_container_style }}">
+            <div style="{{ progress_fill_style }}"></div>
+            {% if show_percentage %}
+                <div style="{{ percentage_style }}">{{ percentage }}%</div>
+            {% endif %}
+        </div>
+    </div>
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -120,25 +135,22 @@ class ProgressWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "progress.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         percentage = self._get_percentage()
         theme_color = self._get_theme_color()
         
         # 容器样式
         container_style = "margin: 16px 0;"
         
-        # 标签
-        label_html = ""
-        if self._label:
-            label_style = """
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                font-size: 14px;
-                font-weight: 600;
-                color: #323130;
-                margin-bottom: 8px;
-            """
-            label_html = f'<div style="{label_style}">{self._label}</div>'
+        # 标签样式
+        label_style = """
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        """
         
         # 进度条容器样式
         progress_container_style = f"""
@@ -159,28 +171,26 @@ class ProgressWidget(BaseWidget):
             transition: width 0.3s ease;
         """
         
-        # 百分比文本
-        percentage_html = ""
-        if self._show_percentage:
-            percentage_style = f"""
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                font-size: 12px;
-                font-weight: 600;
-                color: {'#ffffff' if percentage > 50 else '#323130'};
-                text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            """
-            percentage_html = f'<div style="{percentage_style}">{percentage:.1f}%</div>'
+        # 百分比样式
+        percentage_style = f"""
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: {'#ffffff' if percentage > 50 else '#323130'};
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        """
         
-        html = f'''<div style="{container_style}">
-            {label_html}
-            <div style="{progress_container_style}">
-                <div style="{progress_fill_style}"></div>
-                {percentage_html}
-            </div>
-        </div>'''
-        
-        return html 
+        return {
+            'container_style': container_style,
+            'label': self._label,
+            'label_style': label_style,
+            'progress_container_style': progress_container_style,
+            'progress_fill_style': progress_fill_style,
+            'show_percentage': self._show_percentage,
+            'percentage': f"{percentage:.1f}",
+            'percentage_style': percentage_style
+        }

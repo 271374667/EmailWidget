@@ -3,8 +3,12 @@
 这个模块定义了所有Widget的基础抽象类，提供了Widget的基本功能和接口。
 """
 from abc import ABC, abstractmethod
-from typing import Optional, TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING, Dict, Any
 import uuid
+
+from email_widget.core.template_engine import get_template_engine
+from email_widget.core.logger import get_project_logger
+from email_widget.utils.performance import performance_monitor
 
 if TYPE_CHECKING:
     from email_widget.email import Email
@@ -38,6 +42,8 @@ class BaseWidget(ABC):
         """
         self._widget_id: str = widget_id or self._generate_id()
         self._parent: Optional['Email'] = None
+        self._template_engine = get_template_engine()
+        self._logger = get_project_logger()
     
     @property
     def widget_id(self) -> str:
@@ -88,16 +94,72 @@ class BaseWidget(ABC):
         """
         pass
     
-    @abstractmethod
     def render_html(self) -> str:
         """将Widget渲染为HTML字符串。
         
-        这是一个抽象方法，子类必须实现具体的HTML渲染逻辑。
+        使用模板引擎渲染Widget，提供容错机制。
         
         Returns:
             渲染后的HTML字符串
         """
+        try:
+            # 检查是否有模板定义
+            if not hasattr(self, 'TEMPLATE') or not self.TEMPLATE:
+                self._logger.warning(f"Widget {self.__class__.__name__} 没有定义TEMPLATE")
+                return self._render_error_fallback("模板未定义")
+            
+            # 获取模板上下文
+            context = self.get_template_context()
+            if not isinstance(context, dict):
+                self._logger.error(f"Widget {self.widget_id} 的get_template_context返回了非字典类型")
+                return self._render_error_fallback("上下文数据错误")
+            
+            # 渲染模板
+            return self._template_engine.render_safe(
+                self.TEMPLATE, 
+                context, 
+                fallback=self._render_error_fallback("模板渲染失败")
+            )
+            
+        except Exception as e:
+            self._logger.error(f"Widget {self.widget_id} 渲染失败: {e}")
+            return self._render_error_fallback(f"渲染异常: {e}")
+    
+    @abstractmethod
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据。
+        
+        子类必须实现此方法，返回模板渲染所需的数据字典。
+        
+        Returns:
+            模板上下文数据字典
+        """
         pass
+    
+    def _render_error_fallback(self, error_msg: str = "") -> str:
+        """渲染失败时的降级处理。
+        
+        Args:
+            error_msg: 错误信息
+            
+        Returns:
+            降级HTML字符串
+        """
+        return f'''
+        <div style="
+            border: 2px solid #d13438;
+            background: #ffebee;
+            color: #d13438;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+        ">
+            <strong>Widget渲染错误:</strong> {self.__class__.__name__} ({self.widget_id})
+            {f"<br/>错误详情: {error_msg}" if error_msg else ""}
+        </div>
+        '''
     
     def set_widget_id(self, widget_id: str) -> 'BaseWidget':
         """设置Widget的ID。

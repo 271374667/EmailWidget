@@ -87,4 +87,4 @@ class IconType(Enum):
     PROCESSING = "⚙️"
     
     # 默认图标
-    DEFAULT = "📋" 
+    DEFAULT = "📋"

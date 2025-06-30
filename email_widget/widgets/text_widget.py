@@ -2,7 +2,7 @@
 
 这个模块提供了文本显示功能的Widget，支持多种文本类型和样式设置。
 """
-from typing import Optional, Dict
+from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import TextAlign, TextType
 
@@ -120,6 +120,27 @@ class TextWidget(BaseWidget):
         ...           .set_color("#ff0000")
         ...           .set_font_size("18px")
         ...           .set_bold(True))
+    """
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if section_number %}
+        <{{ tag_name }} style="{{ text_style }}">{{ section_number }} {{ content }}</{{ tag_name }}>
+    {% else %}
+        {% if content_lines|length > 1 %}
+            <div style="{{ text_style }}">
+                {% for line in content_lines %}
+                    {% if line.strip() %}
+                        <p style="margin: 4px 0;">{{ line.strip() }}</p>
+                    {% else %}
+                        <br/>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="{{ text_style }}">{{ content }}</p>
+        {% endif %}
+    {% endif %}
     """
     
     def __init__(self, widget_id: Optional[str] = None):
@@ -455,21 +476,14 @@ class TextWidget(BaseWidget):
         """
         return "text.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML字符串。
-        
-        将文本Widget渲染成HTML代码，包括所有样式设置。
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据。
         
         Returns:
-            渲染后的HTML字符串，如果内容为空则返回空字符串
-            
-        Examples:
-            >>> widget = TextWidget().set_content("Hello").set_color("red")
-            >>> html = widget.render_html()
-            >>> print(html)  # 输出带样式的HTML
+            模板上下文数据字典
         """
         if not self._content:
-            return ""
+            return {}
         
         # 构建样式
         style_parts = [
@@ -485,26 +499,21 @@ class TextWidget(BaseWidget):
         if self._max_width:
             style_parts.append(f"max-width: {self._max_width}")
         
-        style_attr = "; ".join(style_parts)
+        # 确定HTML标签
+        tag_name = "p"
+        if self._text_type in [TextType.SECTION_H2, TextType.SECTION_H3, TextType.SECTION_H4, TextType.SECTION_H5]:
+            tag_map = {
+                TextType.SECTION_H2: "h2",
+                TextType.SECTION_H3: "h3", 
+                TextType.SECTION_H4: "h4",
+                TextType.SECTION_H5: "h5"
+            }
+            tag_name = tag_map.get(self._text_type, "p")
         
-        # 处理内容，如果是章节标题则添加编号
-        content = self._content
-        if self._section_number:
-            content = f"{self._section_number} {content}"
-        
-        # 处理多行文本
-        content_lines = content.split('\n')
-        if len(content_lines) > 1:
-            # 多行文本使用div包装
-            html = f'<div style="{style_attr}">'
-            for line in content_lines:
-                if line.strip():
-                    html += f'<p style="margin: 4px 0;">{line.strip()}</p>'
-                else:
-                    html += '<br/>'
-            html += '</div>'
-        else:
-            # 单行文本使用p标签
-            html = f'<p style="{style_attr}">{content}</p>'
-        
-        return html 
+        return {
+            'content': self._content,
+            'content_lines': self._content.split('\n'),
+            'section_number': self._section_number,
+            'text_style': "; ".join(style_parts),
+            'tag_name': tag_name
+        }

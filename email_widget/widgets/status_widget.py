@@ -1,5 +1,5 @@
 """状态信息Widget实现"""
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import StatusType, LayoutType
 
@@ -13,6 +13,28 @@ class StatusItem:
 
 class StatusWidget(BaseWidget):
     """状态信息Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if items %}
+        <div style="{{ container_style }}">
+            {% if title %}
+                <h3 style="{{ title_style }}">{{ title }}</h3>
+            {% endif %}
+            {% for item in items %}
+                <div style="{{ item.item_style }}">
+                    {% if layout == 'horizontal' %}
+                        <span style="{{ item.label_style }}">{{ item.label }}</span>
+                        <span style="{{ item.value_style }}">{{ item.value }}</span>
+                    {% else %}
+                        <div style="{{ item.label_style }}">{{ item.label }}</div>
+                        <div style="{{ item.value_style }}">{{ item.value }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -73,10 +95,10 @@ class StatusWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "status_info.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._items:
-            return ""
+            return {}
         
         container_style = """
             background: #ffffff;
@@ -87,12 +109,10 @@ class StatusWidget(BaseWidget):
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
         """
         
-        html = f'<div style="{container_style}">'
+        title_style = "font-size: 16px; font-weight: 600; color: #323130; margin-bottom: 12px;"
         
-        if self._title:
-            title_style = "font-size: 16px; font-weight: 600; color: #323130; margin-bottom: 12px;"
-            html += f'<h3 style="{title_style}">{self._title}</h3>'
-        
+        # 处理状态项
+        items_data = []
         for item in self._items:
             if self._layout == LayoutType.HORIZONTAL:
                 item_style = """
@@ -106,8 +126,6 @@ class StatusWidget(BaseWidget):
             else:
                 item_style = "margin: 8px 0; padding: 8px 0; border-bottom: 1px solid #f3f2f1;"
             
-            html += f'<div style="{item_style}">'
-            
             label_style = "font-weight: 500; color: #605e5c; font-size: 14px;"
             value_style = "color: #323130; font-size: 14px;"
             
@@ -115,14 +133,18 @@ class StatusWidget(BaseWidget):
                 status_color = self._get_status_color(item.status)
                 value_style += f" color: {status_color}; font-weight: 600;"
             
-            if self._layout == LayoutType.HORIZONTAL:
-                html += f'<span style="{label_style}">{item.label}</span>'
-                html += f'<span style="{value_style}">{item.value}</span>'
-            else:
-                html += f'<div style="{label_style}">{item.label}</div>'
-                html += f'<div style="{value_style}">{item.value}</div>'
-            
-            html += '</div>'
+            items_data.append({
+                'label': item.label,
+                'value': item.value,
+                'item_style': item_style,
+                'label_style': label_style,
+                'value_style': value_style
+            })
         
-        html += '</div>'
-        return html 
+        return {
+            'items': items_data,
+            'title': self._title,
+            'layout': 'horizontal' if self._layout == LayoutType.HORIZONTAL else 'vertical',
+            'container_style': container_style,
+            'title_style': title_style
+        }

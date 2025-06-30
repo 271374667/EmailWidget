@@ -1,10 +1,22 @@
 """圆形进度条Widget实现"""
-from typing import Optional
+from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import ProgressTheme
 
 class CircularProgressWidget(BaseWidget):
     """圆形进度条Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    <div style="{{ wrapper_style }}">
+        <div style="{{ container_style }}">
+            <div style="{{ inner_style }}">{{ percentage }}%</div>
+        </div>
+        {% if label %}
+            <div style="{{ label_style }}">{{ label }}</div>
+        {% endif %}
+    </div>
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -79,10 +91,13 @@ class CircularProgressWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "circular_progress.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         percentage = (self._value / self._max_value) * 100 if self._max_value > 0 else 0
         theme_color = self._get_theme_color()
+        
+        # 外层包装样式
+        wrapper_style = "text-align: center; margin: 16px 0;"
         
         # 由于邮箱环境限制，使用简化的圆形进度条
         container_style = f"""
@@ -111,18 +126,19 @@ class CircularProgressWidget(BaseWidget):
             color: #323130;
         """
         
-        html = f'<div style="{container_style}">'
-        html += f'<div style="{inner_style}">{percentage:.1f}%</div>'
-        html += '</div>'
+        label_style = """
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            color: #323130;
+            margin-top: 8px;
+        """
         
-        if self._label:
-            label_style = """
-                text-align: center;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                font-size: 14px;
-                color: #323130;
-                margin-top: 8px;
-            """
-            html += f'<div style="{label_style}">{self._label}</div>'
-        
-        return f'<div style="text-align: center; margin: 16px 0;">{html}</div>' 
+        return {
+            'wrapper_style': wrapper_style,
+            'container_style': container_style,
+            'inner_style': inner_style,
+            'percentage': f"{percentage:.1f}",
+            'label': self._label,
+            'label_style': label_style
+        }

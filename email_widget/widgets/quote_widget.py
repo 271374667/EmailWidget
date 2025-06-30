@@ -1,10 +1,22 @@
 """引用样式Widget实现"""
-from typing import Optional
+from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import StatusType
 
 class QuoteWidget(BaseWidget):
     """引用样式Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if content %}
+        <blockquote style="{{ container_style }}">
+            <p style="{{ content_style }}">"{{ content }}"</p>
+            {% if citation %}
+                <cite style="{{ citation_style }}">{{ citation }}</cite>
+            {% endif %}
+        </blockquote>
+    {% endif %}
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -62,10 +74,10 @@ class QuoteWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "quote.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._content:
-            return ""
+            return {}
         
         border_color = self._get_quote_color()
         
@@ -78,9 +90,6 @@ class QuoteWidget(BaseWidget):
             border-radius: 0 4px 4px 0;
         """
         
-        html = f'<blockquote style="{container_style}">'
-        
-        # 引用内容
         content_style = """
             font-size: 16px;
             line-height: 1.6;
@@ -88,27 +97,31 @@ class QuoteWidget(BaseWidget):
             margin: 0 0 12px 0;
             font-style: italic;
         """
-        html += f'<p style="{content_style}">"{self._content}"</p>'
         
-        # 作者和来源
+        citation_style = """
+            font-size: 14px;
+            color: #605e5c;
+            text-align: right;
+            margin: 0;
+        """
+        
+        # 处理引用信息
+        citation = None
         if self._author or self._source:
-            citation_style = """
-                font-size: 14px;
-                color: #605e5c;
-                text-align: right;
-                margin: 0;
-            """
-            
-            citation = ""
+            citation_text = ""
             if self._author:
-                citation += f"— {self._author}"
+                citation_text += f"— {self._author}"
             if self._source:
                 if self._author:
-                    citation += f", {self._source}"
+                    citation_text += f", {self._source}"
                 else:
-                    citation += f"— {self._source}"
-            
-            html += f'<cite style="{citation_style}">{citation}</cite>'
+                    citation_text += f"— {self._source}"
+            citation = citation_text
         
-        html += '</blockquote>'
-        return html 
+        return {
+            'content': self._content,
+            'citation': citation,
+            'container_style': container_style,
+            'content_style': content_style,
+            'citation_style': citation_style
+        }

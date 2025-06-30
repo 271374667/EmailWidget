@@ -8,8 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
 
-from email_widget.ewidget import (
-    Email, 
+from email_widget.widgets import (
     TableWidget, TableCell,
     ImageWidget,
     LogWidget, LogEntry,
@@ -22,8 +21,9 @@ from email_widget.ewidget import (
     QuoteWidget,
     ColumnWidget,
     ChartWidget,
-    LogLevel, StatusType, AlertType, TextAlign, TextType, ProgressTheme, LayoutType, IconType
 )
+from email_widget.email import Email
+from email_widget.core.enums import TextType, AlertType, ProgressTheme, IconType, StatusType, LayoutType, LogLevel, TextAlign
 
 def create_demo_email():
     """创建演示邮件"""

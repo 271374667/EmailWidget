@@ -1,9 +1,27 @@
 """列布局Widget实现"""
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 
 class ColumnWidget(BaseWidget):
     """列布局Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if widget_groups %}
+        <table style="{{ table_style }}">
+            {% for group in widget_groups %}
+                <tr>
+                    {% for widget_html in group %}
+                        <td style="{{ cell_style }}">{{ widget_html }}</td>
+                    {% endfor %}
+                    {% for _ in range(empty_columns) %}
+                        <td style="{{ empty_cell_style }}"></td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -59,10 +77,10 @@ class ColumnWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "column.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._widgets:
-            return ""
+            return {}
         
         # 计算列宽度
         column_width = f"{100 / self._columns:.2f}%"
@@ -76,31 +94,32 @@ class ColumnWidget(BaseWidget):
             margin: 16px 0;
         """
         
-        html = f'<table style="{table_style}">'
+        cell_style = f"""
+            width: {column_width};
+            vertical-align: top;
+            padding: 0;
+        """
+        
+        empty_cell_style = f"width: {column_width}; vertical-align: top; padding: 0;"
         
         # 分组处理Widget
         widget_groups = []
         for i in range(0, len(self._widgets), self._columns):
-            widget_groups.append(self._widgets[i:i + self._columns])
-        
-        for group in widget_groups:
-            html += '<tr>'
-            
+            group = self._widgets[i:i + self._columns]
+            group_html = []
             for widget in group:
-                cell_style = f"""
-                    width: {column_width};
-                    vertical-align: top;
-                    padding: 0;
-                """
                 widget_html = widget.render_html()
-                html += f'<td style="{cell_style}">{widget_html}</td>'
-            
-            # 填充空列
-            empty_columns = self._columns - len(group)
-            for _ in range(empty_columns):
-                html += f'<td style="width: {column_width}; vertical-align: top; padding: 0;"></td>'
-            
-            html += '</tr>'
+                group_html.append(widget_html)
+            widget_groups.append(group_html)
         
-        html += '</table>'
-        return html 
+        # 计算最后一行的空列数
+        last_group_size = len(self._widgets) % self._columns
+        empty_columns = (self._columns - last_group_size) if last_group_size > 0 else 0
+        
+        return {
+            'widget_groups': widget_groups,
+            'table_style': table_style,
+            'cell_style': cell_style,
+            'empty_cell_style': empty_cell_style,
+            'empty_columns': empty_columns
+        }

@@ -1,10 +1,35 @@
 """卡片Widget实现"""
-from typing import Optional, Dict, Union
+from typing import Optional, Dict, Union, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import StatusType, IconType
 
 class CardWidget(BaseWidget):
     """卡片Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if title or content %}
+        <div style="{{ card_style }}">
+            {% if title %}
+                <h3 style="{{ title_style }}">
+                    {% if icon %}{{ icon }} {% endif %}{{ title }}
+                </h3>
+            {% endif %}
+            {% if content %}
+                <div style="{{ content_style }}">{{ content }}</div>
+            {% endif %}
+            {% if metadata %}
+                <div style="{{ metadata_container_style }}">
+                    {% for key, value in metadata.items() %}
+                        <div style="{{ metadata_item_style }}">
+                            <strong>{{ key }}:</strong> {{ value }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -58,10 +83,10 @@ class CardWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "card.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._title and not self._content:
-            return ""
+            return {}
         
         card_style = f"""
             background: #ffffff;
@@ -75,24 +100,19 @@ class CardWidget(BaseWidget):
         if self._elevated:
             card_style += " box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
         
-        html = f'<div style="{card_style}">'
+        title_style = "font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;"
+        content_style = "color: #323130; line-height: 1.5; font-size: 14px;"
+        metadata_container_style = "margin-top: 12px; padding-top: 12px; border-top: 1px solid #e1dfdd;"
+        metadata_item_style = "margin: 4px 0; font-size: 13px;"
         
-        if self._title:
-            title_style = "font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;"
-            if self._icon:
-                html += f'<h3 style="{title_style}">{self._icon} {self._title}</h3>'
-            else:
-                html += f'<h3 style="{title_style}">{self._title}</h3>'
-        
-        if self._content:
-            content_style = "color: #323130; line-height: 1.5; font-size: 14px;"
-            html += f'<div style="{content_style}">{self._content}</div>'
-        
-        if self._metadata:
-            html += '<div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e1dfdd;">'
-            for key, value in self._metadata.items():
-                html += f'<div style="margin: 4px 0; font-size: 13px;"><strong>{key}:</strong> {value}</div>'
-            html += '</div>'
-        
-        html += '</div>'
-        return html 
+        return {
+            'title': self._title,
+            'content': self._content,
+            'icon': self._icon,
+            'metadata': self._metadata if self._metadata else None,
+            'card_style': card_style,
+            'title_style': title_style,
+            'content_style': content_style,
+            'metadata_container_style': metadata_container_style,
+            'metadata_item_style': metadata_item_style
+        }

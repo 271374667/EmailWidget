@@ -23,6 +23,41 @@ class TableCell:
 class TableWidget(BaseWidget):
     """表格Widget类"""
     
+    # 模板定义
+    TEMPLATE = """
+    <div style="{{ container_style }}">
+        {% if title %}
+            <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130;">{{ title }}</h3>
+        {% endif %}
+        <table style="{{ table_style }}">
+            {% if headers %}
+                <thead style="{{ header_style }}">
+                    <tr>
+                        {% if show_index %}
+                            <th style="{{ index_th_style }}">索引</th>
+                        {% endif %}
+                        {% for header in headers %}
+                            <th style="{{ th_style }}">{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+            {% endif %}
+            <tbody>
+                {% for row_data in rows_data %}
+                    <tr style="{{ row_data.row_style }}">
+                        {% if show_index %}
+                            <td style="{{ index_td_style }}">{{ row_data.index }}</td>
+                        {% endif %}
+                        {% for cell_data in row_data.cells %}
+                            <td style="{{ cell_data.style }}">{{ cell_data.value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    """
+    
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
         self._dataframe: Optional[pd.DataFrame] = None
@@ -185,10 +220,10 @@ class TableWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "table.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._headers and not self._rows:
-            return ""
+            return {}
         
         # 容器样式
         container_style = "margin: 16px 0;"
@@ -207,49 +242,41 @@ class TableWidget(BaseWidget):
         if self._bordered:
             table_style += f" border: 1px solid {self._border_color};"
         
-        html = f'<div style="{container_style}">'
+        # 表头样式
+        header_style = f"""
+            background: {self._header_bg_color};
+            border-bottom: 2px solid {self._border_color};
+        """
         
-        # 标题
-        if self._title:
-            html += f'<h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130;">{self._title}</h3>'
+        # 表头单元格样式
+        index_th_style = f"""
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: #323130;
+            border-right: 1px solid {self._border_color};
+        """
         
-        html += f'<table style="{table_style}">'
+        th_style = f"""
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: #323130;
+        """
+        if self._bordered:
+            th_style += f" border-right: 1px solid {self._border_color};"
         
-        # 表头
-        if self._headers:
-            header_style = f"""
-                background: {self._header_bg_color};
-                border-bottom: 2px solid {self._border_color};
-            """
-            
-            html += f'<thead style="{header_style}"><tr>'
-            
-            if self._show_index:
-                th_style = f"""
-                    padding: 12px 8px;
-                    text-align: left;
-                    font-weight: 600;
-                    color: #323130;
-                    border-right: 1px solid {self._border_color};
-                """
-                html += f'<th style="{th_style}">索引</th>'
-            
-            for header in self._headers:
-                th_style = f"""
-                    padding: 12px 8px;
-                    text-align: left;
-                    font-weight: 600;
-                    color: #323130;
-                """
-                if self._bordered:
-                    th_style += f" border-right: 1px solid {self._border_color};"
-                
-                html += f'<th style="{th_style}">{header}</th>'
-            
-            html += '</tr></thead>'
+        # 索引列样式
+        index_td_style = f"""
+            padding: 8px;
+            vertical-align: top;
+            color: #605e5c;
+        """
+        if self._bordered:
+            index_td_style += f" border-right: 1px solid {self._border_color};"
         
-        # 表体
-        html += '<tbody>'
+        # 处理行数据
+        rows_data = []
         for idx, row in enumerate(self._rows):
             # 行样式
             row_style = ""
@@ -258,21 +285,8 @@ class TableWidget(BaseWidget):
             if self._bordered:
                 row_style += f" border-bottom: 1px solid {self._border_color};"
             
-            html += f'<tr style="{row_style}">'
-            
-            # 索引列
-            if self._show_index:
-                td_style = f"""
-                    padding: 8px;
-                    vertical-align: top;
-                    color: #605e5c;
-                """
-                if self._bordered:
-                    td_style += f" border-right: 1px solid {self._border_color};"
-                
-                html += f'<td style="{td_style}">{idx + 1}</td>'
-            
-            # 数据列
+            # 处理单元格数据
+            cells_data = []
             for cell in row:
                 td_style = "padding: 8px; vertical-align: top;"
                 
@@ -293,16 +307,36 @@ class TableWidget(BaseWidget):
                     if self._bordered:
                         td_style += f" border-right: 1px solid {self._border_color};"
                     
-                    html += f'<td style="{td_style}">{cell.value}</td>'
+                    cells_data.append({
+                        'value': cell.value,
+                        'style': td_style
+                    })
                 else:
                     # 处理普通字符串
                     td_style += " color: #323130;"
                     if self._bordered:
                         td_style += f" border-right: 1px solid {self._border_color};"
                     
-                    html += f'<td style="{td_style}">{cell}</td>'
+                    cells_data.append({
+                        'value': cell,
+                        'style': td_style
+                    })
             
-            html += '</tr>'
+            rows_data.append({
+                'index': idx + 1,
+                'row_style': row_style,
+                'cells': cells_data
+            })
         
-        html += '</tbody></table></div>'
-        return html 
+        return {
+            'title': self._title,
+            'container_style': container_style,
+            'table_style': table_style,
+            'header_style': header_style,
+            'index_th_style': index_th_style,
+            'th_style': th_style,
+            'index_td_style': index_td_style,
+            'headers': self._headers,
+            'show_index': self._show_index,
+            'rows_data': rows_data
+        }

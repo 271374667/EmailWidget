@@ -1,6 +1,6 @@
 """日志Widget实现"""
 import re
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 from email_widget.core.base import BaseWidget
@@ -25,6 +25,31 @@ class LogEntry:
 
 class LogWidget(BaseWidget):
     """日志Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if logs %}
+        <div style="{{ container_style }}">
+            {% if title %}
+                <h3 style="{{ title_style }}">{{ title }}</h3>
+            {% endif %}
+            {% for log_entry in logs %}
+                <div style="{{ entry_style }}">
+                    {% if show_timestamp %}
+                        <span style="{{ timestamp_style }}">{{ log_entry.timestamp_str }}</span>
+                    {% endif %}
+                    {% if show_level %}
+                        <span style="{{ log_entry.level_style }}">[{{ log_entry.level }}]</span>
+                    {% endif %}
+                    {% if show_source and log_entry.source %}
+                        <span style="{{ source_style }}">({{ log_entry.source }})</span>
+                    {% endif %}
+                    <span style="{{ message_style }}">{{ log_entry.message }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    """
     
     LOG_PATTERN = re.compile(
         r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) \| '
@@ -76,30 +101,6 @@ class LogWidget(BaseWidget):
     def set_max_height(self, height: str) -> 'LogWidget':
         """设置最大高度"""
         self._max_height = height
-        return self
-    
-    def set_log_level(self, level: LogLevel) -> 'LogWidget':
-        """设置日志级别过滤"""
-        self._filter_level = level
-        return self
-    
-    def append_log(self, log: str) -> 'LogWidget':
-        """添加单条日志"""
-        log_entry = self._parse_single_log(log)
-        if log_entry:
-            self._logs.append(log_entry)
-        return self
-    
-    def set_logs(self, logs: list[str]) -> 'LogWidget':
-        """设置日志列表"""
-        self._logs.clear()
-        for log_line in logs:
-            self.append_log(log_line)
-        return self
-    
-    def clear(self) -> 'LogWidget':
-        """清空日志"""
-        self._logs.clear()
         return self
     
     def filter_by_level(self, level: LogLevel) -> 'LogWidget':
@@ -210,10 +211,10 @@ class LogWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "log_output.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._logs:
-            return ""
+            return {}
         
         # 深色背景的容器样式
         container_style = f"""
@@ -231,44 +232,50 @@ class LogWidget(BaseWidget):
             color: #ffffff;
         """
         
-        html = f'<div style="{container_style}">'
+        title_style = "margin: 0 0 16px 0; font-size: 16px; font-weight: 600; color: #ffffff;"
         
-        # 标题
-        if self._title:
-            html += f'<h3 style="margin: 0 0 16px 0; font-size: 16px; font-weight: 600; color: #ffffff;">{self._title}</h3>'
+        entry_style = """
+            padding: 4px 0;
+            margin: 2px 0;
+            white-space: nowrap;
+            color: #ffffff;
+        """
         
-        # 日志条目 - 不换行，使用横向滚动
+        timestamp_style = "color: #888888; margin-right: 8px;"
+        source_style = "color: #cccccc; margin-right: 8px;"
+        message_style = "color: #ffffff;"
+        
+        # 处理日志条目
+        logs_data = []
         for log_entry in self.logs:
             level_color = self._get_level_color(log_entry.level)
+            level_style = f"color: {level_color}; font-weight: bold; margin-right: 8px;"
             
-            entry_style = f"""
-                padding: 4px 0;
-                margin: 2px 0;
-                white-space: nowrap;
-                color: #ffffff;
-            """
-            
-            html += f'<div style="{entry_style}">'
-            
-            # 时间戳
-            if self._show_timestamp:
-                timestamp_str = log_entry.timestamp.strftime("%Y-%m-%d %H:%M:%S")
-                html += f'<span style="color: #888888; margin-right: 8px;">{timestamp_str}</span>'
-            
-            # 日志级别
-            if self._show_level:
-                html += f'<span style="color: {level_color}; font-weight: bold; margin-right: 8px;">[{log_entry.level.value}]</span>'
-            
-            # 来源信息
+            # 构建来源信息
+            source = None
             if self._show_source and (log_entry.module or log_entry.function):
                 source = f"{log_entry.module}:{log_entry.function}"
                 if log_entry.line_number:
                     source += f":{log_entry.line_number}"
-                html += f'<span style="color: #cccccc; margin-right: 8px;">({source})</span>'
             
-            # 消息内容
-            html += f'<span style="color: #ffffff;">{log_entry.message}</span>'
-            html += '</div>'
+            logs_data.append({
+                'timestamp_str': log_entry.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
+                'level': log_entry.level.value,
+                'level_style': level_style,
+                'source': source,
+                'message': log_entry.message
+            })
         
-        html += '</div>'
-        return html 
+        return {
+            'logs': logs_data,
+            'title': self._title,
+            'container_style': container_style,
+            'title_style': title_style,
+            'entry_style': entry_style,
+            'timestamp_style': timestamp_style,
+            'source_style': source_style,
+            'message_style': message_style,
+            'show_timestamp': self._show_timestamp,
+            'show_level': self._show_level,
+            'show_source': self._show_source
+        }

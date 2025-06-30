@@ -32,7 +32,7 @@ class Email:
         >>> email = Email("每日报告")
         
         >>> # 添加Widget
-        >>> from email_widget.ewidget.widgets import TextWidget
+        >>> from email_widget.widgets import TextWidget
         >>> text_widget = TextWidget().set_content("Hello World")
         >>> email.add_widget(text_widget)
         

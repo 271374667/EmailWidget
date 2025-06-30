@@ -1,13 +1,31 @@
 """图片Widget实现"""
-import base64
-import requests
-from typing import Optional, Union
+from typing import Optional, Union, Dict, Any
 from pathlib import Path
 
 from email_widget.core.base import BaseWidget
+from email_widget.utils.image_utils import ImageUtils
 
 class ImageWidget(BaseWidget):
     """图片Widget类"""
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if image_url %}
+        <div style="{{ container_style }}">
+            <img src="{{ image_url }}" alt="{{ alt_text }}" style="{{ img_style }}" />
+            {% if show_caption and (title or description) %}
+                <div style="margin-top: 8px;">
+                    {% if title %}
+                        <h4 style="margin: 8px 0 4px 0; font-size: 16px; font-weight: 600; color: #323130; text-align: center;">{{ title }}</h4>
+                    {% endif %}
+                    {% if description %}
+                        <p style="margin: 4px 0 8px 0; font-size: 14px; color: #605e5c; line-height: 1.4; text-align: center;">{{ description }}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    """
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
@@ -21,47 +39,9 @@ class ImageWidget(BaseWidget):
         self._show_caption: bool = True
         self._max_width: str = "100%"
     
-    def set_image_url(self, image_url: Union[str, Path]) -> 'ImageWidget':
+    def set_image_url(self, image_url: Union[str, Path], cache: bool = True) -> 'ImageWidget':
         """设置图片URL，自动转换为base64嵌入"""
-        try:
-            if isinstance(image_url, Path):
-                # 本地文件路径
-                if image_url.exists():
-                    with open(image_url, 'rb') as f:
-                        img_data = f.read()
-                    img_base64 = base64.b64encode(img_data).decode('utf-8')
-                    # 根据文件扩展名确定MIME类型
-                    ext = image_url.suffix.lower()
-                    mime_type = self._get_mime_type(ext)
-                    self._image_url = f"data:{mime_type};base64,{img_base64}"
-                else:
-                    print(f"图片文件不存在: {image_url}")
-                    self._image_url = None
-            else:
-                # URL字符串
-                if image_url.startswith('data:'):
-                    # 已经是base64格式
-                    self._image_url = image_url
-                elif image_url.startswith(('http://', 'https://')):
-                    # 网络URL，下载并转换
-                    response = requests.get(image_url, timeout=10)
-                    if response.status_code == 200:
-                        img_data = response.content
-                        img_base64 = base64.b64encode(img_data).decode('utf-8')
-                        # 从Content-Type获取MIME类型
-                        content_type = response.headers.get('content-type', 'image/png')
-                        self._image_url = f"data:{content_type};base64,{img_base64}"
-                    else:
-                        print(f"下载图片失败: {image_url}")
-                        self._image_url = None
-                else:
-                    # 本地文件路径字符串
-                    local_path = Path(image_url)
-                    return self.set_image_url(local_path)
-        except Exception as e:
-            print(f"处理图片失败: {e}")
-            self._image_url = None
-        
+        self._image_url = ImageUtils.process_image_source(image_url, cache=cache)
         return self
     
     def _get_mime_type(self, ext: str) -> str:
@@ -156,13 +136,13 @@ class ImageWidget(BaseWidget):
     def _get_template_name(self) -> str:
         return "image.html"
     
-    def render_html(self) -> str:
-        """渲染为HTML"""
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._image_url:
-            return ""
+            return {}
         
         # 构建图片样式
-        style_parts = [
+        img_style_parts = [
             f"max-width: {self._max_width}",
             "height: auto",
             "display: block",
@@ -170,33 +150,21 @@ class ImageWidget(BaseWidget):
         ]
         
         if self._width:
-            style_parts.append(f"width: {self._width}")
+            img_style_parts.append(f"width: {self._width}")
         if self._height:
-            style_parts.append(f"height: {self._height}")
+            img_style_parts.append(f"height: {self._height}")
         if self._border_radius:
-            style_parts.append(f"border-radius: {self._border_radius}")
+            img_style_parts.append(f"border-radius: {self._border_radius}")
         
-        style_attr = f'style="{"; ".join(style_parts)}"'
+        # 容器样式
+        container_style = "margin: 16px 0; text-align: center;"
         
-        # 生成图片HTML
-        html = f'<img src="{self._image_url}" alt="{self._alt_text}" {style_attr} />'
-        
-        # 添加标题和描述
-        if self._show_caption and (self._title or self._description):
-            caption_parts = []
-            if self._title:
-                caption_parts.append(f'<h4 style="margin: 8px 0 4px 0; font-size: 16px; font-weight: 600; color: #323130; text-align: center;">{self._title}</h4>')
-            if self._description:
-                caption_parts.append(f'<p style="margin: 4px 0 8px 0; font-size: 14px; color: #605e5c; line-height: 1.4; text-align: center;">{self._description}</p>')
-            
-            caption_html = ''.join(caption_parts)
-            html = f'''<div style="margin: 16px 0; text-align: center;">
-                {html}
-                <div style="margin-top: 8px;">
-                    {caption_html}
-                </div>
-            </div>'''
-        else:
-            html = f'<div style="margin: 16px 0; text-align: center;">{html}</div>'
-        
-        return html 
+        return {
+            'image_url': self._image_url,
+            'alt_text': self._alt_text,
+            'img_style': "; ".join(img_style_parts),
+            'container_style': container_style,
+            'title': self._title,
+            'description': self._description,
+            'show_caption': self._show_caption
+        }

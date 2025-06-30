@@ -7,10 +7,11 @@ import base64
 import io
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-from typing import Optional, Union, Any
+from typing import Optional, Union, Any, Dict
 from pathlib import Path
 from email_widget.core.base import BaseWidget
 from email_widget.core.config import EmailConfig
+from email_widget.utils.image_utils import ImageUtils
 
 
 class ChartWidget(BaseWidget):
@@ -54,6 +55,24 @@ class ChartWidget(BaseWidget):
         ...          .set_data_summary("总销售额: ¥1,234,567")
         ...          .set_max_width("600px"))
     """
+    
+    # 模板定义
+    TEMPLATE = """
+    {% if image_url %}
+        <div style="{{ container_style }}">
+            {% if title %}
+                <h3 style="{{ title_style }}">{{ title }}</h3>
+            {% endif %}
+            <img src="{{ image_url }}" alt="{{ alt_text }}" style="{{ img_style }}" />
+            {% if description %}
+                <p style="{{ desc_style }}">{{ description }}</p>
+            {% endif %}
+            {% if data_summary %}
+                <div style="{{ summary_style }}">数据摘要: {{ data_summary }}</div>
+            {% endif %}
+        </div>
+    {% endif %}
+    """
 
     def __init__(self, widget_id: Optional[str] = None):
         """初始化图表Widget。
@@ -69,11 +88,12 @@ class ChartWidget(BaseWidget):
         self._data_summary: Optional[str] = None
         self._max_width: str = "100%"
 
-    def set_image_url(self, image_url: Union[str, Path]) -> "ChartWidget":
+    def set_image_url(self, image_url: Union[str, Path], cache: bool = True) -> "ChartWidget":
         """设置图表图片URL或文件路径。
         
         Args:
             image_url: 图片URL或文件路径
+            cache: 是否使用缓存
             
         Returns:
             返回self以支持链式调用
@@ -86,10 +106,16 @@ class ChartWidget(BaseWidget):
             >>> from pathlib import Path
             >>> chart = ChartWidget().set_image_url(Path("./charts/sales.png"))
         """
-        if isinstance(image_url, Path):
-            self._image_url = str(image_url)
-        else:
-            self._image_url = image_url
+        # 验证路径存在性（仅对本地路径）
+        if isinstance(image_url, (str, Path)):
+            path_obj = Path(image_url) if isinstance(image_url, str) and not image_url.startswith(('http://', 'https://', 'data:')) else None
+            if path_obj and not path_obj.exists():
+                self._logger.error(f"图片文件不存在: {path_obj}")
+                self._image_url = None
+                return self
+        
+        # 使用ImageUtils统一处理
+        self._image_url = ImageUtils.process_image_source(image_url, cache=cache)
         return self
 
     def set_title(self, title: str) -> "ChartWidget":
@@ -218,7 +244,7 @@ class ChartWidget(BaseWidget):
 
             img_buffer.close()
         except Exception as e:
-            print(f"转换图表失败: {e}")
+            self._logger.error(f"转换图表失败: {e}")
             self._image_url = None
 
         return self
@@ -244,16 +270,16 @@ class ChartWidget(BaseWidget):
                 if font_name in available_fonts:
                     plt.rcParams["font.sans-serif"] = [font_name]
                     plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
-                    print(f"使用字体: {font_name}")
+                    self._logger.info(f"使用字体: {font_name}")
                     break
             else:
                 # 如果没有找到中文字体，尝试使用系统默认
-                print("警告: 未找到合适的中文字体，可能无法正确显示中文")
+                self._logger.warning("未找到合适的中文字体，可能无法正确显示中文")
                 plt.rcParams["font.sans-serif"] = ["DejaVu Sans"]
                 plt.rcParams["axes.unicode_minus"] = False
 
         except Exception as e:
-            print(f"配置中文字体失败: {e}")
+            self._logger.error(f"配置中文字体失败: {e}")
 
     def _get_template_name(self) -> str:
         """获取模板名称。
@@ -263,22 +289,12 @@ class ChartWidget(BaseWidget):
         """
         return "chart.html"
 
-    def render_html(self) -> str:
-        """渲染为HTML字符串。
-        
-        将图表Widget渲染成HTML代码，包括图片、标题、描述和数据摘要。
-        
-        Returns:
-            渲染后的HTML字符串，如果没有图片则返回空字符串
-            
-        Examples:
-            >>> chart = ChartWidget().set_image_url("chart.png").set_title("销售图表")
-            >>> html = chart.render_html()
-            >>> print(html)  # 输出完整的HTML结构
-        """
+    def get_template_context(self) -> Dict[str, Any]:
+        """获取模板渲染所需的上下文数据"""
         if not self._image_url:
-            return ""
+            return {}
 
+        # 容器样式
         container_style = f"""
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -289,50 +305,51 @@ class ChartWidget(BaseWidget):
             max-width: {self._max_width};
         """
 
-        html = f'<div style="{container_style}">'
+        # 标题样式
+        title_style = """
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 12px;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        """
 
-        # 标题
-        if self._title:
-            title_style = """
-                font-size: 18px;
-                font-weight: 600;
-                color: #323130;
-                margin-bottom: 12px;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            """
-            html += f'<h3 style="{title_style}">{self._title}</h3>'
-
-        # 图表图片
-        img_style = f"""
+        # 图片样式
+        img_style = """
             max-width: 100%;
             height: auto;
             border-radius: 4px;
             margin: 8px 0;
         """
-        html += f'<img src="{self._image_url}" alt="{self._alt_text}" style="{img_style}" />'
 
-        # 描述
-        if self._description:
-            desc_style = """
-                font-size: 14px;
-                color: #605e5c;
-                margin: 12px 0;
-                line-height: 1.5;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            """
-            html += f'<p style="{desc_style}">{self._description}</p>'
+        # 描述样式
+        desc_style = """
+            font-size: 14px;
+            color: #605e5c;
+            margin: 12px 0;
+            line-height: 1.5;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        """
 
-        # 数据摘要
-        if self._data_summary:
-            summary_style = """
-                font-size: 13px;
-                color: #8e8e93;
-                margin-top: 12px;
-                padding-top: 12px;
-                border-top: 1px solid #f3f2f1;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            """
-            html += f'<div style="{summary_style}">数据摘要: {self._data_summary}</div>'
+        # 数据摘要样式
+        summary_style = """
+            font-size: 13px;
+            color: #8e8e93;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f3f2f1;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        """
         
-        html += '</div>'
-        return html 
+        return {
+            'image_url': self._image_url,
+            'alt_text': self._alt_text,
+            'container_style': container_style,
+            'title': self._title,
+            'title_style': title_style,
+            'img_style': img_style,
+            'description': self._description,
+            'desc_style': desc_style,
+            'data_summary': self._data_summary,
+            'summary_style': summary_style
+        }
