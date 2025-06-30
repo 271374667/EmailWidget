@@ -2,7 +2,7 @@
 
 这个模块提供了EmailWidget库的核心功能，负责管理和渲染邮件内容。
 """
-from typing import List, Optional
+from typing import List, Optional, Dict
 from pathlib import Path
 import datetime
 
@@ -229,6 +229,327 @@ class Email:
         """
         self.footer_text = footer_text
         return self
+    
+    # ===== 便捷构造方法 =====
+    
+    def add_title(self, text: str, text_type: 'TextType' = None) -> 'Email':
+        """快速添加标题Widget。
+        
+        Args:
+            text: 标题文本
+            text_type: 文本类型，默认为TITLE_LARGE
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> email.add_title("每日数据报告")
+            >>> # 或指定类型
+            >>> email.add_title("小节标题", TextType.SECTION_H2)
+        """
+        from email_widget.core.enums import TextType
+        from email_widget.widgets.text_widget import TextWidget
+        
+        if text_type is None:
+            text_type = TextType.TITLE_LARGE
+            
+        widget = TextWidget().set_content(text).set_type(text_type)
+        return self.add_widget(widget)
+    
+    def add_text(self, content: str, **kwargs) -> 'Email':
+        """快速添加文本Widget。
+        
+        Args:
+            content: 文本内容
+            **kwargs: 其他文本属性，如 color, font_size, align 等
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> email.add_text("这是一段普通文本")
+            >>> # 带样式的文本
+            >>> email.add_text("重要提示", color="#ff0000", font_size="18px")
+        """
+        from email_widget.widgets.text_widget import TextWidget
+        
+        widget = TextWidget().set_content(content)
+        
+        # 应用额外的样式参数
+        for key, value in kwargs.items():
+            method_name = f'set_{key}'
+            if hasattr(widget, method_name):
+                getattr(widget, method_name)(value)
+        
+        return self.add_widget(widget)
+    
+    def add_table_from_data(self, 
+                           data: List[List[str]], 
+                           headers: Optional[List[str]] = None, 
+                           title: Optional[str] = None,
+                           **kwargs) -> 'Email':
+        """快速添加表格Widget。
+        
+        Args:
+            data: 表格数据，二维列表
+            headers: 表头列表，可选
+            title: 表格标题，可选
+            **kwargs: 其他表格属性
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> data = [["张三", "100", "优秀"], ["李四", "95", "良好"]]
+            >>> headers = ["姓名", "分数", "等级"]
+            >>> email.add_table_from_data(data, headers, "成绩单")
+        """
+        from email_widget.widgets.table_widget import TableWidget
+        
+        widget = TableWidget()
+        
+        if title:
+            widget.set_title(title)
+        if headers:
+            widget.set_headers(headers)
+        
+        for row in data:
+            widget.add_row(row)
+        
+        # 应用额外的样式参数
+        for key, value in kwargs.items():
+            method_name = f'set_{key}'
+            if hasattr(widget, method_name):
+                getattr(widget, method_name)(value)
+        
+        return self.add_widget(widget)
+    
+    def add_table_from_df(self, 
+                         df: 'pd.DataFrame', 
+                         title: Optional[str] = None,
+                         **kwargs) -> 'Email':
+        """快速添加来自DataFrame的表格Widget。
+        
+        Args:
+            df: pandas DataFrame对象
+            title: 表格标题，可选
+            **kwargs: 其他表格属性
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> import pandas as pd
+            >>> df = pd.DataFrame({"姓名": ["张三", "李四"], "分数": [100, 95]})
+            >>> email = Email()
+            >>> email.add_table_from_df(df, "成绩统计")
+        """
+        from email_widget.widgets.table_widget import TableWidget
+        
+        widget = TableWidget()
+        
+        if title:
+            widget.set_title(title)
+        
+        widget.set_dataframe(df)
+        
+        # 应用额外的样式参数
+        for key, value in kwargs.items():
+            method_name = f'set_{key}'
+            if hasattr(widget, method_name):
+                getattr(widget, method_name)(value)
+        
+        return self.add_widget(widget)
+    
+    def add_alert(self, 
+                  content: str, 
+                  alert_type: 'AlertType' = None,
+                  title: Optional[str] = None) -> 'Email':
+        """快速添加警告框Widget。
+        
+        Args:
+            content: 警告内容
+            alert_type: 警告类型，默认为NOTE
+            title: 自定义标题，可选
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> email.add_alert("任务执行成功！", AlertType.TIP)
+            >>> email.add_alert("注意检查数据", AlertType.WARNING, "重要提醒")
+        """
+        from email_widget.core.enums import AlertType
+        from email_widget.widgets.alert_widget import AlertWidget
+        
+        if alert_type is None:
+            alert_type = AlertType.NOTE
+            
+        widget = AlertWidget().set_content(content).set_alert_type(alert_type)
+        
+        if title:
+            widget.set_title(title)
+        
+        return self.add_widget(widget)
+    
+    def add_progress(self, 
+                    value: float, 
+                    label: Optional[str] = None,
+                    max_value: float = 100.0,
+                    theme: 'ProgressTheme' = None) -> 'Email':
+        """快速添加进度条Widget。
+        
+        Args:
+            value: 当前进度值
+            label: 进度条标签，可选
+            max_value: 最大值，默认100
+            theme: 主题，默认为PRIMARY
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> email.add_progress(75, "任务完成度")
+            >>> email.add_progress(100, "下载进度", theme=ProgressTheme.SUCCESS)
+        """
+        from email_widget.core.enums import ProgressTheme
+        from email_widget.widgets.progress_widget import ProgressWidget
+        
+        if theme is None:
+            theme = ProgressTheme.PRIMARY
+            
+        widget = (ProgressWidget()
+                 .set_value(value)
+                 .set_max_value(max_value)
+                 .set_theme(theme))
+        
+        if label:
+            widget.set_label(label)
+        
+        return self.add_widget(widget)
+    
+    def add_card(self, 
+                title: str, 
+                content: str, 
+                icon: Optional[str] = None,
+                metadata: Optional[dict[str, str]] = None) -> 'Email':
+        """快速添加卡片Widget。
+        
+        Args:
+            title: 卡片标题
+            content: 卡片内容
+            icon: 图标，可选
+            metadata: 元数据字典，可选
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> email.add_card("系统状态", "所有服务运行正常", "✅")
+            >>> # 带元数据的卡片
+            >>> metadata = {"CPU": "15%", "内存": "60%"}
+            >>> email.add_card("服务器监控", "资源使用情况", "🖥️", metadata)
+        """
+        from email_widget.widgets.card_widget import CardWidget
+        
+        widget = CardWidget().set_title(title).set_content(content)
+        
+        if icon:
+            widget.set_icon(icon)
+        
+        if metadata:
+            for key, value in metadata.items():
+                widget.add_metadata(key, value)
+        
+        return self.add_widget(widget)
+    
+    def add_chart_from_plt(self, 
+                          title: Optional[str] = None,
+                          description: Optional[str] = None,
+                          data_summary: Optional[str] = None) -> 'Email':
+        """快速添加matplotlib图表Widget。
+        
+        Args:
+            title: 图表标题，可选
+            description: 图表描述，可选
+            data_summary: 数据摘要，可选
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> import matplotlib.pyplot as plt
+            >>> plt.plot([1, 2, 3, 4], [1, 4, 2, 3])
+            >>> plt.title("销售趋势")
+            >>> 
+            >>> email = Email()
+            >>> email.add_chart_from_plt("月度销售", "显示销售趋势变化")
+        """
+        import matplotlib.pyplot as plt
+        from email_widget.widgets.chart_widget import ChartWidget
+        
+        widget = ChartWidget().set_chart(plt)
+        
+        if title:
+            widget.set_title(title)
+        if description:
+            widget.set_description(description)
+        if data_summary:
+            widget.set_data_summary(data_summary)
+        
+        return self.add_widget(widget)
+    
+    def add_status_items(self, 
+                        items: List[Dict[str, str]], 
+                        title: Optional[str] = None,
+                        layout: 'LayoutType' = None) -> 'Email':
+        """快速添加状态信息Widget。
+        
+        Args:
+            items: 状态项列表，每项包含 label, value, status(可选)
+            title: 状态组标题，可选
+            layout: 布局类型，默认为VERTICAL
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> items = [
+            ...     {"label": "CPU使用率", "value": "15%"},
+            ...     {"label": "内存使用率", "value": "60%"},
+            ...     {"label": "磁盘空间", "value": "80%"}
+            ... ]
+            >>> email = Email()
+            >>> email.add_status_items(items, "系统监控")
+        """
+        from email_widget.core.enums import LayoutType, StatusType
+        from email_widget.widgets.status_widget import StatusWidget
+        
+        if layout is None:
+            layout = LayoutType.VERTICAL
+            
+        widget = StatusWidget().set_layout(layout)
+        
+        if title:
+            widget.set_title(title)
+        
+        for item in items:
+            status = None
+            if 'status' in item:
+                # 尝试转换字符串为StatusType
+                status_str = item['status'].upper()
+                if hasattr(StatusType, status_str):
+                    status = getattr(StatusType, status_str)
+            
+            widget.add_status_item(item['label'], item['value'], status)
+        
+        return self.add_widget(widget)
     
     def _generate_css_styles(self) -> str:
         """生成内联CSS样式。
