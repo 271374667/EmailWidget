@@ -158,9 +158,9 @@ def create_demo_email():
     
     # 8. 列布局演示
     column_widget = ColumnWidget()
-    column_widget.set_columns(2).set_gap("15px")
-    # column_widget.add_widgets([card1, card2, card3, card4])
-    column_widget.add_widgets([card1, card2])
+    # column_widget.set_columns(2).set_gap("15px")
+    column_widget.add_widgets([card1, card2, card3, card4])
+    # column_widget.add_widgets([card1, card2])
     email.add_widget(column_widget)
     
     # 9. 圆形进度条演示
