@@ -1,7 +1,7 @@
 """警告框Widget实现"""
-from typing import Optional, Dict, Any
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import AlertType
+from typing import Optional, Dict
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import AlertType
 
 class AlertWidget(BaseWidget):
     """警告框Widget类 (GitHub风格)"""

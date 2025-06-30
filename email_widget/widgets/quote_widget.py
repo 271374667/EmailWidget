@@ -1,7 +1,7 @@
 """引用样式Widget实现"""
 from typing import Optional
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import StatusType
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import StatusType
 
 class QuoteWidget(BaseWidget):
     """引用样式Widget类"""

@@ -1,7 +1,7 @@
 """状态信息Widget实现"""
-from typing import List, Optional, Dict, Any
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import StatusType, LayoutType
+from typing import List, Optional
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import StatusType, LayoutType
 
 class StatusItem:
     """状态项类"""

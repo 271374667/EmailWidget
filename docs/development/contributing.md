@@ -133,7 +133,8 @@ email_widget/ewidget/widgets/
 这个模块提供了XXX功能的Widget。
 """
 from typing import Optional
-from email_widget.ewidget.base import BaseWidget
+from email_widget.core.base import BaseWidget
+
 
 class YourNewWidget(BaseWidget):
     """你的新Widget类，用于XXX功能。
@@ -148,7 +149,7 @@ class YourNewWidget(BaseWidget):
         >>> widget.set_something("value")
         >>> html = widget.render_html()
     """
-    
+
     def __init__(self, widget_id: Optional[str] = None):
         """初始化Widget。
         
@@ -158,7 +159,7 @@ class YourNewWidget(BaseWidget):
         super().__init__(widget_id)
         # 初始化你的属性
         self._your_attr = "default_value"
-    
+
     def set_something(self, value: str) -> 'YourNewWidget':
         """设置某个属性。
         
@@ -170,7 +171,7 @@ class YourNewWidget(BaseWidget):
         """
         self._your_attr = value
         return self
-    
+
     def _get_template_name(self) -> str:
         """获取模板名称。
         
@@ -178,7 +179,7 @@ class YourNewWidget(BaseWidget):
             模板文件名
         """
         return "your_new_widget.html"
-    
+
     def render_html(self) -> str:
         """渲染为HTML字符串。
         
@@ -202,27 +203,28 @@ class YourNewWidget(BaseWidget):
 
 ```python
 import pytest
-from email_widget.ewidget.widgets.your_new_widget import YourNewWidget
+from email_widget.widgets import YourNewWidget
+
 
 class TestYourNewWidget:
     def test_init(self):
         """测试Widget初始化"""
         widget = YourNewWidget()
         assert widget._your_attr == "default_value"
-    
+
     def test_set_something(self):
         """测试设置属性"""
         widget = YourNewWidget()
         result = widget.set_something("test_value")
-        
+
         assert widget._your_attr == "test_value"
         assert result is widget  # 测试链式调用
-    
+
     def test_render_html(self):
         """测试HTML渲染"""
         widget = YourNewWidget()
         widget.set_something("test")
-        
+
         html = widget.render_html()
         assert "test" in html
 ```

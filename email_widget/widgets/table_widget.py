@@ -1,10 +1,9 @@
 """表格Widget实现"""
 import pandas as pd
 from typing import Optional, List, Dict, Any, Union
-from pathlib import Path
 
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import StatusType
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import StatusType
 
 class TableCell:
     """表格单元格类"""

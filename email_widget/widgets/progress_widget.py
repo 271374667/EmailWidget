@@ -1,7 +1,7 @@
 """进度条Widget实现"""
 from typing import Optional
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import ProgressTheme
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import ProgressTheme
 
 class ProgressWidget(BaseWidget):
     """进度条Widget类"""

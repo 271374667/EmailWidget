@@ -7,7 +7,7 @@ from typing import Optional, TYPE_CHECKING
 import uuid
 
 if TYPE_CHECKING:
-    from email_widget.ewidget.email import Email
+    from email_widget.email import Email
 
 class BaseWidget(ABC):
     """所有Widget的基础抽象类。

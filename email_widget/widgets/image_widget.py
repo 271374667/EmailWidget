@@ -3,9 +3,8 @@ import base64
 import requests
 from typing import Optional, Union
 from pathlib import Path
-from urllib.parse import urlparse
 
-from email_widget.ewidget.base import BaseWidget
+from email_widget.core.base import BaseWidget
 
 class ImageWidget(BaseWidget):
     """图片Widget类"""

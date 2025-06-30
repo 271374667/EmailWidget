@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 from typing import Optional, Union, Any
 from pathlib import Path
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.config import EmailConfig
+from email_widget.core.base import BaseWidget
+from email_widget.core.config import EmailConfig
 
 
 class ChartWidget(BaseWidget):

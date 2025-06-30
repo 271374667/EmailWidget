@@ -1,6 +1,6 @@
 """列布局Widget实现"""
-from typing import List, Union, Optional
-from email_widget.ewidget.base import BaseWidget
+from typing import List, Optional
+from email_widget.core.base import BaseWidget
 
 class ColumnWidget(BaseWidget):
     """列布局Widget类"""

@@ -2,9 +2,9 @@
 
 这个模块提供了文本显示功能的Widget，支持多种文本类型和样式设置。
 """
-from typing import Optional, Dict, List
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import TextAlign, TextType
+from typing import Optional, Dict
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import TextAlign, TextType
 
 class SectionNumberManager:
     """章节编号管理器。

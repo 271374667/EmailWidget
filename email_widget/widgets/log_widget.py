@@ -1,10 +1,10 @@
 """日志Widget实现"""
 import re
-from typing import List, Optional, Dict, Any
+from typing import List, Optional
 from datetime import datetime
 
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import LogLevel
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import LogLevel
 
 class LogEntry:
     """日志条目类"""

@@ -1,7 +1,7 @@
 """卡片Widget实现"""
 from typing import Optional, Dict, Union
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.enums import StatusType, IconType
+from email_widget.core.base import BaseWidget
+from email_widget.core.enums import StatusType, IconType
 
 class CardWidget(BaseWidget):
     """卡片Widget类"""

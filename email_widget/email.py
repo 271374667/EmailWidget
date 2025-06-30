@@ -2,12 +2,12 @@
 
 这个模块提供了EmailWidget库的核心功能，负责管理和渲染邮件内容。
 """
-from typing import List, Union, Optional
+from typing import List, Optional
 from pathlib import Path
 import datetime
 
-from email_widget.ewidget.base import BaseWidget
-from email_widget.ewidget.config import EmailConfig
+from email_widget.core.base import BaseWidget
+from email_widget.core.config import EmailConfig
 
 class Email:
     """邮件主类，负责管理和渲染邮件内容。
