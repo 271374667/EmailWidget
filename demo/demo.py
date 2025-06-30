@@ -250,7 +250,7 @@ def main():
     demo_email = create_demo_email()
     
     # 导出HTML文件
-    output_path = demo_email.export("ewidget_demo")
+    output_path = demo_email.export_html("ewidget_demo")
     print(f"演示邮件已导出到: {output_path}")
     
     # 显示统计信息

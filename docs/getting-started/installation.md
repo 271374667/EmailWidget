@@ -158,7 +158,7 @@ email.add_widget(TextWidget().set_content("在 Jupyter 中使用 EmailWidget"))
 
 # 预览 HTML（在 Jupyter 中直接显示）
 from IPython.display import HTML
-HTML(email.preview_html())
+HTML(email.export_html())
 ```
 
 ## 下一步

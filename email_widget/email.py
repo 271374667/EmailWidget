@@ -451,40 +451,6 @@ class Email:
         """
         return self._render_email()
     
-    # 保持向后兼容性
-    def export(self, 
-               filename: Optional[str] = None,
-               output_dir: Optional[str] = None) -> str:
-        """导出邮件为HTML文件（向后兼容方法）。
-        
-        Args:
-            filename: 可选的文件名，如果不提供则自动生成
-            output_dir: 可选的输出目录，如果不提供则使用配置中的默认目录
-            
-        Returns:
-            导出文件的完整路径字符串
-            
-        Note:
-            此方法为向后兼容保留，建议使用export_html方法
-        """
-        return str(self.export_html(filename, output_dir))
-    
-    def preview_html(self) -> str:
-        """获取邮件的HTML内容预览（向后兼容方法）。
-        
-        Returns:
-            完整的HTML邮件字符串
-            
-        Note:
-            此方法为向后兼容保留，建议使用export_str方法
-            
-        Examples:
-            >>> email = Email("预览测试")
-            >>> html = email.preview_html()
-            >>> print(html[:100])  # 打印前100个字符
-        """
-        return self.export_str()
-    
     def get_widget_count(self) -> int:
         """获取当前邮件中Widget的数量。
         
