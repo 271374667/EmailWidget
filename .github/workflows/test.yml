@@ -1,0 +1,176 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install -r requirements-test.txt
+
+    - name: Run tests
+      run: |
+        python -m pytest tests/ -v --tb=short
+
+    - name: Run tests with coverage
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      run: |
+        pip install pytest-cov
+        python -m pytest tests/ --cov=email_widget --cov-report=xml --cov-report=term-missing
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+
+  test-minimal:
+    name: Test with minimal dependencies
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install minimal dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install pytest pytest-mock
+
+    - name: Run core tests
+      run: |
+        python -m pytest tests/test_core/ tests/test_utils/ tests/test_email.py -v
+
+  lint:
+    name: Code quality
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff mypy
+
+    - name: Lint with ruff
+      run: |
+        ruff check email_widget/ tests/
+      continue-on-error: true
+
+    - name: Check formatting with ruff
+      run: |
+        ruff format --check email_widget/ tests/
+      continue-on-error: true
+
+    - name: Type check with mypy
+      run: |
+        mypy email_widget/ --ignore-missing-imports
+      continue-on-error: true
+
+  test-examples:
+    name: Test example scripts
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install -r requirements-test.txt
+
+    - name: Test example scripts
+      run: |
+        cd demo
+        python example.py
+      continue-on-error: true
+
+  notify:
+    name: Test Results Summary
+    runs-on: ubuntu-latest
+    needs: [test, test-minimal, lint]
+    if: always()
+    
+    steps:
+    - name: Report test results
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const test_result = '${{ needs.test.result }}';
+          const minimal_result = '${{ needs.test-minimal.result }}';
+          const lint_result = '${{ needs.lint.result }}';
+          
+          let emoji = '✅';
+          let status = 'passed';
+          
+          if (test_result === 'failure' || minimal_result === 'failure') {
+            emoji = '❌';
+            status = 'failed';
+          } else if (test_result === 'cancelled' || minimal_result === 'cancelled') {
+            emoji = '⚠️';
+            status = 'cancelled';
+          }
+          
+          const summary = `${emoji} **Tests ${status}**\n\n` +
+                         `- Main tests: ${test_result}\n` +
+                         `- Minimal tests: ${minimal_result}\n` +
+                         `- Code quality: ${lint_result}\n\n` +
+                         `Run ID: ${context.runId}`;
+          
+          console.log(summary);
+          
+          // 如果是PR，添加评论
+          if (context.eventName === 'pull_request') {
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
+          } 

@@ -98,7 +98,7 @@ class AlertWidget(BaseWidget):
             AlertType.TIP: "提示", 
             AlertType.IMPORTANT: "重要",
             AlertType.WARNING: "警告",
-            AlertType.CAUTION: "小心"
+            AlertType.CAUTION: "危险"
         }
         return titles[self._alert_type]
     
