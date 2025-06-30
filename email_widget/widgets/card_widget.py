@@ -2,6 +2,9 @@
 from typing import Optional, Dict, Union, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import StatusType, IconType
+from email_widget.core.validators import (
+    NonEmptyStringValidator, SizeValidator
+)
 
 class CardWidget(BaseWidget):
     """卡片Widget类"""
@@ -41,14 +44,38 @@ class CardWidget(BaseWidget):
         self._elevated: bool = True
         self._padding: str = "16px"
         self._border_radius: str = "4px"
+        
+        # 初始化验证器
+        self._text_validator = NonEmptyStringValidator()
+        self._size_validator = SizeValidator()
     
     def set_title(self, title: str) -> 'CardWidget':
-        """设置卡片标题"""
+        """设置卡片标题
+        
+        Args:
+            title: 卡片标题
+            
+        Raises:
+            ValueError: 当标题为空时
+        """
+        if not self._text_validator.validate(title):
+            raise ValueError(f"标题验证失败: {self._text_validator.get_error_message(title)}")
+        
         self._title = title
         return self
     
     def set_content(self, content: str) -> 'CardWidget':
-        """设置卡片内容"""
+        """设置卡片内容
+        
+        Args:
+            content: 卡片内容
+            
+        Raises:
+            ValueError: 当内容为空时
+        """
+        if not self._text_validator.validate(content):
+            raise ValueError(f"内容验证失败: {self._text_validator.get_error_message(content)}")
+        
         self._content = content
         return self
     

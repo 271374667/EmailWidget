@@ -2,6 +2,9 @@
 from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import AlertType
+from email_widget.core.validators import (
+    NonEmptyStringValidator, SizeValidator
+)
 
 class AlertWidget(BaseWidget):
     """警告框Widget类 (GitHub风格)"""
@@ -35,9 +38,23 @@ class AlertWidget(BaseWidget):
         self._show_icon: bool = True
         self._border_radius: str = "6px"
         self._padding: str = "16px"
+        
+        # 初始化验证器
+        self._content_validator = NonEmptyStringValidator()
+        self._size_validator = SizeValidator()
     
     def set_content(self, content: str) -> 'AlertWidget':
-        """设置警告内容"""
+        """设置警告内容
+        
+        Args:
+            content: 警告内容
+            
+        Raises:
+            ValueError: 当内容为空时
+        """
+        if not self._content_validator.validate(content):
+            raise ValueError(f"警告内容验证失败: {self._content_validator.get_error_message(content)}")
+        
         self._content = content
         return self
     

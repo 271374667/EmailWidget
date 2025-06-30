@@ -2,6 +2,9 @@
 from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import ProgressTheme
+from email_widget.core.validators import (
+    RangeValidator, SizeValidator, ColorValidator
+)
 
 class ProgressWidget(BaseWidget):
     """进度条Widget类"""
@@ -32,9 +35,24 @@ class ProgressWidget(BaseWidget):
         self._height: str = "20px"
         self._border_radius: str = "10px"
         self._background_color: str = "#e1dfdd"
+        
+        # 初始化验证器
+        self._value_validator = RangeValidator(0, 1000000)  # 支持大范围的值
+        self._size_validator = SizeValidator()
+        self._color_validator = ColorValidator()
     
     def set_value(self, value: float) -> 'ProgressWidget':
-        """设置当前值"""
+        """设置当前值
+        
+        Args:
+            value: 进度值
+            
+        Raises:
+            ValueError: 当值无效时
+        """
+        if not self._value_validator.validate(value):
+            raise ValueError(f"进度值验证失败: {self._value_validator.get_error_message(value)}")
+        
         self._value = max(0, min(value, self._max_value))
         return self
     
@@ -61,7 +79,17 @@ class ProgressWidget(BaseWidget):
         return self
     
     def set_width(self, width: str) -> 'ProgressWidget':
-        """设置宽度"""
+        """设置宽度
+        
+        Args:
+            width: CSS宽度值
+            
+        Raises:
+            ValueError: 当宽度格式无效时
+        """
+        if not self._size_validator.validate(width):
+            raise ValueError(f"宽度值验证失败: {self._size_validator.get_error_message(width)}")
+        
         self._width = width
         return self
     
@@ -76,7 +104,17 @@ class ProgressWidget(BaseWidget):
         return self
     
     def set_background_color(self, color: str) -> 'ProgressWidget':
-        """设置背景颜色"""
+        """设置背景颜色
+        
+        Args:
+            color: CSS颜色值
+            
+        Raises:
+            ValueError: 当颜色格式无效时
+        """
+        if not self._color_validator.validate(color):
+            raise ValueError(f"背景颜色验证失败: {self._color_validator.get_error_message(color)}")
+        
         self._background_color = color
         return self
     

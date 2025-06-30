@@ -5,6 +5,9 @@
 from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import TextAlign, TextType
+from email_widget.core.validators import (
+    ColorValidator, SizeValidator, NonEmptyStringValidator
+)
 
 class SectionNumberManager:
     """章节编号管理器。
@@ -172,6 +175,11 @@ class TextWidget(BaseWidget):
         self._max_width: Optional[str] = None
         self._section_number: Optional[str] = None
         self._section_manager = SectionNumberManager()
+        
+        # 初始化验证器
+        self._color_validator = ColorValidator()
+        self._size_validator = SizeValidator()
+        self._content_validator = NonEmptyStringValidator()
     
     def set_content(self, content: str) -> 'TextWidget':
         """设置文本内容。
@@ -182,11 +190,17 @@ class TextWidget(BaseWidget):
         Returns:
             返回self以支持链式调用
             
+        Raises:
+            ValueError: 当内容为空字符串时
+            
         Examples:
             >>> widget = TextWidget().set_content("Hello World")
             >>> # 多行文本
             >>> widget = TextWidget().set_content("第一行\\n第二行\\n第三行")
         """
+        if not self._content_validator.validate(content):
+            raise ValueError(f"文本内容验证失败: {self._content_validator.get_error_message(content)}")
+        
         self._content = content
         return self
     
@@ -218,10 +232,16 @@ class TextWidget(BaseWidget):
         Returns:
             返回self以支持链式调用
             
+        Raises:
+            ValueError: 当尺寸格式无效时
+            
         Examples:
             >>> widget = TextWidget().set_font_size("18px")
             >>> widget = TextWidget().set_font_size("1.5em")
         """
+        if not self._size_validator.validate(size):
+            raise ValueError(f"字体大小验证失败: {self._size_validator.get_error_message(size)}")
+        
         self._font_size = size
         return self
     
@@ -250,10 +270,16 @@ class TextWidget(BaseWidget):
         Returns:
             返回self以支持链式调用
             
+        Raises:
+            ValueError: 当颜色格式无效时
+            
         Examples:
             >>> widget = TextWidget().set_color("#ff0000")
             >>> widget = TextWidget().set_color("blue")
         """
+        if not self._color_validator.validate(color):
+            raise ValueError(f"颜色值验证失败: {self._color_validator.get_error_message(color)}")
+        
         self._color = color
         return self
     

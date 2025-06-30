@@ -2,6 +2,9 @@
 from typing import Optional, Dict, Any
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import ProgressTheme
+from email_widget.core.validators import (
+    RangeValidator, SizeValidator
+)
 
 class CircularProgressWidget(BaseWidget):
     """圆形进度条Widget类"""
@@ -26,9 +29,23 @@ class CircularProgressWidget(BaseWidget):
         self._theme: ProgressTheme = ProgressTheme.PRIMARY
         self._size: str = "100px"
         self._stroke_width: str = "8px"
+        
+        # 初始化验证器
+        self._value_validator = RangeValidator(0, 1000000)
+        self._size_validator = SizeValidator()
     
     def set_value(self, value: float) -> 'CircularProgressWidget':
-        """设置当前值"""
+        """设置当前值
+        
+        Args:
+            value: 进度值
+            
+        Raises:
+            ValueError: 当值无效时
+        """
+        if not self._value_validator.validate(value):
+            raise ValueError(f"进度值验证失败: {self._value_validator.get_error_message(value)}")
+        
         self._value = max(0, min(value, self._max_value))
         return self
     
@@ -48,7 +65,17 @@ class CircularProgressWidget(BaseWidget):
         return self
     
     def set_size(self, size: str) -> 'CircularProgressWidget':
-        """设置大小"""
+        """设置大小
+        
+        Args:
+            size: CSS尺寸值
+            
+        Raises:
+            ValueError: 当尺寸格式无效时
+        """
+        if not self._size_validator.validate(size):
+            raise ValueError(f"尺寸值验证失败: {self._size_validator.get_error_message(size)}")
+        
         self._size = size
         return self
     

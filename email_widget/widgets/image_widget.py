@@ -4,6 +4,9 @@ from pathlib import Path
 
 from email_widget.core.base import BaseWidget
 from email_widget.utils.image_utils import ImageUtils
+from email_widget.core.validators import (
+    SizeValidator, UrlValidator, NonEmptyStringValidator
+)
 
 class ImageWidget(BaseWidget):
     """图片Widget类"""
@@ -51,6 +54,11 @@ class ImageWidget(BaseWidget):
         self._border_radius: str = "4px"
         self._show_caption: bool = True
         self._max_width: str = "100%"
+        
+        # 初始化验证器
+        self._size_validator = SizeValidator()
+        self._url_validator = UrlValidator()
+        self._text_validator = NonEmptyStringValidator()
     
     def set_image_url(self, image_url: Union[str, Path], cache: bool = True) -> 'ImageWidget':
         """设置图片URL，自动转换为base64嵌入"""
@@ -86,7 +94,20 @@ class ImageWidget(BaseWidget):
         return self
     
     def set_size(self, width: Optional[str] = None, height: Optional[str] = None) -> 'ImageWidget':
-        """设置图片尺寸"""
+        """设置图片尺寸
+        
+        Args:
+            width: 图片宽度
+            height: 图片高度
+            
+        Raises:
+            ValueError: 当尺寸格式无效时
+        """
+        if width is not None and not self._size_validator.validate(width):
+            raise ValueError(f"宽度值验证失败: {self._size_validator.get_error_message(width)}")
+        if height is not None and not self._size_validator.validate(height):
+            raise ValueError(f"高度值验证失败: {self._size_validator.get_error_message(height)}")
+        
         self._width = width
         self._height = height
         return self
