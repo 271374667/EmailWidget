@@ -11,19 +11,32 @@ class ImageWidget(BaseWidget):
     # 模板定义
     TEMPLATE = """
     {% if image_url %}
+        <!--[if mso]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center">
+        <![endif]-->
         <div style="{{ container_style }}">
-            <img src="{{ image_url }}" alt="{{ alt_text }}" style="{{ img_style }}" />
+            <img src="{{ image_url }}" alt="{{ alt_text }}" 
+                 style="{{ img_style }}" 
+                 width="{{ img_width }}" 
+                 height="{{ img_height }}" />
             {% if show_caption and (title or description) %}
-                <div style="margin-top: 8px;">
+                <div style="margin-top: 8px; width: 100%; max-width: 100%;">
                     {% if title %}
-                        <h4 style="margin: 8px 0 4px 0; font-size: 16px; font-weight: 600; color: #323130; text-align: center;">{{ title }}</h4>
+                        <h4 style="margin: 8px 0 4px 0; font-size: 16px; font-weight: 600; color: #323130; text-align: center; font-family: Arial, sans-serif;">{{ title }}</h4>
                     {% endif %}
                     {% if description %}
-                        <p style="margin: 4px 0 8px 0; font-size: 14px; color: #605e5c; line-height: 1.4; text-align: center;">{{ description }}</p>
+                        <p style="margin: 4px 0 8px 0; font-size: 14px; color: #605e5c; line-height: 1.4; text-align: center; font-family: Arial, sans-serif;">{{ description }}</p>
                     {% endif %}
                 </div>
             {% endif %}
         </div>
+        <!--[if mso]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
     {% endif %}
     """
     
@@ -141,28 +154,39 @@ class ImageWidget(BaseWidget):
         if not self._image_url:
             return {}
         
-        # 构建图片样式
+        # 构建图片样式 - 邮件客户端兼容
         img_style_parts = [
             f"max-width: {self._max_width}",
+            "width: 100%",
             "height: auto",
             "display: block",
-            "margin: 0 auto"  # 居中对齐
+            "margin: 0 auto",  # 居中对齐
+            "border: 0",  # 移除默认边框
+            "outline: none"  # 移除轮廓
         ]
+        
+        # 图片尺寸属性（邮件客户端更好支持）
+        img_width = "auto"
+        img_height = "auto"
         
         if self._width:
             img_style_parts.append(f"width: {self._width}")
+            img_width = self._width.replace("px", "") if "px" in str(self._width) else self._width
         if self._height:
             img_style_parts.append(f"height: {self._height}")
+            img_height = self._height.replace("px", "") if "px" in str(self._height) else self._height
         if self._border_radius:
             img_style_parts.append(f"border-radius: {self._border_radius}")
         
-        # 容器样式
-        container_style = "margin: 16px 0; text-align: center;"
+        # 容器样式 - 邮件客户端兼容
+        container_style = "margin: 16px 0; text-align: center; width: 100%; max-width: 100%;"
         
         return {
             'image_url': self._image_url,
             'alt_text': self._alt_text,
             'img_style': "; ".join(img_style_parts),
+            'img_width': img_width,
+            'img_height': img_height,
             'container_style': container_style,
             'title': self._title,
             'description': self._description,

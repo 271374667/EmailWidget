@@ -124,6 +124,11 @@ class TextWidget(BaseWidget):
     
     # 模板定义
     TEMPLATE = """
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
     {% if section_number %}
         <{{ tag_name }} style="{{ text_style }}">{{ section_number }} {{ content }}</{{ tag_name }}>
     {% else %}
@@ -131,7 +136,7 @@ class TextWidget(BaseWidget):
             <div style="{{ text_style }}">
                 {% for line in content_lines %}
                     {% if line.strip() %}
-                        <p style="margin: 4px 0;">{{ line.strip() }}</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">{{ line.strip() }}</p>
                     {% else %}
                         <br/>
                     {% endif %}
@@ -141,6 +146,11 @@ class TextWidget(BaseWidget):
             <p style="{{ text_style }}">{{ content }}</p>
         {% endif %}
     {% endif %}
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
     """
     
     def __init__(self, widget_id: Optional[str] = None):

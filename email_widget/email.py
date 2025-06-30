@@ -315,17 +315,63 @@ class Email:
                 box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
             }}
             
-            /* 响应式设计 */
-            @media only screen and (max-width: 600px) {{
-                .email-container {{
-                    margin: 0;
-                    border-radius: 0;
-                }}
-                
-                .email-header, .email-body, .email-footer {{
-                    padding: 16px;
-                }}
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+            
+            /* 通用响应式样式 */
+            .email-container {{
+                width: 100%;
+                max-width: {max_width};
+                min-width: 320px;
             }}
+            
+            /* 表格响应式样式 */
+            .responsive-table {{
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }}
+            
+            .responsive-table table {{
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }}
+            
+            /* 图片响应式样式 */
+            .responsive-image {{
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }}
+            
+            /* 内容区域响应式 */
+            .responsive-content {{
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }}
+            
+            /* 移动端优化的文字大小 */
+            .mobile-text {{
+                font-size: 14px;
+                line-height: 1.4;
+            }}
+            
+            /* MSO条件注释样式 - 针对Outlook */
+            <!--[if mso]>
+            <style type="text/css">
+                .email-container {{
+                    width: 600px !important;
+                }}
+                .responsive-table {{
+                    display: table !important;
+                }}
+            </style>
+            <![endif]-->
         </style>
         """
     

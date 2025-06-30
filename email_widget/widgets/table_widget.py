@@ -25,37 +25,49 @@ class TableWidget(BaseWidget):
     
     # 模板定义
     TEMPLATE = """
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
     <div style="{{ container_style }}">
         {% if title %}
             <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130;">{{ title }}</h3>
         {% endif %}
-        <table style="{{ table_style }}">
-            {% if headers %}
-                <thead style="{{ header_style }}">
-                    <tr>
-                        {% if show_index %}
-                            <th style="{{ index_th_style }}">索引</th>
-                        {% endif %}
-                        {% for header in headers %}
-                            <th style="{{ th_style }}">{{ header }}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-            {% endif %}
-            <tbody>
-                {% for row_data in rows_data %}
-                    <tr style="{{ row_data.row_style }}">
-                        {% if show_index %}
-                            <td style="{{ index_td_style }}">{{ row_data.index }}</td>
-                        {% endif %}
-                        {% for cell_data in row_data.cells %}
-                            <td style="{{ cell_data.style }}">{{ cell_data.value }}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div style="width: 100%; max-width: 100%; overflow-x: auto;">
+            <table cellpadding="0" cellspacing="0" border="0" style="{{ table_style }}">
+                {% if headers %}
+                    <thead>
+                        <tr>
+                            {% if show_index %}
+                                <th style="{{ index_th_style }}">索引</th>
+                            {% endif %}
+                            {% for header in headers %}
+                                <th style="{{ th_style }}">{{ header }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                {% endif %}
+                <tbody>
+                    {% for row_data in rows_data %}
+                        <tr style="{{ row_data.row_style }}">
+                            {% if show_index %}
+                                <td style="{{ index_td_style }}">{{ row_data.index }}</td>
+                            {% endif %}
+                            {% for cell_data in row_data.cells %}
+                                <td style="{{ cell_data.style }}">{{ cell_data.value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
     """
     
     def __init__(self, widget_id: Optional[str] = None):
@@ -230,13 +242,16 @@ class TableWidget(BaseWidget):
         if self._max_width:
             container_style += f" max-width: {self._max_width};"
         
-        # 表格样式
+        # 表格样式 - 邮件客户端兼容
         table_style = f"""
             width: 100%;
+            min-width: 400px;
+            max-width: 100%;
             border-collapse: collapse;
-            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-family: Arial, sans-serif;
             font-size: 14px;
             background: #ffffff;
+            margin: 0;
         """
         
         if self._bordered:

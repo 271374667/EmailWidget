@@ -59,11 +59,21 @@ class ChartWidget(BaseWidget):
     # 模板定义
     TEMPLATE = """
     {% if image_url %}
+        <!--[if mso]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center">
+        <![endif]-->
         <div style="{{ container_style }}">
             {% if title %}
                 <h3 style="{{ title_style }}">{{ title }}</h3>
             {% endif %}
-            <img src="{{ image_url }}" alt="{{ alt_text }}" style="{{ img_style }}" />
+            <div style="width: 100%; max-width: 100%; overflow-x: auto; text-align: center;">
+                <img src="{{ image_url }}" alt="{{ alt_text }}" 
+                     style="{{ img_style }}" 
+                     width="{{ img_width }}" 
+                     height="{{ img_height }}" />
+            </div>
             {% if description %}
                 <p style="{{ desc_style }}">{{ description }}</p>
             {% endif %}
@@ -71,6 +81,11 @@ class ChartWidget(BaseWidget):
                 <div style="{{ summary_style }}">数据摘要: {{ data_summary }}</div>
             {% endif %}
         </div>
+        <!--[if mso]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
     {% endif %}
     """
 
