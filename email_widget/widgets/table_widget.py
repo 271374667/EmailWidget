@@ -1,9 +1,12 @@
 """表格Widget实现"""
-import pandas as pd
-from typing import Optional, List, Dict, Any, Union
+from typing import Optional, List, Dict, Any, Union, TYPE_CHECKING
 
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import StatusType
+from email_widget.utils.optional_deps import check_optional_dependency, import_optional_dependency
+
+if TYPE_CHECKING:
+    import pandas as pd
 
 class TableCell:
     """表格单元格类"""
@@ -72,7 +75,7 @@ class TableWidget(BaseWidget):
     
     def __init__(self, widget_id: Optional[str] = None):
         super().__init__(widget_id)
-        self._dataframe: Optional[pd.DataFrame] = None
+        self._dataframe: Optional["pd.DataFrame"] = None
         self._title: Optional[str] = None
         self._headers: List[str] = []
         self._rows: List[List[Union[str, TableCell]]] = []
@@ -84,8 +87,9 @@ class TableWidget(BaseWidget):
         self._header_bg_color: str = "#f3f2f1"
         self._border_color: str = "#e1dfdd"
     
-    def set_dataframe(self, df: pd.DataFrame) -> 'TableWidget':
+    def set_dataframe(self, df: "pd.DataFrame") -> 'TableWidget':
         """设置DataFrame数据"""
+        check_optional_dependency("pandas", "pandas")
         self._dataframe = df.copy()
         self._headers = list(df.columns)
         self._rows = []
@@ -168,6 +172,9 @@ class TableWidget(BaseWidget):
     
     def add_data_row(self, row_data: list) -> 'TableWidget':
         """添加数据行（基于DataFrame）"""
+        check_optional_dependency("pandas", "pandas")
+        pd = import_optional_dependency("pandas", "pandas")
+        
         if self._dataframe is not None:
             # 如果已有DataFrame，添加新行
             new_row = pd.Series(row_data, index=self._dataframe.columns)
@@ -210,7 +217,7 @@ class TableWidget(BaseWidget):
         return styles.get(status, {"color": "#323130", "background": "#ffffff"})
     
     @property
-    def dataframe(self) -> Optional[pd.DataFrame]:
+    def dataframe(self) -> Optional["pd.DataFrame"]:
         """获取DataFrame"""
         return self._dataframe
     

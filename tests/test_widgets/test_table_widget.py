@@ -1,7 +1,14 @@
 """表格Widget测试模块"""
 import pytest
-import pandas as pd
 from unittest.mock import patch, Mock
+
+# 尝试导入pandas，如果不可用则跳过相关测试
+try:
+    import pandas as pd
+    PANDAS_AVAILABLE = True
+except ImportError:
+    PANDAS_AVAILABLE = False
+    pd = None
 
 from email_widget.widgets.table_widget import TableWidget, TableCell
 from email_widget.core.enums import StatusType
@@ -63,6 +70,7 @@ class TestTableWidget:
         widget = TableWidget("test_id")
         assert widget.widget_id == "test_id"
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_set_dataframe(self):
         """测试设置DataFrame"""
         df = pd.DataFrame({
@@ -79,6 +87,7 @@ class TestTableWidget:
         assert self.widget._headers == ['A', 'B', 'C']
         assert len(self.widget._rows) == 3
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_set_dataframe_with_status_data(self):
         """测试设置包含状态数据的DataFrame"""
         df = pd.DataFrame({
@@ -209,6 +218,7 @@ class TestTableWidget:
         assert result is self.widget
         assert self.widget._border_color == "#00ff00"
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_add_data_row_with_existing_dataframe(self):
         """测试在已有DataFrame基础上添加数据行"""
         # 先设置DataFrame
@@ -223,6 +233,7 @@ class TestTableWidget:
         assert self.widget._dataframe.iloc[2]['A'] == 5
         assert self.widget._dataframe.iloc[2]['B'] == 6
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_add_data_row_without_dataframe(self):
         """测试在没有DataFrame时添加数据行"""
         result = self.widget.add_data_row([1, 2, 3])
@@ -231,6 +242,7 @@ class TestTableWidget:
         assert self.widget._dataframe is not None
         assert len(self.widget._dataframe) == 1
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_clear_data(self):
         """测试清空数据"""
         # 设置一些数据
@@ -270,6 +282,7 @@ class TestTableWidget:
         assert cell.bold is True
         assert cell.align == "center"
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_properties(self):
         """测试属性getter"""
         # 设置数据
@@ -328,6 +341,7 @@ class TestTableWidget:
 class TestTableWidgetIntegration:
     """TableWidget集成测试类"""
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_chaining_methods(self):
         """测试方法链式调用"""
         df = pd.DataFrame({
@@ -350,6 +364,7 @@ class TestTableWidgetIntegration:
         assert widget._bordered is True
         assert widget._max_width == "600px"
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_full_workflow_with_dataframe(self):
         """测试DataFrame完整工作流程"""
         # 创建测试数据
@@ -406,6 +421,7 @@ class TestTableWidgetIntegration:
         assert len(context['rows_data']) == 2
         assert context['headers'] == ["产品", "销量", "状态"]
 
+    @pytest.mark.skipif(not PANDAS_AVAILABLE, reason="pandas not installed")
     def test_data_operations(self):
         """测试数据操作"""
         widget = TableWidget()
