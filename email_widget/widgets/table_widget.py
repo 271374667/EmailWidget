@@ -16,7 +16,7 @@ class TableCell:
                  status: Optional[StatusType] = None,
                  color: Optional[str] = None,
                  bold: bool = False,
-                 align: str = "left"):
+                 align: str = "center"):
         self.value = value
         self.status = status
         self.color = color
@@ -35,36 +35,41 @@ class TableWidget(BaseWidget):
     <![endif]-->
     <div style="{{ container_style }}">
         {% if title %}
-            <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130;">{{ title }}</h3>
+            <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130; text-align: center;">{{ title }}</h3>
         {% endif %}
-        <div style="width: 100%; max-width: 100%; overflow-x: auto;">
-            <table cellpadding="0" cellspacing="0" border="0" style="{{ table_style }}">
-                {% if headers %}
-                    <thead>
-                        <tr>
-                            {% if show_index %}
-                                <th style="{{ index_th_style }}">索引</th>
-                            {% endif %}
-                            {% for header in headers %}
-                                <th style="{{ th_style }}">{{ header }}</th>
+        <!-- 使用表格布局实现居中对齐 -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0;">
+            <tr>
+                <td align="center" style="padding: 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="{{ table_style }}">
+                        {% if headers %}
+                            <thead>
+                                <tr>
+                                    {% if show_index %}
+                                        <th style="{{ index_th_style }}">索引</th>
+                                    {% endif %}
+                                    {% for header in headers %}
+                                        <th style="{{ th_style }}">{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                        {% endif %}
+                        <tbody>
+                            {% for row_data in rows_data %}
+                                <tr style="{{ row_data.row_style }}">
+                                    {% if show_index %}
+                                        <td style="{{ index_td_style }}">{{ row_data.index }}</td>
+                                    {% endif %}
+                                    {% for cell_data in row_data.cells %}
+                                        <td style="{{ cell_data.style }}">{{ cell_data.value }}</td>
+                                    {% endfor %}
+                                </tr>
                             {% endfor %}
-                        </tr>
-                    </thead>
-                {% endif %}
-                <tbody>
-                    {% for row_data in rows_data %}
-                        <tr style="{{ row_data.row_style }}">
-                            {% if show_index %}
-                                <td style="{{ index_td_style }}">{{ row_data.index }}</td>
-                            {% endif %}
-                            {% for cell_data in row_data.cells %}
-                                <td style="{{ cell_data.style }}">{{ cell_data.value }}</td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </div>
     <!--[if mso]>
             </td>
@@ -201,7 +206,7 @@ class TableWidget(BaseWidget):
         """创建状态单元格"""
         return TableCell(value=value, status=status)
     
-    def add_colored_cell(self, value: str, color: str, bold: bool = False, align: str = "left") -> TableCell:
+    def add_colored_cell(self, value: str, color: str, bold: bool = False, align: str = "center") -> TableCell:
         """创建彩色单元格"""
         return TableCell(value=value, color=color, bold=bold, align=align)
     
@@ -244,12 +249,12 @@ class TableWidget(BaseWidget):
         if not self._headers and not self._rows:
             return {}
         
-        # 容器样式
-        container_style = "margin: 16px 0;"
+        # 容器样式 - 居中对齐，左右内边距5px实现边距效果
+        container_style = "margin: 16px auto; width: 100%; max-width: 100%; padding: 0 5px; box-sizing: border-box;"
         if self._max_width:
             container_style += f" max-width: {self._max_width};"
         
-        # 表格样式 - 邮件客户端兼容
+        # 表格样式 - 邮件客户端兼容，居中对齐
         table_style = f"""
             width: 100%;
             min-width: 400px;
@@ -259,6 +264,7 @@ class TableWidget(BaseWidget):
             font-size: 14px;
             background: #ffffff;
             margin: 0;
+            text-align: center;
         """
         
         if self._bordered:
@@ -270,10 +276,10 @@ class TableWidget(BaseWidget):
             border-bottom: 2px solid {self._border_color};
         """
         
-        # 表头单元格样式
+        # 表头单元格样式 - 居中对齐
         index_th_style = f"""
             padding: 12px 8px;
-            text-align: left;
+            text-align: center;
             font-weight: 600;
             color: #323130;
             border-right: 1px solid {self._border_color};
@@ -281,17 +287,18 @@ class TableWidget(BaseWidget):
         
         th_style = f"""
             padding: 12px 8px;
-            text-align: left;
+            text-align: center;
             font-weight: 600;
             color: #323130;
         """
         if self._bordered:
             th_style += f" border-right: 1px solid {self._border_color};"
         
-        # 索引列样式
+        # 索引列样式 - 居中对齐
         index_td_style = f"""
             padding: 8px;
             vertical-align: top;
+            text-align: center;
             color: #605e5c;
         """
         if self._bordered:
@@ -334,8 +341,8 @@ class TableWidget(BaseWidget):
                         'style': td_style
                     })
                 else:
-                    # 处理普通字符串
-                    td_style += " color: #323130;"
+                    # 处理普通字符串 - 默认居中对齐
+                    td_style += " color: #323130; text-align: center;"
                     if self._bordered:
                         td_style += f" border-right: 1px solid {self._border_color};"
                     

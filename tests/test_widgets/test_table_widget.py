@@ -25,7 +25,7 @@ class TestTableCell:
         assert cell.status is None
         assert cell.color is None
         assert cell.bold is False
-        assert cell.align == "left"
+        assert cell.align == "center"
 
     def test_init_with_all_params(self):
         """测试完整参数初始化"""
