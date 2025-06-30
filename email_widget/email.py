@@ -8,6 +8,8 @@ import datetime
 
 from email_widget.core.base import BaseWidget
 from email_widget.core.config import EmailConfig
+from email_widget.core.template_engine import TemplateEngine
+from email_widget.core.logger import get_project_logger
 
 class Email:
     """邮件主类，负责管理和渲染邮件内容。
@@ -20,16 +22,25 @@ class Email:
     - 渲染HTML邮件
     - 导出邮件文件
     - 配置邮件样式
+    - 支持自定义副标题和脚注
     
     Attributes:
         title: 邮件标题
+        subtitle: 邮件副标题
+        footer_text: 脚注文本
         widgets: Widget列表
         config: 配置管理器
         _created_at: 创建时间
+        _template_engine: 模板引擎
+        _logger: 日志记录器
         
     Examples:
         >>> # 创建邮件对象
         >>> email = Email("每日报告")
+        
+        >>> # 设置副标题和脚注
+        >>> email.set_subtitle("数据统计报告")
+        >>> email.set_footer("本报告由数据团队生成")
         
         >>> # 添加Widget
         >>> from email_widget.widgets import TextWidget
@@ -37,26 +48,55 @@ class Email:
         >>> email.add_widget(text_widget)
         
         >>> # 导出HTML文件
-        >>> file_path = email.export("report.html")
+        >>> file_path = email.export_html("report.html")
         >>> print(f"邮件已保存到: {file_path}")
         
         >>> # 获取HTML内容
-        >>> html_content = email.preview_html()
+        >>> html_content = email.export_str()
     """
     
+    # 邮件模板
+    TEMPLATE = """<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="{{ charset }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {{ styles|safe }}
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>{{ title }}</h1>
+            {{ subtitle|safe }}
+        </div>
+        
+        <div class="email-body">
+            {{ widget_content|safe }}
+        </div>
+        
+        <div class="email-footer">
+            {{ footer_text|safe }}
+        </div>
+    </div>
+</body>
+</html>"""
+    
     def __init__(self, 
-                 title: str = "邮件报告",
-                 config_path: Optional[str] = None):
+                 title: str = "邮件报告"):
         """初始化Email对象。
         
         Args:
             title: 邮件标题，默认为"邮件报告"
-            config_path: 可选的配置文件路径
         """
         self.title = title
+        self.subtitle: Optional[str] = None
+        self.footer_text: Optional[str] = None
         self.widgets: List[BaseWidget] = []
-        self.config = EmailConfig(config_path)
+        self.config = EmailConfig()
         self._created_at = datetime.datetime.now()
+        self._template_engine = TemplateEngine()
+        self._logger = get_project_logger()
     
     def add_widget(self, widget: BaseWidget) -> 'Email':
         """添加单个Widget到邮件中。
@@ -158,6 +198,38 @@ class Email:
         self.title = title
         return self
     
+    def set_subtitle(self, subtitle: Optional[str]) -> 'Email':
+        """设置邮件副标题。
+        
+        Args:
+            subtitle: 副标题文本，如果为None则使用默认的时间戳
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> email.set_subtitle("数据统计报告")
+        """
+        self.subtitle = subtitle
+        return self
+    
+    def set_footer(self, footer_text: Optional[str]) -> 'Email':
+        """设置邮件脚注。
+        
+        Args:
+            footer_text: 脚注文本，如果为None则使用默认文本
+            
+        Returns:
+            返回self以支持链式调用
+            
+        Examples:
+            >>> email = Email()
+            >>> email.set_footer("本报告由数据团队自动生成")
+        """
+        self.footer_text = footer_text
+        return self
+    
     def _generate_css_styles(self) -> str:
         """生成内联CSS样式。
         
@@ -209,6 +281,13 @@ class Email:
                 opacity: 0.9;
             }}
             
+            .email-header .subtitle {{
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }}
+            
             .email-body {{
                 padding: 24px;
             }}
@@ -258,50 +337,64 @@ class Email:
         Returns:
             完整的HTML邮件字符串
         """
+        try:
+            # 生成Widget内容
+            widget_content = ""
+            for widget in self.widgets:
+                try:
+                    widget_html = widget.render_html()
+                    if widget_html:
+                        widget_content += widget_html + "\n"
+                except Exception as e:
+                    self._logger.error(f"渲染Widget失败: {e}")
+                    continue
+            
+            # 准备模板数据
+            context = self._get_template_context(widget_content)
+            
+            # 使用模板引擎渲染
+            return self._template_engine.render_safe(self.TEMPLATE, context)
+            
+        except Exception as e:
+            self._logger.error(f"渲染邮件失败: {e}")
+            return f"<html><body><h1>渲染错误</h1><p>{str(e)}</p></body></html>"
+    
+    def _get_template_context(self, widget_content: str) -> dict:
+        """获取模板上下文数据。
+        
+        Args:
+            widget_content: 已渲染的Widget内容
+            
+        Returns:
+            模板上下文字典
+        """
         timestamp = self._created_at.strftime("%Y年%m月%d日 %H:%M:%S")
         
-        # 生成样式
-        styles = self._generate_css_styles()
+        # 生成副标题HTML
+        if self.subtitle:
+            subtitle_html = f'<div class="subtitle">{self.subtitle}</div>'
+        else:
+            subtitle_html = f'<div class="timestamp">生成时间: {timestamp}</div>'
         
-        # 生成Widget内容
-        widget_content = ""
-        for widget in self.widgets:
-            widget_html = widget.render_html()
-            if widget_html:
-                widget_content += widget_html + "\n"
+        # 生成脚注HTML
+        if self.footer_text:
+            footer_html = f'<p>{self.footer_text}</p>'
+        else:
+            footer_html = '<p>此邮件由 EmailWidget 自动生成</p>'
         
-        # 构建完整HTML
-        html = f"""<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{self.title}</title>
-    {styles}
-</head>
-<body>
-    <div class="email-container">
-        <div class="email-header">
-            <h1>{self.title}</h1>
-            <div class="timestamp">生成时间: {timestamp}</div>
-        </div>
-        
-        <div class="email-body">
-            {widget_content}
-        </div>
-        
-        <div class="email-footer">
-            <p>此邮件由 EWidget 自动生成 | SpiderDaily 项目</p>
-        </div>
-    </div>
-</body>
-</html>"""
-        
-        return html
+        return {
+            'title': self.title,
+            'subtitle': subtitle_html,
+            'footer_text': footer_html,
+            'widget_content': widget_content,
+            'styles': self._generate_css_styles(),
+            'charset': self.config.get_email_charset(),
+            'lang': self.config.get_email_lang(),
+        }
     
-    def export(self, 
-               filename: Optional[str] = None,
-               output_dir: Optional[str] = None) -> str:
+    def export_html(self, 
+                    filename: Optional[str] = None,
+                    output_dir: Optional[str] = None) -> Path:
         """导出邮件为HTML文件。
         
         Args:
@@ -314,43 +407,83 @@ class Email:
         Examples:
             >>> email = Email("报告")
             >>> # 使用默认文件名
-            >>> path = email.export()
+            >>> path = email.export_html()
             >>> 
             >>> # 指定文件名和目录
-            >>> path = email.export("my_report.html", "./reports")
+            >>> path = email.export_html("my_report.html", "./reports")
         """
-        output_dir = output_dir or self.config.get_output_dir()
-        
-        if filename is None:
-            timestamp = self._created_at.strftime("%Y%m%d_%H%M%S")
-            filename = f"{self.title}_{timestamp}.html"
-        
-        # 确保文件名以.html结尾
-        if not filename.endswith('.html'):
-            filename += '.html'
-        
-        output_path = Path(output_dir) / filename
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        
-        html_content = self._render_email()
-        
-        with open(output_path, 'w', encoding='utf-8') as f:
-            f.write(html_content)
-        
-        return str(output_path)
+        try:
+            output_dir = output_dir or self.config.get_output_dir()
+            
+            if filename is None:
+                timestamp = self._created_at.strftime("%Y%m%d_%H%M%S")
+                filename = f"{self.title}_{timestamp}.html"
+            
+            # 确保文件名以.html结尾
+            if not filename.endswith('.html'):
+                filename += '.html'
+            
+            output_path = Path(output_dir) / filename
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            html_content = self.export_str()
+            
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(html_content)
+            
+            self._logger.info(f"邮件已导出到: {output_path}")
+            return output_path
+            
+        except Exception as e:
+            self._logger.error(f"导出HTML文件失败: {e}")
+            raise
     
-    def preview_html(self) -> str:
-        """获取邮件的HTML内容预览。
+    def export_str(self) -> str:
+        """导出邮件为HTML文本。
         
         Returns:
             完整的HTML邮件字符串
             
         Examples:
             >>> email = Email("预览测试")
-            >>> html = email.preview_html()
+            >>> html = email.export_str()
             >>> print(html[:100])  # 打印前100个字符
         """
         return self._render_email()
+    
+    # 保持向后兼容性
+    def export(self, 
+               filename: Optional[str] = None,
+               output_dir: Optional[str] = None) -> str:
+        """导出邮件为HTML文件（向后兼容方法）。
+        
+        Args:
+            filename: 可选的文件名，如果不提供则自动生成
+            output_dir: 可选的输出目录，如果不提供则使用配置中的默认目录
+            
+        Returns:
+            导出文件的完整路径字符串
+            
+        Note:
+            此方法为向后兼容保留，建议使用export_html方法
+        """
+        return str(self.export_html(filename, output_dir))
+    
+    def preview_html(self) -> str:
+        """获取邮件的HTML内容预览（向后兼容方法）。
+        
+        Returns:
+            完整的HTML邮件字符串
+            
+        Note:
+            此方法为向后兼容保留，建议使用export_str方法
+            
+        Examples:
+            >>> email = Email("预览测试")
+            >>> html = email.preview_html()
+            >>> print(html[:100])  # 打印前100个字符
+        """
+        return self.export_str()
     
     def get_widget_count(self) -> int:
         """获取当前邮件中Widget的数量。
