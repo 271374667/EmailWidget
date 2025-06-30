@@ -1,0 +1,161 @@
+site_name: EmailWidget - 邮件组件库
+site_description: 一个强大而美观的Python邮件组件库，用于生成HTML邮件报告
+site_author: Python调包侠
+site_url: https://271374667.github.io/SpiderDaily/
+copyright: Copyright &copy; 2024 Python调包侠
+
+repo_name: 271374667/SpiderDaily
+repo_url: https://github.com/271374667/SpiderDaily
+edit_uri: edit/master/docs/
+
+theme:
+    icon:
+        logo: material/email
+        repo: fontawesome/brands/github
+    name: material
+    language: zh
+    palette:
+        # 切换到亮色
+        - media: "(prefers-color-scheme: light)"
+          scheme: default
+          primary: pink
+          accent: pink
+          toggle:
+              icon: material/weather-night
+              name: 切换到暗色模式
+
+        # 切换到暗色
+        - media: "(prefers-color-scheme: dark)"
+          scheme: slate
+          primary: pink
+          accent: pink
+          toggle:
+              icon: material/weather-sunny
+              name: 切换到亮色模式
+    features:
+        - navigation.instant
+        - navigation.tabs
+        - navigation.tracking
+        - navigation.sections
+        - navigation.expand
+        - navigation.prune
+        - toc.follow
+        - navigation.top
+        - search.suggest
+        - search.highlight
+        - search.share
+        - navigation.footer
+        - content.code.copy
+        - content.code.annotate
+        - content.tabs.link
+
+markdown_extensions:
+    - admonition
+    - def_list
+    - footnotes
+    - abbr
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.tilde
+    - md_in_html
+    - pymdownx.arithmatex:
+          generic: true
+    - toc:
+          permalink: true
+          toc_depth: 3
+    - pymdownx.highlight:
+          anchor_linenums: true
+          linenums: true
+          use_pygments: true
+          pygments_lang_class: true
+          auto_title: true
+          linenums_style: pymdownx-inline
+    - pymdownx.betterem
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.tilde
+    - pymdownx.keys
+    - pymdownx.critic
+    - pymdownx.details
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+    - pymdownx.magiclink
+    - pymdownx.smartsymbols
+    - pymdownx.snippets
+    - pymdownx.tasklist:
+          custom_checkbox: true
+    - attr_list
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    - pymdownx.superfences:
+          custom_fences:
+              - name: mermaid
+                class: mermaid
+                format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.tabbed:
+          alternate_style: true
+          combine_header_slug: true
+    - pymdownx.tasklist:
+          custom_checkbox: true
+          clickable_checkbox: true
+    - meta
+    - tables
+
+nav:
+    - 首页: index.md
+    - 快速开始:
+        - 安装: getting-started/installation.md
+        - 第一个邮件: getting-started/first-email.md
+        - 基本概念: getting-started/concepts.md
+    - 用户指南:
+        - 核心类: user-guide/core-classes.md
+        - 文本组件: user-guide/text-widget.md
+        - 表格组件: user-guide/table-widget.md
+        - 图表组件: user-guide/chart-widget.md
+        - 其他组件: user-guide/other-widgets.md
+        - 配置系统: user-guide/configuration.md
+    - API参考:
+        - 核心模块: api/core.md
+        - Widget组件: api/widgets.md
+        - 配置管理: api/config.md
+        - 枚举类型: api/enums.md
+    - 开发指南:
+        - 贡献指南: development/contributing.md
+        - 创建新组件: development/creating-widgets.md
+        - 开发环境: development/setup.md
+    - 示例:
+        - 基础示例: examples/basic.md
+        - 高级示例: examples/advanced.md
+        - 实际应用: examples/real-world.md
+
+plugins:
+    - mkdocstrings:
+          handlers:
+              python:
+                  paths: [email_widget]
+                  options:
+                      docstring_style: google
+                      show_source: true
+                      show_root_heading: true
+                      show_root_full_path: false
+                      show_category_heading: true
+                      merge_init_into_class: true
+                      show_bases: true
+                      show_inheritance_diagram: false
+    - search
+
+extra:
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/271374667
+          name: GitHub
+        - icon: fontawesome/brands/bilibili
+          link: https://space.bilibili.com/282527875
+          name: Bilibili
+        - icon: material/email
+          link: mailto:271374667@qq.com
+          name: Email
+    version:
+        provider: mike 

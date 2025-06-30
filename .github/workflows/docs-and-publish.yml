@@ -1,0 +1,168 @@
+name: 📚 Build Docs & 📦 Publish Package
+
+on:
+  # 当推送标签时触发
+  push:
+    tags:
+      - 'v*'
+  
+  # 允许手动触发
+  workflow_dispatch:
+    inputs:
+      publish_pypi:
+        description: '是否发布到PyPI'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      deploy_docs:
+        description: '是否部署文档'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  # 构建文档
+  build-docs:
+    name: 📚 Build Documentation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.inputs.deploy_docs == 'true'
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev]"
+    
+    - name: 🔧 Configure Git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+    
+    - name: 📚 Build and Deploy Documentation
+      run: |
+        mkdocs gh-deploy --force
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # 构建和发布包
+  build-and-publish:
+    name: 📦 Build & Publish Package
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.inputs.publish_pypi == 'true'
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: 📦 Install Build Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    - name: 🏗️ Build Package
+      run: |
+        python -m build
+    
+    - name: 🔍 Check Package
+      run: |
+        python -m twine check dist/*
+    
+    - name: 📤 Publish to PyPI
+      if: github.event_name == 'push' || github.event.inputs.publish_pypi == 'true'
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        verbose: true
+    
+    - name: 📋 Create GitHub Release
+      if: github.event_name == 'push'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: Release ${{ github.ref_name }}
+        body: |
+          ## 🎉 新版本发布: ${{ github.ref_name }}
+          
+          ### 📦 安装方式
+          ```bash
+          pip install --upgrade EmailWidget
+          ```
+          
+          ### 📚 文档链接
+          - [📖 完整文档](https://271374667.github.io/SpiderDaily/)
+          - [🚀 快速开始](https://271374667.github.io/SpiderDaily/getting-started/installation/)
+          - [💡 示例代码](https://271374667.github.io/SpiderDaily/examples/basic/)
+          
+          ### 🔄 更新内容
+          请查看 [CHANGELOG.md](https://github.com/271374667/SpiderDaily/blob/master/CHANGELOG.md) 了解详细更新内容。
+          
+          ---
+          
+          **🙏 感谢使用 EmailWidget！如果对你有帮助，请给我们一个 ⭐ Star！**
+        draft: false
+        prerelease: false
+
+  # 运行测试
+  test:
+    name: 🧪 Run Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev]"
+        pip install pytest pytest-cov
+    
+    - name: 🧪 Run Tests
+      run: |
+        # 如果有测试文件的话运行测试
+        if [ -d "tests" ]; then
+          pytest tests/ -v --cov=email_widget --cov-report=xml
+        else
+          echo "No tests directory found, skipping tests"
+        fi
+    
+    - name: 📊 Upload Coverage
+      if: matrix.python-version == '3.10' && github.event_name == 'push'
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella 
