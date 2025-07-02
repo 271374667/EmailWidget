@@ -1,29 +1,51 @@
 """EWidget演示文件
 
 展示所有可用的Widget组件和使用方法
+注意：本演示需要可选依赖支持，请根据需要安装：
+- 表格功能：pip install pandas
+- 图表功能：pip install matplotlib seaborn
 """
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from datetime import datetime
 
-from email_widget.widgets import (
-    TableWidget, TableCell,
-    ImageWidget,
-    LogWidget, LogEntry,
-    AlertWidget,
+import pathlib
+from email_widget import (
+    Email,
     TextWidget,
+    StatusWidget,
     ProgressWidget,
     CircularProgressWidget,
     CardWidget,
-    StatusWidget,
-    QuoteWidget,
     ColumnWidget,
+    TableWidget,
     ChartWidget,
+    ImageWidget,
+    LogWidget,
+    StatusType,
+    AlertWidget,
+    QuoteWidget,
 )
-from email_widget.email import Email
-from email_widget.core.enums import TextType, AlertType, ProgressTheme, IconType, StatusType, LayoutType, LogLevel, TextAlign
+from email_widget.utils.optional_deps import check_optional_dependency, import_optional_dependency
+
+try:
+    # 检查matplotlib和seaborn是否可用
+    check_optional_dependency("matplotlib")
+    check_optional_dependency("seaborn")
+    plt = import_optional_dependency("matplotlib.pyplot")
+    sns = import_optional_dependency("seaborn")
+    CHARTS_AVAILABLE = True
+except ImportError as e:
+    print(f"Charts not available: {e}")
+    CHARTS_AVAILABLE = False
+
+try:
+    # 检查pandas是否可用
+    check_optional_dependency("pandas")
+    pd = import_optional_dependency("pandas")
+    PANDAS_AVAILABLE = True
+except ImportError as e:
+    print(f"Pandas not available: {e}")
+    PANDAS_AVAILABLE = False
+
+from email_widget.core.enums import TextType, AlertType, ProgressTheme, IconType, LayoutType, LogLevel, TextAlign
 
 def create_demo_email():
     """创建演示邮件"""
@@ -80,19 +102,29 @@ def create_demo_email():
     table_widget = TableWidget()
     table_widget.set_title("爬虫任务执行结果")
     
-    # 创建示例数据
-    df = pd.DataFrame({
-        "任务名称": ["网站A数据采集", "网站B内容抓取", "API数据同步", "图片下载任务"],
-        "执行状态": [
-            {"text": "成功", "status": "success"},
-            {"text": "失败", "status": "error"}, 
-            {"text": "运行中", "status": "info"},
-            {"text": "等待中", "status": "warning"}
-        ],
-        "执行时间": ["2024-01-15 10:30:00", "2024-01-15 10:32:15", "2024-01-15 10:35:00", "2024-01-15 10:40:00"],
-        "耗时(秒)": ["12.5", "8.2", "45.1", "0.0"]
-    })
-    table_widget.set_dataframe(df).show_index(True)
+    if PANDAS_AVAILABLE:
+        # 创建示例数据（需要pandas）
+        df = pd.DataFrame({
+            "任务名称": ["网站A数据采集", "网站B内容抓取", "API数据同步", "图片下载任务"],
+            "执行状态": [
+                {"text": "成功", "status": "success"},
+                {"text": "失败", "status": "error"}, 
+                {"text": "运行中", "status": "info"},
+                {"text": "等待中", "status": "warning"}
+            ],
+            "执行时间": ["2024-01-15 10:30:00", "2024-01-15 10:32:15", "2024-01-15 10:35:00", "2024-01-15 10:40:00"],
+            "耗时(秒)": ["12.5", "8.2", "45.1", "0.0"]
+        })
+        table_widget.set_dataframe(df).show_index(True)
+    else:
+        # 使用手动数据（不需要pandas）
+        table_widget.set_headers(["任务名称", "执行状态", "执行时间", "耗时(秒)"])
+        table_widget.add_row(["网站A数据采集", "成功", "2024-01-15 10:30:00", "12.5"])
+        table_widget.add_row(["网站B内容抓取", "失败", "2024-01-15 10:32:15", "8.2"])
+        table_widget.add_row(["API数据同步", "运行中", "2024-01-15 10:35:00", "45.1"])
+        table_widget.add_row(["图片下载任务", "等待中", "2024-01-15 10:40:00", "0.0"])
+        table_widget.show_index(True)
+    
     email.add_widget(table_widget)
     
     # 5. 进度条演示 - 展示面向对象方法
@@ -203,26 +235,32 @@ def create_demo_email():
     email.add_widget(quote_widget)
     
     # 12. 图表演示（使用seaborn生成）
-    chart_widget = ChartWidget()
-    chart_widget.set_title("数据采集趋势图")
-    chart_widget.set_description("过去7天的数据采集量变化趋势")
-    chart_widget.set_data_summary("平均每日采集 1,156 条数据，峰值出现在周三")
-    
-    # 创建示例数据并绘制图表
-    days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    data_counts = [980, 1150, 1420, 1200, 1050, 890, 1100]
-    
-    plt.figure(figsize=(10, 6))
-    sns.set_style("whitegrid")
-    ax = sns.lineplot(x=days, y=data_counts, marker='o', linewidth=2.5, markersize=8)
-    ax.set_title('数据采集趋势图', fontsize=16, fontweight='bold')
-    ax.set_xlabel('日期', fontsize=12)
-    ax.set_ylabel('采集数量', fontsize=12)
-    ax.grid(True, alpha=0.3)
+    if CHARTS_AVAILABLE:
+        chart_widget = ChartWidget()
+        chart_widget.set_title("数据采集趋势图")
+        chart_widget.set_description("过去7天的数据采集量变化趋势")
+        chart_widget.set_data_summary("平均每日采集 1,156 条数据，峰值出现在周三")
+        
+        # 创建示例数据并绘制图表
+        days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        data_counts = [980, 1150, 1420, 1200, 1050, 890, 1100]
+        
+        plt.figure(figsize=(10, 6))
+        sns.set_style("whitegrid")
+        ax = sns.lineplot(x=days, y=data_counts, marker='o', linewidth=2.5, markersize=8)
+        ax.set_title('数据采集趋势图', fontsize=16, fontweight='bold')
+        ax.set_xlabel('日期', fontsize=12)
+        ax.set_ylabel('采集数量', fontsize=12)
+        ax.grid(True, alpha=0.3)
 
-    # 设置图表到widget
-    chart_widget.set_chart(plt)
-    email.add_widget(chart_widget)
+        # 设置图表到widget
+        chart_widget.set_chart(plt)
+        email.add_widget(chart_widget)
+    else:
+        # 如果没有图表库，显示提示信息
+        chart_note = TextWidget()
+        chart_note.set_content("📊 图表演示跳过 - 需要安装 matplotlib 和 seaborn").set_type(TextType.CAPTION)
+        email.add_widget(chart_note)
     
     # 13. 图片演示
     image_widget = ImageWidget()
