@@ -7,6 +7,7 @@
 [![PyPI version](https://badge.fury.io/py/EmailWidget.svg)](https://badge.fury.io/py/EmailWidget)
 [![Python versions](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/EmailWidget/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Codecov](https://codecov.io/gh/username/EmailWidget/branch/main/graph/badge.svg)](https://codecov.io/gh/username/EmailWidget)
 
 [📖 文档](https://271374667.github.io/EmailWidget) • [🚀 快速开始](#-快速开始) • [💡 示例](#-组件展示)
 

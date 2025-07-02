@@ -40,7 +40,7 @@ jobs:
         fetch-depth: 0
     
     - name: 🐍 Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
     
@@ -73,7 +73,7 @@ jobs:
         fetch-depth: 0
     
     - name: 🐍 Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
     
@@ -96,36 +96,6 @@ jobs:
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
         verbose: true
-    
-    - name: 📋 Create GitHub Release
-      if: github.event_name == 'push'
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref_name }}
-        release_name: Release ${{ github.ref_name }}
-        body: |
-          ## 🎉 新版本发布: ${{ github.ref_name }}
-          
-          ### 📦 安装方式
-          ```bash
-          pip install --upgrade EmailWidget
-          ```
-          
-          ### 📚 文档链接
-          - [📖 完整文档](https://271374667.github.io/SpiderDaily/)
-          - [🚀 快速开始](https://271374667.github.io/SpiderDaily/getting-started/installation/)
-          - [💡 示例代码](https://271374667.github.io/SpiderDaily/examples/basic/)
-          
-          ### 🔄 更新内容
-          请查看 [CHANGELOG.md](https://github.com/271374667/SpiderDaily/blob/master/CHANGELOG.md) 了解详细更新内容。
-          
-          ---
-          
-          **🙏 感谢使用 EmailWidget！如果对你有帮助，请给我们一个 ⭐ Star！**
-        draft: false
-        prerelease: false
 
   # 运行测试
   test:
@@ -140,7 +110,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: 🐍 Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
     
@@ -161,7 +131,7 @@ jobs:
     
     - name: 📊 Upload Coverage
       if: matrix.python-version == '3.10' && github.event_name == 'push'
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         file: ./coverage.xml
         flags: unittests

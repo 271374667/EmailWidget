@@ -3,6 +3,7 @@ name: Code Quality
 on:
   push:
     branches: [ main, master, develop ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main, master, develop ]
   schedule:
@@ -19,7 +20,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.11"
 
@@ -64,7 +65,7 @@ jobs:
       continue-on-error: true
 
     - name: Upload bandit report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: bandit-report
@@ -79,7 +80,7 @@ jobs:
       continue-on-error: true
 
     - name: Upload safety report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: safety-report
@@ -95,7 +96,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.11"
 
@@ -132,7 +133,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.11"
 
