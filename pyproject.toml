@@ -13,7 +13,7 @@ dependencies = [
 "Source Code" = "https://github.com/271374667/EmailWidget"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.18"]
 build-backend = "hatchling.build"
 
 [tool.hatch.metadata]
