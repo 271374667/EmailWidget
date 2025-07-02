@@ -355,7 +355,6 @@ class Email:
             返回self以支持链式调用
 
         Examples:
-            >>> # 需要先安装pandas依赖：pip install email-widget[pandas]
             >>> import pandas as pd
             >>> df = pd.DataFrame({"姓名": ["张三", "李四"], "分数": [100, 95]})
             >>> email = Email()
@@ -513,6 +512,9 @@ class Email:
             >>> email = Email()
             >>> email.add_chart_from_plt("月度销售", "显示销售趋势变化")
         """
+        from email_widget.utils.optional_deps import check_optional_dependency
+        check_optional_dependency("matplotlib")
+
         import matplotlib.pyplot as plt
         from email_widget.widgets.chart_widget import ChartWidget
 
