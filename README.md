@@ -5,9 +5,8 @@
 **🚀 一个现代化、易用的Python邮件组件库，让你轻松创建美观的HTML邮件报告**
 
 [![PyPI version](https://badge.fury.io/py/EmailWidget.svg)](https://badge.fury.io/py/EmailWidget)
-[![Python versions](https://img.shields.io/pypi/pyversions/EmailWidget.svg)](https://pypi.org/project/EmailWidget/)
+[![Python versions](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/EmailWidget/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Codecov](https://codecov.io/gh/username/EmailWidget/branch/main/graph/badge.svg)](https://codecov.io/gh/username/EmailWidget)
 
 [📖 文档](https://271374667.github.io/EmailWidget) • [🚀 快速开始](#-快速开始) • [💡 示例](#-组件展示)
 
@@ -26,9 +25,12 @@ EmailWidget 是专为Python开发者设计的邮件组件库，让你用几行�
 ```python
 # 一行代码，多种组件
 email.add_widget(TextWidget().set_content("标题").set_type(TextType.TITLE_LARGE))
-email.add_widget(TableWidget().set_dataframe(df))
-email.add_widget(ChartWidget().set_chart(plt))
+email.add_widget(TableWidget().set_dataframe(df)) # 支持 pandas 的 Dataframe
+email.add_widget(ChartWidget().set_chart(plt)) # 支持 matplotlib/seaborn 的图表
 email.add_widget(ProgressWidget().set_value(85).set_theme(ProgressTheme.SUCCESS))
+
+# 直接使用快捷方法添加组件
+email.add_progress(value=95, max_value=100)
 ```
 
 | 🎯 **组件类型** | 📝 **功能特色** | 🔧 **使用场景** |
@@ -53,30 +55,27 @@ email.add_widget(ProgressWidget().set_value(85).set_theme(ProgressTheme.SUCCESS)
 
 #### 基础安装（推荐）
 ```bash
-pip install email-widget
+pip install EmailWidget
 ```
 
-> 💡 **安装说明**：基础版本仅需jinja2依赖，轻量快速。如果需要TableWidget的DataFrame功能，或者ChartWidget的Matplotlib请自行安装pandas或者matplotlib/seaborn。
+> 💡 **安装说明**：仅需jinja2依赖，轻量快速。如果需要TableWidget的DataFrame功能，或者ChartWidget的Matplotlib请自行安装pandas或者matplotlib/seaborn。
 
 ### 🎯 30秒创建第一个报告
 
 ```python
-from email_widget import Email, TextWidget, TableWidget, ProgressWidget
-from email_widget.enums import TextType, ProgressTheme
-import pandas as pd
+from email_widget import Email, TextWidget, ProgressWidget
+from email_widget.core.enums import TextType, ProgressTheme
 
 # 1️⃣ 创建邮件对象
 email = Email("📊 销售数据日报")
 
-# 2️⃣ 添加标题和副标题  
+# 2️⃣ 添加标题和副标题
 email.set_subtitle("2024年第一季度业绩汇总")
 email.set_footer("本报告由数据分析团队自动生成")
 
 # 3️⃣ 添加关键指标
 email.add_widget(
-    TextWidget()
-    .set_content("📈 销售业绩总览")
-    .set_type(TextType.TITLE_LARGE)
+    TextWidget().set_content("📈 销售业绩总览").set_type(TextType.TITLE_LARGE)
 )
 
 # 4️⃣ 添加进度指标
@@ -87,16 +86,14 @@ email.add_widget(
     .set_theme(ProgressTheme.SUCCESS)
 )
 
-# 5️⃣ 添加数据表格
+# 5️⃣ 添加数据表格(使用便捷方法)
 data = [
     ["iPhone 15", "1,250", "¥1,875,000", "125%"],
-    ["MacBook Pro", "580", "¥1,740,000", "116%"], 
-    ["iPad Air", "920", "¥552,000", "108%"]
+    ["MacBook Pro", "580", "¥1,740,000", "116%"],
+    ["iPad Air", "920", "¥552,000", "108%"],
 ]
 email.add_table_from_data(
-    data=data,
-    headers=["产品", "销量", "收入", "达成率"],
-    title="🏆 产品销售明细"
+    data=data, headers=["产品", "销量", "收入", "达成率"], title="🏆 产品销售明细"
 )
 
 # 6️⃣ 导出HTML文件
@@ -141,7 +138,7 @@ email = (Email("项目进展报告")
 
 ```bash
 # 克隆项目
-git clone https://github.com/271374667/SpiderDaily.git
+git clone https://github.com/271374667/EmailWidget.git
 
 # 安装开发依赖
 pip install -e ".[dev]"
@@ -171,6 +168,6 @@ git commit -m "feat: 添加新功能"
 
 **⭐ 如果这个项目对你有帮助，请给我们一个Star！ ⭐**
 
-Made with ❤️ by [Python调包侠](https://github.com/271374667) | [观看教程](https://space.bilibili.com/282527875) | [查看文档](https://271374667.github.io/SpiderDaily/)
+Made with ❤️ by [Python调包侠](https://github.com/271374667) | [观看教程](https://space.bilibili.com/282527875) | [查看文档](https://271374667.github.io/EmailWidget/)
 
 </div>
