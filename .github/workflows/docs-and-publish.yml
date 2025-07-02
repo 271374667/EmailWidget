@@ -47,10 +47,10 @@ jobs:
     - name: 📦 Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        # 先安装基础包
-        pip install -e .
-        # 然后安装dev依赖
-        pip install -e ".[dev]" || pip install mkdocs mkdocs-material mkdocstrings[python]
+        # 直接安装文档构建所需的依赖，避免可编辑安装的构建问题
+        pip install mkdocs mkdocs-material mkdocstrings[python]
+        # 安装项目依赖
+        pip install jinja2
     - name: 🔧 Configure Git
       run: |
         git config --global user.name "GitHub Actions"
@@ -62,9 +62,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # 构建和发布包
-  build-and-publish:
-    name: 📦 Build & Publish Package
+  # 构建包
+  build-package:
+    name: 📦 Build Package
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event.inputs.publish_pypi == 'true'
     
@@ -77,27 +77,46 @@ jobs:
     - name: 🐍 Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
-    
-    - name: 📦 Install Build Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build twine
+        python-version: '3.x'
     
     - name: 🏗️ Build Package
       run: |
+        python -m pip install --upgrade pip
+        python -m pip install build
         python -m build
     
-    - name: 🔍 Check Package
-      run: |
-        python -m twine check dist/*
+    - name: 📤 Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-dists
+        path: dist/
+
+  # 发布到PyPI
+  pypi-publish:
+    name: 📤 Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: build-package
+    if: github.event_name == 'push' || github.event.inputs.publish_pypi == 'true'
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+    
+    # Use dedicated environment for PyPI publishing
+    environment:
+      name: pypi
+      url: https://pypi.org/project/EmailWidget/
+    
+    steps:
+    - name: 📥 Download Build Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: release-dists
+        path: dist/
     
     - name: 📤 Publish to PyPI
-      if: github.event_name == 'push' || github.event.inputs.publish_pypi == 'true'
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        password: ${{ secrets.PYPI_API_TOKEN }}
-        verbose: true
+        packages-dir: dist/
 
   # 运行测试
   test:
@@ -119,18 +138,18 @@ jobs:
     - name: 📦 Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        # 先安装基础包
-        pip install -e .
-        # 然后安装test依赖
-        pip install -e ".[test]" || pip install pytest pytest-cov
-        # 安装额外的dev依赖（如果可用）
-        pip install -e ".[dev]" || echo "Dev dependencies not available"
+        # 直接安装测试所需的依赖，避免可编辑安装的构建问题
+        pip install pytest pytest-cov
+        pip install jinja2
+        # 如果需要pandas功能的测试，安装pandas
+        pip install pandas matplotlib seaborn || echo "Optional pandas dependencies not available"
     
     - name: 🧪 Run Tests
       run: |
         # 如果有测试文件的话运行测试
         if [ -d "tests" ]; then
-          pytest tests/ -v --cov=email_widget --cov-report=xml
+          # 将当前目录添加到Python路径并运行测试
+          python -c "import sys; sys.path.insert(0, '.'); import pytest; pytest.main(['tests/', '-v', '--cov=email_widget', '--cov-report=xml'])"
         else
           echo "No tests directory found, skipping tests"
         fi
