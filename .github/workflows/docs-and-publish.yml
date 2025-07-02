@@ -47,8 +47,10 @@ jobs:
     - name: 📦 Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -e ".[dev]"
-    
+        # 先安装基础包
+        pip install -e .
+        # 然后安装dev依赖
+        pip install -e ".[dev]" || pip install mkdocs mkdocs-material mkdocstrings[python]
     - name: 🔧 Configure Git
       run: |
         git config --global user.name "GitHub Actions"
@@ -117,8 +119,12 @@ jobs:
     - name: 📦 Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -e ".[dev]"
-        pip install pytest pytest-cov
+        # 先安装基础包
+        pip install -e .
+        # 然后安装test依赖
+        pip install -e ".[test]" || pip install pytest pytest-cov
+        # 安装额外的dev依赖（如果可用）
+        pip install -e ".[dev]" || echo "Dev dependencies not available"
     
     - name: 🧪 Run Tests
       run: |
