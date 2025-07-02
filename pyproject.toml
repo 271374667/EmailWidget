@@ -2,7 +2,7 @@
 name = "EmailWidget"
 version = "0.1.0"
 description = "🚀 一个现代化、易用的Python邮件组件库，让你轻松创建美观的HTML邮件报告"
-readme = "README.md"
+readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.10"
 dependencies = [
     "jinja2>=3.1.6",

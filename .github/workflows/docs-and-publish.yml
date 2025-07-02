@@ -79,6 +79,32 @@ jobs:
       with:
         python-version: '3.x'
     
+    - name: 🔍 Debug - Check files and environment
+      run: |
+        echo "=== Current directory ==="
+        pwd
+        echo "=== List all files ==="
+        ls -la
+        echo "=== Check README.md ==="
+        if [ -f "README.md" ]; then
+          echo "README.md exists, size: $(wc -c < README.md) bytes"
+          echo "First 10 lines:"
+          head -10 README.md
+          echo "=== File permissions ==="
+          ls -l README.md
+        else
+          echo "README.md not found"
+          echo "Creating a minimal README.md for build"
+          echo "# EmailWidget" > README.md
+          echo "" >> README.md
+          echo "🚀 一个现代化、易用的Python邮件组件库，让你轻松创建美观的HTML邮件报告" >> README.md
+        fi
+        echo "=== Check pyproject.toml ==="
+        if [ -f "pyproject.toml" ]; then
+          echo "pyproject.toml exists"
+          grep -A2 -B2 "readme" pyproject.toml || echo "No readme config found"
+        fi
+
     - name: 🏗️ Build Package
       run: |
         python -m pip install --upgrade pip
