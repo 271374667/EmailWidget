@@ -37,17 +37,17 @@ class TestCheckOptionalDependency:
         (
             "non_existent_module_123", 
             None,
-            "non_existent_module_123 is required for this functionality. Install with: pip install email-widget"
+            "non_existent_module_123 is required for this functionality. Install with: pip install non_existent_module_123"
         ),
         (
             "fake_pandas", 
             "pandas",
-            "fake_pandas is required for this functionality. Install with: pip install email-widget[pandas]"
+            "fake_pandas is required for this functionality. Install with: pip install fake_pandas"
         ),
         (
             "imaginary_lib", 
             "charts",
-            "imaginary_lib is required for this functionality. Install with: pip install email-widget[charts]"
+            "imaginary_lib is required for this functionality. Install with: pip install imaginary_lib"
         ),
     ])
     def test_check_non_existent_module_raises_import_error(
@@ -79,7 +79,7 @@ class TestCheckOptionalDependency:
             with pytest.raises(ImportError) as exc_info:
                 check_optional_dependency("mocked_module", "extra")
             
-            expected_msg = "mocked_module is required for this functionality. Install with: pip install email-widget[extra]"
+            expected_msg = "mocked_module is required for this functionality. Install with: pip install mocked_module"
             assert str(exc_info.value) == expected_msg
     
     def test_check_with_empty_strings(self):
@@ -137,8 +137,7 @@ class TestImportOptionalDependency:
             import_optional_dependency(module_name, extra_name)
         
         # 验证错误消息格式
-        extra_hint = f"[{extra_name}]" if extra_name else ""
-        expected_msg = f"{module_name} is required for this functionality. Install with: pip install email-widget{extra_hint}"
+        expected_msg = f"{module_name} is required for this functionality. Install with: pip install {module_name}"
         assert str(exc_info.value) == expected_msg
     
     def test_import_with_mock_success(self):
@@ -189,7 +188,7 @@ class TestRequiresPandasDecorator:
             result = sample_function(3, 4)
             
             assert result == 12
-            mock_check.assert_called_once_with("pandas", "pandas")
+            mock_check.assert_called_once_with("pandas")
     
     def test_decorator_with_pandas_unavailable(self):
         """测试pandas不可用时装饰器抛出异常"""
@@ -206,7 +205,7 @@ class TestRequiresPandasDecorator:
                 sample_function(5)
             
             assert "pandas is required" in str(exc_info.value)
-            mock_check.assert_called_once_with("pandas", "pandas")
+            mock_check.assert_called_once_with("pandas")
     
     def test_decorator_preserves_function_signature(self):
         """测试装饰器不改变函数签名和行为"""
@@ -284,7 +283,7 @@ class TestPandasMixin:
         """测试pandas可用时检查成功"""
         with patch('email_widget.utils.optional_deps.check_optional_dependency') as mock_check:
             self.mixin._check_pandas_available()
-            mock_check.assert_called_once_with("pandas", "pandas")
+            mock_check.assert_called_once_with("pandas")
     
     def test_check_pandas_available_failure(self):
         """测试pandas不可用时抛出异常"""
@@ -295,7 +294,7 @@ class TestPandasMixin:
                 self.mixin._check_pandas_available()
             
             assert "pandas not available" in str(exc_info.value)
-            mock_check.assert_called_once_with("pandas", "pandas")
+            mock_check.assert_called_once_with("pandas")
     
     def test_import_pandas_success(self):
         """测试成功导入pandas"""
@@ -308,7 +307,7 @@ class TestPandasMixin:
             result = self.mixin._import_pandas()
             
             assert result is mock_pandas
-            mock_import.assert_called_once_with("pandas", "pandas")
+            mock_import.assert_called_once_with("pandas")
     
     def test_import_pandas_failure(self):
         """测试导入pandas失败"""
@@ -319,7 +318,7 @@ class TestPandasMixin:
                 self.mixin._import_pandas()
             
             assert "pandas import failed" in str(exc_info.value)
-            mock_import.assert_called_once_with("pandas", "pandas")
+            mock_import.assert_called_once_with("pandas")
 
 
 class TestIntegrationScenarios:
@@ -341,10 +340,10 @@ class TestIntegrationScenarios:
         with patch.object(builtins, '__import__', mock_import):
             
             # 1. 检查依赖
-            check_optional_dependency("pandas", "pandas")
+            check_optional_dependency("pandas")
             
             # 2. 导入依赖
-            imported_pandas = import_optional_dependency("pandas", "pandas")
+            imported_pandas = import_optional_dependency("pandas")
             assert imported_pandas is mock_pandas
             
             # 3. 使用装饰器
@@ -376,12 +375,12 @@ class TestIntegrationScenarios:
             
             # 1. 检查依赖应该失败
             with pytest.raises(ImportError) as exc_info:
-                check_optional_dependency("pandas", "pandas")
+                check_optional_dependency("pandas")
             assert "pandas is required" in str(exc_info.value)
             
             # 2. 导入依赖应该失败
             with pytest.raises(ImportError):
-                import_optional_dependency("pandas", "pandas")
+                import_optional_dependency("pandas")
             
             # 3. 装饰器应该失败
             @requires_pandas
@@ -430,9 +429,9 @@ class TestIntegrationScenarios:
         
         with patch.object(builtins, '__import__', mock_import):
             with pytest.raises(ImportError):
-                check_optional_dependency("matplotlib", "plotting")
+                check_optional_dependency("matplotlib")
             with pytest.raises(ImportError):
-                import_optional_dependency("matplotlib", "plotting")
+                import_optional_dependency("matplotlib")
 
 
 class TestEdgeCases:
@@ -477,7 +476,7 @@ class TestEdgeCases:
         with pytest.raises(ImportError) as exc_info:
             check_optional_dependency("module name", "extra name")
         
-        expected_msg = "module name is required for this functionality. Install with: pip install email-widget[extra name]"
+        expected_msg = "module name is required for this functionality. Install with: pip install module name"
         assert str(exc_info.value) == expected_msg
 
 
@@ -485,9 +484,9 @@ class TestErrorMessageFormat:
     """测试错误消息格式的一致性"""
     
     @pytest.mark.parametrize("module_name,extra_name,expected_format", [
-        ("non_existent_test_lib_123", None, "non_existent_test_lib_123 is required for this functionality. Install with: pip install email-widget"),
-        ("fake_pandas_lib", "pandas", "fake_pandas_lib is required for this functionality. Install with: pip install email-widget[pandas]"),
-        ("imaginary_plotting_lib", "plotting", "imaginary_plotting_lib is required for this functionality. Install with: pip install email-widget[plotting]"),
+        ("non_existent_test_lib_123", None, "non_existent_test_lib_123 is required for this functionality. Install with: pip install non_existent_test_lib_123"),
+        ("fake_pandas_lib", "pandas", "fake_pandas_lib is required for this functionality. Install with: pip install fake_pandas_lib"),
+        ("imaginary_plotting_lib", "plotting", "imaginary_plotting_lib is required for this functionality. Install with: pip install imaginary_plotting_lib"),
     ])
     def test_error_message_consistency(self, module_name: str, extra_name: str, expected_format: str):
         """测试错误消息格式的一致性"""

@@ -5,16 +5,19 @@
 
 import base64
 import io
-import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
-from typing import Optional, Union, Any, Dict
+from typing import Optional, Union, Any, Dict, TYPE_CHECKING
 from pathlib import Path
 from email_widget.core.base import BaseWidget
 from email_widget.core.config import EmailConfig
 from email_widget.utils.image_utils import ImageUtils
+from email_widget.utils.optional_deps import check_optional_dependency, import_optional_dependency, ChartMixin
+
+if TYPE_CHECKING:
+    import matplotlib.pyplot as plt
+    import matplotlib.font_manager as fm
 
 
-class ChartWidget(BaseWidget):
+class ChartWidget(BaseWidget, ChartMixin):
     """图表Widget类，用于在邮件中显示图表。
     
     这个Widget支持将matplotlib/seaborn图表转换为base64编码的图片嵌入到邮件中，
@@ -241,6 +244,9 @@ class ChartWidget(BaseWidget):
             调用此方法后，原图表对象会被关闭以释放内存。
             如果转换失败，图片URL会被设置为None。
         """
+        # 检查matplotlib依赖
+        check_optional_dependency("matplotlib")
+        
         try:
             # 设置中文字体
             self._configure_chinese_font()
@@ -274,6 +280,10 @@ class ChartWidget(BaseWidget):
             这是一个内部方法，在set_chart时自动调用。
         """
         try:
+            # 导入matplotlib模块
+            plt = self._import_matplotlib_pyplot()
+            fm = self._import_matplotlib_font_manager()
+            
             # 从配置文件获取字体列表
             config = EmailConfig()
             font_list = config.get_chart_fonts()

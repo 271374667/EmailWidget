@@ -8,11 +8,6 @@ dependencies = [
     "jinja2>=3.1.6",
 ]
 
-[project.optional-dependencies]
-pandas = [
-    "pandas>=2.3.0",
-]
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -24,9 +19,11 @@ packages = ["src"]
 dev = [
     "hatchling>=1.27.0",
     "loguru>=0.7.3",
+    "matplotlib>=3.7.0",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.14",
     "mkdocstrings[python]>=0.29.1",
+    "pandas>=2.3.0",
     "pandas-stubs>=2.2.3.250527",
     "pytest>=8.4.1",
     "pytest-cov>=4.0.0",

@@ -94,7 +94,7 @@ class TableWidget(BaseWidget):
     
     def set_dataframe(self, df: "pd.DataFrame") -> 'TableWidget':
         """设置DataFrame数据"""
-        check_optional_dependency("pandas", "pandas")
+        check_optional_dependency("pandas")
         self._dataframe = df.copy()
         self._headers = list(df.columns)
         self._rows = []
@@ -177,8 +177,8 @@ class TableWidget(BaseWidget):
     
     def add_data_row(self, row_data: list) -> 'TableWidget':
         """添加数据行（基于DataFrame）"""
-        check_optional_dependency("pandas", "pandas")
-        pd = import_optional_dependency("pandas", "pandas")
+        check_optional_dependency("pandas")
+        pd = import_optional_dependency("pandas")
         
         if self._dataframe is not None:
             # 如果已有DataFrame，添加新行
