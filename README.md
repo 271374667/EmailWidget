@@ -7,7 +7,7 @@
 [![PyPI version](https://badge.fury.io/py/EmailWidget.svg)](https://badge.fury.io/py/EmailWidget)
 [![Python versions](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/EmailWidget/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Codecov](https://codecov.io/gh/username/EmailWidget/branch/main/graph/badge.svg)](https://codecov.io/gh/username/EmailWidget)
+[![Codecov](https://codecov.io/gh/271374667/EmailWidget/branch/master/graph/badge.svg)](https://codecov.io/gh/271374667/EmailWidget)
 
 [📖 文档](https://271374667.github.io/EmailWidget) • [🚀 快速开始](#-快速开始) • [💡 示例](#-组件展示)
 
@@ -127,11 +127,11 @@ email = (Email("项目进展报告")
 
 | 📖 **资源类型** | 🔗 **链接** | 📝 **内容** |
 |---------------|------------|-----------|
-| 🚀 **快速开始** | [安装指南](https://271374667.github.io/SpiderDaily/getting-started/installation/) | 环境配置、第一个邮件 |
-| 📘 **用户手册** | [组件详解](https://271374667.github.io/SpiderDaily/user-guide/core-classes/) | 12 个组件完整教程 |
-| 🔧 **API 文档** | [API 参考](https://271374667.github.io/SpiderDaily/api/core/) | 完整类和方法文档 |
-| 💡 **实战示例** | [应用案例](https://271374667.github.io/SpiderDaily/examples/basic/) | 真实场景代码 |
-| 🛠️ **开发指南** | [贡献代码](https://271374667.github.io/SpiderDaily/development/contributing/) | 参与项目开发 |
+| 🚀 **快速开始** | [安装指南](https://271374667.github.io/EmailWidget/getting-started/installation/) | 环境配置、第一个邮件 |
+| 📘 **用户手册** | [组件详解](https://271374667.github.io/EmailWidget/user-guide/core-classes/) | 12 个组件完整教程 |
+| 🔧 **API 文档** | [API 参考](https://271374667.github.io/EmailWidget/api/core/) | 完整类和方法文档 |
+| 💡 **实战示例** | [应用案例](https://271374667.github.io/EmailWidget/examples/basic/) | 真实场景代码 |
+| 🛠️ **开发指南** | [贡献代码](https://271374667.github.io/EmailWidget/development/contributing/) | 参与项目开发 |
 
 ## 🤝 社区与贡献
 

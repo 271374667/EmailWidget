@@ -1,10 +1,17 @@
 name: 📚 Build Docs & 📦 Publish Package
 
 on:
-  # 当推送标签时触发
+  # 当推送到 master 分支时触发测试
   push:
+    branches:
+      - master
     tags:
       - 'v*'
+  
+  # 当创建 PR 时触发测试
+  pull_request:
+    branches:
+      - master
   
   # 允许手动触发
   workflow_dispatch:
@@ -61,7 +68,7 @@ jobs:
 
     - name: 📚 Deploy Documentation
       run: |
-        mkdocs gh-deploy --force --clean --verbose
+        mkdocs gh-deploy --force --clean --verbose --remote-branch gh-pages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -182,9 +189,10 @@ jobs:
         fi
     
     - name: 📊 Upload Coverage
-      if: matrix.python-version == '3.10' && github.event_name == 'push'
-      uses: codecov/codecov-action@v4
+      if: matrix.python-version == '3.10' && (github.event_name == 'push' || github.event_name == 'pull_request')
+      uses: codecov/codecov-action@v5
       with:
         file: ./coverage.xml
         flags: unittests
-        name: codecov-umbrella 
+        name: codecov-umbrella
+        token: ${{ secrets.CODECOV_TOKEN }} 
