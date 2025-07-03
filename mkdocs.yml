@@ -1,7 +1,7 @@
 site_name: EmailWidget - 邮件组件库
 site_description: 一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过537个测试用例验证，83%代码覆盖率，确保企业级稳定性。
 site_author: Python调包侠
-site_url: https://271374667.github.io/EmailWidget/
+site_url: https://271374667.github.io/EmailWidget
 copyright: Copyright &copy; 2024 Python调包侠 | EmailWidget v1.0.0
 
 repo_name: 271374667/EmailWidget
