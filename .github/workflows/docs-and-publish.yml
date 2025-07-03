@@ -29,37 +29,20 @@ on:
 jobs:
   # 构建文档
   build-docs:
-    name: 📚 Build Documentation
+    name: 📚 Deploy Documentation
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event.inputs.deploy_docs == 'true'
     
     steps:
-    - name: 📥 Checkout Repository
+    - name: 📥 Checkout main
       uses: actions/checkout@v4
-    
-    - name: 🐍 Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-    - run: ls -l
-    - run: cat README.md
-    - name: 📦 Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        # 直接安装文档构建所需的依赖，避免可编辑安装的构建问题
-        pip install mkdocs mkdocs-material mkdocstrings[python]
-        # 安装项目依赖
-        pip install jinja2
-    - name: 🔧 Configure Git
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-    
-    - name: 📚 Build and Deploy Documentation
-      run: |
-        mkdocs gh-deploy --force
+
+    - name: 📚 Deploy docs
+      uses: mhausenblas/mkdocs-deploy-gh-pages@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CONFIG_FILE: mkdocs.yml
+        REQUIREMENTS: requirements-docs.txt
 
   # 构建包
   build-package:
@@ -72,7 +55,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: 🐍 Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
         python-version: '3.10'
     
@@ -154,7 +137,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: 🐍 Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
     
