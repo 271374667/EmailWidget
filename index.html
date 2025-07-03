@@ -1,0 +1,2074 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过537个测试用例验证，83%代码覆盖率，确保企业级稳定性。">
+      
+      
+        <meta name="author" content="Python调包侠">
+      
+      
+        <link rel="canonical" href="https://271374667.github.io/EmailWidget/">
+      
+      
+      
+        <link rel="next" href="getting-started/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>EmailWidget - 邮件组件库</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#emailwidget-" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="." title="EmailWidget - 邮件组件库" class="md-header__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EmailWidget - 邮件组件库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              首页
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速开始
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  用户指南
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API参考
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  示例代码
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="development/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发指南
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  更新日志
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="EmailWidget - 邮件组件库" class="md-nav__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    EmailWidget - 邮件组件库
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ 项目概览
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✨ 项目概览">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      "🎨 丰富组件"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      "🚀 快速开始"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏃‍♂️ 快速开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏃‍♂️ 快速开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 第一个邮件报告
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎪 使用场景
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 组件画廊
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 组件画廊">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      高级组件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 文档导航
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤝 社区与支持
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤝 社区与支持">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      获取帮助
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      参与贡献
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      社交媒体
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 许可证
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="getting-started/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    快速开始
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="user-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    用户指南
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    API参考
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="examples/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    示例代码
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="development/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    开发指南
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    更新日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="emailwidget-">EmailWidget - 强大的邮件组件库<a class="headerlink" href="#emailwidget-" title="Anchor link to this section">&para;</a></h1>
+<div align="center">
+
+![EmailWidget Logo](https://via.placeholder.com/400x200/FF69B4/FFFFFF?text=EmailWidget+v1.0.0)
+
+**一个现代化、易用的Python邮件组件库**
+
+[![PyPI version](https://badge.fury.io/py/EmailWidget.svg)](https://badge.fury.io/py/EmailWidget)
+[![Python versions](https://img.shields.io/pypi/pyversions/EmailWidget.svg)](https://pypi.org/project/EmailWidget/)
+[![License](https://img.shields.io/github/license/271374667/SpiderDaily.svg)](https://github.com/271374667/SpiderDaily/blob/master/LICENSE)
+[![Codecov](https://codecov.io/gh/username/EmailWidget/branch/main/graph/badge.svg)](https://codecov.io/gh/username/EmailWidget)
+
+</div>
+
+<hr />
+<h2 id="_1">✨ 项目概览<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">为什么选择 EmailWidget？</p>
+<p>EmailWidget 是专为Python开发者设计的邮件组件库，让你轻松创建美观、专业的HTML邮件报告而不需要掌握任何额外的前端知识。</p>
+</div>
+<h3 id="_2">"🎨 丰富组件"<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h3>
+<p>12个专业组件，满足各种邮件报告需求：</p>
+<ul>
+<li>📝 <strong>TextWidget</strong> - 8种文本样式，自动章节编号</li>
+<li>📊 <strong>TableWidget</strong> - DataFrame集成，状态单元格  </li>
+<li>📈 <strong>ChartWidget</strong> - matplotlib/seaborn原生支持</li>
+<li>📊 <strong>ProgressWidget</strong> - 5种主题，动态进度显示</li>
+<li>⭕ <strong>CircularProgressWidget</strong> - 圆形进度条，多种尺寸</li>
+<li>🎴 <strong>CardWidget</strong> - 信息卡片，图标和元数据支持</li>
+<li>⚠️ <strong>AlertWidget</strong> - 5种警告类型，自定义图标</li>
+<li>🖼️ <strong>ImageWidget</strong> - 多源支持，尺寸控制</li>
+<li>💬 <strong>QuoteWidget</strong> - 引用样式，作者信息</li>
+<li>📊 <strong>StatusWidget</strong> - 状态管理，布局控制</li>
+<li>📑 <strong>ColumnWidget</strong> - 响应式多列布局</li>
+<li>📋 <strong>LogWidget</strong> - 日志级别，语法高亮</li>
+</ul>
+<h3 id="_3">"🚀 快速开始"<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h3>
+<p><strong>30秒创建专业报告</strong>：</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">TextWidget</span><span class="p">,</span> <span class="n">ProgressWidget</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span><span class="p">,</span> <span class="n">ProgressTheme</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建邮件</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;📊 业务报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 添加标题</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;季度业绩总结&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a><span class="c1"># 添加进度指标</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><a href="#__codelineno-0-16"><span class="linenos" data-linenos="16 "></span></a>    <span class="n">ProgressWidget</span><span class="p">()</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">92</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><a href="#__codelineno-0-18"><span class="linenos" data-linenos="18 "></span></a>    <span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;目标完成率&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><a href="#__codelineno-0-19"><span class="linenos" data-linenos="19 "></span></a>    <span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">ProgressTheme</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><a href="#__codelineno-0-20"><span class="linenos" data-linenos="20 "></span></a><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><a href="#__codelineno-0-21"><span class="linenos" data-linenos="21 "></span></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><a href="#__codelineno-0-22"><span class="linenos" data-linenos="22 "></span></a><span class="c1"># 导出HTML</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><a href="#__codelineno-0-23"><span class="linenos" data-linenos="23 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;report.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 业务报告</title>
+
+        <style>
+            body {
+                margin: 0;
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            }
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-body {
+                padding: 24px;
+            }
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+            .email-container {
+                width: 100%;
+                max-width: 800px;
+                min-width: 320px;
+            }
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            /* MSO条件注释样式 - 针对Outlook */
+            <!--[if mso]>
+            <style type="text/css">
+                .email-container {
+                    width: 600px !important;
+                }
+                .responsive-table {
+                    display: table !important;
+                }
+            </style>
+            <![endif]-->
+        </style>
+
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>📊 业务报告</h1>
+            <div class="timestamp">生成时间: 2025年07月01日 22:41:48</div>
+        </div>
+
+        <div class="email-body">
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 28px; text-align: center; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 24px 0 16px 0">季度业绩总结</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">目标完成率</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 92.0%;
+            height: 100%;
+            background: #107c10;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">92.0%</div>
+        </div>
+    </div>
+
+
+        </div>
+
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<h2 id="_4">🏃‍♂️ 快速开始<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_5">📦 安装<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h3>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a>pip<span class="w"> </span>install<span class="w"> </span>email-widget
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a><span class="c1"># 或者安装完整版(包含pandas)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a>pip<span class="w"> </span>install<span class="w"> </span>email-widget<span class="o">[</span>pandas<span class="o">]</span>
+</code></pre></div>
+<h3 id="_6">🎯 第一个邮件报告<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h3>
+<p>EmailWidget 兼容 pandas 的表格和 matplotlib/seaborn 的图表，并且会自动对其进行美化</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextWidget</span><span class="p">,</span> <span class="n">TableWidget</span><span class="p">,</span> <span class="n">ChartWidget</span><span class="p">,</span> <span class="n">AlertWidget</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span><span class="p">,</span> <span class="n">AlertType</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 创建邮件对象</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;📈 数据分析日报&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">set_subtitle</span><span class="p">(</span><span class="s2">&quot;2024年第一季度数据汇总&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><a href="#__codelineno-2-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">set_footer</span><span class="p">(</span><span class="s2">&quot;本报告由数据团队自动生成&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><a href="#__codelineno-2-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><a href="#__codelineno-2-12"><span class="linenos" data-linenos="12 "></span></a><span class="c1"># 1. 添加标题</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><a href="#__codelineno-2-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><a href="#__codelineno-2-14"><span class="linenos" data-linenos="14 "></span></a>    <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><a href="#__codelineno-2-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;销售业绩概览&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><a href="#__codelineno-2-16"><span class="linenos" data-linenos="16 "></span></a>    <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><a href="#__codelineno-2-17"><span class="linenos" data-linenos="17 "></span></a><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><a href="#__codelineno-2-18"><span class="linenos" data-linenos="18 "></span></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><a href="#__codelineno-2-19"><span class="linenos" data-linenos="19 "></span></a><span class="c1"># 2. 添加数据表格</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><a href="#__codelineno-2-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><a href="#__codelineno-2-21"><span class="linenos" data-linenos="21 "></span></a>    <span class="s1">&#39;产品&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;iPhone&#39;</span><span class="p">,</span> <span class="s1">&#39;iPad&#39;</span><span class="p">,</span> <span class="s1">&#39;MacBook&#39;</span><span class="p">],</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><a href="#__codelineno-2-22"><span class="linenos" data-linenos="22 "></span></a>    <span class="s1">&#39;销量&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">],</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><a href="#__codelineno-2-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="s1">&#39;收入&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120000</span><span class="p">,</span> <span class="mi">64000</span><span class="p">,</span> <span class="mi">120000</span><span class="p">]</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><a href="#__codelineno-2-24"><span class="linenos" data-linenos="24 "></span></a><span class="p">})</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><a href="#__codelineno-2-25"><span class="linenos" data-linenos="25 "></span></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><a href="#__codelineno-2-26"><span class="linenos" data-linenos="26 "></span></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;产品销售统计&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><a href="#__codelineno-2-27"><span class="linenos" data-linenos="27 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><a href="#__codelineno-2-28"><span class="linenos" data-linenos="28 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a><a href="#__codelineno-2-29"><span class="linenos" data-linenos="29 "></span></a>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a><a href="#__codelineno-2-30"><span class="linenos" data-linenos="30 "></span></a><span class="c1"># 3. 添加图表</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a><a href="#__codelineno-2-31"><span class="linenos" data-linenos="31 "></span></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a><a href="#__codelineno-2-32"><span class="linenos" data-linenos="32 "></span></a><span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;产品&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;销量&#39;</span><span class="p">])</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a><a href="#__codelineno-2-33"><span class="linenos" data-linenos="33 "></span></a><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;产品销量对比&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><a href="#__codelineno-2-34"><span class="linenos" data-linenos="34 "></span></a><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;销量&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a><a href="#__codelineno-2-35"><span class="linenos" data-linenos="35 "></span></a>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><a href="#__codelineno-2-36"><span class="linenos" data-linenos="36 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><a href="#__codelineno-2-37"><span class="linenos" data-linenos="37 "></span></a>    <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a><a href="#__codelineno-2-38"><span class="linenos" data-linenos="38 "></span></a>    <span class="o">.</span><span class="n">set_chart</span><span class="p">(</span><span class="n">plt</span><span class="p">)</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><a href="#__codelineno-2-39"><span class="linenos" data-linenos="39 "></span></a>    <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;📊 销量趋势分析&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><a href="#__codelineno-2-40"><span class="linenos" data-linenos="40 "></span></a>    <span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;显示各产品线的销量对比情况&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a><a href="#__codelineno-2-41"><span class="linenos" data-linenos="41 "></span></a><span class="p">)</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><a href="#__codelineno-2-42"><span class="linenos" data-linenos="42 "></span></a>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a><a href="#__codelineno-2-43"><span class="linenos" data-linenos="43 "></span></a><span class="c1"># 4. 添加重要提醒</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a><a href="#__codelineno-2-44"><span class="linenos" data-linenos="44 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a><a href="#__codelineno-2-45"><span class="linenos" data-linenos="45 "></span></a>    <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a><a href="#__codelineno-2-46"><span class="linenos" data-linenos="46 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;下月将推出新产品，请提前做好市场准备。&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a><a href="#__codelineno-2-47"><span class="linenos" data-linenos="47 "></span></a>    <span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">IMPORTANT</span><span class="p">)</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a><a href="#__codelineno-2-48"><span class="linenos" data-linenos="48 "></span></a>    <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;重要通知&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a><a href="#__codelineno-2-49"><span class="linenos" data-linenos="49 "></span></a><span class="p">)</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a><a href="#__codelineno-2-50"><span class="linenos" data-linenos="50 "></span></a>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a><a href="#__codelineno-2-51"><span class="linenos" data-linenos="51 "></span></a><span class="c1"># 5. 导出HTML文件</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52"></a><a href="#__codelineno-2-52"><span class="linenos" data-linenos="52 "></span></a><span class="n">file_path</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;daily_report.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53"></a><a href="#__codelineno-2-53"><span class="linenos" data-linenos="53 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📧 报告已生成: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 数据分析日报</title>
+
+        <style>
+            body {
+                margin: 0;
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            }
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-body {
+                padding: 24px;
+            }
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+            .email-container {
+                width: 100%;
+                max-width: 800px;
+                min-width: 320px;
+            }
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            /* MSO条件注释样式 - 针对Outlook */
+            <!--[if mso]>
+            <style type="text/css">
+                .email-container {
+                    width: 600px !important;
+                }
+                .responsive-table {
+                    display: table !important;
+                }
+            </style>
+            <![endif]-->
+        </style>
+
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>📈 数据分析日报</h1>
+            <div class="subtitle">2024年第一季度数据汇总</div>
+        </div>
+
+        <div class="email-body">
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 28px; text-align: center; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 24px 0 16px 0">销售业绩概览</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+    <div style="margin: 16px auto; width: 100%; max-width: 100%; padding: 0 5px; box-sizing: border-box;">
+            <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130; text-align: center;">产品销售统计</h3>
+        <!-- 使用表格布局实现居中对齐 -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0;">
+            <tr>
+                <td align="center" style="padding: 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="
+            width: 100%;
+            min-width: 400px;
+            max-width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            background: #ffffff;
+            margin: 0;
+            text-align: center;
+         border: 1px solid #e1dfdd;">
+                            <thead>
+                                <tr>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">产品</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">销量</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">收入</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">iPhone</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">1200</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">120000</td>
+                                </tr>
+                                <tr style="background: #faf9f8; border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">iPad</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">800</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">64000</td>
+                                </tr>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">MacBook</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">600</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">120000</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+
+        <!--[if mso]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center">
+        <![endif]-->
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+            max-width: 100%;
+        ">
+                <h3 style="
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 12px;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        ">📊 销量趋势分析</h3>
+            <div style="width: 100%; max-width: 100%; overflow-x: auto; text-align: center;">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABPwAAAMUCAYAAAAojTmXAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvZiW1igAAAAlwSFlzAAAXEgAAFxIBZ5/SUgAAUtBJREFUeJzt3QeUlNX5P/BLF1BBEVEsEFGjoGIMYmyoiBoFu2KiRLEECyp2Tew1Fowl0ViwF2yJxoIxRsWKYgRFARtIFJFmQ6SK+z/3/s7Mf5cdYEFg4e7nc86cd/Z977zzDiazM9997n1qlZWVlQUAAAAAIAu1q/sCAAAAAIDFR+AHAAAAABkR+AEAAABARgR+AAAAAJARgR8AAAAAZETgBwAAAAAZEfgBAAAAQEYEfgAAAACQEYEfAAAAAGRE4AcAAAAAGRH4AQAAAEBGBH4AAAAAkBGBHwAAAABkROAHALAMeuaZZ8Iee+wRdt1115CTOXPmhB9++CHk4sMPPwwXXHBB6Nu372I515133pn+2wMA/BR1f9KjAQBYYsHY008/HWrXrh2++eab0LRp07AsmjRpUujSpUvo3bt36NGjR2jUqNF8x++2227hueeeC++9915o165dlZ5j6tSpYezYsYt8jWuvvXZYccUVw5LwxRdfhAsvvDD87Gc/C6eddlrJMbNnzw6ff/55qFWrVmjVqtU8z/Xyyy+Ho446Kuyyyy7p3wkAYFEJ/AAAlkGdO3dO4dm0adPCq6++Grp27bpI5xk5cmRo27btQj9u/PjxoUWLFgscd/PNN4dhw4aFG264IQV+5b3yyivh0UcfDVdffXVxX4MGDdK2fDB41VVXhZVWWinst99+YfXVV6/0HC+++GLo1q1bWFQDBgwIu+++e1gSVl111Qqvq5QxY8aEDTfcML3m77//fp7jCueoV6/eErhSAKAmEfgBAFST9u3bh6+//jqssMIKqZKvVJVfdMQRR4RVVlmlwrGysrIwc+bMdIth2K233lryOZo3b562DRs2DOuuu+4Cr+nTTz8N06dPX2ClXhSv/c9//nMa+8gjj1R4zKxZs8Lvf//78P7776fA8cgjj0z742stH2rF6sWLL744VfHFcaUCv3jt0amnnrpQU2djxV0MG+f3WuLzN27ceJFDthhURnXq1JnnmEJ14YL+TevXr19hCwCwqAR+AADVZMqUKSlwioFW3bp105TP8lZbbbXi/RiIzW3GjBkpnJtf1VgMs6KOHTuGgQMHLvCadtxxx1RRV5XQKU5ljaFffI4YOsaAMgaQMch88sknwy233BJ22GGHcMopp6QKu5YtW1YK1q655prw3Xffhd/97nehU6dOJZ+nEBLG8K58tWBVFQLDUtZff/3w5ZdfzjO0i4/99ttvSwayVVV4zQsKFVX4AQCLi8APAKCafPLJJxV+fumll9KacAcddNA8H3PyySeHPffcM035rYr5TTWdnwUFXPFa//KXv6QwLgZ+X331VQr8YmVfIZzcfvvt0zTfe+65J5xxxhnh3nvvrdSkIk7njee49NJL5/lcP/74Y9oefvjh6TxVdeWVV4Y77rgjVUPOy/7775+uO4Zs5QO/+Jx/+9vfwgYbbPCTwr6ocN4FnWdB4wYNGhQuueSS8Pe//70YggIAlCLwAwBYBsQQ54ADDkjh2ZZbbhnWW2+9kgHhtddem24xKJtXk4hSYdnCmrvasLwYSsaKvHjuBx54IOy9997zHHv++eenADCGb3OLVY3du3dP6+Cts8468zxHbHrxU8Sqw/mtQTivtQ9j4LfJJpuk19CvX78Uss1dfVe4to8++iit0xcDz1h1OXr06GJ15fz+LasqXmcMe+O5e/bsmf7dAQDmReAHALAM2GuvvdJU2HfeeSeceOKJaUpsqVAwih1hY1fcqogB1KKIVW8xkCu1P1YYxrX+Ylg3v7AvatOmTfjHP/5R8lgMNe+88875VuBFsXFJFKv14m1hlZoOvSBvv/122v7iF79IHXbHjRuXArx4Kx/gFdZZjOFnnN5cCPwW9JqqatSoUel/D7HxSBQDyMJ6iAAA8yLwAwBYBsTKseuuuy6toffUU0+F5557Luy8887F4zFAimviRX/605/muy5deXF9vCiuy7cwlWaxKq7UdOA47fSKK64IvXr1Smv4xXFxvb8ffvihuKZgbDBSqISL3XtjEFYwYsSItL3++uvDyiuvXNwfp86Wn8ocqxljiBYbXWy33XYpSFuUte3iv1u8pokTJ6Z/i3hthc66UZyKHAO1eD3l9xcCv1/96lcpiI3/5qWeP3bgjQHsz3/+8/Dee+8t1LXFsDBWCMbrKzT2KJg8eXKq4ozXFf9d11hjjfTvHcO++TUIAQCIBH4AAMuI2ODiwAMPDB06dEhNNsr717/+laaNxvApVtZVVQy5Yhi1sOY3jTYGka+++mpYc801Sx4fOnRo2HzzzdP9v/71r6lT79ximFXefvvtVyHwi+v1xZCyvEUJumJoWL7aLq47ePzxxxd/jmvi3XfffSlg/M9//lMMUuP9GHhuscUWi7wO4txipeC8QteXX365wv0YIsbKxBhCXnDBBeGEE06oUudkAIBI4AcAUA1iZdk222xT8tiwYcPC7bffXmHfpEmT0nbs2LFh4403Lu6PYVasALv//vvDtttuW7ILbanA7aeK1Xmx2ixW9t11110pVIzViXH6bayiK4gBWgzqxo8fX/I8b7zxRurwO3cTinjOWD0YpxXHyrp4KzXFeEHiv0+spIu3WEnXrFmzCscvv/zy8MEHH6QpszFIffTRR8OECRPCkCFDQpcuXYph3zPPPJP+jeN1Lar479C6desK11Wo8Cv/2uL04djR+LzzzgvHHHNMWGmllRb5OQGAmkngBwBQDWKlVwyaFtaXX36Zbou7scXCitVmsZFFnNIaQ7BYlXjTTTdVGleoyltttdVKnqdJkyYVxhW0atWqeP/iiy9O4deiuuyyy8If/vCHksfidOS4xuAee+yR1k38/e9/H7baaqt07Ne//nUxnDvrrLPSNN9YhRjHLoo4Lffjjz+e5/HCuo2xgjIGkPHaAAAWhcAPAKAaFNaDa9q0aYU17hZWrLArrKNXsOuuu4Znn312vo+L4VWcHhyns/bo0WO+Y2NFYWHtvYUVg7w4rTZ2li0lrq0X1a5de57nKHS7PeOMM9JU3/JiRd4f//jHFOrtu+++FY7dfffdae29wuPnJVbxxdAvVkjGJiKxOUoMZPfff/90PN6P549BXwz+YhA4v+v9qWI4KuwDAH4KgR8AQDUodJ6deyrrwopTQeee6lqYhho75M597IsvvghTpkwpNqgoPH8Mmeae7hrFKsRS1xjXmIsKa9I98cQT6fli+Bhvr732WmrEUaiQKzTBmNv333+/wNe4KM06FvbxsdIwVtXFJh3x3yiGf4Xpt9Huu+8ett9++7S+3kMPPRR+85vf/KRrAgBYkgR+AADVoLAmX6mQ7acqVIcNHDgwrL322hWOxUq7OAW30BW2MLZPnz7hnHPOqXSuGOiVqjb79ttvU5BXqHSLXXRjpWIh8ItVfeWr/OYV+L3yyispSFtQFWN05ZVXplspscov3kqpanfiddZZJ6y77rop8Hv33XfTdOXyod/JJ5+cAr/Y6CNO7V2YrscAAEvTkpuLAADAAgO/uQO5xaEq000LVYBVGVuqO25sOhIDvrfeeiv9HKe/xn2xYi8GdIvSGXheYoBY6OwbQ8bytzvuuCMdi9u5j11zzTUVAsMFiVOAYxORuNZerIKMU53LB5d77rln6kwcj40ePTosTuU7CQMA/FQq/AAAqsHIkSPTtm3btov93FUJ8QpjqjL2p1ayxTArdsMt5X//+1+VA7/TTz893UqJa/vNvb7f3NOn5yd25j3zzDNTV+FYdXj00UeH5557LlxxxRXFhh9xenRc3y82KPmp04wLnn766VQxGNcaBABYXAR+AADV4KWXXkrbLbfccrGfuyoBXezqG9fmW9zTUseOHVupajFWyc2rS25V9O7dO02hLWV+TTsKmjdvPt/zx+s75JBDUugXqwjjWoSxA3G7du3CBRdcELp16xY23XTTNHbrrbde5NdR/vlik5AY8g0ZMiTte++999J04gWJAeR2222XrmNJNg4BAJZvPiUAACxlcSrsY489lgKbLl26LPbzV2V66IwZM6o8tqqGDh0afvGLX4Q333yz0pTguafbFm6F4HNevvvuu1QNGacKl59eWxUx1IzTb4cPHz7PMfEajjvuuFTN17Vr13Dqqaem/XHtvvPOOy+tTRjXPZwzZ05YVN98803axnP17ds3NTM58MADU9i3zTbbhMcffzwce+yxCzxPrFQ8//zzU+B32223LfL1AAD5U+EHALCUxemtMXCLnV8XVH22KAoh3o477liyS280ffr0CmOvu+66cO+995Y83/yCtkIQFkO+2HwjBnMvvvhilSsXFxSkxS7BnTp1WuB55te0IwaOpdbxi899/PHHh5tvvjlsttlm6fWXr3g85ZRT0tqALVu2TP9ehUYn5VUlhLz99tuL6zYWpiT/+te/TlWP5V9b4b/Vxx9/nK5t7rUT43ni9Oa4P1YdAgDMi8APAGApGjZsWLj22muLgdKSUAjRRo0aNc8xhcCvMHby5MnpVsr8ml4Uuu9++OGHYdVVVw333Xdf2Hvvvav02EK14/xsvPHGabpr7GYcb3OvnXfnnXemtftiMBcr8cqLry1W+U2dOrXSeWO1Xazo+89//hPWX3/98K9//Ss0bdq0wpj4XAMGDEjVfvOaPvvaa68Vx87L5ptvXrwfg7oLL7wwbLHFFpXGxUYnMXCMjVDWWmutCtcTrzd2DY5idWBsHgIAMC8CPwCApSQGT/vtt18Kb2LwsySm80bx/NFnn31WaT29GIrdddddxSm9hbEXX3xxOOeccyqdKwZQhTGlPPvss2kbQ7PYgCJuy4uBWylPPfVUWsMuTgOO5g7bYsffeJ0xSGvcuPE8A7VBgwYVt3NXM5YP/uLrjbcYDq688sqhfv36qcLuyy+/DE888cQ8A7T11luv5BTdOHU5VksWGoq0b98+zEv8b37iiSem/+a77LLLPMf97Gc/S2FwXKdv3LhxaU3B8uKaizGkvOGGG+Z5DgCASOAHALCUxCmhsfvrX/7yl3DrrbcusecphFClNGnSJLRo0aJY2Te/sVFsYhEr9+YlBlQx+Prb3/6Wpr5WtUPuDjvsELp3757CxDj1ODbmKC9Ofz3jjDNCgwYNUufcuae3lhdfzz//+c90KyVWGRYCv1h9GAO/qHPnzqmabmEbl8RwMj42TrGNgeo+++yTqvbmJ06ZrooYDMYbAMBPUatsca7UDADAAk2cODGsvvrqoaYbMWJEmi7bqFGjsLyJ1XcxNC0VcgIAVDeBHwAAAABkpPTqwwAAAADAckngBwAAAAAZEfgBAAAAQEYEfgAAAACQEYEfAAAAAGRE4AcAAAAAGRH4AQAAAEBG6lb3BfB/1lhjjfD999+Hddddt7ovBQAAAIBq9Omnn4bGjRuH8ePHL9LjVfgtI2LYN3v27Oq+DAAAAACqWcyIYla0qFT4LSMKlX3Dhw+v7ksBAAAAoBq1a9fuJz1ehR8AAAAAZETgBwAAAAAZEfgBAAAAQEYEfgAAAACQEYEfAAAAAGRE4AcAAAAAGRH4AQAAAEBGBH4AAAAAkBGBHwAAAABkROAHAAAAABkR+AEAAABARgR+AAAAAJARgR8AAAAAZETgBwAAAAAZEfgBAAAAQEYEfgAAAACQEYEfAAAAAGRE4AcAAAAAGRH4AQAAAEBGBH4AAAAAkBGBHwAAAABkROAHAAAAABkR+AEAAABARgR+AAAAAJCR5Trwe+GFF0LdunXDmDFjKh2bOnVqOPXUU8O6664b6tSpE5o0aRKOOeaYMG3atEpjx44dGw4++ODQvHnz0KxZs3DKKaeE2bNnVxr3448/hquvvjpssMEGoWHDhmGnnXYK77///hJ7fQAAAABQYwK/Tz/9NBx00EFhzpw5lY7FfXvssUf485//nEK63XffPTRq1CjcfPPNoXv37hXGTpo0KXTq1Ck88MADKcA78MADw0033RR69+5d6bwnnnhiOO2000KDBg3S8fHjx4cdd9wxfPXVV0v0tQIAAABA1oHf8OHDw/bbb5/CulJuv/328PLLL6eA7pNPPglPPvlk+PDDD0O7du3CU089FYYOHVoce/bZZ6cx1113XXjooYdS2HfXXXeFfv36hTfeeKM47rXXXgs33HBD2HrrrcNbb70V+vbtG15//fVQu3btcM455yyV1w0AAAAA2QV+cfrttttum6bo9urVq+SYu+++O2y++eYpxKtXr17at9JKK4Wjjjoq3R8yZEjazpw5M9x7771hvfXWC8cff3zx8QcccEDa179//+K+GABGl19+earwi+I1HHvsseHBBx8sWWkIAAAAAEvbchf4TZ48OU3XjRV8a665Zskx8dgrr7xSaf+sWbPSNq77F8VKv+nTp4du3bqFWrVqFcfF+3F678CBAytU+DVt2jRst912Fc7ZuXPnNKX33XffXWyvEQAAAABqTOC36aabhvvvvz9V181P48aNK+0bMGBA2m611VZpO2HChLTdbLPNKo1t06ZNmupbEMdusskmaQrv3OOi0aNHL9LrAQAAAIDF6f9K3ZYjsePuoojr7b344oupQcdGG22U9k2ZMiVtY3feucVAMR6P3X5XXHHFdH9e46Jx48ZV6TriOoKljBo1qhgeAgAAAECNCfwWRVxfL3bVjVN14xp8BYWpvbGD79zq16+fttOmTUuBXxy7oHFU1Pqsp6r7EgAWypjLu1b3JQAAAPxkNSLwu/TSS1OjjtiYI3bZnXvab2Ftv/Jmz55d4VgcW5VxVekwvDCVfwAAAACQ9Rp+C+vVV18NF198cVp/78orr6xwrGXLlmk7ZsyYSo+bOHFi2sZGHYWxVRkHAAAAANUp68AvNto46KCDwgorrBAeeuih0LBhwwrH27ZtG+rVq5eq/+Y2ePDgNIU3TueN2rdvn6rzZs6cWWlc1KJFiyX6WgAAAACgRgd+06dPD/vuu2/4/PPPQ79+/cLGG29caUwM9HbcccfwyCOPhG+++aZCUPj888+nBh8FXbt2Tev09e/fv8I54s9xbcDtt99+Cb8iAAAAAKih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RO+++25o2LBhqF+/fpg9e3YK86ZNm5aOxX2PPPJIaNy4cahdu3aYPn16us2cOTM0a9YsjB07NtSpUyc9DgAAAABYBgK/du3aVdo3atSo4tp+++23X8nHTZo0KW3feuutYsUfAAAAALAMdumNFX5xCm9VKvdatGgRTjnllMX59AAAAABQ4y1yhV8pm266aQr74nTdBVl77bXDpZdeujifHgAAAABqvEWu8Pvss8/CE088UWl/VcI+AAAAAGAZC/xuu+221IV3zz33DCNGjEj7LrzwwrDmmmuGVq1ahfXWW2++t8033zz0799/cb4WAAAAAKjxFjnw69mzZzjhhBPC888/H9q3bx/GjBmTmnA0aNAgdOzYMWywwQZp3yabbBJ++ctfpvsbbrhhCvratGkT3nvvvXDmmWcu3lcDAAAAADXcIq/h17p163DttdeGk08+Odx5553p56hTp07h7rvvToFeDAL79esXVl999VC7du1w/fXXp9Av2mmnncJLL70U/ve//6WKQAAAAACgmir8vvzyyzBlypTUlbd58+bh9NNPT/fLd+etVatWhe3cjjrqqPDGG28I+wAAAACguiv8unTpEoYNG1by2CGHHFLh57KysiqNAwAAAACqKfDr3bt3+Prrr8MKK6yQpuoWPP7444vhkgAAAACApTqlN07HjdN4Y9OOY445Juy1114pBNxiiy0qjS0/pXde03uXlvPPPz9dw+23317p2Ouvvx523HHHsNJKK4Wf/exnqQtxKTHoPO6448Jaa62VxsbmJXF6MwAAAAAs1007CiHZ73//+1TlN2TIkLRv0KBB4YgjjgjffPNN+vnEE08MDRs2TPfPOuus0KRJk+LjY/g2r2BtcXv//ffD5ZdfHrbZZptw+OGHVzj26quvhp133jnUq1cv9OjRI0ycODGFmvG6Dz744OK46dOnh9122y28+eabaRsbkNx7773hiy++CM8888xSeR0AAAAAsEQCv9ihN1b5NW7cOJx22mmpYceKK64YZs6cGV5++eUUAsZA7O23307jf/7zn4cRI0YU1/WL42fMmBGWhvh8vXr1CnPmzAk33nhjhUrDuC+Glj/++GMYOHBg+OUvf5n2x4rFk046Key9997pNUbXXHNNCvtOOeWUcPXVV6d9MSDcaqutwkMPPRS6d+++VF4PAAAAACz2wO8Xv/hFCsP+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f/xxcd/MmTPDo48+GjbaaKOSDT0AAAAAYGkS+C2E3r17p+YaBx98cPj888/DjBkzwjHHHJO68/bo0aO6Lw8AAAAANO1YGO3btw9XX311OPnkk8O6666bOqbECr+OHTuG008/vbovDwAAAABCrbKysrLqvojlzauvvhquu+66MH78+LDrrruGM844I9SvX7+6LwsAAAAABH4AAAAAkBNr+AEAAABARgR+AAAAAJARgR8AAAAAZETgBwAAAAAZEfgBAAAAQEYEfgAAAACQEYEfsFjsuOOOoXXr1pX2X3DBBaFWrVrFW+3atUPz5s3DIYccEv73v/9VGBuP9+zZcyleNQDL4u+Dn2rgwIHpOe68887Fel6A5VHhPTHe7r///uL+zz//vLg/vkcvCfH3Qfn3/rp166Z9p59+epg+fXpY0ny/oCarW90XANQMu+yyS+jYsWP6xf7OO++kDxsvvPBCGDJkSFhjjTWq+/IAWEr8PgCoPsOGDQsHH3xw8f7ScvbZZ6ft7NmzUwDZt2/fMGLEiPDUU08ttWuAmkbgBywWd999d/oFPi977LFHOOmkk4o/33jjjaF3797h4osvDjfccMNSukoAljS/DwCWXe+++27J+0vaJZdcUrxfVlYWdt111zBgwIDw0ksvhU6dOi2164CaxJReYLFYd911Q5s2bao8/qijjgr169cPTz/99BK9LgCWLr8PAJZd5av6lmaF39zTbPfcc890//XXX6+Wa4CaQOAHVIv45S6u3TR27NjqvhQAqpHfBwBLR6yki++1X3/9dbHCr7qq6wrr9zVq1Khanh9qAoEfsEQXaV/QL/qGDRtW2j9x4sS0tkizZs3CaqutFg477LAwZcqUCmNmzJgRzj333NCqVavQoEGDsMkmm4Rbb721wpgxY8akvyCeddZZYfTo0WGvvfYKTZo0CS1btgwnn3xymDVrVoXx3333XVpAuHDODTfcMFx//fUL9ZoAarrF9fvgxRdfDDvvvHP6XbDqqqum877yyiuVHjtp0qS0IPsqq6wSVl555fC73/0ufPvttz/5dQDkZtNNNy0GfXHphffffz9sttlmFcZMnTo1/PGPfwwbbLBBCuPWX3/99Fl62rRplc733nvvhb333jt9vo6f2eN79quvvrrA64jP/dBDD6X722yzTYVjgwYNCl26dAmNGzdO7/3xO0Gpxk5V+S5QSvz8H6cT16tXLzz55JMLHA/LM2v4AdVi1KhR4auvvgrbb799pdAtfqmLa3vEoO+5555L60HFX+S33HJL8UPCr3/96/RlcOutt05B3jPPPBN69eoVRo4cGf785z9XOOf48ePT86y55prh8MMPD48//ni49tprU0VJ/EATxQ8xO+ywQ5raEM8Xv6zG5+7Tp0+6ziXVuQygpiv1+yCu6RSbe8QQ77e//W3a9+ijj6Z98X06fhEtvHfvtNNOYfjw4Wm78cYbp/f42AQEgIratWuXOqTH99H4/hrDr0IIWHDAAQekz9W77bZbCvM++OCDcMUVV4TJkyeHfv36VQjm4nvynDlzQvfu3cOKK64YHnnkkVQx+MQTT6T1Wss755xzikHdv/71r/S+HfdtscUWxTGxgce+++6b/gAU3/vjH/wffPDB8J///Cc9X2G5iIX9LlDw448/hkMPPTR9xr/vvvtCt27dFuu/LyxzygAWgx122KGsVatWlfaff/75ZfGt5pprrkk/T5s2rWzQoEFlHTt2TPvvv//+4tj4c61atcp23nnnshkzZqR933//fdmaa65ZtvrqqxfH9e3bN43t1atX2Y8//lgct+2226b9L730Utr3ySefFM/5m9/8pmzOnDlp/7hx48oaNmyYrqHgwgsvTGPvuOOO4r6ZM2eWtWvXrqxRo0Zl33333RL4VwPIz+L4fbDvvvuW1a1bt2zYsGHFfSNGjEjjLr744uK+eK6475hjjinu++KLL8patGhR6T0doKZ64YUXiu+JG264YfoMfd9996V98X04buN79NChQ8vq1KlTduCBB1Z4fPfu3csaNGhQ9sMPP6Sf4+fvjTbaKL1PDx48uDjuww8/TOfaaqutivvi74O4b+7b5ptvXvbee+8Vx8XfCfHz/oorrlj2wQcfFPc/9thjaXznzp0X+rtAFH8+7LDD0v3jjz8+/XzzzTcv5n9hWDaZ0gssFXEKbZxeG6cGxL/EDR48OFXPFSo3CurUqRNuuummVNEXxfHbbbddmuZbcM8994S6deumvzbGcxbGFbp/xePlxb84xqm58S+aUaz0i2X/5c/58MMPp3N++OGH6a+N8XbRRRel88YKkrfeemsJ/usA1BxV+X3wj3/8I1VwFCpP4npTsSIj+uSTT4rjCo0+4nIMBWussUY49thjl+IrAlh+xPfVWOEX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" alt="图表" 
+                     style="
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 8px 0;
+        " 
+                     width="" 
+                     height="" />
+            </div>
+                <p style="
+            font-size: 14px;
+            color: #605e5c;
+            margin: 12px 0;
+            line-height: 1.5;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        ">显示各产品线的销量对比情况</p>
+        </div>
+        <!--[if mso]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
+
+
+        <div style="
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-left: 4px solid #f59e0b;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            color: #d97706;
+        ">
+            <!-- 标题行 -->
+                <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+                    <span style="margin-right: 8px; font-size: 18px;">❗</span>
+                    <span>重要通知</span>
+                </div>
+
+            <!-- 内容 -->
+            <div style="line-height: 1.5; font-size: 14px;">下月将推出新产品，请提前做好市场准备。</div>
+        </div>
+
+
+        </div>
+
+        <div class="email-footer">
+            <p>本报告由数据团队自动生成</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<h2 id="_7">🎪 使用场景<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h2>
+<div style="margin: 40px 0; padding: 30px;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;">
+
+    <!-- 数据分析报告 -->
+    <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #FF6B6B, #4ECDC4);"></div>
+      <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FF6B6B, #FF8E8E); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(255,107,107,0.3);">
+          <span style="font-size: 24px;">📊</span>
+        </div>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">数据分析报告</h3>
+      </div>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">为数据分析师创建专业的数据可视化邮件报告</p>
+      <div style="margin-bottom: 15px;">
+        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">业务分析</span>
+        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">KPI监控</span>
+        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">趋势分析</span>
+      </div>
+      <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> ChartWidget、TableWidget、ProgressWidget</p>
+      </div>
+    </div>
+
+    <!-- 系统监控报告 -->
+    <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #4ECDC4, #44A08D);"></div>
+      <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #4ECDC4, #5FDDD5); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(78,205,196,0.3);">
+          <span style="font-size: 24px;">🖥️</span>
+        </div>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">系统监控报告</h3>
+      </div>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">服务器状态、性能指标等系统运维监控邮件</p>
+      <div style="margin-bottom: 15px;">
+        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">系统运维</span>
+        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">服务监控</span>
+        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">告警通知</span>
+      </div>
+      <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> StatusWidget、AlertWidget、LogWidget</p>
+      </div>
+    </div>
+
+    <!-- 爬虫任务报告 -->
+    <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #A8E6CF, #7FCDCD);"></div>
+      <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #A8E6CF, #B8F2E6); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(168,230,207,0.3);">
+          <span style="font-size: 24px;">🕷️</span>
+        </div>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">爬虫任务报告</h3>
+      </div>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">爬虫任务执行情况、数据采集统计邮件报告</p>
+      <div style="margin-bottom: 15px;">
+        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">数据采集</span>
+        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">任务监控</span>
+        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">质量报告</span>
+      </div>
+      <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> ProgressWidget、TableWidget、LogWidget</p>
+      </div>
+    </div>
+
+    <!-- 定期业务通讯 -->
+    <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #FFB6C1, #FFA07A);"></div>
+      <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFB6C1, #FFC1CC); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(255,182,193,0.3);">
+          <span style="font-size: 24px;">📧</span>
+        </div>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">定期业务通讯</h3>
+      </div>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">团队周报、项目进展、业务总结等定期邮件</p>
+      <div style="margin-bottom: 15px;">
+        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">项目管理</span>
+        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">团队沟通</span>
+        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">业务汇报</span>
+      </div>
+      <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> TextWidget、CardWidget、QuoteWidget</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* 悬停效果 */
+  div[style*="background: white"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+  }
+  /* 响应式布局 */
+  @media (max-width: 768px) {
+    div[style*="display: grid"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<h2 id="_8">🎨 组件画廊<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_9">基础组件<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="_9-文本组件" name="__tabbed_1" type="radio" /><input id="_9-表格组件" name="__tabbed_1" type="radio" /><input id="_9-图表组件" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="_9-文本组件">文本组件</label><label for="_9-表格组件">表格组件</label><label for="_9-图表组件">图表组件</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 8种预设样式</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;大标题&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><a href="#__codelineno-3-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><a href="#__codelineno-3-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><a href="#__codelineno-3-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><a href="#__codelineno-3-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;章节标题&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><a href="#__codelineno-3-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><a href="#__codelineno-3-12"><span class="linenos" data-linenos="12 "></span></a><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><a href="#__codelineno-3-13"><span class="linenos" data-linenos="13 "></span></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><a href="#__codelineno-3-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><a href="#__codelineno-3-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><a href="#__codelineno-3-16"><span class="linenos" data-linenos="16 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;正文内容，支持多行文本和自动格式化。&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><a href="#__codelineno-3-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">BODY</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><a href="#__codelineno-3-18"><span class="linenos" data-linenos="18 "></span></a><span class="p">)</span>
+</code></pre></div>
+<p><center><img alt="image-20250702112724320" src="index.assets/image-20250702112724320.png" /></center></p>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># DataFrame直接导入</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;销售数据&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">set_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># 手动添加行</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableWidget</span><span class="p">()</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">set_headers</span><span class="p">([</span><span class="s2">&quot;产品&quot;</span><span class="p">,</span> <span class="s2">&quot;销量&quot;</span><span class="p">,</span> <span class="s2">&quot;状态&quot;</span><span class="p">])</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><a href="#__codelineno-4-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="s2">&quot;iPhone&quot;</span><span class="p">,</span> <span class="s2">&quot;1000&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">])</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><a href="#__codelineno-4-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="s2">&quot;iPad&quot;</span><span class="p">,</span> <span class="s2">&quot;800&quot;</span><span class="p">,</span> <span class="s2">&quot;warning&quot;</span><span class="p">])</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><a href="#__codelineno-4-10"><span class="linenos" data-linenos="10 "></span></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><a href="#__codelineno-4-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</code></pre></div>
+<p><center><img alt="image-20250702113233960" src="index.assets/image-20250702113233960.png" /></center></p>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># matplotlib图表</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;趋势图&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos=" 8 "></span></a>    <span class="o">.</span><span class="n">set_chart</span><span class="p">(</span><span class="n">plt</span><span class="p">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><a href="#__codelineno-5-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;数据趋势&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><a href="#__codelineno-5-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;显示业务指标变化趋势&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><a href="#__codelineno-5-11"><span class="linenos" data-linenos="11 "></span></a><span class="p">)</span>
+</code></pre></div>
+<p><center><img alt="image-20250702113423501" src="index.assets/image-20250702113423501.png" /></center></p>
+</div>
+</div>
+</div>
+<h3 id="_10">高级组件<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="_10-进度组件" name="__tabbed_2" type="radio" /><input id="_10-状态组件" name="__tabbed_2" type="radio" /><input id="_10-通知组件" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="_10-进度组件">进度组件</label><label for="_10-状态组件">状态组件</label><label for="_10-通知组件">通知组件</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 线性进度条</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="n">ProgressWidget</span><span class="p">()</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">75</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;项目进度&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">ProgressTheme</span><span class="o">.</span><span class="n">PRIMARY</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><a href="#__codelineno-6-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><a href="#__codelineno-6-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># 圆形进度条</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><a href="#__codelineno-6-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><a href="#__codelineno-6-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="n">CircularProgressWidget</span><span class="p">()</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><a href="#__codelineno-6-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">85</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><a href="#__codelineno-6-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;完成率&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><a href="#__codelineno-6-14"><span class="linenos" data-linenos="14 "></span></a><span class="p">)</span>
+</code></pre></div>
+<p><center><img alt="image-20250702113553794" src="index.assets/image-20250702113553794.png" /></center></p>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 状态卡片</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="n">CardWidget</span><span class="p">()</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;系统状态&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;所有服务正常运行&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="o">.</span><span class="n">set_icon</span><span class="p">(</span><span class="s2">&quot;✅&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="p">)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><a href="#__codelineno-7-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># 状态列表</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><a href="#__codelineno-7-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">status_items</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><a href="#__codelineno-7-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;数据库&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;连接稳定&quot;</span><span class="p">},</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><a href="#__codelineno-7-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;API&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;warning&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;响应时间较长&quot;</span><span class="p">}</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><a href="#__codelineno-7-13"><span class="linenos" data-linenos="13 "></span></a><span class="p">]</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><a href="#__codelineno-7-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_status_items</span><span class="p">(</span><span class="n">status_items</span><span class="p">)</span>
+</code></pre></div>
+<p><center><img alt="image-20250702113934973" src="index.assets/image-20250702113934973.png" /></center></p>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 警告框</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;系统维护通知&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;重要提醒&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><a href="#__codelineno-8-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><a href="#__codelineno-8-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># 引用样式</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><a href="#__codelineno-8-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><a href="#__codelineno-8-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><a href="#__codelineno-8-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;数据是新时代的石油&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><a href="#__codelineno-8-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s2">&quot;Clive Humby&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><a href="#__codelineno-8-14"><span class="linenos" data-linenos="14 "></span></a>    <span class="o">.</span><span class="n">set_source</span><span class="p">(</span><span class="s2">&quot;数据科学家&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><a href="#__codelineno-8-15"><span class="linenos" data-linenos="15 "></span></a><span class="p">)</span>
+</code></pre></div>
+<p><center><img alt="image-20250702114027153" src="index.assets/image-20250702114027153.png" /></center></p>
+</div>
+</div>
+</div>
+<h2 id="_11">📖 文档导航<a class="headerlink" href="#_11" title="Anchor link to this section">&para;</a></h2>
+<div class="grid cards">
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong><a href="getting-started/installation/">快速开始</a></strong></li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 12h7v1.5h-7m0-4h7V11h-7m0 3.5h7V16h-7m8-12H3a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 15h-9V6h9"/></svg></span> <strong><a href="user-guide/core-classes/">用户指南</a></strong></li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 7H5a2 2 0 0 0-2 2v8h2v-4h2v4h2V9a2 2 0 0 0-2-2m0 4H5V9h2m7-2h-4v10h2v-4h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2m0 4h-2V9h2m6 0v6h1v2h-4v-2h1V9h-1V7h4v2Z"/></svg></span> <strong><a href="api/core/">API参考</a></strong></li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg></span> <strong><a href="examples/basic/">示例代码</a></strong></li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span> <strong><a href="development/contributing/">开发指南</a></strong></li>
+</ul>
+</div>
+<h2 id="_12">🤝 社区与支持<a class="headerlink" href="#_12" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_13">获取帮助<a class="headerlink" href="#_13" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>📚 文档中心</strong>: <a href="https://271374667.github.io/SpiderDaily/">完整文档</a></li>
+<li><strong>🐛 问题反馈</strong>: <a href="https://github.com/271374667/SpiderDaily/issues">GitHub Issues</a></li>
+<li><strong>💬 讨论交流</strong>: <a href="https://github.com/271374667/SpiderDaily/discussions">GitHub Discussions</a></li>
+<li><strong>📧 邮件支持</strong>: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#50;&#55;&#49;&#51;&#55;&#52;&#54;&#54;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#50;&#55;&#49;&#51;&#55;&#52;&#54;&#54;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a></li>
+</ul>
+<h3 id="_14">参与贡献<a class="headerlink" href="#_14" title="Anchor link to this section">&para;</a></h3>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 1. 克隆项目</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos=" 2 "></span></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/271374667/SpiderDaily.git
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 2. 安装开发环境</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos=" 5 "></span></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 3. 运行测试</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><a href="#__codelineno-9-8"><span class="linenos" data-linenos=" 8 "></span></a>pytest<span class="w"> </span>tests/
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><a href="#__codelineno-9-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><a href="#__codelineno-9-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 4. 提交更改</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><a href="#__codelineno-9-11"><span class="linenos" data-linenos="11 "></span></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: 添加新功能&quot;</span>
+</code></pre></div>
+<h3 id="_15">社交媒体<a class="headerlink" href="#_15" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/271374667/SpiderDaily">271374667/SpiderDaily</a></li>
+<li><strong>Bilibili</strong>: <a href="https://space.bilibili.com/282527875">Python调包侠</a></li>
+<li><strong>Email</strong>: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#50;&#55;&#49;&#51;&#55;&#52;&#54;&#54;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#50;&#55;&#49;&#51;&#55;&#52;&#54;&#54;&#55;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a></li>
+</ul>
+<h2 id="_16">📄 许可证<a class="headerlink" href="#_16" title="Anchor link to this section">&para;</a></h2>
+<p>本项目采用 <a href="https://github.com/271374667/SpiderDaily/blob/master/LICENSE">MIT License</a> 开源协议。</p>
+<hr />
+<div align="center">
+    <p>⭐ **如果这个项目对你有帮助，请给我们一个星标！** ⭐</p>
+    <p>Made with ❤️ by <a href="https://github.com/271374667">Python调包侠</a></p>
+    <p><a href="https://space.bilibili.com/282527875">📺 观看视频教程</a> • <a href="https://271374667.github.io/SpiderDaily/">📖 查看完整文档</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+        
+          
+          <a href="getting-started/" class="md-footer__link md-footer__link--next" aria-label="下一页: 🚀 快速开始">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                🚀 快速开始
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Python调包侠 | EmailWidget v1.0.0
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/271374667" target="_blank" rel="noopener" title="GitHub - Python调包侠" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://space.bilibili.com/282527875" target="_blank" rel="noopener" title="Bilibili - Python调包侠" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:271374667@qq.com" target="_blank" rel="noopener" title="邮件联系" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/project/EmailWidget/" target="_blank" rel="noopener" title="PyPI包" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="javascripts/extra.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

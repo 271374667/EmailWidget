@@ -1,0 +1,1840 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过537个测试用例验证，83%代码覆盖率，确保企业级稳定性。">
+      
+      
+        <meta name="author" content="Python调包侠">
+      
+      
+        <link rel="canonical" href="https://271374667.github.io/EmailWidget/examples/basic/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../data-reports/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>基础示例 - EmailWidget - 邮件组件库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="EmailWidget - 邮件组件库" class="md-header__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EmailWidget - 邮件组件库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              基础示例
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速开始
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  用户指南
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API参考
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  示例代码
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发指南
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  更新日志
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EmailWidget - 邮件组件库" class="md-nav__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    EmailWidget - 邮件组件库
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../getting-started/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    快速开始
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../user-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    用户指南
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    API参考
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    示例代码
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            示例代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    基础示例
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    基础示例
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速入门
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="快速入门">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建第一个邮件报告
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      文本样式展示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文本样式展示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      各种文本类型和样式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      表格展示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="表格展示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      创建基础数据表格
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      进度展示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进度展示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用进度条展示完成情况
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      警告提示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="警告提示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      多级别提醒信息
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      图片展示
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="图片展示">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      添加图片和图表
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      便捷方法使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="便捷方法使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#email" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 Email 类的快速方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      完整示例：个人周报
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="完整示例：个人周报">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      综合使用多种组件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      学习总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="学习总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 核心概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ 基本技能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 进阶方向
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 最佳实践
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    数据报告
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    系统监控
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spider-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    爬虫报告
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    高级示例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real-world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    实际应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../development/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    开发指南
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    更新日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">基础示例<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h1>
+<p>本页面提供 EmailWidget 的基础使用示例，适合初学者快速上手。</p>
+<h2 id="_2">快速入门<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_3">创建第一个邮件报告<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h3>
+<p>这是最简单的示例，展示如何创建一个包含标题和文本的基础邮件：</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建邮件对象</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;我的第一个报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 添加主标题</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">title</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">title</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;欢迎使用 EmailWidget&quot;</span><span class="p">)</span> \
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a>     <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span> \
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a>     <span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;#0078d4&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="c1"># 添加说明文本</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">description</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">description</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;这是一个简单的邮件报告示例，展示基本功能。&quot;</span><span class="p">)</span> \
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><a href="#__codelineno-0-16"><span class="linenos" data-linenos="16 "></span></a>           <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">BODY</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><a href="#__codelineno-0-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 将组件添加到邮件</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><a href="#__codelineno-0-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><a href="#__codelineno-0-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><a href="#__codelineno-0-21"><span class="linenos" data-linenos="21 "></span></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><a href="#__codelineno-0-22"><span class="linenos" data-linenos="22 "></span></a><span class="c1"># 导出为HTML文件</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><a href="#__codelineno-0-23"><span class="linenos" data-linenos="23 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;my_first_report.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><a href="#__codelineno-0-24"><span class="linenos" data-linenos="24 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 邮件报告已生成：my_first_report.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>效果说明：</strong>
+- 生成一个包含蓝色大标题和普通正文的HTML邮件
+- 使用链式调用方式设置组件属性
+- 自动应用邮件客户端兼容的样式</p>
+<hr />
+<h2 id="_4">文本样式展示<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_5">各种文本类型和样式<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span><span class="p">,</span> <span class="n">TextAlign</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建样式展示邮件</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;文本样式展示&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 展示不同的文本类型</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">text_samples</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="p">(</span><span class="s2">&quot;大标题样式&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">,</span> <span class="s2">&quot;#2c3e50&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><a href="#__codelineno-1-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="p">(</span><span class="s2">&quot;小标题样式&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_SMALL</span><span class="p">,</span> <span class="s2">&quot;#34495e&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><a href="#__codelineno-1-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="p">(</span><span class="s2">&quot;二级章节标题&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">,</span> <span class="s2">&quot;#3498db&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><a href="#__codelineno-1-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="p">(</span><span class="s2">&quot;三级章节标题&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H3</span><span class="p">,</span> <span class="s2">&quot;#9b59b6&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><a href="#__codelineno-1-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="p">(</span><span class="s2">&quot;正文内容&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">BODY</span><span class="p">,</span> <span class="s2">&quot;#2c3e50&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><a href="#__codelineno-1-14"><span class="linenos" data-linenos="14 "></span></a>    <span class="p">(</span><span class="s2">&quot;说明文字&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">CAPTION</span><span class="p">,</span> <span class="s2">&quot;#7f8c8d&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><a href="#__codelineno-1-15"><span class="linenos" data-linenos="15 "></span></a><span class="p">]</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><a href="#__codelineno-1-16"><span class="linenos" data-linenos="16 "></span></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><a href="#__codelineno-1-17"><span class="linenos" data-linenos="17 "></span></a><span class="c1"># 循环创建不同样式的文本</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><a href="#__codelineno-1-18"><span class="linenos" data-linenos="18 "></span></a><span class="k">for</span> <span class="n">content</span><span class="p">,</span> <span class="n">text_type</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">text_samples</span><span class="p">:</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><a href="#__codelineno-1-19"><span class="linenos" data-linenos="19 "></span></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><a href="#__codelineno-1-20"><span class="linenos" data-linenos="20 "></span></a>    <span class="n">text</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> \
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><a href="#__codelineno-1-21"><span class="linenos" data-linenos="21 "></span></a>        <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">text_type</span><span class="p">)</span> \
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><a href="#__codelineno-1-22"><span class="linenos" data-linenos="22 "></span></a>        <span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><a href="#__codelineno-1-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><a href="#__codelineno-1-24"><span class="linenos" data-linenos="24 "></span></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><a href="#__codelineno-1-25"><span class="linenos" data-linenos="25 "></span></a><span class="c1"># 展示不同的对齐方式</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><a href="#__codelineno-1-26"><span class="linenos" data-linenos="26 "></span></a><span class="n">alignments</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><a href="#__codelineno-1-27"><span class="linenos" data-linenos="27 "></span></a>    <span class="p">(</span><span class="s2">&quot;左对齐文本&quot;</span><span class="p">,</span> <span class="n">TextAlign</span><span class="o">.</span><span class="n">LEFT</span><span class="p">),</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><a href="#__codelineno-1-28"><span class="linenos" data-linenos="28 "></span></a>    <span class="p">(</span><span class="s2">&quot;居中对齐文本&quot;</span><span class="p">,</span> <span class="n">TextAlign</span><span class="o">.</span><span class="n">CENTER</span><span class="p">),</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><a href="#__codelineno-1-29"><span class="linenos" data-linenos="29 "></span></a>    <span class="p">(</span><span class="s2">&quot;右对齐文本&quot;</span><span class="p">,</span> <span class="n">TextAlign</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">),</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><a href="#__codelineno-1-30"><span class="linenos" data-linenos="30 "></span></a><span class="p">]</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a><a href="#__codelineno-1-31"><span class="linenos" data-linenos="31 "></span></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><a href="#__codelineno-1-32"><span class="linenos" data-linenos="32 "></span></a><span class="k">for</span> <span class="n">content</span><span class="p">,</span> <span class="n">align</span> <span class="ow">in</span> <span class="n">alignments</span><span class="p">:</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><a href="#__codelineno-1-33"><span class="linenos" data-linenos="33 "></span></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a><a href="#__codelineno-1-34"><span class="linenos" data-linenos="34 "></span></a>    <span class="n">text</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> \
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><a href="#__codelineno-1-35"><span class="linenos" data-linenos="35 "></span></a>        <span class="o">.</span><span class="n">set_align</span><span class="p">(</span><span class="n">align</span><span class="p">)</span> \
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a><a href="#__codelineno-1-36"><span class="linenos" data-linenos="36 "></span></a>        <span class="o">.</span><span class="n">set_font_size</span><span class="p">(</span><span class="s2">&quot;16px&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><a href="#__codelineno-1-37"><span class="linenos" data-linenos="37 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><a href="#__codelineno-1-38"><span class="linenos" data-linenos="38 "></span></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><a href="#__codelineno-1-39"><span class="linenos" data-linenos="39 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;text_styles.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a><a href="#__codelineno-1-40"><span class="linenos" data-linenos="40 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 文本样式展示已生成：text_styles.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>学习要点：</strong>
+- 了解不同 <code>TextType</code> 的视觉效果
+- 掌握颜色设置和对齐方式
+- 学会使用方法链简化代码</p>
+<hr />
+<h2 id="_6">表格展示<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_7">创建基础数据表格<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">TableWidget</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建包含表格的邮件</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;员工信息表&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 添加表格标题</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;部门员工统计&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><a href="#__codelineno-2-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 创建表格组件</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><a href="#__codelineno-2-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableWidget</span><span class="p">()</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><a href="#__codelineno-2-12"><span class="linenos" data-linenos="12 "></span></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><a href="#__codelineno-2-13"><span class="linenos" data-linenos="13 "></span></a><span class="c1"># 设置表头</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><a href="#__codelineno-2-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">set_headers</span><span class="p">([</span><span class="s2">&quot;姓名&quot;</span><span class="p">,</span> <span class="s2">&quot;部门&quot;</span><span class="p">,</span> <span class="s2">&quot;职位&quot;</span><span class="p">,</span> <span class="s2">&quot;工龄&quot;</span><span class="p">])</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><a href="#__codelineno-2-15"><span class="linenos" data-linenos="15 "></span></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><a href="#__codelineno-2-16"><span class="linenos" data-linenos="16 "></span></a><span class="c1"># 添加数据行</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><a href="#__codelineno-2-17"><span class="linenos" data-linenos="17 "></span></a><span class="n">employees</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><a href="#__codelineno-2-18"><span class="linenos" data-linenos="18 "></span></a>    <span class="p">[</span><span class="s2">&quot;张三&quot;</span><span class="p">,</span> <span class="s2">&quot;技术部&quot;</span><span class="p">,</span> <span class="s2">&quot;高级工程师&quot;</span><span class="p">,</span> <span class="s2">&quot;3年&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><a href="#__codelineno-2-19"><span class="linenos" data-linenos="19 "></span></a>    <span class="p">[</span><span class="s2">&quot;李四&quot;</span><span class="p">,</span> <span class="s2">&quot;产品部&quot;</span><span class="p">,</span> <span class="s2">&quot;产品经理&quot;</span><span class="p">,</span> <span class="s2">&quot;2年&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><a href="#__codelineno-2-20"><span class="linenos" data-linenos="20 "></span></a>    <span class="p">[</span><span class="s2">&quot;王五&quot;</span><span class="p">,</span> <span class="s2">&quot;设计部&quot;</span><span class="p">,</span> <span class="s2">&quot;UI设计师&quot;</span><span class="p">,</span> <span class="s2">&quot;1年&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><a href="#__codelineno-2-21"><span class="linenos" data-linenos="21 "></span></a>    <span class="p">[</span><span class="s2">&quot;赵六&quot;</span><span class="p">,</span> <span class="s2">&quot;市场部&quot;</span><span class="p">,</span> <span class="s2">&quot;市场专员&quot;</span><span class="p">,</span> <span class="s2">&quot;4年&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><a href="#__codelineno-2-22"><span class="linenos" data-linenos="22 "></span></a><span class="p">]</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><a href="#__codelineno-2-23"><span class="linenos" data-linenos="23 "></span></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><a href="#__codelineno-2-24"><span class="linenos" data-linenos="24 "></span></a><span class="k">for</span> <span class="n">employee</span> <span class="ow">in</span> <span class="n">employees</span><span class="p">:</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><a href="#__codelineno-2-25"><span class="linenos" data-linenos="25 "></span></a>    <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">employee</span><span class="p">)</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><a href="#__codelineno-2-26"><span class="linenos" data-linenos="26 "></span></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><a href="#__codelineno-2-27"><span class="linenos" data-linenos="27 "></span></a><span class="c1"># 启用条纹样式，提高可读性</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><a href="#__codelineno-2-28"><span class="linenos" data-linenos="28 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">set_striped</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a><a href="#__codelineno-2-29"><span class="linenos" data-linenos="29 "></span></a>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a><a href="#__codelineno-2-30"><span class="linenos" data-linenos="30 "></span></a><span class="c1"># 添加到邮件</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a><a href="#__codelineno-2-31"><span class="linenos" data-linenos="31 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a><a href="#__codelineno-2-32"><span class="linenos" data-linenos="32 "></span></a>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a><a href="#__codelineno-2-33"><span class="linenos" data-linenos="33 "></span></a><span class="c1"># 添加总结</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><a href="#__codelineno-2-34"><span class="linenos" data-linenos="34 "></span></a><span class="n">summary</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a><a href="#__codelineno-2-35"><span class="linenos" data-linenos="35 "></span></a><span class="n">summary</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;共有 4 名员工，平均工龄 2.5 年&quot;</span><span class="p">)</span> \
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><a href="#__codelineno-2-36"><span class="linenos" data-linenos="36 "></span></a>       <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">CAPTION</span><span class="p">)</span> \
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><a href="#__codelineno-2-37"><span class="linenos" data-linenos="37 "></span></a>       <span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;#666666&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a><a href="#__codelineno-2-38"><span class="linenos" data-linenos="38 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><a href="#__codelineno-2-39"><span class="linenos" data-linenos="39 "></span></a>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><a href="#__codelineno-2-40"><span class="linenos" data-linenos="40 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;employee_table.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a><a href="#__codelineno-2-41"><span class="linenos" data-linenos="41 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 员工信息表已生成：employee_table.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>功能特点：</strong>
+- 简单的表格数据展示
+- 条纹样式提高可读性
+- 结合文本组件做总结说明</p>
+<hr />
+<h2 id="_8">进度展示<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_9">使用进度条展示完成情况<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">ProgressWidget</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProgressTheme</span><span class="p">,</span> <span class="n">TextType</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建进度展示邮件</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;项目进度报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><a href="#__codelineno-3-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 添加标题</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><a href="#__codelineno-3-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;本周项目进度&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><a href="#__codelineno-3-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><a href="#__codelineno-3-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 定义项目进度数据</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><a href="#__codelineno-3-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">projects</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><a href="#__codelineno-3-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="p">(</span><span class="s2">&quot;网站重构&quot;</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">,</span> <span class="s2">&quot;即将完成&quot;</span><span class="p">),</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><a href="#__codelineno-3-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="p">(</span><span class="s2">&quot;移动端开发&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="s2">&quot;正常推进&quot;</span><span class="p">),</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><a href="#__codelineno-3-14"><span class="linenos" data-linenos="14 "></span></a>    <span class="p">(</span><span class="s2">&quot;数据迁移&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span> <span class="s2">&quot;需要关注&quot;</span><span class="p">),</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><a href="#__codelineno-3-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="p">(</span><span class="s2">&quot;测试优化&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span> <span class="s2">&quot;进度滞后&quot;</span><span class="p">),</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><a href="#__codelineno-3-16"><span class="linenos" data-linenos="16 "></span></a><span class="p">]</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><a href="#__codelineno-3-17"><span class="linenos" data-linenos="17 "></span></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><a href="#__codelineno-3-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 为每个项目创建进度条</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><a href="#__codelineno-3-19"><span class="linenos" data-linenos="19 "></span></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">theme</span><span class="p">,</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">projects</span><span class="p">:</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><a href="#__codelineno-3-20"><span class="linenos" data-linenos="20 "></span></a>    <span class="c1"># 项目名称</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><a href="#__codelineno-3-21"><span class="linenos" data-linenos="21 "></span></a>    <span class="n">project_title</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a><a href="#__codelineno-3-22"><span class="linenos" data-linenos="22 "></span></a>    <span class="n">project_title</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📋 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> \
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><a href="#__codelineno-3-23"><span class="linenos" data-linenos="23 "></span></a>                 <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H3</span><span class="p">)</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><a href="#__codelineno-3-24"><span class="linenos" data-linenos="24 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">project_title</span><span class="p">)</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><a href="#__codelineno-3-25"><span class="linenos" data-linenos="25 "></span></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><a href="#__codelineno-3-26"><span class="linenos" data-linenos="26 "></span></a>    <span class="c1"># 进度条</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><a href="#__codelineno-3-27"><span class="linenos" data-linenos="27 "></span></a>    <span class="n">progress</span> <span class="o">=</span> <span class="n">ProgressWidget</span><span class="p">()</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a><a href="#__codelineno-3-28"><span class="linenos" data-linenos="28 "></span></a>    <span class="n">progress</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> \
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><a href="#__codelineno-3-29"><span class="linenos" data-linenos="29 "></span></a>           <span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;完成度: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span> \
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a><a href="#__codelineno-3-30"><span class="linenos" data-linenos="30 "></span></a>           <span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">theme</span><span class="p">)</span> \
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a><a href="#__codelineno-3-31"><span class="linenos" data-linenos="31 "></span></a>           <span class="o">.</span><span class="n">set_show_percentage</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a><a href="#__codelineno-3-32"><span class="linenos" data-linenos="32 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a><a href="#__codelineno-3-33"><span class="linenos" data-linenos="33 "></span></a>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a><a href="#__codelineno-3-34"><span class="linenos" data-linenos="34 "></span></a>    <span class="c1"># 状态说明</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a><a href="#__codelineno-3-35"><span class="linenos" data-linenos="35 "></span></a>    <span class="n">status_text</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a><a href="#__codelineno-3-36"><span class="linenos" data-linenos="36 "></span></a>    <span class="n">status_text</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;状态: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> \
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a><a href="#__codelineno-3-37"><span class="linenos" data-linenos="37 "></span></a>               <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">CAPTION</span><span class="p">)</span> \
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a><a href="#__codelineno-3-38"><span class="linenos" data-linenos="38 "></span></a>               <span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;#666666&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a><a href="#__codelineno-3-39"><span class="linenos" data-linenos="39 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">status_text</span><span class="p">)</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a><a href="#__codelineno-3-40"><span class="linenos" data-linenos="40 "></span></a>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a><a href="#__codelineno-3-41"><span class="linenos" data-linenos="41 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;project_progress.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a><a href="#__codelineno-3-42"><span class="linenos" data-linenos="42 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 项目进度报告已生成：project_progress.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>设计亮点：</strong>
+- 使用不同主题色区分进度状态
+- 结合文本说明提供更多信息
+- 清晰的视觉层次结构</p>
+<hr />
+<h2 id="_10">警告提示<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_11">多级别提醒信息<a class="headerlink" href="#_11" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">AlertWidget</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlertType</span><span class="p">,</span> <span class="n">TextType</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建提醒信息邮件</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;系统通知&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 添加主标题</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><a href="#__codelineno-4-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;重要通知&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><a href="#__codelineno-4-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><a href="#__codelineno-4-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 定义不同级别的提醒</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><a href="#__codelineno-4-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">alerts</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><a href="#__codelineno-4-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="p">(</span><span class="s2">&quot;一般提示&quot;</span><span class="p">,</span> <span class="n">AlertType</span><span class="o">.</span><span class="n">NOTE</span><span class="p">,</span> <span class="s2">&quot;系统将在今晚进行例行维护。&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><a href="#__codelineno-4-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="p">(</span><span class="s2">&quot;友情提醒&quot;</span><span class="p">,</span> <span class="n">AlertType</span><span class="o">.</span><span class="n">TIP</span><span class="p">,</span> <span class="s2">&quot;建议定期备份重要数据。&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><a href="#__codelineno-4-14"><span class="linenos" data-linenos="14 "></span></a>    <span class="p">(</span><span class="s2">&quot;重要信息&quot;</span><span class="p">,</span> <span class="n">AlertType</span><span class="o">.</span><span class="n">IMPORTANT</span><span class="p">,</span> <span class="s2">&quot;新版本功能已上线，请查看更新日志。&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><a href="#__codelineno-4-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="p">(</span><span class="s2">&quot;注意事项&quot;</span><span class="p">,</span> <span class="n">AlertType</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span> <span class="s2">&quot;检测到异常登录，请及时修改密码。&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><a href="#__codelineno-4-16"><span class="linenos" data-linenos="16 "></span></a>    <span class="p">(</span><span class="s2">&quot;紧急通知&quot;</span><span class="p">,</span> <span class="n">AlertType</span><span class="o">.</span><span class="n">CAUTION</span><span class="p">,</span> <span class="s2">&quot;发现安全漏洞，请立即更新系统。&quot;</span><span class="p">),</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><a href="#__codelineno-4-17"><span class="linenos" data-linenos="17 "></span></a><span class="p">]</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><a href="#__codelineno-4-18"><span class="linenos" data-linenos="18 "></span></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><a href="#__codelineno-4-19"><span class="linenos" data-linenos="19 "></span></a><span class="c1"># 创建不同类型的警告框</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><a href="#__codelineno-4-20"><span class="linenos" data-linenos="20 "></span></a><span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">alert_type</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">alerts</span><span class="p">:</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><a href="#__codelineno-4-21"><span class="linenos" data-linenos="21 "></span></a>    <span class="n">alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a><a href="#__codelineno-4-22"><span class="linenos" data-linenos="22 "></span></a>    <span class="n">alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> \
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a><a href="#__codelineno-4-23"><span class="linenos" data-linenos="23 "></span></a>         <span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">alert_type</span><span class="p">)</span> \
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a><a href="#__codelineno-4-24"><span class="linenos" data-linenos="24 "></span></a>         <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a><a href="#__codelineno-4-25"><span class="linenos" data-linenos="25 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a><a href="#__codelineno-4-26"><span class="linenos" data-linenos="26 "></span></a>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a><a href="#__codelineno-4-27"><span class="linenos" data-linenos="27 "></span></a><span class="c1"># 添加联系信息</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a><a href="#__codelineno-4-28"><span class="linenos" data-linenos="28 "></span></a><span class="n">contact</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a><a href="#__codelineno-4-29"><span class="linenos" data-linenos="29 "></span></a><span class="n">contact</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;如有疑问，请联系技术支持：support@example.com&quot;</span><span class="p">)</span> \
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a><a href="#__codelineno-4-30"><span class="linenos" data-linenos="30 "></span></a>       <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">CAPTION</span><span class="p">)</span> \
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a><a href="#__codelineno-4-31"><span class="linenos" data-linenos="31 "></span></a>       <span class="o">.</span><span class="n">set_align</span><span class="p">(</span><span class="n">TextAlign</span><span class="o">.</span><span class="n">CENTER</span><span class="p">)</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a><a href="#__codelineno-4-32"><span class="linenos" data-linenos="32 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">contact</span><span class="p">)</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a><a href="#__codelineno-4-33"><span class="linenos" data-linenos="33 "></span></a>
+<a id="__codelineno-4-34" name="__codelineno-4-34"></a><a href="#__codelineno-4-34"><span class="linenos" data-linenos="34 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;system_alerts.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35"></a><a href="#__codelineno-4-35"><span class="linenos" data-linenos="35 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 系统通知已生成：system_alerts.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>使用场景：</strong>
+- 系统维护通知
+- 安全提醒
+- 功能更新说明
+- 操作注意事项</p>
+<hr />
+<h2 id="_12">图片展示<a class="headerlink" href="#_12" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_13">添加图片和图表<a class="headerlink" href="#_13" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">ImageWidget</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建包含图片的邮件</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;图片展示&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 添加标题</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;产品展示&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><a href="#__codelineno-5-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><a href="#__codelineno-5-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 添加产品图片</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><a href="#__codelineno-5-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">product_image</span> <span class="o">=</span> <span class="n">ImageWidget</span><span class="p">()</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><a href="#__codelineno-5-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">product_image</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;https://via.placeholder.com/600x300/3498db/ffffff?text=产品图片&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><a href="#__codelineno-5-13"><span class="linenos" data-linenos="13 "></span></a>            <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;新产品预览&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><a href="#__codelineno-5-14"><span class="linenos" data-linenos="14 "></span></a>            <span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;这是我们即将发布的新产品界面截图&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><a href="#__codelineno-5-15"><span class="linenos" data-linenos="15 "></span></a>            <span class="o">.</span><span class="n">set_max_width</span><span class="p">(</span><span class="s2">&quot;100%&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><a href="#__codelineno-5-16"><span class="linenos" data-linenos="16 "></span></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><a href="#__codelineno-5-17"><span class="linenos" data-linenos="17 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">product_image</span><span class="p">)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><a href="#__codelineno-5-18"><span class="linenos" data-linenos="18 "></span></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><a href="#__codelineno-5-19"><span class="linenos" data-linenos="19 "></span></a><span class="c1"># 添加说明文字</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a><a href="#__codelineno-5-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">description</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><a href="#__codelineno-5-21"><span class="linenos" data-linenos="21 "></span></a><span class="n">description</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;产品特色：简洁界面、高效性能、用户友好&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a><a href="#__codelineno-5-22"><span class="linenos" data-linenos="22 "></span></a>           <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">BODY</span><span class="p">)</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a><a href="#__codelineno-5-23"><span class="linenos" data-linenos="23 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a><a href="#__codelineno-5-24"><span class="linenos" data-linenos="24 "></span></a>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a><a href="#__codelineno-5-25"><span class="linenos" data-linenos="25 "></span></a><span class="c1"># 添加图表示例</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a><a href="#__codelineno-5-26"><span class="linenos" data-linenos="26 "></span></a><span class="n">chart_title</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a><a href="#__codelineno-5-27"><span class="linenos" data-linenos="27 "></span></a><span class="n">chart_title</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;销售数据图表&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-28" name="__codelineno-5-28"></a><a href="#__codelineno-5-28"><span class="linenos" data-linenos="28 "></span></a>           <span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29"></a><a href="#__codelineno-5-29"><span class="linenos" data-linenos="29 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">chart_title</span><span class="p">)</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30"></a><a href="#__codelineno-5-30"><span class="linenos" data-linenos="30 "></span></a>
+<a id="__codelineno-5-31" name="__codelineno-5-31"></a><a href="#__codelineno-5-31"><span class="linenos" data-linenos="31 "></span></a><span class="n">chart_image</span> <span class="o">=</span> <span class="n">ImageWidget</span><span class="p">()</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32"></a><a href="#__codelineno-5-32"><span class="linenos" data-linenos="32 "></span></a><span class="n">chart_image</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;https://via.placeholder.com/500x300/e74c3c/ffffff?text=图表示例&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-33" name="__codelineno-5-33"></a><a href="#__codelineno-5-33"><span class="linenos" data-linenos="33 "></span></a>          <span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;月度销售趋势&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-34" name="__codelineno-5-34"></a><a href="#__codelineno-5-34"><span class="linenos" data-linenos="34 "></span></a>          <span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;显示最近6个月的销售数据变化趋势&quot;</span><span class="p">)</span> \
+<a id="__codelineno-5-35" name="__codelineno-5-35"></a><a href="#__codelineno-5-35"><span class="linenos" data-linenos="35 "></span></a>          <span class="o">.</span><span class="n">set_max_width</span><span class="p">(</span><span class="s2">&quot;500px&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36"></a><a href="#__codelineno-5-36"><span class="linenos" data-linenos="36 "></span></a>
+<a id="__codelineno-5-37" name="__codelineno-5-37"></a><a href="#__codelineno-5-37"><span class="linenos" data-linenos="37 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">chart_image</span><span class="p">)</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38"></a><a href="#__codelineno-5-38"><span class="linenos" data-linenos="38 "></span></a>
+<a id="__codelineno-5-39" name="__codelineno-5-39"></a><a href="#__codelineno-5-39"><span class="linenos" data-linenos="39 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;image_showcase.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-40" name="__codelineno-5-40"></a><a href="#__codelineno-5-40"><span class="linenos" data-linenos="40 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 图片展示已生成：image_showcase.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>注意事项：</strong>
+- 使用占位符图片便于测试
+- 设置合适的图片尺寸
+- 提供图片标题和描述信息</p>
+<hr />
+<h2 id="_14">便捷方法使用<a class="headerlink" href="#_14" title="Anchor link to this section">&para;</a></h2>
+<h3 id="email">使用 Email 类的快速方法<a class="headerlink" href="#email" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span><span class="p">,</span> <span class="n">AlertType</span><span class="p">,</span> <span class="n">ProgressTheme</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建邮件并使用便捷方法</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;便捷方法演示&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 使用便捷方法快速添加内容</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><a href="#__codelineno-6-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;快速报告&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span> \
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><a href="#__codelineno-6-9"><span class="linenos" data-linenos=" 9 "></span></a>     <span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;这个报告使用便捷方法快速创建&quot;</span><span class="p">)</span> \
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><a href="#__codelineno-6-10"><span class="linenos" data-linenos="10 "></span></a>     <span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;演示如何用更少的代码实现更多功能&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#666666&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><a href="#__codelineno-6-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><a href="#__codelineno-6-12"><span class="linenos" data-linenos="12 "></span></a><span class="c1"># 快速添加进度条</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><a href="#__codelineno-6-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_progress</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="s2">&quot;任务完成度&quot;</span><span class="p">,</span> <span class="n">theme</span><span class="o">=</span><span class="n">ProgressTheme</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><a href="#__codelineno-6-14"><span class="linenos" data-linenos="14 "></span></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><a href="#__codelineno-6-15"><span class="linenos" data-linenos="15 "></span></a><span class="c1"># 快速添加提醒</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a><a href="#__codelineno-6-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_alert</span><span class="p">(</span><span class="s2">&quot;记得查看详细说明文档&quot;</span><span class="p">,</span> <span class="n">AlertType</span><span class="o">.</span><span class="n">TIP</span><span class="p">,</span> <span class="s2">&quot;友情提醒&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a><a href="#__codelineno-6-17"><span class="linenos" data-linenos="17 "></span></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a><a href="#__codelineno-6-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 快速添加表格数据</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a><a href="#__codelineno-6-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a><a href="#__codelineno-6-20"><span class="linenos" data-linenos="20 "></span></a>    <span class="p">[</span><span class="s2">&quot;功能&quot;</span><span class="p">,</span> <span class="s2">&quot;状态&quot;</span><span class="p">],</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a><a href="#__codelineno-6-21"><span class="linenos" data-linenos="21 "></span></a>    <span class="p">[</span><span class="s2">&quot;文本展示&quot;</span><span class="p">,</span> <span class="s2">&quot;✅ 完成&quot;</span><span class="p">],</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a><a href="#__codelineno-6-22"><span class="linenos" data-linenos="22 "></span></a>    <span class="p">[</span><span class="s2">&quot;表格显示&quot;</span><span class="p">,</span> <span class="s2">&quot;✅ 完成&quot;</span><span class="p">],</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a><a href="#__codelineno-6-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="p">[</span><span class="s2">&quot;图片展示&quot;</span><span class="p">,</span> <span class="s2">&quot;🔄 进行中&quot;</span><span class="p">],</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a><a href="#__codelineno-6-24"><span class="linenos" data-linenos="24 "></span></a><span class="p">]</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25"></a><a href="#__codelineno-6-25"><span class="linenos" data-linenos="25 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_table_from_data</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">headers</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;功能清单&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26"></a><a href="#__codelineno-6-26"><span class="linenos" data-linenos="26 "></span></a>
+<a id="__codelineno-6-27" name="__codelineno-6-27"></a><a href="#__codelineno-6-27"><span class="linenos" data-linenos="27 "></span></a><span class="c1"># 快速添加卡片</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28"></a><a href="#__codelineno-6-28"><span class="linenos" data-linenos="28 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_card</span><span class="p">(</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29"></a><a href="#__codelineno-6-29"><span class="linenos" data-linenos="29 "></span></a>    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;开发总结&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30"></a><a href="#__codelineno-6-30"><span class="linenos" data-linenos="30 "></span></a>    <span class="n">content</span><span class="o">=</span><span class="s2">&quot;EmailWidget 提供了丰富的便捷方法，大大简化了代码编写。&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31"></a><a href="#__codelineno-6-31"><span class="linenos" data-linenos="31 "></span></a>    <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;🎉&quot;</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32"></a><a href="#__codelineno-6-32"><span class="linenos" data-linenos="32 "></span></a><span class="p">)</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33"></a><a href="#__codelineno-6-33"><span class="linenos" data-linenos="33 "></span></a>
+<a id="__codelineno-6-34" name="__codelineno-6-34"></a><a href="#__codelineno-6-34"><span class="linenos" data-linenos="34 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;convenience_methods.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35"></a><a href="#__codelineno-6-35"><span class="linenos" data-linenos="35 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 便捷方法演示已生成：convenience_methods.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>便捷之处：</strong>
+- 支持方法链式调用
+- 减少创建 Widget 对象的代码
+- 提供常用场景的快速方法
+- 保持代码简洁易读</p>
+<hr />
+<h2 id="_15">完整示例：个人周报<a class="headerlink" href="#_15" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_16">综合使用多种组件<a class="headerlink" href="#_16" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">TextWidget</span><span class="p">,</span> <span class="n">TableWidget</span><span class="p">,</span> <span class="n">ProgressWidget</span><span class="p">,</span> <span class="n">AlertWidget</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span><span class="p">,</span> <span class="n">TextAlign</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="p">,</span> <span class="n">AlertType</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建个人周报</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;个人工作周报&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 报告标题和时间</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;📋 个人工作周报&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><a href="#__codelineno-7-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;报告时间：2024年1月15日 - 2024年1月21日&quot;</span><span class="p">,</span> 
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><a href="#__codelineno-7-10"><span class="linenos" data-linenos="10 "></span></a>               <span class="n">align</span><span class="o">=</span><span class="n">TextAlign</span><span class="o">.</span><span class="n">CENTER</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#666666&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><a href="#__codelineno-7-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><a href="#__codelineno-7-12"><span class="linenos" data-linenos="12 "></span></a><span class="c1"># 本周完成工作</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><a href="#__codelineno-7-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;✅ 本周完成工作&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><a href="#__codelineno-7-14"><span class="linenos" data-linenos="14 "></span></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><a href="#__codelineno-7-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">completed_tasks</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><a href="#__codelineno-7-16"><span class="linenos" data-linenos="16 "></span></a>    <span class="p">[</span><span class="s2">&quot;任务&quot;</span><span class="p">,</span> <span class="s2">&quot;耗时&quot;</span><span class="p">,</span> <span class="s2">&quot;完成度&quot;</span><span class="p">],</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><a href="#__codelineno-7-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="p">[</span><span class="s2">&quot;需求文档编写&quot;</span><span class="p">,</span> <span class="s2">&quot;8小时&quot;</span><span class="p">,</span> <span class="s2">&quot;100%&quot;</span><span class="p">],</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a><a href="#__codelineno-7-18"><span class="linenos" data-linenos="18 "></span></a>    <span class="p">[</span><span class="s2">&quot;原型设计&quot;</span><span class="p">,</span> <span class="s2">&quot;12小时&quot;</span><span class="p">,</span> <span class="s2">&quot;100%&quot;</span><span class="p">],</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><a href="#__codelineno-7-19"><span class="linenos" data-linenos="19 "></span></a>    <span class="p">[</span><span class="s2">&quot;代码开发&quot;</span><span class="p">,</span> <span class="s2">&quot;20小时&quot;</span><span class="p">,</span> <span class="s2">&quot;100%&quot;</span><span class="p">],</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><a href="#__codelineno-7-20"><span class="linenos" data-linenos="20 "></span></a><span class="p">]</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a><a href="#__codelineno-7-21"><span class="linenos" data-linenos="21 "></span></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a><a href="#__codelineno-7-22"><span class="linenos" data-linenos="22 "></span></a><span class="n">table</span> <span class="o">=</span> <span class="n">TableWidget</span><span class="p">()</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a><a href="#__codelineno-7-23"><span class="linenos" data-linenos="23 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">set_headers</span><span class="p">(</span><span class="n">completed_tasks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a><a href="#__codelineno-7-24"><span class="linenos" data-linenos="24 "></span></a><span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">completed_tasks</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a><a href="#__codelineno-7-25"><span class="linenos" data-linenos="25 "></span></a>    <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a><a href="#__codelineno-7-26"><span class="linenos" data-linenos="26 "></span></a><span class="n">table</span><span class="o">.</span><span class="n">set_striped</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a><a href="#__codelineno-7-27"><span class="linenos" data-linenos="27 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a><a href="#__codelineno-7-28"><span class="linenos" data-linenos="28 "></span></a>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a><a href="#__codelineno-7-29"><span class="linenos" data-linenos="29 "></span></a><span class="c1"># 项目进度</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a><a href="#__codelineno-7-30"><span class="linenos" data-linenos="30 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;📊 项目进度&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a><a href="#__codelineno-7-31"><span class="linenos" data-linenos="31 "></span></a>
+<a id="__codelineno-7-32" name="__codelineno-7-32"></a><a href="#__codelineno-7-32"><span class="linenos" data-linenos="32 "></span></a><span class="c1"># 主要项目进度条</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a><a href="#__codelineno-7-33"><span class="linenos" data-linenos="33 "></span></a><span class="n">projects_progress</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a><a href="#__codelineno-7-34"><span class="linenos" data-linenos="34 "></span></a>    <span class="p">(</span><span class="s2">&quot;前端开发&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="o">.</span><span class="n">INFO</span><span class="p">),</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a><a href="#__codelineno-7-35"><span class="linenos" data-linenos="35 "></span></a>    <span class="p">(</span><span class="s2">&quot;后端开发&quot;</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="o">.</span><span class="n">WARNING</span><span class="p">),</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a><a href="#__codelineno-7-36"><span class="linenos" data-linenos="36 "></span></a>    <span class="p">(</span><span class="s2">&quot;测试用例&quot;</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="n">ProgressTheme</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">),</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a><a href="#__codelineno-7-37"><span class="linenos" data-linenos="37 "></span></a><span class="p">]</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a><a href="#__codelineno-7-38"><span class="linenos" data-linenos="38 "></span></a>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a><a href="#__codelineno-7-39"><span class="linenos" data-linenos="39 "></span></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">progress</span><span class="p">,</span> <span class="n">theme</span> <span class="ow">in</span> <span class="n">projects_progress</span><span class="p">:</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a><a href="#__codelineno-7-40"><span class="linenos" data-linenos="40 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔹 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a><a href="#__codelineno-7-41"><span class="linenos" data-linenos="41 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_progress</span><span class="p">(</span><span class="n">progress</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">progress</span><span class="si">}</span><span class="s2">% 完成&quot;</span><span class="p">,</span> <span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">)</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42"></a><a href="#__codelineno-7-42"><span class="linenos" data-linenos="42 "></span></a>
+<a id="__codelineno-7-43" name="__codelineno-7-43"></a><a href="#__codelineno-7-43"><span class="linenos" data-linenos="43 "></span></a><span class="c1"># 下周计划</span>
+<a id="__codelineno-7-44" name="__codelineno-7-44"></a><a href="#__codelineno-7-44"><span class="linenos" data-linenos="44 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;📅 下周计划&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-7-45" name="__codelineno-7-45"></a><a href="#__codelineno-7-45"><span class="linenos" data-linenos="45 "></span></a><span class="n">next_week_plan</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-7-46" name="__codelineno-7-46"></a><a href="#__codelineno-7-46"><span class="linenos" data-linenos="46 "></span></a><span class="s2">1. 完成后端API开发</span>
+<a id="__codelineno-7-47" name="__codelineno-7-47"></a><a href="#__codelineno-7-47"><span class="linenos" data-linenos="47 "></span></a><span class="s2">2. 集成测试和调试</span>
+<a id="__codelineno-7-48" name="__codelineno-7-48"></a><a href="#__codelineno-7-48"><span class="linenos" data-linenos="48 "></span></a><span class="s2">3. 性能优化</span>
+<a id="__codelineno-7-49" name="__codelineno-7-49"></a><a href="#__codelineno-7-49"><span class="linenos" data-linenos="49 "></span></a><span class="s2">4. 文档更新</span>
+<a id="__codelineno-7-50" name="__codelineno-7-50"></a><a href="#__codelineno-7-50"><span class="linenos" data-linenos="50 "></span></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-7-51" name="__codelineno-7-51"></a><a href="#__codelineno-7-51"><span class="linenos" data-linenos="51 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="n">next_week_plan</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<a id="__codelineno-7-52" name="__codelineno-7-52"></a><a href="#__codelineno-7-52"><span class="linenos" data-linenos="52 "></span></a>
+<a id="__codelineno-7-53" name="__codelineno-7-53"></a><a href="#__codelineno-7-53"><span class="linenos" data-linenos="53 "></span></a><span class="c1"># 需要关注的问题</span>
+<a id="__codelineno-7-54" name="__codelineno-7-54"></a><a href="#__codelineno-7-54"><span class="linenos" data-linenos="54 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_alert</span><span class="p">(</span>
+<a id="__codelineno-7-55" name="__codelineno-7-55"></a><a href="#__codelineno-7-55"><span class="linenos" data-linenos="55 "></span></a>    <span class="s2">&quot;数据库性能需要优化，建议下周安排专门时间处理&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-56" name="__codelineno-7-56"></a><a href="#__codelineno-7-56"><span class="linenos" data-linenos="56 "></span></a>    <span class="n">AlertType</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span>
+<a id="__codelineno-7-57" name="__codelineno-7-57"></a><a href="#__codelineno-7-57"><span class="linenos" data-linenos="57 "></span></a>    <span class="s2">&quot;⚠️ 需要关注&quot;</span>
+<a id="__codelineno-7-58" name="__codelineno-7-58"></a><a href="#__codelineno-7-58"><span class="linenos" data-linenos="58 "></span></a><span class="p">)</span>
+<a id="__codelineno-7-59" name="__codelineno-7-59"></a><a href="#__codelineno-7-59"><span class="linenos" data-linenos="59 "></span></a>
+<a id="__codelineno-7-60" name="__codelineno-7-60"></a><a href="#__codelineno-7-60"><span class="linenos" data-linenos="60 "></span></a><span class="c1"># 报告总结</span>
+<a id="__codelineno-7-61" name="__codelineno-7-61"></a><a href="#__codelineno-7-61"><span class="linenos" data-linenos="61 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_title</span><span class="p">(</span><span class="s2">&quot;📝 总结&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-7-62" name="__codelineno-7-62"></a><a href="#__codelineno-7-62"><span class="linenos" data-linenos="62 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span>
+<a id="__codelineno-7-63" name="__codelineno-7-63"></a><a href="#__codelineno-7-63"><span class="linenos" data-linenos="63 "></span></a>    <span class="s2">&quot;本周工作进展顺利，主要任务按计划完成。下周将重点关注后端开发和性能优化。&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-64" name="__codelineno-7-64"></a><a href="#__codelineno-7-64"><span class="linenos" data-linenos="64 "></span></a>    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2c3e50&quot;</span>
+<a id="__codelineno-7-65" name="__codelineno-7-65"></a><a href="#__codelineno-7-65"><span class="linenos" data-linenos="65 "></span></a><span class="p">)</span>
+<a id="__codelineno-7-66" name="__codelineno-7-66"></a><a href="#__codelineno-7-66"><span class="linenos" data-linenos="66 "></span></a>
+<a id="__codelineno-7-67" name="__codelineno-7-67"></a><a href="#__codelineno-7-67"><span class="linenos" data-linenos="67 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s2">&quot;weekly_report.html&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-68" name="__codelineno-7-68"></a><a href="#__codelineno-7-68"><span class="linenos" data-linenos="68 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 个人周报已生成：weekly_report.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>综合特点：</strong>
+- 结构清晰的周报格式
+- 多种组件协同工作
+- 信息层次分明
+- 专业的视觉效果</p>
+<hr />
+<h2 id="_17">学习总结<a class="headerlink" href="#_17" title="Anchor link to this section">&para;</a></h2>
+<p>通过这些基础示例，您已经学会了：</p>
+<h3 id="_18">🎯 核心概念<a class="headerlink" href="#_18" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>Email 对象作为容器管理所有组件</li>
+<li>Widget 组件的创建和配置</li>
+<li>方法链式调用的使用方式</li>
+</ul>
+<h3 id="_19">🛠️ 基本技能<a class="headerlink" href="#_19" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>文本样式和格式设置</li>
+<li>表格数据的展示方法</li>
+<li>进度信息的可视化</li>
+<li>警告提醒的多级别使用</li>
+</ul>
+<h3 id="_20">📈 进阶方向<a class="headerlink" href="#_20" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>学习 <a href="../data-reports/">数据报告</a> 处理复杂数据</li>
+<li>探索 <a href="../system-monitoring/">系统监控</a> 的实时展示</li>
+<li>研究 <a href="../advanced/">高级示例</a> 的自定义功能</li>
+</ul>
+<h3 id="_21">💡 最佳实践<a class="headerlink" href="#_21" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>保持代码简洁易读</li>
+<li>合理使用组件组合</li>
+<li>注意视觉层次和信息结构</li>
+<li>充分利用便捷方法提高效率</li>
+</ul>
+<p>继续学习更多高级功能，探索 EmailWidget 的强大能力！ </p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 示例代码">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                示例代码
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../data-reports/" class="md-footer__link md-footer__link--next" aria-label="下一页: 数据报告">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                数据报告
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Python调包侠 | EmailWidget v1.0.0
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/271374667" target="_blank" rel="noopener" title="GitHub - Python调包侠" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://space.bilibili.com/282527875" target="_blank" rel="noopener" title="Bilibili - Python调包侠" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:271374667@qq.com" target="_blank" rel="noopener" title="邮件联系" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/project/EmailWidget/" target="_blank" rel="noopener" title="PyPI包" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

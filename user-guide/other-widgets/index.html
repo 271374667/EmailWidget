@@ -1,0 +1,2123 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过537个测试用例验证，83%代码覆盖率，确保企业级稳定性。">
+      
+      
+        <meta name="author" content="Python调包侠">
+      
+      
+        <link rel="canonical" href="https://271374667.github.io/EmailWidget/user-guide/other-widgets/">
+      
+      
+        <link rel="prev" href="../layout-widgets/">
+      
+      
+        <link rel="next" href="../configuration/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>其他组件 - EmailWidget - 邮件组件库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#other-widgets" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="EmailWidget - 邮件组件库" class="md-header__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EmailWidget - 邮件组件库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              其他组件
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速开始
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  用户指南
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API参考
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  示例代码
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发指南
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  更新日志
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EmailWidget - 邮件组件库" class="md-nav__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    EmailWidget - 邮件组件库
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../getting-started/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    快速开始
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    用户指南
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            用户指南
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    核心类
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../widget-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    组件概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    文本组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../table-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    表格组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chart-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    图表组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress-widgets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    进度组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../status-widgets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    状态组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../layout-widgets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    布局组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    其他组件
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    其他组件
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#alertwidget" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 警告框组件 (AlertWidget)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 警告框组件 (AlertWidget)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 快速开始
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 警告类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 自定义选项
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardwidget" class="md-nav__link">
+    <span class="md-ellipsis">
+      🃏 卡片组件 (CardWidget)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🃏 卡片组件 (CardWidget)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 基本用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 高级功能
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quotewidget" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 引用组件 (QuoteWidget)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💬 引用组件 (QuoteWidget)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 基本用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 样式变化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logwidget" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 日志组件 (LogWidget)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 日志组件 (LogWidget)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 基本用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 日志级别
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 综合应用示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 综合应用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统状态报告
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      项目进展汇报
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ API 参考
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ API 参考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alertwidget-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlertWidget API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardwidget-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      CardWidget API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quotewidget-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      QuoteWidget API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logwidget-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      LogWidget API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 最佳实践
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 合理使用警告类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 卡片内容结构化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 引用内容要有价值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 日志信息要有层次
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 注意事项
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    配置系统
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    最佳实践
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    API参考
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../examples/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    示例代码
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../development/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    开发指南
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    更新日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="other-widgets">其他组件 (Other Widgets)<a class="headerlink" href="#other-widgets" title="Anchor link to this section">&para;</a></h1>
+<p>除了数据展示和布局组件外，EmailWidget 还提供了一系列特殊功能的组件，用于增强邮件的表现力和用户体验。</p>
+<h2 id="alertwidget">🚨 警告框组件 (AlertWidget)<a class="headerlink" href="#alertwidget" title="Anchor link to this section">&para;</a></h2>
+<p>AlertWidget 提供 GitHub 风格的警告框，用于显示重要提醒、通知和说明信息。</p>
+<h3 id="_1">🚀 快速开始<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlertWidget</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlertType</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 基本警告框</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;这是一个重要的系统通知&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+</code></pre></div>
+<div style="background: #fff8e1; border: 1px solid #ffecb3; border-left: 4px solid #ffecb3; border-radius: 6px; padding: 16px; margin: 16px 0; color: #bf8f00;">
+    <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+        <span style="margin-right: 8px; font-size: 18px;">⚠️</span>
+        <span>WARNING</span>
+    </div>
+    <div style="line-height: 1.5; font-size: 14px;">这是一个重要的系统通知</div>
+</div>
+
+<h3 id="_2">📝 警告类型<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h3>
+<p>AlertWidget 支持五种不同类型的警告框：</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># NOTE - 一般信息</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">note_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">note_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;这是一条普通的信息提示&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">note_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">NOTE</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="c1"># TIP - 提示建议</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">tip_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">tip_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;💡 小贴士：记得定期备份您的数据&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">tip_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">TIP</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><a href="#__codelineno-1-10"><span class="linenos" data-linenos="10 "></span></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><a href="#__codelineno-1-11"><span class="linenos" data-linenos="11 "></span></a><span class="c1"># IMPORTANT - 重要信息</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><a href="#__codelineno-1-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">important_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><a href="#__codelineno-1-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">important_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;❗ 重要：系统将在今晚进行维护&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><a href="#__codelineno-1-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">important_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">IMPORTANT</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><a href="#__codelineno-1-15"><span class="linenos" data-linenos="15 "></span></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><a href="#__codelineno-1-16"><span class="linenos" data-linenos="16 "></span></a><span class="c1"># WARNING - 警告信息</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><a href="#__codelineno-1-17"><span class="linenos" data-linenos="17 "></span></a><span class="n">warning_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><a href="#__codelineno-1-18"><span class="linenos" data-linenos="18 "></span></a><span class="n">warning_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;⚠️ 警告：磁盘空间即将不足&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><a href="#__codelineno-1-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">warning_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><a href="#__codelineno-1-20"><span class="linenos" data-linenos="20 "></span></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><a href="#__codelineno-1-21"><span class="linenos" data-linenos="21 "></span></a><span class="c1"># CAUTION - 注意事项</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><a href="#__codelineno-1-22"><span class="linenos" data-linenos="22 "></span></a><span class="n">caution_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><a href="#__codelineno-1-23"><span class="linenos" data-linenos="23 "></span></a><span class="n">caution_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;🚫 注意：此操作不可逆转&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><a href="#__codelineno-1-24"><span class="linenos" data-linenos="24 "></span></a><span class="n">caution_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">CAUTION</span><span class="p">)</span>
+</code></pre></div>
+<div style="margin: 16px 0;">
+    <div style="background: #e3f2fd; border: 1px solid #90caf9; border-left: 4px solid #90caf9; border-radius: 6px; padding: 16px; margin: 8px 0; color: #1565c0;">
+        <div style="font-weight: 600; margin-bottom: 8px;">📝 NOTE</div>
+        <div>这是一条普通的信息提示</div>
+    </div>
+    <div style="background: #f3e5f5; border: 1px solid #ce93d8; border-left: 4px solid #ce93d8; border-radius: 6px; padding: 16px; margin: 8px 0; color: #7b1fa2;">
+        <div style="font-weight: 600; margin-bottom: 8px;">💡 TIP</div>
+        <div>小贴士：记得定期备份您的数据</div>
+    </div>
+    <div style="background: #e8f5e8; border: 1px solid #a5d6a7; border-left: 4px solid #a5d6a7; border-radius: 6px; padding: 16px; margin: 8px 0; color: #2e7d32;">
+        <div style="font-weight: 600; margin-bottom: 8px;">❗ IMPORTANT</div>
+        <div>重要：系统将在今晚进行维护</div>
+    </div>
+    <div style="background: #fff8e1; border: 1px solid #ffecb3; border-left: 4px solid #ffecb3; border-radius: 6px; padding: 16px; margin: 8px 0; color: #bf8f00;">
+        <div style="font-weight: 600; margin-bottom: 8px;">⚠️ WARNING</div>
+        <div>警告：磁盘空间即将不足</div>
+    </div>
+    <div style="background: #ffebee; border: 1px solid #ef9a9a; border-left: 4px solid #ef9a9a; border-radius: 6px; padding: 16px; margin: 8px 0; color: #c62828;">
+        <div style="font-weight: 600; margin-bottom: 8px;">🚫 CAUTION</div>
+        <div>注意：此操作不可逆转</div>
+    </div>
+</div>
+
+<h3 id="_3">🎨 自定义选项<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 自定义标题和图标</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">custom_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">custom_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;自定义警告框内容&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">custom_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">custom_alert</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;自定义标题&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">custom_alert</span><span class="o">.</span><span class="n">set_icon</span><span class="p">(</span><span class="s2">&quot;🔔&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">custom_alert</span><span class="o">.</span><span class="n">set_show_icon</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># 不显示图标</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><a href="#__codelineno-2-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">no_icon_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><a href="#__codelineno-2-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">no_icon_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;这个警告框没有图标&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><a href="#__codelineno-2-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">no_icon_alert</span><span class="o">.</span><span class="n">set_show_icon</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="cardwidget">🃏 卡片组件 (CardWidget)<a class="headerlink" href="#cardwidget" title="Anchor link to this section">&para;</a></h2>
+<p>CardWidget 提供现代化的卡片容器，适合展示结构化信息。</p>
+<h3 id="_4">🚀 基本用法<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">CardWidget</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a><span class="c1"># 基本卡片</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">card</span> <span class="o">=</span> <span class="n">CardWidget</span><span class="p">()</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">card</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;用户反馈&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">card</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;用户对新功能的满意度达到了92%，特别是在界面设计方面获得了很高的评价。&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">用户反馈</h3>
+    <div style="color: #323130; line-height: 1.5; font-size: 14px;">用户对新功能的满意度达到了92%，特别是在界面设计方面获得了很高的评价。</div>
+</div>
+
+<h3 id="_5">🎯 高级功能<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 带图标和元数据的卡片</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">advanced_card</span> <span class="o">=</span> <span class="n">CardWidget</span><span class="p">()</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;项目进展&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">set_icon</span><span class="p">(</span><span class="s2">&quot;📊&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;本月项目进展顺利，各项指标均达到预期目标。团队协作效率有显著提升。&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 添加元数据</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><a href="#__codelineno-4-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;项目经理&quot;</span><span class="p">,</span> <span class="s2">&quot;张三&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><a href="#__codelineno-4-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;完成时间&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-15&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><a href="#__codelineno-4-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;参与人数&quot;</span><span class="p">,</span> <span class="s2">&quot;12人&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><a href="#__codelineno-4-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;预算使用&quot;</span><span class="p">,</span> <span class="s2">&quot;75%&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><a href="#__codelineno-4-12"><span class="linenos" data-linenos="12 "></span></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><a href="#__codelineno-4-13"><span class="linenos" data-linenos="13 "></span></a><span class="c1"># 设置样式</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><a href="#__codelineno-4-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">set_elevated</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 启用阴影效果</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><a href="#__codelineno-4-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">advanced_card</span><span class="o">.</span><span class="n">set_padding</span><span class="p">(</span><span class="s2">&quot;20px&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 20px; margin: 16px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+        📊 项目进展
+    </h3>
+    <div style="color: #323130; line-height: 1.5; font-size: 14px;">本月项目进展顺利，各项指标均达到预期目标。团队协作效率有显著提升。</div>
+    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e1dfdd;">
+        <div style="margin: 4px 0; font-size: 13px;"><strong>项目经理:</strong> 张三</div>
+        <div style="margin: 4px 0; font-size: 13px;"><strong>完成时间:</strong> 2024-01-15</div>
+        <div style="margin: 4px 0; font-size: 13px;"><strong>参与人数:</strong> 12人</div>
+        <div style="margin: 4px 0; font-size: 13px;"><strong>预算使用:</strong> 75%</div>
+    </div>
+</div>
+
+<h2 id="quotewidget">💬 引用组件 (QuoteWidget)<a class="headerlink" href="#quotewidget" title="Anchor link to this section">&para;</a></h2>
+<p>QuoteWidget 用于显示引用内容，支持引用来源标注。</p>
+<h3 id="_6">🚀 基本用法<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuoteWidget</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos="3 "></span></a><span class="c1"># 基本引用</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">quote</span> <span class="o">=</span> <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">quote</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;创新是企业发展的动力，我们必须始终保持对技术的敏锐度。&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">quote</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s2">&quot;张总&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">quote</span><span class="o">.</span><span class="n">set_source</span><span class="p">(</span><span class="s2">&quot;月度全员大会&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div style="border-left: 4px solid #0078d4; background: #f8f9fa; padding: 16px; margin: 16px 0; font-style: italic;">
+    <div style="color: #323130; line-height: 1.6; font-size: 16px; margin-bottom: 12px;">
+        "创新是企业发展的动力，我们必须始终保持对技术的敏锐度。"
+    </div>
+    <div style="color: #605e5c; font-size: 14px; text-align: right;">
+        — 张总，月度全员大会
+    </div>
+</div>
+
+<h3 id="_7">🎨 样式变化<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 不同样式的引用</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">simple_quote</span> <span class="o">=</span> <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">simple_quote</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;简单就是美。&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">simple_quote</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s2">&quot;乔布斯&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="c1"># 仅内容的引用</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">content_only</span> <span class="o">=</span> <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><a href="#__codelineno-6-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">content_only</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;这是一段重要的引用内容，没有特定的作者信息。&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><a href="#__codelineno-6-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><a href="#__codelineno-6-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 长篇引用</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><a href="#__codelineno-6-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">long_quote</span> <span class="o">=</span> <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><a href="#__codelineno-6-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">long_quote</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><a href="#__codelineno-6-13"><span class="linenos" data-linenos="13 "></span></a><span class="s2">在数字化转型的浪潮中，我们不仅要关注技术的创新，</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><a href="#__codelineno-6-14"><span class="linenos" data-linenos="14 "></span></a><span class="s2">更要关注如何将技术与业务深度融合，</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><a href="#__codelineno-6-15"><span class="linenos" data-linenos="15 "></span></a><span class="s2">为客户创造真正的价值。</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a><a href="#__codelineno-6-16"><span class="linenos" data-linenos="16 "></span></a><span class="s2">这需要我们具备前瞻性的思维和敏捷的执行力。</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a><a href="#__codelineno-6-17"><span class="linenos" data-linenos="17 "></span></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a><a href="#__codelineno-6-18"><span class="linenos" data-linenos="18 "></span></a><span class="n">long_quote</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s2">&quot;李总&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a><a href="#__codelineno-6-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">long_quote</span><span class="o">.</span><span class="n">set_source</span><span class="p">(</span><span class="s2">&quot;数字化转型研讨会&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="logwidget">📋 日志组件 (LogWidget)<a class="headerlink" href="#logwidget" title="Anchor link to this section">&para;</a></h2>
+<p>LogWidget 专门用于展示日志信息，支持多种日志级别和时间戳。</p>
+<h3 id="_8">🚀 基本用法<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogWidget</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogLevel</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建日志组件</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">log</span> <span class="o">=</span> <span class="n">LogWidget</span><span class="p">()</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;系统日志&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="c1"># 添加不同级别的日志</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><a href="#__codelineno-7-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;系统启动完成&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><a href="#__codelineno-7-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;数据库连接成功&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><a href="#__codelineno-7-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;内存使用率较高&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><a href="#__codelineno-7-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;磁盘空间不足&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><a href="#__codelineno-7-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;开始执行数据备份&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><a href="#__codelineno-7-14"><span class="linenos" data-linenos="14 "></span></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><a href="#__codelineno-7-15"><span class="linenos" data-linenos="15 "></span></a><span class="c1"># 设置显示选项</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><a href="#__codelineno-7-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">set_show_timestamp</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><a href="#__codelineno-7-17"><span class="linenos" data-linenos="17 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">set_max_entries</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div>
+<div style="background: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', monospace; border-radius: 4px; padding: 16px; margin: 16px 0;">
+    <h3 style="color: #d4d4d4; margin-bottom: 12px; font-size: 16px;">系统日志</h3>
+    <div style="font-size: 13px; line-height: 1.4;">
+        <div style="margin: 4px 0;">
+            <span style="color: #4fc3f7;">[INFO]</span> 
+            <span style="color: #757575;">2024-01-15 10:30:25</span> 
+            <span>系统启动完成</span>
+        </div>
+        <div style="margin: 4px 0;">
+            <span style="color: #4fc3f7;">[INFO]</span> 
+            <span style="color: #757575;">2024-01-15 10:30:28</span> 
+            <span>数据库连接成功</span>
+        </div>
+        <div style="margin: 4px 0;">
+            <span style="color: #ffb74d;">[WARNING]</span> 
+            <span style="color: #757575;">2024-01-15 10:31:15</span> 
+            <span>内存使用率较高</span>
+        </div>
+        <div style="margin: 4px 0;">
+            <span style="color: #f44336;">[ERROR]</span> 
+            <span style="color: #757575;">2024-01-15 10:32:10</span> 
+            <span>磁盘空间不足</span>
+        </div>
+        <div style="margin: 4px 0;">
+            <span style="color: #9e9e9e;">[DEBUG]</span> 
+            <span style="color: #757575;">2024-01-15 10:32:45</span> 
+            <span>开始执行数据备份</span>
+        </div>
+    </div>
+</div>
+
+<h3 id="_9">🎨 日志级别<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h3>
+<p>LogWidget 支持标准的日志级别：</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>颜色</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DEBUG</code></td>
+<td>灰色</td>
+<td>调试信息</td>
+</tr>
+<tr>
+<td><code>INFO</code></td>
+<td>蓝色</td>
+<td>一般信息</td>
+</tr>
+<tr>
+<td><code>WARNING</code></td>
+<td>橙色</td>
+<td>警告信息</td>
+</tr>
+<tr>
+<td><code>ERROR</code></td>
+<td>红色</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td><code>CRITICAL</code></td>
+<td>深红色</td>
+<td>严重错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">📋 综合应用示例<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_11">系统状态报告<a class="headerlink" href="#_11" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="n">AlertWidget</span><span class="p">,</span> <span class="n">CardWidget</span><span class="p">,</span> <span class="n">QuoteWidget</span><span class="p">,</span> <span class="n">LogWidget</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="n">TextWidget</span><span class="p">,</span> <span class="n">StatusWidget</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 创建系统状态报告</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><a href="#__codelineno-8-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">system_report</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;系统状态报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><a href="#__codelineno-8-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><a href="#__codelineno-8-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 1. 标题</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><a href="#__codelineno-8-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">system_report</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><a href="#__codelineno-8-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><a href="#__codelineno-8-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;系统健康检查报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><a href="#__codelineno-8-14"><span class="linenos" data-linenos="14 "></span></a>    <span class="o">.</span><span class="n">set_text_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">SECTION_H2</span><span class="p">)</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><a href="#__codelineno-8-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="o">.</span><span class="n">set_align</span><span class="p">(</span><span class="n">TextAlign</span><span class="o">.</span><span class="n">CENTER</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><a href="#__codelineno-8-16"><span class="linenos" data-linenos="16 "></span></a><span class="p">)</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><a href="#__codelineno-8-17"><span class="linenos" data-linenos="17 "></span></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><a href="#__codelineno-8-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 2. 重要警告</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a><a href="#__codelineno-8-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">critical_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a><a href="#__codelineno-8-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">critical_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;检测到3个需要立即处理的问题，请查看详细日志并采取相应措施。&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a><a href="#__codelineno-8-21"><span class="linenos" data-linenos="21 "></span></a><span class="n">critical_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">CAUTION</span><span class="p">)</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a><a href="#__codelineno-8-22"><span class="linenos" data-linenos="22 "></span></a>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a><a href="#__codelineno-8-23"><span class="linenos" data-linenos="23 "></span></a><span class="c1"># 3. 系统概览卡片</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a><a href="#__codelineno-8-24"><span class="linenos" data-linenos="24 "></span></a><span class="n">overview_card</span> <span class="o">=</span> <span class="n">CardWidget</span><span class="p">()</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a><a href="#__codelineno-8-25"><span class="linenos" data-linenos="25 "></span></a><span class="n">overview_card</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;系统概览&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a><a href="#__codelineno-8-26"><span class="linenos" data-linenos="26 "></span></a><span class="n">overview_card</span><span class="o">.</span><span class="n">set_icon</span><span class="p">(</span><span class="s2">&quot;🖥️&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a><a href="#__codelineno-8-27"><span class="linenos" data-linenos="27 "></span></a><span class="n">overview_card</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;系统整体运行稳定，部分服务需要关注。建议在非高峰期进行维护。&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a><a href="#__codelineno-8-28"><span class="linenos" data-linenos="28 "></span></a><span class="n">overview_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;检查时间&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-15 10:30:00&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a><a href="#__codelineno-8-29"><span class="linenos" data-linenos="29 "></span></a><span class="n">overview_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;检查项目&quot;</span><span class="p">,</span> <span class="s2">&quot;15项&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a><a href="#__codelineno-8-30"><span class="linenos" data-linenos="30 "></span></a><span class="n">overview_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;通过项目&quot;</span><span class="p">,</span> <span class="s2">&quot;12项&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a><a href="#__codelineno-8-31"><span class="linenos" data-linenos="31 "></span></a><span class="n">overview_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;警告项目&quot;</span><span class="p">,</span> <span class="s2">&quot;3项&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a><a href="#__codelineno-8-32"><span class="linenos" data-linenos="32 "></span></a>
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a><a href="#__codelineno-8-33"><span class="linenos" data-linenos="33 "></span></a><span class="c1"># 4. 管理员建议引用</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a><a href="#__codelineno-8-34"><span class="linenos" data-linenos="34 "></span></a><span class="n">admin_quote</span> <span class="o">=</span> <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35"></a><a href="#__codelineno-8-35"><span class="linenos" data-linenos="35 "></span></a><span class="n">admin_quote</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36"></a><a href="#__codelineno-8-36"><span class="linenos" data-linenos="36 "></span></a><span class="s2">基于当前的系统状态，建议在本周末进行一次全面的系统维护，</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37"></a><a href="#__codelineno-8-37"><span class="linenos" data-linenos="37 "></span></a><span class="s2">包括清理临时文件、优化数据库索引和更新安全补丁。</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38"></a><a href="#__codelineno-8-38"><span class="linenos" data-linenos="38 "></span></a><span class="s2">这将有助于提升系统整体性能和稳定性。</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39"></a><a href="#__codelineno-8-39"><span class="linenos" data-linenos="39 "></span></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40"></a><a href="#__codelineno-8-40"><span class="linenos" data-linenos="40 "></span></a><span class="n">admin_quote</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s2">&quot;系统管理员&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41"></a><a href="#__codelineno-8-41"><span class="linenos" data-linenos="41 "></span></a><span class="n">admin_quote</span><span class="o">.</span><span class="n">set_source</span><span class="p">(</span><span class="s2">&quot;维护建议&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-42" name="__codelineno-8-42"></a><a href="#__codelineno-8-42"><span class="linenos" data-linenos="42 "></span></a>
+<a id="__codelineno-8-43" name="__codelineno-8-43"></a><a href="#__codelineno-8-43"><span class="linenos" data-linenos="43 "></span></a><span class="c1"># 5. 最新日志</span>
+<a id="__codelineno-8-44" name="__codelineno-8-44"></a><a href="#__codelineno-8-44"><span class="linenos" data-linenos="44 "></span></a><span class="n">recent_logs</span> <span class="o">=</span> <span class="n">LogWidget</span><span class="p">()</span>
+<a id="__codelineno-8-45" name="__codelineno-8-45"></a><a href="#__codelineno-8-45"><span class="linenos" data-linenos="45 "></span></a><span class="n">recent_logs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;最新系统日志&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-46" name="__codelineno-8-46"></a><a href="#__codelineno-8-46"><span class="linenos" data-linenos="46 "></span></a><span class="n">recent_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;定时备份任务完成&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-8-47" name="__codelineno-8-47"></a><a href="#__codelineno-8-47"><span class="linenos" data-linenos="47 "></span></a><span class="n">recent_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;CPU使用率达到85%&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<a id="__codelineno-8-48" name="__codelineno-8-48"></a><a href="#__codelineno-8-48"><span class="linenos" data-linenos="48 "></span></a><span class="n">recent_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;用户登录认证失败&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+<a id="__codelineno-8-49" name="__codelineno-8-49"></a><a href="#__codelineno-8-49"><span class="linenos" data-linenos="49 "></span></a><span class="n">recent_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;缓存清理完成&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-8-50" name="__codelineno-8-50"></a><a href="#__codelineno-8-50"><span class="linenos" data-linenos="50 "></span></a><span class="n">recent_logs</span><span class="o">.</span><span class="n">set_max_entries</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-8-51" name="__codelineno-8-51"></a><a href="#__codelineno-8-51"><span class="linenos" data-linenos="51 "></span></a>
+<a id="__codelineno-8-52" name="__codelineno-8-52"></a><a href="#__codelineno-8-52"><span class="linenos" data-linenos="52 "></span></a><span class="c1"># 6. 操作建议提示</span>
+<a id="__codelineno-8-53" name="__codelineno-8-53"></a><a href="#__codelineno-8-53"><span class="linenos" data-linenos="53 "></span></a><span class="n">action_tip</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-8-54" name="__codelineno-8-54"></a><a href="#__codelineno-8-54"><span class="linenos" data-linenos="54 "></span></a><span class="n">action_tip</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;💡 建议立即检查CPU使用率异常的原因，可能需要重启相关服务。&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-55" name="__codelineno-8-55"></a><a href="#__codelineno-8-55"><span class="linenos" data-linenos="55 "></span></a><span class="n">action_tip</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">TIP</span><span class="p">)</span>
+<a id="__codelineno-8-56" name="__codelineno-8-56"></a><a href="#__codelineno-8-56"><span class="linenos" data-linenos="56 "></span></a>
+<a id="__codelineno-8-57" name="__codelineno-8-57"></a><a href="#__codelineno-8-57"><span class="linenos" data-linenos="57 "></span></a><span class="c1"># 添加所有组件</span>
+<a id="__codelineno-8-58" name="__codelineno-8-58"></a><a href="#__codelineno-8-58"><span class="linenos" data-linenos="58 "></span></a><span class="n">system_report</span><span class="o">.</span><span class="n">add_widgets</span><span class="p">([</span>
+<a id="__codelineno-8-59" name="__codelineno-8-59"></a><a href="#__codelineno-8-59"><span class="linenos" data-linenos="59 "></span></a>    <span class="n">critical_alert</span><span class="p">,</span> <span class="n">overview_card</span><span class="p">,</span> <span class="n">admin_quote</span><span class="p">,</span> 
+<a id="__codelineno-8-60" name="__codelineno-8-60"></a><a href="#__codelineno-8-60"><span class="linenos" data-linenos="60 "></span></a>    <span class="n">recent_logs</span><span class="p">,</span> <span class="n">action_tip</span>
+<a id="__codelineno-8-61" name="__codelineno-8-61"></a><a href="#__codelineno-8-61"><span class="linenos" data-linenos="61 "></span></a><span class="p">])</span>
+</code></pre></div>
+<h3 id="_12">项目进展汇报<a class="headerlink" href="#_12" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 项目进展汇报邮件</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">project_update</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;项目进展汇报&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 项目信息卡片</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">project_card</span> <span class="o">=</span> <span class="n">CardWidget</span><span class="p">()</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">project_card</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;项目：客户管理系统升级&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">project_card</span><span class="o">.</span><span class="n">set_icon</span><span class="p">(</span><span class="s2">&quot;🚀&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><a href="#__codelineno-9-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">project_card</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><a href="#__codelineno-9-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="s2">本周项目进展良好，前端开发基本完成，后端API开发进度达到80%。</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><a href="#__codelineno-9-10"><span class="linenos" data-linenos="10 "></span></a><span class="s2">测试团队已经开始功能测试，发现并修复了5个bug。</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><a href="#__codelineno-9-11"><span class="linenos" data-linenos="11 "></span></a><span class="s2">预计下周可以进入系统集成测试阶段。</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><a href="#__codelineno-9-12"><span class="linenos" data-linenos="12 "></span></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><a href="#__codelineno-9-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">project_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;项目经理&quot;</span><span class="p">,</span> <span class="s2">&quot;张三&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><a href="#__codelineno-9-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">project_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;开始时间&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-01&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><a href="#__codelineno-9-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">project_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;预计完成&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-02-15&quot;</span><span class="p">)</span> 
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><a href="#__codelineno-9-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">project_card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;当前进度&quot;</span><span class="p">,</span> <span class="s2">&quot;75%&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><a href="#__codelineno-9-17"><span class="linenos" data-linenos="17 "></span></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a><a href="#__codelineno-9-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 重要里程碑提醒</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a><a href="#__codelineno-9-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">milestone_alert</span> <span class="o">=</span> <span class="n">AlertWidget</span><span class="p">()</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a><a href="#__codelineno-9-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">milestone_alert</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;🎯 重要提醒：下周一(1月22日)将进行项目中期评审，请各团队准备相关材料。&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><a href="#__codelineno-9-21"><span class="linenos" data-linenos="21 "></span></a><span class="n">milestone_alert</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">IMPORTANT</span><span class="p">)</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a><a href="#__codelineno-9-22"><span class="linenos" data-linenos="22 "></span></a>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a><a href="#__codelineno-9-23"><span class="linenos" data-linenos="23 "></span></a><span class="c1"># 团队反馈引用</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a><a href="#__codelineno-9-24"><span class="linenos" data-linenos="24 "></span></a><span class="n">team_quote</span> <span class="o">=</span> <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a><a href="#__codelineno-9-25"><span class="linenos" data-linenos="25 "></span></a><span class="n">team_quote</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a><a href="#__codelineno-9-26"><span class="linenos" data-linenos="26 "></span></a><span class="s2">团队协作非常顺畅，新的敏捷开发流程大大提升了我们的工作效率。</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a><a href="#__codelineno-9-27"><span class="linenos" data-linenos="27 "></span></a><span class="s2">大家对新技术栈的掌握程度也在快速提升，</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a><a href="#__codelineno-9-28"><span class="linenos" data-linenos="28 "></span></a><span class="s2">相信能够按时高质量地完成项目目标。</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a><a href="#__codelineno-9-29"><span class="linenos" data-linenos="29 "></span></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a><a href="#__codelineno-9-30"><span class="linenos" data-linenos="30 "></span></a><span class="n">team_quote</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s2">&quot;开发团队负责人 李四&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a><a href="#__codelineno-9-31"><span class="linenos" data-linenos="31 "></span></a>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a><a href="#__codelineno-9-32"><span class="linenos" data-linenos="32 "></span></a><span class="c1"># 开发日志</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a><a href="#__codelineno-9-33"><span class="linenos" data-linenos="33 "></span></a><span class="n">dev_logs</span> <span class="o">=</span> <span class="n">LogWidget</span><span class="p">()</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34"></a><a href="#__codelineno-9-34"><span class="linenos" data-linenos="34 "></span></a><span class="n">dev_logs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;开发日志&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35"></a><a href="#__codelineno-9-35"><span class="linenos" data-linenos="35 "></span></a><span class="n">dev_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;完成用户管理模块前端开发&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36"></a><a href="#__codelineno-9-36"><span class="linenos" data-linenos="36 "></span></a><span class="n">dev_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;API响应时间优化完成&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37"></a><a href="#__codelineno-9-37"><span class="linenos" data-linenos="37 "></span></a><span class="n">dev_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;发现数据同步问题&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38"></a><a href="#__codelineno-9-38"><span class="linenos" data-linenos="38 "></span></a><span class="n">dev_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;修复登录状态异常bug&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39"></a><a href="#__codelineno-9-39"><span class="linenos" data-linenos="39 "></span></a><span class="n">dev_logs</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;完成单元测试覆盖率提升&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40"></a><a href="#__codelineno-9-40"><span class="linenos" data-linenos="40 "></span></a>
+<a id="__codelineno-9-41" name="__codelineno-9-41"></a><a href="#__codelineno-9-41"><span class="linenos" data-linenos="41 "></span></a><span class="n">project_update</span><span class="o">.</span><span class="n">add_widgets</span><span class="p">([</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42"></a><a href="#__codelineno-9-42"><span class="linenos" data-linenos="42 "></span></a>    <span class="n">project_card</span><span class="p">,</span> <span class="n">milestone_alert</span><span class="p">,</span> <span class="n">team_quote</span><span class="p">,</span> <span class="n">dev_logs</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43"></a><a href="#__codelineno-9-43"><span class="linenos" data-linenos="43 "></span></a><span class="p">])</span>
+</code></pre></div>
+<h2 id="api">⚙️ API 参考<a class="headerlink" href="#api" title="Anchor link to this section">&para;</a></h2>
+<h3 id="alertwidget-api">AlertWidget API<a class="headerlink" href="#alertwidget-api" title="Anchor link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set_content()</code></td>
+<td><code>content: str</code></td>
+<td>设置警告内容</td>
+</tr>
+<tr>
+<td><code>set_alert_type()</code></td>
+<td><code>type: AlertType</code></td>
+<td>设置警告类型</td>
+</tr>
+<tr>
+<td><code>set_title()</code></td>
+<td><code>title: str</code></td>
+<td>自定义标题</td>
+</tr>
+<tr>
+<td><code>set_icon()</code></td>
+<td><code>icon: str</code></td>
+<td>自定义图标</td>
+</tr>
+<tr>
+<td><code>set_show_icon()</code></td>
+<td><code>show: bool</code></td>
+<td>是否显示图标</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardwidget-api">CardWidget API<a class="headerlink" href="#cardwidget-api" title="Anchor link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set_title()</code></td>
+<td><code>title: str</code></td>
+<td>设置卡片标题</td>
+</tr>
+<tr>
+<td><code>set_content()</code></td>
+<td><code>content: str</code></td>
+<td>设置卡片内容</td>
+</tr>
+<tr>
+<td><code>set_icon()</code></td>
+<td><code>icon: str</code></td>
+<td>设置标题图标</td>
+</tr>
+<tr>
+<td><code>add_metadata()</code></td>
+<td><code>key: str, value: str</code></td>
+<td>添加元数据</td>
+</tr>
+<tr>
+<td><code>set_elevated()</code></td>
+<td><code>elevated: bool</code></td>
+<td>设置阴影效果</td>
+</tr>
+<tr>
+<td><code>set_padding()</code></td>
+<td><code>padding: str</code></td>
+<td>设置内边距</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quotewidget-api">QuoteWidget API<a class="headerlink" href="#quotewidget-api" title="Anchor link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set_content()</code></td>
+<td><code>content: str</code></td>
+<td>设置引用内容</td>
+</tr>
+<tr>
+<td><code>set_author()</code></td>
+<td><code>author: str</code></td>
+<td>设置作者</td>
+</tr>
+<tr>
+<td><code>set_source()</code></td>
+<td><code>source: str</code></td>
+<td>设置来源</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logwidget-api">LogWidget API<a class="headerlink" href="#logwidget-api" title="Anchor link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set_title()</code></td>
+<td><code>title: str</code></td>
+<td>设置日志标题</td>
+</tr>
+<tr>
+<td><code>add_log_entry()</code></td>
+<td><code>message: str, level: LogLevel</code></td>
+<td>添加日志条目</td>
+</tr>
+<tr>
+<td><code>set_show_timestamp()</code></td>
+<td><code>show: bool</code></td>
+<td>显示时间戳</td>
+</tr>
+<tr>
+<td><code>set_max_entries()</code></td>
+<td><code>max_count: int</code></td>
+<td>最大条目数</td>
+</tr>
+<tr>
+<td><code>clear_logs()</code></td>
+<td>无</td>
+<td>清空日志</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_13">🎯 最佳实践<a class="headerlink" href="#_13" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1">1. 合理使用警告类型<a class="headerlink" href="#1" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 根据重要程度选择合适的警告类型</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">AlertWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">NOTE</span><span class="p">)</span>       <span class="c1"># 一般信息</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">AlertWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>    <span class="c1"># 需要注意</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">AlertWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_alert_type</span><span class="p">(</span><span class="n">AlertType</span><span class="o">.</span><span class="n">CAUTION</span><span class="p">)</span>    <span class="c1"># 需要谨慎</span>
+</code></pre></div>
+<h3 id="2">2. 卡片内容结构化<a class="headerlink" href="#2" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 推荐：结构化组织卡片内容</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">card</span> <span class="o">=</span> <span class="n">CardWidget</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">card</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;清晰的标题&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">card</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;简洁明了的正文内容&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">card</span><span class="o">.</span><span class="n">add_metadata</span><span class="p">(</span><span class="s2">&quot;关键信息&quot;</span><span class="p">,</span> <span class="s2">&quot;具体数值&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="3">3. 引用内容要有价值<a class="headerlink" href="#3" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 推荐：引用有意义的内容</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">quote</span> <span class="o">=</span> <span class="n">QuoteWidget</span><span class="p">()</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">quote</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;具有启发性或权威性的内容&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">quote</span><span class="o">.</span><span class="n">set_author</span><span class="p">(</span><span class="s2">&quot;可信的来源&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="4">4. 日志信息要有层次<a class="headerlink" href="#4" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 推荐：合理使用日志级别</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;正常操作信息&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;需要关注的情况&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">log</span><span class="o">.</span><span class="n">add_log_entry</span><span class="p">(</span><span class="s2">&quot;严重问题&quot;</span><span class="p">,</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_14">🚨 注意事项<a class="headerlink" href="#_14" title="Anchor link to this section">&para;</a></h2>
+<ol>
+<li><strong>内容长度</strong>: 避免在组件中放置过长的内容</li>
+<li><strong>颜色一致性</strong>: 保持整个邮件中颜色使用的一致性</li>
+<li><strong>信息层次</strong>: 合理使用不同组件来体现信息的重要程度</li>
+<li><strong>移动适配</strong>: 考虑组件在移动设备上的显示效果</li>
+<li><strong>可读性</strong>: 确保文本内容具有良好的可读性</li>
+</ol>
+<hr />
+<p><strong>下一步</strong>: 了解 <a href="../configuration/">配置系统</a> 学习如何全局配置EmailWidget。 </p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../layout-widgets/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 布局组件">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                布局组件
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../configuration/" class="md-footer__link md-footer__link--next" aria-label="下一页: 配置系统">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                配置系统
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Python调包侠 | EmailWidget v1.0.0
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/271374667" target="_blank" rel="noopener" title="GitHub - Python调包侠" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://space.bilibili.com/282527875" target="_blank" rel="noopener" title="Bilibili - Python调包侠" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:271374667@qq.com" target="_blank" rel="noopener" title="邮件联系" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/project/EmailWidget/" target="_blank" rel="noopener" title="PyPI包" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
