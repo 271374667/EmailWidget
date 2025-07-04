@@ -114,44 +114,43 @@ nav:
         - 第一个邮件: getting-started/first-email.md
         - 基本概念: getting-started/concepts.md
         - 常见问题: getting-started/faq.md
-    - 用户指南:
-        - user-guide/index.md
-        - 核心类: user-guide/core-classes.md
-        - 组件概览: user-guide/widget-overview.md
-        - 文本组件: user-guide/text-widget.md
-        - 表格组件: user-guide/table-widget.md
-        - 图表组件: user-guide/chart-widget.md
-        - 进度组件: user-guide/progress-widgets.md
-        - 状态组件: user-guide/status-widgets.md
-        - 布局组件: user-guide/layout-widgets.md
-        - 其他组件: user-guide/other-widgets.md
-        - 配置系统: user-guide/configuration.md
-        - 最佳实践: user-guide/best-practices.md
-    - API参考:
-        - api/index.md
-        - 核心模块: api/core.md
-        - Email主类: api/email.md
-        - Widget组件: api/widgets.md
-        - 配置管理: api/config.md
-        - 枚举类型: api/enums.md
-        - 验证器: api/validators.md
-        - 工具函数: api/utils.md
-    - 示例代码:
-        - examples/index.md
-        - 基础示例: examples/basic.md
-        - 数据报告: examples/data-reports.md
-        - 系统监控: examples/system-monitoring.md
-        - 爬虫报告: examples/spider-reports.md
-        - 高级示例: examples/advanced.md
-        - 实际应用: examples/real-world.md
-    - 开发指南:
-        - development/index.md
-        - 贡献指南: development/contributing.md
-        - 开发环境: development/setup.md
-        - 创建Widget: development/creating-widgets.md
-        - 测试指南: development/testing.md
-        - 发布流程: development/release.md
-    - 更新日志: changelog.md
+    # - 用户指南:
+    #     - user-guide/index.md
+    #     - 核心类: user-guide/core-classes.md
+    #     - 组件概览: user-guide/widget-overview.md
+    #     - 文本组件: user-guide/text-widget.md
+    #     - 表格组件: user-guide/table-widget.md
+    #     - 图表组件: user-guide/chart-widget.md
+    #     - 进度组件: user-guide/progress-widgets.md
+    #     - 状态组件: user-guide/status-widgets.md
+    #     - 布局组件: user-guide/layout-widgets.md
+    #     - 其他组件: user-guide/other-widgets.md
+    #     - 配置系统: user-guide/configuration.md
+    # - API参考:
+    #     - api/index.md
+    #     - 核心模块: api/core.md
+    #     - Email主类: api/email.md
+    #     - Widget组件: api/widgets.md
+    #     - 配置管理: api/config.md
+    #     - 枚举类型: api/enums.md
+    #     - 验证器: api/validators.md
+    #     - 工具函数: api/utils.md
+    # - 示例代码:
+    #     - examples/index.md
+    #     - 基础示例: examples/basic.md
+    #     - 数据报告: examples/data-reports.md
+    #     - 系统监控: examples/system-monitoring.md
+    #     - 爬虫报告: examples/spider-reports.md
+    #     - 高级示例: examples/advanced.md
+    #     - 实际应用: examples/real-world.md
+    # - 开发指南:
+    #     - development/index.md
+    #     - 贡献指南: development/contributing.md
+    #     - 开发环境: development/setup.md
+    #     - 创建Widget: development/creating-widgets.md
+    #     - 测试指南: development/testing.md
+    #     - 发布流程: development/release.md
+    # - 更新日志: changelog.md
 
 plugins:
     - search:
