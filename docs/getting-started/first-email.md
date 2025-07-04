@@ -90,6 +90,8 @@ print(f"销售报告已生成: {file_path}")
 
 ## 发送到邮箱
 
+### 使用 smtplib 标准库
+
 这里使用标准库 smtplib 发送邮件，实际的开发过程中您也可以使用其他的邮件发送库，例如 redmail
 
 !!! warning "注意"
@@ -158,6 +160,76 @@ smtp.quit()
 同时在手机端查看也能看到漂亮的报告
 
 ![image-20250704112733193](./first-email.assets/image-20250704112733193.png)
+
+### 使用 redmail 发送邮件
+
+使用 redmail 发送邮件相对而言更加简单，但是需要安装额外的依赖
+
+```bash
+pip install redmail
+```
+
+```python
+from redmail import EmailSender
+import os
+from smtplib import SMTP_SSL
+from email_widget import Email, TextWidget, TableWidget, ProgressWidget
+from email_widget.core.enums import TextType, ProgressTheme
+
+# 创建邮件对象，并设置副标题和脚注
+email = Email("📊 销售数据周报")
+email.set_subtitle("2024年第3周销售情况汇总")
+email.set_footer("本报告由销售团队自动生成")
+
+# 1. 添加主标题
+email.add_widget(
+    TextWidget().set_content("销售业绩概览").set_type(TextType.TITLE_LARGE)
+)
+
+# 2. 添加进度指标
+email.add_widget(
+    ProgressWidget()
+    .set_value(85)
+    .set_label("本周目标完成率")
+    .set_theme(ProgressTheme.SUCCESS)
+)
+
+# 3. 添加数据表格
+table = TableWidget()
+table.set_title("🏆 销售排行榜")
+table.set_headers(["销售员", "销售额", "完成率", "状态"])
+table.add_row(["张三", "¥125,000", "125%", "success"])
+table.add_row(["李四", "¥98,000", "98%", "warning"])
+table.add_row(["王五", "¥87,000", "87%", "info"])
+email.add_widget(table)
+
+# 4. 添加总结文本
+email.add_widget(
+    TextWidget()
+    .set_content("本周销售业绩整体表现良好，超额完成既定目标。")
+    .set_type(TextType.BODY)
+)
+
+# 配置QQ邮箱发送器
+email_sender = EmailSender(
+    host="smtp.qq.com",
+    port=465,
+    username="你的邮箱@qq.com",  # 替换为你的QQ邮箱
+    password="授权码",  # SMTP授权码
+    use_starttls=False,
+    cls_smtp=SMTP_SSL,
+)
+
+# 发送邮件
+email_sender.send(
+    subject="HTML测试邮件",
+    sender="你的邮箱@qq.com",  # 替换为你的QQ邮箱
+    receivers=["你的邮箱@qq.com"],  # 替换为接收邮件的邮箱
+    html=email.export_str(),
+)
+
+print("邮件发送成功！")
+```
 
 ## 🚀 下一步
 

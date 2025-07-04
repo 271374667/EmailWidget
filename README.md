@@ -114,6 +114,16 @@ print(f"🎉 报告已生成: {file_path}")
 
 [![image-20250702215350732](./README.assets/image-20250702215350732.png)](https://271374667.github.io/picx-images-hosting/image-20250702215350732.2rvevhzhdv.webp)
 
+## 邮箱内实际显示效果
+
+### 电脑网页版
+
+![电脑版](https://271374667.github.io/picx-images-hosting/image-20250704112531428.9o02gn5kp8.webp)
+
+### 移动端
+
+![移动端](https://271374667.github.io/picx-images-hosting/image-20250704112733193.4qrlmsrswe.webp)
+
 ## 🎨 高级特性
 
 ### 🎯 **链式调用支持**
