@@ -17,10 +17,18 @@ if TYPE_CHECKING:
         TextWidget,
         TableWidget,
         ChartWidget,
+        QuoteWidget,
+        CircularProgressWidget,
+        LogWidget,
+    )
+    from email_widget.core.enums import (
         TextType,
+        TextAlign,
         AlertType,
         LayoutType,
         ProgressTheme,
+        StatusType,
+        LogLevel,
     )
 
 
@@ -244,56 +252,53 @@ class Email:
 
     # ===== 便捷构造方法 =====
 
-    def add_title(self, text: str, text_type: "TextType" = None) -> "Email":
-        """快速添加标题Widget。
-
-        Args:
-            text: 标题文本
-            text_type: 文本类型，默认为TITLE_LARGE
-
-        Returns:
-            返回self以支持链式调用
-
-        Examples:
-            >>> email = Email()
-            >>> email.add_title("每日数据报告")
-            >>> # 或指定类型
-            >>> email.add_title("小节标题", TextType.SECTION_H2)
-        """
-        from email_widget.core.enums import TextType
-        from email_widget.widgets.text_widget import TextWidget
-
-        if text_type is None:
-            text_type = TextType.TITLE_LARGE
-
-        widget = TextWidget().set_content(text).set_type(text_type)
-        return self.add_widget(widget)
-
-    def add_text(self, content: str, **kwargs) -> "Email":
+    def add_text(
+        self,
+        content: str,
+        text_type: "TextType" = None,
+        color: Optional[str] = None,
+        font_size: Optional[str] = None,
+        align: "TextAlign" = None,
+        font_weight: Optional[str] = None,
+    ) -> "Email":
         """快速添加文本Widget。
 
         Args:
             content: 文本内容
-            **kwargs: 其他文本属性，如 color, font_size, align 等
+            text_type: 文本类型，默认为TextType.BODY
+            color: 文本颜色，如"#ff0000"
+            font_size: 字体大小，如"18px"
+            align: 文本对齐方式
+            font_weight: 字体粗细，如"bold"
 
         Returns:
             返回self以支持链式调用
 
         Examples:
             >>> email = Email()
+            >>> # 普通正文
             >>> email.add_text("这是一段普通文本")
+            >>> # 大标题
+            >>> email.add_text("重要标题", TextType.TITLE_LARGE)
             >>> # 带样式的文本
             >>> email.add_text("重要提示", color="#ff0000", font_size="18px")
         """
+        from email_widget.core.enums import TextType, TextAlign
         from email_widget.widgets.text_widget import TextWidget
 
-        widget = TextWidget().set_content(content)
+        if text_type is None:
+            text_type = TextType.BODY
 
-        # 应用额外的样式参数
-        for key, value in kwargs.items():
-            method_name = f"set_{key}"
-            if hasattr(widget, method_name):
-                getattr(widget, method_name)(value)
+        widget = TextWidget().set_content(content).set_type(text_type)
+
+        if color is not None:
+            widget.set_color(color)
+        if font_size is not None:
+            widget.set_font_size(font_size)
+        if align is not None:
+            widget.set_align(align)
+        if font_weight is not None:
+            widget.set_font_weight(font_weight)
 
         return self.add_widget(widget)
 
@@ -302,7 +307,10 @@ class Email:
         data: List[List[str]],
         headers: Optional[List[str]] = None,
         title: Optional[str] = None,
-        **kwargs,
+        show_index: bool = False,
+        striped: bool = True,
+        bordered: bool = True,
+        hoverable: bool = True,
     ) -> "Email":
         """快速添加表格Widget。
 
@@ -310,7 +318,10 @@ class Email:
             data: 表格数据，二维列表
             headers: 表头列表，可选
             title: 表格标题，可选
-            **kwargs: 其他表格属性
+            show_index: 是否显示行索引
+            striped: 是否使用条纹样式
+            bordered: 是否显示边框
+            hoverable: 是否支持悬停效果
 
         Returns:
             返回self以支持链式调用
@@ -333,23 +344,31 @@ class Email:
         for row in data:
             widget.add_row(row)
 
-        # 应用额外的样式参数
-        for key, value in kwargs.items():
-            method_name = f"set_{key}"
-            if hasattr(widget, method_name):
-                getattr(widget, method_name)(value)
+        widget.show_index(show_index)
+        widget.set_striped(striped)
+        widget.set_bordered(bordered)
+        widget.set_hover_effect(hoverable)
 
         return self.add_widget(widget)
 
     def add_table_from_df(
-        self, df: "pd.DataFrame", title: Optional[str] = None, **kwargs
+        self,
+        df: "pd.DataFrame",
+        title: Optional[str] = None,
+        show_index: bool = False,
+        striped: bool = True,
+        bordered: bool = True,
+        hoverable: bool = True,
     ) -> "Email":
         """快速添加来自DataFrame的表格Widget。
 
         Args:
             df: pandas DataFrame对象
             title: 表格标题，可选
-            **kwargs: 其他表格属性
+            show_index: 是否显示行索引
+            striped: 是否使用条纹样式
+            bordered: 是否显示边框
+            hoverable: 是否支持悬停效果
 
         Returns:
             返回self以支持链式调用
@@ -372,12 +391,10 @@ class Email:
             widget.set_title(title)
 
         widget.set_dataframe(df)
-
-        # 应用额外的样式参数
-        for key, value in kwargs.items():
-            method_name = f"set_{key}"
-            if hasattr(widget, method_name):
-                getattr(widget, method_name)(value)
+        widget.show_index(show_index)
+        widget.set_striped(striped)
+        widget.set_bordered(bordered)
+        widget.set_hover_effect(hoverable)
 
         return self.add_widget(widget)
 
@@ -418,6 +435,7 @@ class Email:
         label: Optional[str] = None,
         max_value: float = 100.0,
         theme: "ProgressTheme" = None,
+        show_percentage: bool = True,
     ) -> "Email":
         """快速添加进度条Widget。
 
@@ -426,6 +444,7 @@ class Email:
             label: 进度条标签，可选
             max_value: 最大值，默认100
             theme: 主题，默认为PRIMARY
+            show_percentage: 是否显示百分比
 
         Returns:
             返回self以支持链式调用
@@ -442,7 +461,11 @@ class Email:
             theme = ProgressTheme.PRIMARY
 
         widget = (
-            ProgressWidget().set_value(value).set_max_value(max_value).set_theme(theme)
+            ProgressWidget()
+            .set_value(value)
+            .set_max_value(max_value)
+            .set_theme(theme)
+            .show_percentage(show_percentage)
         )
 
         if label:
@@ -455,7 +478,7 @@ class Email:
         title: str,
         content: str,
         icon: Optional[str] = None,
-        metadata: Optional[dict[str, str]] = None,
+        metadata: Optional[Dict[str, str]] = None,
     ) -> "Email":
         """快速添加卡片Widget。
 
@@ -574,6 +597,136 @@ class Email:
                     status = getattr(StatusType, status_str)
 
             widget.add_status_item(item["label"], item["value"], status)
+
+        return self.add_widget(widget)
+
+    def add_quote(
+        self,
+        content: str,
+        author: Optional[str] = None,
+        source: Optional[str] = None,
+        quote_type: "StatusType" = None,
+    ) -> "Email":
+        """快速添加引用Widget。
+
+        Args:
+            content: 引用内容
+            author: 作者，可选
+            source: 来源，可选  
+            quote_type: 引用类型，默认为INFO
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> email.add_quote("成功不是终点，失败不是致命的", "丘吉尔")
+            >>> email.add_quote("数据是新时代的石油", source="《经济学人》")
+        """
+        from email_widget.core.enums import StatusType
+        from email_widget.widgets.quote_widget import QuoteWidget
+
+        if quote_type is None:
+            quote_type = StatusType.INFO
+
+        widget = QuoteWidget().set_content(content).set_quote_type(quote_type)
+
+        if author:
+            widget.set_author(author)
+        if source:
+            widget.set_source(source)
+
+        return self.add_widget(widget)
+
+    def add_circular_progress(
+        self,
+        value: float,
+        max_value: float = 100.0,
+        label: Optional[str] = None,
+        theme: "ProgressTheme" = None,
+        size: str = "100px",
+    ) -> "Email":
+        """快速添加圆形进度条Widget。
+
+        Args:
+            value: 当前进度值
+            max_value: 最大值，默认100
+            label: 进度条标签，可选
+            theme: 主题，默认为PRIMARY
+            size: 圆形大小，默认"100px"
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> email.add_circular_progress(85, label="整体完成度")
+            >>> email.add_circular_progress(100, theme=ProgressTheme.SUCCESS, size="120px")
+        """
+        from email_widget.core.enums import ProgressTheme
+        from email_widget.widgets.circular_progress_widget import CircularProgressWidget
+
+        if theme is None:
+            theme = ProgressTheme.PRIMARY
+
+        widget = (
+            CircularProgressWidget()
+            .set_value(value)
+            .set_max_value(max_value)
+            .set_theme(theme)
+            .set_size(size)
+        )
+
+        if label:
+            widget.set_label(label)
+
+        return self.add_widget(widget)
+
+    def add_log(
+        self,
+        logs: List[str],
+        title: Optional[str] = None,
+        show_timestamp: bool = True,
+        show_level: bool = True,
+        filter_level: "LogLevel" = None,
+        max_height: str = "400px",
+    ) -> "Email":
+        """快速添加日志Widget。
+
+        Args:
+            logs: 日志列表
+            title: 日志标题，可选
+            show_timestamp: 是否显示时间戳
+            show_level: 是否显示日志级别
+            filter_level: 过滤级别，可选
+            max_height: 最大高度，默认"400px"
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> logs = [
+            ...     "2024-01-01 10:00:00.000 | INFO | main:process:10 - 任务开始",
+            ...     "2024-01-01 10:00:01.000 | WARNING | main:check:20 - 发现异常数据",
+            ...     "2024-01-01 10:00:02.000 | INFO | main:finish:30 - 任务完成"
+            ... ]
+            >>> email.add_log(logs, "执行日志")
+        """
+        from email_widget.widgets.log_widget import LogWidget
+
+        widget = (
+            LogWidget()
+            .set_logs(logs)
+            .show_timestamp(show_timestamp)
+            .show_level(show_level)
+            .set_max_height(max_height)
+        )
+
+        if title:
+            widget.set_title(title)
+        if filter_level:
+            widget.filter_by_level(filter_level)
 
         return self.add_widget(widget)
 
@@ -752,7 +905,7 @@ class Email:
             self._logger.error(f"渲染邮件失败: {e}")
             return f"<html><body><h1>渲染错误</h1><p>{str(e)}</p></body></html>"
 
-    def _get_template_context(self, widget_content: str) -> dict:
+    def _get_template_context(self, widget_content: str) -> Dict[str, str]:
         """获取模板上下文数据。
 
         Args:
