@@ -1,6 +1,6 @@
-# EmailWidget - 强大的邮件组件库
-
 <div align="center">
+
+<h1>EmailWidget - 强大的邮件组件库</h1>
 
 **🚀 一个现代化、易用的 Python 邮件组件库，让你轻松创建美观的 HTML 邮件报告**
 
@@ -102,13 +102,13 @@ file_path = email.export_html("daily_report.html")
 print(f"🎉 报告已生成: {file_path}")
 ```
 
-![image-20250702215545140](./README.assets/image-20250702215545140.png)
+[![image-20250702215545140](./README.assets/image-20250702215545140.png)](https://271374667.github.io/picx-images-hosting/image-20250702215545140.6wr07lwngk.webp)
 
 ## 🔧 组件展示
 
 下面为目前所有可用控件的展示(部分功能可能未能及时更新，如果出现错误或者不一致的情况请以文档为准)
 
-![image-20250702215350732](./README.assets/image-20250702215350732.png)
+[![image-20250702215350732](./README.assets/image-20250702215350732.png)](https://271374667.github.io/picx-images-hosting/image-20250702215350732.2rvevhzhdv.webp)
 
 ## 🎨 高级特性
 
