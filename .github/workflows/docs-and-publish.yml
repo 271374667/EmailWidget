@@ -3,8 +3,6 @@ name: 📚 Build Docs & 📦 Publish Package
 on:
   # 当推送到 master 分支时触发测试
   push:
-    branches:
-      - master
     tags:
       - 'v*'
   
