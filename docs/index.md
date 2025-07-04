@@ -1,44 +1,6 @@
 # EmailWidget - 强大的邮件组件库
 
-<div align="center">
-
-![EmailWidget Logo](https://via.placeholder.com/400x200/FF69B4/FFFFFF?text=EmailWidget+v1.0.0)
-
-**一个现代化、易用的Python邮件组件库**
-
-[![PyPI version](https://badge.fury.io/py/EmailWidget.svg)](https://badge.fury.io/py/EmailWidget)
-[![Python versions](https://img.shields.io/pypi/pyversions/EmailWidget.svg)](https://pypi.org/project/EmailWidget/)
-[![License](https://img.shields.io/github/license/271374667/SpiderDaily.svg)](https://github.com/271374667/SpiderDaily/blob/master/LICENSE)
-[![Codecov](https://codecov.io/gh/username/EmailWidget/branch/main/graph/badge.svg)](https://codecov.io/gh/username/EmailWidget)
-
-</div>
-
----
-
-## ✨ 项目概览
-
-!!! tip "为什么选择 EmailWidget？"
-    
-    EmailWidget 是专为Python开发者设计的邮件组件库，让你轻松创建美观、专业的HTML邮件报告而不需要掌握任何额外的前端知识。
-
-### "🎨 丰富组件"
-
-12个专业组件，满足各种邮件报告需求：
-
-- 📝 **TextWidget** - 8种文本样式，自动章节编号
-- 📊 **TableWidget** - DataFrame集成，状态单元格  
-- 📈 **ChartWidget** - matplotlib/seaborn原生支持
-- 📊 **ProgressWidget** - 5种主题，动态进度显示
-- ⭕ **CircularProgressWidget** - 圆形进度条，多种尺寸
-- 🎴 **CardWidget** - 信息卡片，图标和元数据支持
-- ⚠️ **AlertWidget** - 5种警告类型，自定义图标
-- 🖼️ **ImageWidget** - 多源支持，尺寸控制
-- 💬 **QuoteWidget** - 引用样式，作者信息
-- 📊 **StatusWidget** - 状态管理，布局控制
-- 📑 **ColumnWidget** - 响应式多列布局
-- 📋 **LogWidget** - 日志级别，语法高亮
-
-### "🚀 快速开始"
+## "🚀 快速开始"
 
 **30秒创建专业报告**：
 
@@ -76,9 +38,7 @@ email.export_html("report.html")
 ### 📦 安装
 
 ```bash
-pip install email-widget
-# 或者安装完整版(包含pandas)
-pip install email-widget[pandas]
+pip install EmailWidget
 ```
 
 ### 🎯 第一个邮件报告
@@ -399,34 +359,36 @@ print(f"📧 报告已生成: {file_path}")
 
 ### 参与贡献
 
+推荐使用 uv 作为项目管理和开发的包管理工具
+
 ```bash
 # 1. 克隆项目
-git clone https://github.com/271374667/SpiderDaily.git
+git clone https://github.com/271374667/EmailWidget.git
 
 # 2. 安装开发环境
-pip install -e ".[dev]"
+uv sync
 
 # 3. 运行测试
-pytest tests/
+uv run pytest
 
 # 4. 提交更改
-git commit -m "feat: 添加新功能"
+git commit -m "Feature: 添加新功能"
 ```
 
 ### 社交媒体
 
-- **GitHub**: [271374667/SpiderDaily](https://github.com/271374667/SpiderDaily)
+- **GitHub**: [271374667/SpiderDaily](https://github.com/271374667/EmailWidget)
 - **Bilibili**: [Python调包侠](https://space.bilibili.com/282527875)
 - **Email**: 271374667@qq.com
 
 ## 📄 许可证
 
-本项目采用 [MIT License](https://github.com/271374667/SpiderDaily/blob/master/LICENSE) 开源协议。
+本项目采用 [MIT License](https://github.com/271374667/EmailWidget/blob/master/LICENSE) 开源协议。
 
 ---
 
 <div align="center">
     <p>⭐ **如果这个项目对你有帮助，请给我们一个星标！** ⭐</p>
     <p>Made with ❤️ by <a href="https://github.com/271374667">Python调包侠</a></p>
-    <p><a href="https://space.bilibili.com/282527875">📺 观看视频教程</a> • <a href="https://271374667.github.io/SpiderDaily/">📖 查看完整文档</a></p>
+    <p><a href="https://space.bilibili.com/282527875">📺 观看视频教程</a> • <a href="https://271374667.github.io/EmailWidget/">📖 查看完整文档</a></p>
 </div> 
