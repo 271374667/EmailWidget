@@ -938,37 +938,10 @@
 
 <h1 id="_1">🚀 快速开始<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h1>
 <p>欢迎使用 EmailWidget！这个部分将帮助你在几分钟内上手使用EmailWidget创建你的第一个专业邮件报告。</p>
-<h2 id="_2">📋 学习路径<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h2>
-<div class="grid cards">
-<ul>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> <strong><a href="installation/">安装配置</a></strong></li>
-</ul>
-<hr />
-<p>安装EmailWidget并验证环境配置</p>
-<p><strong>时间</strong>: 2分钟 • <strong>难度</strong>: ⭐</p>
-<ul>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 5.5H9c-1.1 0-2 .9-2 2v9a2 2 0 0 0 2 2h13c1.11 0 2-.89 2-2v-9a2 2 0 0 0-2-2m0 3.67-6.5 3.33L9 9.17V7.5l6.5 3.31L22 7.5zM5 16.5c0 .17.03.33.05.5H1c-.552 0-1-.45-1-1s.448-1 1-1h4zM3 7h2.05c-.02.17-.05.33-.05.5V9H3c-.55 0-1-.45-1-1s.45-1 1-1m-2 5c0-.55.45-1 1-1h3v2H2c-.55 0-1-.45-1-1"/></svg></span> <strong><a href="first-email/">第一个邮件</a></strong></li>
-</ul>
-<hr />
-<p>创建你的第一个邮件报告</p>
-<p><strong>时间</strong>: 5分钟 • <strong>难度</strong>: ⭐⭐</p>
-<ul>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 12h7v1.5h-7m0-4h7V11h-7m0 3.5h7V16h-7m8-12H3a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 15h-9V6h9"/></svg></span> <strong><a href="concepts/">基本概念</a></strong></li>
-</ul>
-<hr />
-<p>理解EmailWidget的核心概念</p>
-<p><strong>时间</strong>: 10分钟 • <strong>难度</strong>: ⭐⭐</p>
-<ul>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong><a href="faq/">常见问题</a></strong></li>
-</ul>
-<hr />
-<p>解决使用过程中的常见问题</p>
-<p><strong>时间</strong>: 按需查阅 • <strong>难度</strong>: ⭐</p>
-</div>
 <h2 id="30">⚡ 30秒体验<a class="headerlink" href="#30" title="Anchor link to this section">&para;</a></h2>
 <p>如果你想立即体验EmailWidget的强大功能，这里有一个最简单的例子：</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">TextWidget</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建邮件</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;我的第一份报告&quot;</span><span class="p">)</span>
@@ -985,52 +958,194 @@
 <a id="__codelineno-0-16" name="__codelineno-0-16"></a><a href="#__codelineno-0-16"><span class="linenos" data-linenos="16 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;报告已生成: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>运行这个代码，你将得到一个美观的HTML邮件文件！</p>
-<h2 id="_3">🎯 学习目标<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h2>
-<p>通过快速开始部分的学习，你将能够：</p>
-<ul>
-<li>✅ <strong>安装和配置</strong> EmailWidget环境</li>
-<li>✅ <strong>创建基础邮件</strong> 包含文本、表格等内容</li>
-<li>✅ <strong>理解核心概念</strong> Widget、Email类、配置系统</li>
-<li>✅ <strong>导出和使用</strong> 生成的HTML邮件文件</li>
-<li>✅ <strong>解决常见问题</strong> 字体、图表、兼容性等</li>
-</ul>
-<h2 id="_4">🛠️ 准备工作<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h2>
-<p>在开始之前，请确保你的环境满足以下要求：</p>
-<div class="admonition info">
-<p class="admonition-title">前置条件</p>
-<ul>
-<li><strong>Python 3.10+</strong> - 检查版本: <code>python --version</code></li>
-<li><strong>pip</strong> - Python包管理器</li>
-<li><strong>基础Python知识</strong> - 了解类、方法调用等概念</li>
-<li><strong>文本编辑器</strong> - VS Code、PyCharm等</li>
-</ul>
-</div>
-<h2 id="_5">📖 相关资源<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h2>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的第一份报告</title>
+
+        <style>
+            body {
+                margin: 0;
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            }
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-body {
+                padding: 24px;
+            }
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+            .email-container {
+                width: 100%;
+                max-width: 800px;
+                min-width: 320px;
+            }
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+            .email-container {
+                width: 600px !important;
+            }
+            .responsive-table {
+                display: table !important;
+            }
+        </style>
+        <![endif]-->
+
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>我的第一份报告</h1>
+            <div class="timestamp">生成时间: 2025年07月04日 10:00:48</div>
+        </div>
+
+        <div class="email-body">
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 28px; text-align: center; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 24px 0 16px 0">欢迎使用 EmailWidget! 🎉</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+
+        </div>
+
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<h2 id="_2">📖 相关资源<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h2>
 <p>除了快速开始，你可能还对这些内容感兴趣：</p>
-<h3 id="_6">📚 深入学习<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h3>
+<h3 id="_3">📚 深入学习<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h3>
 <ul>
 <li><a href="../user-guide/">用户指南</a> - 详细的组件使用教程</li>
 <li><a href="../api/">API参考</a> - 完整的API文档</li>
 <li><a href="../examples/">示例代码</a> - 实际应用场景</li>
 </ul>
-<h3 id="_7">🤝 获取帮助<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h3>
+<h3 id="_4">🤝 获取帮助<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h3>
 <ul>
 <li><a href="https://github.com/271374667/SpiderDaily/issues">GitHub Issues</a> - 问题反馈</li>
 <li><a href="https://github.com/271374667/SpiderDaily/discussions">GitHub Discussions</a> - 社区讨论</li>
 <li><a href="https://space.bilibili.com/282527875">Bilibili视频</a> - 视频教程</li>
 </ul>
-<h3 id="_8">🔧 开发相关<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h3>
+<h3 id="_5">🔧 开发相关<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h3>
 <ul>
 <li><a href="../development/">开发指南</a> - 参与项目开发</li>
 <li><a href="../development/contributing/">贡献代码</a> - 贡献代码指南</li>
 </ul>
-<h2 id="_9">🚦 开始学习<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h2>
-<p>准备好了吗？让我们从<a href="installation/">安装配置</a>开始你的EmailWidget之旅！</p>
-<hr />
-<div class="admonition tip">
-<p class="admonition-title">💡 小贴士</p>
-<p>建议按照顺序学习各个章节，每个章节的知识都会在后续章节中用到。如果遇到问题，可以随时查阅<a href="faq/">常见问题</a>部分。 </p>
-</div>
 
 
 
