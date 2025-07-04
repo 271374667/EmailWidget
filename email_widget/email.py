@@ -742,7 +742,8 @@ class Email:
         font_family = self.config.get_font_family()
         max_width = self.config.get_max_width()
 
-        return f"""
+        # 主要CSS样式
+        main_styles = f"""
         <style>
             body {{
                 margin: 0;
@@ -752,7 +753,7 @@ class Email:
                 color: #323130;
                 background-color: #faf9f8;
             }}
-            
+
             .email-container {{
                 max-width: {max_width};
                 margin: 0 auto;
@@ -761,37 +762,37 @@ class Email:
                 border-radius: 8px;
                 overflow: hidden;
             }}
-            
+
             .email-header {{
                 background: {primary_color};
                 color: #ffffff;
                 padding: 24px;
                 text-align: center;
             }}
-            
+
             .email-header h1 {{
                 margin: 0;
                 font-size: 24px;
                 font-weight: 600;
             }}
-            
+
             .email-header .timestamp {{
                 margin-top: 8px;
                 font-size: 14px;
                 opacity: 0.9;
             }}
-            
+
             .email-header .subtitle {{
                 margin-top: 8px;
                 font-size: 16px;
                 opacity: 0.95;
                 font-weight: 400;
             }}
-            
+
             .email-body {{
                 padding: 24px;
             }}
-            
+
             .email-footer {{
                 background: #f3f2f1;
                 padding: 16px 24px;
@@ -800,7 +801,7 @@ class Email:
                 color: #605e5c;
                 border-top: 1px solid #e1dfdd;
             }}
-            
+
             /* 通用样式 */
             .fluent-card {{
                 background: #ffffff;
@@ -809,21 +810,21 @@ class Email:
                 margin: 16px 0;
                 overflow: hidden;
             }}
-            
+
             .fluent-card-elevated {{
                 border: 1px solid #d2d0ce;
                 box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
             }}
-            
+
             /* 响应式设计 - 使用邮件客户端兼容的方式 */
-            
+
             /* 通用响应式样式 */
             .email-container {{
                 width: 100%;
                 max-width: {max_width};
                 min-width: 320px;
             }}
-            
+
             /* 表格响应式样式 */
             .responsive-table {{
                 width: 100%;
@@ -832,13 +833,13 @@ class Email:
                 display: block;
                 white-space: nowrap;
             }}
-            
+
             .responsive-table table {{
                 width: 100%;
                 min-width: 400px;
                 border-collapse: collapse;
             }}
-            
+
             /* 图片响应式样式 */
             .responsive-image {{
                 width: 100%;
@@ -846,7 +847,7 @@ class Email:
                 height: auto;
                 display: block;
             }}
-            
+
             /* 内容区域响应式 */
             .responsive-content {{
                 width: 100%;
@@ -854,26 +855,31 @@ class Email:
                 box-sizing: border-box;
                 padding: 16px;
             }}
-            
+
             /* 移动端优化的文字大小 */
             .mobile-text {{
                 font-size: 14px;
                 line-height: 1.4;
             }}
-            
-            /* MSO条件注释样式 - 针对Outlook */
-            <!--[if mso]>
-            <style type="text/css">
-                .email-container {{
-                    width: 600px !important;
-                }}
-                .responsive-table {{
-                    display: table !important;
-                }}
-            </style>
-            <![endif]-->
+        </style>"""
+
+        # MSO条件注释样式 - 单独处理
+        mso_styles = """
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+            .email-container {
+                width: 600px !important;
+            }
+            .responsive-table {
+                display: table !important;
+            }
         </style>
+        <![endif]-->
         """
+
+        return main_styles + mso_styles
+
 
     def _render_email(self) -> str:
         """渲染完整的邮件HTML内容。
