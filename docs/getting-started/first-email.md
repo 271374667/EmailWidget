@@ -32,7 +32,7 @@ print(f"邮件已生成: {file_path}")
 
 运行这个代码，你会在当前目录下看到一个名为 `first_email.html` 的文件。用浏览器打开它，你将看到一个美观的邮件页面！
 
---8<-- "assets/getting_started/first_email/demo1.html"
+![image-20250704114446832](./first-email.assets/image-20250704114446832.png)
 
 !!! success "🎉 恭喜！"
     你已经成功创建了第一个EmailWidget邮件！
@@ -86,7 +86,7 @@ file_path = email.export_html("sales_report.html")
 print(f"销售报告已生成: {file_path}")
 ```
 
---8<-- "assets/getting_started/first_email/demo2.html"
+![image-20250704114504459](./first-email.assets/image-20250704114504459.png)
 
 ## 发送到邮箱
 
