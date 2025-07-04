@@ -23,7 +23,7 @@
 
 === "升级到最新版"
     ```bash
-    pip install --upgrade EmailWidget
+    pip install EmailWidget -U
     ```
 
 ### 🔧 从源码安装
@@ -32,8 +32,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/271374667/SpiderDaily.git
-cd SpiderDaily
+git clone https://github.com/271374667/EmailWidget.git
+cd EmailWidget
 
 # 安装开发依赖
 pip install -e ".[dev]"
@@ -66,7 +66,7 @@ print(f"EmailWidget 版本: {email_widget.__version__}")
 ```python
 from email_widget import Email
 from email_widget.widgets import TextWidget
-from email_widget.enums import TextType
+from email_widget.core.enums import TextType
 
 # 创建测试邮件
 email = Email("安装测试")
@@ -77,7 +77,7 @@ email.add_widget(
 )
 
 # 导出测试文件
-file_path = email.export("installation_test.html")
+file_path = email.export_html("installation_test.html")
 print(f"测试文件已生成: {file_path}")
 ```
 
@@ -87,18 +87,10 @@ EmailWidget 的一些功能需要额外的依赖包：
 
 ### 📊 图表功能
 
-如果你需要使用图表组件：
+如果你需要使用图表组件(这一部分的内容按需安装，默认不会自带)：
 
 ```bash
 pip install matplotlib seaborn
-```
-
-### 📧 邮件发送（计划中）
-
-未来版本将支持直接发送邮件：
-
-```bash
-pip install redmail  # 即将支持
 ```
 
 ## 常见问题
@@ -158,7 +150,7 @@ email.add_widget(TextWidget().set_content("在 Jupyter 中使用 EmailWidget"))
 
 # 预览 HTML（在 Jupyter 中直接显示）
 from IPython.display import HTML
-HTML(email.export_html())
+HTML(email.export_str())
 ```
 
 ## 下一步
