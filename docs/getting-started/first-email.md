@@ -14,10 +14,8 @@
 让我们从最简单的例子开始：
 
 ```python
-from email_widget import Email, TextWidget
-from email_widget.core.enums import TextType
+from email_widget import Email, TextWidget, TextType
 
-# 创建邮件对象
 email = Email("我的第一份报告")
 
 # 添加欢迎文本
@@ -33,6 +31,8 @@ print(f"邮件已生成: {file_path}")
 ```
 
 运行这个代码，你会在当前目录下看到一个名为 `first_email.html` 的文件。用浏览器打开它，你将看到一个美观的邮件页面！
+
+--8<-- "assets/getting_started/first_email/demo1.html"
 
 !!! success "🎉 恭喜！"
     你已经成功创建了第一个EmailWidget邮件！
@@ -86,14 +86,7 @@ file_path = email.export_html("sales_report.html")
 print(f"销售报告已生成: {file_path}")
 ```
 
-## 🔍 查看结果
-
-每次运行代码后，生成的HTML文件都可以：
-
-1. **用浏览器打开** - 直接双击HTML文件
-2. **嵌入网页** - 复制HTML代码到网页中
-3. **作为邮件内容** - 复制HTML用于邮件客户端
-4. **打印或保存** - 浏览器支持打印和保存为PDF
+--8<-- "assets/getting_started/first_email/demo2.html"
 
 ## 发送到邮箱
 
@@ -158,6 +151,13 @@ smtp.sendmail("你的邮箱@qq.com", "你的邮箱@qq.com", msg.as_string())
 smtp.quit()
 ```
 
+运行完毕之后查看邮箱即可发现邮件已经被成功发送了
+
+![image-20250704112531428](./first-email.assets/image-20250704112531428.png)
+
+同时在手机端查看也能看到漂亮的报告
+
+![image-20250704112733193](./first-email.assets/image-20250704112733193.png)
 
 ## 🚀 下一步
 
