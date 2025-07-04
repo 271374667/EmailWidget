@@ -106,23 +106,43 @@ file_path = email.export_html("daily_report.html")
 print(f"🎉 报告已生成: {file_path}")
 ```
 
+<details>
+<summary>🎨 点击查看生成效果</summary>
+
 [![image-20250702215545140](./README.assets/image-20250702215545140.png)](https://271374667.github.io/picx-images-hosting/image-20250702215545140.6wr07lwngk.webp)
+
+</details>
 
 ## 🔧 组件展示
 
 下面为目前所有可用控件的展示(部分功能可能未能及时更新，如果出现错误或者不一致的情况请以文档为准)
 
+<details>
+<summary>🎨 点击查看组件效果预览</summary>
+
 [![image-20250702215350732](./README.assets/image-20250702215350732.png)](https://271374667.github.io/picx-images-hosting/image-20250702215350732.2rvevhzhdv.webp)
+
+</details>
 
 ## 邮箱内实际显示效果
 
 ### 电脑网页版
 
+<details>
+<summary>🎨 点击查看电脑端报告</summary>
+
 ![电脑版](https://271374667.github.io/picx-images-hosting/image-20250704112531428.9o02gn5kp8.webp)
+
+</details>
 
 ### 移动端
 
+<details>
+<summary>🎨 点击查看手机端报告</summary>
+
 ![移动端](https://271374667.github.io/picx-images-hosting/image-20250704112733193.4qrlmsrswe.webp)
+
+</details>
 
 ## 🎨 高级特性
 
