@@ -142,3 +142,8 @@ ensure_newline_before_comments = true
 [tool.bandit]
 exclude_dirs = ["tests", "demo"]
 skips = ["B101", "B601"]
+
+[dependency-groups]
+dev = [
+    "notebook>=7.4.4",
+]

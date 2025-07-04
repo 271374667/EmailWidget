@@ -56,9 +56,9 @@ from email_widget.core.validators import (
 
 
 # 版本信息
-__version__ = "1.0.0"
-__author__ = "EmailWidget Team"
-__email__ = "support@emailwidget.com"
+__version__ = "0.1.11"
+__author__ = "PythonImporter"
+__email__ = "271374667@qq.com"
 
 # 导出所有公共接口
 __all__ = [
