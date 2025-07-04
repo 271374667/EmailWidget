@@ -2,7 +2,13 @@
 
 ## "🚀 快速开始"
 
-**30秒创建专业报告**：
+### 📦 安装
+
+```bash
+pip install EmailWidget
+```
+
+### 30秒创建专业报告
 
 ```python
 from email_widget import Email, TextWidget, ProgressWidget
@@ -32,76 +38,6 @@ email.export_html("report.html")
 
 --8<-- "assets/index_html/demo1.html"
 
-
-## 🏃‍♂️ 快速开始
-
-### 📦 安装
-
-```bash
-pip install EmailWidget
-```
-
-### 🎯 第一个邮件报告
-
-EmailWidget 兼容 pandas 的表格和 matplotlib/seaborn 的图表，并且会自动对其进行美化
-
-```python
-from email_widget import Email
-from email_widget.widgets import TextWidget, TableWidget, ChartWidget, AlertWidget
-from email_widget.core.enums import TextType, AlertType
-import matplotlib.pyplot as plt
-import pandas as pd
-
-# 创建邮件对象
-email = Email("📈 数据分析日报")
-email.set_subtitle("2024年第一季度数据汇总")
-email.set_footer("本报告由数据团队自动生成")
-
-# 1. 添加标题
-email.add_widget(
-    TextWidget()
-    .set_content("销售业绩概览")
-    .set_type(TextType.TITLE_LARGE)
-)
-
-# 2. 添加数据表格
-df = pd.DataFrame({
-    '产品': ['iPhone', 'iPad', 'MacBook'],
-    '销量': [1200, 800, 600],
-    '收入': [120000, 64000, 120000]
-})
-
-table = TableWidget().set_title("产品销售统计")
-table.set_dataframe(df)
-email.add_widget(table)
-
-# 3. 添加图表
-fig, ax = plt.subplots(figsize=(10, 6))
-ax.bar(df['产品'], df['销量'])
-ax.set_title('产品销量对比')
-ax.set_ylabel('销量')
-
-email.add_widget(
-    ChartWidget()
-    .set_chart(plt)
-    .set_title("📊 销量趋势分析")
-    .set_description("显示各产品线的销量对比情况")
-)
-
-# 4. 添加重要提醒
-email.add_widget(
-    AlertWidget()
-    .set_content("下月将推出新产品，请提前做好市场准备。")
-    .set_alert_type(AlertType.IMPORTANT)
-    .set_title("重要通知")
-)
-
-# 5. 导出HTML文件
-file_path = email.export_html("daily_report.html")
-print(f"📧 报告已生成: {file_path}")
-```
-
---8<-- "assets/index_html/demo2.html"
 
 ## 🎪 使用场景
 
