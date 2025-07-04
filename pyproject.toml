@@ -22,7 +22,7 @@ allow-direct-references = true
 [tool.hatch.build.targets.wheel]
 packages = ["email_widget"]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "hatchling>=1.27.0",
     "loguru>=0.7.3",
@@ -38,6 +38,11 @@ dev = [
     "redmail>=0.6.0",
     "seaborn>=0.13.2",
     "ruff>=0.1.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "notebook>=7.4.4",
     "mypy>=1.7.1",
     "bandit>=1.7.5",
     "safety>=2.3.0",
@@ -142,8 +147,3 @@ ensure_newline_before_comments = true
 [tool.bandit]
 exclude_dirs = ["tests", "demo"]
 skips = ["B101", "B601"]
-
-[dependency-groups]
-dev = [
-    "notebook>=7.4.4",
-]
