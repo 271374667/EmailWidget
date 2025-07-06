@@ -21,6 +21,12 @@ Examples:
 # 核心类
 from email_widget.email import Email
 
+# 邮件发送器类
+from email_widget.email_sender import (
+    EmailSender, QQEmailSender, NetEaseEmailSender, 
+    OutlookEmailSender, GmailSender, create_email_sender
+)
+
 # 所有Widget组件
 from email_widget.widgets.text_widget import TextWidget
 from email_widget.widgets.table_widget import TableWidget, TableCell
@@ -66,6 +72,14 @@ __all__ = [
     "Email",
     "BaseWidget",
     "EmailConfig",
+    
+    # 邮件发送器
+    "EmailSender",
+    "QQEmailSender",
+    "NetEaseEmailSender", 
+    "OutlookEmailSender",
+    "GmailSender",
+    "create_email_sender",
     
     # Widget组件
     "TextWidget",
