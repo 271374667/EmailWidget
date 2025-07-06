@@ -62,7 +62,7 @@ from email_widget.core.validators import (
 
 
 # 版本信息
-__version__ = "0.2.6"
+__version__ = "0.3.1"
 __author__ = "PythonImporter"
 __email__ = "271374667@qq.com"
 
