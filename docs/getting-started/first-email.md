@@ -90,6 +90,27 @@ print(f"销售报告已生成: {file_path}")
 
 ## 发送到邮箱
 
+### 使用内置的 `EmailSender` 发送邮件(推荐)
+
+最方便的方式就是直接使用 `EmailWidget` 自带的 `EmailSender` 发送邮件，只需要选择合适的 `EmailSender`，最后调用 `send` 方法传入 `Email` 对象即可，下面是一个简单的实例
+
+```python
+from email_widget import Email, QQEmailSender
+
+email = Email("欢迎使用EmailWidget")
+
+email.add_card("Python版本", "您需要Python3.10或以上才能使用EmailWidget", metadata={"Python版本": "3.10+"})
+
+email.add_quote("EmailWidget是一个用于构建和发送HTML邮件的Python库。", "EmailWidget")
+
+# 一行代码成功发送邮件
+QQEmailSender("你的QQ邮箱", "你的QQ邮箱授权码").send(email)
+```
+
+下面是发送邮件后的实际效果，可以看到邮件已经成功发送，并且成功样式正常
+
+![image-20250706201345729](./first-email.assets/image-20250706201345729.png)
+
 ### 使用 smtplib 标准库
 
 这里使用标准库 smtplib 发送邮件，实际的开发过程中您也可以使用其他的邮件发送库，例如 redmail

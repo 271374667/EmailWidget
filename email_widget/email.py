@@ -3,7 +3,7 @@
 这个模块提供了EmailWidget库的核心功能，负责管理和渲染邮件内容。
 """
 
-from typing import List, Optional, Dict, TYPE_CHECKING
+from typing import List, Optional, Dict, TYPE_CHECKING, TypedDict
 from pathlib import Path
 import datetime
 
@@ -384,7 +384,7 @@ class Email:
 
         # 检查pandas依赖
         check_optional_dependency("pandas", "pandas")
-        
+
         widget = TableWidget()
 
         if title:
@@ -536,6 +536,7 @@ class Email:
             >>> email.add_chart_from_plt("月度销售", "显示销售趋势变化")
         """
         from email_widget.utils.optional_deps import check_optional_dependency
+
         check_optional_dependency("matplotlib")
 
         import matplotlib.pyplot as plt
@@ -554,7 +555,7 @@ class Email:
 
     def add_status_items(
         self,
-        items: List[Dict[str, str]],
+        items: list[dict[str, str]],
         title: Optional[str] = None,
         layout: "LayoutType" = None,
     ) -> "Email":
@@ -612,7 +613,7 @@ class Email:
         Args:
             content: 引用内容
             author: 作者，可选
-            source: 来源，可选  
+            source: 来源，可选
             quote_type: 引用类型，默认为INFO
 
         Returns:
@@ -879,7 +880,6 @@ class Email:
         """
 
         return main_styles + mso_styles
-
 
     def _render_email(self) -> str:
         """渲染完整的邮件HTML内容。
