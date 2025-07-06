@@ -19,9 +19,27 @@
 
 > **想发警告或者日志到邮箱，但是不会美化，样式太丑？使用 EmailWidget 来打通发送邮件的最后一步！**
 
-想要一个漂亮的邮件模版，但是不会 HTML/CSS 或者干脆懒得写？网上的模版删删改改复用困难而且不支持手机版？那么欢迎来试试 EmailWidget，可复用，响应式，完整的类型提示，全面的文档，轻量级的邮箱组件库
+想要一个漂亮的邮件模版，但是不会 HTML/CSS 或者干脆懒得写？网上的模版删删改改复用困难而且不支持移动端？那么欢迎来试试 EmailWidget，可复用，响应式，完整的类型提示，全面的文档，轻量级的邮箱组件库，祝您快速搭建自己的报告模版
 
 EmailWidget 是专为 Python 开发者设计的邮件组件库，让你用几行代码就能创建出美观的 HTML 邮件报告而不需要了解 HTML 和邮箱的 CSS 的细节。项目经过 **600+个测试用例** 验证，**核心代码 100% 测试覆盖**, 确保稳定可靠。
+
+下面的邮箱样式，只需要 **3 行代码** 就能创建，生成出来的内容就能直接当做邮件发送，接受者也能看到美观的邮件
+
+```python
+from email_widget import Email
+
+email = Email("欢迎使用EmailWidget")
+
+email.add_card("Python版本", "您需要Python3.10或以上才能使用EmailWidget", metadata={"Python版本": "3.10+"})
+
+email.add_quote("EmailWidget是一个用于构建和发送HTML邮件的Python库。", "EmailWidget")
+
+email.export_html('welcome_email.html')
+```
+
+
+
+![image-20250706200253564](./README.assets/image-20250706200253564.png)
 
 ### 🎨 丰富的组件 - 12 个直观组件
 
@@ -36,20 +54,20 @@ email.add_widget(ProgressWidget().set_value(85).set_theme(ProgressTheme.SUCCESS)
 email.add_progress(value=95, max_value=100)
 ```
 
-| 🎯 **组件类型** | 📝 **功能特色** | 🔧 **使用场景** |
-|---------------|---------------|---------------|
-| 📝 **TextWidget** | 8 种文本样式、自动编号、章节管理 | 标题、正文、说明文字 |
-| 📊 **TableWidget** | DataFrame 集成、状态单元格、彩色标记 | 数据表格、统计报表 |
-| 📈 **ChartWidget** | matplotlib/seaborn 原生支持、自动编码 | 数据可视化、趋势图 |
-| 📊 **ProgressWidget** | 5 种主题、增减操作、百分比显示 | 任务进度、完成率 |
-| ⭕ **CircularProgressWidget** | 圆形进度条、多种尺寸、动态更新 | KPI 指标、完成度 |
-| 🎴 **CardWidget** | 信息卡片、图标支持、元数据管理 | 摘要信息、状态展示 |
-| ⚠️ **AlertWidget** | 5 种警告类型、自定义图标、消息提醒 | 通知、警告、提示 |
-| 🖼️ **ImageWidget** | 多源支持、尺寸控制、描述文字 | 图片展示、Logo 显示 |
-| 💬 **QuoteWidget** | 引用样式、作者信息、来源标注 | 引言、评论、摘录 |
-| 📊 **StatusWidget** | 状态项管理、布局控制、动态更新 | 系统状态、服务监控 |
-| 📑 **ColumnWidget** | 自动/手动列、响应式布局、Widget 管理 | 多列布局、内容分组 |
-| 📋 **LogWidget** | 日志级别、语法高亮、过滤功能 | 系统日志、运行记录 |
+| 🎯 **组件类型**               | 📝 **功能特色**                        | 🔧 **使用场景**       |
+| ---------------------------- | ------------------------------------- | -------------------- |
+| 📝 **TextWidget**             | 8 种文本样式、自动编号、章节管理      | 标题、正文、说明文字 |
+| 📊 **TableWidget**            | DataFrame 集成、状态单元格、彩色标记  | 数据表格、统计报表   |
+| 📈 **ChartWidget**            | matplotlib/seaborn 原生支持、自动编码 | 数据可视化、趋势图   |
+| 📊 **ProgressWidget**         | 5 种主题、增减操作、百分比显示        | 任务进度、完成率     |
+| ⭕ **CircularProgressWidget** | 圆形进度条、多种尺寸、动态更新        | KPI 指标、完成度     |
+| 🎴 **CardWidget**             | 信息卡片、图标支持、元数据管理        | 摘要信息、状态展示   |
+| ⚠️ **AlertWidget**            | 5 种警告类型、自定义图标、消息提醒    | 通知、警告、提示     |
+| 🖼️ **ImageWidget**            | 多源支持、尺寸控制、描述文字          | 图片展示、Logo 显示  |
+| 💬 **QuoteWidget**            | 引用样式、作者信息、来源标注          | 引言、评论、摘录     |
+| 📊 **StatusWidget**           | 状态项管理、布局控制、动态更新        | 系统状态、服务监控   |
+| 📑 **ColumnWidget**           | 自动/手动列、响应式布局、Widget 管理  | 多列布局、内容分组   |
+| 📋 **LogWidget**              | 日志级别、语法高亮、过滤功能          | 系统日志、运行记录   |
 
 
 ## 🏃‍♂️ 快速开始
@@ -113,6 +131,31 @@ print(f"🎉 报告已生成: {file_path}")
 
 </details>
 
+### 快速发送
+
+EmailWidget 内置一个基础的邮件发送功能，可以通过 `EmailSender` 类快速发送邮件，目前支持 **QQ邮箱**, **网易邮箱**, **Outlook邮箱**, **Gmail邮箱**
+
+在开始使用之前需要先前往各自的邮箱获取具体的账号以及秘钥，下面是一个简单的发送邮件的例子，通过导入 QQEmailSender 然后直接进行配置账号和秘钥即可
+
+```python
+from email_widget import Email, QQEmailSender
+
+email = Email("测试邮件")
+email.add_card("测试卡片", "这是一个测试卡片的内容。")
+email.add_quote("这里是一个引用文本。", "PythonImporter")
+email.add_status_items(
+    [{"label": "状态1", "value": "完成"}, {"label": "状态2", "value": "进行中"}],
+    title="测试状态",
+)
+email.add_table_from_data(
+    [["列1", "列2"], ["数据1", "数据2"]],
+    title="测试表格",
+)
+QQEmailSender(username="你的邮箱@qq.com", password="秘钥").send(email)
+print("邮件发送成功！")
+```
+
+
 ## 🔧 组件展示
 
 下面为目前所有可用控件的展示(部分功能可能未能及时更新，如果出现错误或者不一致的情况请以文档为准)
@@ -159,13 +202,13 @@ email = (Email("项目进展报告")
 
 ## 📚 学习资源
 
-| 📖 **资源类型** | 🔗 **链接** | 📝 **内容** |
-|---------------|------------|-----------|
+| 📖 **资源类型** | 🔗 **链接**                                                                        | 📝 **内容**           |
+| -------------- | --------------------------------------------------------------------------------- | -------------------- |
 | 🚀 **快速开始** | [安装指南](https://271374667.github.io/EmailWidget/getting-started/installation/) | 环境配置、第一个邮件 |
-| 📘 **用户手册** | [组件详解](https://271374667.github.io/EmailWidget/user-guide/core-classes/) | 12 个组件完整教程 |
-| 🔧 **API 文档** | [API 参考](https://271374667.github.io/EmailWidget/api/core/) | 完整类和方法文档 |
-| 💡 **实战示例** | [应用案例](https://271374667.github.io/EmailWidget/examples/basic/) | 真实场景代码 |
-| 🛠️ **开发指南** | [贡献代码](https://271374667.github.io/EmailWidget/development/contributing/) | 参与项目开发 |
+| 📘 **用户手册** | [组件详解](https://271374667.github.io/EmailWidget/user-guide/core-classes/)      | 12 个组件完整教程    |
+| 🔧 **API 文档** | [API 参考](https://271374667.github.io/EmailWidget/api/core/)                     | 完整类和方法文档     |
+| 💡 **实战示例** | [应用案例](https://271374667.github.io/EmailWidget/examples/basic/)               | 真实场景代码         |
+| 🛠️ **开发指南** | [贡献代码](https://271374667.github.io/EmailWidget/development/contributing/)     | 参与项目开发         |
 
 ## 🤝 社区与贡献
 
