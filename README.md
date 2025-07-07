@@ -61,20 +61,20 @@ email.add_widget(ProgressWidget().set_value(85).set_theme(ProgressTheme.SUCCESS)
 email.add_progress(value=95, max_value=100)
 ```
 
-| 🎯 **组件类型**               | 📝 **功能特色**                        | 🔧 **使用场景**       |
-| ---------------------------- | ------------------------------------- | -------------------- |
-| 📝 **TextWidget**             | 8 种文本样式、自动编号、章节管理      | 标题、正文、说明文字 |
-| 📊 **TableWidget**            | DataFrame 集成、状态单元格、彩色标记  | 数据表格、统计报表   |
-| 📈 **ChartWidget**            | matplotlib/seaborn 原生支持、自动编码 | 数据可视化、趋势图   |
-| 📊 **ProgressWidget**         | 5 种主题、增减操作、百分比显示        | 任务进度、完成率     |
-| ⭕ **CircularProgressWidget** | 圆形进度条、多种尺寸、动态更新        | KPI 指标、完成度     |
-| 🎴 **CardWidget**             | 信息卡片、图标支持、元数据管理        | 摘要信息、状态展示   |
-| ⚠️ **AlertWidget**            | 5 种警告类型、自定义图标、消息提醒    | 通知、警告、提示     |
-| 🖼️ **ImageWidget**            | 多源支持、尺寸控制、描述文字          | 图片展示、Logo 显示  |
-| 💬 **QuoteWidget**            | 引用样式、作者信息、来源标注          | 引言、评论、摘录     |
-| 📊 **StatusWidget**           | 状态项管理、布局控制、动态更新        | 系统状态、服务监控   |
-| 📑 **ColumnWidget**           | 自动/手动列、响应式布局、Widget 管理  | 多列布局、内容分组   |
-| 📋 **LogWidget**              | 日志级别、语法高亮、过滤功能          | 系统日志、运行记录   |
+| 🎯 **组件类型**                  | 📝 **功能特色**                  | 🔧 **使用场景**  |
+|------------------------------|------------------------------|--------------|
+| 📝 **TextWidget**            | 8 种文本样式、自动编号、章节管理            | 标题、正文、说明文字   |
+| 📊 **TableWidget**           | DataFrame 集成、状态单元格、彩色标记      | 数据表格、统计报表    |
+| 📈 **ChartWidget**           | matplotlib/seaborn 原生支持、自动编码 | 数据可视化、趋势图    |
+| 📊 **ProgressWidget**        | 5 种主题、增减操作、百分比显示             | 任务进度、完成率     |
+| ⭕ **CircularProgressWidget** | 圆形进度条、多种尺寸、动态更新              | KPI 指标、完成度   |
+| 🎴 **CardWidget**            | 信息卡片、图标支持、元数据管理              | 摘要信息、状态展示    |
+| ⚠️ **AlertWidget**           | 5 种警告类型、自定义图标、消息提醒           | 通知、警告、提示     |
+| 🖼️ **ImageWidget**          | 多源支持、尺寸控制、描述文字               | 图片展示、Logo 显示 |
+| 💬 **QuoteWidget**           | 引用样式、作者信息、来源标注               | 引言、评论、摘录     |
+| 📊 **StatusWidget**          | 状态项管理、布局控制、动态更新              | 系统状态、服务监控    |
+| 📑 **ColumnWidget**          | 自动/手动列、响应式布局、Widget 管理       | 多列布局、内容分组    |
+| 📋 **LogWidget**             | 日志级别、语法高亮、过滤功能               | 系统日志、运行记录    |
 
 
 ## 🏃‍♂️ 快速开始
@@ -209,13 +209,13 @@ email = (Email("项目进展报告")
 
 ## 📚 学习资源
 
-| 📖 **资源类型** | 🔗 **链接**                                                                        | 📝 **内容**           |
-| -------------- | --------------------------------------------------------------------------------- | -------------------- |
-| 🚀 **快速开始** | [安装指南](https://271374667.github.io/EmailWidget/getting-started/installation/) | 环境配置、第一个邮件 |
-| 📘 **用户手册** | [组件详解](https://271374667.github.io/EmailWidget/user-guide/core-classes/)      | 12 个组件完整教程    |
-| 🔧 **API 文档** | [API 参考](https://271374667.github.io/EmailWidget/api/core/)                     | 完整类和方法文档     |
-| 💡 **实战示例** | [应用案例](https://271374667.github.io/EmailWidget/examples/basic/)               | 真实场景代码         |
-| 🛠️ **开发指南** | [贡献代码](https://271374667.github.io/EmailWidget/development/contributing/)     | 参与项目开发         |
+| 📖 **资源类型**   | 🔗 **链接**                                                                     | 📝 **内容**  |
+|---------------|-------------------------------------------------------------------------------|------------|
+| 🚀 **快速开始**   | [安装指南](https://271374667.github.io/EmailWidget/getting-started/installation/) | 环境配置、第一个邮件 |
+| 📘 **用户手册**   | [组件详解](https://271374667.github.io/EmailWidget/user-guide/core-classes/)      | 12 个组件完整教程 |
+| 🔧 **API 文档** | [API 参考](https://271374667.github.io/EmailWidget/api/core/)                   | 完整类和方法文档   |
+| 💡 **实战示例**   | [应用案例](https://271374667.github.io/EmailWidget/examples/basic/)               | 真实场景代码     |
+| 🛠️ **开发指南**  | [贡献代码](https://271374667.github.io/EmailWidget/development/contributing/)     | 参与项目开发     |
 
 ## 🤝 社区与贡献
 

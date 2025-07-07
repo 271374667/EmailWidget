@@ -1,11 +1,75 @@
 """日志Widget实现"""
 
 import re
+from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import LogLevel
+
+if TYPE_CHECKING:
+    pass
+
+
+class LogParser(ABC):
+    """日志解析器抽象基类。
+
+    这个抽象基类定义了所有日志解析器必须实现的接口。
+    每个具体的解析器都应该能够检查是否能解析特定格式的日志行，
+    并将其转换为LogEntry对象。
+
+    Examples:
+        ```python
+        class MyCustomParser(LogParser):
+            def can_parse(self, log_line: str) -> bool:
+                return "CUSTOM:" in log_line
+            
+            def parse(self, log_line: str) -> Optional[LogEntry]:
+                if self.can_parse(log_line):
+                    # 解析逻辑
+                    return LogEntry("解析后的消息", LogLevel.INFO)
+                return None
+            
+            @property
+            def parser_name(self) -> str:
+                return "CustomParser"
+        ```
+    """
+
+    @abstractmethod
+    def can_parse(self, log_line: str) -> bool:
+        """检查是否能解析该日志行。
+
+        Args:
+            log_line (str): 待检查的日志行。
+
+        Returns:
+            bool: 如果可以解析返回True，否则返回False。
+        """
+        pass
+
+    @abstractmethod
+    def parse(self, log_line: str) -> Optional["LogEntry"]:
+        """解析日志行，返回LogEntry对象。
+
+        Args:
+            log_line (str): 待解析的日志行。
+
+        Returns:
+            Optional[LogEntry]: 解析成功返回LogEntry对象，失败返回None。
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def parser_name(self) -> str:
+        """解析器名称。
+
+        Returns:
+            str: 解析器的唯一名称标识。
+        """
+        pass
 
 
 class LogEntry:
@@ -40,10 +104,10 @@ class LogEntry:
         self,
         message: str,
         level: LogLevel = LogLevel.INFO,
-        timestamp: datetime | None = None,
-        module: str | None = None,
-        function: str | None = None,
-        line_number: int | None = None,
+        timestamp: Optional[datetime] = None,
+        module: Optional[str] = None,
+        function: Optional[str] = None,
+        line_number: Optional[int] = None,
     ):
         """初始化LogEntry。
 
@@ -61,6 +125,172 @@ class LogEntry:
         self.module = module or ""
         self.function = function or ""
         self.line_number = line_number
+
+
+class LoGuruLogParser(LogParser):
+    """Loguru格式日志解析器。
+
+    解析Loguru库生成的日志格式：
+    "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started"
+    
+    这是原有LogWidget默认支持的格式。
+    """
+
+    LOG_PATTERN = re.compile(
+        r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) \| "
+        r"(DEBUG|INFO|WARNING|ERROR|CRITICAL)\s+\| "
+        r"([^:]+):([^:]+):(\d+) - (.+)"
+    )
+
+    def can_parse(self, log_line: str) -> bool:
+        """检查是否为Loguru格式的日志行"""
+        return bool(self.LOG_PATTERN.match(log_line.strip()))
+
+    def parse(self, log_line: str) -> Optional["LogEntry"]:
+        """解析Loguru格式的日志行"""
+        match = self.LOG_PATTERN.match(log_line.strip())
+        if not match:
+            return None
+
+        timestamp_str, level_str, module, function, line_num, message = match.groups()
+
+        try:
+            timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
+        except ValueError:
+            timestamp = datetime.now()
+
+        try:
+            level = LogLevel(level_str)
+        except ValueError:
+            level = LogLevel.INFO
+
+        return LogEntry(
+            message=message,
+            level=level,
+            timestamp=timestamp,
+            module=module,
+            function=function,
+            line_number=int(line_num) if line_num.isdigit() else None,
+        )
+
+    @property
+    def parser_name(self) -> str:
+        return "LoGuruLogParser"
+
+
+class StandardLoggingParser(LogParser):
+    """标准logging库格式日志解析器。
+
+    解析Python标准库logging模块生成的日志格式：
+    "WARNING:root:hello world"
+    "ERROR:my_module:Connection failed"
+    """
+
+    LOG_PATTERN = re.compile(r"(DEBUG|INFO|WARNING|ERROR|CRITICAL):([^:]*):(.+)")
+
+    def can_parse(self, log_line: str) -> bool:
+        """检查是否为标准logging格式的日志行"""
+        return bool(self.LOG_PATTERN.match(log_line.strip()))
+
+    def parse(self, log_line: str) -> Optional["LogEntry"]:
+        """解析标准logging格式的日志行"""
+        match = self.LOG_PATTERN.match(log_line.strip())
+        if not match:
+            return None
+
+        level_str, logger_name, message = match.groups()
+
+        try:
+            level = LogLevel(level_str)
+        except ValueError:
+            level = LogLevel.INFO
+
+        return LogEntry(
+            message=message,
+            level=level,
+            timestamp=datetime.now(),
+            module=logger_name if logger_name else None,
+        )
+
+    @property
+    def parser_name(self) -> str:
+        return "StandardLoggingParser"
+
+
+class TimestampLogParser(LogParser):
+    """时间戳格式日志解析器。
+
+    解析带时间戳的简单日志格式：
+    "2025-07-07 15:24:39,055 - WARNING - hello world"
+    "2025-01-15 10:30:45,123 - ERROR - Connection timeout"
+    """
+
+    LOG_PATTERN = re.compile(
+        r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}) - (DEBUG|INFO|WARNING|ERROR|CRITICAL) - (.+)"
+    )
+
+    def can_parse(self, log_line: str) -> bool:
+        """检查是否为时间戳格式的日志行"""
+        return bool(self.LOG_PATTERN.match(log_line.strip()))
+
+    def parse(self, log_line: str) -> Optional["LogEntry"]:
+        """解析时间戳格式的日志行"""
+        match = self.LOG_PATTERN.match(log_line.strip())
+        if not match:
+            return None
+
+        timestamp_str, level_str, message = match.groups()
+
+        try:
+            timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S,%f")
+        except ValueError:
+            timestamp = datetime.now()
+
+        try:
+            level = LogLevel(level_str)
+        except ValueError:
+            level = LogLevel.INFO
+
+        return LogEntry(
+            message=message,
+            level=level,
+            timestamp=timestamp,
+        )
+
+    @property
+    def parser_name(self) -> str:
+        return "TimestampLogParser"
+
+
+class PlainTextParser(LogParser):
+    """纯文本日志解析器。
+
+    这是兜底解析器，将任何文本都视为INFO级别的日志消息。
+    输出格式使用 "> 文本内容" 的形式。
+    """
+
+    def can_parse(self, log_line: str) -> bool:
+        """纯文本解析器总是返回True，作为兜底解析器"""
+        return True
+
+    def parse(self, log_line: str) -> Optional["LogEntry"]:
+        """将任何文本解析为INFO级别的日志条目"""
+        text = log_line.strip()
+        if not text:
+            return None
+
+        # 使用 "> 文本内容" 格式
+        message = f"> {text}"
+
+        return LogEntry(
+            message=message,
+            level=LogLevel.INFO,
+            timestamp=datetime.now(),
+        )
+
+    @property
+    def parser_name(self) -> str:
+        return "PlainTextParser"
 
 
 class LogWidget(BaseWidget):
@@ -136,13 +366,7 @@ class LogWidget(BaseWidget):
     {% endif %}
     """
 
-    LOG_PATTERN = re.compile(
-        r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}) \| "
-        r"(DEBUG|INFO|WARNING|ERROR|CRITICAL)\s+\| "
-        r"([^:]+):([^:]+):(\d+) - (.+)"
-    )
-
-    def __init__(self, widget_id: str | None = None):
+    def __init__(self, widget_id: Optional[str] = None):
         """初始化LogWidget。
 
         Args:
@@ -150,14 +374,22 @@ class LogWidget(BaseWidget):
         """
         super().__init__(widget_id)
         self._logs: list[LogEntry] = []
-        self._title: str | None = None
+        self._title: Optional[str] = None
         self._max_height: str = "400px"
         self._show_timestamp: bool = True
         self._show_level: bool = True
         self._show_source: bool = True
-        self._filter_level: LogLevel | None = None
+        self._filter_level: Optional[LogLevel] = None
         self._background_color: str = "#faf9f8"
         self._border_color: str = "#e1dfdd"
+        
+        # 初始化解析器链，按优先级排序
+        self._log_parsers: list[LogParser] = [
+            LoGuruLogParser(),
+            StandardLoggingParser(),
+            TimestampLogParser(),
+            PlainTextParser(),  # 兜底解析器，必须放在最后
+        ]
 
     def set_log_level(self, level: LogLevel) -> "LogWidget":
         """设置日志过滤级别。
@@ -325,10 +557,10 @@ class LogWidget(BaseWidget):
         self,
         message: str,
         level: LogLevel = LogLevel.INFO,
-        timestamp: datetime | None = None,
-        module: str | None = None,
-        function: str | None = None,
-        line_number: int | None = None,
+        timestamp: Optional[datetime] = None,
+        module: Optional[str] = None,
+        function: Optional[str] = None,
+        line_number: Optional[int] = None,
     ) -> "LogWidget":
         """手动添加一个日志条目。
 
@@ -353,32 +585,65 @@ class LogWidget(BaseWidget):
         self._logs.append(entry)
         return self
 
-    def _parse_single_log(self, log_line: str) -> LogEntry | None:
-        """解析单条loguru日志"""
-        match = self.LOG_PATTERN.match(log_line.strip())
-        if match:
-            timestamp_str, level_str, module, function, line_num, message = (
-                match.groups()
-            )
+    def add_log_parser(self, log_parser: LogParser) -> "LogWidget":
+        """添加自定义日志解析器到解析器链中。
 
+        新添加的解析器会插入到PlainTextParser之前，
+        确保PlainTextParser始终作为兜底解析器。
+
+        Args:
+            log_parser (LogParser): 要添加的日志解析器实例。
+
+        Returns:
+            LogWidget: 返回self以支持链式调用。
+
+        Examples:
+            >>> custom_parser = MyCustomLogParser()
+            >>> widget = LogWidget().add_log_parser(custom_parser)
+        """
+        # 移除PlainTextParser（如果存在）
+        plain_text_parser = None
+        for i, parser in enumerate(self._log_parsers):
+            if isinstance(parser, PlainTextParser):
+                plain_text_parser = self._log_parsers.pop(i)
+                break
+        
+        # 添加新解析器
+        self._log_parsers.append(log_parser)
+        
+        # 重新添加PlainTextParser作为兜底解析器
+        if plain_text_parser:
+            self._log_parsers.append(plain_text_parser)
+        
+        return self
+
+    def _parse_single_log(self, log_line: str) -> Optional["LogEntry"]:
+        """使用解析器链解析单条日志。
+
+        按照解析器链的顺序尝试解析日志行，
+        返回第一个成功解析的结果。
+
+        Args:
+            log_line (str): 待解析的日志行。
+
+        Returns:
+            Optional[LogEntry]: 解析成功返回LogEntry对象，失败返回None。
+        """
+        if not log_line or not log_line.strip():
+            return None
+
+        # 按顺序尝试每个解析器
+        for parser in self._log_parsers:
             try:
-                timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
-            except ValueError:
-                timestamp = datetime.now()
+                if parser.can_parse(log_line):
+                    result = parser.parse(log_line)
+                    if result is not None:
+                        return result
+            except Exception as e:
+                # 记录解析器异常，但继续尝试下一个解析器
+                self._logger.debug(f"解析器 {parser.parser_name} 解析失败: {e}")
+                continue
 
-            try:
-                level = LogLevel(level_str)
-            except ValueError:
-                level = LogLevel.INFO
-
-            return LogEntry(
-                message=message,
-                level=level,
-                timestamp=timestamp,
-                module=module,
-                function=function,
-                line_number=int(line_num) if line_num.isdigit() else None,
-            )
         return None
 
     def _get_level_color(self, level: LogLevel) -> str:
@@ -425,7 +690,7 @@ class LogWidget(BaseWidget):
         return self._logs
 
     @property
-    def title(self) -> str | None:
+    def title(self) -> Optional[str]:
         """获取日志组件的标题。
 
         Returns:
@@ -490,9 +755,14 @@ class LogWidget(BaseWidget):
             # 构建来源信息
             source = None
             if self._show_source and (log_entry.module or log_entry.function):
-                source = f"{log_entry.module}:{log_entry.function}"
+                parts = []
+                if log_entry.module:
+                    parts.append(log_entry.module)
+                if log_entry.function:
+                    parts.append(log_entry.function)
                 if log_entry.line_number:
-                    source += f":{log_entry.line_number}"
+                    parts.append(str(log_entry.line_number))
+                source = ":".join(parts) if parts else None
 
             logs_data.append(
                 {
