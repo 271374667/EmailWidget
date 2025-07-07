@@ -18,6 +18,83 @@ BaseWidget (抽象基类)
 └── ...
 ```
 
+## 🎨 模板系统
+
+### Jinja2集成
+
+EmailWidget使用Jinja2作为模板引擎：
+
+```python
+from email_widget.core.template_engine import TemplateEngine
+
+# 获取模板引擎
+engine = TemplateEngine()
+
+# 渲染模板
+template = engine.get_template("widget_template.html")
+html = template.render(context={"title": "标题", "content": "内容"})
+```
+
+### 模板结构
+
+典型的Widget模板结构：
+
+```html
+<!-- widget_template.html -->
+<div class="widget {{ widget_type }}" id="{{ widget_id }}">
+    <div class="widget-header">
+        <h3>{{ title }}</h3>
+    </div>
+    <div class="widget-content">
+        {{ content|safe }}
+    </div>
+</div>
+```
+
+### 自定义模板
+
+可以为自定义Widget创建模板：
+
+```python
+class CustomWidget(BaseWidget):
+    def __init__(self):
+        super().__init__()
+        self.template_name = "custom_widget.html"
+    
+    def get_template_context(self) -> dict:
+        return {
+            "title": self.title,
+            "custom_data": self.custom_data,
+            **super().get_template_context()
+        }
+```
+
+## 🔄 渲染流程
+
+### 渲染过程
+
+EmailWidget的渲染流程：
+
+```mermaid
+graph TD
+    A[Email.export_html()] --> B[收集所有Widget]
+    B --> C[验证Widget数据]
+    C --> D[渲染各个Widget]
+    D --> E[生成CSS样式]
+    E --> F[合并HTML模板]
+    F --> G[输出最终HTML]
+```
+
+### 性能优化
+
+EmailWidget在渲染过程中进行了多项优化：
+
+- **模板缓存** - 避免重复解析模板
+- **懒加载** - 按需加载资源
+- **HTML压缩** - 减小文件大小
+- **图片优化** - 自动压缩和编码
+
+
 ### BaseWidget 基类
 
 所有 Widget 都必须继承自 `BaseWidget`：

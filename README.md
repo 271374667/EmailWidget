@@ -14,6 +14,15 @@
 </div>
 
 ---
+## ✨ 特性
+
+- **小巧轻量**: 快速安装，无复杂依赖(小于 1MB)
+- **易于使用**: 清晰简单的 API，几行代码就能创建漂亮的邮件模板然后快速发送
+- **完整文档**: 项目拥有完整的文档和类型注解，在 IDE 中能获得全面的提示
+- **丰富组件**: 目前包含 12 个漂亮的展示组件，所有组件均符合 Fluent 风格，可在下方查看
+- **全面测试**: 核心的功能经过完整的测试，确保项目可用
+- **完全免费**: 项目使用 MIT 开源协议，您可以随意在任何商业项目中使用
+
 
 ## ✨ 为什么选择 EmailWidget？
 
@@ -37,9 +46,7 @@ email.add_quote("EmailWidget是一个用于构建和发送HTML邮件的Python库
 email.export_html('welcome_email.html')
 ```
 
-
-
-![image-20250706200253564](./README.assets/image-20250706200253564.png)
+![image-20250706200253564](https://271374667.github.io/picx-images-hosting/EmailWidget/image-20250706200253564.3k8ahgbqia.webp)
 
 ### 🎨 丰富的组件 - 12 个直观组件
 

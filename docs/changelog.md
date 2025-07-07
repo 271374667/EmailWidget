@@ -181,6 +181,6 @@ EmailWidget 采用[语义化版本](https://semver.org/lang/zh-CN/)规范：
 
 📧 **EmailWidget v1.0.0** - *让邮件报告变得简单美观*
 
-[🚀 立即开始](getting-started/installation.md) • [📖 查看文档](index.md) • [🐛 反馈问题](https://github.com/271374667/SpiderDaily/issues)
+[🚀 立即开始](getting-started/installation.md) • [📖 查看文档](index.md) • [🐛 反馈问题](https://github.com/271374667/EmailWidget/issues)
 
 </div> 

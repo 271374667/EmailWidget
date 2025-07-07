@@ -1,6 +1,6 @@
-# Email 主类
+# ChartWidget API
 
-::: email_widget.email.Email
+::: email_widget.widgets.chart_widget.ChartWidget
     options:
         show_root_heading: true
         show_source: false

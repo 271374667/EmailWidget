@@ -164,4 +164,4 @@ HTML(email.export_str())
 ---
 
 !!! tip "需要帮助？"
-    如果遇到任何安装问题，欢迎在 [GitHub Issues](https://github.com/271374667/SpiderDaily/issues) 中提问！ 
+    如果遇到任何安装问题，欢迎在 [GitHub Issues](https://github.com/271374667/EmailWidget/issues) 中提问！ 

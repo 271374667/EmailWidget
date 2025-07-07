@@ -4,7 +4,7 @@
 
 主要功能：
 - 丰富的Widget组件库
-- 基于Jinja2的模板系统  
+- 基于Jinja2的模板系统
 - 支持matplotlib/seaborn图表
 - 响应式设计
 - 邮件客户端兼容
@@ -12,54 +12,71 @@
 Examples:
     >>> from email_widget import Email, TextWidget, TableWidget
     >>> from email_widget import TextType, AlertType
-    >>> 
+    >>>
     >>> email = Email("每日报告")
     >>> email.add_widget(TextWidget().set_content("Hello").set_type(TextType.TITLE_LARGE))
     >>> email.export_html("report.html")
 """
 
 # 核心类
-from email_widget.email import Email
-
-# 邮件发送器类
-from email_widget.email_sender import (
-    EmailSender, QQEmailSender, NetEaseEmailSender, 
-    OutlookEmailSender, GmailSender, create_email_sender
-)
-
-# 所有Widget组件
-from email_widget.widgets.text_widget import TextWidget
-from email_widget.widgets.table_widget import TableWidget, TableCell
-from email_widget.widgets.image_widget import ImageWidget
-from email_widget.widgets.chart_widget import ChartWidget
-from email_widget.widgets.alert_widget import AlertWidget
-from email_widget.widgets.progress_widget import ProgressWidget
-from email_widget.widgets.circular_progress_widget import CircularProgressWidget
-from email_widget.widgets.card_widget import CardWidget
-from email_widget.widgets.status_widget import StatusWidget, StatusItem
-from email_widget.widgets.quote_widget import QuoteWidget
-from email_widget.widgets.column_widget import ColumnWidget
-from email_widget.widgets.log_widget import LogWidget, LogEntry
-
-# 枚举和类型
-from email_widget.core.enums import (
-    TextType, TextAlign, AlertType, StatusType, 
-    ProgressTheme, LayoutType, LogLevel, IconType
-)
-
 # 基础类（供高级用户扩展使用）
 from email_widget.core.base import BaseWidget
 
 # 配置类
 from email_widget.core.config import EmailConfig
 
-# 验证器系统（供高级用户使用）
-from email_widget.core.validators import (
-    BaseValidator, ColorValidator, SizeValidator, RangeValidator, ProgressValidator,
-    UrlValidator, EmailValidator, NonEmptyStringValidator, LengthValidator,
-    TypeValidator, ChoicesValidator, CompositeValidator
+# 枚举和类型
+from email_widget.core.enums import (
+    AlertType,
+    IconType,
+    LayoutType,
+    LogLevel,
+    ProgressTheme,
+    StatusType,
+    TextAlign,
+    TextType,
 )
 
+# 验证器系统（供高级用户使用）
+from email_widget.core.validators import (
+    BaseValidator,
+    ChoicesValidator,
+    ColorValidator,
+    CompositeValidator,
+    EmailValidator,
+    LengthValidator,
+    NonEmptyStringValidator,
+    ProgressValidator,
+    RangeValidator,
+    SizeValidator,
+    TypeValidator,
+    UrlValidator,
+)
+from email_widget.email import Email
+
+# 邮件发送器类
+from email_widget.email_sender import (
+    EmailSender,
+    GmailSender,
+    NetEaseEmailSender,
+    OutlookEmailSender,
+    QQEmailSender,
+    create_email_sender,
+)
+from email_widget.widgets.alert_widget import AlertWidget
+from email_widget.widgets.card_widget import CardWidget
+from email_widget.widgets.chart_widget import ChartWidget
+from email_widget.widgets.circular_progress_widget import CircularProgressWidget
+from email_widget.widgets.column_widget import ColumnWidget
+from email_widget.widgets.image_widget import ImageWidget
+from email_widget.widgets.log_widget import LogEntry, LogWidget
+from email_widget.widgets.progress_widget import ProgressWidget
+from email_widget.widgets.quote_widget import QuoteWidget
+from email_widget.widgets.status_widget import StatusItem, StatusWidget
+from email_widget.widgets.table_widget import TableCell, TableWidget
+
+# 所有Widget组件
+from email_widget.widgets.text_widget import TextWidget
 
 # 版本信息
 __version__ = "0.3.1"
@@ -72,45 +89,53 @@ __all__ = [
     "Email",
     "BaseWidget",
     "EmailConfig",
-    
     # 邮件发送器
     "EmailSender",
     "QQEmailSender",
-    "NetEaseEmailSender", 
+    "NetEaseEmailSender",
     "OutlookEmailSender",
     "GmailSender",
     "create_email_sender",
-    
     # Widget组件
     "TextWidget",
-    "TableWidget", "TableCell", 
+    "TableWidget",
+    "TableCell",
     "ImageWidget",
-    "ChartWidget", 
+    "ChartWidget",
     "AlertWidget",
     "ProgressWidget",
     "CircularProgressWidget",
     "CardWidget",
-    "StatusWidget", "StatusItem",
-    "QuoteWidget", 
+    "StatusWidget",
+    "StatusItem",
+    "QuoteWidget",
     "ColumnWidget",
-    "LogWidget", "LogEntry",
-    
+    "LogWidget",
+    "LogEntry",
     # 枚举类型
-    "TextType", "TextAlign",
-    "AlertType", 
+    "TextType",
+    "TextAlign",
+    "AlertType",
     "StatusType",
     "ProgressTheme",
     "LayoutType",
     "LogLevel",
     "IconType",
-    
     # 验证器（供高级用户使用）
-    "BaseValidator", "ColorValidator", "SizeValidator", "RangeValidator", 
-    "ProgressValidator", "UrlValidator", "EmailValidator", "NonEmptyStringValidator", 
-    "LengthValidator", "TypeValidator", "ChoicesValidator", "CompositeValidator",
-    
+    "BaseValidator",
+    "ColorValidator",
+    "SizeValidator",
+    "RangeValidator",
+    "ProgressValidator",
+    "UrlValidator",
+    "EmailValidator",
+    "NonEmptyStringValidator",
+    "LengthValidator",
+    "TypeValidator",
+    "ChoicesValidator",
+    "CompositeValidator",
     # 版本信息
     "__version__",
-    "__author__", 
+    "__author__",
     "__email__",
 ]

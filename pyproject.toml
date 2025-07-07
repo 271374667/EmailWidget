@@ -109,6 +109,8 @@ select = [
     "B",  # flake8-bugbear
     "C4", # flake8-comprehensions
     "UP", # pyupgrade
+    "W291",
+    "W293"
 ]
 ignore = [
     "E501",  # line too long, handled by black

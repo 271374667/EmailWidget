@@ -1,6 +1,6 @@
-# Email 主类
+# AlertWidget API
 
-::: email_widget.email.Email
+::: email_widget.widgets.alert_widget.AlertWidget
     options:
         show_root_heading: true
         show_source: false

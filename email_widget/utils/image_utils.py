@@ -1,8 +1,7 @@
 import base64
-import urllib.request
 import urllib.error
+import urllib.request
 from pathlib import Path
-from typing import Union, Optional, Tuple
 
 from email_widget.core.cache import get_image_cache
 from email_widget.core.logger import get_project_logger
@@ -10,22 +9,22 @@ from email_widget.core.logger import get_project_logger
 
 class ImageUtils:
     @staticmethod
-    def process_image_source(source: Union[str, Path], cache: bool = True) -> Optional[str]:
+    def process_image_source(source: str | Path, cache: bool = True) -> str | None:
         """统一处理图片源，返回base64 data URI
-        
+
         Args:
             source: 图片源（URL、文件路径或Path对象）
             cache: 是否使用缓存
-            
+
         Returns:
             base64格式的data URI，失败时返回None
         """
         logger = get_project_logger()
         cache_manager = get_image_cache() if cache else None
-        
+
         try:
             source_str = str(source)
-            
+
             # 检查缓存
             if cache_manager:
                 cached_result = cache_manager.get(source_str)
@@ -33,24 +32,27 @@ class ImageUtils:
                     # 从缓存获取的数据需要重新转换为base64
                     cached_data, cached_mime_type = cached_result
                     return ImageUtils.base64_img(cached_data, cached_mime_type)
-            
+
             # 获取图片数据
             img_data, mime_type = None, None
-            
-            if isinstance(source, Path) or (isinstance(source, str) and not source.startswith(('http://', 'https://', 'data:'))):
+
+            if isinstance(source, Path) or (
+                isinstance(source, str)
+                and not source.startswith(("http://", "https://", "data:"))
+            ):
                 # 本地文件
                 file_path = Path(source)
                 if file_path.exists():
-                    with open(file_path, 'rb') as f:
+                    with open(file_path, "rb") as f:
                         img_data = f.read()
                     mime_type = ImageUtils._get_mime_type(file_path.suffix)
                 else:
                     logger.error(f"图片文件不存在: {file_path}")
                     return None
-            elif isinstance(source, str) and source.startswith('data:'):
+            elif isinstance(source, str) and source.startswith("data:"):
                 # 已经是base64格式
                 return source
-            elif isinstance(source, str) and source.startswith(('http://', 'https://')):
+            elif isinstance(source, str) and source.startswith(("http://", "https://")):
                 # 网络URL
                 result = ImageUtils.request_url(source)
                 if result:
@@ -60,30 +62,28 @@ class ImageUtils:
             else:
                 logger.error(f"不支持的图片源格式: {source}")
                 return None
-            
+
             if not img_data:
                 return None
-            
+
             # 基本验证图片数据
             if not img_data or len(img_data) < 10:
                 logger.error(f"无效的图片数据: {source}")
                 return None
-            
+
             # 缓存图片数据
             if cache_manager:
                 cache_manager.set(source_str, img_data, mime_type)
-            
+
             # 转换为base64
             return ImageUtils.base64_img(img_data, mime_type)
-            
+
         except Exception as e:
             logger.error(f"处理图片源失败: {e}")
             return None
-    
 
-    
     @staticmethod
-    def request_url(url: str, timeout: int = 10) -> Optional[Tuple[bytes, str]]:
+    def request_url(url: str, timeout: int = 10) -> tuple[bytes, str] | None:
         """请求网络URL获取图片数据
 
         Args:
@@ -100,7 +100,9 @@ class ImageUtils:
                     content_type = response.headers.get("content-type", "image/png")
                     return img_data, content_type
                 else:
-                    get_project_logger().error(f"下载图片失败，状态码: {response.status}")
+                    get_project_logger().error(
+                        f"下载图片失败，状态码: {response.status}"
+                    )
                     return None
         except urllib.error.URLError as e:
             get_project_logger().error(f"网络请求失败: {e}")
@@ -139,4 +141,4 @@ class ImageUtils:
             ".webp": "image/webp",
             ".svg": "image/svg+xml",
         }
-        return mime_types.get(ext.lower(), 'image/png')
+        return mime_types.get(ext.lower(), "image/png")

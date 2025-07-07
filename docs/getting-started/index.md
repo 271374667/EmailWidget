@@ -40,7 +40,7 @@ print(f"报告已生成: {file_path}")
 
 ### 🤝 获取帮助
 - [GitHub Issues](https://github.com/271374667/SpiderDaily/issues) - 问题反馈
-- [GitHub Discussions](https://github.com/271374667/SpiderDaily/discussions) - 社区讨论
+- [GitHub Discussions](https://github.com/271374667/EmailWidget/discussions) - 社区讨论
 - [Bilibili视频](https://space.bilibili.com/282527875) - 视频教程
 
 ### 🔧 开发相关

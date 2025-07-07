@@ -346,7 +346,7 @@ Fixes #(issue number)
 如果你有任何问题或需要帮助：
 
 - 💬 [GitHub Discussions](https://github.com/271374667/SpiderDaily/discussions)
-- 🐛 [GitHub Issues](https://github.com/271374667/SpiderDaily/issues)
+- 🐛 [GitHub Issues](https://github.com/271374667/EmailWidget/issues)
 - 📧 [Email](mailto:271374667@qq.com)
 
 ---

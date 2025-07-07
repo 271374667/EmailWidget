@@ -1,64 +1,74 @@
 """图表Widget实现
 
-这个模块提供了图表显示功能的Widget，支持matplotlib/seaborn图表的嵌入显示。
+这个模块提供了图表显示功能的Widget，支持matplotlib/seaborn图表的嵌入显示.
 """
 
 import base64
 import io
-from typing import Optional, Union, Any, Dict, TYPE_CHECKING
 from pathlib import Path
+from typing import TYPE_CHECKING, Any
+
 from email_widget.core.base import BaseWidget
 from email_widget.core.config import EmailConfig
 from email_widget.utils.image_utils import ImageUtils
-from email_widget.utils.optional_deps import check_optional_dependency, import_optional_dependency, ChartMixin
+from email_widget.utils.optional_deps import (
+    ChartMixin,
+    check_optional_dependency,
+)
 
 if TYPE_CHECKING:
-    import matplotlib.pyplot as plt
-    import matplotlib.font_manager as fm
+    pass
 
 
 class ChartWidget(BaseWidget, ChartMixin):
-    """图表Widget类，用于在邮件中显示图表。
-    
-    这个Widget支持将matplotlib/seaborn图表转换为base64编码的图片嵌入到邮件中，
-    也支持直接使用图片URL或文件路径。自动处理中文字体配置。
-    
-    主要功能：
-    - 支持matplotlib/seaborn图表对象
-    - 自动转换为base64嵌入图片
-    - 支持外部图片URL或文件路径
-    - 自动配置中文字体支持
-    - 可配置图表标题、描述和数据摘要
-    - 响应式设计
-    
-    Attributes:
-        _image_url: 图片URL或base64数据
-        _title: 图表标题
-        _description: 图表描述
-        _alt_text: 替代文本
-        _data_summary: 数据摘要
-        _max_width: 最大宽度
-        
+    """在邮件中嵌入图表，支持 `matplotlib` 和 `seaborn`.
+
+    该微件能够将动态生成的图表（如 `matplotlib` 或 `seaborn` 的图表对象）
+    或静态的图片文件（本地或URL）无缝嵌入到邮件内容中.它会自动处理图表的
+    渲染、Base64 编码以及中文字符的显示问题，极大地方便了数据可视化报告的创建.
+
+    核心功能:
+        - **动态图表支持**: 直接接受 `matplotlib.pyplot` 或 `seaborn` 的图表对象.
+        - **静态图片支持**: 可通过 URL 或本地文件路径加载图片.
+        - **自动中文字体**: 自动检测并配置合适的中文字体，确保图表中的中文正常显示.
+        - **内容增强**: 支持为图表添加标题、描述和数据摘要.
+
     Examples:
-        >>> import matplotlib.pyplot as plt
-        >>> import seaborn as sns
-        
-        >>> # 使用matplotlib图表
-        >>> fig, ax = plt.subplots()
-        >>> ax.plot([1, 2, 3, 4], [1, 4, 2, 3])
-        >>> chart = ChartWidget().set_chart(plt).set_title("销售趋势图")
-        
-        >>> # 使用外部图片
-        >>> chart = ChartWidget().set_image_url("https://example.com/chart.png")
-        
-        >>> # 完整配置
-        >>> chart = (ChartWidget()
-        ...          .set_title("月度销售报告")
-        ...          .set_description("显示了过去12个月的销售趋势")
-        ...          .set_data_summary("总销售额: ¥1,234,567")
-        ...          .set_max_width("600px"))
+        使用 `matplotlib` 创建一个简单的柱状图并添加到邮件中：
+
+        ```python
+        import matplotlib.pyplot as plt
+        from email_widget.widgets import ChartWidget
+
+        # 1. 创建一个 matplotlib 图表
+        plt.figure(figsize=(10, 6))
+        categories = ['第一季度', '第二季度', '第三季度', '第四季度']
+        sales = [120, 150, 130, 180]
+        plt.bar(categories, sales, color='skyblue')
+        plt.title('年度销售额（万元）')
+        plt.ylabel('销售额')
+
+        # 2. 创建 ChartWidget 并设置图表
+        chart = (ChartWidget()\
+                 .set_chart(plt)  # 将 plt 对象传入
+                 .set_title("2024年度销售业绩")\
+                 .set_description("各季度销售额对比图，展示了全年的销售趋势.")\
+                 .set_data_summary("总销售额: 580万元, 最高季度: 第四季度"))
+
+        # 假设 email 是一个 Email 对象
+        # email.add_widget(chart)
+        ```
+
+        使用外部图片URL：
+
+        ```python
+        chart_from_url = (ChartWidget()\
+                          .set_image_url("https://www.example.com/charts/monthly_trends.png")\
+                          .set_title("月度趋势图")\
+                          .set_alt_text("一张显示月度增长趋势的折线图"))
+        ```
     """
-    
+
     # 模板定义
     TEMPLATE = """
     {% if image_url %}
@@ -92,59 +102,70 @@ class ChartWidget(BaseWidget, ChartMixin):
     {% endif %}
     """
 
-    def __init__(self, widget_id: Optional[str] = None):
-        """初始化图表Widget。
-        
+    def __init__(self, widget_id: str | None = None):
+        """初始化ChartWidget.
+
         Args:
-            widget_id: 可选的Widget ID
+            widget_id (Optional[str]): 可选的Widget ID.
         """
         super().__init__(widget_id)
-        self._image_url: Optional[str] = None
-        self._title: Optional[str] = None
-        self._description: Optional[str] = None
+        self._image_url: str | None = None
+        self._title: str | None = None
+        self._description: str | None = None
         self._alt_text: str = "图表"
-        self._data_summary: Optional[str] = None
+        self._data_summary: str | None = None
         self._max_width: str = "100%"
 
-    def set_image_url(self, image_url: Union[str, Path], cache: bool = True) -> "ChartWidget":
-        """设置图表图片URL或文件路径。
-        
+    def set_image_url(self, image_url: str | Path, cache: bool = True) -> "ChartWidget":
+        """设置图表图片URL或文件路径.
+
+        此方法支持从网络URL或本地文件路径加载图片.图片会被自动处理并转换为
+        Base64编码的data URI，直接嵌入到HTML中，以确保在邮件客户端中的兼容性.
+
         Args:
-            image_url: 图片URL或文件路径
-            cache: 是否使用缓存
-            
+            image_url (Union[str, Path]): 图片的URL字符串或本地文件Path对象.
+            cache (bool): 是否缓存网络图片，默认为True.
+
         Returns:
-            返回self以支持链式调用
-            
+            ChartWidget: 返回self以支持链式调用.
+
+        Raises:
+            ValueError: 如果图片URL或路径无效，或图片处理失败.
+
         Examples:
             >>> # 使用URL
             >>> chart = ChartWidget().set_image_url("https://example.com/chart.png")
-            
+
             >>> # 使用本地文件路径
             >>> from pathlib import Path
             >>> chart = ChartWidget().set_image_url(Path("./charts/sales.png"))
         """
         # 验证路径存在性（仅对本地路径）
         if isinstance(image_url, (str, Path)):
-            path_obj = Path(image_url) if isinstance(image_url, str) and not image_url.startswith(('http://', 'https://', 'data:')) else None
+            path_obj = (
+                Path(image_url)
+                if isinstance(image_url, str)
+                and not image_url.startswith(("http://", "https://", "data:"))
+                else None
+            )
             if path_obj and not path_obj.exists():
                 self._logger.error(f"图片文件不存在: {path_obj}")
                 self._image_url = None
                 return self
-        
+
         # 使用ImageUtils统一处理
         self._image_url = ImageUtils.process_image_source(image_url, cache=cache)
         return self
 
     def set_title(self, title: str) -> "ChartWidget":
-        """设置图表标题。
-        
+        """设置图表标题.
+
         Args:
-            title: 图表标题文本
-            
+            title (str): 图表标题文本.
+
         Returns:
-            返回self以支持链式调用
-            
+            ChartWidget: 返回self以支持链式调用.
+
         Examples:
             >>> chart = ChartWidget().set_title("2024年销售趋势")
         """
@@ -152,14 +173,14 @@ class ChartWidget(BaseWidget, ChartMixin):
         return self
 
     def set_description(self, description: str) -> "ChartWidget":
-        """设置图表描述。
-        
+        """设置图表描述.
+
         Args:
-            description: 图表描述文本
-            
+            description (str): 图表描述文本.
+
         Returns:
-            返回self以支持链式调用
-            
+            ChartWidget: 返回self以支持链式调用.
+
         Examples:
             >>> chart = ChartWidget().set_description("展示了各地区的销售对比情况")
         """
@@ -167,16 +188,16 @@ class ChartWidget(BaseWidget, ChartMixin):
         return self
 
     def set_alt_text(self, alt: str) -> "ChartWidget":
-        """设置图片的替代文本。
-        
-        用于无障碍访问和图片加载失败时显示。
-        
+        """设置图片的替代文本.
+
+        用于无障碍访问和图片加载失败时显示.
+
         Args:
-            alt: 替代文本
-            
+            alt (str): 替代文本.
+
         Returns:
-            返回self以支持链式调用
-            
+            ChartWidget: 返回self以支持链式调用.
+
         Examples:
             >>> chart = ChartWidget().set_alt_text("销售数据柱状图")
         """
@@ -184,16 +205,16 @@ class ChartWidget(BaseWidget, ChartMixin):
         return self
 
     def set_data_summary(self, summary: str) -> "ChartWidget":
-        """设置数据摘要。
-        
-        在图表下方显示关键数据摘要信息。
-        
+        """设置数据摘要.
+
+        在图表下方显示关键数据摘要信息.
+
         Args:
-            summary: 数据摘要文本
-            
+            summary (str): 数据摘要文本.
+
         Returns:
-            返回self以支持链式调用
-            
+            ChartWidget: 返回self以支持链式调用.
+
         Examples:
             >>> chart = ChartWidget().set_data_summary("平均增长率: 15.3%, 最高值: ¥50万")
         """
@@ -201,14 +222,14 @@ class ChartWidget(BaseWidget, ChartMixin):
         return self
 
     def set_max_width(self, max_width: str) -> "ChartWidget":
-        """设置图表容器的最大宽度。
-        
+        """设置图表容器的最大宽度.
+
         Args:
-            max_width: CSS最大宽度值
-            
+            max_width (str): CSS最大宽度值.
+
         Returns:
-            返回self以支持链式调用
-            
+            ChartWidget: 返回self以支持链式调用.
+
         Examples:
             >>> chart = ChartWidget().set_max_width("800px")
             >>> chart = ChartWidget().set_max_width("90%")
@@ -217,36 +238,42 @@ class ChartWidget(BaseWidget, ChartMixin):
         return self
 
     def set_chart(self, plt_obj: Any) -> "ChartWidget":
-        """设置matplotlib/seaborn图表对象。
-        
-        将图表对象转换为base64编码的PNG图片嵌入到邮件中。
-        自动配置中文字体支持。
-        
+        """设置matplotlib/seaborn图表对象.
+
+        将图表对象转换为Base64编码的PNG图片嵌入到邮件中.
+        自动配置中文字体支持.
+
         Args:
-            plt_obj: matplotlib的pyplot对象或figure对象
-            
+            plt_obj (Any): matplotlib的pyplot对象或figure对象.
+
         Returns:
-            返回self以支持链式调用
-            
+            ChartWidget: 返回self以支持链式调用.
+
+        Raises:
+            ImportError: 如果未安装matplotlib库.
+            Exception: 如果图表转换失败.
+
         Examples:
-            >>> import matplotlib.pyplot as plt
-            >>> fig, ax = plt.subplots(figsize=(10, 6))
-            >>> ax.bar(['Q1', 'Q2', 'Q3', 'Q4'], [100, 120, 140, 110])
-            >>> ax.set_title('季度销售额')
-            >>> chart = ChartWidget().set_chart(plt)
-            
-            >>> # 使用seaborn
-            >>> import seaborn as sns
-            >>> sns.barplot(data=df, x='month', y='sales')
-            >>> chart = ChartWidget().set_chart(plt)
-            
+            ```python
+            import matplotlib.pyplot as plt
+            fig, ax = plt.subplots(figsize=(10, 6))
+            ax.bar(['Q1', 'Q2', 'Q3', 'Q4'], [100, 120, 140, 110])
+            ax.set_title('季度销售额')
+            chart = ChartWidget().set_chart(plt)
+
+            # 使用seaborn
+            import seaborn as sns
+            sns.barplot(data=df, x='month', y='sales')
+            chart = ChartWidget().set_chart(plt)
+            ```
+
         Note:
-            调用此方法后，原图表对象会被关闭以释放内存。
-            如果转换失败，图片URL会被设置为None。
+            调用此方法后，原图表对象会被关闭以释放内存.
+            如果转换失败，图片URL会被设置为None.
         """
         # 检查matplotlib依赖
         check_optional_dependency("matplotlib")
-        
+
         try:
             # 设置中文字体
             self._configure_chinese_font()
@@ -271,19 +298,19 @@ class ChartWidget(BaseWidget, ChartMixin):
         return self
 
     def _configure_chinese_font(self):
-        """配置matplotlib的中文字体支持。
-        
-        从配置文件获取字体列表，自动选择可用的中文字体。
-        如果没有找到中文字体，会使用默认字体并输出警告。
-        
+        """配置matplotlib的中文字体支持.
+
+        从配置文件获取字体列表，自动选择可用的中文字体.
+        如果没有找到中文字体，会使用默认字体并输出警告.
+
         Note:
-            这是一个内部方法，在set_chart时自动调用。
+            这是一个内部方法，在set_chart时自动调用.
         """
         try:
             # 导入matplotlib模块
             plt = self._import_matplotlib_pyplot()
             fm = self._import_matplotlib_font_manager()
-            
+
             # 从配置文件获取字体列表
             config = EmailConfig()
             font_list = config.get_chart_fonts()
@@ -307,14 +334,14 @@ class ChartWidget(BaseWidget, ChartMixin):
             self._logger.error(f"配置中文字体失败: {e}")
 
     def _get_template_name(self) -> str:
-        """获取模板名称。
-        
+        """获取模板名称.
+
         Returns:
             模板文件名
         """
         return "chart.html"
 
-    def get_template_context(self) -> Dict[str, Any]:
+    def get_template_context(self) -> dict[str, Any]:
         """获取模板渲染所需的上下文数据"""
         if not self._image_url:
             return {}
@@ -365,16 +392,16 @@ class ChartWidget(BaseWidget, ChartMixin):
             border-top: 1px solid #f3f2f1;
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
         """
-        
+
         return {
-            'image_url': self._image_url,
-            'alt_text': self._alt_text,
-            'container_style': container_style,
-            'title': self._title,
-            'title_style': title_style,
-            'img_style': img_style,
-            'description': self._description,
-            'desc_style': desc_style,
-            'data_summary': self._data_summary,
-            'summary_style': summary_style
+            "image_url": self._image_url,
+            "alt_text": self._alt_text,
+            "container_style": container_style,
+            "title": self._title,
+            "title_style": title_style,
+            "img_style": img_style,
+            "description": self._description,
+            "desc_style": desc_style,
+            "data_summary": self._data_summary,
+            "summary_style": summary_style,
         }

@@ -1,79 +1,79 @@
-"""Email主类实现
-
-这个模块提供了EmailWidget库的核心功能，负责管理和渲染邮件内容。
+"""
+这个模块提供了EmailWidget库的核心功能，负责管理和渲染邮件内容.
 """
 
-from typing import List, Optional, Dict, TYPE_CHECKING, TypedDict
-from pathlib import Path
 import datetime
+from pathlib import Path
+from typing import TYPE_CHECKING
 
 from email_widget.core.base import BaseWidget
 from email_widget.core.config import EmailConfig
-from email_widget.core.template_engine import TemplateEngine
 from email_widget.core.logger import get_project_logger
+from email_widget.core.template_engine import TemplateEngine
 
 if TYPE_CHECKING:
-    from email_widget import (
-        TextWidget,
-        TableWidget,
-        ChartWidget,
-        QuoteWidget,
-        CircularProgressWidget,
-        LogWidget,
-    )
     from email_widget.core.enums import (
-        TextType,
-        TextAlign,
         AlertType,
         LayoutType,
+        LogLevel,
         ProgressTheme,
         StatusType,
-        LogLevel,
+        TextAlign,
+        TextType,
     )
 
 
 class Email:
-    """邮件主类，负责管理和渲染邮件内容。
+    """邮件主类，负责管理和渲染邮件内容.
 
-    这个类是EmailWidget库的核心，用于创建和管理邮件报告。
-    它可以包含多个Widget，并将它们渲染成美观的HTML邮件。
+    这个类是 EmailWidget 库的核心，用于创建和管理HTML邮件报告.
+    它作为一个功能强大的容器，可以添加、管理和编排各种“微件”（Widget），
+    最终将它们渲染成一个美观、专业的HTML邮件.
 
-    主要功能：
-    - 管理Widget集合
-    - 渲染HTML邮件
-    - 导出邮件文件
-    - 配置邮件样式
-    - 支持自定义副标题和脚注
+    核心功能:
+        - **微件管理**: 轻松添加、移除、查找和迭代处理各种内容组件（如文本、表格、图表等）.
+        - **邮件属性配置**: 自定义邮件的标题、副标题和页脚.
+        - **快捷方法**: 提供一系列 `add_*` 方法，用于快速创建和添加常用微件，简化代码.
+        - **内容导出**: 支持将邮件导出为独立的 HTML 文件或获取其 HTML 字符串内容.
+        - **样式配置**: 通过 `EmailConfig` 对象，可以自定义邮件的主题颜色、字体和布局宽度.
 
     Attributes:
-        title: 邮件标题
-        subtitle: 邮件副标题
-        footer_text: 脚注文本
-        widgets: Widget列表
-        config: 配置管理器
-        _created_at: 创建时间
-        _template_engine: 模板引擎
-        _logger: 日志记录器
+        title (str): 邮件的主标题.
+        subtitle (Optional[str]): 邮件的副标题，显示在主标题下方.
+        footer_text (Optional[str]): 邮件的页脚文本.
+        widgets (List[BaseWidget]): 存储所有已添加微件的列表.
+        config (EmailConfig): 邮件的配置对象，用于控制样式和行为.
 
     Examples:
-        >>> # 创建邮件对象
-        >>> email = Email("每日报告")
+        一个基本的邮件创建和导出流程：
 
-        >>> # 设置副标题和脚注
-        >>> email.set_subtitle("数据统计报告")
-        >>> email.set_footer("本报告由数据团队生成")
+        ```python
+        from email_widget import Email
+        from email_widget.core.enums import TextType, AlertType
 
-        >>> # 添加Widget
-        >>> from email_widget.widgets import TextWidget
-        >>> text_widget = TextWidget().set_content("Hello World")
-        >>> email.add_widget(text_widget)
+        # 1. 创建一个邮件对象
+        email = Email("季度销售报告")
 
-        >>> # 导出HTML文件
-        >>> file_path = email.export_html("report.html")
-        >>> print(f"邮件已保存到: {file_path}")
+        # 2. 设置邮件的元数据
+        email.set_subtitle("2024年第一季度")
+        email.set_footer("本报告由销售部分析团队生成")
 
-        >>> # 获取HTML内容
-        >>> html_content = email.export_str()
+        # 3. 使用快捷方法添加内容
+        email.add_text("核心摘要", text_type=TextType.TITLE_LARGE)
+        email.add_text("本季度总销售额达到 1,234,567 元，同比增长 15%.")
+        email.add_alert("注意：数据仍在初步核算中.", alert_type=AlertType.WARNING)
+        email.add_progress(85, label="季度KPI完成率", theme="success")
+
+        # 4. 导出为HTML文件
+        # 将在默认输出目录（通常是 ./output）下生成 "quarterly_report.html"
+        file_path = email.export_html("quarterly_report.html")
+
+        print(f"报告已成功生成于: {file_path}")
+
+        # 你也可以直接获取HTML字符串
+        html_content = email.export_str()
+        # print(html_content)
+        ```
     """
 
     # 邮件模板
@@ -103,23 +103,23 @@ class Email:
 </body>
 </html>"""
 
-    def __init__(self, title: str = "邮件报告"):
-        """初始化Email对象。
+    def __init__(self, title: str = "邮件报告") -> None:
+        """初始化Email对象.
 
         Args:
             title: 邮件标题，默认为"邮件报告"
         """
         self.title = title
-        self.subtitle: Optional[str] = None
-        self.footer_text: Optional[str] = None
-        self.widgets: List[BaseWidget] = []
+        self.subtitle: str | None = None
+        self.footer_text: str | None = None
+        self.widgets: list[BaseWidget] = []
         self.config = EmailConfig()
         self._created_at = datetime.datetime.now()
         self._template_engine = TemplateEngine()
         self._logger = get_project_logger()
 
     def add_widget(self, widget: BaseWidget) -> "Email":
-        """添加单个Widget到邮件中。
+        """添加单个Widget到邮件中.
 
         Args:
             widget: 要添加的Widget对象
@@ -136,8 +136,8 @@ class Email:
         self.widgets.append(widget)
         return self
 
-    def add_widgets(self, widgets: List[BaseWidget]) -> "Email":
-        """批量添加多个Widget到邮件中。
+    def add_widgets(self, widgets: list[BaseWidget]) -> "Email":
+        """批量添加多个Widget到邮件中.
 
         Args:
             widgets: Widget对象列表
@@ -156,7 +156,7 @@ class Email:
         return self
 
     def clear_widgets(self) -> "Email":
-        """清空所有Widget。
+        """清空所有Widget.
 
         Returns:
             返回self以支持链式调用
@@ -165,7 +165,7 @@ class Email:
         return self
 
     def remove_widget(self, widget_id: str) -> "Email":
-        """根据ID移除指定的Widget。
+        """根据ID移除指定的Widget.
 
         Args:
             widget_id: 要移除的Widget的ID
@@ -182,8 +182,8 @@ class Email:
         self.widgets = [w for w in self.widgets if w.widget_id != widget_id]
         return self
 
-    def get_widget(self, widget_id: str) -> Optional[BaseWidget]:
-        """根据ID获取指定的Widget。
+    def get_widget(self, widget_id: str) -> BaseWidget | None:
+        """根据ID获取指定的Widget.
 
         Args:
             widget_id: Widget的ID
@@ -203,7 +203,7 @@ class Email:
         return None
 
     def set_title(self, title: str) -> "Email":
-        """设置邮件标题。
+        """设置邮件标题.
 
         Args:
             title: 新的邮件标题
@@ -218,8 +218,8 @@ class Email:
         self.title = title
         return self
 
-    def set_subtitle(self, subtitle: Optional[str]) -> "Email":
-        """设置邮件副标题。
+    def set_subtitle(self, subtitle: str | None) -> "Email":
+        """设置邮件副标题.
 
         Args:
             subtitle: 副标题文本，如果为None则使用默认的时间戳
@@ -234,8 +234,8 @@ class Email:
         self.subtitle = subtitle
         return self
 
-    def set_footer(self, footer_text: Optional[str]) -> "Email":
-        """设置邮件脚注。
+    def set_footer(self, footer_text: str | None) -> "Email":
+        """设置邮件脚注.
 
         Args:
             footer_text: 脚注文本，如果为None则使用默认文本
@@ -256,12 +256,12 @@ class Email:
         self,
         content: str,
         text_type: "TextType" = None,
-        color: Optional[str] = None,
-        font_size: Optional[str] = None,
+        color: str | None = None,
+        font_size: str | None = None,
         align: "TextAlign" = None,
-        font_weight: Optional[str] = None,
+        font_weight: str | None = None,
     ) -> "Email":
-        """快速添加文本Widget。
+        """快速添加文本Widget.
 
         Args:
             content: 文本内容
@@ -283,7 +283,7 @@ class Email:
             >>> # 带样式的文本
             >>> email.add_text("重要提示", color="#ff0000", font_size="18px")
         """
-        from email_widget.core.enums import TextType, TextAlign
+        from email_widget.core.enums import TextType
         from email_widget.widgets.text_widget import TextWidget
 
         if text_type is None:
@@ -304,15 +304,15 @@ class Email:
 
     def add_table_from_data(
         self,
-        data: List[List[str]],
-        headers: Optional[List[str]] = None,
-        title: Optional[str] = None,
+        data: list[list[str]],
+        headers: list[str] | None = None,
+        title: str | None = None,
         show_index: bool = False,
         striped: bool = True,
         bordered: bool = True,
         hoverable: bool = True,
     ) -> "Email":
-        """快速添加表格Widget。
+        """快速添加表格Widget.
 
         Args:
             data: 表格数据，二维列表
@@ -354,13 +354,13 @@ class Email:
     def add_table_from_df(
         self,
         df: "pd.DataFrame",
-        title: Optional[str] = None,
+        title: str | None = None,
         show_index: bool = False,
         striped: bool = True,
         bordered: bool = True,
         hoverable: bool = True,
     ) -> "Email":
-        """快速添加来自DataFrame的表格Widget。
+        """快速添加来自DataFrame的表格Widget.
 
         Args:
             df: pandas DataFrame对象
@@ -399,9 +399,9 @@ class Email:
         return self.add_widget(widget)
 
     def add_alert(
-        self, content: str, alert_type: "AlertType" = None, title: Optional[str] = None
+        self, content: str, alert_type: "AlertType" = None, title: str | None = None
     ) -> "Email":
-        """快速添加警告框Widget。
+        """快速添加警告框Widget.
 
         Args:
             content: 警告内容
@@ -432,12 +432,12 @@ class Email:
     def add_progress(
         self,
         value: float,
-        label: Optional[str] = None,
+        label: str | None = None,
         max_value: float = 100.0,
         theme: "ProgressTheme" = None,
         show_percentage: bool = True,
     ) -> "Email":
-        """快速添加进度条Widget。
+        """快速添加进度条Widget.
 
         Args:
             value: 当前进度值
@@ -477,10 +477,10 @@ class Email:
         self,
         title: str,
         content: str,
-        icon: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        icon: str | None = None,
+        metadata: dict[str, str] | None = None,
     ) -> "Email":
-        """快速添加卡片Widget。
+        """快速添加卡片Widget.
 
         Args:
             title: 卡片标题
@@ -513,11 +513,11 @@ class Email:
 
     def add_chart_from_plt(
         self,
-        title: Optional[str] = None,
-        description: Optional[str] = None,
-        data_summary: Optional[str] = None,
+        title: str | None = None,
+        description: str | None = None,
+        data_summary: str | None = None,
     ) -> "Email":
-        """快速添加matplotlib图表Widget。
+        """快速添加matplotlib图表Widget.
 
         Args:
             title: 图表标题，可选
@@ -537,9 +537,10 @@ class Email:
         """
         from email_widget.utils.optional_deps import check_optional_dependency
 
-        check_optional_dependency("matplotlib")
+        check_optional_dependency("matplotlib", "matplotlib")
 
         import matplotlib.pyplot as plt
+
         from email_widget.widgets.chart_widget import ChartWidget
 
         widget = ChartWidget().set_chart(plt)
@@ -556,10 +557,10 @@ class Email:
     def add_status_items(
         self,
         items: list[dict[str, str]],
-        title: Optional[str] = None,
+        title: str | None = None,
         layout: "LayoutType" = None,
     ) -> "Email":
-        """快速添加状态信息Widget。
+        """快速添加状态信息Widget.
 
         Args:
             items: 状态项列表，每项包含 label, value, status(可选)
@@ -604,11 +605,11 @@ class Email:
     def add_quote(
         self,
         content: str,
-        author: Optional[str] = None,
-        source: Optional[str] = None,
+        author: str | None = None,
+        source: str | None = None,
         quote_type: "StatusType" = None,
     ) -> "Email":
-        """快速添加引用Widget。
+        """快速添加引用Widget.
 
         Args:
             content: 引用内容
@@ -643,11 +644,11 @@ class Email:
         self,
         value: float,
         max_value: float = 100.0,
-        label: Optional[str] = None,
+        label: str | None = None,
         theme: "ProgressTheme" = None,
         size: str = "100px",
     ) -> "Email":
-        """快速添加圆形进度条Widget。
+        """快速添加圆形进度条Widget.
 
         Args:
             value: 当前进度值
@@ -685,14 +686,14 @@ class Email:
 
     def add_log(
         self,
-        logs: List[str],
-        title: Optional[str] = None,
+        logs: list[str],
+        title: str | None = None,
         show_timestamp: bool = True,
         show_level: bool = True,
         filter_level: "LogLevel" = None,
         max_height: str = "400px",
     ) -> "Email":
-        """快速添加日志Widget。
+        """快速添加日志Widget.
 
         Args:
             logs: 日志列表
@@ -732,9 +733,9 @@ class Email:
         return self.add_widget(widget)
 
     def _generate_css_styles(self) -> str:
-        """生成内联CSS样式。
+        """生成内联CSS样式.
 
-        根据配置生成邮件的CSS样式，包括布局、颜色、字体等。
+        根据配置生成邮件的CSS样式，包括布局、颜色、字体等.
 
         Returns:
             包含CSS样式的HTML字符串
@@ -882,9 +883,9 @@ class Email:
         return main_styles + mso_styles
 
     def _render_email(self) -> str:
-        """渲染完整的邮件HTML内容。
+        """渲染完整的邮件HTML内容.
 
-        将所有Widget渲染成完整的HTML邮件，包括头部、主体和尾部。
+        将所有Widget渲染成完整的HTML邮件，包括头部、主体和尾部.
 
         Returns:
             完整的HTML邮件字符串
@@ -911,8 +912,8 @@ class Email:
             self._logger.error(f"渲染邮件失败: {e}")
             return f"<html><body><h1>渲染错误</h1><p>{str(e)}</p></body></html>"
 
-    def _get_template_context(self, widget_content: str) -> Dict[str, str]:
-        """获取模板上下文数据。
+    def _get_template_context(self, widget_content: str) -> dict[str, str]:
+        """获取模板上下文数据.
 
         Args:
             widget_content: 已渲染的Widget内容
@@ -945,9 +946,9 @@ class Email:
         }
 
     def export_html(
-        self, filename: Optional[str] = None, output_dir: Optional[str] = None
+        self, filename: str | None = None, output_dir: str | None = None
     ) -> Path:
-        """导出邮件为HTML文件。
+        """导出邮件为HTML文件.
 
         Args:
             filename: 可选的文件名，如果不提供则自动生成
@@ -991,7 +992,7 @@ class Email:
             raise
 
     def export_str(self) -> str:
-        """导出邮件为HTML文本。
+        """导出邮件为HTML文本.
 
         Returns:
             完整的HTML邮件字符串
@@ -1004,7 +1005,7 @@ class Email:
         return self._render_email()
 
     def get_widget_count(self) -> int:
-        """获取当前邮件中Widget的数量。
+        """获取当前邮件中Widget的数量.
 
         Returns:
             Widget数量
@@ -1016,28 +1017,28 @@ class Email:
             >>> print(email.get_widget_count())  # 输出: 2
         """
         return len(self.widgets)
-    
+
     def __len__(self) -> int:
-        """支持len()函数获取Widget数量。
-        
+        """支持len()函数获取Widget数量.
+
         Returns:
             Widget数量
-            
+
         Examples:
             >>> email = Email()
             >>> email.add_widget(TextWidget())
             >>> print(len(email))  # 输出: 1
         """
         return len(self.widgets)
-    
+
     def __str__(self) -> str:
-        """返回邮件对象的字符串表示。
-        
+        """返回邮件对象的字符串表示.
+
         Returns:
             包含标题和Widget数量的字符串
-            
+
         Examples:
             >>> email = Email("测试邮件")
             >>> print(str(email))  # 输出: Email(title='测试邮件', widgets=0)
         """
-        return f"Email(title='{self.title}', widgets={len(self.widgets)})" 
+        return f"Email(title='{self.title}', widgets={len(self.widgets)})"

@@ -365,4 +365,4 @@ chart.set_data_summary("关键指标: 转化率 12% | ROI 3.2x | 客单价 ¥890
 
 ---
 
-**下一步**: 了解 [进度组件](progress-widgets.md) 学习如何展示进度和状态信息。 
+**下一步**: 了解 [进度组件](progress-widget.md) 学习如何展示进度和状态信息。 

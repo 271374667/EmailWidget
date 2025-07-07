@@ -1,6 +1,6 @@
 # API 参考
 
-欢迎使用 EmailWidget API 参考文档！这里提供了 EmailWidget 库的完整 API 接口说明，帮助您深入了解每个类、方法和函数的详细用法。
+欢迎来到 EmailWidget 的 API 参考文档！这里提供了所有 Widget 组件的详细 API 说明，包括方法签名、参数说明、返回值、异常处理和使用示例。
 
 ## 📚 文档组织
 
@@ -10,39 +10,37 @@ EmailWidget 的 API 按功能模块进行组织，便于您快速找到所需的
 
 - **[核心模块](core.md)** - 基础组件和模板引擎
 - **[Email主类](email.md)** - 邮件容器和管理功能
-- **[配置管理](config.md)** - 配置系统和主题管理
+- **[邮件发送器](email-sender.md)** - 邮件发送功能和服务商支持
 
 ### 🧩 组件系统
 
-- **[Widget组件](widgets.md)** - 所有可用的UI组件
-- **[枚举类型](enums.md)** - 类型定义和常量
-- **[验证器](validators.md)** - 数据验证系统
-
-### 🛠️ 工具模块
-
-- **[工具函数](utils.md)** - 辅助函数和实用工具
+- **[文本组件](text-widget.md)**
+- **[表格组件](table-widget.md)**
+- **[图片组件](image-widget.md)**
+- **[警告组件](alert-widget.md)**
+- **[进度组件](progress-widget.md)**
+- **[圆形进度组件](circular-progress-widget.md)**
+- **[卡片组件](card-widget.md)**
+- **[图表组件](chart-widget.md)**
+- **[日志组件](log-widget.md)**
+- **[引用组件](quote-widget.md)**
+- **[布局组件](column-widget.md)**
 
 ## 🚀 快速导航
 
 ### 按使用频率
 
 **高频使用** (日常开发必备)
-- [`Email`](email.md#email) - 邮件主类
-- [`TextWidget`](widgets.md#textwidget) - 文本组件
-- [`TableWidget`](widgets.md#tablewidget) - 表格组件
-- [`ChartWidget`](widgets.md#chartwidget) - 图表组件
-- [`AlertWidget`](widgets.md#alertwidget) - 警告框组件
+- [`Email`](email.md) - 邮件主类
+- [`TextWidget`](text-widget.md) - 文本组件
+- [`TableWidget`](table-widget.md) - 表格组件
+- [`ChartWidget`](chart-widget.md) - 图表组件
+- [`AlertWidget`](alert-widget.md) - 警告框组件
 
 **中频使用** (常见场景)
-- [`ProgressWidget`](widgets.md#progresswidget) - 进度条组件
-- [`StatusWidget`](widgets.md#statuswidget) - 状态组件
-- [`CardWidget`](widgets.md#cardwidget) - 卡片组件
-- [`EmailConfig`](config.md#emailconfig) - 配置管理
-
-**低频使用** (特殊需求)
-- [`BaseWidget`](core.md#basewidget) - 自定义组件基类
-- [`验证器系统`](validators.md) - 数据验证
-- [`工具函数`](utils.md) - 辅助功能
+- [`ProgressWidget`](progress-widget.md) - 进度条组件
+- [`StatusWidget`](status-widget.md) - 状态组件
+- [`CardWidget`](card-widget.md) - 卡片组件
 
 ### 按功能分类
 
@@ -50,7 +48,7 @@ EmailWidget 的 API 按功能模块进行组织，便于您快速找到所需的
 |---------|---------|----------|
 | **文本展示** | `TextWidget`, `QuoteWidget` | 标题、正文、引用 |
 | **数据展示** | `TableWidget`, `ChartWidget` | 数据报告、统计图表 |
-| **状态监控** | `StatusWidget`, `ProgressWidget` | 系统监控、任务进度 |
+| **状态监控** | `StatusWidget`, `ProgressWidget`, `CircularProgressWidget` | 系统监控、任务进度 |
 | **布局控制** | `ColumnWidget`, `CardWidget` | 页面布局、信息卡片 |
 | **交互反馈** | `AlertWidget`, `LogWidget` | 通知、日志记录 |
 
@@ -62,9 +60,9 @@ EmailWidget 的 API 按功能模块进行组织，便于您快速找到所需的
 EmailWidget 广泛使用链式调用模式，大多数设置方法都返回 `self`：
 
 ```python
-widget = TextWidget()
-    .set_content("Hello World")
-    .set_color("#0078d4")
+widget = TextWidget()\
+    .set_content("Hello World")\
+    .set_color("#0078d4")\
     .set_font_size("18px")
 ```
 
@@ -108,8 +106,8 @@ email = Email("数据报告")
 
 # 添加标题
 email.add_widget(
-    TextWidget()
-    .set_content("月度业绩汇总")
+    TextWidget()\
+    .set_content("月度业绩汇总")\
     .set_type(TextType.TITLE_LARGE)
 )
 
@@ -125,16 +123,16 @@ from email_widget.core.enums import ProgressTheme
 
 # 添加图表
 email.add_widget(
-    ChartWidget()
-    .set_image_url("chart.png")
+    ChartWidget()\
+    .set_image_url("chart.png")\
     .set_title("销售趋势")
 )
 
 # 添加进度指标
 email.add_widget(
-    ProgressWidget()
-    .set_value(85)
-    .set_label("目标完成度")
+    ProgressWidget()\
+    .set_value(85)\
+    .set_label("目标完成度")\
     .set_theme(ProgressTheme.SUCCESS)
 )
 ```
@@ -192,4 +190,26 @@ email.config = config
 
 ---
 
-现在开始探索 EmailWidget 的强大 API 吧！建议从 [Email主类](email.md) 开始。 
+现在开始探索 EmailWidget 的强大 API 吧！建议从 [Email主类](email.md) 开始。
+
+## 注意事项
+
+1. **邮件兼容性** - 所有组件都针对邮件客户端进行了优化
+2. **响应式设计** - 支持不同屏幕尺寸的自适应显示
+3. **链式调用** - 所有设置方法都返回 self，支持链式调用
+4. **参数验证** - 提供输入参数的验证和错误处理
+5. **中文支持** - 完整支持中文字符显示
+6. **依赖管理** - 部分功能需要额外的依赖库（如 matplotlib、pandas）
+
+## 获取帮助
+
+如果在使用 API 时遇到问题：
+
+1. 查看对应组件的详细 API 文档
+2. 参考用户指南中的使用示例
+3. 查看 GitHub 仓库的示例代码
+4. 提交 Issue 获取技术支持
+
+## 版本信息
+
+当前 API 文档对应 EmailWidget v1.0.0 版本。API 可能在新版本中发生变化，请注意版本兼容性。
