@@ -72,7 +72,9 @@ class TestLoGuruLogParser:
 
     def test_can_parse_valid_loguru_format(self):
         """测试能识别有效的Loguru格式"""
-        log_line = "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started"
+        log_line = (
+            "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started"
+        )
         assert self.parser.can_parse(log_line) is True
 
     def test_can_parse_invalid_format(self):
@@ -198,8 +200,14 @@ class TestTimestampLogParser:
 
     def test_can_parse_valid_timestamp_format(self):
         """测试能识别有效的时间戳格式"""
-        assert self.parser.can_parse("2025-07-07 15:24:39,055 - WARNING - hello world") is True
-        assert self.parser.can_parse("2024-01-01 00:00:00,000 - ERROR - Error message") is True
+        assert (
+            self.parser.can_parse("2025-07-07 15:24:39,055 - WARNING - hello world")
+            is True
+        )
+        assert (
+            self.parser.can_parse("2024-01-01 00:00:00,000 - ERROR - Error message")
+            is True
+        )
 
     def test_can_parse_invalid_format(self):
         """测试不能识别无效格式"""
@@ -330,18 +338,23 @@ class TestLogWidget:
     def test_add_log_parser_without_plain_text(self):
         """测试在没有PlainTextParser的情况下添加解析器"""
         # 移除PlainTextParser
-        self.widget._log_parsers = [parser for parser in self.widget._log_parsers 
-                                   if not isinstance(parser, PlainTextParser)]
-        
+        self.widget._log_parsers = [
+            parser
+            for parser in self.widget._log_parsers
+            if not isinstance(parser, PlainTextParser)
+        ]
+
         custom_parser = MockCustomParser()
         self.widget.add_log_parser(custom_parser)
-        
+
         # 应该添加解析器但不会重新添加PlainTextParser
         assert self.widget._log_parsers[-1] is custom_parser
 
     def test_append_log_loguru_format(self):
         """测试追加Loguru格式日志"""
-        log_line = "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started"
+        log_line = (
+            "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started"
+        )
         result = self.widget.append_log(log_line)
 
         # 测试链式调用
@@ -388,9 +401,9 @@ class TestLogWidget:
         """测试使用自定义解析器追加日志"""
         custom_parser = MockCustomParser()
         self.widget.add_log_parser(custom_parser)
-        
+
         self.widget.append_log("CUSTOM:自定义消息")
-        
+
         assert len(self.widget._logs) == 1
         assert self.widget._logs[0].message == "自定义消息"
         assert self.widget._logs[0].level == LogLevel.DEBUG
@@ -400,7 +413,7 @@ class TestLogWidget:
         logs = [
             "2024-07-07 10:30:00.123 | INFO | app:main:45 - Started",
             "WARNING:root:Warning message",
-            "Plain text message"
+            "Plain text message",
         ]
         result = self.widget.set_logs(logs)
 
@@ -523,7 +536,7 @@ class TestLogWidget:
             timestamp=timestamp,
             module="test_module",
             function="test_func",
-            line_number=42
+            line_number=42,
         )
 
         # 测试链式调用
@@ -624,7 +637,9 @@ class TestLogWidget:
     def test_get_template_context_with_logs(self):
         """测试有日志时的模板上下文"""
         # 添加一条Loguru格式的日志
-        self.widget.append_log("2024-07-07 10:30:00.123 | WARNING | module:func:123 - Test message")
+        self.widget.append_log(
+            "2024-07-07 10:30:00.123 | WARNING | module:func:123 - Test message"
+        )
         self.widget.set_title("测试标题")
 
         context = self.widget.get_template_context()
@@ -661,7 +676,9 @@ class TestLogWidget:
 
     def test_get_template_context_without_source_info(self):
         """测试没有来源信息的日志模板上下文"""
-        self.widget.append_log("WARNING:root:Test message")  # 标准格式，无函数和行号信息
+        self.widget.append_log(
+            "WARNING:root:Test message"
+        )  # 标准格式，无函数和行号信息
 
         context = self.widget.get_template_context()
         logs_data = context["logs"]
@@ -677,16 +694,16 @@ class TestBackwardCompatibility:
     def test_existing_loguru_parsing_still_works(self):
         """测试现有的Loguru解析功能仍然正常工作"""
         widget = LogWidget()
-        
+
         # 使用原有的Loguru格式
         log_messages = [
             "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started successfully.",
             "2024-07-07 10:31:15.456 | WARNING | my_app.database:connect:88 - Connection is slow.",
-            "2024-07-07 10:32:05.789 | ERROR | my_app.api:request:152 - Failed to fetch data from API."
+            "2024-07-07 10:32:05.789 | ERROR | my_app.api:request:152 - Failed to fetch data from API.",
         ]
 
         widget.set_logs(log_messages)
-        
+
         # 验证解析结果与原有行为一致
         assert len(widget.logs) == 3
         assert widget.logs[0].level == LogLevel.INFO
@@ -697,22 +714,25 @@ class TestBackwardCompatibility:
     def test_all_existing_methods_still_work(self):
         """测试所有现有方法仍然正常工作"""
         widget = LogWidget()
-        
+
         # 测试所有现有的链式调用方法
-        result = (widget
-                  .set_title("测试日志")
-                  .set_max_height("300px")
-                  .filter_by_level(LogLevel.WARNING)
-                  .show_timestamp(True)
-                  .show_level(True)
-                  .show_source(False)
-                  .add_log_entry("测试消息", LogLevel.INFO)
-                  .append_log("2024-07-07 10:30:00.123 | WARNING | app:main:45 - Warning message")
-                  .clear())
+        result = (
+            widget.set_title("测试日志")
+            .set_max_height("300px")
+            .filter_by_level(LogLevel.WARNING)
+            .show_timestamp(True)
+            .show_level(True)
+            .show_source(False)
+            .add_log_entry("测试消息", LogLevel.INFO)
+            .append_log(
+                "2024-07-07 10:30:00.123 | WARNING | app:main:45 - Warning message"
+            )
+            .clear()
+        )
 
         # 验证链式调用返回widget本身
         assert result is widget
-        
+
         # 验证clear方法正常工作
         assert len(widget.logs) == 0
 
@@ -723,10 +743,10 @@ class TestEdgeCases:
     def test_multiple_same_format_parsers(self):
         """测试添加多个相同格式的解析器"""
         widget = LogWidget()
-        
+
         # 添加另一个Loguru解析器
         widget.add_log_parser(LoGuruLogParser())
-        
+
         # 应该使用第一个匹配的解析器
         widget.append_log("2024-07-07 10:30:00.123 | INFO | app:main:45 - Test message")
         assert len(widget.logs) == 1
@@ -734,7 +754,7 @@ class TestEdgeCases:
     def test_parser_order_matters(self):
         """测试解析器顺序的重要性"""
         widget = LogWidget()
-        
+
         # 清空默认解析器，手动控制顺序
         widget._log_parsers.clear()
         widget._log_parsers.append(PlainTextParser())  # 先添加PlainText
@@ -742,7 +762,7 @@ class TestEdgeCases:
 
         # PlainText解析器会先匹配，因为它总是返回True
         widget.append_log("2024-07-07 10:30:00.123 | INFO | app:main:45 - Test message")
-        
+
         # 应该被PlainText解析器处理
         assert widget.logs[0].message.startswith(">")
 
@@ -750,10 +770,10 @@ class TestEdgeCases:
         """测试非常长的日志消息"""
         long_message = "X" * 10000
         log_line = f"INFO:root:{long_message}"
-        
+
         widget = LogWidget()
         widget.append_log(log_line)
-        
+
         assert len(widget.logs) == 1
         assert widget.logs[0].message == long_message
 
@@ -765,24 +785,31 @@ class TestEdgeCases:
             "ERROR:テスト:日本語のメッセージ",
             "DEBUG:root:Special chars: !@#$%^&*()",
         ]
-        
+
         widget = LogWidget()
         for msg in special_messages:
             widget.append_log(msg)
-            
+
         assert len(widget.logs) == 4
-        
+
         # 验证消息内容正确解析
         expected_messages = [
             "这是中文消息 🚀",
-            "Русский текст", 
+            "Русский текст",
             "日本語のメッセージ",
-            "Special chars: !@#$%^&*()"
+            "Special chars: !@#$%^&*()",
         ]
-        
+
         for i, log in enumerate(widget.logs):
             assert log.message == expected_messages[i]
 
 
 if __name__ == "__main__":
-    pytest.main([__file__, "-v", "--cov=email_widget.widgets.log_widget", "--cov-report=term-missing"]) 
+    pytest.main(
+        [
+            __file__,
+            "-v",
+            "--cov=email_widget.widgets.log_widget",
+            "--cov-report=term-missing",
+        ]
+    )

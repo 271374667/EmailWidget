@@ -24,13 +24,13 @@ class LogParser(ABC):
         class MyCustomParser(LogParser):
             def can_parse(self, log_line: str) -> bool:
                 return "CUSTOM:" in log_line
-            
+
             def parse(self, log_line: str) -> Optional[LogEntry]:
                 if self.can_parse(log_line):
                     # 解析逻辑
                     return LogEntry("解析后的消息", LogLevel.INFO)
                 return None
-            
+
             @property
             def parser_name(self) -> str:
                 return "CustomParser"
@@ -132,7 +132,7 @@ class LoGuruLogParser(LogParser):
 
     解析Loguru库生成的日志格式：
     "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started"
-    
+
     这是原有LogWidget默认支持的格式。
     """
 
@@ -382,7 +382,7 @@ class LogWidget(BaseWidget):
         self._filter_level: Optional[LogLevel] = None
         self._background_color: str = "#faf9f8"
         self._border_color: str = "#e1dfdd"
-        
+
         # 初始化解析器链，按优先级排序
         self._log_parsers: list[LogParser] = [
             LoGuruLogParser(),
@@ -607,14 +607,14 @@ class LogWidget(BaseWidget):
             if isinstance(parser, PlainTextParser):
                 plain_text_parser = self._log_parsers.pop(i)
                 break
-        
+
         # 添加新解析器
         self._log_parsers.append(log_parser)
-        
+
         # 重新添加PlainTextParser作为兜底解析器
         if plain_text_parser:
             self._log_parsers.append(plain_text_parser)
-        
+
         return self
 
     def _parse_single_log(self, log_line: str) -> Optional["LogEntry"]:
