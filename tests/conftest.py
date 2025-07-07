@@ -4,11 +4,12 @@ Pytest配置文件
 提供测试所需的fixtures和配置
 """
 
-import pytest
-from unittest.mock import MagicMock
-import tempfile
 import os
+import tempfile
 from pathlib import Path
+from unittest.mock import MagicMock
+
+import pytest
 
 
 @pytest.fixture
@@ -43,7 +44,7 @@ def mock_cache():
     cache.get.return_value = None
     cache.set.return_value = None
     cache.clear.return_value = None
-    cache.get_info.return_value = {'cache_size': 0, 'max_size': 100}
+    cache.get_info.return_value = {"cache_size": 0, "max_size": 100}
     return cache
 
 
@@ -51,18 +52,18 @@ def mock_cache():
 def clean_loggers():
     """自动清理测试产生的logger"""
     import logging
-    
+
     # 测试前记录现有logger
     existing_loggers = set(logging.Logger.manager.loggerDict.keys())
-    
+
     yield
-    
+
     # 测试后清理新创建的logger
     current_loggers = set(logging.Logger.manager.loggerDict.keys())
     new_loggers = current_loggers - existing_loggers
-    
+
     for logger_name in new_loggers:
-        if logger_name.startswith(('test_', 'email_widget')):
+        if logger_name.startswith(("test_", "email_widget")):
             logger = logging.getLogger(logger_name)
             # 关闭所有handler
             for handler in logger.handlers[:]:
@@ -77,24 +78,18 @@ def clean_loggers():
 def sample_widget_data():
     """提供示例Widget数据"""
     return {
-        'text_content': "Sample text content",
-        'progress_value': 75,
-        'color': "#0066cc",
-        'font_size': "16px",
-        'width': "300px",
-        'height': "20px"
+        "text_content": "Sample text content",
+        "progress_value": 75,
+        "color": "#0066cc",
+        "font_size": "16px",
+        "width": "300px",
+        "height": "20px",
     }
 
 
 # 测试标记
 def pytest_configure(config):
     """配置自定义标记"""
-    config.addinivalue_line(
-        "markers", "unit: mark test as a unit test"
-    )
-    config.addinivalue_line(
-        "markers", "integration: mark test as an integration test"
-    )
-    config.addinivalue_line(
-        "markers", "slow: mark test as slow running"
-    ) 
+    config.addinivalue_line("markers", "unit: mark test as a unit test")
+    config.addinivalue_line("markers", "integration: mark test as an integration test")
+    config.addinivalue_line("markers", "slow: mark test as slow running")
