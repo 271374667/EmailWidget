@@ -142,6 +142,8 @@ ecommerce_email.export_html("ecommerce_dashboard.html")
 print("✅ 电商数据仪表板已生成：ecommerce_dashboard.html")
 ```
 
+--8<-- "examples/assets/real_world_html/ecommerce_dashboard.html"
+
 **电商仪表板特点：**
 - 核心业务指标一目了然
 - 产品和渠道多维分析
@@ -297,6 +299,8 @@ devops_email = create_devops_monitoring()
 devops_email.export_html("devops_monitoring.html")
 print("✅ DevOps监控报告已生成：devops_monitoring.html")
 ```
+
+--8<-- "examples/assets/real_world_html/devops_monitoring.html"
 
 **DevOps监控特点：**
 - 全栈基础设施监控
@@ -465,6 +469,8 @@ ml_email.export_html("ml_experiment_report.html")
 print("✅ 机器学习实验报告已生成：ml_experiment_report.html")
 ```
 
+--8<-- "examples/assets/real_world_html/ml_experiment_report.html"
+
 **数据科学报告特点：**
 - 全面的模型评估指标
 - 可视化特征重要性
@@ -625,6 +631,8 @@ pm_email = create_project_management_dashboard()
 pm_email.export_html("project_management_dashboard.html")
 print("✅ 项目管理看板已生成：project_management_dashboard.html")
 ```
+
+--8<-- "examples/assets/real_world_html/project_management_dashboard.html"
 
 **项目管理特点：**
 - 敏捷开发进度跟踪

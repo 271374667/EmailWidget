@@ -1,5 +1,70 @@
 # 邮件发送器
 
+## 常见邮箱SMTP配置与授权码获取
+
+以下为主流邮箱（QQ、163、Outlook、Gmail）SMTP服务器参数及授权码获取方法，便于快速配置。
+
+| 邮箱类型   | SMTP服务器         | 端口 | 加密方式 | 用户名           | 密码类型   |
+|------------|--------------------|------|----------|------------------|------------|
+| QQ邮箱     | smtp.qq.com        | 465  | SSL      | 完整邮箱地址     | 授权码     |
+| 163邮箱    | smtp.163.com       | 465  | SSL      | 完整邮箱地址     | 授权码     |
+| Outlook    | smtp.office365.com | 587  | TLS      | 完整邮箱地址     | 应用专用密码|
+| Gmail      | smtp.gmail.com     | 465/587 | SSL/TLS | 完整邮箱地址     | 应用专用密码|
+
+---
+
+### QQ邮箱
+1. 登录QQ邮箱网页版，点击右上角"设置">"账户"。
+2. 在"POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务"处，勾选"开启SMTP服务"，保存。
+3. 按提示进行手机验证，获取授权码（此码即为SMTP登录密码）。
+4. 邮件客户端配置时，用户名为完整邮箱，密码为授权码。
+- 详细官方说明：[QQ邮箱帮助中心](https://service.mail.qq.com/)
+- 微软官方Outlook对接QQ邮箱说明（含授权码获取步骤）：[查看](https://support.microsoft.com/en-us/office/add-a-qqmail-account-to-outlook-34ef1254-0d07-405a-856f-0409c7c905eb)
+
+### 163邮箱
+1. 登录163邮箱网页版，点击"设置">"POP3/SMTP/IMAP"。
+2. 开启"SMTP服务"，如需验证请按提示操作。
+3. 获取授权码（部分账号需手机验证），此码即为SMTP登录密码。
+4. 邮件客户端配置时，用户名为完整邮箱，密码为授权码。
+- 官方帮助中心：[网易邮箱帮助](https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2c9926ce59ec02fa9)
+- 参考博客：[Mailbird 163邮箱配置](https://www.getmailbird.com/setup/access-163-com-via-imap-smtp)
+
+### Outlook（含Office365/Hotmail）
+1. 登录Microsoft账户（https://account.microsoft.com/），进入"安全性"设置。
+2. 开启"两步验证"。
+3. 在"安全信息"页面，选择"添加方法">"应用专用密码"，生成专用密码。
+4. 邮件客户端配置时，用户名为完整邮箱，密码为应用专用密码。
+- 微软官方说明：[Outlook应用专用密码指南](https://www.outrightcrm.com/blog/outlook-app-password-guide/)
+- Lifewire教程：[如何为Outlook.com创建应用专用密码](https://www.lifewire.com/app-specific-passwords-outlook-1170665)
+
+### Gmail
+1. 登录Google账户，进入"安全性"设置。
+2. 开启"两步验证"。
+3. 在"安全性"页面搜索"应用专用密码"，生成专用密码。
+4. 邮件客户端配置时，用户名为完整邮箱，密码为应用专用密码。
+- 官方说明：[Google账户应用专用密码](https://support.google.com/accounts/answer/185833?hl=zh-Hans)
+- 参考博客：[Gmail SMTP配置详解](https://webkul.com/blog/user-guide-to-set-up-gmail-smtp-configuration/)
+
+---
+
+### FAQ
+
+**Q1：什么是授权码/应用专用密码？**
+A：授权码/应用专用密码是邮箱服务商为提升安全性而生成的专用密码，用于第三方应用（如邮件客户端、自动化脚本）登录邮箱，不能用普通登录密码代替。
+
+**Q2：为什么要用授权码/应用专用密码？**
+A：开启两步验证后，普通密码无法直接用于SMTP等第三方服务，必须使用授权码/应用专用密码，保障账户安全。
+
+**Q3：授权码/应用专用密码丢失怎么办？**
+A：可随时在邮箱安全设置中重新生成新的授权码/应用专用密码，原有的可作废。
+
+**Q4：配置失败常见原因有哪些？**
+A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、端口/加密方式配置错误、邮箱被限制登录等。
+
+如遇特殊问题，建议优先查阅各邮箱官方帮助中心或联系邮箱服务商客服。
+
+---
+
 `EmailSender` 模块提供了一套完整且易于使用的邮件发送解决方案，它内置了对多种主流邮箱服务商的支持。
 
 ## 发送器基类

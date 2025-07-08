@@ -98,6 +98,8 @@ email.export_html("system_monitor.html")
 print("✅ 系统监控报告已生成：system_monitor.html")
 ```
 
+--8<-- "examples/assets/system_monitoring_html/system_monitor.html"
+
 **监控特点：**
 - 实时获取系统资源使用情况
 - 智能告警阈值设置
@@ -243,6 +245,8 @@ else:
 email.export_html("service_monitor.html")
 print("✅ 服务监控报告已生成：service_monitor.html")
 ```
+
+--8<-- "examples/assets/system_monitoring_html/service_monitor.html"
 
 **监控亮点：**
 - 多服务并发检查
@@ -404,6 +408,8 @@ email.export_html("log_analysis.html")
 print("✅ 日志分析报告已生成：log_analysis.html")
 ```
 
+--8<-- "examples/assets/system_monitoring_html/log_analysis.html"
+
 **分析价值：**
 - 自动化日志解析和统计
 - 错误率和警告率计算
@@ -504,6 +510,8 @@ email.export_html("database_monitor.html")
 print("✅ 数据库监控报告已生成：database_monitor.html")
 ```
 
+--8<-- "examples/assets/system_monitoring_html/database_monitor.html"
+
 **监控重点：**
 - 连接池使用情况
 - 查询性能分析
@@ -570,6 +578,8 @@ email.export_html("monitoring_dashboard.html")
 print("✅ 综合监控仪表板已生成：monitoring_dashboard.html")
 ```
 
+--8<-- "examples/assets/system_monitoring_html/monitoring_dashboard.html"
+
 **仪表板特色：**
 - 模块化设计
 - 实时状态展示
@@ -606,4 +616,4 @@ print("✅ 综合监控仪表板已生成：monitoring_dashboard.html")
 - 应用性能监控
 - 系统健康检查
 
-继续学习 [爬虫报告](spider-reports.md) 和 [高级示例](advanced.md)，探索更多专业应用！ 
+继续学习 [爬虫报告](spider-reports.md) 和 [高级示例](advanced.md)，探索更多专业应用！

@@ -121,9 +121,11 @@ email.export_html("sales_report.html")
 print("✅ 销售数据报告已生成：sales_report.html")
 ```
 
+--8<-- "examples/assets/data_reports_html/sales_report.html"
+
 **功能特点：**
 - 自动计算关键业务指标
-- DataFrame 数据直接转换为表格
+- DataFrame 数据直���转换为表格
 - 集成 matplotlib 生成趋势图
 - 数据格式化和美化展示
 
@@ -162,7 +164,7 @@ email.add_title("🎯 核心指标", TextType.SECTION_H2)
 
 # 关键指标卡片
 key_metrics = [
-    ("营业收入", df_financial.loc[0, '本期金额'], "💰"),
+    ("营业收入", df_financial.loc[0, '���期金额'], "💰"),
     ("净利润", df_financial.loc[7, '本期金额'], "📈"),
     ("毛利率", f"{(df_financial.loc[2, '本期金额'] / df_financial.loc[0, '本期金额'] * 100):.1f}%", "📊"),
     ("净利率", f"{(df_financial.loc[7, '本期金额'] / df_financial.loc[0, '本期金额'] * 100):.1f}%", "🎯")
@@ -259,6 +261,8 @@ email.add_text(analysis.strip())
 email.export_html("financial_report.html")
 print("✅ 财务报告已生成：financial_report.html")
 ```
+
+--8<-- "examples/assets/data_reports_html/financial_report.html"
 
 **专业特色：**
 - 完整的财务报表结构
@@ -426,6 +430,8 @@ email.add_text(strategy_text.strip())
 email.export_html("product_analysis.html")
 print("✅ 产品分析报告已生成：product_analysis.html")
 ```
+
+--8<-- "examples/assets/data_reports_html/product_analysis.html"
 
 **分析亮点：**
 - 多维度产品数据分析
@@ -615,7 +621,7 @@ strategy_recommendations = f"""
 • 一般保持客户：保持现状，适度营销
 • 一般挽留客户：流失预警，挽回措施
 
-🔍 **重点关注指标**
+�� **重点关注指标**
 • 高频购买客户占比：{high_frequency_pct:.1f}%
 • 平均客户生命周期：{avg_recency:.0f}天
 • 客户价值提升潜力：关注F分值和M分值较低的客户
@@ -632,11 +638,21 @@ email.export_html("rfm_customer_analysis.html")
 print("✅ RFM客户分析报告已生成：rfm_customer_analysis.html")
 ```
 
+--8<-- "examples/assets/data_reports_html/rfm_customer_analysis.html"
+
 **分析价值：**
 - 科学的RFM客户价值分析模型
 - 自动化客户分级和策略建议
 - 可视化展示客户分布情况
 - 为精准营销提供数据支持
+
+---
+
+## 图表集成
+
+### 示例图表
+
+此处可以添加一个图表集成的示例代码和说明。
 
 ---
 
@@ -667,4 +683,4 @@ print("✅ RFM客户分析报告已生成：rfm_customer_analysis.html")
 - 探索 [高级示例](advanced.md) 的自定义扩展
 - 参考 [实际应用](real-world.md) 构建完整分析系统
 
-继续探索更多高级功能，打造专业的数据分析报告！ 
+继续探索更多高级功能，打造专业的数据分析报告！

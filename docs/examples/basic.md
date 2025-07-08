@@ -35,6 +35,12 @@ email.export_html("my_first_report.html")
 print("✅ 邮件报告已生成：my_first_report.html")
 ```
 
+email.export_html("my_first_report.html")
+print("✅ 邮件报告已生成：my_first_report.html")
+```
+
+--8<-- "examples/assets/basic_html/basic_example_1.html"
+
 **效果说明：**
 - 生成一个包含蓝色大标题和普通正文的HTML邮件
 - 使用链式调用方式设置组件属性
@@ -88,6 +94,8 @@ for content, align in alignments:
 email.export_html("text_styles.html")
 print("✅ 文本样式展示已生成：text_styles.html")
 ```
+
+--8<-- "examples/assets/basic_html/basic_example_2.html"
 
 **学习要点：**
 - 了解不同 `TextType` 的视觉效果
@@ -143,6 +151,8 @@ email.add_widget(summary)
 email.export_html("employee_table.html")
 print("✅ 员工信息表已生成：employee_table.html")
 ```
+
+--8<-- "examples/assets/basic_html/basic_example_3.html"
 
 **功能特点：**
 - 简单的表格数据展示
@@ -200,6 +210,8 @@ email.export_html("project_progress.html")
 print("✅ 项目进度报告已生成：project_progress.html")
 ```
 
+--8<-- "examples/assets/basic_html/basic_example_4.html"
+
 **设计亮点：**
 - 使用不同主题色区分进度状态
 - 结合文本说明提供更多信息
@@ -248,6 +260,8 @@ email.add_widget(contact)
 email.export_html("system_alerts.html")
 print("✅ 系统通知已生成：system_alerts.html")
 ```
+
+--8<-- "examples/assets/basic_html/basic_example_5.html"
 
 **使用场景：**
 - 系统维护通知
@@ -304,6 +318,8 @@ email.export_html("image_showcase.html")
 print("✅ 图片展示已生成：image_showcase.html")
 ```
 
+--8<-- "examples/assets/basic_html/basic_example_6.html"
+
 **注意事项：**
 - 使用占位符图片便于测试
 - 设置合适的图片尺寸
@@ -352,6 +368,8 @@ email.add_card(
 email.export_html("convenience_methods.html")
 print("✅ 便捷方法演示已生成：convenience_methods.html")
 ```
+
+--8<-- "examples/assets/basic_html/basic_example_7.html"
 
 **便捷之处：**
 - 支持方法链式调用
@@ -436,6 +454,8 @@ email.export_html("weekly_report.html")
 print("✅ 个人周报已生成：weekly_report.html")
 ```
 
+--8<-- "examples/assets/basic_html/basic_example_8.html"
+
 **综合特点：**
 - 结构清晰的周报格式
 - 多种组件协同工作
@@ -470,4 +490,4 @@ print("✅ 个人周报已生成：weekly_report.html")
 - 注意视觉层次和信息结构
 - 充分利用便捷方法提高效率
 
-继续学习更多高级功能，探索 EmailWidget 的强大能力！ 
+继续学习更多高级功能，探索 EmailWidget 的强大能力！

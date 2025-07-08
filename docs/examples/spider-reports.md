@@ -155,6 +155,8 @@ email.export_html("spider_monitor.html")
 print("✅ 爬虫监控报告已生成：spider_monitor.html")
 ```
 
+--8<-- "examples/assets/spider_reports_html/spider_monitor.html"
+
 **监控特点：**
 - 实时任务进度跟踪
 - 成功率和速度监控
@@ -333,6 +335,8 @@ email.export_html("data_quality_report.html")
 print("✅ 数据质量报告已生成：data_quality_report.html")
 ```
 
+--8<-- "examples/assets/spider_reports_html/data_quality_report.html"
+
 **质量检查特色：**
 - 多维度质量评估
 - 字段级别质量分析
@@ -492,6 +496,8 @@ email.export_html("spider_error_analysis.html")
 print("✅ 爬虫异常分析报告已生成：spider_error_analysis.html")
 ```
 
+--8<-- "examples/assets/spider_reports_html/spider_error_analysis.html"
+
 **异常监控亮点：**
 - 异常类型统计分析
 - 可视化异常分布
@@ -594,6 +600,8 @@ email.export_html("spider_performance_analysis.html")
 print("✅ 爬虫性能分析报告已生成：spider_performance_analysis.html")
 ```
 
+--8<-- "examples/assets/spider_reports_html/spider_performance_analysis.html"
+
 **性能分析特色：**
 - 多维度性能对比
 - 综合效率评分
@@ -685,6 +693,8 @@ email.add_text(lessons_learned.strip())
 email.export_html("spider_project_summary.html")
 print("✅ 爬虫项目综合报告已生成：spider_project_summary.html")
 ```
+
+--8<-- "examples/assets/spider_reports_html/spider_project_summary.html"
 
 **综合报告价值：**
 - 项目全貌展示

@@ -7,7 +7,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
         <!-- 第一行：文本组件 & 表格组件 -->
         <div class="component-row">
             <div class="component-item">
-                <h3><a href="text-widget.md">TextWidget 文本组件</a></h3>
+                <h3><a href="../text-widget/">TextWidget 文本组件</a></h3>
                 <p>用于显示各种文本内容，支持多种样式和格式</p>
                 <div class="component-preview">
                     <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px; padding: 16px; margin: 16px 0;">
@@ -21,7 +21,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                 </div>
             </div>
             <div class="component-item">
-                <h3><a href="table-widget.md">TableWidget 表格组件</a></h3>
+                <h3><a href="../table-widget/">TableWidget 表格组件</a></h3>
                 <p>展示结构化数据，支持表头、索引列、条纹样式等</p>
                 <div class="component-preview">
                     <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
@@ -52,7 +52,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
         <!-- 第二行：图片组件 & 图表组件 -->
         <div class="component-row">
             <div class="component-item">
-                <h3><a href="image-widget.md">ImageWidget 图片组件</a></h3>
+                <h3><a href="../image-widget/">ImageWidget 图片组件</a></h3>
                 <p>展示图片内容，支持标题、描述和多种布局选项</p>
                 <div class="component-preview">
                     <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0; text-align: center;">
@@ -70,7 +70,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                 </div>
             </div>
             <div class="component-item">
-                <h3><a href="chart-widget.md">ChartWidget 图表组件</a></h3>
+                <h3><a href="../chart-widget/">ChartWidget 图表组件</a></h3>
                 <p>专门用于展示图表，支持多种图表类型和数据摘要</p>
                 <div class="component-preview">
                     <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0; text-align: center;">
@@ -94,7 +94,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
         <!-- 第三行：进度组件 & 圆形进度组件 -->
         <div class="component-row">
             <div class="component-item">
-                <h3><a href="progress-widget.md">ProgressWidget 进度条</a></h3>
+                <h3><a href="../progress-widget/">ProgressWidget 进度条</a></h3>
                 <p>显示任务或进程的完成进度，支持多种主题</p>
                 <div class="component-preview">
                     <div style="margin: 16px 0;">
@@ -112,7 +112,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                 </div>
             </div>
             <div class="component-item">
-                <h3><a href="circular-progress-widget.md">CircularProgressWidget 圆形进度条</a></h3>
+                <h3><a href="../circular-progress-widget/">CircularProgressWidget 圆形进度条</a></h3>
                 <p>以圆形方式显示进度，适合展示百分比数据</p>
                 <div class="component-preview">
                     <div style="text-align: center; margin: 16px 0;">
@@ -133,7 +133,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
         <!-- 第四行：状态组件 & 警告组件 -->
         <div class="component-row">
             <div class="component-item">
-                <h3><a href="status-widget.md">StatusWidget 状态信息</a></h3>
+                <h3><a href="../status-widget/">StatusWidget 状态信息</a></h3>
                 <p>展示多个状态项的信息，支持水平和垂直布局</p>
                 <div class="component-preview">
                     <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
@@ -155,7 +155,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                 </div>
             </div>
             <div class="component-item">
-                <h3><a href="alert-widget.md">AlertWidget 警告组件</a></h3>
+                <h3><a href="../alert-widget/">AlertWidget 警告组件</a></h3>
                 <p>显示各种类型的警告信息，支持GitHub风格的提示框</p>
                 <div class="component-preview">
                     <div style="background: #dbeafe; border: 1px solid #3b82f6; border-left: 4px solid #3b82f6; border-radius: 4px; padding: 12px; margin: 16px 0; color: #1e40af; font-size: 12px;">
@@ -177,7 +177,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
         <!-- 第五行：卡片组件 & 引用组件 -->
         <div class="component-row">
             <div class="component-item">
-                <h3><a href="card-widget.md">CardWidget 卡片组件</a></h3>
+                <h3><a href="../card-widget/">CardWidget 卡片组件</a></h3>
                 <p>卡片容器，用于组织和展示相关信息</p>
                 <div class="component-preview">
                     <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 8px; padding: 16px; margin: 16px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
@@ -197,7 +197,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                 </div>
             </div>
             <div class="component-item">
-                <h3><a href="quote-widget.md">QuoteWidget 引用组件</a></h3>
+                <h3><a href="../quote-widget/">QuoteWidget 引用组件</a></h3>
                 <p>展示引用内容，支持作者和来源信息</p>
                 <div class="component-preview">
                     <div style="border-left: 4px solid #0078d4; padding: 12px 16px; margin: 16px 0; background: #f8f9fa; border-radius: 0 4px 4px 0;">
@@ -220,7 +220,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
         <!-- 第六行：列布局组件 & 日志组件 -->
         <div class="component-row">
             <div class="component-item">
-                <h3><a href="column-widget.md">ColumnWidget 列布局组件</a></h3>
+                <h3><a href="../column-widget/">ColumnWidget 列布局组件</a></h3>
                 <p>多列布局管理器，支持响应式列布局</p>
                 <div class="component-preview">
                     <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
@@ -244,7 +244,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                 </div>
             </div>
             <div class="component-item">
-                <h3><a href="log-widget.md">LogWidget 日志组件</a></h3>
+                <h3><a href="../log-widget/">LogWidget 日志组件</a></h3>
                 <p>展示日志信息，支持不同级别的日志显示</p>
                 <div class="component-preview">
                     <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
@@ -292,6 +292,10 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .component-item:hover {
@@ -326,12 +330,21 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.component-preview > div {
+    width: 90%;
+    max-width: 100%;
 }
 
 .component-tags {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 16px;
 }
 
 .tag {
@@ -347,6 +360,11 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
     .component-row {
         flex-direction: column;
         gap: 20px;
+    }
+    
+    .component-item {
+        height: auto;
+        min-height: 300px;
     }
     
     .main-content {
@@ -398,4 +416,4 @@ email.add_widget(ProgressWidget().set_value(75).set_label("项目进度"))
 
 # 导出HTML
 email.export_html("report.html")
-``` 
+```

@@ -288,23 +288,23 @@ html = report.render_html()
 
 ### 核心方法
 
-| 方法 | 参数 | 说明 | 示例 |
-|------|------|------|------|
-| `set_image_url()` | `url: str` | 设置图片URL | `.set_image_url("chart.png")` |
-| `set_title()` | `title: str` | 设置图表标题 | `.set_title("销售趋势")` |
-| `set_description()` | `desc: str` | 设置图表描述 | `.set_description("月度销售数据")` |
-| `set_alt_text()` | `alt: str` | 设置图片替代文本 | `.set_alt_text("销售图表")` |
-| `set_data_summary()` | `summary: str` | 设置数据摘要 | `.set_data_summary("总计: 100万")` |
-| `set_max_width()` | `width: str` | 设置最大宽度 | `.set_max_width("600px")` |
+| 方法                   | 参数             | 说明       | 示例                              |
+|----------------------|----------------|----------|---------------------------------|
+| `set_image_url()`    | `url: str`     | 设置图片URL  | `.set_image_url("chart.png")`   |
+| `set_title()`        | `title: str`   | 设置图表标题   | `.set_title("销售趋势")`            |
+| `set_description()`  | `desc: str`    | 设置图表描述   | `.set_description("月度销售数据")`    |
+| `set_alt_text()`     | `alt: str`     | 设置图片替代文本 | `.set_alt_text("销售图表")`         |
+| `set_data_summary()` | `summary: str` | 设置数据摘要   | `.set_data_summary("总计: 100万")` |
+| `set_max_width()`    | `width: str`   | 设置最大宽度   | `.set_max_width("600px")`       |
 
 ### 高级配置
 
-| 方法 | 参数 | 说明 | 默认值 |
-|------|------|------|--------|
-| `set_show_caption()` | `show: bool` | 是否显示标题描述 | `True` |
-| `clear_title()` | 无 | 清除标题 | - |
-| `clear_description()` | 无 | 清除描述 | - |
-| `clear_data_summary()` | 无 | 清除数据摘要 | - |
+| 方法                     | 参数           | 说明       | 默认值    |
+|------------------------|--------------|----------|--------|
+| `set_show_caption()`   | `show: bool` | 是否显示标题描述 | `True` |
+| `clear_title()`        | 无            | 清除标题     | -      |
+| `clear_description()`  | 无            | 清除描述     | -      |
+| `clear_data_summary()` | 无            | 清除数据摘要   | -      |
 
 ## 🎯 最佳实践
 

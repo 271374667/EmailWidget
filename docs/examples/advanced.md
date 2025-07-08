@@ -125,6 +125,8 @@ email.export_html("custom_components_demo.html")
 print("✅ 自定义组件演示已生成：custom_components_demo.html")
 ```
 
+--8<-- "examples/assets/advanced_html/商务_theme_demo.html"
+
 **自定义组件特点：**
 - 继承 BaseWidget 基类
 - 支持链式调用
@@ -277,7 +279,12 @@ themes = [
 for theme_config, theme_name in themes:
     email = create_themed_report(theme_config, theme_name)
     email.export_html(f"{theme_name.lower()}_theme_demo.html")
-    print(f"✅ {theme_name}主题演示已生成")
+print(f"✅ {theme_name}主题演示已生成")
+```
+
+--8<-- "examples/assets/advanced_html/默认_theme_demo.html"
+--8<-- "examples/assets/advanced_html/深色_theme_demo.html"
+--8<-- "examples/assets/advanced_html/商务_theme_demo.html"
 ```
 
 **主题系统特点：**
@@ -508,6 +515,8 @@ email.export_html("advanced_template_demo.html")
 print("✅ 高级模板演示已生成：advanced_template_demo.html")
 ```
 
+--8<-- "examples/assets/advanced_html/advanced_template_demo.html"
+
 **模板引擎扩展特点：**
 - 自定义 Jinja2 过滤器
 - 灵活的模板系统
@@ -675,6 +684,8 @@ optimized_email.export_html("performance_optimization_demo.html")
 print("✅ 性能优化演示已生成：performance_optimization_demo.html")
 ```
 
+--8<-- "examples/assets/advanced_html/performance_optimization_demo.html"
+
 **性能优化特点：**
 - 多层缓存策略
 - 批量处理优化
@@ -801,6 +812,8 @@ email.export_html("responsive_layout_demo.html")
 print("✅ 响应式布局演示已生成：responsive_layout_demo.html")
 ```
 
+--8<-- "examples/assets/advanced_html/responsive_layout_demo.html"
+
 **响应式特点：**
 - CSS Grid 布局系统
 - 移动端适配策略
@@ -837,4 +850,4 @@ print("✅ 响应式布局演示已生成：responsive_layout_demo.html")
 - 高性能报告生成
 - 移动端友好设计
 
-继续学习 [实际应用](real-world.md)，看看这些技术在真实项目中的综合运用！ 
+继续学习 [实际应用](real-world.md)，看看这些技术在真实项目中的综合运用！

@@ -1,8 +1,8 @@
 site_name: EmailWidget - 邮件组件库
-site_description: 一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过537个测试用例验证，83%代码覆盖率，确保企业级稳定性。
-site_author: Python调包侠
+site_description: 一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过600+个测试用例验证，90%+代码覆盖率。
+site_author: PythonImporter
 site_url: https://271374667.github.io/EmailWidget/
-copyright: Copyright &copy; 2024 Python调包侠 | EmailWidget v1.0.0
+copyright: Copyright &copy; 2025 PythonImporter
 
 repo_name: 271374667/EmailWidget
 repo_url: https://github.com/271374667/EmailWidget
@@ -147,21 +147,21 @@ nav:
         - 布局组件: api/column-widget.md
         - 图表组件: api/chart-widget.md
         - 日志组件: api/log-widget.md
-    # - 示例代码:
-    #     - examples/index.md
-    #     - 基础示例: examples/basic.md
-    #     - 数据报告: examples/data-reports.md
-    #     - 系统监控: examples/system-monitoring.md
-    #     - 爬虫报告: examples/spider-reports.md
-    #     - 高级示例: examples/advanced.md
-    #     - 实际应用: examples/real-world.md
-    # - 开发指南:
-    #     - development/index.md
-    #     - 贡献指南: development/contributing.md
-    #     - 开发环境: development/setup.md
-    #     - 创建Widget: development/creating-widgets.md
-    #     - 测试指南: development/testing.md
-    #     - 发布流程: development/release.md
+    - 示例代码:
+        - examples/index.md
+        - 基础示例: examples/basic.md
+        - 数据报告: examples/data-reports.md
+        - 系统监控: examples/system-monitoring.md
+        - 爬虫报告: examples/spider-reports.md
+        - 高级示例: examples/advanced.md
+        - 实际应用: examples/real-world.md
+    - 开发指南:
+        - development/index.md
+        - 贡献指南: development/contributing.md
+        - 开发环境: development/setup.md
+        - 创建Widget: development/creating-widgets.md
+        - 测试指南: development/testing.md
+        - 发布流程: development/release.md
     # - 更新日志: changelog.md
 
 plugins:
@@ -189,10 +189,10 @@ extra:
     social:
         - icon: fontawesome/brands/github
           link: https://github.com/271374667
-          name: GitHub - Python调包侠
+          name: GitHub - PythonImporter
         - icon: fontawesome/brands/bilibili  
           link: https://space.bilibili.com/282527875
-          name: Bilibili - Python调包侠
+          name: Bilibili - PythonImporter
         - icon: material/email
           link: mailto:271374667@qq.com
           name: 邮件联系
