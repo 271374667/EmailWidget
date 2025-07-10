@@ -29,22 +29,6 @@
 - 官方帮助中心：[网易邮箱帮助](https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2c9926ce59ec02fa9)
 - 参考博客：[Mailbird 163邮箱配置](https://www.getmailbird.com/setup/access-163-com-via-imap-smtp)
 
-### Outlook（含Office365/Hotmail）
-1. 登录Microsoft账户（https://account.microsoft.com/），进入"安全性"设置。
-2. 开启"两步验证"。
-3. 在"安全信息"页面，选择"添加方法">"应用专用密码"，生成专用密码。
-4. 邮件客户端配置时，用户名为完整邮箱，密码为应用专用密码。
-- 微软官方说明：[Outlook应用专用密码指南](https://www.outrightcrm.com/blog/outlook-app-password-guide/)
-- Lifewire教程：[如何为Outlook.com创建应用专用密码](https://www.lifewire.com/app-specific-passwords-outlook-1170665)
-
-### Gmail
-1. 登录Google账户，进入"安全性"设置。
-2. 开启"两步验证"。
-3. 在"安全性"页面搜索"应用专用密码"，生成专用密码。
-4. 邮件客户端配置时，用户名为完整邮箱，密码为应用专用密码。
-- 官方说明：[Google账户应用专用密码](https://support.google.com/accounts/answer/185833?hl=zh-Hans)
-- 参考博客：[Gmail SMTP配置详解](https://webkul.com/blog/user-guide-to-set-up-gmail-smtp-configuration/)
-
 ---
 
 ### FAQ
@@ -101,20 +85,6 @@ A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、�
 ### NetEaseEmailSender
 
 ::: email_widget.email_sender.NetEaseEmailSender
-    options:
-        show_root_heading: false
-        heading_level: 4
-
-### OutlookEmailSender
-
-::: email_widget.email_sender.OutlookEmailSender
-    options:
-        show_root_heading: false
-        heading_level: 4
-
-### GmailSender
-
-::: email_widget.email_sender.GmailSender
     options:
         show_root_heading: false
         heading_level: 4
