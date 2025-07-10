@@ -2,14 +2,14 @@ name: 📚 Build Docs & 📦 Publish Package
 
 on:
   # 当推送到 master 分支时触发测试
-  push:
-    tags:
-      - 'v*'
+  # push:
+  #   tags:
+  #     - 'v*'
   
-  # 当创建 PR 时触发测试
-  pull_request:
-    branches:
-      - master
+  # # 当创建 PR 时触发测试
+  # pull_request:
+  #   branches:
+  #     - master
   
   # 允许手动触发
   workflow_dispatch:

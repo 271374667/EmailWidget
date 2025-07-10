@@ -65,7 +65,7 @@ def create_comprehensive_demo():
     # 创建邮件主体
     email = Email("EmailWidget 完整功能演示")
     email.set_subtitle("展示所有13个Widget组件的完整功能")
-    email.set_footer("本演示由 EmailWidget v0.4.6 生成 | 更多信息请访问 GitHub")
+    email.set_footer("本演示由 EmailWidget v0.6.8 生成 | 更多信息请访问 GitHub")
     
     # ========== 1. 文本组件 (TextWidget) ==========
     email.add_text("1. 文本组件 (TextWidget)", text_type=TextType.SECTION_H2)
@@ -128,9 +128,9 @@ def create_comprehensive_demo():
     btn_group = ColumnWidget()
     btn_group.set_columns(3)
     
-    btn1 = ButtonWidget().set_full_button("主要操作", "https://example.com/primary", "#3b82f6")
-    btn2 = ButtonWidget().set_full_button("成功操作", "https://example.com/success", "#22c55e")
-    btn3 = ButtonWidget().set_full_button("危险操作", "https://example.com/danger", "#ef4444")
+    btn1 = ButtonWidget().set_full_button("主要操作", "https://example.com/primary", "#3b82f6").set_width("100%")
+    btn2 = ButtonWidget().set_full_button("成功操作", "https://example.com/success", "#22c55e").set_width("100%")
+    btn3 = ButtonWidget().set_full_button("危险操作", "https://example.com/danger", "#ef4444").set_width("100%")
     
     btn_group.add_widgets([btn1, btn2, btn3])
     email.add_widget(btn_group)
@@ -438,7 +438,7 @@ def create_comprehensive_demo():
     
     # 网络图片
     img1 = ImageWidget()
-    img1.set_image_url("https://via.placeholder.com/800x400/3b82f6/ffffff?text=EmailWidget+Demo")
+    img1.set_image_url("https://placehold.co/300x200")
     img1.set_title("产品展示图")
     img1.set_description("EmailWidget 组件库的功能展示")
     img1.set_alt_text("EmailWidget Demo")
@@ -449,15 +449,15 @@ def create_comprehensive_demo():
     img_layout.set_columns(3)
     
     img2 = ImageWidget()
-    img2.set_image_url("https://via.placeholder.com/300x200/22c55e/ffffff?text=Success")
+    img2.set_image_url("https://placehold.co/300x200?text=Success")
     img2.set_title("成功案例")
     
     img3 = ImageWidget()
-    img3.set_image_url("https://via.placeholder.com/300x200/f59e0b/ffffff?text=Warning")
+    img3.set_image_url("https://placehold.co/300x200?text=Warning")
     img3.set_title("注意事项")
     
     img4 = ImageWidget()
-    img4.set_image_url("https://via.placeholder.com/300x200/ef4444/ffffff?text=Error")
+    img4.set_image_url("https://placehold.co/300x200?text=Error")
     img4.set_title("错误示例")
     
     img_layout.add_widgets([img2, img3, img4])
