@@ -1,6 +1,6 @@
 [project]
 name = "EmailWidget"
-version = "0.4.6"
+version = "0.6.8"
 description = "🚀 一个现代化、易用的Python邮件组件库，让你轻松创建美观的HTML邮件报告"
 requires-python = ">=3.10"
 readme = "README.md"

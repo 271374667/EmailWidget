@@ -78,7 +78,7 @@ from email_widget.widgets.table_widget import TableCell, TableWidget
 from email_widget.widgets.text_widget import TextWidget
 
 # 版本信息
-__version__ = "0.4.6"
+__version__ = "0.6.8"
 __author__ = "PythonImporter"
 __email__ = "271374667@qq.com"
 
