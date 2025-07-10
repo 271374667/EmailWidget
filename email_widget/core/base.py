@@ -3,12 +3,12 @@
 这个模块定义了所有Widget的基础抽象类，提供了Widget的基本功能和接口。
 """
 
-from abc import ABC, abstractmethod
-from typing import Optional, TYPE_CHECKING, Dict, Any
 import uuid
+from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING, Any, Optional
 
-from email_widget.core.template_engine import get_template_engine
 from email_widget.core.logger import get_project_logger
+from email_widget.core.template_engine import get_template_engine
 
 if TYPE_CHECKING:
     from email_widget.email import Email
@@ -47,14 +47,14 @@ class BaseWidget(ABC):
         ```
     """
 
-    def __init__(self, widget_id: Optional[str] = None):
+    def __init__(self, widget_id: str | None = None):
         """初始化BaseWidget。
 
         Args:
             widget_id (Optional[str]): 可选的Widget ID，如果不提供则自动生成。
         """
         self._widget_id: str = widget_id or self._generate_id()
-        self._parent: Optional["Email"] = None
+        self._parent: Email | None = None
         self._template_engine = get_template_engine()
         self._logger = get_project_logger()
 
@@ -159,7 +159,7 @@ class BaseWidget(ABC):
             return self._render_error_fallback(f"渲染异常: {e}")
 
     @abstractmethod
-    def get_template_context(self) -> Dict[str, Any]:
+    def get_template_context(self) -> dict[str, Any]:
         """获取模板渲染所需的上下文数据。
 
         子类必须实现此方法，返回模板渲染所需的数据字典。

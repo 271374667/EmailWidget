@@ -57,13 +57,12 @@ from email_widget.email import Email
 # 邮件发送器类
 from email_widget.email_sender import (
     EmailSender,
-    GmailSender,
     NetEaseEmailSender,
-    OutlookEmailSender,
     QQEmailSender,
     create_email_sender,
 )
 from email_widget.widgets.alert_widget import AlertWidget
+from email_widget.widgets.button_widget import ButtonWidget
 from email_widget.widgets.card_widget import CardWidget
 from email_widget.widgets.chart_widget import ChartWidget
 from email_widget.widgets.circular_progress_widget import CircularProgressWidget
@@ -93,8 +92,6 @@ __all__ = [
     "EmailSender",
     "QQEmailSender",
     "NetEaseEmailSender",
-    "OutlookEmailSender",
-    "GmailSender",
     "create_email_sender",
     # Widget组件
     "TextWidget",
@@ -103,6 +100,7 @@ __all__ = [
     "ImageWidget",
     "ChartWidget",
     "AlertWidget",
+    "ButtonWidget",
     "ProgressWidget",
     "CircularProgressWidget",
     "CardWidget",

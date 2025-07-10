@@ -1,7 +1,7 @@
 """邮件发送模块
 
 这个模块提供了邮件发送的抽象接口和各种邮箱服务商的具体实现.
-支持QQ邮箱、网易邮箱、Outlook邮箱和Gmail邮箱.
+支持QQ邮箱和网易邮箱.
 
 Examples:
     >>> from email_widget import Email
@@ -234,7 +234,7 @@ class QQEmailSender(EmailSender):
     它预设了 QQ 邮箱的 SMTP 服务器地址和推荐的端口.
 
     重要提示:
-        - **必须使用授权码**: 出于安全原因，QQ邮箱的SMTP服务要求使用“授权码”而非你的登录密码.你需要在QQ邮箱的“设置”->“账户”页面下生成此授权码.
+        - **必须使用授权码**: 出于安全原因，QQ邮箱的SMTP服务要求使用"授权码"而非你的登录密码.你需要在QQ邮箱的"设置"->"账户"页面下生成此授权码.
         - **开启SMTP服务**: 请确保你已经在QQ邮箱设置中开启了IMAP/SMTP服务.
 
     Examples:
@@ -303,7 +303,7 @@ class NetEaseEmailSender(EmailSender):
     它会自动根据你的邮箱地址后缀选择正确的SMTP服务器.
 
     重要提示:
-        - **必须使用授权码**: 与QQ邮箱类似，网易邮箱也需要使用专用的“客户端授权密码”，而不是你的邮箱登录密码.
+        - **必须使用授权码**: 与QQ邮箱类似，网易邮箱也需要使用专用的"客户端授权密码"，而不是你的邮箱登录密码.
         - **开启SMTP服务**: 请在你的网易邮箱设置中开启POP3/SMTP/IMAP服务.
         - **SSL连接**: 网易邮箱的SMTP服务主要使用SSL加密（端口465），因此默认 `use_tls` 为 `False`.
 
@@ -379,151 +379,12 @@ class NetEaseEmailSender(EmailSender):
         return 465  # 网易邮箱只支持SSL端口465
 
 
-class OutlookEmailSender(EmailSender):
-    """Outlook邮箱发送器.
-
-    支持微软旗下的 Outlook.com 和 Hotmail.com 邮箱服务.
-
-    重要提示:
-        - **建议使用应用密码**: 如果你为你的微软账户开启了两步验证，你需要创建一个“应用密码”并在程序中使用它，而不是你的常规登录密码.
-        - **TLS连接**: Outlook 的 SMTP 服务要求使用 STARTTLS 加密（端口587），因此 `use_tls` 会被强制设置为 `True`.
-        - **启用SMTP**: 可能需要在 Outlook.com 的“邮件”->“同步电子邮件”设置中，确保POP和IMAP访问已启用.
-
-    Examples:
-        ```python
-        from email_widget import Email, OutlookEmailSender
-        import os
-
-        outlook_user = os.getenv("OUTLOOK_USER") # e.g., "your_id@outlook.com"
-        app_password = os.getenv("OUTLOOK_APP_PASSWORD")
-
-        email = Email("Outlook Test Mail")
-        email.add_text("This is a test email sent via OutlookEmailSender.")
-
-        sender = OutlookEmailSender(username=outlook_user, password=app_password)
-
-        try:
-            sender.send(email, to=["colleague@example.com"])
-            print("Outlook 邮件发送成功！")
-        except Exception as e:
-            print(f"邮件发送失败: {e}")
-        ```
-    """
-
-    def __init__(
-        self, username: str, password: str, use_tls: bool = True, *args, **kwargs
-    ) -> None:
-        """初始化Outlook邮箱发送器.
-
-        Args:
-            username: Outlook邮箱地址
-            password: Outlook邮箱应用密码
-            use_tls: 是否使用TLS加密，默认为True（Outlook只支持TLS）
-            *args: 其他位置参数
-            **kwargs: 其他关键字参数
-
-        Note:
-            Outlook邮箱只支持TLS连接，不支持SSL连接.
-        """
-        # 强制使用TLS，因为Outlook不支持SSL
-        super().__init__(username, password, True, *args, **kwargs)
-
-    def _get_default_smtp_server(self) -> str:
-        """获取Outlook邮箱的默认SMTP服务器地址.
-
-        Returns:
-            Outlook邮箱SMTP服务器地址
-        """
-        return "smtp-mail.outlook.com"
-
-    def _get_default_smtp_port(self) -> int:
-        """获取Outlook邮箱的默认SMTP端口.
-
-        Returns:
-            Outlook邮箱SMTP端口号
-
-        Note:
-            Outlook只支持TLS连接，端口587.
-        """
-        return 587  # Outlook只支持TLS，端口587
-
-
-class GmailSender(EmailSender):
-    """Gmail邮箱发送器.
-
-    用于通过 Google 的 Gmail 服务发送邮件.
-
-    重要提示:
-        - **必须使用应用专用密码**: 由于安全策略，你必须为你的Google账户启用两步验证（2-Step Verification），然后生成一个“应用专用密码”（App Password）来在第三方应用（如本程序）中使用.
-        - **连接方式**: Gmail 同时支持 TLS (端口 587) 和 SSL (端口 465) 连接.默认推荐使用 `use_tls=True`.
-
-    Examples:
-        ```python
-        from email_widget import Email, GmailSender
-        import os
-
-        gmail_user = os.getenv("GMAIL_USER") # e.g., "your.name@gmail.com"
-        app_password = os.getenv("GMAIL_APP_PASSWORD")
-
-        email = Email("Report from Gmail")
-        email.add_text("This report was sent using the GmailSender.")
-
-        sender = GmailSender(username=gmail_user, password=app_password)
-
-        try:
-            sender.send(email, to=["manager@example.com"])
-            print("Gmail 邮件发送成功！")
-        except Exception as e:
-            print(f"邮件发送失败: {e}")
-        ```
-    """
-
-    def __init__(
-        self, username: str, password: str, use_tls: bool = True, *args, **kwargs
-    ) -> None:
-        """初始化Gmail发送器.
-
-        Args:
-            username: Gmail邮箱地址
-            password: Gmail应用专用密码
-            use_tls: 是否使用TLS加密，默认为True（推荐TLS连接）
-            *args: 其他位置参数
-            **kwargs: 其他关键字参数
-
-        Note:
-            Gmail支持TLS（端口587）和SSL（端口465），推荐使用TLS.
-        """
-        super().__init__(username, password, use_tls, *args, **kwargs)
-
-    def _get_default_smtp_server(self) -> str:
-        """获取Gmail的默认SMTP服务器地址.
-
-        Returns:
-            Gmail SMTP服务器地址
-        """
-        return "smtp.gmail.com"
-
-    def _get_default_smtp_port(self) -> int:
-        """获取Gmail的默认SMTP端口.
-
-        Returns:
-            Gmail SMTP端口号
-
-        Note:
-            TLS使用端口587，SSL使用端口465.
-        """
-        return 587 if self.use_tls else 465
-
-
 # 邮箱服务商映射字典，方便用户选择
 EMAIL_PROVIDERS: dict[str, type] = {
     "qq": QQEmailSender,
     "netease": NetEaseEmailSender,
     "163": NetEaseEmailSender,
     "126": NetEaseEmailSender,
-    "outlook": OutlookEmailSender,
-    "hotmail": OutlookEmailSender,
-    "gmail": GmailSender,
 }
 
 
@@ -537,7 +398,7 @@ def create_email_sender(
 
     Args:
         provider (str): 邮箱服务商的标识符.支持的值（不区分大小写）包括：
-                      'qq', 'netease', '163', '126', 'outlook', 'hotmail', 'gmail'.
+                      'qq', 'netease', '163', '126'.
         username (str): 邮箱账户，通常是完整的邮箱地址.
         password (str): 邮箱的授权码或应用密码.
         **kwargs: 其他关键字参数，将直接传递给所选发送器类的构造函数.
@@ -554,7 +415,7 @@ def create_email_sender(
         import os
 
         # 从配置或环境变量中读取服务商和凭证
-        email_provider = os.getenv("EMAIL_PROVIDER", "qq") # e.g., 'qq' or 'gmail'
+        email_provider = os.getenv("EMAIL_PROVIDER", "qq") # e.g., 'qq' or 'netease'
         email_user = os.getenv("EMAIL_USER")
         email_password = os.getenv("EMAIL_PASSWORD")
 

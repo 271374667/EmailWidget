@@ -3,7 +3,7 @@
 import re
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, Optional, TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Any, Optional
 
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import LogLevel
@@ -104,10 +104,10 @@ class LogEntry:
         self,
         message: str,
         level: LogLevel = LogLevel.INFO,
-        timestamp: Optional[datetime] = None,
-        module: Optional[str] = None,
-        function: Optional[str] = None,
-        line_number: Optional[int] = None,
+        timestamp: datetime | None = None,
+        module: str | None = None,
+        function: str | None = None,
+        line_number: int | None = None,
     ):
         """初始化LogEntry。
 
@@ -366,7 +366,7 @@ class LogWidget(BaseWidget):
     {% endif %}
     """
 
-    def __init__(self, widget_id: Optional[str] = None):
+    def __init__(self, widget_id: str | None = None):
         """初始化LogWidget。
 
         Args:
@@ -374,12 +374,12 @@ class LogWidget(BaseWidget):
         """
         super().__init__(widget_id)
         self._logs: list[LogEntry] = []
-        self._title: Optional[str] = None
+        self._title: str | None = None
         self._max_height: str = "400px"
         self._show_timestamp: bool = True
         self._show_level: bool = True
         self._show_source: bool = True
-        self._filter_level: Optional[LogLevel] = None
+        self._filter_level: LogLevel | None = None
         self._background_color: str = "#faf9f8"
         self._border_color: str = "#e1dfdd"
 
@@ -557,10 +557,10 @@ class LogWidget(BaseWidget):
         self,
         message: str,
         level: LogLevel = LogLevel.INFO,
-        timestamp: Optional[datetime] = None,
-        module: Optional[str] = None,
-        function: Optional[str] = None,
-        line_number: Optional[int] = None,
+        timestamp: datetime | None = None,
+        module: str | None = None,
+        function: str | None = None,
+        line_number: int | None = None,
     ) -> "LogWidget":
         """手动添加一个日志条目。
 
@@ -690,7 +690,7 @@ class LogWidget(BaseWidget):
         return self._logs
 
     @property
-    def title(self) -> Optional[str]:
+    def title(self) -> str | None:
         """获取日志组件的标题。
 
         Returns:
