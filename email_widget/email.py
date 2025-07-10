@@ -732,6 +732,50 @@ class Email:
 
         return self.add_widget(widget)
 
+    def add_button(
+        self,
+        text: str,
+        href: str,
+        background_color: str | None = None,
+        text_color: str | None = None,
+        width: str | None = None,
+        align: str = "left",
+    ) -> "Email":
+        """快速添加按钮Widget.
+
+        Args:
+            text: 按钮显示的文本
+            href: 点击按钮后跳转的链接地址
+            background_color: 按钮背景颜色，可选
+            text_color: 按钮文字颜色，可选
+            width: 按钮宽度，可选
+            align: 按钮对齐方式，默认"left"
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> # 基本按钮
+            >>> email.add_button("查看详情", "https://example.com/details")
+            >>> # 自定义样式的按钮
+            >>> email.add_button("立即购买", "https://shop.example.com", 
+            ...                  background_color="#22c55e", text_color="#ffffff",
+            ...                  width="200px", align="center")
+        """
+        from email_widget.widgets.button_widget import ButtonWidget
+
+        widget = ButtonWidget().set_text(text).set_href(href).set_align(align)
+
+        if background_color is not None:
+            widget.set_background_color(background_color)
+        if text_color is not None:
+            widget.set_text_color(text_color)
+        if width is not None:
+            widget.set_width(width)
+
+        return self.add_widget(widget)
+
     def _generate_css_styles(self) -> str:
         """生成内联CSS样式.
 

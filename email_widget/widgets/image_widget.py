@@ -114,15 +114,17 @@ class ImageWidget(BaseWidget):
         self._url_validator = UrlValidator()
         self._text_validator = NonEmptyStringValidator()
 
-    def set_image_url(self, image_url: str | Path, cache: bool = True) -> "ImageWidget":
+    def set_image_url(self, image_url: str | Path, cache: bool = True, embed: bool = True) -> "ImageWidget":
         """设置图片来源URL或本地路径。
 
-        此方法支持从网络URL或本地文件路径加载图片。图片会被自动处理并转换为
+        此方法支持从网络URL或本地文件路径加载图片。默认情况下，图片会被自动处理并转换为
         Base64编码的data URI，直接嵌入到HTML中，以确保在邮件客户端中的兼容性。
 
         Args:
             image_url (Union[str, Path]): 图片的URL字符串或本地文件Path对象。
             cache (bool): 是否缓存网络图片，默认为True。
+            embed (bool): 是否嵌入图片，默认为True。如果为False，网络URL将直接使用链接，
+                         本地文件会给出警告并强制嵌入。
 
         Returns:
             ImageWidget: 返回self以支持链式调用。
@@ -134,8 +136,10 @@ class ImageWidget(BaseWidget):
             >>> widget = ImageWidget().set_image_url("https://example.com/image.png")
             >>> from pathlib import Path
             >>> widget = ImageWidget().set_image_url(Path("local/image.jpg"))
+            >>> # 使用外部链接而不嵌入
+            >>> widget = ImageWidget().set_image_url("https://example.com/image.png", embed=False)
         """
-        self._image_url = ImageUtils.process_image_source(image_url, cache=cache)
+        self._image_url = ImageUtils.process_image_source(image_url, cache=cache, embed=embed)
         return self
 
     def _get_mime_type(self, ext: str) -> str:

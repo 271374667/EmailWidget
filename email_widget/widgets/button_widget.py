@@ -52,7 +52,7 @@ class ButtonWidget(BaseWidget):
     # 模板定义
     TEMPLATE = """
     {% if text and href %}
-        <div style="margin: 16px 0; text-align: {{ align }};">
+        <div style="margin: 8px 0; text-align: {{ align }}; width: 100%;">
             <a href="{{ href }}" 
                style="{{ button_style }}"
                target="_blank">{{ text }}</a>
