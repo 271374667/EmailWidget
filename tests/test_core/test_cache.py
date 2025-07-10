@@ -12,7 +12,8 @@ import json
 import tempfile
 import time
 from pathlib import Path
-from unittest.mock import Mock, patch, mock_open
+from unittest.mock import patch
+
 import pytest
 
 from email_widget.core.cache import ImageCache
@@ -122,7 +123,7 @@ class TestImageCacheIndexManagement:
 
             # 验证文件被创建并包含正确数据
             assert cache._index_file.exists()
-            with open(cache._index_file, "r", encoding="utf-8") as f:
+            with open(cache._index_file, encoding="utf-8") as f:
                 loaded_data = json.load(f)
             assert "test_key" in loaded_data
 
@@ -369,7 +370,7 @@ class TestImageCacheThreadSafety:
             data_items = [f"data_{i}".encode() for i in range(10)]
 
             # 设置所有项目
-            for source, data in zip(sources, data_items):
+            for source, data in zip(sources, data_items, strict=False):
                 cache.set(source, data, "image/png")
 
             # 获取所有项目

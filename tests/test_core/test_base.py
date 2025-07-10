@@ -7,8 +7,8 @@
 - Widget生命周期
 """
 
-import uuid
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
+
 import pytest
 
 from email_widget.core.base import BaseWidget

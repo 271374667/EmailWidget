@@ -7,8 +7,8 @@
 - 配置访问方法
 """
 
+
 import pytest
-from unittest.mock import Mock, patch
 
 from email_widget.core.config import EmailConfig
 
@@ -217,16 +217,16 @@ class TestEmailConfigConstants:
     def test_module_constants_exist(self):
         """测试模块常量存在"""
         from email_widget.core.config import (
-            OUTPUT_DIR,
-            DEFAULT_TITLE,
-            CHARSET,
-            LANG,
-            PRIMARY_COLOR,
-            FONT_FAMILY,
-            MAX_WIDTH,
             BACKGROUND_COLOR,
             BASE_FONT_SIZE,
+            CHARSET,
+            DEFAULT_TITLE,
+            FONT_FAMILY,
+            LANG,
             LINE_HEIGHT,
+            MAX_WIDTH,
+            OUTPUT_DIR,
+            PRIMARY_COLOR,
         )
 
         assert OUTPUT_DIR is not None
@@ -243,10 +243,9 @@ class TestEmailConfigConstants:
     def test_style_constants(self):
         """测试样式常量"""
         from email_widget.core.config import (
-            PRIMARY_COLOR,
             BACKGROUND_COLOR,
             BASE_FONT_SIZE,
-            LINE_HEIGHT,
+            PRIMARY_COLOR,
         )
 
         # 颜色应该是十六进制格式
@@ -261,9 +260,9 @@ class TestEmailConfigConstants:
     def test_component_constants(self):
         """测试组件常量"""
         from email_widget.core.config import (
-            TABLE_STRIPED,
-            LOG_MAX_HEIGHT,
             COLUMN_DEFAULT_GAP,
+            LOG_MAX_HEIGHT,
+            TABLE_STRIPED,
         )
 
         assert isinstance(TABLE_STRIPED, bool)

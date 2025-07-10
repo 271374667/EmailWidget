@@ -1,13 +1,11 @@
 """TemplateEngine模块测试用例 - 完整覆盖率测试"""
 
-import tempfile
-import time
 import threading
-from pathlib import Path
-from unittest.mock import Mock, patch
+import time
+from unittest.mock import patch
 
 import pytest
-from jinja2 import TemplateError, TemplateSyntaxError
+from jinja2 import TemplateError
 
 from email_widget.core.template_engine import TemplateEngine, get_template_engine
 

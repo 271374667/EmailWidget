@@ -8,10 +8,9 @@
 - 错误处理和边界条件
 """
 
-import base64
-import io
 from pathlib import Path
-from unittest.mock import Mock, patch, MagicMock, mock_open
+from unittest.mock import Mock, patch
+
 import pytest
 
 from email_widget.widgets.chart_widget import ChartWidget

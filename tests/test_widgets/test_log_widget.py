@@ -4,21 +4,22 @@
 包括所有新增的策略模式功能和向后兼容性。
 """
 
-import pytest
 from datetime import datetime
 from typing import Optional
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
+import pytest
+
+from email_widget.core.enums import LogLevel
 from email_widget.widgets.log_widget import (
-    LogWidget,
     LogEntry,
     LogParser,
     LoGuruLogParser,
+    LogWidget,
+    PlainTextParser,
     StandardLoggingParser,
     TimestampLogParser,
-    PlainTextParser,
 )
-from email_widget.core.enums import LogLevel
 
 
 class TestLogEntry:

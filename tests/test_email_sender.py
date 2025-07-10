@@ -10,15 +10,15 @@
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
+
 import pytest
 
 from email_widget.email_sender import (
     EmailSender,
-    QQEmailSender,
     NetEaseEmailSender,
-    OutlookEmailSender,
-    GmailSender,
+    QQEmailSender,
+    create_email_sender,
 )
 
 
@@ -187,83 +187,64 @@ class TestNetEaseEmailSender:
         assert sender._get_default_smtp_server() == "smtp.126.com"
 
 
-class TestOutlookEmailSender:
-    """Outlook邮箱发送器测试"""
+class TestCreateEmailSender:
+    """工厂函数测试"""
 
-    def test_init(self):
-        """测试Outlook发送器初始化"""
-        sender = OutlookEmailSender("test@outlook.com", "password123")
-        assert sender.username == "test@outlook.com"
-        assert sender.password == "password123"
+    def test_create_qq_sender(self):
+        """测试创建QQ邮箱发送器"""
+        sender = create_email_sender("qq", "test@qq.com", "password")
+        assert isinstance(sender, QQEmailSender)
+        assert sender.username == "test@qq.com"
+        assert sender.password == "password"
 
-    def test_smtp_configuration(self):
-        """测试SMTP配置"""
-        sender = OutlookEmailSender("test@outlook.com", "password123")
-        assert sender._get_default_smtp_server() == "smtp-mail.outlook.com"
-        assert sender._get_default_smtp_port() == 587
+    def test_create_netease_sender(self):
+        """测试创建网易邮箱发送器"""
+        sender = create_email_sender("netease", "test@163.com", "password")
+        assert isinstance(sender, NetEaseEmailSender)
+        assert sender.username == "test@163.com"
+        assert sender.password == "password"
 
-    @patch("smtplib.SMTP")
-    def test_send_email_success(self, mock_smtp):
-        """测试成功发送邮件"""
-        mock_server = Mock()
-        mock_smtp.return_value = mock_server
+    def test_create_163_sender(self):
+        """测试创建163邮箱发送器"""
+        sender = create_email_sender("163", "test@163.com", "password")
+        assert isinstance(sender, NetEaseEmailSender)
+        assert sender.username == "test@163.com"
+        assert sender.password == "password"
 
-        sender = OutlookEmailSender("test@outlook.com", "password123")
-        email = MockEmail("Outlook测试邮件")
+    def test_create_126_sender(self):
+        """测试创建126邮箱发送器"""
+        sender = create_email_sender("126", "test@126.com", "password")
+        assert isinstance(sender, NetEaseEmailSender)
+        assert sender.username == "test@126.com"
+        assert sender.password == "password"
 
-        sender.send(email, to=["recipient@example.com"])
+    def test_create_sender_case_insensitive(self):
+        """测试工厂函数大小写不敏感"""
+        sender = create_email_sender("QQ", "test@qq.com", "password")
+        assert isinstance(sender, QQEmailSender)
 
-        mock_smtp.assert_called_once_with("smtp-mail.outlook.com", 587)
+        sender = create_email_sender("NetEase", "test@163.com", "password")
+        assert isinstance(sender, NetEaseEmailSender)
 
-    def test_hotmail_domain(self):
-        """测试Hotmail域名"""
-        sender = OutlookEmailSender("test@hotmail.com", "password123")
-        assert sender.username == "test@hotmail.com"
-        assert sender._get_default_smtp_server() == "smtp-mail.outlook.com"
+    def test_create_sender_unsupported_provider(self):
+        """测试不支持的邮箱服务商"""
+        with pytest.raises(ValueError) as exc_info:
+            create_email_sender("gmail", "test@gmail.com", "password")
+        assert "不支持的邮箱服务商" in str(exc_info.value)
 
+        with pytest.raises(ValueError) as exc_info:
+            create_email_sender("outlook", "test@outlook.com", "password")
+        assert "不支持的邮箱服务商" in str(exc_info.value)
 
-class TestGmailSender:
-    """Gmail发送器测试"""
-
-    def test_init(self):
-        """测试Gmail发送器初始化"""
-        sender = GmailSender("test@gmail.com", "app_password")
-        assert sender.username == "test@gmail.com"
-        assert sender.password == "app_password"
-
-    def test_smtp_configuration(self):
-        """测试SMTP配置"""
-        sender = GmailSender("test@gmail.com", "app_password")
-        assert sender._get_default_smtp_server() == "smtp.gmail.com"
-        assert sender._get_default_smtp_port() == 587
-
-    @patch("smtplib.SMTP")
-    def test_send_email_success(self, mock_smtp):
-        """测试成功发送邮件"""
-        mock_server = Mock()
-        mock_smtp.return_value = mock_server
-
-        sender = GmailSender("test@gmail.com", "app_password")
-        email = MockEmail("Gmail测试邮件")
-
-        sender.send(email, to=["recipient@example.com"])
-
-        mock_smtp.assert_called_once_with("smtp.gmail.com", 587)
-
-    @patch("smtplib.SMTP")
-    def test_send_email_with_app_password(self, mock_smtp):
-        """测试使用应用专用密码"""
-        mock_server = Mock()
-        mock_smtp.return_value = mock_server
-
-        sender = GmailSender("test@gmail.com", "abcd efgh ijkl mnop")
-        email = MockEmail("Gmail应用密码测试")
-
-        sender.send(email, to=["recipient@example.com"])
-
-        mock_server.login.assert_called_once_with(
-            "test@gmail.com", "abcd efgh ijkl mnop"
+    def test_create_sender_with_kwargs(self):
+        """测试工厂函数传递额外参数"""
+        sender = create_email_sender(
+            "qq", "test@qq.com", "password",
+            use_tls=False, smtp_server="custom.smtp.com"
         )
+        assert isinstance(sender, QQEmailSender)
+        assert sender.use_tls == False
+        assert sender.smtp_server == "custom.smtp.com"
 
 
 class TestEmailMessageCreation:
@@ -386,8 +367,6 @@ class TestEmailSenderIntegration:
         senders = [
             QQEmailSender("test@qq.com", "password"),
             NetEaseEmailSender("test@163.com", "password"),
-            OutlookEmailSender("test@outlook.com", "password"),
-            GmailSender("test@gmail.com", "password"),
         ]
 
         for sender in senders:
@@ -409,8 +388,6 @@ class TestEmailSenderIntegration:
         senders_configs = [
             (QQEmailSender, "test@qq.com"),
             (NetEaseEmailSender, "test@163.com"),
-            (OutlookEmailSender, "test@outlook.com"),
-            (GmailSender, "test@gmail.com"),
         ]
 
         for sender_class, email_addr in senders_configs:
