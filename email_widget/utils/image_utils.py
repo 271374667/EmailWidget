@@ -9,23 +9,40 @@ from email_widget.core.logger import get_project_logger
 
 class ImageUtils:
     @staticmethod
-    def process_image_source(source: str | Path, cache: bool = True) -> str | None:
-        """统一处理图片源，返回base64 data URI
+    def process_image_source(source: str | Path, cache: bool = True, embed: bool = True) -> str | None:
+        """统一处理图片源，返回base64 data URI或原始URL
 
         Args:
             source: 图片源（URL、文件路径或Path对象）
             cache: 是否使用缓存
+            embed: 是否嵌入图片（True: 转换为base64, False: 返回原始URL）
 
         Returns:
-            base64格式的data URI，失败时返回None
+            base64格式的data URI或原始URL，失败时返回None
         """
         logger = get_project_logger()
-        cache_manager = get_image_cache() if cache else None
 
         try:
             source_str = str(source)
 
-            # 检查缓存
+            # 如果不嵌入且是网络URL，直接返回原始URL
+            if not embed and isinstance(source, str) and source.startswith(("http://", "https://")):
+                return source_str
+            
+            # 确定是否是本地文件
+            is_local_file = isinstance(source, Path) or (isinstance(source, str) and not source.startswith(("http://", "https://", "data:")))
+            
+            # 如果不嵌入且是本地文件，警告用户但仍然嵌入
+            if not embed and is_local_file:
+                logger.warning(f"本地图片文件无法通过链接访问，将强制嵌入: {source_str}")
+                # 继续执行嵌入逻辑
+
+            # 只有在需要时才获取缓存管理器
+            cache_manager = None
+            if cache and (embed or is_local_file):
+                cache_manager = get_image_cache()
+
+            # 检查缓存（嵌入模式或本地文件强制嵌入时使用）
             if cache_manager:
                 cached_result = cache_manager.get(source_str)
                 if cached_result:
@@ -53,12 +70,16 @@ class ImageUtils:
                 # 已经是base64格式
                 return source
             elif isinstance(source, str) and source.startswith(("http://", "https://")):
-                # 网络URL
-                result = ImageUtils.request_url(source)
-                if result:
-                    img_data, mime_type = result
+                # 网络URL，如果需要嵌入则下载
+                if embed:
+                    result = ImageUtils.request_url(source)
+                    if result:
+                        img_data, mime_type = result
+                    else:
+                        return None
                 else:
-                    return None
+                    # 不嵌入，直接返回URL（这个分支实际上在上面已经处理了）
+                    return source_str
             else:
                 logger.error(f"不支持的图片源格式: {source}")
                 return None
@@ -71,8 +92,8 @@ class ImageUtils:
                 logger.error(f"无效的图片数据: {source}")
                 return None
 
-            # 缓存图片数据
-            if cache_manager:
+            # 缓存图片数据（嵌入模式或本地文件强制嵌入时）
+            if cache_manager and (embed or is_local_file):
                 cache_manager.set(source_str, img_data, mime_type)
 
             # 转换为base64
