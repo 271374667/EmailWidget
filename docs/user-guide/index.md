@@ -17,7 +17,7 @@ EmailWidget 采用组件化架构，让您可以灵活地构建各种类型的�
 
 ```python
 from email_widget import Email
-from email_widget.widgets import TextWidget, TableWidget, ChartWidget
+from email_widget.widgets import TextWidget, TableWidget, ChartWidget, ButtonWidget
 
 # 创建邮件容器
 email = Email("数据报告")
@@ -26,6 +26,7 @@ email = Email("数据报告")
 email.add_widget(TextWidget().set_content("本周数据概览"))
 email.add_widget(TableWidget().set_headers(["项目", "数值"]))
 email.add_widget(ChartWidget().set_image_url("chart.png"))
+email.add_button("查看完整报告", "https://dashboard.example.com")
 
 # 生成HTML
 html = email.render_html()
@@ -41,6 +42,7 @@ html = email.render_html()
 | **进度组件** | 显示进度状态  | 任务完成度、系统负载 |
 | **状态组件** | 展示状态信息  | 系统监控、健康检查  |
 | **布局组件** | 组织页面布局  | 多列布局、分组显示  |
+| **按钮组件** | 用户交互操作  | 链接跳转、行动按钮  |
 | **其他组件** | 特殊功能    | 引用、警告、卡片   |
 
 ## 🎨 设计理念

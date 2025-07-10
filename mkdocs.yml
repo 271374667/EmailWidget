@@ -127,6 +127,7 @@ nav:
         - 状态组件: user-guide/status-widget.md
         - 卡片组件: user-guide/card-widget.md
         - 引用组件: user-guide/quote-widget.md
+        - 按钮组件: user-guide/button-widget.md
         - 布局组件: user-guide/column-widget.md
         - 图表组件: user-guide/chart-widget.md
         - 日志组件: user-guide/log-widget.md
@@ -144,6 +145,7 @@ nav:
         - 状态组件: api/status-widget.md
         - 卡片组件: api/card-widget.md
         - 引用组件: api/quote-widget.md
+        - 按钮组件: api/button-widget.md
         - 布局组件: api/column-widget.md
         - 图表组件: api/chart-widget.md
         - 日志组件: api/log-widget.md

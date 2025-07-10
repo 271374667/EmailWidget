@@ -217,8 +217,32 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
             </div>
         </div>
 
-        <!-- 第六行：列布局组件 & 日志组件 -->
+        <!-- 第六行：按钮组件 & 列布局组件 -->
         <div class="component-row">
+            <div class="component-item">
+                <h3><a href="../button-widget/">ButtonWidget 按钮组件</a></h3>
+                <p>创建可点击的按钮，支持多种样式和邮件客户端兼容</p>
+                <div class="component-preview">
+                    <div style="text-align: center; margin: 16px 0;">
+                        <a href="#" style="display: inline-block; background: #3b82f6; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; border: none; cursor: pointer;">
+                            立即开始
+                        </a>
+                        <div style="margin-top: 12px;">
+                            <a href="#" style="display: inline-block; background: #22c55e; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 12px; margin: 0 4px;">
+                                购买
+                            </a>
+                            <a href="#" style="display: inline-block; background: #6b7280; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 12px; margin: 0 4px;">
+                                了解更多
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-tags">
+                    <span class="tag">按钮</span>
+                    <span class="tag">链接</span>
+                    <span class="tag">交互</span>
+                </div>
+            </div>
             <div class="component-item">
                 <h3><a href="../column-widget/">ColumnWidget 列布局组件</a></h3>
                 <p>多列布局管理器，支持响应式列布局</p>
@@ -243,6 +267,10 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                     <span class="tag">响应式</span>
                 </div>
             </div>
+        </div>
+
+        <!-- 第七行：日志组件 -->
+        <div class="component-row">
             <div class="component-item">
                 <h3><a href="../log-widget/">LogWidget 日志组件</a></h3>
                 <p>展示日志信息，支持不同级别的日志显示</p>
@@ -260,6 +288,9 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                     <span class="tag">监控</span>
                     <span class="tag">调试</span>
                 </div>
+            </div>
+            <div class="component-item" style="opacity: 0.3;">
+                <!-- 空白占位，保持布局平衡 -->
             </div>
         </div>
     </div>
@@ -392,6 +423,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
 ### 🎨 交互反馈
 - **AlertWidget**: 重要通知、警告信息、操作提示
 - **CardWidget**: 信息卡片、数据摘要、功能模块
+- **ButtonWidget**: 行动按钮、链接跳转、用户交互
 
 ### 🏗️ 布局管理
 - **ColumnWidget**: 多列布局、响应式设计、内容组织
@@ -405,7 +437,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
 
 ```python
 from email_widget import Email
-from email_widget.widgets import TextWidget, TableWidget, ProgressWidget
+from email_widget.widgets import TextWidget, TableWidget, ProgressWidget, ButtonWidget
 
 # 创建邮件实例
 email = Email("我的报告")
@@ -413,6 +445,7 @@ email = Email("我的报告")
 # 添加组件
 email.add_widget(TextWidget().set_content("欢迎使用 EmailWidget").set_type(TextType.TITLE_LARGE))
 email.add_widget(ProgressWidget().set_value(75).set_label("项目进度"))
+email.add_button("查看详情", "https://example.com/details")
 
 # 导出HTML
 email.export_html("report.html")
