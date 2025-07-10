@@ -513,6 +513,61 @@ class TestEmailConvenienceMethods:
         assert len(self.email.widgets) == 1
         assert isinstance(self.email.widgets[0], LogWidget)
 
+    def test_add_button_minimal(self):
+        """测试添加最小按钮"""
+        result = self.email.add_button("Click Me", "https://example.com")
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.button_widget import ButtonWidget
+        assert isinstance(self.email.widgets[0], ButtonWidget)
+
+    def test_add_button_with_all_options(self):
+        """测试添加带所有选项的按钮"""
+        result = self.email.add_button(
+            "Buy Now",
+            "https://shop.example.com",
+            background_color="#22c55e",
+            text_color="#ffffff",
+            width="200px",
+            align="center"
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.button_widget import ButtonWidget
+        assert isinstance(self.email.widgets[0], ButtonWidget)
+        
+        button = self.email.widgets[0]
+        assert button._text == "Buy Now"
+        assert button._href == "https://shop.example.com"
+        assert button._background_color == "#22c55e"
+        assert button._text_color == "#ffffff"
+        assert button._width == "200px"
+        assert button._align == "center"
+
+    def test_add_button_with_partial_options(self):
+        """测试添加带部分选项的按钮"""
+        result = self.email.add_button(
+            "Learn More",
+            "https://docs.example.com",
+            background_color="#3b82f6",
+            align="right"
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.button_widget import ButtonWidget
+        assert isinstance(self.email.widgets[0], ButtonWidget)
+        
+        button = self.email.widgets[0]
+        assert button._text == "Learn More"
+        assert button._href == "https://docs.example.com"
+        assert button._background_color == "#3b82f6"
+        assert button._text_color == "#ffffff"  # 默认值
+        assert button._width is None  # 默认值
+        assert button._align == "right"
+
 
 class TestEmailRendering:
     """Email渲染功能测试类"""

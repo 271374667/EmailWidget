@@ -51,7 +51,7 @@ class TestImageWidget:
 
         assert result is self.widget  # 支持链式调用
         mock_process.assert_called_once_with(
-            "https://example.com/image.png", cache=True
+            "https://example.com/image.png", cache=True, embed=True
         )
         assert self.widget._image_url == "data:image/png;base64,test_data"
 
@@ -64,7 +64,7 @@ class TestImageWidget:
         result = self.widget.set_image_url(image_path, cache=False)
 
         assert result is self.widget
-        mock_process.assert_called_once_with(image_path, cache=False)
+        mock_process.assert_called_once_with(image_path, cache=False, embed=True)
         assert self.widget._image_url == "data:image/jpeg;base64,test_data"
 
     def test_set_title(self):
@@ -241,6 +241,10 @@ class TestImageWidget:
 class TestImageWidgetIntegration:
     """ImageWidget集成测试类"""
 
+    def setup_method(self):
+        """每个测试方法前的设置"""
+        self.widget = ImageWidget()
+
     def test_chaining_methods(self):
         """测试方法链式调用"""
         with patch(
@@ -300,7 +304,7 @@ class TestImageWidgetIntegration:
 
         # 验证ImageUtils调用
         mock_process.assert_called_once_with(
-            "https://example.com/image.jpg", cache=True
+            "https://example.com/image.jpg", cache=True, embed=True
         )
 
     def test_validation_integration(self):
@@ -314,3 +318,60 @@ class TestImageWidgetIntegration:
             ):
                 with pytest.raises(ValueError):
                     widget.set_size("invalid_size", "200px")
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_set_image_url_with_embed_true(self, mock_process):
+        """测试embed=True时的行为（默认行为）"""
+        mock_process.return_value = "data:image/png;base64,embedded_data"
+        
+        result = self.widget.set_image_url("https://example.com/image.png", embed=True)
+        
+        assert result is self.widget
+        mock_process.assert_called_once_with(
+            "https://example.com/image.png", cache=True, embed=True
+        )
+        assert self.widget._image_url == "data:image/png;base64,embedded_data"
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_set_image_url_with_embed_false(self, mock_process):
+        """测试embed=False时的行为（网络URL直接返回）"""
+        mock_process.return_value = "https://example.com/image.png"
+        
+        result = self.widget.set_image_url("https://example.com/image.png", embed=False)
+        
+        assert result is self.widget
+        mock_process.assert_called_once_with(
+            "https://example.com/image.png", cache=True, embed=False
+        )
+        assert self.widget._image_url == "https://example.com/image.png"
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_set_image_url_local_file_with_embed_false(self, mock_process):
+        """测试本地文件embed=False时的行为（强制嵌入）"""
+        mock_process.return_value = "data:image/png;base64,forced_embed_data"
+        local_path = Path("test_image.png")
+        
+        result = self.widget.set_image_url(local_path, embed=False)
+        
+        assert result is self.widget
+        mock_process.assert_called_once_with(
+            local_path, cache=True, embed=False
+        )
+        assert self.widget._image_url == "data:image/png;base64,forced_embed_data"
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_set_image_url_with_all_params(self, mock_process):
+        """测试所有参数的组合"""
+        mock_process.return_value = "https://cdn.example.com/optimized.png"
+        
+        result = self.widget.set_image_url(
+            "https://example.com/image.png", 
+            cache=False, 
+            embed=False
+        )
+        
+        assert result is self.widget
+        mock_process.assert_called_once_with(
+            "https://example.com/image.png", cache=False, embed=False
+        )
+        assert self.widget._image_url == "https://cdn.example.com/optimized.png"
