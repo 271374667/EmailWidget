@@ -533,6 +533,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -587,6 +597,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -1001,6 +1021,121 @@
   
   <span class="md-ellipsis">
     引用组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../button-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    按钮组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../separator-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分隔符组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checklist-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    清单组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timeline-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    时间线组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metric-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    指标组件
     
   </span>
   
@@ -1628,6 +1763,169 @@
 <div class="doc doc-object doc-function">
 
 
+<h5 id="email_widget.email.Email.add_button" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add_button</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">href</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span></code>
+
+<a href="#email_widget.email.Email.add_button" class="headerlink" title="Anchor link to this section">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>快速添加按钮Widget.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>text</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>按钮显示的文本</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>href</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>点击按钮后跳转的链接地址</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>background_color</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>按钮背景颜色，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>text_color</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>按钮文字颜色，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>width</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>按钮宽度，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>align</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>按钮对齐方式，默认"left"</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;left&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;邮件报告&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email.Email&lt;/code&gt;)" href="#email_widget.email.Email">Email</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>返回self以支持链式调用</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">()</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 基本按钮</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_button</span><span class="p">(</span><span class="s2">&quot;查看详情&quot;</span><span class="p">,</span> <span class="s2">&quot;https://example.com/details&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 自定义样式的按钮</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_button</span><span class="p">(</span><span class="s2">&quot;立即购买&quot;</span><span class="p">,</span> <span class="s2">&quot;https://shop.example.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos="6 "></span></a><span class="gp">... </span>                 <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;#22c55e&quot;</span><span class="p">,</span> <span class="n">text_color</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos="7 "></span></a><span class="gp">... </span>                 <span class="n">width</span><span class="o">=</span><span class="s2">&quot;200px&quot;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h5 id="email_widget.email.Email.add_card" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">add_card</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
@@ -1861,6 +2159,143 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a><span class="gp">&gt;&gt;&gt;</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">()</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos="6 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_chart_from_plt</span><span class="p">(</span><span class="s2">&quot;月度销售&quot;</span><span class="p">,</span> <span class="s2">&quot;显示销售趋势变化&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="email_widget.email.Email.add_checklist" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add_checklist</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compact_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#email_widget.email.Email.add_checklist" class="headerlink" title="Anchor link to this section">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>快速添加清单Widget.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>title</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>清单标题，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>items</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="tuple">tuple</span>[<span title="str">str</span>, <span title="bool">bool</span>]] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>清单项目列表，格式为[(text, completed), ...]，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>show_progress</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>是否显示进度统计，默认False</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>compact_mode</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>是否使用紧凑模式，默认False</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;邮件报告&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email.Email&lt;/code&gt;)" href="#email_widget.email.Email">Email</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>返回self以支持链式调用</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">()</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 基本清单</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_checklist</span><span class="p">(</span><span class="s2">&quot;任务清单&quot;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;完成设计&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;代码审查&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;部署测试&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="gp">... </span><span class="p">])</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 带进度统计的清单</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_checklist</span><span class="p">(</span><span class="s2">&quot;项目进度&quot;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;需求分析&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;开发实现&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;测试验证&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="gp">... </span><span class="p">],</span> <span class="n">show_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -2177,6 +2612,148 @@
 <div class="doc doc-object doc-function">
 
 
+<h5 id="email_widget.email.Email.add_metric" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add_metric</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">show_trends</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#email_widget.email.Email.add_metric" class="headerlink" title="Anchor link to this section">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>快速添加指标Widget.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>title</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>指标组标题，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>metrics</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="tuple">tuple</span>] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>指标列表，格式为[(label, value, unit, trend, trend_type, description), ...]，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>layout</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>布局方式，'horizontal' 或 'vertical'，默认'horizontal'</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;horizontal&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>show_trends</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>是否显示趋势信息，默认True</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;邮件报告&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email.Email&lt;/code&gt;)" href="#email_widget.email.Email">Email</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>返回self以支持链式调用</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">()</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 基本指标</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_metric</span><span class="p">(</span><span class="s2">&quot;核心指标&quot;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;用户数&quot;</span><span class="p">,</span> <span class="mi">12345</span><span class="p">,</span> <span class="s2">&quot;人&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;增长率&quot;</span><span class="p">,</span> <span class="s2">&quot;15.6&quot;</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;+2.3%&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;收入&quot;</span><span class="p">,</span> <span class="s2">&quot;¥1,250,000&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;+12.3%&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="gp">... </span><span class="p">])</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 带完整选项的指标</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_metric</span><span class="p">(</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="gp">... </span>    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;系统性能&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="gp">... </span>    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="gp">... </span>        <span class="p">(</span><span class="s2">&quot;CPU使用率&quot;</span><span class="p">,</span> <span class="s2">&quot;45.2&quot;</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;+2.1%&quot;</span><span class="p">,</span> <span class="s2">&quot;warning&quot;</span><span class="p">,</span> <span class="s2">&quot;需要关注&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="gp">... </span>        <span class="p">(</span><span class="s2">&quot;内存使用&quot;</span><span class="p">,</span> <span class="s2">&quot;78.5&quot;</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;-1.3%&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="s2">&quot;表现良好&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a><span class="gp">... </span>        <span class="p">(</span><span class="s2">&quot;磁盘空间&quot;</span><span class="p">,</span> <span class="s2">&quot;23.8&quot;</span><span class="p">,</span> <span class="s2">&quot;GB&quot;</span><span class="p">,</span> <span class="s2">&quot;+5.2GB&quot;</span><span class="p">,</span> <span class="s2">&quot;info&quot;</span><span class="p">,</span> <span class="s2">&quot;正常范围&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a><span class="gp">... </span>    <span class="p">],</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><a href="#__codelineno-0-16"><span class="linenos" data-linenos="16 "></span></a><span class="gp">... </span>    <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a><span class="gp">... </span>    <span class="n">show_trends</span><span class="o">=</span><span class="kc">True</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><a href="#__codelineno-0-18"><span class="linenos" data-linenos="18 "></span></a><span class="gp">... </span><span class="p">)</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h5 id="email_widget.email.Email.add_progress" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">add_progress</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">theme</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_percentage</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
@@ -2437,6 +3014,156 @@
     <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">()</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_quote</span><span class="p">(</span><span class="s2">&quot;成功不是终点，失败不是致命的&quot;</span><span class="p">,</span> <span class="s2">&quot;丘吉尔&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_quote</span><span class="p">(</span><span class="s2">&quot;数据是新时代的石油&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;《经济学人》&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="email_widget.email.Email.add_separator" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add_separator</span><span class="p">(</span><span class="n">separator_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#email_widget.email.Email.add_separator" class="headerlink" title="Anchor link to this section">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>快速添加分隔符Widget.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>separator_type</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code&gt;SeparatorType&lt;/code&gt; (&lt;code&gt;email_widget.core.enums.SeparatorType&lt;/code&gt;)" href="../separator-widget/#email_widget.core.enums.SeparatorType">SeparatorType</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>分隔符类型，默认为SOLID</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>color</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>分隔符颜色，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>thickness</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>分隔符粗细，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>width</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>分隔符宽度，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>margin</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>上下边距，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;邮件报告&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email.Email&lt;/code&gt;)" href="#email_widget.email.Email">Email</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>返回self以支持链式调用</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">()</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 基本分隔符</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_separator</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 自定义样式的分隔符</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_separator</span><span class="p">(</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="gp">... </span>    <span class="n">separator_type</span><span class="o">=</span><span class="n">SeparatorType</span><span class="o">.</span><span class="n">DASHED</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="gp">... </span>    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0078d4&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="gp">... </span>    <span class="n">thickness</span><span class="o">=</span><span class="s2">&quot;2px&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="gp">... </span>    <span class="n">width</span><span class="o">=</span><span class="s2">&quot;80%&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="gp">... </span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -3051,6 +3778,143 @@
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;重要标题&quot;</span><span class="p">,</span> <span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos="6 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 带样式的文本</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos="7 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;重要提示&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#ff0000&quot;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="s2">&quot;18px&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="email_widget.email.Email.add_timeline" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add_timeline</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show_time</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reverse_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#email_widget.email.Email.add_timeline" class="headerlink" title="Anchor link to this section">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>快速添加时间线Widget.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>title</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>时间线标题，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>events</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="tuple">tuple</span>] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>事件列表，格式为[(title, time, description, status_type), ...]，可选</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>show_time</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>是否显示时间戳，默认False</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reverse_order</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>是否倒序排列，默认False</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;邮件报告&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email.Email&lt;/code&gt;)" href="#email_widget.email.Email">Email</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>返回self以支持链式调用</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">()</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 基本时间线</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_timeline</span><span class="p">(</span><span class="s2">&quot;项目进度&quot;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;项目启动&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;项目正式开始&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;需求确认&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-15&quot;</span><span class="p">,</span> <span class="s2">&quot;完成需求分析&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;开发完成&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-02-28&quot;</span><span class="p">,</span> <span class="s2">&quot;代码开发完成&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="gp">... </span><span class="p">])</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 带时间戳的时间线</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="o">.</span><span class="n">add_timeline</span><span class="p">(</span><span class="s2">&quot;系统日志&quot;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;系统启动&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-01 09:00&quot;</span><span class="p">,</span> <span class="s2">&quot;服务启动&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;发现问题&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-01 10:30&quot;</span><span class="p">,</span> <span class="s2">&quot;发现bug&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;问题修复&quot;</span><span class="p">,</span> <span class="s2">&quot;2024-01-01 11:00&quot;</span><span class="p">,</span> <span class="s2">&quot;修复完成&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="gp">... </span><span class="p">],</span> <span class="n">show_time</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">reverse_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
 

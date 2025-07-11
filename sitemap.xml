@@ -2,206 +2,246 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://271374667.github.io/EmailWidget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/changelog/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/alert-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/api/button-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/card-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/chart-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/api/checklist-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/circular-progress-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/column-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/core/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/email-sender/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/email/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/image-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/log-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/api/metric-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/progress-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/quote-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/api/separator-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/status-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/table-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/api/text-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/api/timeline-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/development/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/development/contributing/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/development/creating-widgets/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/development/release/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/development/setup/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/development/testing/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/examples/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/examples/advanced/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/examples/basic/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/examples/data-reports/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/examples/real-world/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/examples/spider-reports/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/examples/system-monitoring/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/getting-started/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/getting-started/concepts/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/getting-started/faq/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/getting-started/first-email/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/getting-started/installation/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/alert-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/user-guide/button-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/card-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/chart-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/user-guide/checklist-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/circular-progress-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/column-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/core-classes/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/image-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/log-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/user-guide/metric-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/progress-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/quote-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/user-guide/separator-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/status-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/table-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/text-widget/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
+    </url>
+    <url>
+         <loc>https://271374667.github.io/EmailWidget/user-guide/timeline-widget/</loc>
+         <lastmod>2025-07-11</lastmod>
     </url>
     <url>
          <loc>https://271374667.github.io/EmailWidget/user-guide/widget-overview/</loc>
-         <lastmod>2025-07-08</lastmod>
+         <lastmod>2025-07-11</lastmod>
     </url>
 </urlset>

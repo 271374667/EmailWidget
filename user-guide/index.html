@@ -535,6 +535,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -845,6 +855,121 @@
   
   
     <li class="md-nav__item">
+      <a href="button-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    按钮组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="separator-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分隔符组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="checklist-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    清单组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="timeline-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    时间线组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="metric-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    指标组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="column-widget/" class="md-nav__link">
         
   
@@ -925,6 +1050,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -1160,7 +1295,7 @@
 <h2 id="_4">🏗️ 系统架构<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h2>
 <p>EmailWidget 采用组件化架构，让您可以灵活地构建各种类型的邮件内容：</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextWidget</span><span class="p">,</span> <span class="n">TableWidget</span><span class="p">,</span> <span class="n">ChartWidget</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextWidget</span><span class="p">,</span> <span class="n">TableWidget</span><span class="p">,</span> <span class="n">ChartWidget</span><span class="p">,</span> <span class="n">ButtonWidget</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建邮件容器</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;数据报告&quot;</span><span class="p">)</span>
@@ -1169,9 +1304,10 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">TextWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;本周数据概览&quot;</span><span class="p">))</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">TableWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_headers</span><span class="p">([</span><span class="s2">&quot;项目&quot;</span><span class="p">,</span> <span class="s2">&quot;数值&quot;</span><span class="p">]))</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">ChartWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;chart.png&quot;</span><span class="p">))</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a>
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="c1"># 生成HTML</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">html</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">render_html</span><span class="p">()</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_button</span><span class="p">(</span><span class="s2">&quot;查看完整报告&quot;</span><span class="p">,</span> <span class="s2">&quot;https://dashboard.example.com&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="c1"># 生成HTML</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">html</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">render_html</span><span class="p">()</span>
 </code></pre></div>
 <h2 id="_5">📊 组件类型一览<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h2>
 <table>
@@ -1212,6 +1348,11 @@
 <td><strong>布局组件</strong></td>
 <td>组织页面布局</td>
 <td>多列布局、分组显示</td>
+</tr>
+<tr>
+<td><strong>按钮组件</strong></td>
+<td>用户交互操作</td>
+<td>链接跳转、行动按钮</td>
 </tr>
 <tr>
 <td><strong>其他组件</strong></td>

@@ -533,6 +533,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -587,6 +597,16 @@
       
         
           
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -1010,6 +1030,121 @@
   
   <span class="md-ellipsis">
     引用组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../button-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    按钮组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../separator-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分隔符组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checklist-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    清单组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timeline-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    时间线组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metric-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    指标组件
     
   </span>
   
@@ -2043,7 +2178,7 @@
 
 
 <h5 id="email_widget.widgets.image_widget.ImageWidget.set_image_url" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_image_url</span><span class="p">(</span><span class="n">image_url</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">set_image_url</span><span class="p">(</span><span class="n">image_url</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#email_widget.widgets.image_widget.ImageWidget.set_image_url" class="headerlink" title="Anchor link to this section">&para;</a></h5>
 
@@ -2051,7 +2186,7 @@
     <div class="doc doc-contents ">
 
         <p>设置图片来源URL或本地路径。</p>
-<p>此方法支持从网络URL或本地文件路径加载图片。图片会被自动处理并转换为
+<p>此方法支持从网络URL或本地文件路径加载图片。默认情况下，图片会被自动处理并转换为
 Base64编码的data URI，直接嵌入到HTML中，以确保在邮件客户端中的兼容性。</p>
 
 
@@ -2092,6 +2227,23 @@ Base64编码的data URI，直接嵌入到HTML中，以确保在邮件客户端�
             <td>
               <div class="doc-md-description">
                 <p>是否缓存网络图片，默认为True。</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>embed</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>是否嵌入图片，默认为True。如果为False，网络URL将直接使用链接，
+         本地文件会给出警告并强制嵌入。</p>
               </div>
             </td>
             <td>
@@ -2152,6 +2304,8 @@ Base64编码的data URI，直接嵌入到HTML中，以确保在邮件客户端�
     <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">widget</span> <span class="o">=</span> <span class="n">ImageWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;https://example.com/image.png&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">widget</span> <span class="o">=</span> <span class="n">ImageWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;local/image.jpg&quot;</span><span class="p">))</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 使用外部链接而不嵌入</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">widget</span> <span class="o">=</span> <span class="n">ImageWidget</span><span class="p">()</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;https://example.com/image.png&quot;</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
 
