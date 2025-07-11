@@ -269,8 +269,48 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
             </div>
         </div>
 
-        <!-- 第七行：日志组件 -->
+        <!-- 第七行：清单组件 & 日志组件 -->
         <div class="component-row">
+            <div class="component-item">
+                <h3><a href="../checklist-widget/">ChecklistWidget 清单组件</a></h3>
+                <p>创建任务清单和待办事项，支持多种状态和进度统计</p>
+                <div class="component-preview">
+                    <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
+                        <h4 style="color: #323130; margin-bottom: 12px; font-size: 14px; font-weight: 600;">项目进度清单</h4>
+                        <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 4px; padding: 8px; margin-bottom: 12px; font-size: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                <span style="color: #605e5c; font-weight: 500;">完成进度</span>
+                                <span style="color: #323130; font-weight: 600;">2/3 (66.7%)</span>
+                            </div>
+                            <div style="width: 100%; height: 6px; background: #e1dfdd; border-radius: 3px; overflow: hidden;">
+                                <div style="width: 66.7%; height: 100%; background: #ff8c00; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                        <div style="font-size: 12px;">
+                            <div style="display: flex; align-items: center; padding: 4px 0; margin-bottom: 3px;">
+                                <div style="width: 14px; height: 14px; border: 2px solid #107c10; border-radius: 2px; margin-right: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #ffffff; background: #107c10;">✓</div>
+                                <div style="flex: 1; color: #8e8e93; text-decoration: line-through;">需求分析</div>
+                                <div style="color: #107c10; font-size: 10px; font-weight: 600;">完成</div>
+                            </div>
+                            <div style="display: flex; align-items: center; padding: 4px 0; margin-bottom: 3px;">
+                                <div style="width: 14px; height: 14px; border: 2px solid #107c10; border-radius: 2px; margin-right: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #ffffff; background: #107c10;">✓</div>
+                                <div style="flex: 1; color: #8e8e93; text-decoration: line-through;">设计评审</div>
+                                <div style="color: #107c10; font-size: 10px; font-weight: 600;">完成</div>
+                            </div>
+                            <div style="display: flex; align-items: center; padding: 4px 0;">
+                                <div style="width: 14px; height: 14px; border: 2px solid #8e8e93; border-radius: 2px; margin-right: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #8e8e93;">○</div>
+                                <div style="flex: 1; color: #323130; font-weight: 500;">开发实施</div>
+                                <div style="color: #8e8e93; font-size: 10px; font-weight: 600;">待办</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-tags">
+                    <span class="tag">清单</span>
+                    <span class="tag">进度</span>
+                    <span class="tag">任务</span>
+                </div>
+            </div>
             <div class="component-item">
                 <h3><a href="../log-widget/">LogWidget 日志组件</a></h3>
                 <p>展示日志信息，支持不同级别的日志显示</p>
@@ -289,8 +329,49 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                     <span class="tag">调试</span>
                 </div>
             </div>
-            <div class="component-item" style="opacity: 0.3;">
-                <!-- 空白占位，保持布局平衡 -->
+        </div>
+
+        <!-- 第八行：分隔符组件 -->
+        <div class="component-row">
+            <div class="component-item">
+                <h3><a href="../separator-widget/">SeparatorWidget 分隔符组件</a></h3>
+                <p>创建视觉分隔线，支持多种样式，用于分割邮件内容区块</p>
+                <div class="component-preview">
+                    <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 11px; color: #605e5c; margin-bottom: 8px;">实线分隔符</div>
+                            <div style="width: 80%; height: 0; border-top: 2px solid #0078d4; margin: 8px auto;"></div>
+                            <div style="font-size: 11px; color: #605e5c; margin: 8px 0;">虚线分隔符</div>
+                            <div style="width: 80%; height: 0; border-top: 2px dashed #ff8c00; margin: 8px auto;"></div>
+                            <div style="font-size: 11px; color: #605e5c; margin: 8px 0;">点线分隔符</div>
+                            <div style="width: 80%; height: 0; border-top: 2px dotted #107c10; margin: 8px auto;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-tags">
+                    <span class="tag">分隔</span>
+                    <span class="tag">布局</span>
+                    <span class="tag">分割</span>
+                </div>
+            </div>
+            <div class="component-item">
+                <h3>更多组件</h3>
+                <p>更多强大的组件正在开发中...</p>
+                <div class="component-preview">
+                    <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0; text-align: center;">
+                        <div style="color: #8e8e93; font-size: 14px; font-weight: 500; margin: 20px 0;">
+                            🚧 敬请期待
+                        </div>
+                        <div style="color: #605e5c; font-size: 12px; line-height: 1.4;">
+                            我们正在不断添加新的组件<br/>
+                            为您提供更丰富的邮件内容
+                        </div>
+                    </div>
+                </div>
+                <div class="component-tags">
+                    <span class="tag">开发中</span>
+                    <span class="tag">敬请期待</span>
+                </div>
             </div>
         </div>
     </div>
