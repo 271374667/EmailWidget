@@ -262,7 +262,7 @@ class SeparatorWidget(BaseWidget):
 
     def get_template_context(self) -> dict[str, Any]:
         """获取模板渲染所需的上下文数据"""
-        
+
         container_style = f"""
             text-align: center;
             margin: {self._margin} 0;
@@ -270,7 +270,7 @@ class SeparatorWidget(BaseWidget):
         """
 
         border_style = self._get_border_style()
-        
+
         separator_style = f"""
             width: {self._width};
             height: 0;

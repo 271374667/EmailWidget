@@ -4,7 +4,7 @@
 支持多种状态、主题颜色和样式配置。
 """
 
-from typing import Any, Dict, List, Union
+from typing import Any
 
 from email_widget.core.base import BaseWidget
 from email_widget.core.enums import StatusType
@@ -28,7 +28,7 @@ class ChecklistWidget(BaseWidget):
         ```python
         checklist = ChecklistWidget()
         checklist.add_item("完成需求分析", True)
-        checklist.add_item("设计数据库", True) 
+        checklist.add_item("设计数据库", True)
         checklist.add_item("编写代码", False)
         checklist.add_item("测试功能", False)
         ```
@@ -46,7 +46,7 @@ class ChecklistWidget(BaseWidget):
         ```python
         checklist = ChecklistWidget()
         checklist.add_item("数据备份", True, "success")
-        checklist.add_item("服务检查", False, "warning") 
+        checklist.add_item("服务检查", False, "warning")
         checklist.add_item("性能测试", None, "info")  # None表示跳过
         ```
     """
@@ -160,16 +160,16 @@ class ChecklistWidget(BaseWidget):
     def __init__(self):
         """初始化清单组件。"""
         super().__init__()
-        self._items: List[Dict[str, Any]] = []
+        self._items: list[dict[str, Any]] = []
         self._title: str = ""
         self._show_progress: bool = False
         self._compact_mode: bool = False
-        
+
         # 初始化验证器
         self._str_validator = TypeValidator(str)
         self._bool_validator = TypeValidator(bool)
         self._int_validator = TypeValidator(int)
-        
+
         # 状态主题映射
         self._status_themes = {
             "success": {"color": "#107c10", "icon": "✓", "text": "完成"},
@@ -188,10 +188,10 @@ class ChecklistWidget(BaseWidget):
     def add_item(
         self,
         text: str,
-        completed: Union[bool, None] = False,
-        status_type: Union[str, StatusType, None] = None,
+        completed: bool | None = False,
+        status_type: str | StatusType | None = None,
         description: str = "",
-        status_text: str = ""
+        status_text: str = "",
     ) -> "ChecklistWidget":
         """添加清单项目。
 
@@ -213,8 +213,10 @@ class ChecklistWidget(BaseWidget):
             ```
         """
         if not self._str_validator.validate(text):
-            raise TypeError(f"text参数必须是字符串类型，当前类型为: {type(text).__name__}")
-        
+            raise TypeError(
+                f"text参数必须是字符串类型，当前类型为: {type(text).__name__}"
+            )
+
         # 确定状态
         if completed is True:
             default_status = "success"
@@ -222,7 +224,7 @@ class ChecklistWidget(BaseWidget):
             default_status = "pending"
         else:  # None - 跳过状态
             default_status = "skipped"
-            
+
         # 处理状态类型
         if status_type is None:
             status_key = default_status
@@ -230,13 +232,13 @@ class ChecklistWidget(BaseWidget):
             status_key = status_type.value
         else:
             status_key = str(status_type)
-            
+
         # 验证状态类型
         if status_key not in self._status_themes:
             status_key = default_status
-            
+
         theme = self._status_themes[status_key]
-        
+
         # 处理图标显示
         if completed is True:
             icon = "✓" if status_key == "success" else theme["icon"]
@@ -244,7 +246,7 @@ class ChecklistWidget(BaseWidget):
         else:
             icon = theme["icon"]
             icon_color = theme["color"]
-            
+
         item = {
             "text": text,
             "description": description,
@@ -252,10 +254,11 @@ class ChecklistWidget(BaseWidget):
             "is_skipped": completed is None,
             "status_color": theme["color"],
             "status_icon": icon,
-            "status_text": status_text or (theme["text"] if completed is not False else ""),
-            "icon_color": icon_color
+            "status_text": status_text
+            or (theme["text"] if completed is not False else ""),
+            "icon_color": icon_color,
         }
-        
+
         self._items.append(item)
         return self
 
@@ -269,7 +272,9 @@ class ChecklistWidget(BaseWidget):
             ChecklistWidget: 返回self以支持链式调用
         """
         if not self._str_validator.validate(title):
-            raise TypeError(f"title参数必须是字符串类型，当前类型为: {type(title).__name__}")
+            raise TypeError(
+                f"title参数必须是字符串类型，当前类型为: {type(title).__name__}"
+            )
         self._title = title
         return self
 
@@ -283,7 +288,9 @@ class ChecklistWidget(BaseWidget):
             ChecklistWidget: 返回self以支持链式调用
         """
         if not self._bool_validator.validate(show):
-            raise TypeError(f"show参数必须是布尔类型，当前类型为: {type(show).__name__}")
+            raise TypeError(
+                f"show参数必须是布尔类型，当前类型为: {type(show).__name__}"
+            )
         self._show_progress = show
         return self
 
@@ -297,7 +304,9 @@ class ChecklistWidget(BaseWidget):
             ChecklistWidget: 返回self以支持链式调用
         """
         if not self._bool_validator.validate(compact):
-            raise TypeError(f"compact参数必须是布尔类型，当前类型为: {type(compact).__name__}")
+            raise TypeError(
+                f"compact参数必须是布尔类型，当前类型为: {type(compact).__name__}"
+            )
         self._compact_mode = compact
         return self
 
@@ -323,7 +332,9 @@ class ChecklistWidget(BaseWidget):
             IndexError: 当索引超出范围时
         """
         if not self._int_validator.validate(index):
-            raise TypeError(f"index参数必须是整数类型，当前类型为: {type(index).__name__}")
+            raise TypeError(
+                f"index参数必须是整数类型，当前类型为: {type(index).__name__}"
+            )
         if 0 <= index < len(self._items):
             self._items.pop(index)
         else:
@@ -331,10 +342,10 @@ class ChecklistWidget(BaseWidget):
         return self
 
     def update_item_status(
-        self, 
-        index: int, 
-        completed: Union[bool, None],
-        status_type: Union[str, StatusType, None] = None
+        self,
+        index: int,
+        completed: bool | None,
+        status_type: str | StatusType | None = None,
     ) -> "ChecklistWidget":
         """更新指定项目的完成状态。
 
@@ -351,20 +362,20 @@ class ChecklistWidget(BaseWidget):
             text = item["text"]
             description = item.get("description", "")
             status_text = item.get("status_text", "")
-            
+
             # 移除旧项目并添加更新后的项目
             self._items.pop(index)
-            
+
             # 重新创建项目（插入到原位置）
             old_items = self._items[:]
             self._items = self._items[:index]
             self.add_item(text, completed, status_type, description, status_text)
             self._items.extend(old_items[index:])
-            
+
         return self
 
     @property
-    def items(self) -> List[Dict[str, Any]]:
+    def items(self) -> list[dict[str, Any]]:
         """获取所有清单项目。
 
         Returns:
@@ -406,7 +417,11 @@ class ChecklistWidget(BaseWidget):
         Returns:
             int: 待完成项目数量
         """
-        return sum(1 for item in self._items if not item["is_completed"] and not item["is_skipped"])
+        return sum(
+            1
+            for item in self._items
+            if not item["is_completed"] and not item["is_skipped"]
+        )
 
     @property
     def skipped_count(self) -> int:
@@ -433,33 +448,36 @@ class ChecklistWidget(BaseWidget):
         completed = sum(1 for item in non_skipped_items if item["is_completed"])
         return round((completed / len(non_skipped_items)) * 100, 1)
 
-    def get_template_context(self) -> Dict[str, Any]:
+    def get_template_context(self) -> dict[str, Any]:
         """获取模板渲染上下文。
 
         Returns:
             Dict[str, Any]: 模板上下文数据
         """
         completed_count = self.completed_count
-        total_count = len([item for item in self._items if not item["is_skipped"]])  # 不包含跳过的项目
+        total_count = len(
+            [item for item in self._items if not item["is_skipped"]]
+        )  # 不包含跳过的项目
         progress_percentage = self.completion_percentage
-        
+
         # 根据完成率确定进度条颜色
         if progress_percentage >= 90:
             progress_color = "#107c10"  # 绿色
         elif progress_percentage >= 70:
-            progress_color = "#0078d4"  # 蓝色  
+            progress_color = "#0078d4"  # 蓝色
         elif progress_percentage >= 50:
             progress_color = "#ff8c00"  # 橙色
         else:
             progress_color = "#8e8e93"  # 灰色
-            
+
         return {
             "items": self._items,
             "title": self._title,
             "show_progress": self._show_progress,
             "compact_mode": self._compact_mode,
             "completed_count": completed_count,
-            "total_count": total_count or len(self._items),  # 如果没有非跳过项目，显示总数
+            "total_count": total_count
+            or len(self._items),  # 如果没有非跳过项目，显示总数
             "progress_percentage": progress_percentage,
             "progress_color": progress_color,
         }
