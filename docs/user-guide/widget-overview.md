@@ -331,7 +331,7 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
             </div>
         </div>
 
-        <!-- 第八行：分隔符组件 -->
+        <!-- 第八行：分隔符组件 & 时间线组件 -->
         <div class="component-row">
             <div class="component-item">
                 <h3><a href="../separator-widget/">SeparatorWidget 分隔符组件</a></h3>
@@ -352,6 +352,82 @@ EmailWidget 提供了丰富的组件库，涵盖了邮件中常见的各种内�
                     <span class="tag">分隔</span>
                     <span class="tag">布局</span>
                     <span class="tag">分割</span>
+                </div>
+            </div>
+            <div class="component-item">
+                <h3><a href="../timeline-widget/">TimelineWidget 时间线组件</a></h3>
+                <p>展示时间序列事件，支持状态标记和时间戳显示</p>
+                <div class="component-preview">
+                    <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
+                        <h4 style="color: #323130; margin-bottom: 12px; font-size: 14px; font-weight: 600;">项目进展</h4>
+                        <div style="position: relative; padding-left: 24px;">
+                            <div style="position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #e1dfdd;"></div>
+                            <div style="margin-bottom: 12px; position: relative; font-size: 12px;">
+                                <div style="position: absolute; left: -20px; top: 2px; width: 12px; height: 12px; border-radius: 50%; background: #107c10; border: 2px solid #ffffff; box-shadow: 0 0 0 2px #107c10;"></div>
+                                <div style="font-weight: 600; color: #323130; margin-bottom: 2px;">项目启动</div>
+                                <div style="color: #605e5c; font-size: 11px;">项目正式开始</div>
+                            </div>
+                            <div style="margin-bottom: 12px; position: relative; font-size: 12px;">
+                                <div style="position: absolute; left: -20px; top: 2px; width: 12px; height: 12px; border-radius: 50%; background: #0078d4; border: 2px solid #ffffff; box-shadow: 0 0 0 2px #0078d4;"></div>
+                                <div style="font-weight: 600; color: #323130; margin-bottom: 2px;">需求分析</div>
+                                <div style="color: #605e5c; font-size: 11px;">完成需求调研</div>
+                            </div>
+                            <div style="position: relative; font-size: 12px;">
+                                <div style="position: absolute; left: -20px; top: 2px; width: 12px; height: 12px; border-radius: 50%; background: #8e8e93; border: 2px solid #ffffff; box-shadow: 0 0 0 2px #8e8e93;"></div>
+                                <div style="font-weight: 600; color: #323130; margin-bottom: 2px;">开发实现</div>
+                                <div style="color: #605e5c; font-size: 11px;">代码开发中</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-tags">
+                    <span class="tag">时间线</span>
+                    <span class="tag">事件</span>
+                    <span class="tag">进度</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第九行：指标组件 -->
+        <div class="component-row">
+            <div class="component-item">
+                <h3><a href="../metric-widget/">MetricWidget 指标组件</a></h3>
+                <p>展示关键数据指标，支持趋势分析和多种布局</p>
+                <div class="component-preview">
+                    <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
+                        <h4 style="color: #323130; margin-bottom: 12px; font-size: 14px; font-weight: 600; text-align: center;">核心指标</h4>
+                        <div style="display: flex; gap: 12px; justify-content: space-around;">
+                            <div style="text-align: center; background: #f3f9f1; border: 1px solid #c8e6c5; border-radius: 6px; padding: 12px; flex: 1;">
+                                <div style="font-size: 18px; font-weight: 700; color: #107c10; margin-bottom: 4px;">12K<span style="font-size: 12px; color: #8e8e93;">人</span></div>
+                                <div style="font-size: 10px; font-weight: 500; color: #605e5c; text-transform: uppercase; margin-bottom: 6px;">活跃用户</div>
+                                <div style="font-size: 10px; font-weight: 600; color: #107c10; display: flex; align-items: center; justify-content: center;">
+                                    <span style="margin-right: 2px;">↗</span>
+                                    <span>+15.6%</span>
+                                </div>
+                            </div>
+                            <div style="text-align: center; background: #fff9f0; border: 1px solid #ffd6a5; border-radius: 6px; padding: 12px; flex: 1;">
+                                <div style="font-size: 18px; font-weight: 700; color: #ff8c00; margin-bottom: 4px;">¥1.2M</div>
+                                <div style="font-size: 10px; font-weight: 500; color: #605e5c; text-transform: uppercase; margin-bottom: 6px;">月收入</div>
+                                <div style="font-size: 10px; font-weight: 600; color: #ff8c00; display: flex; align-items: center; justify-content: center;">
+                                    <span style="margin-right: 2px;">→</span>
+                                    <span>+8.2%</span>
+                                </div>
+                            </div>
+                            <div style="text-align: center; background: #f0f6ff; border: 1px solid #a5c8f0; border-radius: 6px; padding: 12px; flex: 1;">
+                                <div style="font-size: 18px; font-weight: 700; color: #0078d4; margin-bottom: 4px;">3.2<span style="font-size: 12px; color: #8e8e93;">%</span></div>
+                                <div style="font-size: 10px; font-weight: 500; color: #605e5c; text-transform: uppercase; margin-bottom: 6px;">转化率</div>
+                                <div style="font-size: 10px; font-weight: 600; color: #0078d4; display: flex; align-items: center; justify-content: center;">
+                                    <span style="margin-right: 2px;">●</span>
+                                    <span>+0.3%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="component-tags">
+                    <span class="tag">指标</span>
+                    <span class="tag">KPI</span>
+                    <span class="tag">趋势</span>
                 </div>
             </div>
             <div class="component-item">
