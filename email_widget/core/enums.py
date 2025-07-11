@@ -92,6 +92,14 @@ class LayoutType(Enum):
     VERTICAL = "vertical"
 
 
+class SeparatorType(Enum):
+    """分隔符类型枚举"""
+
+    SOLID = "solid"      # 实线
+    DASHED = "dashed"    # 虚线
+    DOTTED = "dotted"    # 点线
+
+
 class IconType(Enum):
     """图标类型枚举 - 爬虫和数据处理领域常用图标"""
 
