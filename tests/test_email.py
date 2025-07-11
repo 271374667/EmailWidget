@@ -568,6 +568,165 @@ class TestEmailConvenienceMethods:
         assert button._width is None  # 默认值
         assert button._align == "right"
 
+    def test_add_separator_minimal(self):
+        """测试添加最小分隔符"""
+        result = self.email.add_separator()
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.separator_widget import SeparatorWidget
+        assert isinstance(self.email.widgets[0], SeparatorWidget)
+
+        separator = self.email.widgets[0]
+        from email_widget.core.enums import SeparatorType
+        assert separator.separator_type == SeparatorType.SOLID
+        assert separator.color == "#e1dfdd"
+        assert separator.thickness == "1px"
+        assert separator.width == "100%"
+        assert separator.margin == "16px"
+
+    def test_add_separator_with_all_options(self):
+        """测试添加带全部选项的分隔符"""
+        from email_widget.core.enums import SeparatorType
+        
+        result = self.email.add_separator(
+            separator_type=SeparatorType.DASHED,
+            color="#0078d4",
+            thickness="3px",
+            width="80%",
+            margin="25px"
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.separator_widget import SeparatorWidget
+        assert isinstance(self.email.widgets[0], SeparatorWidget)
+
+        separator = self.email.widgets[0]
+        assert separator.separator_type == SeparatorType.DASHED
+        assert separator.color == "#0078d4"
+        assert separator.thickness == "3px"
+        assert separator.width == "80%"
+        assert separator.margin == "25px"
+
+    def test_add_separator_with_partial_options(self):
+        """测试添加带部分选项的分隔符"""
+        from email_widget.core.enums import SeparatorType
+        
+        result = self.email.add_separator(
+            separator_type=SeparatorType.DOTTED,
+            color="#ff8c00"
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.separator_widget import SeparatorWidget
+        assert isinstance(self.email.widgets[0], SeparatorWidget)
+
+        separator = self.email.widgets[0]
+        assert separator.separator_type == SeparatorType.DOTTED
+        assert separator.color == "#ff8c00"
+        assert separator.thickness == "1px"  # 默认值
+        assert separator.width == "100%"    # 默认值
+        assert separator.margin == "16px"   # 默认值
+
+    def test_add_checklist_minimal(self):
+        """测试添加最小清单"""
+        result = self.email.add_checklist()
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.checklist_widget import ChecklistWidget
+        assert isinstance(self.email.widgets[0], ChecklistWidget)
+
+        checklist = self.email.widgets[0]
+        assert checklist.title == ""
+        assert checklist.item_count == 0
+        assert not checklist._show_progress
+        assert not checklist._compact_mode
+
+    def test_add_checklist_with_title_and_items(self):
+        """测试添加带标题和项目的清单"""
+        items = [
+            ("完成设计", True),
+            ("代码审查", False),
+            ("部署测试", False)
+        ]
+        
+        result = self.email.add_checklist("任务清单", items)
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.checklist_widget import ChecklistWidget
+        assert isinstance(self.email.widgets[0], ChecklistWidget)
+
+        checklist = self.email.widgets[0]
+        assert checklist.title == "任务清单"
+        assert checklist.item_count == 3
+        assert checklist.completed_count == 1
+        assert checklist.pending_count == 2
+
+    def test_add_checklist_with_all_options(self):
+        """测试添加带全部选项的清单"""
+        items = [
+            ("需求分析", True),
+            ("开发实现", True), 
+            ("测试验证", False)
+        ]
+        
+        result = self.email.add_checklist(
+            title="项目进度",
+            items=items,
+            show_progress=True,
+            compact_mode=True
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.checklist_widget import ChecklistWidget
+        assert isinstance(self.email.widgets[0], ChecklistWidget)
+
+        checklist = self.email.widgets[0]
+        assert checklist.title == "项目进度"
+        assert checklist.item_count == 3
+        assert checklist.completed_count == 2
+        assert checklist.pending_count == 1
+        assert checklist._show_progress is True
+        assert checklist._compact_mode is True
+        assert checklist.completion_percentage == 66.7
+
+    def test_add_checklist_with_partial_options(self):
+        """测试添加带部分选项的清单"""
+        items = [("项目1", True), ("项目2", False)]
+        
+        result = self.email.add_checklist(
+            title="部分选项清单",
+            show_progress=True
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.checklist_widget import ChecklistWidget
+        assert isinstance(self.email.widgets[0], ChecklistWidget)
+
+        checklist = self.email.widgets[0]
+        assert checklist.title == "部分选项清单"
+        assert checklist.item_count == 0  # 没有items参数
+        assert checklist._show_progress is True
+        assert checklist._compact_mode is False  # 默认值
+
+    def test_add_checklist_invalid_items(self):
+        """测试添加无效项目的清单"""
+        # 项目格式不正确（少于2个元素）
+        items = [("只有一个元素",), ("正常项目", True)]
+        
+        result = self.email.add_checklist("测试清单", items)
+
+        assert result is self.email
+        checklist = self.email.widgets[0]
+        # 应该只添加了格式正确的项目
+        assert checklist.item_count == 1
+
 
 class TestEmailRendering:
     """Email渲染功能测试类"""
