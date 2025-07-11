@@ -323,9 +323,9 @@ class TestImageWidgetIntegration:
     def test_set_image_url_with_embed_true(self, mock_process):
         """测试embed=True时的行为（默认行为）"""
         mock_process.return_value = "data:image/png;base64,embedded_data"
-        
+
         result = self.widget.set_image_url("https://example.com/image.png", embed=True)
-        
+
         assert result is self.widget
         mock_process.assert_called_once_with(
             "https://example.com/image.png", cache=True, embed=True
@@ -336,9 +336,9 @@ class TestImageWidgetIntegration:
     def test_set_image_url_with_embed_false(self, mock_process):
         """测试embed=False时的行为（网络URL直接返回）"""
         mock_process.return_value = "https://example.com/image.png"
-        
+
         result = self.widget.set_image_url("https://example.com/image.png", embed=False)
-        
+
         assert result is self.widget
         mock_process.assert_called_once_with(
             "https://example.com/image.png", cache=True, embed=False
@@ -350,26 +350,22 @@ class TestImageWidgetIntegration:
         """测试本地文件embed=False时的行为（强制嵌入）"""
         mock_process.return_value = "data:image/png;base64,forced_embed_data"
         local_path = Path("test_image.png")
-        
+
         result = self.widget.set_image_url(local_path, embed=False)
-        
+
         assert result is self.widget
-        mock_process.assert_called_once_with(
-            local_path, cache=True, embed=False
-        )
+        mock_process.assert_called_once_with(local_path, cache=True, embed=False)
         assert self.widget._image_url == "data:image/png;base64,forced_embed_data"
 
     @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
     def test_set_image_url_with_all_params(self, mock_process):
         """测试所有参数的组合"""
         mock_process.return_value = "https://cdn.example.com/optimized.png"
-        
+
         result = self.widget.set_image_url(
-            "https://example.com/image.png", 
-            cache=False, 
-            embed=False
+            "https://example.com/image.png", cache=False, embed=False
         )
-        
+
         assert result is self.widget
         mock_process.assert_called_once_with(
             "https://example.com/image.png", cache=False, embed=False

@@ -7,7 +7,6 @@
 - 配置访问方法
 """
 
-
 import pytest
 
 from email_widget.core.config import EmailConfig

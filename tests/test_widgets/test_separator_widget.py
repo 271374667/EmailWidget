@@ -112,7 +112,7 @@ class TestSeparatorWidget:
             color="#ff8c00",
             thickness="3px",
             width="50%",
-            margin="25px"
+            margin="25px",
         )
 
         assert result is self.widget
@@ -141,7 +141,7 @@ class TestSeparatorWidget:
             color="#ff0000",
             thickness="5px",
             width="30%",
-            margin="50px"
+            margin="50px",
         )
 
         # 重置
@@ -175,7 +175,7 @@ class TestSeparatorWidget:
             color="#123456",
             thickness="2px",
             width="75%",
-            margin="10px"
+            margin="10px",
         )
 
         assert self.widget.separator_type == SeparatorType.DASHED
@@ -212,7 +212,7 @@ class TestSeparatorWidget:
             color="#ff0000",
             thickness="3px",
             width="50%",
-            margin="20px"
+            margin="20px",
         )
 
         context = self.widget.get_template_context()
@@ -226,12 +226,13 @@ class TestSeparatorWidget:
 
     def test_chain_calls(self):
         """测试链式调用"""
-        result = (self.widget
-                  .set_type(SeparatorType.DOTTED)
-                  .set_color("#0078d4")
-                  .set_thickness("2px")
-                  .set_width("80%")
-                  .set_margin("25px"))
+        result = (
+            self.widget.set_type(SeparatorType.DOTTED)
+            .set_color("#0078d4")
+            .set_thickness("2px")
+            .set_width("80%")
+            .set_margin("25px")
+        )
 
         assert result is self.widget
         assert self.widget._separator_type == SeparatorType.DOTTED
@@ -243,9 +244,7 @@ class TestSeparatorWidget:
     def test_render_html_integration(self):
         """测试HTML渲染集成"""
         self.widget.set_style(
-            separator_type=SeparatorType.SOLID,
-            color="#0078d4",
-            thickness="2px"
+            separator_type=SeparatorType.SOLID, color="#0078d4", thickness="2px"
         )
 
         html = self.widget.render_html()

@@ -178,7 +178,9 @@ class TestImageUtils:
         mock_logger.return_value = mock_logger_instance
         mock_exists.return_value = False
 
-        result = ImageUtils.process_image_source("nonexistent.png", cache=False, embed=True)
+        result = ImageUtils.process_image_source(
+            "nonexistent.png", cache=False, embed=True
+        )
 
         assert result is None
         mock_logger_instance.error.assert_called_once()
@@ -288,7 +290,9 @@ class TestImageUtils:
         """测试无效的图片数据"""
         with patch("builtins.open", new_callable=mock_open, read_data=b""):
             with patch("pathlib.Path.exists", return_value=True):
-                result = ImageUtils.process_image_source("empty.png", cache=False, embed=True)
+                result = ImageUtils.process_image_source(
+                    "empty.png", cache=False, embed=True
+                )
 
                 assert result is None
                 # 空数据会被验证为无效并返回None
@@ -301,7 +305,9 @@ class TestImageUtils:
 
         with patch("builtins.open", new_callable=mock_open, read_data=b"small"):
             with patch("pathlib.Path.exists", return_value=True):
-                result = ImageUtils.process_image_source("small.png", cache=False, embed=True)
+                result = ImageUtils.process_image_source(
+                    "small.png", cache=False, embed=True
+                )
 
                 assert result is None
                 mock_logger_instance.error.assert_called_once()
@@ -313,7 +319,9 @@ class TestImageUtils:
         mock_logger.return_value = mock_logger_instance
 
         with patch("pathlib.Path.exists", side_effect=Exception("File system error")):
-            result = ImageUtils.process_image_source("test.png", cache=False, embed=True)
+            result = ImageUtils.process_image_source(
+                "test.png", cache=False, embed=True
+            )
 
             assert result is None
             mock_logger_instance.error.assert_called_once()
@@ -326,7 +334,9 @@ class TestImageUtils:
             "builtins.open", new_callable=mock_open, read_data=b"path object data"
         ):
             with patch("pathlib.Path.exists", return_value=True):
-                result = ImageUtils.process_image_source(path_obj, cache=False, embed=True)
+                result = ImageUtils.process_image_source(
+                    path_obj, cache=False, embed=True
+                )
 
                 expected_b64 = base64.b64encode(b"path object data").decode("utf-8")
                 expected_result = f"data:image/png;base64,{expected_b64}"
@@ -360,7 +370,9 @@ class TestImageUtils:
         with patch("email_widget.utils.image_utils.get_image_cache") as mock_get_cache:
             with patch("builtins.open", new_callable=mock_open, read_data=b"test data"):
                 with patch("pathlib.Path.exists", return_value=True):
-                    ImageUtils.process_image_source("test.png", cache=cache_enabled, embed=True)
+                    ImageUtils.process_image_source(
+                        "test.png", cache=cache_enabled, embed=True
+                    )
 
                     if cache_enabled:
                         mock_get_cache.assert_called_once()
@@ -377,7 +389,9 @@ class TestImageUtilsIntegration:
 
         with patch("builtins.open", new_callable=mock_open, read_data=test_data):
             with patch("pathlib.Path.exists", return_value=True):
-                result = ImageUtils.process_image_source("integration_test.png", embed=True)
+                result = ImageUtils.process_image_source(
+                    "integration_test.png", embed=True
+                )
 
                 assert result is not None
                 assert result.startswith("data:image/png;base64,")
@@ -402,28 +416,32 @@ class TestImageUtilsIntegration:
     def test_process_image_source_embed_false_url(self):
         """测试embed=False时网络URL直接返回"""
         url = "https://example.com/image.png"
-        
+
         result = ImageUtils.process_image_source(url, cache=False, embed=False)
-        
+
         assert result == url
         # 不应该下载图片
-        
+
     @patch("email_widget.utils.image_utils.get_project_logger")
     def test_process_image_source_embed_false_local_file_warning(self, mock_logger):
         """测试embed=False时本地文件会警告并强制嵌入"""
         mock_logger_instance = MagicMock()
         mock_logger.return_value = mock_logger_instance
-        
-        with patch("builtins.open", new_callable=mock_open, read_data=b"local file data"):
+
+        with patch(
+            "builtins.open", new_callable=mock_open, read_data=b"local file data"
+        ):
             with patch("pathlib.Path.exists", return_value=True):
-                result = ImageUtils.process_image_source("local.png", cache=False, embed=False)
-                
+                result = ImageUtils.process_image_source(
+                    "local.png", cache=False, embed=False
+                )
+
                 # 应该发出警告
                 mock_logger_instance.warning.assert_called_once()
                 warning_call = mock_logger_instance.warning.call_args[0][0]
                 assert "本地图片文件无法通过链接访问，将强制嵌入" in warning_call
                 assert "local.png" in warning_call
-                
+
                 # 仍然应该返回base64编码
                 expected_b64 = base64.b64encode(b"local file data").decode("utf-8")
                 expected_result = f"data:image/png;base64,{expected_b64}"
@@ -433,9 +451,9 @@ class TestImageUtilsIntegration:
     def test_process_image_source_embed_false_url_no_download(self, mock_request_url):
         """测试embed=False时网络URL不下载"""
         url = "https://example.com/test.jpg"
-        
+
         result = ImageUtils.process_image_source(url, cache=False, embed=False)
-        
+
         assert result == url
         # 确保没有调用下载函数
         mock_request_url.assert_not_called()
@@ -443,31 +461,36 @@ class TestImageUtilsIntegration:
     def test_process_image_source_embed_false_data_uri(self):
         """测试embed=False时data URI直接返回"""
         data_uri = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
-        
+
         result = ImageUtils.process_image_source(data_uri, cache=False, embed=False)
-        
+
         assert result == data_uri
 
     @patch("email_widget.utils.image_utils.ImageUtils.request_url")
     def test_process_image_source_embed_true_url_downloads(self, mock_request_url):
         """测试embed=True时网络URL会下载"""
         mock_request_url.return_value = (b"downloaded data", "image/png")
-        
-        result = ImageUtils.process_image_source("https://example.com/image.png", cache=False, embed=True)
-        
+
+        result = ImageUtils.process_image_source(
+            "https://example.com/image.png", cache=False, embed=True
+        )
+
         # 应该调用下载函数
         mock_request_url.assert_called_once_with("https://example.com/image.png")
-        
+
         # 应该返回base64编码
         expected_b64 = base64.b64encode(b"downloaded data").decode("utf-8")
         expected_result = f"data:image/png;base64,{expected_b64}"
         assert result == expected_result
 
-    @pytest.mark.parametrize("url", [
-        "http://example.com/image.jpg",
-        "https://secure.example.com/photo.png",
-        "https://cdn.example.com/assets/logo.gif"
-    ])
+    @pytest.mark.parametrize(
+        "url",
+        [
+            "http://example.com/image.jpg",
+            "https://secure.example.com/photo.png",
+            "https://cdn.example.com/assets/logo.gif",
+        ],
+    )
     def test_process_image_source_embed_false_various_urls(self, url):
         """测试embed=False对各种URL格式的处理"""
         result = ImageUtils.process_image_source(url, cache=False, embed=False)
@@ -477,25 +500,31 @@ class TestImageUtilsIntegration:
     def test_process_image_source_embed_false_no_cache_for_urls(self, mock_get_cache):
         """测试embed=False时URL不使用缓存"""
         url = "https://example.com/image.png"
-        
+
         result = ImageUtils.process_image_source(url, cache=True, embed=False)
-        
+
         assert result == url
         # 对于非嵌入的URL，不应该使用缓存
         mock_get_cache.assert_not_called()
 
     @patch("email_widget.utils.image_utils.get_image_cache")
     @patch("email_widget.utils.image_utils.get_project_logger")
-    def test_process_image_source_embed_false_local_still_uses_cache(self, mock_logger, mock_get_cache):
+    def test_process_image_source_embed_false_local_still_uses_cache(
+        self, mock_logger, mock_get_cache
+    ):
         """测试embed=False时本地文件仍然使用缓存"""
         mock_cache = MagicMock()
         mock_cache.get.return_value = None  # 缓存未命中
         mock_get_cache.return_value = mock_cache
-        
-        with patch("builtins.open", new_callable=mock_open, read_data=b"cached local data"):
+
+        with patch(
+            "builtins.open", new_callable=mock_open, read_data=b"cached local data"
+        ):
             with patch("pathlib.Path.exists", return_value=True):
-                result = ImageUtils.process_image_source("local.png", cache=True, embed=False)
-                
+                result = ImageUtils.process_image_source(
+                    "local.png", cache=True, embed=False
+                )
+
                 # 应该检查和设置缓存（因为本地文件强制嵌入）
                 mock_get_cache.assert_called_once()
                 mock_cache.get.assert_called_once_with("local.png")

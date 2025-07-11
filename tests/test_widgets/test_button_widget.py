@@ -71,12 +71,14 @@ class TestButtonWidget:
         """测试链接验证"""
         # 基本的URL格式验证
         url_pattern = re.compile(
-            r'^(?:https?|ftp)://'  # http://, https://, 或 ftp://
-            r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'  # 域名
-            r'localhost|'  # localhost
-            r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # IP地址
-            r'(?::\d+)?'  # 可选端口
-            r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+            r"^(?:https?|ftp)://"  # http://, https://, 或 ftp://
+            r"(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|"  # 域名
+            r"localhost|"  # localhost
+            r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"  # IP地址
+            r"(?::\d+)?"  # 可选端口
+            r"(?:/?|[/?]\S+)$",
+            re.IGNORECASE,
+        )
 
         if should_pass:
             result = self.widget.set_href(href)

@@ -239,8 +239,11 @@ class TestCreateEmailSender:
     def test_create_sender_with_kwargs(self):
         """测试工厂函数传递额外参数"""
         sender = create_email_sender(
-            "qq", "test@qq.com", "password",
-            use_tls=False, smtp_server="custom.smtp.com"
+            "qq",
+            "test@qq.com",
+            "password",
+            use_tls=False,
+            smtp_server="custom.smtp.com",
         )
         assert isinstance(sender, QQEmailSender)
         assert sender.use_tls == False
