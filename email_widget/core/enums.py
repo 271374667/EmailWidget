@@ -95,9 +95,9 @@ class LayoutType(Enum):
 class SeparatorType(Enum):
     """分隔符类型枚举"""
 
-    SOLID = "solid"      # 实线
-    DASHED = "dashed"    # 虚线
-    DOTTED = "dotted"    # 点线
+    SOLID = "solid"  # 实线
+    DASHED = "dashed"  # 虚线
+    DOTTED = "dotted"  # 点线
 
 
 class IconType(Enum):

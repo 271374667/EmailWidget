@@ -9,7 +9,9 @@ from email_widget.core.logger import get_project_logger
 
 class ImageUtils:
     @staticmethod
-    def process_image_source(source: str | Path, cache: bool = True, embed: bool = True) -> str | None:
+    def process_image_source(
+        source: str | Path, cache: bool = True, embed: bool = True
+    ) -> str | None:
         """统一处理图片源，返回base64 data URI或原始URL
 
         Args:
@@ -26,15 +28,24 @@ class ImageUtils:
             source_str = str(source)
 
             # 如果不嵌入且是网络URL，直接返回原始URL
-            if not embed and isinstance(source, str) and source.startswith(("http://", "https://")):
+            if (
+                not embed
+                and isinstance(source, str)
+                and source.startswith(("http://", "https://"))
+            ):
                 return source_str
-            
+
             # 确定是否是本地文件
-            is_local_file = isinstance(source, Path) or (isinstance(source, str) and not source.startswith(("http://", "https://", "data:")))
-            
+            is_local_file = isinstance(source, Path) or (
+                isinstance(source, str)
+                and not source.startswith(("http://", "https://", "data:"))
+            )
+
             # 如果不嵌入且是本地文件，警告用户但仍然嵌入
             if not embed and is_local_file:
-                logger.warning(f"本地图片文件无法通过链接访问，将强制嵌入: {source_str}")
+                logger.warning(
+                    f"本地图片文件无法通过链接访问，将强制嵌入: {source_str}"
+                )
                 # 继续执行嵌入逻辑
 
             # 只有在需要时才获取缓存管理器
