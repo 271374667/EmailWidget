@@ -776,6 +776,111 @@ class Email:
 
         return self.add_widget(widget)
 
+    def add_separator(
+        self,
+        separator_type: "SeparatorType" = None,
+        color: str | None = None,
+        thickness: str | None = None,
+        width: str | None = None,
+        margin: str | None = None,
+    ) -> "Email":
+        """快速添加分隔符Widget.
+
+        Args:
+            separator_type: 分隔符类型，默认为SOLID
+            color: 分隔符颜色，可选
+            thickness: 分隔符粗细，可选
+            width: 分隔符宽度，可选
+            margin: 上下边距，可选
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> # 基本分隔符
+            >>> email.add_separator()
+            >>> # 自定义样式的分隔符
+            >>> email.add_separator(
+            ...     separator_type=SeparatorType.DASHED,
+            ...     color="#0078d4",
+            ...     thickness="2px",
+            ...     width="80%"
+            ... )
+        """
+        from email_widget.core.enums import SeparatorType
+        from email_widget.widgets.separator_widget import SeparatorWidget
+
+        if separator_type is None:
+            separator_type = SeparatorType.SOLID
+
+        widget = SeparatorWidget().set_type(separator_type)
+
+        if color is not None:
+            widget.set_color(color)
+        if thickness is not None:
+            widget.set_thickness(thickness)
+        if width is not None:
+            widget.set_width(width)
+        if margin is not None:
+            widget.set_margin(margin)
+
+        return self.add_widget(widget)
+
+    def add_checklist(
+        self,
+        title: str = "",
+        items: list[tuple[str, bool]] | None = None,
+        show_progress: bool = False,
+        compact_mode: bool = False,
+    ) -> "Email":
+        """快速添加清单Widget.
+
+        Args:
+            title: 清单标题，可选
+            items: 清单项目列表，格式为[(text, completed), ...]，可选
+            show_progress: 是否显示进度统计，默认False
+            compact_mode: 是否使用紧凑模式，默认False
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> # 基本清单
+            >>> email.add_checklist("任务清单", [
+            ...     ("完成设计", True),
+            ...     ("代码审查", False),
+            ...     ("部署测试", False)
+            ... ])
+            >>> # 带进度统计的清单
+            >>> email.add_checklist("项目进度", [
+            ...     ("需求分析", True),
+            ...     ("开发实现", True),
+            ...     ("测试验证", False)
+            ... ], show_progress=True)
+        """
+        from email_widget.widgets.checklist_widget import ChecklistWidget
+
+        widget = ChecklistWidget()
+
+        if title:
+            widget.set_title(title)
+
+        if items:
+            for item in items:
+                if len(item) >= 2:
+                    text, completed = item[0], item[1]
+                    widget.add_item(text, completed)
+
+        if show_progress:
+            widget.show_progress_stats(True)
+
+        if compact_mode:
+            widget.set_compact_mode(True)
+
+        return self.add_widget(widget)
+
     def _generate_css_styles(self) -> str:
         """生成内联CSS样式.
 
