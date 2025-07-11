@@ -19,7 +19,7 @@
 - **小巧轻量**: 快速安装，无复杂依赖(小于 1MB)
 - **易于使用**: 清晰简单的 API，几行代码就能创建漂亮的邮件模板然后快速发送
 - **完整文档**: 项目拥有完整的文档和类型注解，在 IDE 中能获得全面的提示
-- **丰富组件**: 目前包含 15 个漂亮的展示组件，所有组件均符合 Fluent 风格，可在下方查看
+- **丰富组件**: 目前包含 17 个漂亮的展示组件，所有组件均符合 Fluent 风格，可在下方查看
 - **全面测试**: 核心的功能经过完整的测试，确保项目可用
 - **完全免费**: 项目使用 MIT 开源协议，您可以随意在任何商业项目中使用
 
@@ -48,7 +48,7 @@ email.export_html('welcome_email.html')
 
 ![image-20250706200253564](https://271374667.github.io/picx-images-hosting/EmailWidget/image-20250706200253564.3k8ahgbqia.webp)
 
-### 🎨 丰富的组件 - 15 个直观组件
+### 🎨 丰富的组件 - 17 个直观组件
 
 ```python
 # 一行代码，多种组件
@@ -78,6 +78,8 @@ email.add_progress(value=95, max_value=100)
 | 🔘 **ButtonWidget**           | 链接按钮、自定义样式、多种风格            | 操作按钮、跳转链接    |
 | 📏 **SeparatorWidget**        | 分隔线、多种样式、可定制颜色             | 内容分割、区域分隔    |
 | ✅ **ChecklistWidget**        | 任务清单、状态追踪、进度统计             | 待办事项、检查列表    |
+| ⏰ **TimelineWidget**         | 时间线展示、事件管理、状态标记            | 进度跟踪、历史记录    |
+| 📊 **MetricWidget**           | 数据指标、趋势分析、多种布局             | KPI 展示、数据监控   |
 
 
 ## 🏃‍♂️ 快速开始
@@ -215,7 +217,7 @@ email = (Email("项目进展报告")
 | 📖 **资源类型**   | 🔗 **链接**                                                                     | 📝 **内容**  |
 |---------------|-------------------------------------------------------------------------------|------------|
 | 🚀 **快速开始**   | [安装指南](https://271374667.github.io/EmailWidget/getting-started/installation/) | 环境配置、第一个邮件 |
-| 📘 **用户手册**   | [组件详解](https://271374667.github.io/EmailWidget/user-guide/core-classes/)      | 12 个组件完整教程 |
+| 📘 **用户手册**   | [组件详解](https://271374667.github.io/EmailWidget/user-guide/core-classes/)      | 17 个组件完整教程 |
 | 🔧 **API 文档** | [API 参考](https://271374667.github.io/EmailWidget/api/core/)                   | 完整类和方法文档   |
 | 💡 **实战示例**   | [应用案例](https://271374667.github.io/EmailWidget/examples/basic/)               | 真实场景代码     |
 | 🛠️ **开发指南**  | [贡献代码](https://271374667.github.io/EmailWidget/development/contributing/)     | 参与项目开发     |

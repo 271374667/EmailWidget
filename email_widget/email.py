@@ -759,7 +759,7 @@ class Email:
             >>> # 基本按钮
             >>> email.add_button("查看详情", "https://example.com/details")
             >>> # 自定义样式的按钮
-            >>> email.add_button("立即购买", "https://shop.example.com", 
+            >>> email.add_button("立即购买", "https://shop.example.com",
             ...                  background_color="#22c55e", text_color="#ffffff",
             ...                  width="200px", align="center")
         """
@@ -878,6 +878,126 @@ class Email:
 
         if compact_mode:
             widget.set_compact_mode(True)
+
+        return self.add_widget(widget)
+
+    def add_timeline(
+        self,
+        title: str = "",
+        events: list[tuple] | None = None,
+        show_time: bool = False,
+        reverse_order: bool = False,
+    ) -> "Email":
+        """快速添加时间线Widget.
+
+        Args:
+            title: 时间线标题，可选
+            events: 事件列表，格式为[(title, time, description, status_type), ...]，可选
+            show_time: 是否显示时间戳，默认False
+            reverse_order: 是否倒序排列，默认False
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> # 基本时间线
+            >>> email.add_timeline("项目进度", [
+            ...     ("项目启动", "2024-01-01", "项目正式开始"),
+            ...     ("需求确认", "2024-01-15", "完成需求分析"),
+            ...     ("开发完成", "2024-02-28", "代码开发完成")
+            ... ])
+            >>> # 带时间戳的时间线
+            >>> email.add_timeline("系统日志", [
+            ...     ("系统启动", "2024-01-01 09:00", "服务启动", "success"),
+            ...     ("发现问题", "2024-01-01 10:30", "发现bug", "error"),
+            ...     ("问题修复", "2024-01-01 11:00", "修复完成", "success")
+            ... ], show_time=True, reverse_order=True)
+        """
+        from email_widget.widgets.timeline_widget import TimelineWidget
+
+        widget = TimelineWidget()
+
+        if title:
+            widget.set_title(title)
+
+        if events:
+            for event in events:
+                if len(event) >= 1:
+                    title_text = event[0]
+                    time = event[1] if len(event) > 1 else None
+                    description = event[2] if len(event) > 2 else ""
+                    status_type = event[3] if len(event) > 3 else None
+                    widget.add_event(title_text, time, description, status_type)
+
+        if show_time:
+            widget.show_timestamps(True)
+
+        if reverse_order:
+            widget.set_reverse_order(True)
+
+        return self.add_widget(widget)
+
+    def add_metric(
+        self,
+        title: str = "",
+        metrics: list[tuple] | None = None,
+        layout: str = "horizontal",
+        show_trends: bool = True,
+    ) -> "Email":
+        """快速添加指标Widget.
+
+        Args:
+            title: 指标组标题，可选
+            metrics: 指标列表，格式为[(label, value, unit, trend, trend_type, description), ...]，可选
+            layout: 布局方式，'horizontal' 或 'vertical'，默认'horizontal'
+            show_trends: 是否显示趋势信息，默认True
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> # 基本指标
+            >>> email.add_metric("核心指标", [
+            ...     ("用户数", 12345, "人"),
+            ...     ("增长率", "15.6", "%", "+2.3%", "success"),
+            ...     ("收入", "¥1,250,000", "", "+12.3%", "success")
+            ... ])
+            >>> # 带完整选项的指标
+            >>> email.add_metric(
+            ...     title="系统性能",
+            ...     metrics=[
+            ...         ("CPU使用率", "45.2", "%", "+2.1%", "warning", "需要关注"),
+            ...         ("内存使用", "78.5", "%", "-1.3%", "success", "表现良好"),
+            ...         ("磁盘空间", "23.8", "GB", "+5.2GB", "info", "正常范围")
+            ...     ],
+            ...     layout="vertical",
+            ...     show_trends=True
+            ... )
+        """
+        from email_widget.widgets.metric_widget import MetricWidget
+
+        widget = MetricWidget()
+
+        if title:
+            widget.set_title(title)
+
+        if metrics:
+            for metric in metrics:
+                if len(metric) >= 2:
+                    label = metric[0]
+                    value = metric[1]
+                    unit = metric[2] if len(metric) > 2 else ""
+                    trend = metric[3] if len(metric) > 3 else ""
+                    trend_type = metric[4] if len(metric) > 4 else None
+                    description = metric[5] if len(metric) > 5 else ""
+                    widget.add_metric(
+                        label, value, unit, trend, trend_type, description
+                    )
+
+        widget.set_layout(layout)
+        widget.show_trends(show_trends)
 
         return self.add_widget(widget)
 

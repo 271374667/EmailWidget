@@ -130,6 +130,8 @@ nav:
         - 按钮组件: user-guide/button-widget.md
         - 分隔符组件: user-guide/separator-widget.md
         - 清单组件: user-guide/checklist-widget.md
+        - 时间线组件: user-guide/timeline-widget.md
+        - 指标组件: user-guide/metric-widget.md
         - 布局组件: user-guide/column-widget.md
         - 图表组件: user-guide/chart-widget.md
         - 日志组件: user-guide/log-widget.md
@@ -150,6 +152,8 @@ nav:
         - 按钮组件: api/button-widget.md
         - 分隔符组件: api/separator-widget.md
         - 清单组件: api/checklist-widget.md
+        - 时间线组件: api/timeline-widget.md
+        - 指标组件: api/metric-widget.md
         - 布局组件: api/column-widget.md
         - 图表组件: api/chart-widget.md
         - 日志组件: api/log-widget.md
