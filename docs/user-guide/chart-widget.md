@@ -2,6 +2,10 @@
 
 ChartWidget 专门用于在邮件中展示各种图表和数据可视化内容。它不仅支持显示图片格式的图表，还提供了丰富的配置选项来增强图表的展示效果。
 
+## 🎯 组件预览
+
+--8<-- "assets/chart_widget_component_preview.html"
+
 ## 🚀 快速开始
 
 ```python

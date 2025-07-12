@@ -2,6 +2,10 @@
 
 ChecklistWidget 是一个用于在邮件中创建任务清单、待办事项或检查列表的组件。它支持多种状态显示、进度统计和灵活的样式配置，帮助用户清晰地展示项目进度和任务完成情况。
 
+## 🎯 组件预览
+
+--8<-- "assets/checklist_widget_component_preview.html"
+
 ## ✨ 核心特性
 
 - **📝 多种状态**: 支持已完成、未完成、跳过等多种项目状态
@@ -218,106 +222,150 @@ checklist.add_item("核心功能", False, "primary")
 ### 1. 项目管理清单
 
 ```python
+from email_widget import Email
+from email_widget.widgets.checklist_widget import ChecklistWidget
+
+# 创建项目管理报告邮件
 email = Email("项目管理报告")
 
 # 主要里程碑
-email.add_checklist("项目里程碑", [
-    ("项目启动", True),
-    ("需求分析", True),
-    ("概要设计", True),
-    ("详细设计", False),
-    ("开发实施", False),
-    ("测试验收", False),
-    ("上线部署", False)
-], show_progress=True)
+checklist1 = ChecklistWidget()
+checklist1.set_title("项目里程碑")
+checklist1.add_item("项目启动", True, "success")
+checklist1.add_item("需求分析", True, "success")
+checklist1.add_item("概要设计", True, "success")
+checklist1.add_item("详细设计", False, "warning")
+checklist1.add_item("开发实施", False, "pending")
+checklist1.add_item("测试验收", False, "pending")
+checklist1.add_item("上线部署", False, "pending")
+checklist1.show_progress_stats(True)
+
+email.add_widget(checklist1)
 
 # 当前冲刺任务
-checklist = ChecklistWidget()
-checklist.set_title("当前冲刺")
-checklist.add_item("用户登录功能", True, "success", "已通过代码审查")
-checklist.add_item("数据导出功能", False, "warning", "API设计待确认")
-checklist.add_item("邮件通知功能", False, "primary", "开发中")
-checklist.add_item("性能监控", None, "info", "下个冲刺处理")
-checklist.show_progress_stats(True)
-checklist.set_compact_mode(True)
+checklist2 = ChecklistWidget()
+checklist2.set_title("当前冲刺")
+checklist2.add_item("用户登录功能", True, "success", "已通过代码审查")
+checklist2.add_item("数据导出功能", False, "warning", "API设计待确认")
+checklist2.add_item("邮件通知功能", False, "primary", "开发中")
+checklist2.add_item("性能监控", None, "info", "下个冲刺处理")
+checklist2.show_progress_stats(True)
+checklist2.set_compact_mode(True)
 
-email.add_widget(checklist)
+email.add_widget(checklist2)
+
+# 导出HTML文件
+email.export_html("project_management_report.html")
 ```
+
+--8<-- "assets/checklist_project_management.html"
 
 ### 2. 系统运维检查清单
 
 ```python
+from email_widget import Email
+from email_widget.widgets.checklist_widget import ChecklistWidget
+
+# 创建系统运维日报邮件
 email = Email("系统运维日报")
 
 # 日常检查清单
-email.add_checklist("系统健康检查", [
-    ("服务器状态", True),
-    ("数据库连接", True),
-    ("磁盘空间", False),  # 需要关注
-    ("内存使用", True),
-    ("网络连通", True)
-], show_progress=True)
+checklist1 = ChecklistWidget()
+checklist1.set_title("系统健康检查")
+checklist1.add_item("服务器状态", True, "success")
+checklist1.add_item("数据库连接", True, "success")
+checklist1.add_item("磁盘空间", False, "warning", "需要关注")
+checklist1.add_item("内存使用", True, "success")
+checklist1.add_item("网络连通", True, "success")
+checklist1.show_progress_stats(True)
+
+email.add_widget(checklist1)
 
 # 安全检查
-security_checklist = ChecklistWidget()
-security_checklist.set_title("安全检查")
-security_checklist.add_item("SSL证书", True, "success", "有效期至2024年12月")
-security_checklist.add_item("防火墙规则", True, "success", "已更新")
-security_checklist.add_item("漏洞扫描", False, "warning", "发现3个中级漏洞")
-security_checklist.add_item("访问日志", False, "error", "发现异常访问")
-security_checklist.show_progress_stats(True)
+checklist2 = ChecklistWidget()
+checklist2.set_title("安全检查")
+checklist2.add_item("SSL证书", True, "success", "有效期至2024年12月")
+checklist2.add_item("防火墙规则", True, "success", "已更新")
+checklist2.add_item("漏洞扫描", False, "warning", "发现3个中级漏洞")
+checklist2.add_item("访问日志", False, "error", "发现异常访问")
+checklist2.show_progress_stats(True)
 
-email.add_widget(security_checklist)
+email.add_widget(checklist2)
+
+# 导出HTML文件
+email.export_html("system_ops_report.html")
 ```
+
+--8<-- "assets/checklist_system_ops.html"
 
 ### 3. 发布准备清单
 
 ```python
+from email_widget import Email
+from email_widget.widgets.checklist_widget import ChecklistWidget
+
+# 创建产品发布准备邮件
 email = Email("产品发布准备")
 
 # 发布前检查
-release_checklist = ChecklistWidget()
-release_checklist.set_title("发布检查清单")
-release_checklist.add_item("代码冻结", True, "success", "v2.1.0已冻结")
-release_checklist.add_item("测试完成", True, "success", "所有测试用例通过")
-release_checklist.add_item("文档更新", False, "warning", "API文档待完善")
-release_checklist.add_item("数据库迁移", False, "primary", "脚本已准备")
-release_checklist.add_item("监控配置", False, "info", "新增监控指标")
-release_checklist.add_item("回滚预案", False, "error", "回滚脚本未测试")
-release_checklist.show_progress_stats(True)
+checklist1 = ChecklistWidget()
+checklist1.set_title("发布检查清单")
+checklist1.add_item("代码冻结", True, "success", "v2.1.0已冻结")
+checklist1.add_item("测试完成", True, "success", "所有测试用例通过")
+checklist1.add_item("文档更新", False, "warning", "API文档待完善")
+checklist1.add_item("数据库迁移", False, "primary", "脚本已准备")
+checklist1.add_item("监控配置", False, "info", "新增监控指标")
+checklist1.add_item("回滚预案", False, "error", "回滚脚本未测试")
+checklist1.show_progress_stats(True)
 
-email.add_widget(release_checklist)
+email.add_widget(checklist1)
 
 # 发布步骤
-email.add_checklist("发布步骤", [
-    ("停止旧服务", False),
-    ("备份数据", False),
-    ("部署新版本", False),
-    ("数据库升级", False),
-    ("启动新服务", False),
-    ("健康检查", False),
-    ("通知用户", False)
-])
+checklist2 = ChecklistWidget()
+checklist2.set_title("发布步骤")
+checklist2.add_item("停止旧服务", False, "pending")
+checklist2.add_item("备份数据", False, "pending")
+checklist2.add_item("部署新版本", False, "pending")
+checklist2.add_item("数据库升级", False, "pending")
+checklist2.add_item("启动新服务", False, "pending")
+checklist2.add_item("健康检查", False, "pending")
+checklist2.add_item("通知用户", False, "pending")
+
+email.add_widget(checklist2)
+
+# 导出HTML文件
+email.export_html("release_preparation.html")
 ```
+
+--8<-- "assets/checklist_release_preparation.html"
 
 ### 4. 学习计划清单
 
 ```python
+from email_widget import Email
+from email_widget.widgets.checklist_widget import ChecklistWidget
+
+# 创建学习进度报告邮件
 email = Email("学习进度报告")
 
 # 本周学习计划
-study_checklist = ChecklistWidget()
-study_checklist.set_title("本周学习计划")
-study_checklist.add_item("Python基础", True, "success", "完成第1-3章")
-study_checklist.add_item("数据结构", True, "success", "完成数组和链表")
-study_checklist.add_item("算法练习", False, "warning", "完成5/10题")
-study_checklist.add_item("项目实战", False, "primary", "搭建项目框架")
-study_checklist.add_item("技术博客", False, "info", "准备写作素材")
-study_checklist.show_progress_stats(True)
-study_checklist.set_compact_mode(True)
+checklist = ChecklistWidget()
+checklist.set_title("本周学习计划")
+checklist.add_item("Python基础", True, "success", "完成第1-3章")
+checklist.add_item("数据结构", True, "success", "完成数组和链表")
+checklist.add_item("算法练习", False, "warning", "完成5/10题")
+checklist.add_item("项目实战", False, "primary", "搭建项目框架")
+checklist.add_item("技术博客", False, "info", "准备写作素材")
+checklist.show_progress_stats(True)
+checklist.set_compact_mode(True)
 
-email.add_widget(study_checklist)
+email.add_widget(checklist)
+
+# 导出HTML文件
+email.export_html("learning_progress.html")
 ```
+
+--8<-- "assets/checklist_learning_plan.html"
 
 ## ⚡ 快捷方法
 

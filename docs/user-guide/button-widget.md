@@ -2,6 +2,10 @@
 
 ButtonWidget 是一个专门用于在邮件中创建可点击按钮的组件。它提供了强大的定制功能，支持多种样式、颜色和对齐方式，完全兼容各大邮件客户端。
 
+## 🎯 组件预览
+
+--8<-- "assets/button_widget_component_preview.html"
+
 ## ✨ 核心特性
 
 - **📱 邮件客户端兼容**: 专为各大邮件客户端（Outlook、Gmail、Apple Mail等）优化

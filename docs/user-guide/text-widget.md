@@ -2,281 +2,523 @@
 
 TextWidget 是 EmailWidget 中最基础也是最常用的组件，用于显示各种文本内容。它支持多种文本类型、对齐方式和样式配置。
 
-同时为了满足其充当标题的需求，二级标题到五级标题都会自动显示数字编号
+同时为了满足其充当标题的需求，二级标题到五级标题都会自动显示数字编号。
+
+## 🎯 组件预览
+
+--8<-- "assets/text_widget_component_preview.html"
 
 ## 🚀 快速开始
 
 ```python
-from email_widget.widgets import TextWidget
+from email_widget import Email
+from email_widget.widgets.text_widget import TextWidget
+from email_widget.core.enums import TextType
+
+# 创建邮件
+email = Email("文本组件示例")
 
 # 创建基本文本
-text = TextWidget()
-text.set_content("这是一段普通文本")
+text = TextWidget().set_content("这是一段普通文本")
+email.add_widget(text)
 
 # 链式调用设置样式
-text = TextWidget().set_content("重要标题").set_text_type(TextType.SECTION_H2).set_color("#0078d4")
-```
+styled_text = (TextWidget()
+              .set_content("重要标题")
+              .set_type(TextType.SECTION_H2)
+              .set_color("#0078d4"))
+email.add_widget(styled_text)
 
-<div style="color: #0078d4; font-size: 20px; font-weight: 600; margin: 16px 0;">重要标题</div>
+# 使用快捷方法
+email.add_text("快捷方法创建的文本", TextType.BODY)
+
+# 导出HTML
+email.export_html("text_demo.html")
+```
 
 ## 📝 基本用法
 
 ### 设置文本内容
 
 ```python
+from email_widget import Email
+from email_widget.widgets.text_widget import TextWidget
+
+email = Email("文本内容示例")
+
 # 基本文本
 text = TextWidget().set_content("Hello, World!")
+email.add_widget(text)
 
 # 多行文本
-text = TextWidget().set_content("""
+multi_line_text = TextWidget().set_content("""
 第一行内容
 第二行内容
 第三行内容
 """)
+email.add_widget(multi_line_text)
 
 # 支持HTML内容
-text = TextWidget().set_content("包含 <strong>粗体</strong> 和 <em>斜体</em> 的文本")
+html_text = TextWidget().set_content("包含 <strong>粗体</strong> 和 <em>斜体</em> 的文本")
+email.add_widget(html_text)
+
+email.export_html("text_content_demo.html")
 ```
 
 ### 文本类型设置
 
 ```python
+from email_widget import Email
+from email_widget.widgets.text_widget import TextWidget
 from email_widget.core.enums import TextType
 
-# 不同级别的标题
-title_h2 = TextWidget().set_content("二级标题").set_text_type(TextType.SECTION_H2)
-title_h3 = TextWidget().set_content("三级标题").set_text_type(TextType.SECTION_H3)
-title_h4 = TextWidget().set_content("四级标题").set_text_type(TextType.SECTION_H4)
+email = Email("文本类型示例")
 
-# 正文和其他类型
-body = TextWidget().set_content("正文内容").set_text_type(TextType.BODY)
-subtitle = TextWidget().set_content("副标题").set_text_type(TextType.SUBTITLE)
-caption = TextWidget().set_content("图片说明").set_text_type(TextType.CAPTION)
+# 不同级别的标题
+title_large = TextWidget().set_content("大标题").set_type(TextType.TITLE_LARGE)
+email.add_widget(title_large)
+
+title_small = TextWidget().set_content("小标题").set_type(TextType.TITLE_SMALL)
+email.add_widget(title_small)
+
+# 章节标题（会自动编号）
+section_h2 = TextWidget().set_content("二级标题").set_type(TextType.SECTION_H2)
+email.add_widget(section_h2)
+
+section_h3 = TextWidget().set_content("三级标题").set_type(TextType.SECTION_H3)
+email.add_widget(section_h3)
+
+section_h4 = TextWidget().set_content("四级标题").set_type(TextType.SECTION_H4)
+email.add_widget(section_h4)
+
+section_h5 = TextWidget().set_content("五级标题").set_type(TextType.SECTION_H5)
+email.add_widget(section_h5)
+
+# 正文和说明文字
+body_text = TextWidget().set_content("这是正文内容，适用于段落描述").set_type(TextType.BODY)
+email.add_widget(body_text)
+
+caption_text = TextWidget().set_content("这是说明文字，通常用于图片说明").set_type(TextType.CAPTION)
+email.add_widget(caption_text)
+
+email.export_html("text_types_demo.html")
 ```
 
-<div style="margin: 16px 0;">
-    <h2 style="font-size: 20px; font-weight: 600; color: #323130; margin: 16px 0;">二级标题</h2>
-    <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin: 16px 0;">三级标题</h3>
-    <h4 style="font-size: 16px; font-weight: 600; color: #323130; margin: 16px 0;">四级标题</h4>
-    <p style="font-size: 14px; color: #323130; margin: 16px 0;">正文内容</p>
-    <p style="font-size: 16px; color: #605e5c; margin: 16px 0;">副标题</p>
-    <p style="font-size: 12px; color: #8e8e93; margin: 16px 0;">图片说明</p>
-</div>
+## 📖 API 参考
 
-## 🎨 样式配置
+### 基本方法
 
-### 文本对齐
+#### `set_content(content: str) -> TextWidget`
+设置文本内容。
+
+**参数:**
+- `content (str)`: 文本内容，支持HTML标记
+
+**示例:**
+```python
+text = TextWidget().set_content("Hello World")
+text = TextWidget().set_content("支持<strong>HTML</strong>标记")
+```
+
+#### `set_type(text_type: TextType) -> TextWidget`
+设置文本类型。
+
+**参数:**
+- `text_type (TextType)`: 文本类型枚举值
+
+**示例:**
+```python
+text.set_type(TextType.TITLE_LARGE)    # 大标题
+text.set_type(TextType.SECTION_H2)     # 二级标题
+text.set_type(TextType.BODY)           # 正文
+text.set_type(TextType.CAPTION)        # 说明文字
+```
+
+#### `set_align(align: TextAlign) -> TextWidget`
+设置文本对齐方式。
+
+**参数:**
+- `align (TextAlign)`: 对齐方式枚举值
+
+**示例:**
+```python
+from email_widget.core.enums import TextAlign
+
+text.set_align(TextAlign.LEFT)      # 左对齐
+text.set_align(TextAlign.CENTER)    # 居中对齐
+text.set_align(TextAlign.RIGHT)     # 右对齐
+text.set_align(TextAlign.JUSTIFY)   # 两端对齐
+```
+
+#### `set_color(color: str) -> TextWidget`
+设置文本颜色。
+
+**参数:**
+- `color (str)`: CSS颜色值
+
+**示例:**
+```python
+text.set_color("#0078d4")           # 十六进制蓝色
+text.set_color("red")               # 颜色名称
+text.set_color("rgb(255, 0, 0)")    # RGB格式
+```
+
+### 高级样式方法
+
+#### `set_font_size(size: str) -> TextWidget`
+设置字体大小。
+
+**参数:**
+- `size (str)`: CSS字体大小值
+
+**示例:**
+```python
+text.set_font_size("16px")  # 像素值
+text.set_font_size("1.2em") # em单位
+text.set_font_size("large") # CSS关键字
+```
+
+#### `set_font_weight(weight: str) -> TextWidget`
+设置字体粗细。
+
+**参数:**
+- `weight (str)`: CSS字体粗细值
+
+**示例:**
+```python
+text.set_font_weight("normal")  # 正常
+text.set_font_weight("bold")    # 粗体
+text.set_font_weight("600")     # 数值
+```
+
+#### `set_font_family(family: str) -> TextWidget`
+设置字体系列。
+
+**参数:**
+- `family (str)`: CSS字体系列值
+
+**示例:**
+```python
+text.set_font_family("Arial, sans-serif")
+text.set_font_family("'Microsoft YaHei', SimHei, sans-serif")
+```
+
+#### `set_line_height(height: str) -> TextWidget`
+设置行高。
+
+**参数:**
+- `height (str)`: CSS行高值
+
+**示例:**
+```python
+text.set_line_height("1.5")    # 倍数
+text.set_line_height("24px")   # 像素值
+text.set_line_height("normal") # 关键字
+```
+
+#### `set_margin(margin: str) -> TextWidget`
+设置外边距。
+
+**参数:**
+- `margin (str)`: CSS外边距值
+
+**示例:**
+```python
+text.set_margin("16px")           # 四周相同
+text.set_margin("10px 20px")      # 上下 左右
+text.set_margin("5px 10px 15px 20px")  # 上 右 下 左
+```
+
+#### `set_max_width(max_width: str) -> TextWidget`
+设置最大宽度。
+
+**参数:**
+- `max_width (str)`: CSS最大宽度值
+
+**示例:**
+```python
+text.set_max_width("600px")   # 像素值
+text.set_max_width("80%")     # 百分比
+text.set_max_width("none")    # 不限制
+```
+
+### 只读属性
+
+- `content`: 获取文本内容
+- `text_type`: 获取文本类型
+- `text_align`: 获取对齐方式
+- `color`: 获取文本颜色
+
+```python
+print(f"文本内容: {text.content}")
+print(f"文本类型: {text.text_type}")
+```
+
+## 🎨 文本类型详解
+
+### 标题类型
+
+#### 大标题 (TITLE_LARGE)
+```python
+text = TextWidget().set_content("主要标题").set_type(TextType.TITLE_LARGE)
+```
+- 默认字体大小: 24px
+- 适用场景: 邮件主标题、重要章节标题
+
+#### 小标题 (TITLE_SMALL)
+```python
+text = TextWidget().set_content("次要标题").set_type(TextType.TITLE_SMALL)
+```
+- 默认字体大小: 20px
+- 适用场景: 子标题、分组标题
+
+### 章节标题（自动编号）
+
+#### 二级标题 (SECTION_H2)
+```python
+text = TextWidget().set_content("重要章节").set_type(TextType.SECTION_H2)
+```
+- 默认字体大小: 18px
+- 自动编号: "1.", "2.", "3."...
+
+#### 三级标题 (SECTION_H3)
+```python
+text = TextWidget().set_content("子章节").set_type(TextType.SECTION_H3)
+```
+- 默认字体大小: 16px
+- 自动编号: "1.1.", "1.2.", "2.1."...
+
+#### 四级标题 (SECTION_H4)
+```python
+text = TextWidget().set_content("小节").set_type(TextType.SECTION_H4)
+```
+- 默认字体大小: 15px
+- 自动编号: "1.1.1.", "1.1.2."...
+
+#### 五级标题 (SECTION_H5)
+```python
+text = TextWidget().set_content("细分小节").set_type(TextType.SECTION_H5)
+```
+- 默认字体大小: 14px
+- 自动编号: "1.1.1.1.", "1.1.1.2."...
+
+### 正文类型
+
+#### 正文 (BODY)
+```python
+text = TextWidget().set_content("这是正文内容").set_type(TextType.BODY)
+```
+- 默认字体大小: 14px
+- 适用场景: 段落文字、描述内容
+
+#### 说明文字 (CAPTION)
+```python
+text = TextWidget().set_content("这是说明文字").set_type(TextType.CAPTION)
+```
+- 默认字体大小: 12px
+- 适用场景: 图片说明、补充信息、版权声明
+
+## 🎨 样式设计指南
+
+### 对齐方式使用建议
 
 ```python
 from email_widget.core.enums import TextAlign
 
-# 不同对齐方式
-left_text = TextWidget().set_content("左对齐文本").set_align(TextAlign.LEFT)
-center_text = TextWidget().set_content("居中文本").set_align(TextAlign.CENTER)
-right_text = TextWidget().set_content("右对齐文本").set_align(TextAlign.RIGHT)
-justify_text = TextWidget().set_content("两端对齐的长文本内容...").set_align(TextAlign.JUSTIFY)
+# 左对齐 - 默认，适用于大部分文本
+text.set_align(TextAlign.LEFT)
+
+# 居中对齐 - 适用于标题、重要信息
+text.set_align(TextAlign.CENTER)
+
+# 右对齐 - 适用于签名、日期
+text.set_align(TextAlign.RIGHT)
+
+# 两端对齐 - 适用于较长的段落文字
+text.set_align(TextAlign.JUSTIFY)
 ```
 
-<div style="margin: 16px 0; border: 1px solid #e1dfdd; padding: 16px;">
-    <p style="text-align: left; margin: 8px 0;">左对齐文本</p>
-    <p style="text-align: center; margin: 8px 0;">居中文本</p>
-    <p style="text-align: right; margin: 8px 0;">右对齐文本</p>
-    <p style="text-align: justify; margin: 8px 0;">两端对齐的长文本内容，当文本足够长时可以看到两端对齐的效果。</p>
-</div>
-
-### 颜色和字体
+### 推荐颜色方案
 
 ```python
-# 设置文本颜色
-red_text = TextWidget().set_content("红色文本").set_color("#d13438")
-blue_text = TextWidget().set_content("蓝色文本").set_color("#0078d4")
-green_text = TextWidget().set_content("绿色文本").set_color("#107c10")
+# 主题色系
+text.set_color("#0078d4")  # 主要蓝色
+text.set_color("#107c10")  # 成功绿色
+text.set_color("#ff8c00")  # 警告橙色
+text.set_color("#d13438")  # 错误红色
 
-# 设置字体大小
-small_text = TextWidget().set_content("小号文本").set_font_size("12px")
-normal_text = TextWidget().set_content("正常文本").set_font_size("14px")
-large_text = TextWidget().set_content("大号文本").set_font_size("18px")
-
-# 设置字体粗细
-normal_weight = TextWidget().set_content("正常粗细").set_font_weight("normal")
-bold_text = TextWidget().set_content("粗体文本").set_font_weight("bold")
-light_text = TextWidget().set_content("细体文本").set_font_weight("300")
+# 中性色系
+text.set_color("#323130")  # 主要文字
+text.set_color("#605e5c")  # 次要文字
+text.set_color("#8a8886")  # 辅助文字
+text.set_color("#c8c6c4")  # 占位文字
 ```
 
-<div style="margin: 16px 0;">
-    <p style="color: #d13438; margin: 4px 0;">红色文本</p>
-    <p style="color: #0078d4; margin: 4px 0;">蓝色文本</p>
-    <p style="color: #107c10; margin: 4px 0;">绿色文本</p>
-    <p style="font-size: 12px; margin: 4px 0;">小号文本</p>
-    <p style="font-size: 14px; margin: 4px 0;">正常文本</p>
-    <p style="font-size: 18px; margin: 4px 0;">大号文本</p>
-    <p style="font-weight: normal; margin: 4px 0;">正常粗细</p>
-    <p style="font-weight: bold; margin: 4px 0;">粗体文本</p>
-    <p style="font-weight: 300; margin: 4px 0;">细体文本</p>
-</div>
-
-### 高级样式
+### 字体大小建议
 
 ```python
-# 行高设置
-text = TextWidget()
-text.set_content("这是一段需要设置行高的长文本内容，可以看到行间距的变化效果。")
-text.set_line_height("1.8")
+# 标题系列
+text.set_font_size("24px")  # 主标题
+text.set_font_size("20px")  # 副标题
+text.set_font_size("18px")  # 章节标题
 
-# 最大宽度限制
-text = TextWidget()
-text.set_content("这段文本设置了最大宽度限制")
-text.set_max_width("300px")
-
-# 自定义字体
-text = TextWidget()
-text.set_content("使用自定义字体")
-text.set_font_family("Georgia, serif")
-
-# 自定义边距
-text = TextWidget()
-text.set_content("自定义边距文本")
-text.set_margin("24px 0")
+# 正文系列
+text.set_font_size("16px")  # 重要正文
+text.set_font_size("14px")  # 标准正文
+text.set_font_size("12px")  # 说明文字
 ```
 
-## 🔢 章节编号
+## 📱 最佳实践
 
-TextWidget 支持自动章节编号功能：
-
-```python
-from email_widget.widgets import TextWidget
-from email_widget.core.enums import TextType
-
-# 使用章节编号
-h2_text = TextWidget()
-h2_text.set_content("主要章节")
-h2_text.set_text_type(TextType.SECTION_H2)
-h2_text.set_auto_section_number(True)
-
-h3_text = TextWidget()
-h3_text.set_content("子章节")
-h3_text.set_text_type(TextType.SECTION_H3)
-h3_text.set_auto_section_number(True)
-
-# 手动设置章节编号
-manual_text = TextWidget()
-manual_text.set_content("手动编号章节")
-manual_text.set_section_number("1.1")
-```
-
-<div style="margin: 16px 0;">
-    <h2 style="font-size: 20px; font-weight: 600; color: #323130; margin: 16px 0;">1. 主要章节</h2>
-    <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin: 16px 0;">1.1 子章节</h3>
-    <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin: 16px 0;">1.1 手动编号章节</h3>
-</div>
-
-## 📋 完整示例
-
+### 1. 文档结构化
 ```python
 from email_widget import Email
-from email_widget.widgets import TextWidget
-from email_widget.core.enums import TextType, TextAlign
+from email_widget.core.enums import TextType
 
-# 创建邮件
-email = Email("文本组件示例")
+email = Email("结构化文档")
 
-# 添加各种文本组件
-email.add_widgets([
-    # 主标题
-    TextWidget()
-        .set_content("月度报告")
-        .set_text_type(TextType.SECTION_H2)
-        .set_align(TextAlign.CENTER)
-        .set_color("#0078d4"),
-    
-    # 副标题
-    TextWidget()
-        .set_content("2024年1月数据分析")
-        .set_text_type(TextType.SUBTITLE)
-        .set_align(TextAlign.CENTER)
-        .set_color("#605e5c"),
-    
-    # 正文段落
-    TextWidget()
-        .set_content("本月整体业务表现良好，各项指标均达到预期目标。")
-        .set_text_type(TextType.BODY)
-        .set_line_height("1.6"),
-    
-    # 章节标题
-    TextWidget()
-        .set_content("核心指标分析")
-        .set_text_type(TextType.SECTION_H3)
-        .set_auto_section_number(True),
-    
-    # 要点说明
-    TextWidget()
-        .set_content("• 用户增长率：+15%\n• 营收增长：+22%\n• 客户满意度：92%")
-        .set_font_size("14px")
-        .set_line_height("1.8"),
-    
-    # 重要提醒
-    TextWidget()
-        .set_content("注意：下月需要重点关注用户留存率指标")
-        .set_color("#d13438")
-        .set_font_weight("bold")
-        .set_align(TextAlign.CENTER)
-])
+# 主标题
+email.add_text("月度工作报告", TextType.TITLE_LARGE)
 
-# 渲染邮件
-html = email.render_html()
+# 章节
+email.add_text("工作概述", TextType.SECTION_H2)
+email.add_text("本月主要完成了以下工作...", TextType.BODY)
+
+email.add_text("具体成果", TextType.SECTION_H3)
+email.add_text("详细的成果描述...", TextType.BODY)
+
+# 结论
+email.add_text("总结", TextType.SECTION_H2)
+email.add_text("综合来看...", TextType.BODY)
+
+email.export_html("structured_document.html")
 ```
 
-## ⚙️ API 参考
-
-### 核心方法
-
-| 方法 | 参数 | 说明 | 示例 |
-|------|------|------|------|
-| `set_content()` | `content: str` | 设置文本内容 | `.set_content("Hello")` |
-| `set_text_type()` | `text_type: TextType` | 设置文本类型 | `.set_text_type(TextType.SECTION_H2)` |
-| `set_align()` | `align: TextAlign` | 设置对齐方式 | `.set_align(TextAlign.CENTER)` |
-| `set_color()` | `color: str` | 设置文本颜色 | `.set_color("#0078d4")` |
-| `set_font_size()` | `size: str` | 设置字体大小 | `.set_font_size("16px")` |
-| `set_font_weight()` | `weight: str` | 设置字体粗细 | `.set_font_weight("bold")` |
-| `set_font_family()` | `family: str` | 设置字体族 | `.set_font_family("Arial")` |
-| `set_line_height()` | `height: str` | 设置行高 | `.set_line_height("1.5")` |
-| `set_margin()` | `margin: str` | 设置边距 | `.set_margin("16px 0")` |
-| `set_max_width()` | `width: str` | 设置最大宽度 | `.set_max_width("600px")` |
-
-### 章节编号方法
-
-| 方法 | 参数 | 说明 |
-|------|------|------|
-| `set_auto_section_number()` | `auto: bool` | 启用自动编号 |
-| `set_section_number()` | `number: str` | 手动设置编号 |
-| `reset_section_numbers()` | 无 | 重置编号计数器 |
-
-## 🎯 最佳实践
-
-### 1. 保持层次结构清晰
+### 2. 强调重要信息
 ```python
-# 推荐：清晰的层次结构
-h2_title = TextWidget().set_content("主标题").set_text_type(TextType.SECTION_H2)
-h3_subtitle = TextWidget().set_content("副标题").set_text_type(TextType.SECTION_H3)
-body_text = TextWidget().set_content("正文内容").set_text_type(TextType.BODY)
+# 使用颜色强调
+important_text = (TextWidget()
+                 .set_content("重要通知: 系统将于明日维护")
+                 .set_type(TextType.BODY)
+                 .set_color("#d13438")
+                 .set_font_weight("bold"))
+email.add_widget(important_text)
+
+# 使用居中对齐突出显示
+highlighted_text = (TextWidget()
+                   .set_content("关键结论")
+                   .set_type(TextType.TITLE_SMALL)
+                   .set_align(TextAlign.CENTER)
+                   .set_color("#0078d4"))
+email.add_widget(highlighted_text)
 ```
 
-### 2. 合理使用颜色
+### 3. 响应式文本
 ```python
-# 推荐：使用语义化颜色
-success_text = TextWidget().set_content("操作成功").set_color("#107c10")
-warning_text = TextWidget().set_content("注意事项").set_color("#ff8c00")
-error_text = TextWidget().set_content("错误信息").set_color("#d13438")
+# 设置最大宽度确保移动端适配
+responsive_text = (TextWidget()
+                  .set_content("这是一段较长的文本内容...")
+                  .set_type(TextType.BODY)
+                  .set_max_width("100%")
+                  .set_line_height("1.6"))
+email.add_widget(responsive_text)
 ```
 
-### 3. 适当的文字大小和间距
+### 4. 多语言支持
 ```python
-# 推荐：根据内容重要性设置大小
-title = TextWidget().set_content("标题").set_font_size("18px").set_margin("24px 0 16px 0")
-body = TextWidget().set_content("正文").set_font_size("14px").set_line_height("1.6")
-caption = TextWidget().set_content("说明").set_font_size("12px").set_color("#8e8e93")
+# 中文字体
+chinese_text = (TextWidget()
+                .set_content("中文内容")
+                .set_font_family("'Microsoft YaHei', SimHei, sans-serif"))
+
+# 英文字体
+english_text = (TextWidget()
+                .set_content("English Content")
+                .set_font_family("Arial, Helvetica, sans-serif"))
 ```
 
----
+## ⚡ 快捷方法
 
-**下一步**: 了解 [表格组件](table-widget.md) 学习如何展示结构化数据。 
+Email 类提供了 `add_text` 快捷方法：
+
+```python
+# 等价于创建 TextWidget 然后添加
+email.add_text("快捷文本", TextType.BODY)
+
+# 完整的 TextWidget 创建方式
+text_widget = TextWidget().set_content("完整文本").set_type(TextType.BODY)
+email.add_widget(text_widget)
+```
+
+## 🔗 实际应用场景
+
+### 邮件报告
+```python
+from email_widget import Email
+from email_widget.core.enums import TextType
+
+email = Email("销售报告")
+
+# 报告标题
+email.add_text("2024年第一季度销售报告", TextType.TITLE_LARGE)
+
+# 执行摘要
+email.add_text("执行摘要", TextType.SECTION_H2)
+email.add_text("本季度销售业绩超出预期，总销售额达到500万元，同比增长25%。", TextType.BODY)
+
+# 详细分析
+email.add_text("详细分析", TextType.SECTION_H2)
+email.add_text("产品A销售情况", TextType.SECTION_H3)
+email.add_text("产品A本季度销售额为200万元，占总销售额的40%。", TextType.BODY)
+
+email.export_html("sales_report.html")
+```
+
+### 系统通知
+```python
+email = Email("系统维护通知")
+
+# 通知标题
+title = (TextWidget()
+         .set_content("系统维护通知")
+         .set_type(TextType.TITLE_LARGE)
+         .set_align(TextAlign.CENTER)
+         .set_color("#d13438"))
+email.add_widget(title)
+
+# 维护时间
+email.add_text("维护时间", TextType.SECTION_H2)
+time_text = (TextWidget()
+             .set_content("2024年3月15日 02:00 - 06:00")
+             .set_type(TextType.BODY)
+             .set_font_weight("bold")
+             .set_color("#0078d4"))
+email.add_widget(time_text)
+
+# 影响范围
+email.add_text("影响范围", TextType.SECTION_H2)
+email.add_text("维护期间，所有在线服务将暂停使用。", TextType.BODY)
+
+email.export_html("maintenance_notice.html")
+```
+
+## 🐛 常见问题
+
+### Q: 章节编号不正确怎么办？
+A: 章节编号是自动管理的，如果需要重置编号，可以在代码中重新开始使用章节标题。
+
+### Q: 如何让文本在邮件客户端中正确显示？
+A: 使用标准的CSS属性，避免使用复杂的样式。建议使用预定义的文本类型。
+
+### Q: 支持自定义字体吗？
+A: 支持，但建议使用系统通用字体，确保在不同邮件客户端中的兼容性。
+
+### Q: 如何处理长文本的显示？
+A: 使用 `set_max_width()` 设置最大宽度，使用 `set_line_height()` 改善可读性。
+
+## 🔗 相关组件
+
+- [AlertWidget](alert-widget.md) - 用于显示警告和提示信息
+- [CardWidget](card-widget.md) - 可以包含文本内容的卡片组件
+- [QuoteWidget](quote-widget.md) - 用于显示引用文本
+- [SeparatorWidget](separator-widget.md) - 用于在文本间添加分隔线

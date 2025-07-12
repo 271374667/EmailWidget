@@ -2,6 +2,10 @@
 
 TableWidget 是用于展示结构化数据的专业组件，支持表头、状态单元格、条纹样式、索引列等多种功能，是数据报告中的核心组件。
 
+## 🎯 组件预览
+
+--8<-- "assets/table_widget_component_preview.html"
+
 ## 🚀 快速开始
 
 ```python

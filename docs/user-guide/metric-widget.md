@@ -2,6 +2,10 @@
 
 MetricWidget 是一个用于在邮件中展示关键数据指标的组件。它能够显示KPI、数据趋势、业务指标等信息，支持趋势分析、数字格式化和多种布局配置，是数据报告和仪表板邮件的理想选择。
 
+## 🎯 组件预览
+
+--8<-- "assets/metric_widget_component_preview.html"
+
 ## ✨ 核心特性
 
 - **📊 数据展示**: 支持数值、单位、趋势变化的完整指标展示
@@ -230,104 +234,155 @@ metric.add_metric("小数字", 123)       # 显示为 "123"
 ### 1. 业务仪表板
 
 ```python
+from email_widget import Email
+from email_widget.widgets.metric_widget import MetricWidget
+
+# 创建业务数据仪表板邮件
 email = Email("业务数据仪表板")
 
 # 核心业务指标
-email.add_metric("核心KPI", [
-    ("月活用户", 125436, "人", "+15.6%", "success", "用户增长强劲"),
-    ("月收入", 2850000, "元", "+18.2%", "success", "收入创历史新高"),
-    ("转化率", "4.23", "%", "+0.8%", "success", "转化效果提升"),
-    ("客单价", "168.5", "元", "-2.3%", "warning", "需要关注定价策略")
-], layout="horizontal", show_trends=True)
+metric1 = MetricWidget()
+metric1.set_title("核心KPI")
+metric1.add_metric("月活用户", 125436, "人", "+15.6%", "success", "用户增长强劲")
+metric1.add_metric("月收入", 2850000, "元", "+18.2%", "success", "收入创历史新高")
+metric1.add_metric("转化率", "4.23", "%", "+0.8%", "success", "转化效果提升")
+metric1.add_metric("客单价", "168.5", "元", "-2.3%", "warning", "需要关注定价策略")
+metric1.set_layout("horizontal")
+metric1.show_trends(True)
+
+email.add_widget(metric1)
 
 # 运营指标
-operations_metric = MetricWidget()
-operations_metric.set_title("运营效率")
-operations_metric.add_metric("页面访问量", 567890, "次", "+22.1%", "success")
-operations_metric.add_metric("跳出率", "24.5", "%", "-3.2%", "success")
-operations_metric.add_metric("平均停留", "3.8", "分钟", "+0.6分钟", "info")
-operations_metric.add_metric("注册转化", "12.3", "%", "+1.8%", "success")
-operations_metric.set_layout("vertical")
-operations_metric.show_trends(True)
+metric2 = MetricWidget()
+metric2.set_title("运营效率")
+metric2.add_metric("页面访问量", 567890, "次", "+22.1%", "success")
+metric2.add_metric("跳出率", "24.5", "%", "-3.2%", "success")
+metric2.add_metric("平均停留", "3.8", "分钟", "+0.6分钟", "info")
+metric2.add_metric("注册转化", "12.3", "%", "+1.8%", "success")
+metric2.set_layout("vertical")
+metric2.show_trends(True)
 
-email.add_widget(operations_metric)
+email.add_widget(metric2)
+
+# 导出HTML文件
+email.export_html("business_dashboard.html")
 ```
+
+--8<-- "assets/metric_business_dashboard.html"
 
 ### 2. 系统性能监控
 
 ```python
+from email_widget import Email
+from email_widget.widgets.metric_widget import MetricWidget
+
+# 创建系统性能报告邮件
 email = Email("系统性能报告")
 
 # 系统资源使用
-email.add_metric("系统资源", [
-    ("CPU使用率", "45.2", "%", "+2.1%", "warning", "负载略有上升"),
-    ("内存使用率", "78.5", "%", "-1.3%", "success", "内存使用正常"),
-    ("磁盘I/O", "234", "MB/s", "+45MB/s", "info", "读写频率增加"),
-    ("网络带宽", "1.2", "GB/s", "+0.3GB/s", "info", "流量增长稳定")
-], layout="horizontal")
+metric1 = MetricWidget()
+metric1.set_title("系统资源")
+metric1.add_metric("CPU使用率", "45.2", "%", "+2.1%", "warning", "负载略有上升")
+metric1.add_metric("内存使用率", "78.5", "%", "-1.3%", "success", "内存使用正常")
+metric1.add_metric("磁盘I/O", "234", "MB/s", "+45MB/s", "info", "读写频率增加")
+metric1.add_metric("网络带宽", "1.2", "GB/s", "+0.3GB/s", "info", "流量增长稳定")
+metric1.set_layout("horizontal")
+
+email.add_widget(metric1)
 
 # 应用性能指标
-app_metric = MetricWidget()
-app_metric.set_title("应用性能")
-app_metric.add_metric("平均响应时间", "156", "ms", "+12ms", "warning", "响应时间略有增加")
-app_metric.add_metric("QPS", "2456", "请求/秒", "+234", "success", "处理能力提升")
-app_metric.add_metric("错误率", "0.23", "%", "-0.1%", "success", "系统稳定性改善")
-app_metric.add_metric("可用性", "99.95", "%", "-0.02%", "warning", "可用性略有下降")
-app_metric.set_layout("vertical")
+metric2 = MetricWidget()
+metric2.set_title("应用性能")
+metric2.add_metric("平均响应时间", "156", "ms", "+12ms", "warning", "响应时间略有增加")
+metric2.add_metric("QPS", "2456", "请求/秒", "+234", "success", "处理能力提升")
+metric2.add_metric("错误率", "0.23", "%", "-0.1%", "success", "系统稳定性改善")
+metric2.add_metric("可用性", "99.95", "%", "-0.02%", "warning", "可用性略有下降")
+metric2.set_layout("vertical")
 
-email.add_widget(app_metric)
+email.add_widget(metric2)
+
+# 导出HTML文件
+email.export_html("system_performance_report.html")
 ```
+
+--8<-- "assets/metric_system_performance.html"
 
 ### 3. 财务数据报告
 
 ```python
+from email_widget import Email
+from email_widget.widgets.metric_widget import MetricWidget
+
+# 创建财务数据月报邮件
 email = Email("财务数据月报")
 
 # 财务核心指标
-finance_metric = MetricWidget()
-finance_metric.set_title("财务概览")
-finance_metric.add_metric("总收入", 5680000, "元", "+12.5%", "success", "收入持续增长")
-finance_metric.add_metric("总支出", 3420000, "元", "+8.3%", "warning", "支出增长需控制")
-finance_metric.add_metric("净利润", 2260000, "元", "+18.7%", "success", "利润率显著提升")
-finance_metric.add_metric("毛利率", "68.5", "%", "+2.3%", "success", "盈利能力增强")
-finance_metric.set_layout("horizontal")
-finance_metric.show_trends(True)
+metric1 = MetricWidget()
+metric1.set_title("财务概览")
+metric1.add_metric("总收入", 5680000, "元", "+12.5%", "success", "收入持续增长")
+metric1.add_metric("总支出", 3420000, "元", "+8.3%", "warning", "支出增长需控制")
+metric1.add_metric("净利润", 2260000, "元", "+18.7%", "success", "利润率显著提升")
+metric1.add_metric("毛利率", "68.5", "%", "+2.3%", "success", "盈利能力增强")
+metric1.set_layout("horizontal")
+metric1.show_trends(True)
 
-email.add_widget(finance_metric)
+email.add_widget(metric1)
 
-# 细分指标
-email.add_metric("成本分析", [
-    ("人力成本", 1250000, "元", "+5.2%", "info"),
-    ("技术成本", 680000, "元", "+12.8%", "warning"),
-    ("运营成本", 890000, "元", "+3.1%", "info"),
-    ("营销成本", 600000, "元", "+25.6%", "error")
-], layout="vertical", show_trends=True)
+# 成本分析
+metric2 = MetricWidget()
+metric2.set_title("成本分析")
+metric2.add_metric("人力成本", 1250000, "元", "+5.2%", "info")
+metric2.add_metric("技术成本", 680000, "元", "+12.8%", "warning")
+metric2.add_metric("运营成本", 890000, "元", "+3.1%", "info")
+metric2.add_metric("营销成本", 600000, "元", "+25.6%", "error")
+metric2.set_layout("vertical")
+metric2.show_trends(True)
+
+email.add_widget(metric2)
+
+# 导出HTML文件
+email.export_html("financial_report.html")
 ```
+
+--8<-- "assets/metric_financial_report.html"
 
 ### 4. 学习和项目进度
 
 ```python
+from email_widget import Email
+from email_widget.widgets.metric_widget import MetricWidget
+
+# 创建学习进度统计邮件
 email = Email("学习进度统计")
 
 # 学习数据
-study_metric = MetricWidget()
-study_metric.set_title("学习统计")
-study_metric.add_metric("学习天数", 45, "天", "+5天", "success", "坚持学习")
-study_metric.add_metric("完成课程", 12, "门", "+2门", "success", "学习进度良好")
-study_metric.add_metric("学习时长", "156", "小时", "+18小时", "success", "投入时间充足")
-study_metric.add_metric("实践项目", 3, "个", "+1个", "success", "理论结合实践")
-study_metric.set_layout("horizontal")
+metric1 = MetricWidget()
+metric1.set_title("学习统计")
+metric1.add_metric("学习天数", 45, "天", "+5天", "success", "坚持学习")
+metric1.add_metric("完成课程", 12, "门", "+2门", "success", "学习进度良好")
+metric1.add_metric("学习时长", "156", "小时", "+18小时", "success", "投入时间充足")
+metric1.add_metric("实践项目", 3, "个", "+1个", "success", "理论结合实践")
+metric1.set_layout("horizontal")
 
-email.add_widget(study_metric)
+email.add_widget(metric1)
 
 # 技能掌握度
-email.add_metric("技能评估", [
-    ("Python基础", "95", "%", "+10%", "success"),
-    ("Web开发", "78", "%", "+15%", "success"),
-    ("数据库", "65", "%", "+8%", "warning"),
-    ("算法", "52", "%", "+12%", "warning")
-], layout="vertical", show_trends=True)
+metric2 = MetricWidget()
+metric2.set_title("技能评估")
+metric2.add_metric("Python基础", "95", "%", "+10%", "success")
+metric2.add_metric("Web开发", "78", "%", "+15%", "success")
+metric2.add_metric("数据库", "65", "%", "+8%", "warning")
+metric2.add_metric("算法", "52", "%", "+12%", "warning")
+metric2.set_layout("vertical")
+metric2.show_trends(True)
+
+email.add_widget(metric2)
+
+# 导出HTML文件
+email.export_html("learning_progress_report.html")
 ```
+
+--8<-- "assets/metric_learning_progress.html"
 
 ## ⚡ 快捷方法
 

@@ -163,7 +163,6 @@ nav:
         - 数据报告: examples/data-reports.md
         - 系统监控: examples/system-monitoring.md
         - 爬虫报告: examples/spider-reports.md
-        - 高级示例: examples/advanced.md
         - 实际应用: examples/real-world.md
     - 开发指南:
         - development/index.md

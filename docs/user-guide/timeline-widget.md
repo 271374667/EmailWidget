@@ -2,6 +2,10 @@
 
 TimelineWidget 是一个用于在邮件中展示时间序列事件的组件。它能够按时间顺序显示项目进展、系统日志、历史记录等信息，支持状态标记、时间戳显示和灵活的样式配置。
 
+## 🎯 组件预览
+
+--8<-- "assets/timeline_widget_component_preview.html"
+
 ## ✨ 核心特性
 
 - **⏰ 时间排序**: 自动按时间顺序排列事件，支持正序和倒序
@@ -199,98 +203,141 @@ timeline.add_event("日常维护", "2024-01-01", "例行维护", "neutral")
 ### 1. 项目进展时间线
 
 ```python
+from email_widget import Email
+from email_widget.widgets.timeline_widget import TimelineWidget
+
+# 创建项目进展报告邮件
 email = Email("项目进展报告")
 
 # 项目关键里程碑
-email.add_timeline("项目里程碑", [
-    ("项目启动", "2024-01-01", "项目正式启动", "success"),
-    ("需求确认", "2024-01-15", "需求文档确认完成", "success"),
-    ("设计评审", "2024-02-01", "技术架构设计通过", "success"),
-    ("开发阶段", "2024-02-15", "进入开发阶段", "info"),
-    ("测试阶段", "2024-03-15", "功能测试开始", "warning"),
-    ("上线部署", "2024-04-01", "预计上线时间", "primary")
-], show_time=True)
+timeline1 = TimelineWidget()
+timeline1.set_title("项目里程碑")
+timeline1.add_event("项目启动", "2024-01-01", "项目正式启动", "success")
+timeline1.add_event("需求确认", "2024-01-15", "需求文档确认完成", "success")
+timeline1.add_event("设计评审", "2024-02-01", "技术架构设计通过", "success")
+timeline1.add_event("开发阶段", "2024-02-15", "进入开发阶段", "info")
+timeline1.add_event("测试阶段", "2024-03-15", "功能测试开始", "warning")
+timeline1.add_event("上线部署", "2024-04-01", "预计上线时间", "primary")
+timeline1.show_timestamps(True)
+
+email.add_widget(timeline1)
 
 # 当前进展详情
-current_timeline = TimelineWidget()
-current_timeline.set_title("本周进展")
-current_timeline.add_event("功能开发", "2024-02-20 09:00", "完成用户登录模块", "success")
-current_timeline.add_event("代码审查", "2024-02-21 14:30", "登录模块代码审查通过", "success")
-current_timeline.add_event("BUG修复", "2024-02-22 10:15", "修复密码验证问题", "warning")
-current_timeline.add_event("集成测试", "2024-02-23 16:00", "集成测试进行中", "info")
-current_timeline.show_timestamps(True)
-current_timeline.set_reverse_order(True)
+timeline2 = TimelineWidget()
+timeline2.set_title("本周进展")
+timeline2.add_event("功能开发", "2024-02-20 09:00", "完成用户登录模块", "success")
+timeline2.add_event("代码审查", "2024-02-21 14:30", "登录模块代码审查通过", "success")
+timeline2.add_event("BUG修复", "2024-02-22 10:15", "修复密码验证问题", "warning")
+timeline2.add_event("集成测试", "2024-02-23 16:00", "集成测试进行中", "info")
+timeline2.show_timestamps(True)
+timeline2.set_reverse_order(True)
 
-email.add_widget(current_timeline)
+email.add_widget(timeline2)
+
+# 导出HTML文件
+email.export_html("project_progress_report.html")
 ```
+
+--8<-- "assets/timeline_project_progress.html"
 
 ### 2. 系统运维日志
 
 ```python
+from email_widget import Email
+from email_widget.widgets.timeline_widget import TimelineWidget
+
+# 创建系统运维日报邮件
 email = Email("系统运维日报")
 
 # 系统事件时间线
-system_timeline = TimelineWidget()
-system_timeline.set_title("系统事件日志")
-system_timeline.add_event("系统启动", "2024-01-01 08:00:00", "服务器重启完成", "success")
-system_timeline.add_event("定时备份", "2024-01-01 12:00:00", "数据库自动备份", "info")
-system_timeline.add_event("内存警告", "2024-01-01 14:30:00", "内存使用率达到85%", "warning")
-system_timeline.add_event("服务异常", "2024-01-01 15:45:00", "Redis连接超时", "error")
-system_timeline.add_event("问题修复", "2024-01-01 16:15:00", "Redis服务重启，连接恢复", "success")
-system_timeline.add_event("性能优化", "2024-01-01 18:00:00", "优化数据库查询", "info")
-system_timeline.show_timestamps(True)
-system_timeline.set_reverse_order(True)
+timeline1 = TimelineWidget()
+timeline1.set_title("系统事件日志")
+timeline1.add_event("系统启动", "2024-01-01 08:00:00", "服务器重启完成", "success")
+timeline1.add_event("定时备份", "2024-01-01 12:00:00", "数据库自动备份", "info")
+timeline1.add_event("内存警告", "2024-01-01 14:30:00", "内存使用率达到85%", "warning")
+timeline1.add_event("服务异常", "2024-01-01 15:45:00", "Redis连接超时", "error")
+timeline1.add_event("问题修复", "2024-01-01 16:15:00", "Redis服务重启，连接恢复", "success")
+timeline1.add_event("性能优化", "2024-01-01 18:00:00", "优化数据库查询", "info")
+timeline1.show_timestamps(True)
+timeline1.set_reverse_order(True)
 
-email.add_widget(system_timeline)
+email.add_widget(timeline1)
 
 # 部署历史
-email.add_timeline("部署记录", [
-    ("v1.2.0部署", "2024-01-01 20:00", "生产环境部署完成", "success"),
-    ("热修复", "2024-01-02 09:30", "修复登录问题", "warning"),
-    ("回滚操作", "2024-01-02 10:00", "回滚到v1.1.9", "error"),
-    ("重新部署", "2024-01-02 14:00", "修复后重新部署v1.2.1", "success")
-], show_time=True, reverse_order=True)
+timeline2 = TimelineWidget()
+timeline2.set_title("部署记录")
+timeline2.add_event("v1.2.0部署", "2024-01-01 20:00", "生产环境部署完成", "success")
+timeline2.add_event("热修复", "2024-01-02 09:30", "修复登录问题", "warning")
+timeline2.add_event("回滚操作", "2024-01-02 10:00", "回滚到v1.1.9", "error")
+timeline2.add_event("重新部署", "2024-01-02 14:00", "修复后重新部署v1.2.1", "success")
+timeline2.show_timestamps(True)
+timeline2.set_reverse_order(True)
+
+email.add_widget(timeline2)
+
+# 导出HTML文件
+email.export_html("system_ops_report.html")
 ```
+
+--8<-- "assets/timeline_system_ops.html"
 
 ### 3. 学习进度跟踪
 
 ```python
+from email_widget import Email
+from email_widget.widgets.timeline_widget import TimelineWidget
+
+# 创建学习进度报告邮件
 email = Email("学习进度报告")
 
 # 学习里程碑
-study_timeline = TimelineWidget()
-study_timeline.set_title("Python学习历程")
-study_timeline.add_event("开始学习", "2024-01-01", "开始Python基础课程", "info")
-study_timeline.add_event("基础完成", "2024-01-15", "完成Python基础语法学习", "success")
-study_timeline.add_event("进阶学习", "2024-02-01", "开始面向对象编程", "info")
-study_timeline.add_event("项目实践", "2024-02-15", "完成第一个项目：计算器", "success")
-study_timeline.add_event("遇到困难", "2024-02-20", "数据结构理解有困难", "warning")
-study_timeline.add_event("突破瓶颈", "2024-02-25", "理解了链表和树结构", "success")
-study_timeline.add_event("高级特性", "2024-03-01", "学习装饰器和生成器", "primary")
-study_timeline.show_timestamps(False)
+timeline = TimelineWidget()
+timeline.set_title("Python学习历程")
+timeline.add_event("开始学习", "2024-01-01", "开始Python基础课程", "info")
+timeline.add_event("基础完成", "2024-01-15", "完成Python基础语法学习", "success")
+timeline.add_event("进阶学习", "2024-02-01", "开始面向对象编程", "info")
+timeline.add_event("项目实践", "2024-02-15", "完成第一个项目：计算器", "success")
+timeline.add_event("遇到困难", "2024-02-20", "数据结构理解有困难", "warning")
+timeline.add_event("突破瓶颈", "2024-02-25", "理解了链表和树结构", "success")
+timeline.add_event("高级特性", "2024-03-01", "学习装饰器和生成器", "primary")
+timeline.show_timestamps(False)
 
-email.add_widget(study_timeline)
+email.add_widget(timeline)
+
+# 导出HTML文件
+email.export_html("learning_progress_report.html")
 ```
+
+--8<-- "assets/timeline_learning_progress.html"
 
 ### 4. 产品发布历史
 
 ```python
+from email_widget import Email
+from email_widget.widgets.timeline_widget import TimelineWidget
+
+# 创建产品版本历史邮件
 email = Email("产品版本历史")
 
 # 版本发布时间线
-release_timeline = TimelineWidget()
-release_timeline.set_title("版本发布历史")
-release_timeline.add_event("v1.0.0发布", "2024-01-01", "首个正式版本发布", "success")
-release_timeline.add_event("v1.0.1热修复", "2024-01-03", "修复安全漏洞", "warning")
-release_timeline.add_event("v1.1.0功能更新", "2024-01-15", "新增用户管理功能", "info")
-release_timeline.add_event("v1.1.1BUG修复", "2024-01-18", "修复数据导出问题", "warning")
-release_timeline.add_event("v1.2.0重大更新", "2024-02-01", "全新UI设计，性能优化", "primary")
-release_timeline.add_event("v1.2.1稳定版", "2024-02-05", "修复已知问题，稳定发布", "success")
-release_timeline.show_timestamps(True)
-release_timeline.set_reverse_order(True)
+timeline = TimelineWidget()
+timeline.set_title("版本发布历史")
+timeline.add_event("v1.0.0发布", "2024-01-01", "首个正式版本发布", "success")
+timeline.add_event("v1.0.1热修复", "2024-01-03", "修复安全漏洞", "warning")
+timeline.add_event("v1.1.0功能更新", "2024-01-15", "新增用户管理功能", "info")
+timeline.add_event("v1.1.1BUG修复", "2024-01-18", "修复数据导出问题", "warning")
+timeline.add_event("v1.2.0重大更新", "2024-02-01", "全新UI设计，性能优化", "primary")
+timeline.add_event("v1.2.1稳定版", "2024-02-05", "修复已知问题，稳定发布", "success")
+timeline.show_timestamps(True)
+timeline.set_reverse_order(True)
 
-email.add_widget(release_timeline)
+email.add_widget(timeline)
+
+# 导出HTML文件
+email.export_html("product_release_history.html")
 ```
+
+--8<-- "assets/timeline_product_release.html"
 
 ## ⚡ 快捷方法
 
