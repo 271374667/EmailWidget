@@ -680,7 +680,7 @@ print("✅ RFM客户分析报告已生成：rfm_customer_analysis.html")
 
 ### 🚀 进阶方向
 - 学习 [系统监控](system-monitoring.md) 的实时数据展示
-- 探索 [高级示例](advanced.md) 的自定义扩展
+- 探索 [高级示例](real-world.md) 的自定义扩展
 - 参考 [实际应用](real-world.md) 构建完整分析系统
 
 继续探索更多高级功能，打造专业的数据分析报告！

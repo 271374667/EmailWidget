@@ -732,4 +732,4 @@ print("✅ 爬虫项目综合报告已生成：spider_project_summary.html")
 - 及时发现和解决问题
 - 为技术优化提供依据
 
-继续学习 [高级示例](advanced.md) 和 [实际应用](real-world.md)，探索更多专业应用场景！ 
+继续学习 [实际应用](real-world.md)，探索更多专业应用场景！ 

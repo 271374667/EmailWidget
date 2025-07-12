@@ -303,36 +303,7 @@ sales_table.add_rows([
 email.add_widget(sales_table)
 ```
 
-## ⚙️ API 参考
-
-### 基本配置方法
-
-| 方法 | 参数 | 说明 | 示例 |
-|------|------|------|------|
-| `set_title()` | `title: str` | 设置表格标题 | `.set_title("数据表")` |
-| `set_headers()` | `headers: List[str]` | 设置表头 | `.set_headers(["列1", "列2"])` |
-| `add_row()` | `row: List[Union[str, TableCell]]` | 添加单行数据 | `.add_row(["值1", "值2"])` |
-| `add_rows()` | `rows: List[List[Union[str, TableCell]]]` | 批量添加行 | `.add_rows([["a", "b"], ["c", "d"]])` |
-| `clear_rows()` | 无 | 清空所有数据行 | `.clear_rows()` |
-
-### 样式配置方法
-
-| 方法 | 参数 | 说明 | 默认值 |
-|------|------|------|--------|
-| `set_striped()` | `striped: bool` | 设置条纹样式 | `False` |
-| `set_show_border()` | `show: bool` | 显示边框 | `False` |
-| `set_show_index()` | `show: bool` | 显示索引列 | `False` |
-| `set_max_width()` | `width: str` | 设置最大宽度 | `"100%"` |
-
-### TableCell 类
-
-```python
-# 创建状态单元格
-cell = TableCell("文本内容", StatusType.SUCCESS)
-
-# 或者使用普通字符串
-cell = "普通文本"
-```
+📚 **完整API文档**: [TableWidget API](../api/table-widget.md)
 
 ## 🎯 最佳实践
 

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailWidget - 数值组件设计</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #0078d4;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #323130;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        
+        .header p {
+            color: #605e5c;
+            font-size: 1.1em;
+            margin: 10px 0 0 0;
+        }
+        
+        .design-section {
+            margin-bottom: 50px;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e1dfdd;
+        }
+        
+        .section-title {
+            color: #0078d4;
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .section-description {
+            color: #323130;
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .api-section {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        
+        .api-title {
+            color: #856404;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 0.9em;
+            color: #323130;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+        
+        .widget-previews {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .preview-item {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            padding: 15px;
+            background: #ffffff;
+        }
+        
+        .preview-title {
+            color: #605e5c;
+            font-size: 0.9em;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .preview-content {
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 15px;
+            background: #ffffff;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        /* 数值组件基础样式 */
+        .numeric-widget {
+            text-align: center;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 6px;
+        }
+        
+        .numeric-main {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .numeric-label {
+            font-size: 1.1em;
+            color: #605e5c;
+            margin: 8px 0 0 0;
+        }
+        
+        .numeric-secondary {
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 5px 0 0 0;
+        }
+        
+        .numeric-suffix {
+            font-size: 0.6em;
+            color: #8e8e93;
+            font-weight: 400;
+        }
+        
+        .numeric-prefix {
+            font-size: 0.8em;
+            color: #8e8e93;
+            font-weight: 400;
+        }
+        
+        /* 主题颜色 */
+        .theme-primary { color: #0078d4; }
+        .theme-success { color: #107c10; }
+        .theme-warning { color: #ff8c00; }
+        .theme-danger { color: #d13438; }
+        .theme-neutral { color: #605e5c; }
+        
+        /* 趋势指示器 */
+        .trend-up { color: #107c10; }
+        .trend-down { color: #d13438; }
+        .trend-neutral { color: #605e5c; }
+        
+        .trend-arrow {
+            font-size: 1.2em;
+        }
+        
+        /* 价格特有样式 */
+        .price-original {
+            font-size: 0.4em;
+            color: #8e8e93;
+            text-decoration: line-through;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .price-discount {
+            background: #107c10;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.3em;
+            font-weight: 600;
+            margin: 8px 0 0 0;
+            display: inline-block;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .widget-previews {
+                flex-direction: column;
+            }
+            
+            .preview-item {
+                min-width: auto;
+            }
+            
+            .numeric-main {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔢 数值组件设计方案</h1>
+            <p>NumericWidget 抽象父类 + 三个子类实现</p>
+        </div>
+
+        <!-- 1. 抽象设计 -->
+        <div class="design-section">
+            <div class="section-header">
+                <h2 class="section-title">🏗️ 抽象设计</h2>
+                <div class="section-description">
+                    <strong>核心理念：</strong>PricingWidget、MetricWidget、TrendWidget 都是以数字为核心的展示组件，通过统一的 NumericWidget 抽象父类实现代码复用和一致性。
+                </div>
+                <div class="api-section">
+                    <div class="api-title">🎯 设计目标：</div>
+                    <ul style="color: #856404; margin: 0; padding-left: 20px;">
+                        <li>统一的数值展示框架</li>
+                        <li>灵活的样式配置系统</li>
+                        <li>可扩展的主题和布局</li>
+                        <li>邮件客户端兼容性</li>
+                        <li>链式API设计</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="padding: 20px;">
+                <div class="code-block">class NumericWidget(BaseWidget):
+    """数值组件抽象基类"""
+    
+    def __init__(self):
+        super().__init__()
+        self._main_value = ""           # 主要数值
+        self._label = ""                # 标签文本
+        self._secondary_text = ""       # 次要文本
+        self._prefix = ""               # 前缀（如货币符号）
+        self._suffix = ""               # 后缀（如单位）
+        self._theme = "primary"         # 主题色
+        self._size = "medium"           # 尺寸
+        self._alignment = "center"      # 对齐方式
+        self._background = None         # 背景色
+        self._border = None             # 边框样式
+        
+    # 通用配置方法
+    def set_main_value(self, value: str) -> "NumericWidget"
+    def set_label(self, label: str) -> "NumericWidget"
+    def set_secondary_text(self, text: str) -> "NumericWidget"
+    def set_prefix(self, prefix: str) -> "NumericWidget"
+    def set_suffix(self, suffix: str) -> "NumericWidget"
+    def set_theme(self, theme: str) -> "NumericWidget"
+    def set_size(self, size: str) -> "NumericWidget"
+    def set_alignment(self, alignment: str) -> "NumericWidget"
+    def set_background(self, color: str) -> "NumericWidget"
+    def set_border(self, style: str) -> "NumericWidget"</div>
+            </div>
+        </div>
+
+        <!-- 2. MetricWidget 子类 -->
+        <div class="design-section">
+            <div class="section-header">
+                <h2 class="section-title">📊 MetricWidget - 指标组件</h2>
+                <div class="section-description">
+                    <strong>功能：</strong>继承 NumericWidget，专门用于 KPI 指标展示，支持变化趋势和对比数据。
+                </div>
+                <div class="api-section">
+                    <div class="api-title">🔧 专有API：</div>
+                    <ul style="color: #856404; margin: 0; padding-left: 20px;">
+                        <li>set_change(change, trend) - 设置变化值和趋势方向</li>
+                        <li>set_comparison(value, period) - 设置对比数据</li>
+                        <li>set_target(target) - 设置目标值</li>
+                        <li>set_unit(unit) - 设置单位（继承自suffix）</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">收入指标</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="numeric-main theme-primary">
+                                <span class="numeric-prefix">¥</span>
+                                125,000
+                            </div>
+                            <div class="numeric-label">月度收入</div>
+                            <div class="numeric-secondary trend-up">↗ +15.2%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">用户数量</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="numeric-main theme-primary">
+                                1,234
+                                <span class="numeric-suffix">人</span>
+                            </div>
+                            <div class="numeric-label">活跃用户</div>
+                            <div class="numeric-secondary trend-down">↘ -5.3%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">转化率</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="numeric-main theme-success">
+                                85.4
+                                <span class="numeric-suffix">%</span>
+                            </div>
+                            <div class="numeric-label">转化率</div>
+                            <div class="numeric-secondary trend-up">↗ +2.1%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding: 20px;">
+                <div class="code-block">class MetricWidget(NumericWidget):
+    """指标组件 - 继承数值组件"""
+    
+    def __init__(self):
+        super().__init__()
+        self._change_value = None       # 变化值
+        self._change_trend = None       # 趋势方向
+        self._comparison_value = None   # 对比值
+        self._comparison_period = None  # 对比周期
+        self._target_value = None       # 目标值
+        
+    def set_change(self, change: str, trend: str = "neutral") -> "MetricWidget":
+        """设置变化值和趋势"""
+        self._change_value = change
+        self._change_trend = trend  # up, down, neutral
+        return self
+        
+    def set_comparison(self, value: str, period: str) -> "MetricWidget":
+        """设置对比数据"""
+        self._comparison_value = value
+        self._comparison_period = period
+        return self
+        
+    def set_target(self, target: str) -> "MetricWidget":
+        """设置目标值"""
+        self._target_value = target
+        return self
+        
+    def set_unit(self, unit: str) -> "MetricWidget":
+        """设置单位（便捷方法）"""
+        return self.set_suffix(unit)
+
+# 使用示例
+metric = (MetricWidget()
+    .set_main_value("125,000")
+    .set_prefix("¥")
+    .set_label("月度收入")
+    .set_change("+15.2%", "up")
+    .set_theme("primary"))</div>
+            </div>
+        </div>
+
+        <!-- 3. PricingWidget 子类 -->
+        <div class="design-section">
+            <div class="section-header">
+                <h2 class="section-title">💰 PricingWidget - 价格组件</h2>
+                <div class="section-description">
+                    <strong>功能：</strong>继承 NumericWidget，专门用于价格展示，支持原价、折扣、计费周期等价格相关功能。
+                </div>
+                <div class="api-section">
+                    <div class="api-title">🔧 专有API：</div>
+                    <ul style="color: #856404; margin: 0; padding-left: 20px;">
+                        <li>set_original_price(price) - 设置原价</li>
+                        <li>set_discount(discount) - 设置折扣信息</li>
+                        <li>set_period(period) - 设置计费周期</li>
+                        <li>set_currency(currency) - 设置货币符号（继承自prefix）</li>
+                        <li>set_highlight(highlight) - 设置促销高亮</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">促销价格</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="price-original">¥199</div>
+                            <div class="numeric-main theme-danger">
+                                <span class="numeric-prefix">¥</span>
+                                99
+                            </div>
+                            <div class="price-discount">限时5折</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">订阅价格</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="numeric-main theme-primary">
+                                <span class="numeric-prefix">$</span>
+                                29
+                            </div>
+                            <div class="numeric-label">每月</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">年费优惠</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="price-original">¥3,588</div>
+                            <div class="numeric-main theme-success">
+                                <span class="numeric-prefix">¥</span>
+                                2,988
+                            </div>
+                            <div class="numeric-label">年付优惠</div>
+                            <div class="price-discount">省¥600</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding: 20px;">
+                <div class="code-block">class PricingWidget(NumericWidget):
+    """价格组件 - 继承数值组件"""
+    
+    def __init__(self):
+        super().__init__()
+        self._original_price = None     # 原价
+        self._discount_text = None      # 折扣信息
+        self._period = None             # 计费周期
+        self._highlight = False         # 促销高亮
+        
+    def set_original_price(self, price: str) -> "PricingWidget":
+        """设置原价"""
+        self._original_price = price
+        return self
+        
+    def set_discount(self, discount: str) -> "PricingWidget":
+        """设置折扣信息"""
+        self._discount_text = discount
+        return self
+        
+    def set_period(self, period: str) -> "PricingWidget":
+        """设置计费周期"""
+        self._period = period
+        return self.set_label(period)  # 周期作为标签显示
+        
+    def set_currency(self, currency: str) -> "PricingWidget":
+        """设置货币符号（便捷方法）"""
+        return self.set_prefix(currency)
+        
+    def set_highlight(self, highlight: bool = True) -> "PricingWidget":
+        """设置促销高亮"""
+        self._highlight = highlight
+        if highlight:
+            self.set_theme("danger")  # 促销用红色突出
+        return self
+
+# 使用示例
+pricing = (PricingWidget()
+    .set_main_value("99")
+    .set_currency("¥")
+    .set_original_price("¥199")
+    .set_discount("限时5折")
+    .set_highlight(True))</div>
+            </div>
+        </div>
+
+        <!-- 4. TrendWidget 子类 -->
+        <div class="design-section">
+            <div class="section-header">
+                <h2 class="section-title">💹 TrendWidget - 趋势组件</h2>
+                <div class="section-description">
+                    <strong>功能：</strong>继承 NumericWidget，专门用于趋势展示，支持方向指示、变化幅度等趋势相关功能。
+                </div>
+                <div class="api-section">
+                    <div class="api-title">🔧 专有API：</div>
+                    <ul style="color: #856404; margin: 0; padding-left: 20px;">
+                        <li>set_trend(trend) - 设置趋势方向：up、down、neutral</li>
+                        <li>set_arrow(show) - 是否显示箭头指示</li>
+                        <li>set_change_value(change) - 设置变化数值</li>
+                        <li>set_comparison_period(period) - 设置对比周期</li>
+                        <li>set_auto_color(auto) - 自动根据趋势设置颜色</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">销售增长</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="numeric-main trend-up">
+                                <span class="trend-arrow">↗</span>
+                                +15.2
+                                <span class="numeric-suffix">%</span>
+                            </div>
+                            <div class="numeric-label">月环比增长</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">成本下降</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="numeric-main trend-down">
+                                <span class="trend-arrow">↘</span>
+                                -8.7
+                                <span class="numeric-suffix">%</span>
+                            </div>
+                            <div class="numeric-label">运营成本</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">保持稳定</div>
+                    <div class="preview-content">
+                        <div class="numeric-widget">
+                            <div class="numeric-main trend-neutral">
+                                <span class="trend-arrow">→</span>
+                                0.0
+                                <span class="numeric-suffix">%</span>
+                            </div>
+                            <div class="numeric-label">用户留存率</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding: 20px;">
+                <div class="code-block">class TrendWidget(NumericWidget):
+    """趋势组件 - 继承数值组件"""
+    
+    def __init__(self):
+        super().__init__()
+        self._trend_direction = "neutral"  # 趋势方向
+        self._show_arrow = True            # 显示箭头
+        self._change_value = None          # 变化值
+        self._comparison_period = None     # 对比周期
+        self._auto_color = True            # 自动着色
+        
+    def set_trend(self, trend: str) -> "TrendWidget":
+        """设置趋势方向"""
+        self._trend_direction = trend  # up, down, neutral
+        if self._auto_color:
+            self._update_theme_by_trend()
+        return self
+        
+    def set_arrow(self, show: bool = True) -> "TrendWidget":
+        """设置是否显示箭头"""
+        self._show_arrow = show
+        return self
+        
+    def set_change_value(self, change: str) -> "TrendWidget":
+        """设置变化数值"""
+        self._change_value = change
+        return self.set_main_value(change)
+        
+    def set_comparison_period(self, period: str) -> "TrendWidget":
+        """设置对比周期"""
+        self._comparison_period = period
+        return self.set_secondary_text(f"较{period}")
+        
+    def set_auto_color(self, auto: bool = True) -> "TrendWidget":
+        """自动根据趋势设置颜色"""
+        self._auto_color = auto
+        if auto:
+            self._update_theme_by_trend()
+        return self
+        
+    def _update_theme_by_trend(self):
+        """根据趋势更新主题色"""
+        if self._trend_direction == "up":
+            self.set_theme("success")
+        elif self._trend_direction == "down":
+            self.set_theme("danger")
+        else:
+            self.set_theme("neutral")
+
+# 使用示例
+trend = (TrendWidget()
+    .set_change_value("+15.2")
+    .set_suffix("%")
+    .set_trend("up")
+    .set_label("月环比增长")
+    .set_arrow(True))</div>
+            </div>
+        </div>
+
+        <!-- 5. 统一的配置和主题系统 -->
+        <div class="design-section">
+            <div class="section-header">
+                <h2 class="section-title">🎨 统一配置系统</h2>
+                <div class="section-description">
+                    <strong>功能：</strong>所有数值组件共享的配置选项和主题系统，确保一致性和可维护性。
+                </div>
+            </div>
+            <div style="padding: 20px;">
+                <div class="code-block"># 主题枚举
+class NumericTheme(Enum):
+    PRIMARY = "primary"      # #0078d4 蓝色
+    SUCCESS = "success"      # #107c10 绿色  
+    WARNING = "warning"      # #ff8c00 橙色
+    DANGER = "danger"        # #d13438 红色
+    NEUTRAL = "neutral"      # #605e5c 灰色
+
+# 尺寸枚举
+class NumericSize(Enum):
+    SMALL = "small"          # 小尺寸 1.8em
+    MEDIUM = "medium"        # 中尺寸 2.5em
+    LARGE = "large"          # 大尺寸 3.2em
+    XLARGE = "xlarge"        # 超大尺寸 4em
+
+# 趋势方向枚举
+class TrendDirection(Enum):
+    UP = "up"               # 上升趋势
+    DOWN = "down"           # 下降趋势  
+    NEUTRAL = "neutral"     # 保持不变
+
+# 对齐方式枚举
+class NumericAlignment(Enum):
+    LEFT = "left"           # 左对齐
+    CENTER = "center"       # 居中对齐
+    RIGHT = "right"         # 右对齐
+
+# 通用配置示例
+config = {
+    "themes": {
+        "primary": {"color": "#0078d4", "bg": "#f0f8ff"},
+        "success": {"color": "#107c10", "bg": "#f0fff0"},
+        "warning": {"color": "#ff8c00", "bg": "#fff8dc"},
+        "danger": {"color": "#d13438", "bg": "#ffe4e1"},
+        "neutral": {"color": "#605e5c", "bg": "#f8f9fa"}
+    },
+    "sizes": {
+        "small": {"font_size": "1.8em", "padding": "15px"},
+        "medium": {"font_size": "2.5em", "padding": "20px"},
+        "large": {"font_size": "3.2em", "padding": "25px"},
+        "xlarge": {"font_size": "4em", "padding": "30px"}
+    },
+    "arrows": {
+        "up": "↗", "down": "↘", "neutral": "→",
+        "up_alt": "▲", "down_alt": "▼", "neutral_alt": "—"
+    }
+}</div>
+            </div>
+        </div>
+
+        <!-- 6. 使用示例对比 -->
+        <div class="design-section">
+            <div class="section-header">
+                <h2 class="section-title">📋 使用示例对比</h2>
+                <div class="section-description">
+                    <strong>对比：</strong>抽象前后的API使用方式对比，展示代码复用和一致性的优势。
+                </div>
+            </div>
+            <div style="padding: 20px;">
+                <div class="code-block"># 抽象前 - 三个独立的组件
+metric = MetricWidget().set_value("125,000").set_label("收入").set_change("+15%", "up")
+pricing = PricingWidget().set_price("99").set_original("199").set_currency("¥")
+trend = TrendWidget().set_value("+15.2%").set_trend("up").set_label("增长")
+
+# 抽象后 - 统一的基础API + 专有功能
+metric = (MetricWidget()
+    .set_main_value("125,000")          # 统一API
+    .set_prefix("¥")                    # 统一API
+    .set_label("月度收入")               # 统一API
+    .set_theme("primary")               # 统一API
+    .set_change("+15.2%", "up"))        # 专有API
+
+pricing = (PricingWidget()
+    .set_main_value("99")               # 统一API
+    .set_currency("¥")                  # 专有API (内部调用set_prefix)
+    .set_original_price("199")          # 专有API
+    .set_discount("限时5折")             # 专有API
+    .set_highlight(True))               # 专有API
+
+trend = (TrendWidget()
+    .set_change_value("+15.2")          # 专有API (内部调用set_main_value)
+    .set_suffix("%")                    # 统一API
+    .set_label("月环比增长")             # 统一API
+    .set_trend("up")                    # 专有API (自动设置主题色)
+    .set_arrow(True))                   # 专有API
+
+# 一致性配置 - 所有组件都支持
+for widget in [metric, pricing, trend]:
+    widget.set_size("large").set_background("#f8f9fa").set_alignment("center")</div>
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <div style="margin-top: 50px; padding: 30px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #0078d4;">
+            <h2 style="color: #0078d4; margin-top: 0;">🎯 设计优势</h2>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #323130; margin-top: 0;">🔄 代码复用</h3>
+                    <ul style="color: #323130; line-height: 1.6;">
+                        <li>统一的数值展示逻辑</li>
+                        <li>共享的样式配置系统</li>
+                        <li>一致的API设计模式</li>
+                        <li>减少重复代码50%+</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #323130; margin-top: 0;">🎨 一致性</h3>
+                    <ul style="color: #323130; line-height: 1.6;">
+                        <li>统一的视觉风格</li>
+                        <li>一致的配置方式</li>
+                        <li>标准化的主题系统</li>
+                        <li>可预测的行为模式</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #323130; margin-top: 0;">🚀 扩展性</h3>
+                    <ul style="color: #323130; line-height: 1.6;">
+                        <li>易于添加新的数值组件</li>
+                        <li>灵活的主题扩展</li>
+                        <li>可配置的显示选项</li>
+                        <li>向后兼容的API设计</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px; padding: 20px; background: white; border-radius: 6px;">
+                <h3 style="color: #0078d4; margin-top: 0;">📊 实现优先级建议</h3>
+                <ol style="color: #323130; line-height: 1.8;">
+                    <li><strong>第一阶段：</strong>实现 NumericWidget 抽象父类和基础样式系统</li>
+                    <li><strong>第二阶段：</strong>实现 MetricWidget，满足KPI展示的核心需求</li>
+                    <li><strong>第三阶段：</strong>实现 TrendWidget，补充数据变化展示功能</li>
+                    <li><strong>第四阶段：</strong>实现 PricingWidget，支持电商和订阅场景</li>
+                    <li><strong>第五阶段：</strong>扩展主题系统，添加更多样式选项</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

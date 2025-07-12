@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailWidget - 新控件预览</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #0078d4;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #323130;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        
+        .header p {
+            color: #605e5c;
+            font-size: 1.1em;
+            margin: 10px 0 0 0;
+        }
+        
+        .widget-section {
+            margin-bottom: 50px;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .widget-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e1dfdd;
+        }
+        
+        .widget-title {
+            color: #0078d4;
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .widget-description {
+            color: #323130;
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .widget-api {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        
+        .api-title {
+            color: #856404;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+        
+        .api-list {
+            color: #856404;
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .widget-previews {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .preview-item {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            padding: 15px;
+            background: #ffffff;
+        }
+        
+        .preview-title {
+            color: #605e5c;
+            font-size: 0.9em;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .preview-content {
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 15px;
+            background: #ffffff;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        /* 分隔符样式 */
+        .separator-solid {
+            width: 100%;
+            height: 2px;
+            background: #0078d4;
+            margin: 20px 0;
+        }
+        
+        .separator-dashed {
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(
+                to right,
+                #ff8c00 0px,
+                #ff8c00 8px,
+                transparent 8px,
+                transparent 16px
+            );
+            margin: 20px 0;
+        }
+        
+        .separator-dotted {
+            width: 100%;
+            height: 2px;
+            background: repeating-linear-gradient(
+                to right,
+                #107c10 0px,
+                #107c10 4px,
+                transparent 4px,
+                transparent 8px
+            );
+            margin: 20px 0;
+        }
+        
+        /* 指标组件样式 */
+        .metric-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #0078d4;
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .metric-label {
+            font-size: 1.1em;
+            color: #605e5c;
+            margin: 8px 0 0 0;
+        }
+        
+        .metric-change {
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 5px 0 0 0;
+        }
+        
+        .metric-up {
+            color: #107c10;
+        }
+        
+        .metric-down {
+            color: #d13438;
+        }
+        
+        /* 评分组件样式 */
+        .rating-container {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .rating-stars {
+            font-size: 1.5em;
+            color: #ffd700;
+            margin: 0 0 8px 0;
+        }
+        
+        .rating-text {
+            color: #323130;
+            font-size: 1em;
+            margin: 0;
+        }
+        
+        .rating-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #0078d4;
+            margin: 0;
+        }
+        
+        .rating-scale {
+            font-size: 0.9em;
+            color: #605e5c;
+            margin: 5px 0 0 0;
+        }
+        
+        /* 标签组件样式 */
+        .tag-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 10px;
+            justify-content: center;
+        }
+        
+        .tag {
+            background: #f3f2f1;
+            color: #323130;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.9em;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .tag-blue {
+            background: #cfe2f3;
+            color: #0078d4;
+        }
+        
+        .tag-green {
+            background: #c6efce;
+            color: #107c10;
+        }
+        
+        .tag-orange {
+            background: #ffe4cc;
+            color: #ff8c00;
+        }
+        
+        .tag-red {
+            background: #fde7e9;
+            color: #d13438;
+        }
+        
+        /* 联系信息组件样式 */
+        .contact-container {
+            padding: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 4px;
+            background: #f8f9fa;
+        }
+        
+        .contact-icon {
+            width: 20px;
+            text-align: center;
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+        
+        .contact-text {
+            color: #323130;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+        
+        .contact-text:hover {
+            color: #0078d4;
+        }
+        
+        /* 社交媒体组件样式 */
+        .social-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .social-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .social-facebook {
+            background: #1877f2;
+        }
+        
+        .social-twitter {
+            background: #1da1f2;
+        }
+        
+        .social-linkedin {
+            background: #0a66c2;
+        }
+        
+        .social-icon {
+            margin-right: 6px;
+        }
+        
+        /* 价格组件样式 */
+        .pricing-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .price-original {
+            font-size: 1.1em;
+            color: #8e8e93;
+            text-decoration: line-through;
+            margin: 0;
+        }
+        
+        .price-current {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #d13438;
+            margin: 5px 0;
+        }
+        
+        .price-discount {
+            background: #107c10;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin: 5px 0 0 0;
+            display: inline-block;
+        }
+        
+        .price-period {
+            color: #605e5c;
+            font-size: 0.9em;
+            margin: 5px 0 0 0;
+        }
+        
+        /* 徽章组件样式 */
+        .badge-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .badge {
+            background: #0078d4;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .badge-number {
+            background: #d13438;
+            color: white;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: #107c10;
+        }
+        
+        .badge-warning {
+            background: #ff8c00;
+        }
+        
+        /* 检查清单组件样式 */
+        .checklist-container {
+            padding: 15px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 4px;
+            background: #f8f9fa;
+        }
+        
+        .checklist-checkbox {
+            width: 20px;
+            text-align: center;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .checklist-text {
+            color: #323130;
+            font-size: 0.95em;
+        }
+        
+        .checklist-completed {
+            color: #107c10;
+        }
+        
+        .checklist-pending {
+            color: #8e8e93;
+        }
+        
+        /* 时间线组件样式 */
+        .timeline-container {
+            padding: 15px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .timeline-time {
+            width: 80px;
+            font-size: 0.85em;
+            color: #605e5c;
+            font-weight: 500;
+            text-align: right;
+            margin-right: 15px;
+        }
+        
+        .timeline-marker {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0078d4;
+            margin-right: 15px;
+            margin-top: 3px;
+            position: relative;
+        }
+        
+        .timeline-marker::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 12px;
+            width: 2px;
+            height: 30px;
+            background: #e1dfdd;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item:last-child .timeline-marker::after {
+            display: none;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            color: #323130;
+            font-size: 0.9em;
+        }
+        
+        /* 趋势组件样式 */
+        .trend-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .trend-value {
+            font-size: 2em;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .trend-up {
+            color: #107c10;
+        }
+        
+        .trend-down {
+            color: #d13438;
+        }
+        
+        .trend-neutral {
+            color: #605e5c;
+        }
+        
+        .trend-arrow {
+            font-size: 1.2em;
+        }
+        
+        .trend-label {
+            color: #605e5c;
+            font-size: 1em;
+            margin: 5px 0 0 0;
+        }
+        
+        /* 链接预览组件样式 */
+        .link-preview-container {
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px;
+        }
+        
+        .link-preview-image {
+            width: 100%;
+            height: 80px;
+            background: #f3f2f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #605e5c;
+            font-size: 0.9em;
+        }
+        
+        .link-preview-content {
+            padding: 12px;
+        }
+        
+        .link-preview-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #0078d4;
+            margin: 0 0 5px 0;
+            text-decoration: none;
+        }
+        
+        .link-preview-description {
+            font-size: 0.85em;
+            color: #605e5c;
+            margin: 0 0 5px 0;
+            line-height: 1.3;
+        }
+        
+        .link-preview-url {
+            font-size: 0.8em;
+            color: #8e8e93;
+            margin: 0;
+        }
+        
+        /* 统计网格组件样式 */
+        .stat-grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            background: #f8f9fa;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #0078d4;
+            margin: 0;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            color: #605e5c;
+            margin: 5px 0 0 0;
+        }
+        
+        /* 强调框组件样式 */
+        .callout-container {
+            border-left: 4px solid #0078d4;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .callout-info {
+            background: #f0f8ff;
+            border-left-color: #0078d4;
+        }
+        
+        .callout-warning {
+            background: #fff8dc;
+            border-left-color: #ff8c00;
+        }
+        
+        .callout-error {
+            background: #ffe4e1;
+            border-left-color: #d13438;
+        }
+        
+        .callout-success {
+            background: #f0fff0;
+            border-left-color: #107c10;
+        }
+        
+        .callout-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .callout-icon {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+        
+        .callout-title {
+            font-weight: 600;
+            color: #323130;
+            margin: 0;
+        }
+        
+        .callout-content {
+            color: #323130;
+            margin: 0;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        /* 代码块组件样式 */
+        .code-container {
+            background: #f8f9fa;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .code-header {
+            color: #605e5c;
+            font-size: 0.85em;
+            margin: 0 0 10px 0;
+            font-weight: 500;
+        }
+        
+        .code-content {
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 0.9em;
+            color: #323130;
+            margin: 0;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .widget-previews {
+                flex-direction: column;
+            }
+            
+            .preview-item {
+                min-width: auto;
+            }
+            
+            .social-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .stat-grid-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 EmailWidget 新控件预览</h1>
+            <p>基于邮件兼容性设计的13个新控件建议（含NumericWidget系列抽象设计）</p>
+        </div>
+
+        <!-- 1. SeparatorWidget 分隔符组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">📏 SeparatorWidget 分隔符组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>创建视觉分隔线，支持多种样式（实线、虚线、点线），用于分割邮件内容区块，提升可读性。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>set_type(type) - 设置分隔符类型：solid(实线)、dashed(虚线)、dotted(点线)</li>
+                        <li>set_color(color) - 设置分隔符颜色</li>
+                        <li>set_thickness(thickness) - 设置分隔符粗细</li>
+                        <li>set_margin(margin) - 设置上下边距</li>
+                        <li>set_width(width) - 设置分隔符宽度百分比</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">实线分隔符</div>
+                    <div class="preview-content">
+                        <div style="width: 100%;">
+                            <div>上方内容</div>
+                            <div class="separator-solid"></div>
+                            <div>下方内容</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">虚线分隔符</div>
+                    <div class="preview-content">
+                        <div style="width: 100%;">
+                            <div>上方内容</div>
+                            <div class="separator-dashed"></div>
+                            <div>下方内容</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">点线分隔符</div>
+                    <div class="preview-content">
+                        <div style="width: 100%;">
+                            <div>上方内容</div>
+                            <div class="separator-dotted"></div>
+                            <div>下方内容</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. NumericWidget 数值组件系列 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">🔢 NumericWidget 数值组件系列</h2>
+                <p class="widget-description">
+                    <strong>设计理念：</strong>抽象出 NumericWidget 父类，统一实现 MetricWidget（指标）、PricingWidget（价格）、TrendWidget（趋势）三个子类，实现代码复用和一致性。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🏗️ 抽象父类 NumericWidget：</div>
+                    <ul class="api-list">
+                        <li>set_main_value(value) - 设置主要数值</li>
+                        <li>set_label(label) - 设置标签文本</li>
+                        <li>set_prefix(prefix) - 设置前缀（如货币符号）</li>
+                        <li>set_suffix(suffix) - 设置后缀（如单位）</li>
+                        <li>set_theme(theme) - 设置主题色：primary、success、warning、danger、neutral</li>
+                        <li>set_size(size) - 设置尺寸：small、medium、large、xlarge</li>
+                        <li>set_alignment(alignment) - 设置对齐方式</li>
+                        <li>set_background(color) - 设置背景色</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">MetricWidget - 指标组件</div>
+                    <div class="preview-content">
+                        <div class="metric-container">
+                            <div class="metric-value">¥125,000</div>
+                            <div class="metric-label">月度收入</div>
+                            <div class="metric-change metric-up">↗ +15.2%</div>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.8em; color: #605e5c;">
+                            <strong>专有API：</strong>set_change(), set_comparison(), set_target(), set_unit()
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">PricingWidget - 价格组件</div>
+                    <div class="preview-content">
+                        <div class="pricing-container">
+                            <div class="price-original">¥199</div>
+                            <div class="price-current">¥99</div>
+                            <div class="price-discount">限时5折</div>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.8em; color: #605e5c;">
+                            <strong>专有API：</strong>set_original_price(), set_discount(), set_period(), set_currency()
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">TrendWidget - 趋势组件</div>
+                    <div class="preview-content">
+                        <div class="trend-container">
+                            <div class="trend-value trend-up">
+                                <span class="trend-arrow">↗</span>
+                                +15.2%
+                            </div>
+                            <div class="trend-label">月环比增长</div>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.8em; color: #605e5c;">
+                            <strong>专有API：</strong>set_trend(), set_arrow(), set_change_value(), set_auto_color()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. RatingWidget 评分组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">⭐ RatingWidget 评分组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>显示星级评分或数字评分，支持不同评分系统，用于产品评价、服务评分、满意度调查结果。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>set_rating(rating) - 设置评分数值</li>
+                        <li>set_max_rating(max) - 设置最高分</li>
+                        <li>set_type(type) - 设置类型：stars(星级)、number(数字)、percentage(百分比)</li>
+                        <li>set_color(color) - 设置颜色</li>
+                        <li>set_show_text(show) - 是否显示文字描述</li>
+                        <li>set_text(text) - 设置描述文字</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">星级评分</div>
+                    <div class="preview-content">
+                        <div class="rating-container">
+                            <div class="rating-stars">★★★★☆</div>
+                            <div class="rating-text">4.2/5.0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">数字评分</div>
+                    <div class="preview-content">
+                        <div class="rating-container">
+                            <div class="rating-number">8.5</div>
+                            <div class="rating-scale">满分10分</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">百分比评分</div>
+                    <div class="preview-content">
+                        <div class="rating-container">
+                            <div class="rating-number">92%</div>
+                            <div class="rating-text">满意度评分</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. TagWidget 标签组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">🏷️ TagWidget 标签组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>显示标签集合，支持不同颜色和样式，用于分类标识、技能标签、状态标记。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>add_tag(text, color) - 添加标签</li>
+                        <li>set_tags(tags) - 批量设置标签</li>
+                        <li>set_layout(layout) - 设置布局：horizontal(水平)、vertical(垂直)</li>
+                        <li>set_size(size) - 设置标签大小</li>
+                        <li>set_spacing(spacing) - 设置标签间距</li>
+                        <li>clear_tags() - 清空所有标签</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">技能标签</div>
+                    <div class="preview-content">
+                        <div class="tag-container">
+                            <span class="tag tag-blue">Python</span>
+                            <span class="tag tag-green">Django</span>
+                            <span class="tag tag-orange">React</span>
+                            <span class="tag tag-blue">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">状态标签</div>
+                    <div class="preview-content">
+                        <div class="tag-container">
+                            <span class="tag tag-green">已完成</span>
+                            <span class="tag tag-orange">进行中</span>
+                            <span class="tag tag-red">已延期</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">分类标签</div>
+                    <div class="preview-content">
+                        <div class="tag-container">
+                            <span class="tag">前端</span>
+                            <span class="tag">后端</span>
+                            <span class="tag">数据库</span>
+                            <span class="tag">运维</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. ContactWidget 联系信息组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">📍 ContactWidget 联系信息组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>结构化显示联系方式（电话、邮箱、地址等），用于联系卡片、公司信息、客服信息。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>set_name(name) - 设置联系人姓名</li>
+                        <li>set_phone(phone) - 设置电话号码</li>
+                        <li>set_email(email) - 设置邮箱地址</li>
+                        <li>set_address(address) - 设置地址</li>
+                        <li>set_website(website) - 设置网站</li>
+                        <li>set_layout(layout) - 设置布局方式</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">个人联系信息</div>
+                    <div class="preview-content">
+                        <div class="contact-container">
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <a href="mailto:john@example.com" class="contact-text">john@example.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <a href="tel:+1234567890" class="contact-text">+1 (234) 567-890</a>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">🌐</div>
+                                <a href="https://example.com" class="contact-text">www.example.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">公司信息</div>
+                    <div class="preview-content">
+                        <div class="contact-container">
+                            <div class="contact-item">
+                                <div class="contact-icon">🏢</div>
+                                <span class="contact-text">ABC科技有限公司</span>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <span class="contact-text">北京市朝阳区xxx路123号</span>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <a href="tel:+86-10-12345678" class="contact-text">+86-10-12345678</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">客服信息</div>
+                    <div class="preview-content">
+                        <div class="contact-container">
+                            <div class="contact-item">
+                                <div class="contact-icon">💬</div>
+                                <span class="contact-text">客服热线：400-123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">⏰</div>
+                                <span class="contact-text">服务时间：9:00-18:00</span>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <a href="mailto:support@example.com" class="contact-text">support@example.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. SocialWidget 社交媒体组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">📱 SocialWidget 社交媒体组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>显示社交媒体链接和图标，用于公司社交媒体推广、个人社交链接。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>add_social(platform, url, text) - 添加社交平台</li>
+                        <li>set_layout(layout) - 设置布局：horizontal(水平)、vertical(垂直)</li>
+                        <li>set_size(size) - 设置按钮大小</li>
+                        <li>set_show_text(show) - 是否显示文字</li>
+                        <li>set_spacing(spacing) - 设置按钮间距</li>
+                        <li>clear_socials() - 清空所有社交链接</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">社交媒体链接</div>
+                    <div class="preview-content">
+                        <div class="social-container">
+                            <a href="#" class="social-item social-facebook">
+                                <span class="social-icon">📘</span>
+                                Facebook
+                            </a>
+                            <a href="#" class="social-item social-twitter">
+                                <span class="social-icon">🐦</span>
+                                Twitter
+                            </a>
+                            <a href="#" class="social-item social-linkedin">
+                                <span class="social-icon">💼</span>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">中国社交平台</div>
+                    <div class="preview-content">
+                        <div class="social-container">
+                            <a href="#" class="social-item" style="background: #1AAD19;">
+                                <span class="social-icon">💬</span>
+                                微信
+                            </a>
+                            <a href="#" class="social-item" style="background: #E6162D;">
+                                <span class="social-icon">📱</span>
+                                微博
+                            </a>
+                            <a href="#" class="social-item" style="background: #00D4FF;">
+                                <span class="social-icon">🎵</span>
+                                抖音
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">开发者平台</div>
+                    <div class="preview-content">
+                        <div class="social-container">
+                            <a href="#" class="social-item" style="background: #24292e;">
+                                <span class="social-icon">🔗</span>
+                                GitHub
+                            </a>
+                            <a href="#" class="social-item" style="background: #0A66C2;">
+                                <span class="social-icon">💻</span>
+                                码云
+                            </a>
+                            <a href="#" class="social-item" style="background: #FF5722;">
+                                <span class="social-icon">📝</span>
+                                博客
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 8. BadgeWidget 徽章组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">🎖️ BadgeWidget 徽章组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>显示徽章标识，支持数字徽章和状态徽章，用于通知数量、会员等级、认证标识。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>set_text(text) - 设置徽章文本</li>
+                        <li>set_number(number) - 设置数字徽章</li>
+                        <li>set_color(color) - 设置徽章颜色</li>
+                        <li>set_type(type) - 设置类型：text(文本)、number(数字)、dot(圆点)</li>
+                        <li>set_position(position) - 设置位置</li>
+                        <li>set_max_count(max) - 设置最大显示数量</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">数字徽章</div>
+                    <div class="preview-content">
+                        <div class="badge-container">
+                            <div class="badge-number">5</div>
+                            <div class="badge-number" style="background: #107c10;">12</div>
+                            <div class="badge-number" style="background: #ff8c00;">99+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">状态徽章</div>
+                    <div class="preview-content">
+                        <div class="badge-container">
+                            <div class="badge badge-success">VIP会员</div>
+                            <div class="badge badge-warning">认证中</div>
+                            <div class="badge">普通用户</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">功能徽章</div>
+                    <div class="preview-content">
+                        <div class="badge-container">
+                            <div class="badge" style="background: #8B5CF6;">NEW</div>
+                            <div class="badge" style="background: #EF4444;">HOT</div>
+                            <div class="badge" style="background: #F59E0B;">限时</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. ChecklistWidget 检查清单组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">📋 ChecklistWidget 检查清单组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>显示待办事项或检查项目，支持已完成/未完成状态，用于任务列表、检查清单、功能对比。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>add_item(text, completed) - 添加检查项</li>
+                        <li>set_items(items) - 批量设置检查项</li>
+                        <li>set_style(style) - 设置样式：checkbox(复选框)、bullet(项目符号)</li>
+                        <li>set_completed_color(color) - 设置已完成项颜色</li>
+                        <li>set_pending_color(color) - 设置待处理项颜色</li>
+                        <li>clear_items() - 清空所有项目</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">任务清单</div>
+                    <div class="preview-content">
+                        <div class="checklist-container">
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-completed">✓</div>
+                                <div class="checklist-text checklist-completed">完成需求分析</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-completed">✓</div>
+                                <div class="checklist-text checklist-completed">设计数据库</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-pending">☐</div>
+                                <div class="checklist-text checklist-pending">开发后端API</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-pending">☐</div>
+                                <div class="checklist-text checklist-pending">前端界面开发</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">功能对比</div>
+                    <div class="preview-content">
+                        <div class="checklist-container">
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-completed">✓</div>
+                                <div class="checklist-text checklist-completed">用户管理</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-completed">✓</div>
+                                <div class="checklist-text checklist-completed">数据统计</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-pending">✗</div>
+                                <div class="checklist-text checklist-pending">高级分析</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-pending">✗</div>
+                                <div class="checklist-text checklist-pending">API集成</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">检查项目</div>
+                    <div class="preview-content">
+                        <div class="checklist-container">
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-completed">✓</div>
+                                <div class="checklist-text checklist-completed">代码审查</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-completed">✓</div>
+                                <div class="checklist-text checklist-completed">单元测试</div>
+                            </div>
+                            <div class="checklist-item">
+                                <div class="checklist-checkbox checklist-pending">☐</div>
+                                <div class="checklist-text checklist-pending">集成测试</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. TimelineWidget 时间线组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">📅 TimelineWidget 时间线组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>垂直时间线展示，显示事件序列，用于项目进度、历史记录、发展历程。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>add_event(time, content, status) - 添加时间线事件</li>
+                        <li>set_events(events) - 批量设置事件</li>
+                        <li>set_marker_color(color) - 设置标记点颜色</li>
+                        <li>set_line_color(color) - 设置连接线颜色</li>
+                        <li>set_time_format(format) - 设置时间格式</li>
+                        <li>set_direction(direction) - 设置方向：vertical(垂直)、horizontal(水平)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">项目进度</div>
+                    <div class="preview-content">
+                        <div class="timeline-container">
+                            <div class="timeline-item">
+                                <div class="timeline-time">10:00</div>
+                                <div class="timeline-marker" style="background: #107c10;"></div>
+                                <div class="timeline-content">项目启动会议</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">14:30</div>
+                                <div class="timeline-marker" style="background: #ff8c00;"></div>
+                                <div class="timeline-content">需求评审</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">16:00</div>
+                                <div class="timeline-marker" style="background: #e1dfdd;"></div>
+                                <div class="timeline-content">技术方案讨论</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">发展历程</div>
+                    <div class="preview-content">
+                        <div class="timeline-container">
+                            <div class="timeline-item">
+                                <div class="timeline-time">2020</div>
+                                <div class="timeline-marker" style="background: #0078d4;"></div>
+                                <div class="timeline-content">公司成立</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">2021</div>
+                                <div class="timeline-marker" style="background: #0078d4;"></div>
+                                <div class="timeline-content">完成A轮融资</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">2022</div>
+                                <div class="timeline-marker" style="background: #0078d4;"></div>
+                                <div class="timeline-content">产品正式上线</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">订单状态</div>
+                    <div class="preview-content">
+                        <div class="timeline-container">
+                            <div class="timeline-item">
+                                <div class="timeline-time">09:00</div>
+                                <div class="timeline-marker" style="background: #107c10;"></div>
+                                <div class="timeline-content">订单已确认</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">11:30</div>
+                                <div class="timeline-marker" style="background: #107c10;"></div>
+                                <div class="timeline-content">商品已发货</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">--:--</div>
+                                <div class="timeline-marker" style="background: #e1dfdd;"></div>
+                                <div class="timeline-content">等待收货</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 12. LinkPreviewWidget 链接预览组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">🔗 LinkPreviewWidget 链接预览组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>显示链接的缩略信息（标题、描述、图片），用于文章分享、产品链接、外部资源。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>set_url(url) - 设置链接地址</li>
+                        <li>set_title(title) - 设置标题</li>
+                        <li>set_description(description) - 设置描述</li>
+                        <li>set_image(image) - 设置预览图片</li>
+                        <li>set_domain(domain) - 设置域名显示</li>
+                        <li>set_layout(layout) - 设置布局方式</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">文章分享</div>
+                    <div class="preview-content">
+                        <div class="link-preview-container">
+                            <div class="link-preview-image">📄 文章封面</div>
+                            <div class="link-preview-content">
+                                <a href="#" class="link-preview-title">Python数据分析实战指南</a>
+                                <div class="link-preview-description">详细介绍如何使用Python进行数据分析，包含实际案例和代码示例。</div>
+                                <div class="link-preview-url">blog.example.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">产品链接</div>
+                    <div class="preview-content">
+                        <div class="link-preview-container">
+                            <div class="link-preview-image">🛍️ 产品图片</div>
+                            <div class="link-preview-content">
+                                <a href="#" class="link-preview-title">无线蓝牙耳机 - 降噪版</a>
+                                <div class="link-preview-description">高品质音效，主动降噪，续航24小时，适合通勤和运动。</div>
+                                <div class="link-preview-url">shop.example.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">视频内容</div>
+                    <div class="preview-content">
+                        <div class="link-preview-container">
+                            <div class="link-preview-image">🎬 视频缩略图</div>
+                            <div class="link-preview-content">
+                                <a href="#" class="link-preview-title">机器学习入门教程</a>
+                                <div class="link-preview-description">从零开始学习机器学习，包含理论讲解和实践演示。</div>
+                                <div class="link-preview-url">video.example.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. StatGridWidget 统计网格组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">📊 StatGridWidget 统计网格组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>2x2或3x3网格显示多个统计数字，用于数据仪表盘、多维度统计、概览信息。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>add_stat(label, value, color) - 添加统计项</li>
+                        <li>set_stats(stats) - 批量设置统计项</li>
+                        <li>set_columns(columns) - 设置列数</li>
+                        <li>set_spacing(spacing) - 设置间距</li>
+                        <li>set_background(background) - 设置背景色</li>
+                        <li>clear_stats() - 清空所有统计项</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">业务数据</div>
+                    <div class="preview-content">
+                        <div class="stat-grid-container">
+                            <div class="stat-item">
+                                <div class="stat-value">1,234</div>
+                                <div class="stat-label">用户数</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">89%</div>
+                                <div class="stat-label">满意度</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">¥56.7K</div>
+                                <div class="stat-label">月收入</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">新订单</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">系统监控</div>
+                    <div class="preview-content">
+                        <div class="stat-grid-container">
+                            <div class="stat-item">
+                                <div class="stat-value" style="color: #107c10;">95%</div>
+                                <div class="stat-label">CPU</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color: #ff8c00;">78%</div>
+                                <div class="stat-label">内存</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color: #0078d4;">45%</div>
+                                <div class="stat-label">磁盘</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">项目进度</div>
+                    <div class="preview-content">
+                        <div class="stat-grid-container">
+                            <div class="stat-item">
+                                <div class="stat-value" style="color: #107c10;">12</div>
+                                <div class="stat-label">已完成</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color: #ff8c00;">5</div>
+                                <div class="stat-label">进行中</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" style="color: #8e8e93;">3</div>
+                                <div class="stat-label">待开始</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14. CalloutWidget 强调框组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">🎨 CalloutWidget 强调框组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>突出显示重要信息，不同于AlertWidget的简单样式，用于重要通知、特别说明、突出内容。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>set_title(title) - 设置标题</li>
+                        <li>set_content(content) - 设置内容</li>
+                        <li>set_type(type) - 设置类型：info(信息)、warning(警告)、error(错误)、success(成功)</li>
+                        <li>set_icon(icon) - 设置图标</li>
+                        <li>set_color(color) - 设置颜色主题</li>
+                        <li>set_border_style(style) - 设置边框样式</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">信息提示</div>
+                    <div class="preview-content">
+                        <div class="callout-container callout-info">
+                            <div class="callout-header">
+                                <div class="callout-icon">ℹ️</div>
+                                <div class="callout-title">重要提醒</div>
+                            </div>
+                            <div class="callout-content">
+                                系统将于今晚21:00-23:00进行维护升级，期间可能影响服务使用。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">警告通知</div>
+                    <div class="preview-content">
+                        <div class="callout-container callout-warning">
+                            <div class="callout-header">
+                                <div class="callout-icon">⚠️</div>
+                                <div class="callout-title">注意事项</div>
+                            </div>
+                            <div class="callout-content">
+                                请确保在操作前备份重要数据，避免数据丢失。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">成功提示</div>
+                    <div class="preview-content">
+                        <div class="callout-container callout-success">
+                            <div class="callout-header">
+                                <div class="callout-icon">✅</div>
+                                <div class="callout-title">操作成功</div>
+                            </div>
+                            <div class="callout-content">
+                                您的账户已成功升级为高级版，享受更多功能和服务。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15. CodeWidget 代码块组件 -->
+        <div class="widget-section">
+            <div class="widget-header">
+                <h2 class="widget-title">📄 CodeWidget 代码块组件</h2>
+                <p class="widget-description">
+                    <strong>功能：</strong>显示格式化的代码片段，保持等宽字体和缩进，用于技术文档、API示例、配置示例。
+                </p>
+                <div class="widget-api">
+                    <div class="api-title">🔧 可配置API：</div>
+                    <ul class="api-list">
+                        <li>set_code(code) - 设置代码内容</li>
+                        <li>set_language(language) - 设置编程语言</li>
+                        <li>set_title(title) - 设置代码块标题</li>
+                        <li>set_show_line_numbers(show) - 是否显示行号</li>
+                        <li>set_theme(theme) - 设置主题样式</li>
+                        <li>set_font_size(size) - 设置字体大小</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-previews">
+                <div class="preview-item">
+                    <div class="preview-title">Python代码</div>
+                    <div class="preview-content">
+                        <div class="code-container">
+                            <div class="code-header">main.py</div>
+                            <pre class="code-content">def hello_world():
+    print("Hello, World!")
+    return "success"
+
+if __name__ == "__main__":
+    hello_world()</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">JSON配置</div>
+                    <div class="preview-content">
+                        <div class="code-container">
+                            <div class="code-header">config.json</div>
+                            <pre class="code-content">{
+  "database": {
+    "host": "localhost",
+    "port": 3306,
+    "name": "myapp"
+  },
+  "debug": true
+}</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-item">
+                    <div class="preview-title">Shell命令</div>
+                    <div class="preview-content">
+                        <div class="code-container">
+                            <div class="code-header">安装命令</div>
+                            <pre class="code-content">$ pip install email-widget
+$ python -m email_widget --version
+EmailWidget 1.0.0</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <div style="margin-top: 50px; padding: 30px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #0078d4;">
+            <h2 style="color: #0078d4; margin-top: 0;">📋 总结</h2>
+            <p style="font-size: 1.1em; color: #323130; margin-bottom: 15px;">
+                以上13个新控件建议（通过抽象父类减少重复）都考虑了邮件环境的限制，避免了JavaScript、CSS动画和输入控件，主要使用：
+            </p>
+            <ul style="color: #323130; line-height: 1.6;">
+                <li><strong>HTML表格布局</strong> - 确保跨邮件客户端兼容性</li>
+                <li><strong>CSS Flexbox</strong> - 现代邮件客户端支持的响应式布局</li>
+                <li><strong>内联样式</strong> - 避免外部CSS加载问题</li>
+                <li><strong>Unicode符号</strong> - 替代复杂图标和图片</li>
+                <li><strong>颜色编码</strong> - 直观的视觉反馈</li>
+            </ul>
+            <p style="color: #605e5c; font-style: italic; margin-top: 20px;">
+                建议优先实现：MetricWidget、SeparatorWidget、ContactWidget、CalloutWidget，它们在邮件报告中使用频率最高。
+            </p>
+        </div>
+    </div>
+</body>
+</html>

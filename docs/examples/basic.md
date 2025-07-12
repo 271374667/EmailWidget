@@ -6,14 +6,14 @@
 
 | 示例 | 功能 | 涉及组件 | 难度 |
 |------|------|----------|------|
-| [快速入门](#快速入门) | 创建第一个邮件报告 | TextWidget, AlertWidget | ⭐ |
-| [文本样式](#文本样式展示) | 各种文本类型和颜色 | TextWidget, SeparatorWidget | ⭐ |
-| [数据展示](#数据展示) | 表格和进度条 | TableWidget, ProgressWidget | ⭐⭐ |
-| [综合应用](#综合应用) | 完整的监控报告 | 多组件综合 | ⭐⭐⭐ |
+| [快速入门](#quick-start) | 创建第一个邮件报告 | TextWidget, AlertWidget | ⭐ |
+| [文本样式](#text-styles) | 各种文本类型和颜色 | TextWidget, SeparatorWidget | ⭐ |
+| [数据展示](#data-display) | 表格和进度条 | TableWidget, ProgressWidget | ⭐⭐ |
+| [综合应用](#comprehensive) | 完整的监控报告 | 多组件综合 | ⭐⭐⭐ |
 
 ---
 
-## 快速入门
+## 快速入门 {#quick-start}
 
 ### 创建第一个邮件报告
 
@@ -50,7 +50,7 @@ print("✅ 邮件报告已生成：my_first_report.html")
 
 ---
 
-## 文本样式展示
+## 文本样式展示 {#text-styles}
 
 ### 各种文本类型和颜色样式
 
@@ -110,7 +110,7 @@ email.export_html("text_styles.html")
 
 ---
 
-## 数据展示
+## 数据展示 {#data-display}
 
 ### 表格和进度条组合
 
@@ -176,7 +176,7 @@ email.export_html("data_display.html")
 
 ---
 
-## 综合应用
+## 综合应用 {#comprehensive}
 
 ### 完整的系统监控报告
 

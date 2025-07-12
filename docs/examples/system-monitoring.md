@@ -616,4 +616,4 @@ print("✅ 综合监控仪表板已生成：monitoring_dashboard.html")
 - 应用性能监控
 - 系统健康检查
 
-继续学习 [爬虫报告](spider-reports.md) 和 [高级示例](advanced.md)，探索更多专业应用！
+继续学习 [爬虫报告](spider-reports.md) 和 [实际应用](real-world.md)，探索更多专业应用！

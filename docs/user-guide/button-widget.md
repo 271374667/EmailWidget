@@ -36,7 +36,7 @@ email.add_button("立即购买", "https://shop.example.com")
 email.export_html("button_demo.html")
 ```
 
-### 自定义样式
+### 进阶用法
 
 ```python
 # 创建带样式的按钮
@@ -49,300 +49,176 @@ styled_button = (ButtonWidget()
     .set_align("center"))             # 居中对齐
 
 email.add_widget(styled_button)
+
+# 多样式按钮组合
+primary_button = (ButtonWidget()
+    .set_text("主要操作")
+    .set_href("https://example.com/primary")
+    .set_background_color("#3b82f6")
+    .set_text_color("#ffffff")
+    .set_width("180px"))
+
+secondary_button = (ButtonWidget()
+    .set_text("次要操作")
+    .set_href("https://example.com/secondary")
+    .set_background_color("#6b7280")
+    .set_text_color("#ffffff")
+    .set_width("150px"))
+
+email.add_widget(primary_button)
+email.add_widget(secondary_button)
 ```
 
-## 📖 API 参考
-
-### 核心方法
-
-#### `set_text(text: str) -> ButtonWidget`
-设置按钮显示的文本内容。
-
-**参数:**
-- `text (str)`: 按钮文本内容
-
-**示例:**
-```python
-button.set_text("点击我")
-button.set_text("立即购买")
-button.set_text("了解更多")
-```
-
-#### `set_href(href: str) -> ButtonWidget`
-设置按钮点击后跳转的链接地址。
-
-**参数:**
-- `href (str)`: 链接地址，支持 http/https 链接、邮件地址等
-
-**示例:**
-```python
-button.set_href("https://example.com")
-button.set_href("mailto:contact@example.com")
-button.set_href("tel:+1234567890")
-```
-
-### 样式定制
-
-#### `set_background_color(color: str) -> ButtonWidget`
-设置按钮的背景颜色。
-
-**参数:**
-- `color (str)`: CSS 颜色值（十六进制、RGB、颜色名称等）
-
-**示例:**
-```python
-button.set_background_color("#3b82f6")    # 蓝色
-button.set_background_color("#ef4444")    # 红色
-button.set_background_color("#22c55e")    # 绿色
-button.set_background_color("orange")     # 橙色
-```
-
-#### `set_text_color(color: str) -> ButtonWidget`
-设置按钮文字的颜色。
-
-**参数:**
-- `color (str)`: CSS 颜色值
-
-**示例:**
-```python
-button.set_text_color("#ffffff")  # 白色文字
-button.set_text_color("#000000")  # 黑色文字
-button.set_text_color("#1f2937")  # 深灰色文字
-```
-
-#### `set_width(width: str) -> ButtonWidget`
-设置按钮的宽度。
-
-**参数:**
-- `width (str)`: CSS 宽度值（像素、百分比、auto等）
-
-**示例:**
-```python
-button.set_width("150px")    # 固定宽度
-button.set_width("100%")     # 全宽
-button.set_width("auto")     # 自动宽度
-```
-
-#### `set_align(align: str) -> ButtonWidget`
-设置按钮的对齐方式。
-
-**参数:**
-- `align (str)`: 对齐方式，支持 "left"、"center"、"right"
-
-**示例:**
-```python
-button.set_align("left")     # 左对齐
-button.set_align("center")   # 居中对齐
-button.set_align("right")    # 右对齐
-```
-
-### 属性访问
-
-#### 只读属性
-- `text`: 获取按钮文本
-- `href`: 获取链接地址
-- `background_color`: 获取背景颜色
-- `text_color`: 获取文字颜色
-- `width`: 获取宽度设置
-- `align`: 获取对齐方式
-
-```python
-print(f"按钮文本: {button.text}")
-print(f"链接地址: {button.href}")
-print(f"背景颜色: {button.background_color}")
-```
+📚 **完整API文档**: [ButtonWidget API](../api/button-widget.md)
 
 ## 🎨 样式指南
 
 ### 推荐颜色搭配
 
 #### 主要按钮（Primary）
-```python
-button.set_background_color("#3b82f6").set_text_color("#ffffff")  # 蓝色主题
-```
+- **背景色**: #3b82f6 (蓝色)
+- **文字色**: #ffffff (白色)
+- **用途**: 主要操作、重要按钮
 
 #### 成功按钮（Success）
-```python
-button.set_background_color("#22c55e").set_text_color("#ffffff")  # 绿色主题
-```
+- **背景色**: #22c55e (绿色)
+- **文字色**: #ffffff (白色)
+- **用途**: 确认操作、购买按钮
 
 #### 警告按钮（Warning）
-```python
-button.set_background_color("#f59e0b").set_text_color("#ffffff")  # 橙色主题
-```
+- **背景色**: #f59e0b (橙色)
+- **文字色**: #ffffff (白色)
+- **用途**: 需要注意的操作
 
 #### 危险按钮（Danger）
-```python
-button.set_background_color("#ef4444").set_text_color("#ffffff")  # 红色主题
-```
+- **背景色**: #ef4444 (红色)
+- **文字色**: #ffffff (白色)
+- **用途**: 删除操作、取消订阅
 
 #### 次要按钮（Secondary）
-```python
-button.set_background_color("#6b7280").set_text_color("#ffffff")  # 灰色主题
-```
+- **背景色**: #6b7280 (灰色)
+- **文字色**: #ffffff (白色)
+- **用途**: 辅助操作、了解更多
 
 ### 尺寸建议
 
-#### 小按钮
-```python
-button.set_width("120px")
-```
-
-#### 中等按钮
-```python
-button.set_width("180px")
-```
-
-#### 大按钮
-```python
-button.set_width("250px")
-```
-
-#### 全宽按钮
-```python
-button.set_width("100%")
-```
+- **小按钮**: 120px - 适合辅助操作
+- **中等按钮**: 180px - 标准按钮尺寸
+- **大按钮**: 250px - 重要操作
+- **全宽按钮**: 100% - 移动端友好
 
 ## 📱 最佳实践
 
-### 1. 邮件客户端兼容性
-```python
-# 推荐：使用具体的颜色值而非 CSS 变量
-button.set_background_color("#3b82f6")  # ✅ 好
-# button.set_background_color("var(--primary)")  # ❌ 避免
+### 1. 电商营销邮件
 
-# 推荐：设置明确的宽度
-button.set_width("180px")  # ✅ 好，在所有客户端表现一致
+```python
+from email_widget import Email
+from email_widget.widgets import ButtonWidget
+
+email = Email("限时特惠活动")
+
+# 主要购买按钮
+buy_button = (ButtonWidget()
+    .set_text("立即抢购")
+    .set_href("https://shop.example.com/sale")
+    .set_background_color("#ef4444")
+    .set_text_color("#ffffff")
+    .set_width("100%")
+    .set_align("center"))
+
+email.add_widget(buy_button)
+
+# 次要了解按钮
+info_button = (ButtonWidget()
+    .set_text("查看详情")
+    .set_href("https://shop.example.com/products")
+    .set_background_color("#6b7280")
+    .set_text_color("#ffffff")
+    .set_width("150px")
+    .set_align("center"))
+
+email.add_widget(info_button)
 ```
 
-### 2. 可访问性
+### 2. 系统通知邮件
+
 ```python
-# 确保文字和背景有足够的对比度
-button.set_background_color("#1f2937").set_text_color("#ffffff")  # ✅ 高对比度
-# button.set_background_color("#e5e7eb").set_text_color("#f3f4f6")  # ❌ 对比度太低
-```
+from email_widget import Email
+from email_widget.widgets import ButtonWidget
 
-### 3. 语义化文本
-```python
-# 使用明确的行动指向文本
-button.set_text("立即购买")     # ✅ 好
-button.set_text("了解更多")     # ✅ 好
-button.set_text("点击这里")     # ❌ 模糊
-```
-
-### 4. 链接安全
-```python
-# 使用 HTTPS 链接
-button.set_href("https://example.com")  # ✅ 安全
-# button.set_href("http://example.com")   # ❌ 不安全
-```
-
-## 🔗 实际应用场景
-
-### 电商邮件
-```python
-email = Email("新品上市通知")
-
-# 主要行动按钮
-email.add_button(
-    "立即购买", 
-    "https://shop.example.com/products/new",
-    background_color="#22c55e",
-    text_color="#ffffff",
-    width="200px",
-    align="center"
-)
-
-# 次要按钮
-email.add_button(
-    "查看详情", 
-    "https://shop.example.com/products/new/details",
-    background_color="#6b7280",
-    text_color="#ffffff",
-    width="150px",
-    align="center"
-)
-```
-
-### 服务通知
-```python
 email = Email("系统维护通知")
 
 email.add_text("系统将于今晚进行维护，预计耗时2小时。")
 
-# 了解详情按钮
-email.add_button(
-    "查看维护详情", 
-    "https://status.example.com/maintenance",
-    background_color="#3b82f6",
-    text_color="#ffffff",
-    width="180px",
-    align="center"
-)
+# 查看详情按钮
+detail_button = (ButtonWidget()
+    .set_text("查看维护详情")
+    .set_href("https://status.example.com/maintenance")
+    .set_background_color("#3b82f6")
+    .set_text_color("#ffffff")
+    .set_width("180px")
+    .set_align("center"))
+
+email.add_widget(detail_button)
 ```
 
-### 营销活动
+### 3. 产品介绍邮件
+
 ```python
-email = Email("限时优惠活动")
+from email_widget import Email
+from email_widget.widgets import ButtonWidget, ColumnWidget
 
-# 突出的主要按钮
-email.add_button(
-    "立即抢购", 
-    "https://shop.example.com/sale",
-    background_color="#ef4444",
-    text_color="#ffffff",
-    width="100%",
-    align="center"
-)
-
-# 次要的了解更多按钮
-email.add_button(
-    "活动规则", 
-    "https://shop.example.com/sale/rules",
-    background_color="#f3f4f6",
-    text_color="#374151",
-    width="150px",
-    align="right"
-)
-```
-
-### 多按钮布局
-```python
-from email_widget.widgets import ColumnWidget
-
-email = Email("产品介绍")
+email = Email("产品功能介绍")
 
 # 使用列布局并排显示按钮
-column = ColumnWidget()
+column = ColumnWidget().set_columns(2)
 
-# 左列按钮
-left_button = (ButtonWidget()
+# 免费试用按钮
+trial_button = (ButtonWidget()
     .set_text("免费试用")
     .set_href("https://app.example.com/trial")
     .set_background_color("#22c55e")
     .set_text_color("#ffffff")
-    .set_width("100%")
-    .set_align("center"))
+    .set_width("100%"))
 
-# 右列按钮
-right_button = (ButtonWidget()
-    .set_text("了解定价")
+# 查看定价按钮
+pricing_button = (ButtonWidget()
+    .set_text("查看定价")
     .set_href("https://example.com/pricing")
     .set_background_color("#3b82f6")
     .set_text_color("#ffffff")
-    .set_width("100%")
+    .set_width("100%"))
+
+column.add_widgets([trial_button, pricing_button])
+email.add_widget(column)
+```
+
+### 4. 邮件客户端兼容性优化
+
+```python
+from email_widget import Email
+from email_widget.widgets import ButtonWidget
+
+email = Email("兼容性优化示例")
+
+# 推荐做法
+compatible_button = (ButtonWidget()
+    .set_text("立即访问")
+    .set_href("https://example.com")
+    .set_background_color("#3b82f6")  # 使用具体颜色值
+    .set_text_color("#ffffff")        # 确保高对比度
+    .set_width("180px")               # 设置明确宽度
     .set_align("center"))
 
-column.add_widget(left_button, 0).add_widget(right_button, 1)
-email.add_widget(column)
+email.add_widget(compatible_button)
 ```
 
 ## ⚡ 快捷方法
 
-`Email` 类提供了 `add_button` 快捷方法，简化按钮的创建过程：
+Email 类提供了 `add_button` 快捷方法：
 
 ```python
-# 等价于创建 ButtonWidget 然后添加
+# 基础快捷方法
 email.add_button("按钮文本", "链接地址")
 
 # 带样式的快捷方法
@@ -354,26 +230,55 @@ email.add_button(
     width="200px",
     align="center"
 )
+
+# 不同类型的链接
+email.add_button("发送邮件", "mailto:contact@example.com")
+email.add_button("拨打电话", "tel:+1234567890")
+email.add_button("访问网站", "https://example.com")
 ```
 
 ## 🐛 常见问题
 
 ### Q: 按钮在某些邮件客户端中显示异常？
-A: 确保使用推荐的样式设置，避免使用复杂的 CSS 属性。ButtonWidget 已经针对主流邮件客户端进行了优化。
+A: 确保使用推荐的样式设置，避免使用复杂的 CSS 属性：
+```python
+# 推荐做法
+button.set_background_color("#3b82f6")  # 具体颜色值
+button.set_width("180px")               # 明确宽度
+```
 
-### Q: 如何实现按钮的悬停效果？
-A: 由于邮件客户端的限制，不建议使用悬停效果。ButtonWidget 专注于兼容性和可靠性。
+### Q: 如何确保按钮文字清晰可读？
+A: 确保文字和背景有足够的对比度：
+```python
+# 高对比度组合
+button.set_background_color("#1f2937").set_text_color("#ffffff")  # ✅
+# 避免低对比度
+# button.set_background_color("#e5e7eb").set_text_color("#f3f4f6")  # ❌
+```
 
 ### Q: 可以在按钮中添加图标吗？
-A: 可以在按钮文本中包含 Unicode 图标字符，但不建议使用复杂的图片图标。
-
+A: 可以使用 Unicode 图标字符：
 ```python
 button.set_text("📧 发送邮件")
 button.set_text("🛒 立即购买")
+button.set_text("📞 联系我们")
 ```
 
-### Q: 按钮不显示或样式错乱？
-A: 检查链接地址是否正确，确保颜色值格式正确（如 "#3b82f6"），避免使用不支持的 CSS 属性。
+### Q: 如何设计适合移动端的按钮？
+A: 使用合适的尺寸和全宽设计：
+```python
+mobile_button = (ButtonWidget()
+    .set_text("移动端按钮")
+    .set_width("100%")          # 全宽适配
+    .set_align("center"))       # 居中对齐
+```
+
+### Q: 按钮链接安全注意事项？
+A: 始终使用 HTTPS 链接，确保链接安全：
+```python
+button.set_href("https://example.com")  # ✅ 安全
+# button.set_href("http://example.com")   # ❌ 不安全
+```
 
 ## 🔗 相关组件
 

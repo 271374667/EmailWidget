@@ -79,10 +79,10 @@ email.export_html("report.html")
 
 | 我想要... | 推荐示例 | 链接 |
 |-----------|----------|------|
-| 创建第一个邮件 | 快速入门 | [basic.md](basic.md#快速入门) |
-| 设置文本样式 | 文本样式 | [basic.md](basic.md#文本样式展示) |
-| 显示数据表格 | 数据展示 | [basic.md](basic.md#数据展示) |
-| 创建完整报告 | 综合应用 | [basic.md](basic.md#综合应用) |
+| 创建第一个邮件 | 快速入门 | [basic.md](basic.md#quick-start) |
+| 设置文本样式 | 文本样式 | [basic.md](basic.md#text-styles) |
+| 显示数据表格 | 数据展示 | [basic.md](basic.md#data-display) |
+| 创建完整报告 | 综合应用 | [basic.md](basic.md#comprehensive) |
 | 制作业务报告 | 数据报告 | [data-reports.md](data-reports.md) |
 | 监控系统状态 | 系统监控 | [system-monitoring.md](system-monitoring.md) |
 | 学习最佳实践 | 实际应用 | [real-world.md](real-world.md) |
@@ -91,12 +91,12 @@ email.export_html("report.html")
 
 | 组件 | 主要功能 | 最佳示例 |
 |------|----------|----------|
-| TextWidget | 文本显示 | [文本样式](basic.md#文本样式展示) |
-| TableWidget | 数据表格 | [数据展示](basic.md#数据展示) |
-| ProgressWidget | 进度条 | [数据展示](basic.md#数据展示) |
-| AlertWidget | 提醒信息 | [综合应用](basic.md#综合应用) |
+| TextWidget | 文本显示 | [文本样式](basic.md#text-styles) |
+| TableWidget | 数据表格 | [数据展示](basic.md#data-display) |
+| ProgressWidget | 进度条 | [数据展示](basic.md#data-display) |
+| AlertWidget | 提醒信息 | [综合应用](basic.md#comprehensive) |
 | ChartWidget | 图表 | [数据报告](data-reports.md) |
-| SeparatorWidget | 分隔线 | [文本样式](basic.md#文本样式展示) |
+| SeparatorWidget | 分隔线 | [文本样式](basic.md#text-styles) |
 
 ## 💡 使用建议
 

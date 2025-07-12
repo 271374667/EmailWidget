@@ -1,151 +1,48 @@
-# 圆形进度组件 (CircularProgressWidget)
+# CircularProgressWidget 圆形进度组件
 
-`CircularProgressWidget` 是一个用于显示圆形进度条的组件，提供比线性进度条更紧凑的视觉效果，适合在有限空间内展示进度信息。
+CircularProgressWidget是一个用于显示圆形进度条的组件，提供比线性进度条更紧凑的视觉效果，适合在有限空间内展示进度信息。它支持多种主题颜色、尺寸设置和进度管理功能，是系统监控和任务进度展示的理想选择。
 
 ## 🎯 组件预览
 
-<div class="widget-preview">
-<div class="preview-item">
-<div class="preview-header">
-<h4>⭕ 圆形进度条</h4>
-<span class="preview-tag progress">进度组件</span>
-</div>
-<div class="preview-content">
-<div style="display: flex; justify-content: space-around; padding: 20px; background: #f6f8fa; border-radius: 6px;">
-<div style="text-align: center;">
-<div style="width: 80px; height: 80px; border: 6px solid #e1e4e8; border-top: 6px solid #28a745; border-radius: 50%; margin: 0 auto 10px; position: relative;">
-<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #28a745;">75%</div>
-</div>
-<div style="font-size: 12px; color: #586069;">任务进度</div>
-</div>
-<div style="text-align: center;">
-<div style="width: 80px; height: 80px; border: 6px solid #e1e4e8; border-top: 6px solid #fd7e14; border-radius: 50%; margin: 0 auto 10px; position: relative;">
-<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #fd7e14;">60%</div>
-</div>
-<div style="font-size: 12px; color: #586069;">CPU使用率</div>
-</div>
-<div style="text-align: center;">
-<div style="width: 80px; height: 80px; border: 6px solid #e1e4e8; border-top: 6px solid #dc3545; border-radius: 50%; margin: 0 auto 10px; position: relative;">
-<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #dc3545;">90%</div>
-</div>
-<div style="font-size: 12px; color: #586069;">磁盘空间</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+--8<-- "assets/circular_progress_widget_component_preview.html"
 
-## ✨ 主要功能
+## ✨ 核心特性
 
-### 🎨 多种主题颜色
-- **PRIMARY** - 主色调蓝色
-- **SUCCESS** - 成功绿色  
-- **WARNING** - 警告橙色
-- **ERROR** - 错误红色
-- **INFO** - 信息蓝色
+- **🎨 多种主题**: 支持PRIMARY、SUCCESS、WARNING、ERROR、INFO等主题颜色
+- **📊 进度管理**: 支持数值设置、增减操作、完成重置等便捷功能
+- **🔧 样式定制**: 灵活的尺寸控制、线条宽度、标签显示设置
+- **📈 非百分比**: 支持自定义最大值，不限于百分比显示
+- **⚡ 便捷操作**: 提供increment、decrement、complete、reset等快捷方法
+- **📧 邮件兼容**: 使用邮件客户端兼容的HTML和CSS实现
 
-### 📊 进度管理
-- **数值设置** - 支持浮点数进度值
-- **增减操作** - 便捷的增减方法
-- **完成重置** - 快速完成和重置功能
-- **最大值设置** - 自定义进度范围
+## 🚀 快速开始
 
-### 🔧 样式定制
-- **尺寸控制** - 灵活的大小设置
-- **线条宽度** - 可调节的进度条粗细
-- **标签显示** - 可选的进度标签
-
-## 🛠️ 核心方法详解
-
-### 进度设置方法
-
-#### `set_value(value)` 和 `set_max_value(max_val)`
-设置当前进度值和最大值。
+### 基础用法
 
 ```python
-from email_widget.widgets import CircularProgressWidget
-
-# 设置进度值
-progress = CircularProgressWidget().set_value(75.5)
-
-# 设置最大值（默认为100）
-progress = (CircularProgressWidget()
-            .set_max_value(200)
-            .set_value(150))  # 75%
-```
-
-#### `set_label(label)` 和 `set_theme(theme)`
-设置标签和主题颜色。
-
-```python
-from email_widget.core.enums import ProgressTheme
-
-progress = (CircularProgressWidget()
-            .set_value(80)
-            .set_label("任务完成度")
-            .set_theme(ProgressTheme.SUCCESS))
-```
-
-### 样式设置方法
-
-#### `set_size(size)` 和 `set_stroke_width(width)`
-设置圆形进度条的大小和线条宽度。
-
-```python
-# 设置大小和线条宽度
-progress = (CircularProgressWidget()
-            .set_value(65)
-            .set_size("120px")
-            .set_stroke_width("10px"))
-```
-
-### 进度管理方法
-
-#### `increment(amount)` 和 `decrement(amount)`
-增加或减少进度值。
-
-```python
-progress = CircularProgressWidget().set_value(50)
-
-# 增加进度
-progress.increment(10)  # 现在是60%
-progress.increment(5)   # 现在是65%
-
-# 减少进度
-progress.decrement(15)  # 现在是50%
-```
-
-#### `complete()` 和 `reset()`
-快速设置为完成状态或重置。
-
-```python
-progress = CircularProgressWidget()
-
-# 设置为100%完成
-progress.complete()
-
-# 重置为0%
-progress.reset()
-```
-
-## 💡 实用示例
-
-### 基础进度显示
-
-```python
+from email_widget import Email
 from email_widget.widgets import CircularProgressWidget
 from email_widget.core.enums import ProgressTheme
 
 # 创建基础圆形进度条
-progress = (CircularProgressWidget()
-            .set_value(65)
-            .set_label("下载进度"))
+progress = CircularProgressWidget()
+progress.set_value(65)
+progress.set_label("下载进度")
+progress.set_theme(ProgressTheme.PRIMARY)
+
+email = Email("进度报告")
+email.add_widget(progress)
 ```
 
-### 系统监控指标
+### 进阶用法
 
 ```python
-# CPU使用率监控
+# 系统监控指标组合
+from email_widget.widgets import ColumnWidget
+
+email = Email("系统监控仪表板")
+
+# CPU使用率
 cpu_progress = (CircularProgressWidget()
                 .set_value(35)
                 .set_label("CPU使用率")
@@ -153,7 +50,7 @@ cpu_progress = (CircularProgressWidget()
                 .set_size("100px")
                 .set_stroke_width("8px"))
 
-# 内存使用率监控
+# 内存使用率
 memory_progress = (CircularProgressWidget()
                    .set_value(68)
                    .set_label("内存使用率")
@@ -161,240 +58,248 @@ memory_progress = (CircularProgressWidget()
                    .set_size("100px")
                    .set_stroke_width("8px"))
 
-# 磁盘使用率监控
+# 磁盘使用率
 disk_progress = (CircularProgressWidget()
                  .set_value(85)
                  .set_label("磁盘使用率")
                  .set_theme(ProgressTheme.ERROR)
                  .set_size("100px")
                  .set_stroke_width("8px"))
+
+# 使用列布局组合
+column = ColumnWidget().set_columns(3)
+column.add_widgets([cpu_progress, memory_progress, disk_progress])
+email.add_widget(column)
 ```
 
-### 任务完成度展示
+📚 **完整API文档**: [CircularProgressWidget API](../api/circular-progress-widget.md)
+
+## 🎨 样式指南
+
+### 主题颜色和应用场景
+
+- **PRIMARY**: 蓝色 (#0078d4) - 主要进度、重要指标
+- **SUCCESS**: 绿色 (#107c10) - 正常状态、成功完成
+- **WARNING**: 橙色 (#ff8c00) - 需要注意、接近阈值
+- **ERROR**: 红色 (#d13438) - 错误状态、超出限制
+- **INFO**: 蓝色 (#0078d4) - 信息展示、参考数据
+
+### 尺寸规格建议
+
+- **小型指标**: 60px - 80px，适合集成显示
+- **常规指标**: 100px - 120px，适合主要展示
+- **重要指标**: 150px - 200px，适合突出显示
+- **线条宽度**: 小尺寸用4-6px，大尺寸用8-12px
+
+## 📱 最佳实践
+
+### 1. 系统资源监控
 
 ```python
-# 项目任务进度
-task_progress = (CircularProgressWidget()
-                 .set_value(75)
-                 .set_label("项目进度")
-                 .set_theme(ProgressTheme.INFO)
-                 .set_size("150px")
-                 .set_stroke_width("12px"))
+from email_widget import Email
+from email_widget.widgets import CircularProgressWidget, ColumnWidget
+from email_widget.core.enums import ProgressTheme
 
-# 学习进度
-learning_progress = (CircularProgressWidget()
-                     .set_value(90)
-                     .set_label("课程完成")
-                     .set_theme(ProgressTheme.SUCCESS)
-                     .set_size("120px"))
-```
+email = Email("系统资源监控")
 
-### 不同尺寸的进度条
-
-```python
-# 小尺寸进度条
-small_progress = (CircularProgressWidget()
-                  .set_value(60)
-                  .set_label("同步")
-                  .set_size("60px")
-                  .set_stroke_width("4px"))
-
-# 中等尺寸进度条
-medium_progress = (CircularProgressWidget()
-                   .set_value(75)
-                   .set_label("处理中")
-                   .set_size("100px")
-                   .set_stroke_width("8px"))
-
-# 大尺寸进度条
-large_progress = (CircularProgressWidget()
-                  .set_value(85)
-                  .set_label("主要任务")
-                  .set_size("200px")
-                  .set_stroke_width("15px"))
-```
-
-## 🎨 主题样式
-
-### 不同主题的进度条
-
-```python
-# 成功主题（绿色）
-success_progress = (CircularProgressWidget()
-                    .set_value(100)
-                    .set_label("任务完成")
-                    .set_theme(ProgressTheme.SUCCESS))
-
-# 警告主题（橙色）
-warning_progress = (CircularProgressWidget()
-                    .set_value(75)
-                    .set_label("存储空间")
-                    .set_theme(ProgressTheme.WARNING))
-
-# 错误主题（红色）
-error_progress = (CircularProgressWidget()
-                  .set_value(90)
-                  .set_label("CPU负载")
-                  .set_theme(ProgressTheme.ERROR))
-
-# 信息主题（蓝色）
-info_progress = (CircularProgressWidget()
-                 .set_value(45)
-                 .set_label("网络使用")
-                 .set_theme(ProgressTheme.INFO))
-
-# 主色调主题
-primary_progress = (CircularProgressWidget()
-                    .set_value(60)
-                    .set_label("总体进度")
-                    .set_theme(ProgressTheme.PRIMARY))
-```
-
-## 🔧 高级用法
-
-### 动态进度更新
-
-```python
-def create_dynamic_progress(initial_value=0):
-    """创建可动态更新的进度条"""
-    progress = (CircularProgressWidget()
-                .set_value(initial_value)
-                .set_label("处理进度")
-                .set_theme(ProgressTheme.PRIMARY))
-    
-    return progress
-
-# 模拟进度更新
-progress = create_dynamic_progress()
-for i in range(0, 101, 10):
-    progress.set_value(i)
-    # 在实际应用中，这里可能是处理某个任务
-```
-
-### 条件主题切换
-
-```python
-def get_progress_theme(value):
-    """根据进度值选择合适的主题"""
-    if value >= 90:
-        return ProgressTheme.ERROR    # 高负载用红色
-    elif value >= 70:
-        return ProgressTheme.WARNING  # 中等负载用橙色
-    else:
-        return ProgressTheme.SUCCESS  # 正常负载用绿色
-
-# 应用条件主题
-cpu_usage = 85
-cpu_progress = (CircularProgressWidget()
-                .set_value(cpu_usage)
-                .set_label("CPU使用率")
-                .set_theme(get_progress_theme(cpu_usage)))
-```
-
-### 非百分比进度
-
-```python
-# 处理记录数进度
-records_progress = (CircularProgressWidget()
-                    .set_max_value(1000)      # 总共1000条记录
-                    .set_value(750)           # 已处理750条
-                    .set_label("数据处理")     # 显示75%
-                    .set_theme(ProgressTheme.INFO))
-
-# 文件下载进度（MB）
-download_progress = (CircularProgressWidget()
-                     .set_max_value(500)      # 总大小500MB
-                     .set_value(350)          # 已下载350MB
-                     .set_label("文件下载")    # 显示70%
-                     .set_theme(ProgressTheme.PRIMARY))
-```
-
-## 📊 组合使用
-
-### 多指标监控面板
-
-```python
-from email_widget.widgets import ColumnWidget
-
-# 创建多个监控指标
-metrics = [
-    CircularProgressWidget()
-    .set_value(45).set_label("CPU").set_theme(ProgressTheme.SUCCESS)
-    .set_size("80px").set_stroke_width("6px"),
-    
-    CircularProgressWidget()
-    .set_value(72).set_label("内存").set_theme(ProgressTheme.WARNING)
-    .set_size("80px").set_stroke_width("6px"),
-    
-    CircularProgressWidget()
-    .set_value(28).set_label("网络").set_theme(ProgressTheme.INFO)
-    .set_size("80px").set_stroke_width("6px"),
-    
-    CircularProgressWidget()
-    .set_value(91).set_label("磁盘").set_theme(ProgressTheme.ERROR)
-    .set_size("80px").set_stroke_width("6px")
-]
-
-# 使用列布局排列
-dashboard = ColumnWidget().set_columns(4).add_widgets(metrics)
-```
-
-## 📝 最佳实践
-
-### 1. 合适的尺寸选择
-```python
-# 小型指标使用小尺寸
-small_metric = (CircularProgressWidget()
-                .set_size("60px")
-                .set_stroke_width("4px"))
-
-# 重要指标使用大尺寸
-important_metric = (CircularProgressWidget()
-                    .set_size("150px")
-                    .set_stroke_width("12px"))
-```
-
-### 2. 主题颜色的合理使用
-```python
-# 根据数值范围选择主题
-def get_appropriate_theme(value):
+# 根据数值选择合适主题
+def get_theme_by_value(value):
     if value < 50:
         return ProgressTheme.SUCCESS
     elif value < 80:
         return ProgressTheme.WARNING
     else:
         return ProgressTheme.ERROR
+
+# 创建监控指标
+metrics = [
+    {"label": "CPU", "value": 45, "size": "80px"},
+    {"label": "内存", "value": 72, "size": "80px"},
+    {"label": "网络", "value": 28, "size": "80px"},
+    {"label": "磁盘", "value": 91, "size": "80px"}
+]
+
+progress_widgets = []
+for metric in metrics:
+    progress = (CircularProgressWidget()
+                .set_value(metric["value"])
+                .set_label(metric["label"])
+                .set_theme(get_theme_by_value(metric["value"]))
+                .set_size(metric["size"])
+                .set_stroke_width("6px"))
+    progress_widgets.append(progress)
+
+# 使用4列布局
+dashboard = ColumnWidget().set_columns(4)
+dashboard.add_widgets(progress_widgets)
+email.add_widget(dashboard)
 ```
 
-### 3. 标签的有效性
+### 2. 项目进度展示
+
 ```python
-# 使用简洁明了的标签
-progress = (CircularProgressWidget()
-            .set_label("CPU")          # 简洁
-            .set_label("内存使用"))     # 明确
+from email_widget import Email
+from email_widget.widgets import CircularProgressWidget
+from email_widget.core.enums import ProgressTheme
+
+email = Email("项目进度报告")
+
+# 主要项目进度
+main_progress = (CircularProgressWidget()
+                 .set_value(75)
+                 .set_label("项目总体进度")
+                 .set_theme(ProgressTheme.INFO)
+                 .set_size("150px")
+                 .set_stroke_width("12px"))
+
+email.add_widget(main_progress)
+
+# 各阶段进度
+phases = [
+    {"name": "需求分析", "progress": 100, "theme": ProgressTheme.SUCCESS},
+    {"name": "系统设计", "progress": 100, "theme": ProgressTheme.SUCCESS},
+    {"name": "开发实施", "progress": 80, "theme": ProgressTheme.WARNING},
+    {"name": "测试验收", "progress": 30, "theme": ProgressTheme.INFO}
+]
+
+phase_widgets = []
+for phase in phases:
+    progress = (CircularProgressWidget()
+                .set_value(phase["progress"])
+                .set_label(phase["name"])
+                .set_theme(phase["theme"])
+                .set_size("100px")
+                .set_stroke_width("8px"))
+    phase_widgets.append(progress)
+
+phases_column = ColumnWidget().set_columns(2)
+phases_column.add_widgets(phase_widgets)
+email.add_widget(phases_column)
 ```
 
-### 4. 线条宽度的协调性
+### 3. 非百分比进度
+
 ```python
-# 保持同一组进度条的线条宽度一致
-standard_width = "8px"
-progress1 = CircularProgressWidget().set_stroke_width(standard_width)
-progress2 = CircularProgressWidget().set_stroke_width(standard_width)
+from email_widget import Email
+from email_widget.widgets import CircularProgressWidget
+from email_widget.core.enums import ProgressTheme
+
+email = Email("数据处理进度")
+
+# 文件处理进度（以文件数为单位）
+file_progress = (CircularProgressWidget()
+                 .set_max_value(1000)      # 总共1000个文件
+                 .set_value(750)           # 已处理750个
+                 .set_label("文件处理")     # 显示75%
+                 .set_theme(ProgressTheme.INFO)
+                 .set_size("120px"))
+
+email.add_widget(file_progress)
+
+# 数据下载进度（以MB为单位）
+download_progress = (CircularProgressWidget()
+                     .set_max_value(500)      # 总大小500MB
+                     .set_value(350)          # 已下载350MB
+                     .set_label("数据下载")    # 显示70%
+                     .set_theme(ProgressTheme.PRIMARY)
+                     .set_size("120px"))
+
+email.add_widget(download_progress)
 ```
 
-## ⚠️ 注意事项
+## ⚡ 快捷方法
 
-1. **值范围** - 进度值会自动限制在0到max_value之间
-2. **百分比计算** - 显示的百分比基于value/max_value计算
-3. **邮件兼容性** - 在邮件客户端中使用简化的CSS实现
-4. **尺寸设置** - 过小的尺寸可能影响百分比数字的显示
-5. **线条宽度** - 线条太粗可能影响内部百分比的显示空间
-6. **主题一致性** - 建议在同一报告中保持主题颜色的一致性
-7. **标签长度** - 过长的标签可能影响整体布局
+Email 类提供了 `add_circular_progress` 快捷方法：
+
+```python
+# 基础快捷方法
+email.add_circular_progress(
+    value=75,
+    label="任务进度",
+    theme="success"
+)
+
+# 带样式的快捷方法
+email.add_circular_progress(
+    value=68,
+    label="CPU使用率",
+    theme="warning",
+    size="100px",
+    stroke_width="8px"
+)
+
+# 非百分比进度
+email.add_circular_progress(
+    value=750,
+    max_value=1000,
+    label="文件处理",
+    theme="info",
+    size="120px"
+)
+```
+
+## 🐛 常见问题
+
+### Q: 如何根据数值自动选择主题？
+A: 创建主题选择函数：
+```python
+def auto_theme(value):
+    if value < 50:
+        return ProgressTheme.SUCCESS
+    elif value < 80:
+        return ProgressTheme.WARNING
+    else:
+        return ProgressTheme.ERROR
+
+progress.set_theme(auto_theme(85))  # 自动选择ERROR主题
+```
+
+### Q: 如何实现动态进度更新？
+A: 使用increment和decrement方法：
+```python
+progress = CircularProgressWidget().set_value(50)
+progress.increment(10)  # 增加到60%
+progress.decrement(5)   # 减少到55%
+progress.complete()     # 设置为100%
+progress.reset()        # 重置为0%
+```
+
+### Q: 圆形进度条太小或太大怎么办？
+A: 调整尺寸和线条宽度：
+```python
+# 小尺寸
+progress.set_size("60px").set_stroke_width("4px")
+# 大尺寸
+progress.set_size("200px").set_stroke_width("15px")
+```
+
+### Q: 进度值超出范围会怎样？
+A: 值会自动限制在0到max_value之间：
+```python
+progress.set_max_value(100)
+progress.set_value(150)  # 自动限制为100
+progress.set_value(-10)  # 自动限制为0
+```
+
+### Q: 如何创建多个相同样式的进度条？
+A: 使用配置函数：
+```python
+def create_standard_progress(value, label):
+    return (CircularProgressWidget()
+            .set_value(value)
+            .set_label(label)
+            .set_size("80px")
+            .set_stroke_width("6px")
+            .set_theme(get_theme_by_value(value)))
+
+progress1 = create_standard_progress(60, "CPU")
+progress2 = create_standard_progress(80, "内存")
+```
 
 ## 🔗 相关组件
 
-- **[ProgressWidget](progress-widget.md)** - 线性进度条组件
-- **[StatusWidget](status-widget.md)** - 状态信息展示组件
-- **[CardWidget](card-widget.md)** - 可以包含进度条的卡片组件
-- **[ColumnWidget](column-widget.md)** - 用于布局多个进度条组件 
+- [ProgressWidget](progress-widget.md) - 线性进度条组件
+- [MetricWidget](metric-widget.md) - 数据指标展示组件
+- [StatusWidget](status-widget.md) - 状态信息展示组件
+- [CardWidget](card-widget.md) - 可以包含进度条的卡片组件
+- [ColumnWidget](column-widget.md) - 用于布局多个进度条组件

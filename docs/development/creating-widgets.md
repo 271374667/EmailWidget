@@ -77,12 +77,12 @@ EmailWidget的渲染流程：
 
 ```mermaid
 graph TD
-    A[Email.export_html()] --> B[收集所有Widget]
-    B --> C[验证Widget数据]
-    C --> D[渲染各个Widget]
-    D --> E[生成CSS样式]
-    E --> F[合并HTML模板]
-    F --> G[输出最终HTML]
+    A["Email.export_html()"] --> B["收集所有Widget"]
+    B --> C["验证Widget数据"]
+    C --> D["渲染各个Widget"]
+    D --> E["生成CSS样式"]
+    E --> F["合并HTML模板"]
+    F --> G["输出最终HTML"]
 ```
 
 ### 性能优化

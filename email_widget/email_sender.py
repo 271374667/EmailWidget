@@ -22,7 +22,7 @@ from contextlib import suppress
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from email_widget.email import Email  # 避免循环导入问题
@@ -53,8 +53,8 @@ class EmailSender(ABC):
         use_tls: bool = True,
         smtp_server: str | None = None,
         smtp_port: int | None = None,
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> None:
         """初始化邮件发送器.
 
@@ -266,7 +266,7 @@ class QQEmailSender(EmailSender):
     """
 
     def __init__(
-        self, username: str, password: str, use_tls: bool = True, *args, **kwargs
+        self, username: str, password: str, use_tls: bool = True, *args: Any, **kwargs: Any
     ) -> None:
         """初始化QQ邮箱发送器.
 
@@ -334,8 +334,8 @@ class NetEaseEmailSender(EmailSender):
         username: str,
         password: str,
         use_tls: bool = False,  # 网易邮箱默认使用SSL，不是TLS
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> None:
         """初始化网易邮箱发送器.
 
@@ -389,7 +389,7 @@ EMAIL_PROVIDERS: dict[str, type] = {
 
 
 def create_email_sender(
-    provider: str, username: str, password: str, **kwargs
+    provider: str, username: str, password: str, **kwargs: Any
 ) -> EmailSender:
     """工厂函数，根据服务商名称快速创建对应的邮件发送器实例.
 

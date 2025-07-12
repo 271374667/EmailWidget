@@ -1,4 +1,4 @@
-# 图表组件 (ChartWidget)
+# ChartWidget 图表组件
 
 ChartWidget 专门用于在邮件中展示各种图表和数据可视化内容。它不仅支持显示图片格式的图表，还提供了丰富的配置选项来增强图表的展示效果。
 
@@ -6,104 +6,51 @@ ChartWidget 专门用于在邮件中展示各种图表和数据可视化内容�
 
 --8<-- "assets/chart_widget_component_preview.html"
 
+## ✨ 核心特性
+
+- **📊 多种图表**: 支持线图、柱状图、饼图等各种图表类型
+- **🖼️ 图片展示**: 支持网络图片、本地文件和Base64编码图片
+- **📝 详细标注**: 支持标题、描述和数据摘要等详细信息
+- **📱 响应式**: 自动适配不同设备的显示效果
+- **📧 邮件兼容**: 使用邮件客户端兼容的HTML和CSS实现
+
 ## 🚀 快速开始
 
+### 基础用法
+
 ```python
+from email_widget import Email
 from email_widget.widgets import ChartWidget
 
-# 基本图表展示
+# 创建基本图表
+email = Email("数据报告")
+
 chart = ChartWidget()
 chart.set_image_url("https://example.com/sales_chart.png")
 chart.set_title("月度销售趋势")
 chart.set_description("显示最近6个月的销售数据变化")
+
+email.add_widget(chart)
 ```
 
-<div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0; text-align: center;">
-    <h3 style="color: #323130; margin-bottom: 12px; font-size: 18px; font-weight: 600;">月度销售趋势</h3>
-    <div style="background: #f8f9fa; padding: 80px 20px; border-radius: 4px; border: 2px dashed #dee2e6; color: #6c757d; font-size: 16px;">
-        [图表占位符 - 月度销售趋势图]
-    </div>
-    <p style="color: #605e5c; margin: 12px 0; font-size: 14px; line-height: 1.5;">显示最近6个月的销售数据变化</p>
-</div>
-
-## 📊 基本用法
-
-### 设置图片来源
-
-ChartWidget 支持多种图片来源：
+### 进阶用法
 
 ```python
-# 网络图片
-chart = ChartWidget()
-chart.set_image_url("https://example.com/chart.png")
+# 带数据摘要的详细图表
+performance_chart = ChartWidget()
+performance_chart.set_image_url("performance_chart.png")
+performance_chart.set_title("系统性能监控")
+performance_chart.set_description("展示系统关键性能指标的实时状态")
+performance_chart.set_data_summary("平均响应时间: 245ms | 峰值QPS: 12,500 | 错误率: 0.02%")
+performance_chart.set_alt_text("系统性能监控图表")
+performance_chart.set_max_width("800px")
 
-# 本地文件路径
-chart = ChartWidget()
-chart.set_image_url("/path/to/local/chart.png")
-
-# Base64 编码图片
-chart = ChartWidget()
-chart.set_image_url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...")
+email.add_widget(performance_chart)
 ```
 
-### 添加标题和描述
+📚 **完整API文档**: [ChartWidget API](../api/chart-widget.md)
 
-```python
-chart = ChartWidget()
-chart.set_image_url("revenue_chart.png")
-chart.set_title("年度营收分析")
-chart.set_description("展示各季度营收增长情况及同比变化")
-chart.set_alt_text("年度营收分析图表")
-```
-
-### 数据摘要
-
-为图表添加数据摘要信息：
-
-```python
-chart = ChartWidget()
-chart.set_image_url("performance_chart.png")
-chart.set_title("系统性能监控")
-chart.set_data_summary("平均响应时间: 245ms | 峰值QPS: 12,500 | 错误率: 0.02%")
-```
-
-<div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0; text-align: center;">
-    <h3 style="color: #323130; margin-bottom: 12px; font-size: 18px; font-weight: 600;">系统性能监控</h3>
-    <div style="background: #f8f9fa; padding: 60px 20px; border-radius: 4px; border: 2px dashed #dee2e6; color: #6c757d;">
-        [性能图表占位符]
-    </div>
-    <div style="font-size: 13px; color: #8e8e93; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f3f2f1;">
-        数据摘要: 平均响应时间: 245ms | 峰值QPS: 12,500 | 错误率: 0.02%
-    </div>
-</div>
-
-## 🎨 样式配置
-
-### 图片尺寸控制
-
-```python
-# 设置最大宽度
-chart = ChartWidget()
-chart.set_image_url("wide_chart.png")
-chart.set_max_width("800px")
-
-# 在移动设备上自动适配
-chart = ChartWidget()
-chart.set_image_url("responsive_chart.png")
-chart.set_max_width("100%")  # 默认值，自动适配容器宽度
-```
-
-### 容器样式
-
-```python
-# 自定义容器样式
-chart = ChartWidget()
-chart.set_image_url("custom_chart.png")
-chart.set_title("自定义样式图表")
-# 注意：容器样式由组件内部管理，确保邮件兼容性
-```
-
-## 📈 图表类型示例
+## 📊 图表类型示例
 
 ### 趋势线图表
 
@@ -135,33 +82,14 @@ pie_chart.set_description("各产品线在总营收中的占比情况")
 pie_chart.set_data_summary("产品A: 45% | 产品B: 30% | 产品C: 15% | 其他: 10%")
 ```
 
-<div style="display: flex; gap: 16px; margin: 16px 0; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; text-align: center;">
-        <h4 style="color: #323130; margin-bottom: 8px; font-size: 16px;">用户增长趋势</h4>
-        <div style="background: #f0f9ff; padding: 40px 10px; border-radius: 4px; color: #0369a1; margin: 8px 0;">📈 趋势图</div>
-        <div style="font-size: 12px; color: #8e8e93;">新增用户: +15%</div>
-    </div>
-    <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; text-align: center;">
-        <h4 style="color: #323130; margin-bottom: 8px; font-size: 16px;">各地区销售对比</h4>
-        <div style="background: #f0fdf4; padding: 40px 10px; border-radius: 4px; color: #166534; margin: 8px 0;">📊 柱状图</div>
-        <div style="font-size: 12px; color: #8e8e93;">华东: 35%</div>
-    </div>
-    <div style="flex: 1; min-width: 250px; background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; text-align: center;">
-        <h4 style="color: #323130; margin-bottom: 8px; font-size: 16px;">市场份额分布</h4>
-        <div style="background: #fef3c7; padding: 40px 10px; border-radius: 4px; color: #92400e; margin: 8px 0;">🥧 饼图</div>
-        <div style="font-size: 12px; color: #8e8e93;">产品A: 45%</div>
-    </div>
-</div>
+## 🔗 与数据分析库集成
 
-## 🔗 与Matplotlib集成
-
-ChartWidget 可以很好地与Python的数据可视化库配合使用：
-
-### 生成图表并展示
+### 与Matplotlib集成
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
+from email_widget import Email
 from email_widget.widgets import ChartWidget
 
 # 生成数据并创建图表
@@ -182,31 +110,63 @@ plt.savefig(chart_path, dpi=300, bbox_inches='tight')
 plt.close()
 
 # 在邮件中展示
+email = Email("销售数据报告")
 chart_widget = ChartWidget()
 chart_widget.set_image_url(chart_path)
 chart_widget.set_title("月度销售趋势分析")
 chart_widget.set_description("展示2024年上半年销售业绩的持续增长态势")
 chart_widget.set_data_summary(f"总销售额: {sum(sales)}万元 | 平均增长率: {((sales[-1]/sales[0])-1)*100:.1f}%")
+
+email.add_widget(chart_widget)
 ```
 
-### 数据仪表板
+## 📱 最佳实践
+
+### 1. 选择合适的图表类型
 
 ```python
-import matplotlib.pyplot as plt
-import seaborn as sns
+from email_widget import Email
+from email_widget.widgets import ChartWidget
+
+email = Email("数据可视化最佳实践")
+
+# 趋势数据 -> 线图
+trend_chart = ChartWidget()
+trend_chart.set_image_url("time_series.png")
+trend_chart.set_title("时间序列趋势")
+trend_chart.set_description("适合展示随时间变化的数据")
+
+# 分类对比 -> 柱状图  
+comparison_chart = ChartWidget()
+comparison_chart.set_image_url("category_comparison.png")
+comparison_chart.set_title("分类数据对比")
+comparison_chart.set_description("适合展示不同类别之间的比较")
+
+# 占比关系 -> 饼图
+proportion_chart = ChartWidget()
+proportion_chart.set_image_url("proportion_chart.png")
+proportion_chart.set_title("比例分布")
+proportion_chart.set_description("适合展示部分与整体的关系")
+
+email.add_widgets([trend_chart, comparison_chart, proportion_chart])
+```
+
+### 2. 业务数据仪表板
+
+```python
 from email_widget import Email
 from email_widget.widgets import ChartWidget, TextWidget
+from email_widget.core.enums import TextType
 
 # 创建仪表板邮件
-dashboard = Email("数据仪表板")
+dashboard = Email("业务数据仪表板")
 
 # 添加标题
-dashboard.add_widget(
-    TextWidget()
-    .set_content("业务数据仪表板")
-    .set_text_type(TextType.SECTION_H2)
-    .set_align(TextAlign.CENTER)
-)
+title = TextWidget()
+title.set_content("业务数据仪表板")
+title.set_type(TextType.TITLE_LARGE)
+title.set_align("center")
+dashboard.add_widget(title)
 
 # 创建多个图表
 charts_data = [
@@ -239,9 +199,7 @@ for chart_info in charts_data:
     dashboard.add_widget(chart)
 ```
 
-## 📋 完整示例
-
-### 业务报告图表
+### 3. 完整业务报告
 
 ```python
 from email_widget import Email
@@ -252,13 +210,12 @@ from email_widget.core.enums import TextType
 report = Email("Q4业务分析报告")
 
 # 报告标题
-report.add_widget(
-    TextWidget()
-    .set_content("第四季度业务分析报告")
-    .set_text_type(TextType.SECTION_H2)
-    .set_align(TextAlign.CENTER)
-    .set_color("#0078d4")
-)
+report_title = TextWidget()
+report_title.set_content("第四季度业务分析报告")
+report_title.set_type(TextType.TITLE_LARGE)
+report_title.set_align("center")
+report_title.set_color("#0078d4")
+report.add_widget(report_title)
 
 # 营收分析图表
 revenue_chart = ChartWidget()
@@ -283,67 +240,80 @@ product_chart.set_data_summary("明星产品: 3个 | 问题产品: 1个 | 现金
 
 # 添加到报告
 report.add_widgets([revenue_chart, growth_chart, product_chart])
-
-# 生成报告
-html = report.render_html()
 ```
 
-## ⚙️ API 参考
+## ⚡ 快捷方法
 
-### 核心方法
+Email 类提供了 `add_chart` 快捷方法：
 
-| 方法                   | 参数             | 说明       | 示例                              |
-|----------------------|----------------|----------|---------------------------------|
-| `set_image_url()`    | `url: str`     | 设置图片URL  | `.set_image_url("chart.png")`   |
-| `set_title()`        | `title: str`   | 设置图表标题   | `.set_title("销售趋势")`            |
-| `set_description()`  | `desc: str`    | 设置图表描述   | `.set_description("月度销售数据")`    |
-| `set_alt_text()`     | `alt: str`     | 设置图片替代文本 | `.set_alt_text("销售图表")`         |
-| `set_data_summary()` | `summary: str` | 设置数据摘要   | `.set_data_summary("总计: 100万")` |
-| `set_max_width()`    | `width: str`   | 设置最大宽度   | `.set_max_width("600px")`       |
-
-### 高级配置
-
-| 方法                     | 参数           | 说明       | 默认值    |
-|------------------------|--------------|----------|--------|
-| `set_show_caption()`   | `show: bool` | 是否显示标题描述 | `True` |
-| `clear_title()`        | 无            | 清除标题     | -      |
-| `clear_description()`  | 无            | 清除描述     | -      |
-| `clear_data_summary()` | 无            | 清除数据摘要   | -      |
-
-## 🎯 最佳实践
-
-### 1. 选择合适的图表类型
 ```python
-# 趋势数据 -> 线图
-trend_chart = ChartWidget().set_title("时间序列趋势")
+# 基础快捷方法
+email.add_chart(
+    image_url="sales_chart.png",
+    title="销售图表"
+)
 
-# 分类对比 -> 柱状图  
-comparison_chart = ChartWidget().set_title("分类数据对比")
-
-# 占比关系 -> 饼图
-proportion_chart = ChartWidget().set_title("比例分布")
+# 带详细信息的快捷方法
+email.add_chart(
+    image_url="performance_chart.png",
+    title="性能监控",
+    description="系统关键指标实时监控",
+    data_summary="响应时间: 245ms | QPS: 12.5K",
+    max_width="800px"
+)
 ```
 
-### 2. 提供清晰的标题和描述
+## 🎯 样式和尺寸控制
+
+### 图片尺寸优化
+
+```python
+# 设置最大宽度避免图片过大
+large_chart = ChartWidget()
+large_chart.set_image_url("wide_chart.png")
+large_chart.set_max_width("800px")
+
+# 移动端自适应
+responsive_chart = ChartWidget()
+responsive_chart.set_image_url("responsive_chart.png")
+responsive_chart.set_max_width("100%")  # 自动适配容器宽度
+```
+
+### 提供清晰的标题和描述
+
 ```python
 chart = ChartWidget()
 chart.set_title("Q4营收分析")  # 简洁明确的标题
 chart.set_description("展示第四季度月度营收变化及同比增长情况")  # 详细说明
 chart.set_data_summary("总营收: ¥2.4M | 增长率: +15%")  # 关键数据
+chart.set_alt_text("Q4营收分析柱状图")  # 无障碍访问
 ```
 
-### 3. 确保图片质量和尺寸
+## 🐛 常见问题
+
+### Q: 图片无法显示怎么办？
+A: 检查以下几点：
+- 确认图片URL是否正确
+- 验证图片文件是否存在
+- 检查网络连接和访问权限
+
+### Q: 如何选择合适的图片格式？
+A: 推荐使用PNG格式以获得最佳兼容性：
 ```python
-# 推荐：设置合适的图片尺寸
-chart = ChartWidget()
-chart.set_max_width("800px")  # 避免图片过大
-chart.set_image_url("high_quality_chart.png")  # 使用高质量图片
+chart.set_image_url("chart.png")  # ✅ 推荐
+# chart.set_image_url("chart.webp")  # ❌ 兼容性较差
 ```
 
-### 4. 添加有意义的数据摘要
+### Q: 图表在移动端显示异常？
+A: 设置合适的最大宽度：
 ```python
-# 推荐：提供关键指标摘要
-chart = ChartWidget()
+chart.set_max_width("100%")  # 自动适配
+chart.set_max_width("600px")  # 限制最大宽度
+```
+
+### Q: 如何添加数据摘要？
+A: 使用`set_data_summary()`方法：
+```python
 chart.set_data_summary("关键指标: 转化率 12% | ROI 3.2x | 客单价 ¥890")
 ```
 
@@ -355,18 +325,9 @@ chart.set_data_summary("关键指标: 转化率 12% | ROI 3.2x | 客单价 ¥890
 4. **替代文本**: 为所有图表设置有意义的alt_text
 5. **移动适配**: 使用百分比宽度确保移动设备显示正常
 
-## 🔧 故障排除
+## 🔗 相关组件
 
-### 图片无法显示
-- 检查图片URL是否正确
-- 确认图片文件是否存在
-- 验证网络连接和权限
-
-### 布局异常
-- 检查max_width设置
-- 确认图片尺寸比例
-- 验证容器样式
-
----
-
-**下一步**: 了解 [进度组件](progress-widget.md) 学习如何展示进度和状态信息。 
+- [ImageWidget](image-widget.md) - 基础图片展示组件
+- [MetricWidget](metric-widget.md) - 数据指标展示组件
+- [CardWidget](card-widget.md) - 可以包含图表的卡片组件
+- [TextWidget](text-widget.md) - 图表标题和说明文字

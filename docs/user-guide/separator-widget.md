@@ -19,7 +19,7 @@ SeparatorWidget 是一个用于在邮件中创建视觉分隔线的组件。它�
 
 ```python
 from email_widget import Email
-from email_widget.widgets.separator_widget import SeparatorWidget
+from email_widget.widgets import SeparatorWidget
 from email_widget.core.enums import SeparatorType, TextType
 
 # 创建邮件
@@ -45,11 +45,11 @@ email.add_separator()
 email.export_html("separator_demo.html")
 ```
 
-### 自定义样式
+### 进阶用法
 
 ```python
 from email_widget import Email
-from email_widget.widgets.separator_widget import SeparatorWidget
+from email_widget.widgets import SeparatorWidget
 from email_widget.core.enums import SeparatorType, TextType
 
 email = Email("自定义分隔符样式")
@@ -77,218 +77,45 @@ email.add_separator(
 email.export_html("custom_separator_demo.html")
 ```
 
-## 📖 API 参考
-
-### 基本方法
-
-#### `set_type(separator_type: SeparatorType) -> SeparatorWidget`
-设置分隔符类型。
-
-**参数:**
-- `separator_type (SeparatorType)`: 分隔符类型枚举值
-
-**示例:**
-```python
-separator.set_type(SeparatorType.SOLID)    # 实线
-separator.set_type(SeparatorType.DASHED)   # 虚线
-separator.set_type(SeparatorType.DOTTED)   # 点线
-```
-
-#### `set_color(color: str) -> SeparatorWidget`
-设置分隔符颜色。
-
-**参数:**
-- `color (str)`: CSS颜色值，支持十六进制、RGB、颜色名称等
-
-**示例:**
-```python
-separator.set_color("#0078d4")             # 蓝色
-separator.set_color("#ff8c00")             # 橙色
-separator.set_color("red")                 # 红色
-separator.set_color("rgb(255, 0, 0)")      # RGB红色
-```
-
-#### `set_thickness(thickness: str) -> SeparatorWidget`
-设置分隔符粗细。
-
-**参数:**
-- `thickness (str)`: CSS长度值
-
-**示例:**
-```python
-separator.set_thickness("1px")  # 细线
-separator.set_thickness("2px")  # 中等
-separator.set_thickness("3px")  # 粗线
-```
-
-#### `set_width(width: str) -> SeparatorWidget`
-设置分隔符宽度。
-
-**参数:**
-- `width (str)`: CSS宽度值
-
-**示例:**
-```python
-separator.set_width("100%")   # 全宽
-separator.set_width("80%")    # 80%宽度
-separator.set_width("300px")  # 固定宽度
-```
-
-#### `set_margin(margin: str) -> SeparatorWidget`
-设置分隔符上下边距。
-
-**参数:**
-- `margin (str)`: CSS边距值
-
-**示例:**
-```python
-separator.set_margin("16px")  # 默认边距
-separator.set_margin("30px")  # 大边距
-separator.set_margin("1em")   # em单位
-```
-
-### 主题方法
-
-#### `set_theme_color(status_type: StatusType) -> SeparatorWidget`
-根据状态类型设置主题颜色。
-
-**参数:**
-- `status_type (StatusType)`: 状态类型枚举值
-
-**示例:**
-```python
-from email_widget.core.enums import StatusType
-
-separator.set_theme_color(StatusType.SUCCESS)  # 绿色
-separator.set_theme_color(StatusType.WARNING)  # 橙色
-separator.set_theme_color(StatusType.ERROR)    # 红色
-separator.set_theme_color(StatusType.INFO)     # 蓝色
-```
-
-### 便捷方法
-
-#### `set_style(**kwargs) -> SeparatorWidget`
-一次性设置多个样式属性。
-
-**参数:**
-- `separator_type (SeparatorType, optional)`: 分隔符类型
-- `color (str, optional)`: 分隔符颜色
-- `thickness (str, optional)`: 分隔符粗细
-- `width (str, optional)`: 分隔符宽度
-- `margin (str, optional)`: 上下边距
-
-**示例:**
-```python
-separator.set_style(
-    separator_type=SeparatorType.DASHED,
-    color="#ff8c00",
-    thickness="2px",
-    width="80%",
-    margin="20px"
-)
-```
-
-#### `reset_to_default() -> SeparatorWidget`
-重置所有样式为默认值。
-
-**示例:**
-```python
-separator.reset_to_default()
-```
-
-### 只读属性
-
-- `separator_type`: 获取分隔符类型
-- `color`: 获取分隔符颜色
-- `thickness`: 获取分隔符粗细
-- `width`: 获取分隔符宽度
-- `margin`: 获取分隔符边距
-
-```python
-print(f"分隔符类型: {separator.separator_type}")
-print(f"分隔符颜色: {separator.color}")
-```
+📚 **完整API文档**: [SeparatorWidget API](../api/separator-widget.md)
 
 ## 🎨 样式指南
 
 ### 分隔符类型
 
-#### 实线分隔符 (SOLID)
-```python
-separator = SeparatorWidget().set_type(SeparatorType.SOLID)
-```
-适用于：主要内容区域的分割、章节间的清晰分隔
-
-#### 虚线分隔符 (DASHED)
-```python
-separator = SeparatorWidget().set_type(SeparatorType.DASHED)
-```
-适用于：次要内容的分割、相关内容的分组
-
-#### 点线分隔符 (DOTTED)
-```python
-separator = SeparatorWidget().set_type(SeparatorType.DOTTED)
-```
-适用于：装饰性分割、轻量级的内容分隔
+- **实线分隔符 (SOLID)**: 适用于主要内容区域的分割、章节间的清晰分隔
+- **虚线分隔符 (DASHED)**: 适用于次要内容的分割、相关内容的分组
+- **点线分隔符 (DOTTED)**: 适用于装饰性分割、轻量级的内容分隔
 
 ### 推荐配色
 
 #### 主题色系
-```python
-# 主要分隔符 - 蓝色
-separator.set_color("#0078d4")
-
-# 成功分隔符 - 绿色
-separator.set_color("#107c10")
-
-# 警告分隔符 - 橙色
-separator.set_color("#ff8c00")
-
-# 错误分隔符 - 红色
-separator.set_color("#d13438")
-```
+- **主要分隔符**: #0078d4 (蓝色)
+- **成功分隔符**: #107c10 (绿色)
+- **警告分隔符**: #ff8c00 (橙色)
+- **错误分隔符**: #d13438 (红色)
 
 #### 中性色系
-```python
-# 默认灰色
-separator.set_color("#e1dfdd")
-
-# 深灰色
-separator.set_color("#8e8e93")
-
-# 浅灰色
-separator.set_color("#f3f2f1")
-```
+- **默认灰色**: #e1dfdd
+- **深灰色**: #8e8e93
+- **浅灰色**: #f3f2f1
 
 ### 尺寸建议
 
 #### 粗细建议
-```python
-# 细分隔符 - 适用于密集内容
-separator.set_thickness("1px")
-
-# 标准分隔符 - 通用场景
-separator.set_thickness("2px")
-
-# 粗分隔符 - 重要分割
-separator.set_thickness("3px")
-```
+- **细分隔符**: 1px - 适用于密集内容
+- **标准分隔符**: 2px - 通用场景
+- **粗分隔符**: 3px - 重要分割
 
 #### 宽度建议
-```python
-# 全宽分隔符
-separator.set_width("100%")
-
-# 居中分隔符
-separator.set_width("80%")
-
-# 装饰性分隔符
-separator.set_width("50%")
-```
+- **全宽分隔符**: 100%
+- **居中分隔符**: 80%
+- **装饰性分隔符**: 50%
 
 ## 📱 最佳实践
 
 ### 1. 内容层次分割
+
 ```python
 from email_widget import Email
 from email_widget.core.enums import SeparatorType, TextType
@@ -319,6 +146,7 @@ email.export_html("hierarchical_content.html")
 --8<-- "assets/separator_hierarchical_content.html"
 
 ### 2. 主题化分割
+
 ```python
 from email_widget import Email
 from email_widget.core.enums import SeparatorType, AlertType
@@ -346,87 +174,8 @@ email.export_html("themed_separators.html")
 
 --8<-- "assets/separator_themed_separators.html"
 
-### 3. 响应式设计
-```python
-from email_widget import Email
-from email_widget.widgets.separator_widget import SeparatorWidget
-from email_widget.core.enums import SeparatorType
+### 3. 系统监控邮件
 
-email = Email("响应式分隔符")
-
-# 移动端友好的分隔符
-separator = (SeparatorWidget()
-    .set_type(SeparatorType.SOLID)
-    .set_width("90%")       # 避免贴边
-    .set_thickness("1px")   # 细线减少视觉负担
-    .set_margin("16px"))    # 适中的间距
-
-email.add_widget(separator)
-email.export_html("responsive_separator.html")
-```
-
---8<-- "assets/separator_responsive_separator.html"
-
-### 4. 装饰性分隔
-```python
-from email_widget import Email
-from email_widget.core.enums import SeparatorType, TextType
-
-email = Email("装饰性分隔符")
-
-# 页眉下方的装饰线
-email.add_text("邮件标题", TextType.TITLE_LARGE)
-email.add_separator(
-    separator_type=SeparatorType.DOTTED,
-    color="#0078d4",
-    width="60%",
-    thickness="2px",
-    margin="10px"
-)
-
-email.export_html("decorative_separator.html")
-```
-
---8<-- "assets/separator_decorative_separator.html"
-
-## 🔗 实际应用场景
-
-### 报告分节
-```python
-from email_widget import Email
-from email_widget.core.enums import SeparatorType, TextType
-
-email = Email("月度报告")
-
-# 执行摘要
-email.add_text("执行摘要", TextType.TITLE_LARGE)
-email.add_text("本月业绩概况...")
-
-# 主分隔线
-email.add_separator(
-    separator_type=SeparatorType.SOLID, 
-    thickness="2px", 
-    margin="25px"
-)
-
-# 详细数据
-email.add_text("详细数据分析", TextType.TITLE_LARGE)
-# email.add_table_from_data([...])  # 假设有表格数据
-
-# 次分隔线
-email.add_separator(
-    separator_type=SeparatorType.DASHED, 
-    margin="20px"
-)
-
-# 结论
-email.add_text("总结", TextType.SECTION_H2)
-email.add_text("本月表现...")
-
-email.export_html("monthly_report.html")
-```
-
-### 系统监控邮件
 ```python
 from email_widget import Email
 from email_widget.core.enums import SeparatorType
@@ -465,7 +214,7 @@ email.export_html("system_monitoring.html")
 Email 类提供了 `add_separator` 快捷方法：
 
 ```python
-# 等价于创建 SeparatorWidget 然后添加
+# 基础快捷方法
 email.add_separator()
 
 # 带参数的快捷方法

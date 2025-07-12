@@ -1,298 +1,178 @@
-# 图片组件 (ImageWidget)
+# ImageWidget 图片组件
 
-`ImageWidget` 是一个专门用于在邮件中显示图片的组件，支持多种图片来源并自动转换为邮件兼容格式。
+ImageWidget 是一个专门用于在邮件中显示图片的组件，支持多种图片来源并自动转换为邮件兼容格式。它能够处理本地文件、网络图片和Base64数据，是展示报表图表、产品图片和视觉内容的重要组件。
 
 ## 🎯 组件预览
 
-<div class="widget-preview">
-<div class="preview-item">
-<div class="preview-header">
-<h4>📷 图片组件</h4>
-<span class="preview-tag basic">基础组件</span>
-</div>
-<div class="preview-content">
-<div style="border: 1px solid #e1e4e8; border-radius: 6px; padding: 20px; text-align: center; background: #f6f8fa;">
-<div style="width: 200px; height: 150px; margin: 0 auto; background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-示例图片
-</div>
-<div style="margin-top: 10px; font-weight: bold; color: #24292e;">销售趋势图</div>
-<div style="color: #586069; font-size: 14px;">展示了2024年各季度的销售数据对比</div>
-</div>
-</div>
-</div>
-</div>
+--8<-- "assets/image_widget_component_preview.html"
 
-## ✨ 主要功能
+## ✨ 核心特性
 
-### 📁 多种图片来源支持
-- **网络图片** - 支持HTTP/HTTPS URL
-- **本地文件** - 支持本地图片文件路径
-- **Base64数据** - 支持data URI格式
+- **📁 多种来源**: 支持本地文件、网络URL、Base64数据等多种图片来源
+- **🔄 自动转换**: 自动转换为邮件兼容的base64嵌入格式
+- **🎨 样式控制**: 支持尺寸、边框圆角、最大宽度等样式设置
+- **📝 标题描述**: 支持图片标题和详细描述展示
+- **♿ 无障碍访问**: 支持替代文本，确保无障碍访问
+- **📧 邮件兼容**: 使用邮件客户端兼容的HTML和CSS实现
 
-### 🔄 自动格式转换
-- **邮件兼容** - 自动转换为base64嵌入格式
-- **格式支持** - PNG、JPEG、GIF、BMP、WebP、SVG
-- **缓存机制** - 避免重复下载和转换
+## 🚀 快速开始
 
-### 🎨 丰富的展示选项
-- **标题描述** - 支持图片标题和详细描述
-- **替代文本** - 无障碍访问支持
-- **尺寸控制** - 灵活的尺寸设置
-- **样式定制** - 边框圆角、最大宽度等
-
-## 🛠️ 核心方法详解
-
-### 图片设置方法
-
-#### `set_image_url(image_url, cache=True)`
-设置图片来源，支持多种格式。
+### 基础用法
 
 ```python
-from email_widget.widgets import ImageWidget
-from pathlib import Path
-
-# 使用网络图片
-image = ImageWidget().set_image_url("https://example.com/chart.png")
-
-# 使用本地文件
-image = ImageWidget().set_image_url(Path("./images/logo.png"))
-
-# 使用字符串路径
-image = ImageWidget().set_image_url("./reports/data.jpg")
-```
-
-#### `set_title(title)` 和 `set_description(description)`
-设置图片的标题和描述信息。
-
-```python
-image = (ImageWidget()
-         .set_image_url("./charts/sales.png")
-         .set_title("月度销售报告")
-         .set_description("展示了各地区的销售表现和增长趋势"))
-```
-
-### 样式设置方法
-
-#### `set_size(width, height)`
-设置图片的显示尺寸。
-
-```python
-# 设置固定尺寸
-image = ImageWidget().set_size(width="400px", height="300px")
-
-# 只设置宽度，高度自适应
-image = ImageWidget().set_size(width="100%")
-
-# 设置响应式宽度
-image = ImageWidget().set_size(width="600px").set_max_width("100%")
-```
-
-#### `set_border_radius(radius)` 和 `set_max_width(max_width)`
-设置圆角和最大宽度。
-
-```python
-image = (ImageWidget()
-         .set_border_radius("8px")    # 圆角
-         .set_max_width("800px"))     # 最大宽度
-```
-
-### 显示控制方法
-
-#### `set_alt_text(alt)` 和 `show_caption(show)`
-设置替代文本和控制标题显示。
-
-```python
-image = (ImageWidget()
-         .set_alt_text("公司Logo图片")  # 无障碍访问
-         .show_caption(True))          # 显示标题和描述
-```
-
-## 💡 实用示例
-
-### 基础图片展示
-
-```python
+from email_widget import Email
 from email_widget.widgets import ImageWidget
 
 # 创建基础图片组件
+image = ImageWidget()
+image.set_image_url("./charts/sales.png")
+image.set_title("销售数据图表")
+image.set_description("2024年各季度销售数据对比分析")
+
+email = Email("数据报告")
+email.add_widget(image)
+```
+
+### 进阶用法
+
+```python
+# 带样式和缓存控制的图片
 image = (ImageWidget()
-         .set_image_url("https://example.com/logo.png")
-         .set_title("公司Logo")
-         .set_alt_text("公司标志"))
+         .set_image_url("https://example.com/chart.png", cache=True)
+         .set_title("在线图表")
+         .set_size(width="600px")
+         .set_border_radius("8px")
+         .set_max_width("100%")
+         .set_alt_text("销售趋势图表"))
+
+email.add_widget(image)
+
+# 本地文件图片
+local_image = (ImageWidget()
+               .set_image_url("./reports/monthly_report.jpg")
+               .set_title("月度报告")
+               .set_size(width="400px", height="300px"))
 ```
 
-### 本地图表展示
+📚 **完整API文档**: [ImageWidget API](../api/image-widget.md)
+
+## 🎨 样式指南
+
+### 图片尺寸建议
+
+- **小图标**: 50px - 100px，适合状态图标
+- **常规图片**: 300px - 600px，适合内容展示
+- **大横幅**: 800px+，适合主要展示内容
+- **响应式**: 使用`max_width="100%"`确保邮件兼容性
+
+### 文件格式支持
+
+- **PNG**: 最佳质量，支持透明背景
+- **JPEG**: 适合照片，文件较小
+- **GIF**: 支持动画效果
+- **WebP**: 现代格式，体积小但兼容性较差
+
+## 📱 最佳实践
+
+### 1. 报表图表展示
 
 ```python
-# 展示本地生成的图表
-chart_image = (ImageWidget()
-               .set_image_url("./outputs/sales_chart.png")
-               .set_title("2024年销售分析")
-               .set_description("各产品线的销售数据对比和趋势分析")
-               .set_size(width="600px")
-               .set_border_radius("6px"))
+from email_widget import Email
+from email_widget.widgets import ImageWidget
+
+email = Email("业务数据报告")
+
+# 主要数据图表
+main_chart = (ImageWidget()
+              .set_image_url("./charts/sales_trend.png")
+              .set_title("销售趋势分析")
+              .set_description("过去12个月的销售数据变化趋势")
+              .set_size(width="700px")
+              .set_border_radius("6px"))
+
+email.add_widget(main_chart)
+
+# 补充图表
+support_chart = (ImageWidget()
+                 .set_image_url("./charts/region_comparison.png")
+                 .set_title("地区对比")
+                 .set_description("各地区销售表现对比")
+                 .set_size(width="500px"))
+
+email.add_widget(support_chart)
 ```
 
-### 响应式图片
+### 2. 产品展示
 
 ```python
-# 创建响应式图片
-responsive_image = (ImageWidget()
-                    .set_image_url("./images/banner.jpg")
-                    .set_title("活动横幅")
-                    .set_max_width("100%")
-                    .set_size(width="100%"))  # 自适应宽度
-```
+from email_widget import Email
+from email_widget.widgets import ImageWidget
 
-### 产品展示图片
+email = Email("新品发布")
 
-```python
-# 产品图片展示
+# 产品主图
 product_image = (ImageWidget()
-                 .set_image_url("./products/product_001.jpg")
-                 .set_title("新品发布")
-                 .set_description("我们最新推出的旗舰产品，具有革命性的技术创新")
+                 .set_image_url("./products/new_product.jpg")
+                 .set_title("新品展示")
+                 .set_description("我们最新推出的革命性产品")
                  .set_size(width="400px", height="300px")
                  .set_border_radius("10px")
-                 .set_alt_text("新品产品图片"))
+                 .set_alt_text("新产品外观图片"))
+
+email.add_widget(product_image)
 ```
 
-### 报告图表集合
+## ⚡ 快捷方法
+
+Email 类提供了 `add_image` 快捷方法：
 
 ```python
-# 创建多个图表
-charts = []
+# 基础快捷方法
+email.add_image(
+    image_url="./charts/data.png",
+    title="数据图表",
+    description="关键业务指标展示"
+)
 
-# CPU使用率图表
-cpu_chart = (ImageWidget()
-             .set_image_url("./monitoring/cpu_usage.png")
-             .set_title("CPU使用率")
-             .set_description("过去24小时的CPU使用情况")
-             .set_size(width="300px"))
-
-# 内存使用图表
-memory_chart = (ImageWidget()
-                .set_image_url("./monitoring/memory_usage.png")
-                .set_title("内存使用率")
-                .set_description("内存使用趋势和峰值分析")
-                .set_size(width="300px"))
-
-charts.extend([cpu_chart, memory_chart])
+# 带样式的快捷方法
+email.add_image(
+    image_url="./assets/logo.png",
+    title="公司Logo",
+    width="200px",
+    border_radius="8px",
+    alt_text="公司标志"
+)
 ```
 
-## 🎨 样式定制
+## 🐛 常见问题
 
-### 图片边框和圆角
+### Q: 图片在邮件中不显示怎么办？
+A: 检查以下几点：
+- 确保图片文件路径正确
+- 网络图片URL可访问
+- 图片格式为常见格式（PNG、JPEG等）
 
+### Q: 如何控制图片大小？
+A: 使用`set_size()`和`set_max_width()`：
 ```python
-# 设置圆角和边框效果
-styled_image = (ImageWidget()
-                .set_image_url("./images/profile.jpg")
-                .set_title("团队照片")
-                .set_border_radius("15px")
-                .set_size(width="250px", height="250px"))
+image.set_size(width="600px").set_max_width("100%")
 ```
 
-### 最大宽度限制
-
+### Q: 支持动态图片吗？
+A: 支持，使用`cache=False`禁用缓存：
 ```python
-# 设置最大宽度，确保在不同设备上正确显示
-constrained_image = (ImageWidget()
-                     .set_image_url("./reports/wide_chart.png")
-                     .set_title("宽屏数据图表")
-                     .set_max_width("800px")
-                     .set_size(width="100%"))
+image.set_image_url("./dynamic/chart.png", cache=False)
 ```
 
-## 🔧 高级用法
-
-### 条件图片显示
-
+### Q: 如何确保无障碍访问？
+A: 始终设置有意义的替代文本：
 ```python
-def create_status_image(status):
-    """根据状态创建不同的图片"""
-    if status == "success":
-        return (ImageWidget()
-                .set_image_url("./icons/success.png")
-                .set_title("操作成功")
-                .set_alt_text("成功图标")
-                .set_size(width="50px", height="50px"))
-    elif status == "error":
-        return (ImageWidget()
-                .set_image_url("./icons/error.png")
-                .set_title("操作失败")
-                .set_alt_text("错误图标")
-                .set_size(width="50px", height="50px"))
+image.set_alt_text("2024年销售数据柱状图")
 ```
-
-### 图片缓存控制
-
-```python
-# 禁用缓存，每次重新加载
-fresh_image = (ImageWidget()
-               .set_image_url("./dynamic/current_status.png", cache=False)
-               .set_title("实时状态图"))
-
-# 启用缓存（默认）
-cached_image = (ImageWidget()
-                .set_image_url("./static/logo.png", cache=True)
-                .set_title("公司Logo"))
-```
-
-## 📝 最佳实践
-
-### 1. 图片格式选择
-```python
-# 推荐使用PNG格式获得最佳质量
-logo = ImageWidget().set_image_url("./assets/logo.png")
-
-# 对于照片可以使用JPEG格式
-photo = ImageWidget().set_image_url("./photos/team.jpg")
-```
-
-### 2. 响应式设计
-```python
-# 确保图片在不同设备上正确显示
-responsive = (ImageWidget()
-              .set_image_url("./images/banner.png")
-              .set_max_width("100%")
-              .set_size(width="800px"))  # 设置期望宽度但不超过容器
-```
-
-### 3. 无障碍访问
-```python
-# 始终设置有意义的替代文本
-accessible = (ImageWidget()
-              .set_image_url("./charts/sales.png")
-              .set_title("销售数据图表")
-              .set_alt_text("2024年各季度销售额对比柱状图"))
-```
-
-### 4. 性能优化
-```python
-# 对于静态图片启用缓存
-static_image = (ImageWidget()
-                .set_image_url("./assets/logo.png", cache=True)
-                .set_title("Logo"))
-
-# 对于动态图片可以禁用缓存
-dynamic_image = (ImageWidget()
-                 .set_image_url("./temp/current_chart.png", cache=False)
-                 .set_title("实时数据"))
-```
-
-## ⚠️ 注意事项
-
-1. **文件大小** - base64编码会增加约33%的文件大小，注意邮件大小限制
-2. **路径验证** - 确保本地文件路径正确且文件存在
-3. **网络访问** - 网络图片需要确保URL可访问
-4. **格式支持** - 虽然支持多种格式，但PNG和JPEG兼容性最好
-5. **尺寸设置** - 建议设置合适的尺寸避免图片过大影响邮件加载
-6. **替代文本** - 为了无障碍访问，建议总是设置alt_text
-7. **缓存策略** - 根据图片更新频率选择合适的缓存策略
 
 ## 🔗 相关组件
 
-- **[ChartWidget](chart-widget.md)** - 专门用于显示图表的组件
-- **[CardWidget](card-widget.md)** - 可以包含图片的卡片组件
-- **[ColumnWidget](column-widget.md)** - 用于布局多个图片组件 
+- [ChartWidget](chart-widget.md) - 专门用于显示图表的组件
+- [CardWidget](card-widget.md) - 可以包含图片的卡片组件
+- [ColumnWidget](column-widget.md) - 用于布局多个图片组件
+- [TextWidget](text-widget.md) - 可与图片配合使用的文本组件
