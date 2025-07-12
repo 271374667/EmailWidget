@@ -354,3 +354,34 @@ div[style*="border: 1px solid #e1dfdd"] table {
 .md-content div[style*="background:#0078d4"] * {
     color: #ffffff !important;
 }
+
+/* 
+ * 精准修复主页和快速开始页面的背景色问题
+ * 只针对包含email-preview-wrapper的元素，不影响其他页面
+ */
+
+/* 针对email-preview-wrapper容器的样式隔离 */
+.md-content .email-preview-wrapper {
+    margin: 16px 0 !important;
+    padding: 20px !important;
+    background-color: #faf9f8 !important;
+    border-radius: 8px !important;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+    line-height: 1.6 !important;
+    color: #323130 !important;
+}
+
+/* 确保email-container在wrapper内正确显示 */
+.md-content .email-preview-wrapper .email-container {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    background: #ffffff !important;
+    border: 1px solid #e1dfdd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* 防止wrapper内的样式影响MkDocs其他元素 */
+.md-content .email-preview-wrapper * {
+    box-sizing: border-box !important;
+}
