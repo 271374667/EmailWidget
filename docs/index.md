@@ -311,6 +311,7 @@ email.export_html("report.html")
 <div class="grid cards" markdown>
 - :material-rocket-launch: **[快速开始](getting-started/installation.md)**
 - :material-book-open: **[用户指南](user-guide/core-classes.md)**
+- :octicons-device-camera-video-24: **[组件预览](user-guide/widget-overview.md)**
 - :material-api: **[API参考](api/core.md)**
 - :material-code-braces: **[示例代码](examples/basic.md)**
 - :material-tools: **[开发指南](development/contributing.md)**

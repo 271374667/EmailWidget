@@ -175,7 +175,7 @@ print("邮件发送成功！")
 <details>
 <summary>🎨 点击查看组件效果预览</summary>
 
-[![image-20250702215350732](./README.assets/image-20250702215350732.png)](https://271374667.github.io/picx-images-hosting/image-20250702215350732.2rvevhzhdv.webp)
+![image-20250702215350732](https://271374667.github.io/picx-images-hosting/EmailWidget/PixPin_2025-07-12_10-02-42.7snhz8im11.webp)
 
 </details>
 
