@@ -92,6 +92,8 @@ suggestion_quote.set_theme("warning")
 email.add_widget(suggestion_quote)
 ```
 
+--8<-- "assets/temp/quote_user_feedback.html"
+
 ### 2. 文档中的重要声明
 
 ```python
@@ -109,6 +111,8 @@ important_quote.set_theme("error")
 
 email.add_widget(important_quote)
 ```
+
+--8<-- "assets/temp/quote_important_statement.html"
 
 ## ⚡ 快捷方法
 

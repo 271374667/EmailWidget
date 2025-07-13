@@ -4,7 +4,7 @@ EmailWidget 的核心架构由两个主要类组成：`Email` 类和 `BaseWidget
 
 ## 📧 Email 类
 
-`Email` 类是整个邮件系统的容器，负责管理所有的组件（Widget）并生成最终的HTML邮件。
+`Email` 类是整个邮件System的Container，负责管理所有的组件（Widget）并生成最终的HTML邮件。
 
 ### 🏗️ 基本结构
 
@@ -12,11 +12,11 @@ EmailWidget 的核心架构由两个主要类组成：`Email` 类和 `BaseWidget
 from email_widget import Email
 
 # 创建邮件对象
-email = Email(title="我的邮件标题")
+email = Email(title="我的邮件Title")
 
-# 设置副标题和页脚
-email.set_subtitle("这是副标题")
-email.set_footer("自定义页脚信息")
+# 设置副Title和页脚
+email.set_subtitle("这是副Title")
+email.set_footer("自定义页脚Info")
 
 # 生成HTML
 html_content = email.render_html()
@@ -28,13 +28,13 @@ html_content = email.render_html()
 
 ```python
 # 基本创建
-email = Email("数据报告")
+email = Email("Data报告")
 
-# 设置副标题
-email.set_subtitle("2024年度业务数据分析")
+# 设置副Title
+email.set_subtitle("2024年度业务Data分析")
 
-# 设置页脚文本
-email.set_footer("本报告由数据团队生成 © 2024")
+# 设置页脚Text
+email.set_footer("本报告由Data团队生成 © 2024")
 ```
 
 #### 添加组件
@@ -43,12 +43,12 @@ email.set_footer("本报告由数据团队生成 © 2024")
 from email_widget.widgets import TextWidget, TableWidget
 
 # 添加单个组件
-text_widget = TextWidget().set_content("欢迎查看本周数据")
+text_widget = TextWidget().set_content("欢迎查看本周Data")
 email.add_widget(text_widget)
 
 # 添加多个组件
 widgets = [
-    TextWidget().set_content("标题1"),
+    TextWidget().set_content("Title1"),
     TableWidget().set_headers(["列1", "列2"]),
     TextWidget().set_content("总结")
 ]
@@ -57,7 +57,7 @@ email.add_widgets(widgets)
 # 链式调用
 email.add_widget(
     TextWidget()
-    .set_content("重要通知")
+    .set_content("重要Notification")
     .set_text_type(TextType.SECTION_H2)
     .set_color("#d13438")
 )
@@ -130,10 +130,12 @@ from email_widget.core.base import BaseWidget
 class MyCustomWidget(BaseWidget):
     # 模板定义
     TEMPLATE = """
-    <div style="padding: 16px; border: 1px solid #ccc;">
+    <div class="email-preview-wrapper">
+<div style="padding: 16px; border: 1px solid #ccc;">
         <h3>{{ title }}</h3>
         <p>{{ content }}</p>
     </div>
+</div>
     """
     
     def __init__(self, widget_id=None):
@@ -170,8 +172,8 @@ widget = TextWidget(widget_id="my_text_widget")
 print(widget.widget_id)  # 输出: my_text_widget
 ```
 
-#### 父容器引用
-Widget可以访问其父Email容器：
+#### 父ContainerQuote
+Widget可以访问其父EmailContainer：
 
 ```python
 email = Email("测试邮件")
@@ -182,7 +184,7 @@ print(widget.parent)  # 输出: <email_widget.email.Email object>
 print(widget.parent.title)  # 输出: 测试邮件
 ```
 
-### 🎨 模板系统
+### 🎨 模板System
 
 每个Widget使用Jinja2模板进行渲染：
 
@@ -190,7 +192,8 @@ print(widget.parent.title)  # 输出: 测试邮件
 ```python
 class MyWidget(BaseWidget):
     TEMPLATE = """
-    <div style="{{ container_style }}">
+    <div class="email-preview-wrapper">
+<div style="{{ container_style }}">
         {% if title %}
             <h3 style="{{ title_style }}">{{ title }}</h3>
         {% endif %}
@@ -198,10 +201,11 @@ class MyWidget(BaseWidget):
             <p>{{ item.name }}: {{ item.value }}</p>
         {% endfor %}
     </div>
+</div>
     """
 ```
 
-#### 上下文数据
+#### 上下文Data
 ```python
 def get_template_context(self):
     return {
@@ -217,19 +221,21 @@ def get_template_context(self):
 BaseWidget 提供了完善的错误处理机制：
 
 ```python
-# 当渲染失败时，会显示错误信息而不是崩溃
+# 当渲染失败时，会显示错误Info而不是崩溃
 try:
     html = widget.render_html()
 except Exception as e:
-    # Widget会自动处理错误，返回错误提示HTML
+    # Widget会自动处理错误，返回错误TipHTML
     print("Widget渲染失败，但不会影响其他组件")
 ```
 
 错误输出示例：
 ```html
+<div class="email-preview-wrapper">
 <div style="border: 2px solid #d13438; background: #ffebee; color: #d13438; padding: 12px;">
     <strong>Widget渲染错误:</strong> MyWidget (mywidget_a1b2c3d4)
     <br/>错误详情: 模板渲染失败
+</div>
 </div>
 ```
 
@@ -277,7 +283,7 @@ def set_content(self, content):
 
 1. **创建阶段**: `__init__()` - 初始化组件属性
 2. **配置阶段**: `set_*()` 方法 - 设置组件属性
-3. **添加阶段**: `email.add_widget()` - 添加到邮件容器
+3. **添加阶段**: `email.add_widget()` - 添加到邮件Container
 4. **渲染阶段**: `render_html()` - 生成HTML内容
 
 ```python
@@ -301,8 +307,8 @@ html = email.render_html()
 - 建议复用Widget实例而不是频繁创建
 
 ### 内存管理
-- Widget保持对父容器的弱引用，避免循环引用
-- 及时清理不需要的Widget引用
+- Widget保持对父Container的弱Quote，避免循环Quote
+- 及时清理不需要的WidgetQuote
 
 ---
 

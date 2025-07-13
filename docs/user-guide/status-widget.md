@@ -92,6 +92,8 @@ service_status.add_status("消息队列", "队列积压", "warning")
 email.add_widget(service_status)
 ```
 
+--8<-- "assets/temp/status_system_monitoring.html"
+
 ### 2. 项目配置信息
 
 ```python

@@ -1,111 +1,110 @@
 # CardWidget 卡片组件
 
-<div style="background: #f0f8ff; border: 1px solid #4a90e2; border-radius: 8px; padding: 20px; margin: 20px 0;">
-  <h3 style="color: #2c5282; margin-top: 0;">🎴 卡片展示组件</h3>
-  <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 12px 0; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
-      📊 数据统计报告
-    </h3>
-    <div style="color: #323130; line-height: 1.5; font-size: 14px;">本月系统运行状况良好，各项指标均在正常范围内。用户活跃度较上月提升15%，系统响应时间保持在100ms以内。</div>
-    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e1dfdd;">
-      <div style="margin: 4px 0; font-size: 13px;"><strong>报告时间:</strong> 2024-01-15</div>
-      <div style="margin: 4px 0; font-size: 13px;"><strong>报告类型:</strong> 月度总结</div>
-      <div style="margin: 4px 0; font-size: 13px;"><strong>状态:</strong> 正常</div>
-    </div>
-  </div>
-  <div style="display: flex; gap: 10px; margin-top: 15px;">
-    <span style="background: #e8f4fd; color: #0078d4; padding: 4px 8px; border-radius: 4px; font-size: 12px;">内容展示</span>
-    <span style="background: #e8f4fd; color: #0078d4; padding: 4px 8px; border-radius: 4px; font-size: 12px;">元数据</span>
-    <span style="background: #e8f4fd; color: #0078d4; padding: 4px 8px; border-radius: 4px; font-size: 12px;">状态指示</span>
-  </div>
-</div>
+CardWidget 是一个通用的卡片容器组件，用于展示结构化的内容信息。它支持标题、内容、图标和元数据的组合展示，是构建信息面板、产品展示和内容摘要的理想选择。
 
-CardWidget是一个通用的卡片容器组件，用于展示结构化的内容信息。它支持标题、内容、图标和元数据的组合展示，是构建信息面板、产品展示和内容摘要的理想选择。
+## 🎯 组件预览
 
-## 🎯 主要功能
+--8<-- "assets/card_widget_component_preview.html"
 
-### 内容展示
-- **标题支持**：可选的卡片标题
-- **内容区域**：主要内容展示区域
-- **图标装饰**：支持多种图标类型
-- **状态指示**：支持不同状态的视觉反馈
+## ✨ 核心特性
 
-### 元数据管理
-- **键值对**：支持添加元数据信息
-- **动态管理**：支持动态添加、更新和清除元数据
-- **灵活展示**：元数据区域自动布局
+- **📋 内容展示**: 支持标题、内容、图标的组合展示
+- **🏷️ 元数据管理**: 支持键值对形式的元数据信息展示
+- **🎨 样式定制**: 可选的卡片阴影、边框圆角、内边距调整
+- **📱 状态指示**: 支持不同状态的视觉反馈和状态显示
+- **📧 邮件兼容**: 使用邮件客户端兼容的HTML和CSS实现
 
-### 样式定制
-- **阴影效果**：可选的卡片阴影
-- **边框圆角**：可自定义圆角大小
-- **内边距**：可调整内容间距
+## 🚀 快速开始
 
-## 📋 核心方法
-
-### 基础使用
+### 基础用法
 
 ```python
+from email_widget import Email
 from email_widget.widgets import CardWidget
 from email_widget.core.enums import StatusType, IconType
 
-# 创建卡片组件
-card = CardWidget()
+# 创建邮件
+email = Email("卡片组件示例")
 
-# 设置基本信息
+# 创建基础卡片
+card = CardWidget()
 card.set_title("产品介绍")
 card.set_content("这是一个功能强大的邮件组件库，提供了丰富的UI组件。")
 card.set_icon(IconType.INFO)
+
+email.add_widget(card)
+
+# 使用快捷方法
+email.add_card("快捷卡片", "使用快捷方法创建的卡片组件")
+
+# 导出HTML
+email.export_html("card_demo.html")
 ```
 
-### 内容管理方法
+### 进阶用法
 
 ```python
-# 设置标题
-card.set_title("卡片标题")
+# 创建带元数据的详细卡片
+product_card = CardWidget()
+product_card.set_title("EmailWidget Pro")
+product_card.set_content("专业的Python邮件组件库，提供丰富的UI组件和强大的邮件渲染能力。")
+product_card.set_icon(IconType.SUCCESS)
+product_card.set_status(StatusType.SUCCESS)
 
-# 设置内容
-card.set_content("卡片的主要内容信息")
+# 添加元数据信息
+product_card.add_metadata("版本", "v2.1.0")
+product_card.add_metadata("许可证", "MIT")
+product_card.add_metadata("支持Python", "3.8+")
+product_card.add_metadata("最后更新", "2024-01-15")
 
-# 设置图标
-card.set_icon(IconType.SUCCESS)  # 使用预定义图标
-card.set_icon("🎉")              # 使用自定义图标
-
-# 设置状态
-card.set_status(StatusType.SUCCESS)
-```
-
-### 元数据管理
-
-```python
-# 添加单个元数据
-card.add_metadata("作者", "张三")
-card.add_metadata("创建时间", "2024-01-15")
+email.add_widget(product_card)
 
 # 批量设置元数据
 metadata = {
-    "版本": "v1.0.0",
+    "作者": "Python开发团队",
     "大小": "2.5MB",
-    "更新时间": "2024-01-15"
+    "下载量": "10K+"
 }
-card.set_metadata(metadata)
-
-# 清空元数据
-card.clear_metadata()
+product_card.set_metadata(metadata)
 ```
 
-## 💡 实用示例
+📚 **完整API文档**: [CardWidget API](../api/card-widget.md)
 
-### 产品展示卡片
+## 🎨 样式指南
+
+### 状态类型和颜色
+
+- **SUCCESS**: 绿色 (#107c10) - 成功状态、正常运行、完成状态
+- **WARNING**: 橙色 (#ff8c00) - 警告状态、需要注意、待处理
+- **ERROR**: 红色 (#d13438) - 错误状态、失败状态、异常情况
+- **INFO**: 蓝色 (#0078d4) - 信息状态、常规信息、提示信息
+- **PRIMARY**: 蓝色 (#0078d4) - 主要内容、重要信息、核心功能
+
+### 图标使用建议
+
+- **IconType.INFO**: 📄 用于信息展示、文档说明
+- **IconType.SUCCESS**: ✅ 用于成功状态、完成任务
+- **IconType.WARNING**: ⚠️ 用于警告信息、注意事项
+- **IconType.ERROR**: ❌ 用于错误信息、失败状态
+- **自定义图标**: 🎯 📊 🚀 等，根据内容选择合适的图标
+
+## 📱 最佳实践
+
+### 1. 产品展示卡片
 
 ```python
+from email_widget import Email
 from email_widget.widgets import CardWidget
 from email_widget.core.enums import StatusType, IconType
 
-# 创建产品展示卡片
+# 创建产品展示邮件
+email = Email("产品展示")
+
+# 主要产品卡片
 product_card = CardWidget()
 product_card.set_title("EmailWidget Pro")
 product_card.set_content("专业的Python邮件组件库，提供丰富的UI组件和强大的邮件渲染能力。支持多种组件类型，完美适配各种邮件客户端。")
-product_card.set_icon(IconType.SUCCESS)
+product_card.set_icon("🎯")
 product_card.set_status(StatusType.SUCCESS)
 
 # 添加产品信息
@@ -114,222 +113,157 @@ product_card.add_metadata("许可证", "MIT")
 product_card.add_metadata("支持Python", "3.8+")
 product_card.add_metadata("最后更新", "2024-01-15")
 
-# 渲染卡片
-html = product_card.render_html()
+email.add_widget(product_card)
+
+# 功能特性卡片
+feature_card = CardWidget()
+feature_card.set_title("核心功能")
+feature_card.set_content("提供15+个精美组件，支持表格、图表、进度条、时间线等多种展示方式，满足各种邮件场景需求。")
+feature_card.set_icon("⚡")
+
+email.add_widget(feature_card)
+
+# 导出HTML文件
+email.export_html("product_showcase.html")
 ```
 
-### 用户信息卡片
+--8<-- "assets/temp/card_product_showcase.html"
+
+### 2. 用户信息面板
 
 ```python
-# 创建用户信息卡片
+# 创建用户信息面板邮件
+email = Email("用户信息面板")
+
+# 用户基本信息卡片
 user_card = CardWidget()
 user_card.set_title("用户档案")
 user_card.set_content("高级开发工程师，专注于Python后端开发和数据分析。拥有5年以上的项目经验，熟悉多种开发框架和工具。")
 user_card.set_icon("👤")
+user_card.set_status(StatusType.SUCCESS)
 
-# 添加用户信息
-user_card.add_metadata("姓名", "李四")
+# 添加用户详细信息
+user_card.add_metadata("姓名", "李开发")
 user_card.add_metadata("职位", "高级工程师")
 user_card.add_metadata("部门", "技术部")
 user_card.add_metadata("入职时间", "2019-03-15")
-user_card.add_metadata("邮箱", "lisi@example.com")
+user_card.add_metadata("邮箱", "li.dev@example.com")
+
+email.add_widget(user_card)
+
+# 技能展示卡片
+skill_card = CardWidget()
+skill_card.set_title("技能专长")
+skill_card.set_content("精通Python、Django、FastAPI等后端技术栈，具备丰富的数据库设计和API开发经验。")
+skill_card.set_icon("🛠️")
+
+skill_card.add_metadata("主要技能", "Python, Django, FastAPI")
+skill_card.add_metadata("数据库", "MySQL, PostgreSQL, Redis")
+skill_card.add_metadata("项目经验", "5年+")
+
+email.add_widget(skill_card)
+
+email.export_html("user_profile.html")
 ```
 
-### 项目状态卡片
+--8<-- "assets/temp/card_user_profile.html"
+
+### 3. 项目状态仪表板
 
 ```python
-# 创建项目状态卡片
+# 创建项目状态仪表板邮件
+email = Email("项目状态仪表板")
+
+# 项目进展卡片
 project_card = CardWidget()
 project_card.set_title("项目进展")
-project_card.set_content("EmailWidget项目开发进展顺利，目前已完成核心功能开发，正在进行测试和文档编写阶段。")
-project_card.set_icon(IconType.INFO)
+project_card.set_content("EmailWidget项目开发进展顺利，目前已完成核心功能开发，正在进行测试和文档编写阶段。预计本月底发布正式版本。")
+project_card.set_icon("📊")
 project_card.set_status(StatusType.SUCCESS)
 
-# 添加项目信息
 project_card.add_metadata("项目名称", "EmailWidget")
-project_card.add_metadata("项目状态", "开发中")
-project_card.add_metadata("完成度", "85%")
-project_card.add_metadata("预计完成", "2024-02-01")
-project_card.add_metadata("负责人", "王五")
+project_card.add_metadata("当前版本", "v2.1.0-beta")
+project_card.add_metadata("完成进度", "85%")
+project_card.add_metadata("预计发布", "2024-01-30")
+
+email.add_widget(project_card)
+
+# 团队状态卡片
+team_card = CardWidget()
+team_card.set_title("团队状态")
+team_card.set_content("开发团队运转正常，所有成员积极参与项目开发。当前正在进行最后的测试和优化工作。")
+team_card.set_icon("👥")
+
+team_card.add_metadata("团队规模", "6人")
+team_card.add_metadata("开发人员", "4人")
+team_card.add_metadata("测试人员", "2人")
+
+email.add_widget(team_card)
+
+email.export_html("project_dashboard.html")
 ```
 
-### 通知消息卡片
+--8<-- "assets/temp/card_project_dashboard.html"
+
+## ⚡ 快捷方法
+
+Email 类提供了 `add_card` 快捷方法：
 
 ```python
-# 创建通知消息卡片
-notification_card = CardWidget()
-notification_card.set_title("系统通知")
-notification_card.set_content("系统将在今晚22:00-24:00进行维护升级，届时可能会影响部分功能的正常使用，请提前做好相关准备。")
-notification_card.set_icon("⚠️")
-notification_card.set_status(StatusType.WARNING)
+# 基础快捷方法
+email.add_card("卡片标题", "卡片内容")
 
-# 添加通知信息
-notification_card.add_metadata("通知类型", "系统维护")
-notification_card.add_metadata("影响范围", "全系统")
-notification_card.add_metadata("维护时间", "22:00-24:00")
-notification_card.add_metadata("发布时间", "2024-01-15 10:30")
+# 带图标的快捷方法
+email.add_card("产品介绍", "这是一个优秀的产品", icon="🎯")
+
+# 带元数据的快捷方法
+email.add_card(
+    title="用户信息",
+    content="用户详细信息展示",
+    metadata={
+        "姓名": "张三",
+        "部门": "技术部",
+        "职位": "工程师"
+    }
+)
+
+# 带状态的快捷方法
+email.add_card(
+    title="系统状态",
+    content="系统运行正常",
+    status=StatusType.SUCCESS,
+    icon=IconType.SUCCESS
+)
 ```
 
-### 数据报告卡片
+## 🐛 常见问题
 
+### Q: 卡片内容过长时如何处理？
+A: CardWidget 会自动处理长内容的换行和布局。建议将过长的内容拆分为多个卡片或使用元数据来组织信息。
+
+### Q: 如何自定义卡片的样式？
+A: 可以通过设置不同的StatusType来改变卡片的主题色。如需更多自定义，可以通过CSS覆盖的方式实现。
+
+### Q: 元数据信息显示不全怎么办？
+A: 检查元数据的键值是否过长，建议使用简短的键名和适当的值长度。如果信息较多，可以分成多个卡片展示。
+
+### Q: 卡片在某些邮件客户端中显示异常？
+A: CardWidget 采用了邮件客户端兼容的布局方式。如遇问题，可以尝试简化卡片内容或使用其他组件替代。
+
+### Q: 如何批量管理多个卡片？
+A: 可以将卡片信息组织成列表，然后使用循环批量创建：
 ```python
-# 创建数据报告卡片
-report_card = CardWidget()
-report_card.set_title("月度数据报告")
-report_card.set_content("本月网站访问量达到新高，用户活跃度显著提升。移动端访问占比持续增长，用户体验优化效果明显。")
-report_card.set_icon("📊")
-report_card.set_status(StatusType.INFO)
-
-# 添加报告数据
-report_card.add_metadata("报告周期", "2024年1月")
-report_card.add_metadata("总访问量", "1,234,567")
-report_card.add_metadata("活跃用户", "45,678")
-report_card.add_metadata("移动端占比", "68%")
-report_card.add_metadata("生成时间", "2024-01-15 09:00")
+cards_data = [
+    {"title": "卡片1", "content": "内容1"},
+    {"title": "卡片2", "content": "内容2"}
+]
+for data in cards_data:
+    email.add_card(data["title"], data["content"])
 ```
 
-## 🎨 图标类型详解
+## 🔗 相关组件
 
-### 预定义图标
-
-| 图标类型 | 显示效果 | 适用场景 |
-|---------|----------|----------|
-| `IconType.INFO` | ℹ️ | 信息提示、说明 |
-| `IconType.SUCCESS` | ✅ | 成功状态、完成 |
-| `IconType.WARNING` | ⚠️ | 警告信息、注意 |
-| `IconType.ERROR` | ❌ | 错误状态、失败 |
-| `IconType.QUESTION` | ❓ | 帮助信息、疑问 |
-
-### 自定义图标
-
-```python
-# 使用Emoji图标
-card.set_icon("🎉")  # 庆祝
-card.set_icon("📈")  # 数据增长
-card.set_icon("🔧")  # 工具/设置
-card.set_icon("👤")  # 用户
-card.set_icon("📊")  # 报告/统计
-
-# 使用Unicode符号
-card.set_icon("★")   # 星号
-card.set_icon("●")   # 圆点
-card.set_icon("▲")   # 三角形
-```
-
-## 📊 状态类型说明
-
-### 状态视觉效果
-
-| 状态类型 | 视觉效果 | 适用场景 |
-|---------|----------|----------|
-| `SUCCESS` | 成功色调 | 完成状态、正常运行 |
-| `WARNING` | 警告色调 | 需要注意、待处理 |
-| `ERROR` | 错误色调 | 异常状态、错误信息 |
-| `INFO` | 信息色调 | 一般信息、说明 |
-| `PRIMARY` | 主色调 | 重要信息、突出显示 |
-
-## 🎨 最佳实践
-
-### 1. 内容结构化
-
-```python
-# 保持内容结构清晰
-card = CardWidget()
-card.set_title("明确的标题")  # 简洁明了的标题
-card.set_content("详细的内容描述...")  # 重要信息在前
-card.set_icon(IconType.INFO)  # 合适的图标
-
-# 元数据按重要性排序
-card.add_metadata("关键信息", "重要数据")
-card.add_metadata("补充信息", "额外数据")
-```
-
-### 2. 状态和图标搭配
-
-```python
-# 状态和图标保持一致
-success_card = CardWidget()
-success_card.set_status(StatusType.SUCCESS)
-success_card.set_icon(IconType.SUCCESS)
-
-warning_card = CardWidget()
-warning_card.set_status(StatusType.WARNING)
-warning_card.set_icon(IconType.WARNING)
-```
-
-### 3. 元数据管理
-
-```python
-# 批量设置元数据
-metadata = {
-    "创建时间": "2024-01-15",
-    "更新时间": "2024-01-15",
-    "作者": "张三",
-    "版本": "v1.0.0"
-}
-card.set_metadata(metadata)
-
-# 动态更新元数据
-def update_card_metadata(card, new_data):
-    for key, value in new_data.items():
-        card.add_metadata(key, value)
-```
-
-### 4. 组合使用
-
-```python
-# 多卡片组合展示
-from email_widget.widgets import ColumnWidget
-
-# 创建卡片组合
-column = ColumnWidget().set_columns(2)
-
-# 创建多个相关卡片
-cards = []
-for i in range(4):
-    card = CardWidget()
-    card.set_title(f"卡片 {i+1}")
-    card.set_content(f"这是第{i+1}个卡片的内容")
-    card.set_icon(IconType.INFO)
-    cards.append(card)
-
-# 组合显示
-column.add_widgets(cards)
-```
-
-### 5. 响应式设计
-
-```python
-# 根据内容长度调整卡片
-def create_adaptive_card(title, content, metadata=None):
-    card = CardWidget()
-    card.set_title(title)
-    card.set_content(content)
-    
-    # 根据内容长度选择图标
-    if len(content) > 100:
-        card.set_icon("📄")  # 长文档
-    else:
-        card.set_icon(IconType.INFO)  # 简短信息
-    
-    if metadata:
-        card.set_metadata(metadata)
-    
-    return card
-```
-
-## 🔧 常见问题
-
-### Q: 如何控制卡片的宽度？
-A: 卡片宽度由容器控制，可以通过外层布局组件（如ColumnWidget）来管理。
-
-### Q: 元数据区域可以自定义样式吗？
-A: 元数据区域使用统一的样式，如需自定义可以通过CSS覆盖。
-
-### Q: 卡片内容支持HTML吗？
-A: 支持基本的HTML标签，但建议使用纯文本以确保邮件客户端兼容性。
-
-### Q: 如何实现卡片的点击效果？
-A: 在邮件环境中，可以通过包装链接标签来实现点击跳转。
-
-CardWidget为您提供了灵活而美观的内容展示方案，无论是产品介绍、用户信息还是数据报告，都能完美呈现！ 
+- [StatusWidget](status-widget.md) - 用于显示简单的状态信息
+- [AlertWidget](alert-widget.md) - 可以在卡片中添加警告信息
+- [TextWidget](text-widget.md) - 用于卡片中的详细文本内容
+- [SeparatorWidget](separator-widget.md) - 用于分隔不同的卡片组

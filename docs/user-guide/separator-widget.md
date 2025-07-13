@@ -209,6 +209,8 @@ email.add_separator(
 email.export_html("system_monitoring.html")
 ```
 
+--8<-- "assets/temp/separator_system_monitoring.html"
+
 ## ⚡ 快捷方法
 
 Email 类提供了 `add_separator` 快捷方法：

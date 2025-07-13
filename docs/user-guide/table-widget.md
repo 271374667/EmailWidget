@@ -18,28 +18,30 @@ table.add_row(["张三", "28", "技术部"])
 table.add_row(["李四", "32", "销售部"])
 ```
 
+<div class="email-preview-wrapper">
 <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background: #f8f9fa;">
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">姓名</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">年龄</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">部门</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Name</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Age</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Department</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">张三</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">John</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">28</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">技术部</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Tech</td>
             </tr>
             <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">李四</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Jane</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">32</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">销售部</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Sales</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>
 
 ## 📊 基本用法
@@ -74,22 +76,24 @@ table.set_headers(["项目名称", "完成状态"])
 table.add_row(["项目Alpha", "75%"])
 ```
 
+<div class="email-preview-wrapper">
 <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
-    <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130;">项目进度统计表</h3>
+    <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #323130;">Project Progress Statistics</h3>
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background: #f8f9fa;">
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">项目名称</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">完成状态</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Project Name</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Completion Status</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">项目Alpha</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Project Alpha</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">75%</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>
 
 ## 🎨 样式配置
@@ -109,38 +113,40 @@ table.add_rows([
 ])
 ```
 
+<div class="email-preview-wrapper">
 <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background: #f8f9fa;">
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">序号</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">产品</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">销量</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">No.</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Product</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Sales</th>
             </tr>
         </thead>
         <tbody>
             <tr style="background: #ffffff;">
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">1</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">产品A</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Product A</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">1,200</td>
             </tr>
             <tr style="background: #f8f9fa;">
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">2</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">产品B</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Product B</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">980</td>
             </tr>
             <tr style="background: #ffffff;">
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">3</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">产品C</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Product C</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">1,500</td>
             </tr>
             <tr style="background: #f8f9fa;">
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">4</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">产品D</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Product D</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">750</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>
 
 ### 边框和索引列
@@ -158,33 +164,35 @@ table.add_rows([
 ])
 ```
 
+<div class="email-preview-wrapper">
 <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
     <table style="width: 100%; border-collapse: collapse; border: 1px solid #e1dfdd;">
         <thead>
             <tr style="background: #f8f9fa;">
-                <th style="padding: 12px; text-align: left; border: 1px solid #e1dfdd; font-weight: 600;">索引</th>
-                <th style="padding: 12px; text-align: left; border: 1px solid #e1dfdd; font-weight: 600;">任务</th>
-                <th style="padding: 12px; text-align: left; border: 1px solid #e1dfdd; font-weight: 600;">状态</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #e1dfdd; font-weight: 600;">Index</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #e1dfdd; font-weight: 600;">Task</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #e1dfdd; font-weight: 600;">Status</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td style="padding: 12px; border: 1px solid #e1dfdd; background: #f8f9fa; font-weight: 600;">1</td>
-                <td style="padding: 12px; border: 1px solid #e1dfdd;">数据备份</td>
-                <td style="padding: 12px; border: 1px solid #e1dfdd;">完成</td>
+                <td style="padding: 12px; border: 1px solid #e1dfdd;">Data Backup</td>
+                <td style="padding: 12px; border: 1px solid #e1dfdd;">Complete</td>
             </tr>
             <tr>
                 <td style="padding: 12px; border: 1px solid #e1dfdd; background: #f8f9fa; font-weight: 600;">2</td>
-                <td style="padding: 12px; border: 1px solid #e1dfdd;">系统更新</td>
-                <td style="padding: 12px; border: 1px solid #e1dfdd;">进行中</td>
+                <td style="padding: 12px; border: 1px solid #e1dfdd;">System Update</td>
+                <td style="padding: 12px; border: 1px solid #e1dfdd;">In Progress</td>
             </tr>
             <tr>
                 <td style="padding: 12px; border: 1px solid #e1dfdd; background: #f8f9fa; font-weight: 600;">3</td>
-                <td style="padding: 12px; border: 1px solid #e1dfdd;">安全检查</td>
-                <td style="padding: 12px; border: 1px solid #e1dfdd;">待开始</td>
+                <td style="padding: 12px; border: 1px solid #e1dfdd;">Security Check</td>
+                <td style="padding: 12px; border: 1px solid #e1dfdd;">Pending</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>
 
 ## 🎯 状态单元格
@@ -214,33 +222,35 @@ table.add_row([
 ])
 ```
 
+<div class="email-preview-wrapper">
 <div style="background: #ffffff; border: 1px solid #e1dfdd; border-radius: 4px; padding: 16px; margin: 16px 0;">
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background: #f8f9fa;">
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">服务</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">状态</th>
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">响应时间</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Service</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Status</th>
+                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e9ecef; font-weight: 600;">Response Time</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Web服务</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef; color: #107c10; font-weight: 600;">正常</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Web Service</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef; color: #107c10; font-weight: 600;">Normal</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">145ms</td>
             </tr>
             <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">数据库</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef; color: #ff8c00; font-weight: 600;">警告</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Database</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef; color: #ff8c00; font-weight: 600;">Warning</td>
                 <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">892ms</td>
             </tr>
             <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">缓存服务</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef; color: #d13438; font-weight: 600;">故障</td>
-                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">超时</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Cache Service</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef; color: #d13438; font-weight: 600;">Error</td>
+                <td style="padding: 12px; border-bottom: 1px solid #e9ecef;">Timeout</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>
 
 ### 状态类型说明

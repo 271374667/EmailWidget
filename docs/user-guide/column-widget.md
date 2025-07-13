@@ -108,6 +108,8 @@ auto_column.add_widgets(cards)
 email.add_widget(auto_column)
 ```
 
+--8<-- "assets/temp/column_auto_layout.html"
+
 ### 2. 固定列数布局
 
 ```python
@@ -136,6 +138,8 @@ fixed_column.add_widgets([system_status, service_status])
 email.add_widget(fixed_column)
 ```
 
+--8<-- "assets/temp/column_fixed_layout.html"
+
 ### 3. 混合组件布局
 
 ```python
@@ -158,6 +162,8 @@ progress_widget = ProgressWidget().set_progress(75).set_label("项目进度")
 mixed_column.add_widgets([text_widget, alert_widget, progress_widget])
 email.add_widget(mixed_column)
 ```
+
+--8<-- "assets/temp/column_mixed_layout.html"
 
 ### 4. 响应式布局
 
@@ -186,6 +192,8 @@ widgets = [widget1, widget2, widget3, widget4]
 responsive_layout = create_responsive_layout(widgets)
 email.add_widget(responsive_layout)
 ```
+
+--8<-- "assets/temp/column_responsive_layout.html"
 
 ## ⚡ 快捷方法
 

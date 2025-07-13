@@ -13,7 +13,7 @@ ChartWidget 专门用于在邮件中展示各种图表和数据可视化内容�
 - **📝 详细标注**: 支持标题、描述和数据摘要等详细信息
 - **📱 响应式**: 自动适配不同设备的显示效果
 - **📧 邮件兼容**: 使用邮件客户端兼容的HTML和CSS实现
-
+/
 ## 🚀 快速开始
 
 ### 基础用法
@@ -151,6 +151,8 @@ proportion_chart.set_description("适合展示部分与整体的关系")
 email.add_widgets([trend_chart, comparison_chart, proportion_chart])
 ```
 
+--8<-- "assets/temp/chart_choosing_chart_types.html"
+
 ### 2. 业务数据仪表板
 
 ```python
@@ -199,6 +201,8 @@ for chart_info in charts_data:
     dashboard.add_widget(chart)
 ```
 
+--8<-- "assets/temp/chart_business_dashboard.html"
+
 ### 3. 完整业务报告
 
 ```python
@@ -241,6 +245,8 @@ product_chart.set_data_summary("明星产品: 3个 | 问题产品: 1个 | 现金
 # 添加到报告
 report.add_widgets([revenue_chart, growth_chart, product_chart])
 ```
+
+--8<-- "assets/temp/chart_business_report.html"
 
 ## ⚡ 快捷方法
 

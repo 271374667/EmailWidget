@@ -356,8 +356,8 @@ div[style*="border: 1px solid #e1dfdd"] table {
 }
 
 /* 
- * 精准修复主页和快速开始页面的背景色问题
- * 只针对包含email-preview-wrapper的元素，不影响其他页面
+ * 全局HTML预览样式隔离解决方案
+ * 修复style泄露问题，确保嵌入的HTML不影响MkDocs布局
  */
 
 /* 针对email-preview-wrapper容器的样式隔离 */
@@ -369,6 +369,9 @@ div[style*="border: 1px solid #e1dfdd"] table {
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
     line-height: 1.6 !important;
     color: #323130 !important;
+    /* 重要：隔离内部样式，防止影响外部布局 */
+    contain: layout style !important;
+    overflow: hidden !important;
 }
 
 /* 确保email-container在wrapper内正确显示 */

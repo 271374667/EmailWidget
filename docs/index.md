@@ -74,90 +74,92 @@ email.export_html("report.html")
 
 ## 🎪 使用场景
 
+<div class="email-preview-wrapper">
 <div style="margin: 40px 0; padding: 30px;">
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;">
 
-    <!-- 数据分析报告 -->
+    <!-- Data Analysis Reports -->
     <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #FF6B6B, #4ECDC4);"></div>
       <div style="display: flex; align-items: center; margin-bottom: 15px;">
         <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FF6B6B, #FF8E8E); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(255,107,107,0.3);">
           <span style="font-size: 24px;">📊</span>
         </div>
-        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">数据分析报告</h3>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">Data Analysis Reports</h3>
       </div>
-      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">为数据分析师创建专业的数据可视化邮件报告</p>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">Create professional data visualization email reports for data analysts</p>
       <div style="margin-bottom: 15px;">
-        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">业务分析</span>
-        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">KPI监控</span>
-        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">趋势分析</span>
+        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">Business Analysis</span>
+        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">KPI Monitoring</span>
+        <span style="background: #E8F4FD; color: #2980B9; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">Trend Analysis</span>
       </div>
       <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
-        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> ChartWidget、TableWidget、ProgressWidget</p>
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>Core Components:</strong> ChartWidget, TableWidget, ProgressWidget</p>
       </div>
     </div>
     
-    <!-- 系统监控报告 -->
+    <!-- System Monitoring Reports -->
     <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #4ECDC4, #44A08D);"></div>
       <div style="display: flex; align-items: center; margin-bottom: 15px;">
         <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #4ECDC4, #5FDDD5); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(78,205,196,0.3);">
           <span style="font-size: 24px;">🖥️</span>
         </div>
-        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">系统监控报告</h3>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">System Monitoring Reports</h3>
       </div>
-      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">服务器状态、性能指标等系统运维监控邮件</p>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">Server status, performance metrics and system operations monitoring emails</p>
       <div style="margin-bottom: 15px;">
-        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">系统运维</span>
-        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">服务监控</span>
-        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">告警通知</span>
+        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">System Ops</span>
+        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">Service Monitor</span>
+        <span style="background: #E8F8F5; color: #27AE60; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">Alert System</span>
       </div>
       <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
-        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> StatusWidget、AlertWidget、LogWidget</p>
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>Core Components:</strong> StatusWidget, AlertWidget, LogWidget</p>
       </div>
     </div>
     
-    <!-- 爬虫任务报告 -->
+    <!-- Web Scraping Reports -->
     <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #A8E6CF, #7FCDCD);"></div>
       <div style="display: flex; align-items: center; margin-bottom: 15px;">
         <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #A8E6CF, #B8F2E6); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(168,230,207,0.3);">
           <span style="font-size: 24px;">🕷️</span>
         </div>
-        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">爬虫任务报告</h3>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">Web Scraping Reports</h3>
       </div>
-      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">爬虫任务执行情况、数据采集统计邮件报告</p>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">Scraping task execution status and data collection statistics email reports</p>
       <div style="margin-bottom: 15px;">
-        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">数据采集</span>
-        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">任务监控</span>
-        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">质量报告</span>
+        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">Data Collection</span>
+        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">Task Monitoring</span>
+        <span style="background: #F0F9F0; color: #16A085; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">Quality Reports</span>
       </div>
       <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
-        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> ProgressWidget、TableWidget、LogWidget</p>
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>Core Components:</strong> ProgressWidget, TableWidget, LogWidget</p>
       </div>
     </div>
     
-    <!-- 定期业务通讯 -->
+    <!-- Regular Business Communication -->
     <div style="background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; border: 1px solid #f0f0f0;">
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #FFB6C1, #FFA07A);"></div>
       <div style="display: flex; align-items: center; margin-bottom: 15px;">
         <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFB6C1, #FFC1CC); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(255,182,193,0.3);">
           <span style="font-size: 24px;">📧</span>
         </div>
-        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">定期业务通讯</h3>
+        <h3 style="margin: 0; color: #2C3E50; font-size: 1.4em; font-weight: 700;">Regular Business Communication</h3>
       </div>
-      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">团队周报、项目进展、业务总结等定期邮件</p>
+      <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 0.95em;">Team weekly reports, project progress, business summaries and other regular emails</p>
       <div style="margin-bottom: 15px;">
-        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">项目管理</span>
-        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">团队沟通</span>
-        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">业务汇报</span>
+        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">Project Management</span>
+        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; margin-right: 8px; display: inline-block; margin-bottom: 5px;">Team Communication</span>
+        <span style="background: #FFF0F5; color: #E74C3C; padding: 4px 12px; border-radius: 20px; font-size: 0.85em; display: inline-block; margin-bottom: 5px;">Business Reports</span>
       </div>
       <div style="border-top: 1px solid #F0F0F0; padding-top: 15px;">
-        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>核心组件:</strong> TextWidget、CardWidget、QuoteWidget</p>
+        <p style="margin: 0; color: #888; font-size: 0.9em;"><strong>Core Components:</strong> TextWidget, CardWidget, QuoteWidget</p>
       </div>
     </div>
 
   </div>
+</div>
 </div>
 
 <style>

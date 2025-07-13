@@ -135,6 +135,8 @@ dashboard.add_widgets(progress_widgets)
 email.add_widget(dashboard)
 ```
 
+--8<-- "assets/temp/circular_progress_system_monitoring.html"
+
 ### 2. 项目进度展示
 
 ```python
@@ -177,6 +179,8 @@ phases_column.add_widgets(phase_widgets)
 email.add_widget(phases_column)
 ```
 
+--8<-- "assets/temp/circular_progress_project_display.html"
+
 ### 3. 非百分比进度
 
 ```python
@@ -206,6 +210,8 @@ download_progress = (CircularProgressWidget()
 
 email.add_widget(download_progress)
 ```
+
+--8<-- "assets/temp/circular_progress_non_percentage.html"
 
 ## ⚡ 快捷方法
 

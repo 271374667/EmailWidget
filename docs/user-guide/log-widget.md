@@ -103,6 +103,8 @@ startup_log.show_timestamp(True)
 email.add_widget(startup_log)
 ```
 
+--8<-- "assets/temp/log_application_startup.html"
+
 ### 2. 错误日志监控
 
 ```python
@@ -128,6 +130,8 @@ error_log.set_max_height("300px")
 
 email.add_widget(error_log)
 ```
+
+--8<-- "assets/temp/log_error_monitoring.html"
 
 ### 3. 系统运维日志
 
@@ -157,6 +161,8 @@ ops_log.set_max_height("500px")
 
 email.add_widget(ops_log)
 ```
+
+--8<-- "assets/temp/log_system_operations.html"
 
 ## ⚡ 快捷方法
 

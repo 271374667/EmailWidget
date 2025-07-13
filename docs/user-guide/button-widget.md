@@ -140,6 +140,8 @@ info_button = (ButtonWidget()
 email.add_widget(info_button)
 ```
 
+--8<-- "assets/temp/button_ecommerce_email.html"
+
 ### 2. 系统通知邮件
 
 ```python
@@ -161,6 +163,8 @@ detail_button = (ButtonWidget()
 
 email.add_widget(detail_button)
 ```
+
+--8<-- "assets/temp/button_system_notification.html"
 
 ### 3. 产品介绍邮件
 
@@ -193,6 +197,8 @@ column.add_widgets([trial_button, pricing_button])
 email.add_widget(column)
 ```
 
+--8<-- "assets/temp/button_product_introduction.html"
+
 ### 4. 邮件客户端兼容性优化
 
 ```python
@@ -212,6 +218,8 @@ compatible_button = (ButtonWidget()
 
 email.add_widget(compatible_button)
 ```
+
+--8<-- "assets/temp/button_compatibility_optimization.html"
 
 ## ⚡ 快捷方法
 
