@@ -302,3 +302,89 @@ div[style*="border: 1px solid #e1dfdd"] table {
     margin-right: 0 !important;
     box-sizing: border-box !important;
 }
+
+/* 
+ * 修复HTML预览文件中的标题颜色问题
+ * 确保预览文件中的标题保持正确的白色，不被MkDocs主题覆盖
+ */
+
+/* 针对所有HTML预览文件中的email-header区域 */
+.md-content .email-header,
+.md-content .email-header h1,
+.md-content .email-header h2,
+.md-content .email-header h3,
+.md-content .email-header h4,
+.md-content .email-header h5,
+.md-content .email-header h6 {
+    color: #ffffff !important;
+}
+
+/* 确保email-header的背景色不被覆盖 */
+.md-content .email-header {
+    background: #0078d4 !important;
+    color: #ffffff !important;
+}
+
+/* 修复所有带有蓝色背景的header区域 */
+.md-content div[style*="background: #0078d4"] h1,
+.md-content div[style*="background: #0078d4"] h2,
+.md-content div[style*="background: #0078d4"] h3,
+.md-content div[style*="background: #0078d4"] h4,
+.md-content div[style*="background: #0078d4"] h5,
+.md-content div[style*="background: #0078d4"] h6,
+.md-content div[style*="background: #0078d4"] {
+    color: #ffffff !important;
+}
+
+/* 修复带有color: #ffffff样式的元素 */
+.md-content [style*="color: #ffffff"],
+.md-content [style*="color:#ffffff"] {
+    color: #ffffff !important;
+}
+
+/* 确保时间戳和副标题也保持白色 */
+.md-content .email-header .timestamp,
+.md-content .email-header .subtitle,
+.md-content .email-header div {
+    color: #ffffff !important;
+}
+
+/* 针对特定背景色的区域强制白色文字 */
+.md-content div[style*="background: #0078d4"] *,
+.md-content div[style*="background:#0078d4"] * {
+    color: #ffffff !important;
+}
+
+/* 
+ * 全局HTML预览样式隔离解决方案
+ * 修复style泄露问题，确保嵌入的HTML不影响MkDocs布局
+ */
+
+/* 针对email-preview-wrapper容器的样式隔离 */
+.md-content .email-preview-wrapper {
+    margin: 16px 0 !important;
+    padding: 20px !important;
+    background-color: #faf9f8 !important;
+    border-radius: 8px !important;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+    line-height: 1.6 !important;
+    color: #323130 !important;
+    /* 重要：隔离内部样式，防止影响外部布局 */
+    contain: layout style !important;
+    overflow: hidden !important;
+}
+
+/* 确保email-container在wrapper内正确显示 */
+.md-content .email-preview-wrapper .email-container {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    background: #ffffff !important;
+    border: 1px solid #e1dfdd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* 防止wrapper内的样式影响MkDocs其他元素 */
+.md-content .email-preview-wrapper * {
+    box-sizing: border-box !important;
+}

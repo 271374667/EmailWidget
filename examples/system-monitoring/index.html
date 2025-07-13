@@ -703,8 +703,6 @@
       
         
       
-        
-      
     
     
     
@@ -1067,29 +1065,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    高级示例
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../real-world/" class="md-nav__link">
         
   
@@ -1298,14 +1273,6 @@
     <title>服务器资源监控报告</title>
 
         <style>
-            body {
-                margin: 0;
-                padding: 20px;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                line-height: 1.6;
-                color: #323130;
-                background-color: #faf9f8;
-            }
 
             .email-container {
                 max-width: 800px;
@@ -1314,6 +1281,14 @@
                 border: 1px solid #e1dfdd;
                 border-radius: 8px;
                 overflow: hidden;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+
+                padding: 20px;
+
+                background-color: #faf9f8;
             }
 
             .email-header {
@@ -1342,9 +1317,7 @@
                 font-weight: 400;
             }
 
-            .email-body {
-                padding: 24px;
-            }
+            .email-
 
             .email-footer {
                 background: #f3f2f1;
@@ -1372,11 +1345,6 @@
             /* 响应式设计 - 使用邮件客户端兼容的方式 */
 
             /* 通用响应式样式 */
-            .email-container {
-                width: 100%;
-                max-width: 800px;
-                min-width: 320px;
-            }
 
             /* 表格响应式样式 */
             .responsive-table {
@@ -1418,9 +1386,7 @@
         <!-- MSO条件注释样式 - 针对Outlook -->
         <!--[if mso]>
         <style type="text/css">
-            .email-container {
-                width: 600px !important;
-            }
+
             .responsive-table {
                 display: table !important;
             }
@@ -1429,7 +1395,8 @@
 
 </head>
 <body>
-    <div class="email-container">
+    <div class="email-preview-wrapper">
+        <div class="email-container">
         <div class="email-header">
             <h1>服务器资源监控报告</h1>
             <div class="timestamp">生成时间: 2025年07月07日 23:36:48</div>
@@ -1449,7 +1416,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -1462,7 +1428,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -1474,7 +1439,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <div style="
             background: #ffffff;
@@ -1490,7 +1454,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">🟢 正常运行</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -1504,7 +1467,6 @@
                 </h3>
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">5天 0小时</div>
         </div>
-
 
         <div style="
             background: #ffffff;
@@ -1520,7 +1482,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">8核</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -1535,7 +1496,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">16.0 GB</div>
         </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -1548,7 +1508,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -1560,7 +1519,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -1599,7 +1557,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -1611,7 +1568,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -1650,7 +1606,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -1662,7 +1617,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -1701,7 +1655,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -1713,7 +1666,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <div style="
             background: #dcfce7;
@@ -1735,13 +1687,12 @@
             <div style="line-height: 1.5; font-size: 14px;">系统运行正常，所有指标均在正常范围内</div>
         </div>
 
-
         </div>
 
         <div class="email-footer">
             <p>此邮件由 EmailWidget 自动生成</p>
         </div>
-    </div>
+    </div>    </div>
 </body>
 </html>
 
@@ -1893,14 +1844,6 @@
     <title>应用服务监控报告</title>
 
         <style>
-            body {
-                margin: 0;
-                padding: 20px;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                line-height: 1.6;
-                color: #323130;
-                background-color: #faf9f8;
-            }
 
             .email-container {
                 max-width: 800px;
@@ -1909,6 +1852,14 @@
                 border: 1px solid #e1dfdd;
                 border-radius: 8px;
                 overflow: hidden;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+
+                padding: 20px;
+
+                background-color: #faf9f8;
             }
 
             .email-header {
@@ -1937,9 +1888,7 @@
                 font-weight: 400;
             }
 
-            .email-body {
-                padding: 24px;
-            }
+            .email-
 
             .email-footer {
                 background: #f3f2f1;
@@ -1967,11 +1916,6 @@
             /* 响应式设计 - 使用邮件客户端兼容的方式 */
 
             /* 通用响应式样式 */
-            .email-container {
-                width: 100%;
-                max-width: 800px;
-                min-width: 320px;
-            }
 
             /* 表格响应式样式 */
             .responsive-table {
@@ -2013,9 +1957,7 @@
         <!-- MSO条件注释样式 - 针对Outlook -->
         <!--[if mso]>
         <style type="text/css">
-            .email-container {
-                width: 600px !important;
-            }
+
             .responsive-table {
                 display: table !important;
             }
@@ -2024,7 +1966,8 @@
 
 </head>
 <body>
-    <div class="email-container">
+    <div class="email-preview-wrapper">
+        <div class="email-container">
         <div class="email-header">
             <h1>应用服务监控报告</h1>
             <div class="timestamp">生成时间: 2025年07月07日 23:40:33</div>
@@ -2044,7 +1987,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2057,7 +1999,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2069,7 +2010,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <div style="
             background: #ffffff;
@@ -2085,7 +2025,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">5</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -2099,7 +2038,6 @@
                 </h3>
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">3</div>
         </div>
-
 
         <div style="
             background: #ffffff;
@@ -2115,7 +2053,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">2</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -2130,7 +2067,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">60.0%</div>
         </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2142,7 +2078,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <!--[if mso]>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -2168,7 +2103,6 @@
         </table>
         <![endif]-->
 
-
         <!--[if mso]>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
@@ -2192,7 +2126,6 @@
             </tr>
         </table>
         <![endif]-->
-
 
         <!--[if mso]>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -2218,7 +2151,6 @@
         </table>
         <![endif]-->
 
-
         <!--[if mso]>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
@@ -2242,7 +2174,6 @@
             </tr>
         </table>
         <![endif]-->
-
 
         <!--[if mso]>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -2268,7 +2199,6 @@
         </table>
         <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2280,7 +2210,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -2374,7 +2303,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2386,7 +2314,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <div style="
             background: #fed7aa;
@@ -2408,7 +2335,6 @@
             <div style="line-height: 1.5; font-size: 14px;">数据库 状态异常: 请求超时</div>
         </div>
 
-
         <div style="
             background: #fecaca;
             border: 1px solid #ef4444;
@@ -2429,13 +2355,12 @@
             <div style="line-height: 1.5; font-size: 14px;">消息队列 状态异常: HTTP 500</div>
         </div>
 
-
         </div>
 
         <div class="email-footer">
             <p>此邮件由 EmailWidget 自动生成</p>
         </div>
-    </div>
+    </div>    </div>
 </body>
 </html>
 
@@ -2601,14 +2526,6 @@
     <title>系统日志分析报告</title>
 
         <style>
-            body {
-                margin: 0;
-                padding: 20px;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                line-height: 1.6;
-                color: #323130;
-                background-color: #faf9f8;
-            }
 
             .email-container {
                 max-width: 800px;
@@ -2617,6 +2534,14 @@
                 border: 1px solid #e1dfdd;
                 border-radius: 8px;
                 overflow: hidden;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+
+                padding: 20px;
+
+                background-color: #faf9f8;
             }
 
             .email-header {
@@ -2645,9 +2570,7 @@
                 font-weight: 400;
             }
 
-            .email-body {
-                padding: 24px;
-            }
+            .email-
 
             .email-footer {
                 background: #f3f2f1;
@@ -2675,11 +2598,6 @@
             /* 响应式设计 - 使用邮件客户端兼容的方式 */
 
             /* 通用响应式样式 */
-            .email-container {
-                width: 100%;
-                max-width: 800px;
-                min-width: 320px;
-            }
 
             /* 表格响应式样式 */
             .responsive-table {
@@ -2721,9 +2639,7 @@
         <!-- MSO条件注释样式 - 针对Outlook -->
         <!--[if mso]>
         <style type="text/css">
-            .email-container {
-                width: 600px !important;
-            }
+
             .responsive-table {
                 display: table !important;
             }
@@ -2732,7 +2648,8 @@
 
 </head>
 <body>
-    <div class="email-container">
+    <div class="email-preview-wrapper">
+        <div class="email-container">
         <div class="email-header">
             <h1>系统日志分析报告</h1>
             <div class="timestamp">生成时间: 2025年07月07日 23:41:37</div>
@@ -2752,7 +2669,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2765,7 +2681,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2777,7 +2692,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <div style="
             background: #ffffff;
@@ -2793,7 +2707,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">10</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -2807,7 +2720,6 @@
                 </h3>
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">4</div>
         </div>
-
 
         <div style="
             background: #ffffff;
@@ -2823,7 +2735,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">2</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -2838,7 +2749,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">4</div>
         </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2851,7 +2761,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2863,7 +2772,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -2902,7 +2810,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2914,7 +2821,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -2953,7 +2859,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -2965,7 +2870,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -3004,7 +2908,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3016,7 +2919,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -3084,7 +2986,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3096,7 +2997,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -3123,13 +3023,12 @@
     </table>
     <![endif]-->
 
-
         </div>
 
         <div class="email-footer">
             <p>此邮件由 EmailWidget 自动生成</p>
         </div>
-    </div>
+    </div>    </div>
 </body>
 </html>
 
@@ -3235,14 +3134,6 @@
     <title>数据库性能监控报告</title>
 
         <style>
-            body {
-                margin: 0;
-                padding: 20px;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                line-height: 1.6;
-                color: #323130;
-                background-color: #faf9f8;
-            }
 
             .email-container {
                 max-width: 800px;
@@ -3251,6 +3142,14 @@
                 border: 1px solid #e1dfdd;
                 border-radius: 8px;
                 overflow: hidden;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+
+                padding: 20px;
+
+                background-color: #faf9f8;
             }
 
             .email-header {
@@ -3279,9 +3178,7 @@
                 font-weight: 400;
             }
 
-            .email-body {
-                padding: 24px;
-            }
+            .email-
 
             .email-footer {
                 background: #f3f2f1;
@@ -3309,11 +3206,6 @@
             /* 响应式设计 - 使用邮件客户端兼容的方式 */
 
             /* 通用响应式样式 */
-            .email-container {
-                width: 100%;
-                max-width: 800px;
-                min-width: 320px;
-            }
 
             /* 表格响应式样式 */
             .responsive-table {
@@ -3355,9 +3247,7 @@
         <!-- MSO条件注释样式 - 针对Outlook -->
         <!--[if mso]>
         <style type="text/css">
-            .email-container {
-                width: 600px !important;
-            }
+
             .responsive-table {
                 display: table !important;
             }
@@ -3366,7 +3256,8 @@
 
 </head>
 <body>
-    <div class="email-container">
+    <div class="email-preview-wrapper">
+        <div class="email-container">
         <div class="email-header">
             <h1>数据库性能监控报告</h1>
             <div class="timestamp">生成时间: 2025年07月07日 23:42:34</div>
@@ -3386,7 +3277,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3398,7 +3288,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <div style="
             background: #ffffff;
@@ -3414,7 +3303,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">🟢 正常运行</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -3428,7 +3316,6 @@
                 </h3>
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">45/100</div>
         </div>
-
 
         <div style="
             background: #ffffff;
@@ -3444,7 +3331,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">45.0%</div>
         </div>
 
-
         <div style="
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -3459,7 +3345,6 @@
                 <div style="color: #323130; line-height: 1.5; font-size: 14px;">2.4 GB</div>
         </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3472,7 +3357,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3484,7 +3368,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -3523,7 +3406,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3535,7 +3417,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -3574,7 +3455,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3586,7 +3466,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <div style="margin: 16px 0;">
             <div style="
@@ -3625,7 +3504,6 @@
         </div>
     </div>
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3637,7 +3515,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -3715,13 +3592,12 @@
     </table>
     <![endif]-->
 
-
         </div>
 
         <div class="email-footer">
             <p>此邮件由 EmailWidget 自动生成</p>
         </div>
-    </div>
+    </div>    </div>
 </body>
 </html>
 
@@ -3793,14 +3669,6 @@
     <title>系统综合监控仪表板</title>
 
         <style>
-            body {
-                margin: 0;
-                padding: 20px;
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-                line-height: 1.6;
-                color: #323130;
-                background-color: #faf9f8;
-            }
 
             .email-container {
                 max-width: 800px;
@@ -3809,6 +3677,14 @@
                 border: 1px solid #e1dfdd;
                 border-radius: 8px;
                 overflow: hidden;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+
+                padding: 20px;
+
+                background-color: #faf9f8;
             }
 
             .email-header {
@@ -3837,9 +3713,7 @@
                 font-weight: 400;
             }
 
-            .email-body {
-                padding: 24px;
-            }
+            .email-
 
             .email-footer {
                 background: #f3f2f1;
@@ -3867,11 +3741,6 @@
             /* 响应式设计 - 使用邮件客户端兼容的方式 */
 
             /* 通用响应式样式 */
-            .email-container {
-                width: 100%;
-                max-width: 800px;
-                min-width: 320px;
-            }
 
             /* 表格响应式样式 */
             .responsive-table {
@@ -3913,9 +3782,7 @@
         <!-- MSO条件注释样式 - 针对Outlook -->
         <!--[if mso]>
         <style type="text/css">
-            .email-container {
-                width: 600px !important;
-            }
+
             .responsive-table {
                 display: table !important;
             }
@@ -3924,7 +3791,8 @@
 
 </head>
 <body>
-    <div class="email-container">
+    <div class="email-preview-wrapper">
+        <div class="email-container">
         <div class="email-header">
             <h1>系统综合监控仪表板</h1>
             <div class="timestamp">生成时间: 2025年07月07日 23:44:39</div>
@@ -3944,7 +3812,6 @@
     </table>
     <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -3956,7 +3823,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <!--[if mso]>
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -4123,7 +3989,6 @@
         </table>
         <![endif]-->
 
-
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -4135,7 +4000,6 @@
         </tr>
     </table>
     <![endif]-->
-
 
         <div style="
             background: #fed7aa;
@@ -4157,13 +4021,12 @@
             <div style="line-height: 1.5; font-size: 14px;">内存使用率达到72%，建议监控</div>
         </div>
 
-
         </div>
 
         <div class="email-footer">
             <p>此邮件由 EmailWidget 自动生成</p>
         </div>
-    </div>
+    </div>    </div>
 </body>
 </html>
 
@@ -4203,7 +4066,7 @@
 <li>应用性能监控</li>
 <li>系统健康检查</li>
 </ul>
-<p>继续学习 <a href="../spider-reports/">爬虫报告</a> 和 <a href="../advanced/">高级示例</a>，探索更多专业应用！</p>
+<p>继续学习 <a href="../spider-reports/">爬虫报告</a> 和 <a href="../real-world/">实际应用</a>，探索更多专业应用！</p>
 
 
 

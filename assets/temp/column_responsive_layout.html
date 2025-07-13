@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式布局示例</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 响应式布局样式 - 4个组件使用2x2网格 */
+        .column-widget {
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .column-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 20px;
+        }
+
+        .column-cell {
+            vertical-align: top;
+            width: 50%;
+        }
+
+        /* 响应式组件基础样式 */
+        .responsive-widget {
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            height: 100%;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .responsive-widget:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+        }
+
+        .widget-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #323130;
+            margin: 0 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e1dfdd;
+        }
+
+        .widget-content {
+            font-size: 14px;
+            color: #605e5c;
+            line-height: 1.5;
+        }
+
+        /* 组件特定样式 */
+        .widget-1 {
+            border-left: 4px solid #0078d4;
+        }
+
+        .widget-2 {
+            border-left: 4px solid #107c10;
+        }
+
+        .widget-3 {
+            border-left: 4px solid #ff8c00;
+        }
+
+        .widget-4 {
+            border-left: 4px solid #d13438;
+        }
+
+        /* 数据展示 */
+        .metric-display {
+            margin-top: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #323130;
+            margin: 0 0 4px 0;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-change {
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .change-positive {
+            color: #107c10;
+        }
+
+        .change-negative {
+            color: #d13438;
+        }
+
+        /* 间距说明 */
+        .spacing-note {
+            background: #f0f8ff;
+            border: 1px solid #0078d4;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #323130;
+        }
+
+        .spacing-note .note-title {
+            font-weight: 600;
+            color: #0078d4;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>响应式布局示例</h1>
+            <div class="timestamp">生成时间: 2025年07月12日 14:52:55</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 响应式布局说明 -->
+            <div class="spacing-note">
+                <div class="note-title">响应式布局自动调整</div>
+                4个组件自动使用2x2网格布局，间距根据组件数量智能调整为20px
+            </div>
+
+            <!-- 响应式布局 (4个组件自动使用2列) -->
+            <div class="column-widget">
+                <table class="column-table">
+                    <tr>
+                        <!-- 第一行 -->
+                        <td class="column-cell">
+                            <div class="responsive-widget widget-1">
+                                <div class="widget-title">📊 销售数据</div>
+                                <div class="widget-content">
+                                    本季度销售业绩统计
+                                    <div class="metric-display">
+                                        <div class="metric-value">¥1,245,670</div>
+                                        <div class="metric-label">总销售额</div>
+                                        <div class="metric-change change-positive">↗️ +15.2%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="column-cell">
+                            <div class="responsive-widget widget-2">
+                                <div class="widget-title">👥 用户增长</div>
+                                <div class="widget-content">
+                                    活跃用户数量变化
+                                    <div class="metric-display">
+                                        <div class="metric-value">24,567</div>
+                                        <div class="metric-label">月活用户</div>
+                                        <div class="metric-change change-positive">↗️ +8.7%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- 第二行 -->
+                        <td class="column-cell">
+                            <div class="responsive-widget widget-3">
+                                <div class="widget-title">📈 转化率</div>
+                                <div class="widget-content">
+                                    网站访问到购买转化
+                                    <div class="metric-display">
+                                        <div class="metric-value">12.8%</div>
+                                        <div class="metric-label">转化率</div>
+                                        <div class="metric-change change-positive">↗️ +2.1%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="column-cell">
+                            <div class="responsive-widget widget-4">
+                                <div class="widget-title">⚠️ 系统负载</div>
+                                <div class="widget-content">
+                                    服务器资源使用情况
+                                    <div class="metric-display">
+                                        <div class="metric-value">85.3%</div>
+                                        <div class="metric-label">CPU使用率</div>
+                                        <div class="metric-change change-negative">↗️ +5.2%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

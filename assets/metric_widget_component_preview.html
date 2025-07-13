@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指标组件预览</title>
+    
+        <style>
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            
+                padding: 20px;
+            
+                background-color: #faf9f8;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+            
+            .responsive-table {
+                display: table !important;
+            }
+        </style>
+        <![endif]-->
+        
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>指标组件预览</h1>
+            <div class="timestamp">生成时间: 2025年07月11日 23:55:21</div>
+        </div>
+        
+        <div class="email-body">
+            
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">1. 指标组件展示</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <div style="
+        background: #ffffff;
+        border: 1px solid #e1dfdd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 16px 0;
+        font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    ">
+        <h3 style="
+            color: #323130;
+            margin: 0 0 20px 0;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        ">关键指标</h3>
+        
+        <div style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            gap: 16px;
+        ">
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #fafafa;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #323130;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    125,890<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">↗ +15%</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">总用户数</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #8e8e93;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">—</span>
+                    <span>success</span>
+                </div>
+                
+            </div>
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #fafafa;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #323130;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    98,456<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">↗ +8%</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">活跃用户</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #8e8e93;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">—</span>
+                    <span>success</span>
+                </div>
+                
+            </div>
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #fafafa;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #323130;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    3.2%<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">↘ -0.5%</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">转化率</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #8e8e93;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">—</span>
+                    <span>warning</span>
+                </div>
+                
+            </div>
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #fafafa;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #323130;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    ¥458,290<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">↗ +12%</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">收入</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #8e8e93;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">—</span>
+                    <span>success</span>
+                </div>
+                
+            </div>
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #fafafa;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #323130;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    215ms<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">↗ +45ms</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">响应时间</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #8e8e93;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">—</span>
+                    <span>error</span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+    </div>    </div>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Business Analysis Report</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 报告标题样式 */
+        .report-title {
+            text-align: center;
+            margin: 20px 0 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0078d4, #107c10, #ff8c00, #d13438);
+        }
+
+        .title-large {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0078d4;
+            margin: 0;
+        }
+
+        .report-period {
+            font-size: 16px;
+            color: #605e5c;
+            margin-top: 8px;
+        }
+
+        /* 图表组件样式 */
+        .chart-widget {
+            margin: 32px 0;
+            padding: 24px;
+            border: 1px solid #e1dfdd;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart-widget:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .chart-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #323130;
+            margin: 0 0 12px 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #0078d4;
+            display: flex;
+            align-items: center;
+        }
+
+        .chart-icon {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .chart-description {
+            font-size: 15px;
+            color: #605e5c;
+            margin: 0 0 20px 0;
+            line-height: 1.5;
+        }
+
+        .chart-summary {
+            font-size: 16px;
+            color: #0078d4;
+            font-weight: 600;
+            margin: 20px 0 0 0;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            border-left: 4px solid #0078d4;
+            border-radius: 8px;
+            border: 1px solid #b3d9ff;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        /* 营收分析图表 */
+        .revenue-analysis-chart {
+            width: 700px;
+            height: 350px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fff0 100%);
+            border: 2px solid #e1dfdd;
+            border-radius: 10px;
+            position: relative;
+            padding: 25px;
+        }
+
+        .revenue-grid {
+            position: absolute;
+            top: 35px;
+            left: 70px;
+            width: 550px;
+            height: 240px;
+            background-image: 
+                linear-gradient(to right, #e8f5e8 1px, transparent 1px),
+                linear-gradient(to bottom, #e8f5e8 1px, transparent 1px);
+            background-size: 91.67px 48px;
+        }
+
+        .revenue-line-path {
+            position: absolute;
+            top: 35px;
+            left: 70px;
+            width: 550px;
+            height: 240px;
+        }
+
+        .revenue-trend-line {
+            stroke: #107c10;
+            stroke-width: 5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 3px 6px rgba(16, 124, 16, 0.4));
+        }
+
+        .revenue-area-fill {
+            fill: url(#revenueAreaGradient);
+            opacity: 0.4;
+        }
+
+        .revenue-data-points {
+            fill: #107c10;
+            stroke: #ffffff;
+            stroke-width: 4;
+        }
+
+        .revenue-label {
+            font-size: 11px;
+            fill: #323130;
+            font-weight: 600;
+        }
+
+        /* 用户漏斗图表 */
+        .funnel-chart {
+            width: 700px;
+            height: 350px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f8ff 100%);
+            border: 2px solid #e1dfdd;
+            border-radius: 10px;
+            position: relative;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .funnel-container {
+            width: 300px;
+            height: 280px;
+            position: relative;
+        }
+
+        .funnel-stage {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #0078d4, #005a9e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+        }
+
+        .stage-1 {
+            top: 0;
+            width: 300px;
+            height: 45px;
+        }
+
+        .stage-2 {
+            top: 60px;
+            width: 240px;
+            height: 45px;
+        }
+
+        .stage-3 {
+            top: 120px;
+            width: 180px;
+            height: 45px;
+        }
+
+        .stage-4 {
+            top: 180px;
+            width: 120px;
+            height: 45px;
+        }
+
+        .funnel-stats {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 200px;
+        }
+
+        .funnel-stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 8px 12px;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .stat-label {
+            font-weight: 500;
+            color: #323130;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #0078d4;
+        }
+
+        /* 产品矩阵图表 */
+        .matrix-chart {
+            width: 700px;
+            height: 350px;
+            background: linear-gradient(180deg, #ffffff 0%, #fff8f0 100%);
+            border: 2px solid #e1dfdd;
+            border-radius: 10px;
+            position: relative;
+            padding: 25px;
+        }
+
+        .matrix-grid {
+            position: absolute;
+            top: 35px;
+            left: 70px;
+            width: 500px;
+            height: 240px;
+            border: 2px solid #e1dfdd;
+            background: linear-gradient(90deg, #ffffff 50%, #f8f9fa 50%),
+                        linear-gradient(0deg, #ffffff 50%, #f8f9fa 50%);
+        }
+
+        .matrix-quadrant-label {
+            position: absolute;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8e8e93;
+        }
+
+        .quadrant-1 { top: 45px; right: 80px; }
+        .quadrant-2 { top: 45px; left: 80px; }
+        .quadrant-3 { bottom: 75px; left: 80px; }
+        .quadrant-4 { bottom: 75px; right: 80px; }
+
+        .product-bubble {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .bubble-star { background: linear-gradient(135deg, #ff8c00, #e67e00); }
+        .bubble-problem { background: linear-gradient(135deg, #d13438, #b02a2f); }
+        .bubble-cash { background: linear-gradient(135deg, #107c10, #0e6b0e); }
+
+        .matrix-legend {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        /* 图表轴标签 */
+        .y-axis {
+            left: 10px;
+            top: 45px;
+            height: 240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: absolute;
+            font-size: 12px;
+            color: #8e8e93;
+        }
+
+        .x-axis {
+            bottom: 15px;
+            left: 70px;
+            width: 550px;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            font-size: 12px;
+            color: #8e8e93;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>Q4 Business Analysis Report</h1>
+            <div class="timestamp">Generated: July 12, 2025 15:09:45</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 报告标题 -->
+            <div class="report-title">
+                <h1 class="title-large">Q4 Business Analysis Report</h1>
+                <div class="report-period">Report Period: October 2024 - December 2024</div>
+            </div>
+
+            <!-- 营收分析图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">💰</span>Revenue Analysis
+                </div>
+                <div class="chart-description">Q4 monthly revenue comparison with year-over-year analysis, showing business growth trends and seasonal characteristics</div>
+                <div class="chart-container">
+                    <div class="revenue-analysis-chart">
+                        <div class="revenue-grid"></div>
+                        <div class="y-axis">
+                            <span>20M</span>
+                            <span>16M</span>
+                            <span>12M</span>
+                            <span>8M</span>
+                            <span>4M</span>
+                            <span>0</span>
+                        </div>
+                        <div class="x-axis">
+                            <span>Oct</span>
+                            <span>Nov</span>
+                            <span>Dec</span>
+                            <span>Oct(LY)</span>
+                            <span>Nov(LY)</span>
+                            <span>Dec(LY)</span>
+                        </div>
+                        <svg class="revenue-line-path" viewBox="0 0 550 240">
+                            <defs>
+                                <linearGradient id="revenueAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#107c10;stop-opacity:0.4"/>
+                                    <stop offset="100%" style="stop-color:#107c10;stop-opacity:0.1"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- 当年数据线 -->
+                            <path class="revenue-area-fill" d="M 45 120 L 137 100 L 229 60 L 321 140 L 413 110 L 505 70 L 505 240 L 45 240 Z"/>
+                            <path class="revenue-trend-line" d="M 45 120 L 137 100 L 229 60 L 321 140 L 413 110 L 505 70"/>
+                            <circle class="revenue-data-points" cx="45" cy="120" r="6"/>
+                            <circle class="revenue-data-points" cx="137" cy="100" r="6"/>
+                            <circle class="revenue-data-points" cx="229" cy="60" r="6"/>
+                            <circle class="revenue-data-points" cx="321" cy="140" r="6"/>
+                            <circle class="revenue-data-points" cx="413" cy="110" r="6"/>
+                            <circle class="revenue-data-points" cx="505" cy="70" r="6"/>
+                            <!-- 数值标签 -->
+                            <text class="revenue-label" x="45" y="110" text-anchor="middle">1.2M</text>
+                            <text class="revenue-label" x="137" y="90" text-anchor="middle">1.4M</text>
+                            <text class="revenue-label" x="229" y="50" text-anchor="middle">1.85M</text>
+                            <text class="revenue-label" x="321" y="130" text-anchor="middle">1.0M</text>
+                            <text class="revenue-label" x="413" y="100" text-anchor="middle">1.3M</text>
+                            <text class="revenue-label" x="505" y="60" text-anchor="middle">1.7M</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="chart-summary">💹 Q4 Total Revenue: $18.5M | YoY Growth: +15.2% | QoQ Growth: +8.7% | Dec Record High</div>
+            </div>
+
+            <!-- 用户增长漏斗图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">🔄</span>User Growth Funnel
+                </div>
+                <div class="chart-description">User conversion analysis from visit to purchase, identifying key bottlenecks and optimization opportunities</div>
+                <div class="chart-container">
+                    <div class="funnel-chart">
+                        <div class="funnel-container">
+                            <div class="funnel-stage stage-1">Website Visitors - 2.4M</div>
+                            <div class="funnel-stage stage-2">Registered Users - 288K</div>
+                            <div class="funnel-stage stage-3">Active Users - 180K</div>
+                            <div class="funnel-stage stage-4">Paying Users - 76.8K</div>
+                        </div>
+                        <div class="funnel-stats">
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Visit→Register</span>
+                                <span class="stat-value">12.0%</span>
+                            </div>
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Register→Active</span>
+                                <span class="stat-value">62.5%</span>
+                            </div>
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Active→Paying</span>
+                                <span class="stat-value">42.7%</span>
+                            </div>
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Total Conversion</span>
+                                <span class="stat-value">3.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">🎯 Visitors: 2.4M | Registration Rate: 12% | Payment Rate: 3.2% | User LTV: $67</div>
+            </div>
+
+            <!-- 产品表现矩阵图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">📈</span>Product Performance Matrix
+                </div>
+                <div class="chart-description">Product line market performance and growth potential analysis using BCG matrix based on market share and growth rate</div>
+                <div class="chart-container">
+                    <div class="matrix-chart">
+                        <div class="matrix-grid"></div>
+                        <div class="matrix-quadrant-label quadrant-1">Star Products</div>
+                        <div class="matrix-quadrant-label quadrant-2">Question Mark</div>
+                        <div class="matrix-quadrant-label quadrant-3">Dogs</div>
+                        <div class="matrix-quadrant-label quadrant-4">Cash Cow</div>
+                        
+                        <div class="y-axis">
+                            <span>High Growth</span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span>Low Growth</span>
+                        </div>
+                        <div class="x-axis">
+                            <span>Low Share</span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span>High Share</span>
+                        </div>
+
+                        <!-- 产品气泡 -->
+                        <div class="product-bubble bubble-star" style="top: 60px; right: 120px; width: 80px; height: 80px;">
+                            Core SaaS<br/>38%
+                        </div>
+                        <div class="product-bubble bubble-star" style="top: 80px; right: 220px; width: 60px; height: 60px;">
+                            Mobile<br/>18%
+                        </div>
+                        <div class="product-bubble bubble-cash" style="bottom: 100px; right: 100px; width: 90px; height: 90px;">
+                            Enterprise<br/>30%
+                        </div>
+                        <div class="product-bubble bubble-cash" style="bottom: 120px; right: 200px; width: 50px; height: 50px;">
+                            API Service<br/>8%
+                        </div>
+                        <div class="product-bubble bubble-problem" style="top: 100px; left: 120px; width: 40px; height: 40px;">
+                            Trial<br/>4%
+                        </div>
+                        <div class="product-bubble" style="bottom: 140px; left: 140px; width: 35px; height: 35px; background: #8e8e93;">
+                            Others<br/>2%
+                        </div>
+
+                        <div class="matrix-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: linear-gradient(135deg, #ff8c00, #e67e00);"></div>
+                                <span>Star Products (3)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: linear-gradient(135deg, #107c10, #0e6b0e);"></div>
+                                <span>Cash Cow (2)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: linear-gradient(135deg, #d13438, #b02a2f);"></div>
+                                <span>Question Mark (1)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">⭐ Star Products: 3 | 💰 Cash Cow: 2 | ❓ Question Mark: 1 | 🐕 Dogs: 0</div>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>Generated by EmailWidget | Report by Business Analytics Team</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

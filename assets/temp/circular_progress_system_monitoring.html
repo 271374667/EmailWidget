@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统资源监控</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 4列布局样式 */
+        .column-widget {
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .column-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 15px;
+        }
+
+        .column-cell {
+            vertical-align: top;
+            width: 25%;
+            text-align: center;
+        }
+
+        /* 圆形进度条样式 */
+        .circular-progress {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(
+                var(--progress-color) 0deg,
+                var(--progress-color) calc(var(--progress-percent) * 3.6deg),
+                #f3f2f1 calc(var(--progress-percent) * 3.6deg),
+                #f3f2f1 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #ffffff;
+            z-index: 1;
+        }
+
+        .progress-value {
+            position: relative;
+            z-index: 2;
+            font-size: 16px;
+            font-weight: 700;
+            color: #323130;
+        }
+
+        .progress-label {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #323130;
+        }
+
+        /* 不同主题颜色 */
+        .progress-success {
+            --progress-color: #107c10;
+            --progress-percent: 45;
+        }
+
+        .progress-warning {
+            --progress-color: #ff8c00;
+            --progress-percent: 72;
+        }
+
+        .progress-info {
+            --progress-color: #0078d4;
+            --progress-percent: 28;
+        }
+
+        .progress-error {
+            --progress-color: #d13438;
+            --progress-percent: 91;
+        }
+
+        /* 主题标识 */
+        .theme-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .indicator-success {
+            background: #107c10;
+        }
+
+        .indicator-warning {
+            background: #ff8c00;
+        }
+
+        .indicator-info {
+            background: #0078d4;
+        }
+
+        .indicator-error {
+            background: #d13438;
+        }
+
+        /* 状态说明 */
+        .status-legend {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f8f9fa;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #605e5c;
+        }
+
+        .legend-item {
+            display: inline-block;
+            margin: 4px 12px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>系统资源监控</h1>
+            <div class="timestamp">生成时间: 2025年07月12日 14:54:12</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 4列圆形进度条布局 -->
+            <div class="column-widget">
+                <table class="column-table">
+                    <tr>
+                        <!-- CPU -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle progress-success">
+                                    <div class="progress-value">45%</div>
+                                </div>
+                                <div class="progress-label">
+                                    <span class="theme-indicator indicator-success"></span>
+                                    CPU
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <!-- 内存 -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle progress-warning">
+                                    <div class="progress-value">72%</div>
+                                </div>
+                                <div class="progress-label">
+                                    <span class="theme-indicator indicator-warning"></span>
+                                    内存
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <!-- 网络 -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle progress-info">
+                                    <div class="progress-value">28%</div>
+                                </div>
+                                <div class="progress-label">
+                                    <span class="theme-indicator indicator-info"></span>
+                                    网络
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <!-- 磁盘 -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle progress-error">
+                                    <div class="progress-value">91%</div>
+                                </div>
+                                <div class="progress-label">
+                                    <span class="theme-indicator indicator-error"></span>
+                                    磁盘
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- 状态说明 -->
+            <div class="status-legend">
+                <strong>自动主题选择规则：</strong>
+                <div class="legend-item">
+                    <span class="theme-indicator indicator-success"></span>
+                    &lt;50% 正常
+                </div>
+                <div class="legend-item">
+                    <span class="theme-indicator indicator-warning"></span>
+                    50-80% 警告
+                </div>
+                <div class="legend-item">
+                    <span class="theme-indicator indicator-error"></span>
+                    &gt;80% 错误
+                </div>
+                <div class="legend-item">
+                    <span class="theme-indicator indicator-info"></span>
+                    其他信息
+                </div>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

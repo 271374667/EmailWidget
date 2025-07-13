@@ -811,8 +811,6 @@
       
         
       
-        
-      
     
     
     
@@ -967,13 +965,14 @@
     <title>我的第一份报告</title>
 
         <style>
-            body {
+            .email-preview-wrapper {
                 margin: 0;
                 padding: 20px;
                 font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
                 line-height: 1.6;
                 color: #323130;
                 background-color: #faf9f8;
+                border-radius: 8px;
             }
 
             .email-container {
@@ -983,6 +982,14 @@
                 border: 1px solid #e1dfdd;
                 border-radius: 8px;
                 overflow: hidden;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+
+                padding: 20px;
+
+                background-color: #faf9f8;
             }
 
             .email-header {
@@ -1011,9 +1018,7 @@
                 font-weight: 400;
             }
 
-            .email-body {
-                padding: 24px;
-            }
+            .email-
 
             .email-footer {
                 background: #f3f2f1;
@@ -1041,11 +1046,6 @@
             /* 响应式设计 - 使用邮件客户端兼容的方式 */
 
             /* 通用响应式样式 */
-            .email-container {
-                width: 100%;
-                max-width: 800px;
-                min-width: 320px;
-            }
 
             /* 表格响应式样式 */
             .responsive-table {
@@ -1087,9 +1087,7 @@
         <!-- MSO条件注释样式 - 针对Outlook -->
         <!--[if mso]>
         <style type="text/css">
-            .email-container {
-                width: 600px !important;
-            }
+
             .responsive-table {
                 display: table !important;
             }
@@ -1098,7 +1096,8 @@
 
 </head>
 <body>
-    <div class="email-container">
+    <div class="email-preview-wrapper">
+        <div class="email-container">
         <div class="email-header">
             <h1>我的第一份报告</h1>
             <div class="timestamp">生成时间: 2025年07月04日 10:00:48</div>
@@ -1118,12 +1117,12 @@
     </table>
     <![endif]-->
 
-
         </div>
 
         <div class="email-footer">
             <p>此邮件由 EmailWidget 自动生成</p>
         </div>
+    </div>
     </div>
 </body>
 </html>

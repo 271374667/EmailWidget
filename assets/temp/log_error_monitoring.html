@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>错误日志报告</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #d13438;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 错误统计 */
+        .error-summary {
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .summary-title {
+            font-weight: 600;
+            color: #d13438;
+            margin-bottom: 8px;
+        }
+
+        .summary-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #d13438;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #8e8e93;
+        }
+
+        /* 真实loguru错误日志样式 */
+        .log-widget {
+            background: #0c0c0c;
+            border: 2px solid #d13438;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .log-title {
+            color: #ff6b6b;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #d13438;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .log-container {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #0c0c0c;
+            border-radius: 4px;
+            padding: 0;
+        }
+
+        .log-line {
+            font-size: 13px;
+            line-height: 1.2;
+            margin: 0;
+            padding: 3px 0;
+            white-space: nowrap;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* loguru真实颜色方案 */
+        .log-time {
+            color: #458588;
+        }
+
+        .log-level-error {
+            color: #fb4934;
+        }
+
+        .log-level-critical {
+            color: #cc241d;
+            font-weight: bold;
+        }
+
+        .log-module {
+            color: #b8bb26;
+        }
+
+        .log-message {
+            color: #ebdbb2;
+        }
+
+        .log-separator {
+            color: #665c54;
+        }
+
+        /* 滚动条样式 */
+        .log-container::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .log-container::-webkit-scrollbar-track {
+            background: #1d2021;
+        }
+
+        .log-container::-webkit-scrollbar-thumb {
+            background: #504945;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+            <div class="email-header">
+                <h1>错误日志报告</h1>
+                <div class="timestamp">生成时间: 2025年07月12日 15:22:15</div>
+            </div>
+            
+            <div class="email-body">
+                <!-- 错误统计 -->
+                <div class="error-summary">
+                    <div class="summary-title">📊 错误统计汇总</div>
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">ERROR级别</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">CRITICAL级别</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">总错误数</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 真实loguru格式的错误日志 -->
+                <div class="log-widget">
+                    <div class="log-title">
+                        <span class="error-icon">🚨</span>错误日志监控
+                    </div>
+                    <div class="log-container">
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 16:45:23.789</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-critical">CRITICAL</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">system:memory:200</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">系统内存不足，可用内存仅剩158MB</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 16:42:15.456</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-error">ERROR</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">database:connect:88</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">数据库连接超时，无法建立连接</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 16:38:47.123</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-error">ERROR</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">api:request:156</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">API请求失败，返回500内部服务器错误</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 16:35:12.890</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-error">ERROR</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">cache:redis:92</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">Redis缓存服务不可用，切换到本地缓存</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="email-footer">
+                <p>此邮件由 EmailWidget 自动生成 | 🚨 紧急问题请联系运维团队</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

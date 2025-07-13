@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目进度报告</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 主要进度样式 */
+        .main-progress {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+        }
+
+        .main-progress-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 20px;
+        }
+
+        /* 大圆形进度条样式 */
+        .large-circular-progress {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .large-progress-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(
+                #0078d4 0deg,
+                #0078d4 270deg,
+                #f3f2f1 270deg,
+                #f3f2f1 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .large-progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #ffffff;
+            z-index: 1;
+        }
+
+        .large-progress-value {
+            position: relative;
+            z-index: 2;
+            font-size: 28px;
+            font-weight: 700;
+            color: #0078d4;
+        }
+
+        .large-progress-label {
+            margin-top: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #323130;
+        }
+
+        /* 阶段进度2列布局 */
+        .phases-section {
+            margin-top: 30px;
+        }
+
+        .phases-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .column-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 20px;
+        }
+
+        .column-cell {
+            vertical-align: top;
+            width: 50%;
+            text-align: center;
+        }
+
+        /* 标准圆形进度条样式 */
+        .circular-progress {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .progress-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #ffffff;
+            z-index: 1;
+        }
+
+        .progress-value {
+            position: relative;
+            z-index: 2;
+            font-size: 18px;
+            font-weight: 700;
+            color: #323130;
+        }
+
+        .progress-label {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #323130;
+        }
+
+        /* 阶段特定样式 */
+        .phase-complete {
+            background: conic-gradient(
+                #107c10 0deg,
+                #107c10 360deg
+            );
+        }
+
+        .phase-inprogress {
+            background: conic-gradient(
+                #ff8c00 0deg,
+                #ff8c00 288deg,
+                #f3f2f1 288deg,
+                #f3f2f1 360deg
+            );
+        }
+
+        .phase-planned {
+            background: conic-gradient(
+                #0078d4 0deg,
+                #0078d4 108deg,
+                #f3f2f1 108deg,
+                #f3f2f1 360deg
+            );
+        }
+
+        /* 状态标识 */
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .badge-success {
+            background: #e8f5e8;
+            color: #107c10;
+        }
+
+        .badge-warning {
+            background: #fff4ce;
+            color: #ff8c00;
+        }
+
+        .badge-info {
+            background: #f0f8ff;
+            color: #0078d4;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>项目进度报告</h1>
+            <div class="timestamp">生成时间: 2025年07月12日 14:55:03</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 主要项目进度 -->
+            <div class="main-progress">
+                <div class="main-progress-title">项目总体进度</div>
+                <div class="large-circular-progress">
+                    <div class="large-progress-circle">
+                        <div class="large-progress-value">75%</div>
+                    </div>
+                    <div class="large-progress-label">项目总体进度</div>
+                </div>
+            </div>
+
+            <!-- 各阶段进度 -->
+            <div class="phases-section">
+                <div class="phases-title">各阶段详细进度</div>
+                <table class="column-table">
+                    <tr>
+                        <!-- 需求分析 -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle phase-complete">
+                                    <div class="progress-value">100%</div>
+                                </div>
+                                <div class="progress-label">需求分析</div>
+                                <div class="status-badge badge-success">已完成</div>
+                            </div>
+                        </td>
+                        
+                        <!-- 系统设计 -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle phase-complete">
+                                    <div class="progress-value">100%</div>
+                                </div>
+                                <div class="progress-label">系统设计</div>
+                                <div class="status-badge badge-success">已完成</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- 开发实施 -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle phase-inprogress">
+                                    <div class="progress-value">80%</div>
+                                </div>
+                                <div class="progress-label">开发实施</div>
+                                <div class="status-badge badge-warning">进行中</div>
+                            </div>
+                        </td>
+                        
+                        <!-- 测试验收 -->
+                        <td class="column-cell">
+                            <div class="circular-progress">
+                                <div class="progress-circle phase-planned">
+                                    <div class="progress-value">30%</div>
+                                </div>
+                                <div class="progress-label">测试验收</div>
+                                <div class="status-badge badge-info">已开始</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

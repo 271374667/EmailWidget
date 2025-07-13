@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>混合组件布局</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 3列布局样式 */
+        .column-widget {
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .column-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 20px;
+        }
+
+        .column-cell {
+            vertical-align: top;
+            width: 33.33%;
+        }
+
+        /* 通用组件基础样式 */
+        .widget-base {
+            padding: 16px;
+            border-radius: 8px;
+            height: 100%;
+        }
+
+        /* 文本组件样式 */
+        .text-widget {
+            background: #f8f9fa;
+            border: 1px solid #e1dfdd;
+            text-align: center;
+        }
+
+        .text-content {
+            font-size: 16px;
+            color: #323130;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* 警告组件样式 */
+        .alert-widget {
+            background: #fff4ce;
+            border: 1px solid #ff8c00;
+            border-left: 4px solid #ff8c00;
+        }
+
+        .alert-icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .alert-content {
+            font-size: 14px;
+            color: #323130;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 进度组件样式 */
+        .progress-widget {
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .progress-label {
+            font-size: 14px;
+            color: #323130;
+            font-weight: 500;
+            margin: 0 0 12px 0;
+        }
+
+        .progress-bar-container {
+            background: #f3f2f1;
+            border-radius: 4px;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #0078d4 0%, #40e0d0 100%);
+            height: 100%;
+            width: 75%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #605e5c;
+            text-align: right;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>综合报告</h1>
+            <div class="timestamp">生成时间: 2025年07月12日 14:52:12</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 混合组件3列布局 -->
+            <div class="column-widget">
+                <table class="column-table">
+                    <tr>
+                        <!-- 文本组件 -->
+                        <td class="column-cell">
+                            <div class="text-widget widget-base">
+                                <p class="text-content">
+                                    📊<br/>
+                                    欢迎查看本月报告
+                                </p>
+                            </div>
+                        </td>
+                        
+                        <!-- 警告组件 -->
+                        <td class="column-cell">
+                            <div class="alert-widget widget-base">
+                                <p class="alert-content">
+                                    <span class="alert-icon">⚠️</span>
+                                    注意：系统将于今晚维护
+                                </p>
+                                <div style="margin-top: 8px; font-size: 12px; color: #8e8e93;">
+                                    维护时间：22:00 - 24:00
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <!-- 进度组件 -->
+                        <td class="column-cell">
+                            <div class="progress-widget widget-base">
+                                <p class="progress-label">项目进度</p>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <p class="progress-text">75% 完成</p>
+                                <div style="margin-top: 8px; font-size: 12px; color: #605e5c;">
+                                    预计完成时间：本月底
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用启动报告</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 真实loguru日志样式 */
+        .log-widget {
+            background: #0c0c0c;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .log-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #333333;
+        }
+
+        .log-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background: #0c0c0c;
+            border-radius: 4px;
+            padding: 0;
+        }
+
+        .log-line {
+            font-size: 13px;
+            line-height: 1.2;
+            margin: 0;
+            padding: 2px 0;
+            white-space: nowrap;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* loguru真实颜色方案 */
+        .log-time {
+            color: #458588;
+        }
+
+        .log-level-info {
+            color: #83a598;
+        }
+
+        .log-level-debug {
+            color: #928374;
+        }
+
+        .log-level-warning {
+            color: #fabd2f;
+        }
+
+        .log-level-error {
+            color: #fb4934;
+        }
+
+        .log-module {
+            color: #b8bb26;
+        }
+
+        .log-message {
+            color: #ebdbb2;
+        }
+
+        .log-separator {
+            color: #665c54;
+        }
+
+        /* 滚动条样式 */
+        .log-container::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .log-container::-webkit-scrollbar-track {
+            background: #1d2021;
+        }
+
+        .log-container::-webkit-scrollbar-thumb {
+            background: #504945;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+            <div class="email-header">
+                <h1>应用启动报告</h1>
+                <div class="timestamp">生成时间: 2025年07月12日 15:20:30</div>
+            </div>
+            
+            <div class="email-body">
+                <!-- 真实loguru格式的应用启动日志 -->
+                <div class="log-widget">
+                    <div class="log-title">应用启动日志</div>
+                    <div class="log-container">
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:00.123</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">app:main:15</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">开始启动应用</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:00.456</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-debug">DEBUG</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">config:load:42</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">加载配置文件 config/app.yaml</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:00.789</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-debug">DEBUG</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">env:parse:28</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">解析环境变量 (12个变量已加载)</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:01.012</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">db:connect:88</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">初始化数据库连接 (PostgreSQL 14.2)</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:01.345</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-debug">DEBUG</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">db:pool:156</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">数据库连接池创建成功 (最大连接数: 20)</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:01.678</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">web:server:200</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">启动Web服务器 (端口: 8080)</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:01.901</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-debug">DEBUG</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">routes:register:45</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">注册路由处理器 (25个路由已注册)</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:02.234</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">scheduler:start:78</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">启动后台任务调度器</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:02.567</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">app:main:180</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">应用启动完成 (总耗时: 2.444秒)</span>
+                        </div>
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 10:30:02.890</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">app:ready:185</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">服务就绪，等待请求处理...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="email-footer">
+                <p>此邮件由 EmailWidget 自动生成</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

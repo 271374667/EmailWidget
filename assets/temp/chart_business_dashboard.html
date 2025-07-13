@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Data Dashboard</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 标题组件样式 */
+        .title-widget {
+            text-align: center;
+            margin: 20px 0 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            border-left: 4px solid #0078d4;
+        }
+
+        .title-large {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0078d4;
+            margin: 0;
+        }
+
+        /* 图表组件样式 */
+        .chart-widget {
+            margin: 24px 0;
+            padding: 20px;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .chart-widget:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #323130;
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .chart-icon {
+            margin-right: 8px;
+            font-size: 22px;
+        }
+
+        .chart-description {
+            font-size: 14px;
+            color: #605e5c;
+            margin: 0 0 16px 0;
+            line-height: 1.4;
+        }
+
+        .chart-summary {
+            font-size: 16px;
+            color: #0078d4;
+            font-weight: 600;
+            margin: 16px 0 0 0;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            border-left: 4px solid #0078d4;
+            border-radius: 6px;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        /* 营收趋势图表 */
+        .revenue-chart {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fdf8 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            position: relative;
+            padding: 20px;
+        }
+
+        .revenue-grid {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            width: 480px;
+            height: 200px;
+            background-image: 
+                linear-gradient(to right, #e8f5e8 1px, transparent 1px),
+                linear-gradient(to bottom, #e8f5e8 1px, transparent 1px);
+            background-size: 80px 40px;
+        }
+
+        .revenue-line {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            width: 480px;
+            height: 200px;
+        }
+
+        .revenue-path {
+            stroke: #107c10;
+            stroke-width: 4;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 2px 4px rgba(16, 124, 16, 0.3));
+        }
+
+        .revenue-area {
+            fill: url(#revenueGradient);
+            opacity: 0.3;
+        }
+
+        .revenue-points {
+            fill: #107c10;
+            stroke: #ffffff;
+            stroke-width: 3;
+        }
+
+        /* 用户分析图表 */
+        .user-chart {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f8ff 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            position: relative;
+            padding: 20px;
+        }
+
+        .user-bars {
+            position: absolute;
+            bottom: 50px;
+            left: 60px;
+            width: 480px;
+            height: 180px;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+        }
+
+        .user-bar {
+            width: 50px;
+            background: linear-gradient(180deg, #0078d4 0%, #005a9e 100%);
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            animation: growUserBar 2s ease-out;
+            box-shadow: 0 2px 8px rgba(0, 120, 212, 0.3);
+        }
+
+        @keyframes growUserBar {
+            from { height: 0; }
+            to { height: var(--bar-height); }
+        }
+
+        .user-bar-1 { --bar-height: 140px; height: 140px; }
+        .user-bar-2 { --bar-height: 110px; height: 110px; }
+        .user-bar-3 { --bar-height: 160px; height: 160px; }
+        .user-bar-4 { --bar-height: 125px; height: 125px; }
+
+        .user-bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #605e5c;
+            font-weight: 500;
+        }
+
+        .user-bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #0078d4;
+            font-weight: 700;
+        }
+
+        /* 产品表现图表 */
+        .product-chart {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(180deg, #ffffff 0%, #fff8f0 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-pie {
+            width: 220px;
+            height: 220px;
+            position: relative;
+        }
+
+        .pie-slice {
+            stroke: #ffffff;
+            stroke-width: 3;
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+
+        .pie-slice:hover {
+            transform: scale(1.05);
+        }
+
+        .slice-core { fill: #ff8c00; }
+        .slice-premium { fill: #0078d4; }
+        .slice-basic { fill: #107c10; }
+        .slice-other { fill: #8e8e93; }
+
+        .product-legend {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .product-legend-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 13px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-legend-item:hover {
+            opacity: 0.8;
+        }
+
+        .product-legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+
+        .product-legend-text {
+            font-weight: 500;
+        }
+
+        .product-legend-value {
+            margin-left: 8px;
+            color: #8e8e93;
+            font-size: 12px;
+        }
+
+        /* 图表轴标签 */
+        .chart-axis {
+            position: absolute;
+            font-size: 12px;
+            color: #8e8e93;
+        }
+
+        .y-axis {
+            left: 10px;
+            top: 40px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .x-axis {
+            bottom: 20px;
+            left: 60px;
+            width: 480px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>Business Data Dashboard</h1>
+            <div class="timestamp">Generated: July 12, 2025 15:07:30</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 仪表板标题 -->
+            <div class="title-widget">
+                <h1 class="title-large">📊 Business Data Dashboard</h1>
+            </div>
+
+            <!-- 营收趋势图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">📈</span>Revenue Trends
+                </div>
+                <div class="chart-description">Monthly revenue growth - Shows revenue trend changes over the last 6 months</div>
+                <div class="chart-container">
+                    <div class="revenue-chart">
+                        <div class="revenue-grid"></div>
+                        <div class="y-axis">
+                            <span>5M</span>
+                            <span>4M</span>
+                            <span>3M</span>
+                            <span>2M</span>
+                            <span>1M</span>
+                            <span>0</span>
+                        </div>
+                        <div class="x-axis">
+                            <span>Jan</span>
+                            <span>Feb</span>
+                            <span>Mar</span>
+                            <span>Apr</span>
+                            <span>May</span>
+                            <span>Jun</span>
+                        </div>
+                        <svg class="revenue-line" viewBox="0 0 480 200">
+                            <defs>
+                                <linearGradient id="revenueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#107c10;stop-opacity:0.3"/>
+                                    <stop offset="100%" style="stop-color:#107c10;stop-opacity:0.1"/>
+                                </linearGradient>
+                            </defs>
+                            <path class="revenue-area" d="M 40 160 L 120 140 L 200 100 L 280 80 L 360 60 L 440 40 L 440 200 L 40 200 Z"/>
+                            <path class="revenue-path" d="M 40 160 L 120 140 L 200 100 L 280 80 L 360 60 L 440 40"/>
+                            <circle class="revenue-points" cx="40" cy="160" r="5"/>
+                            <circle class="revenue-points" cx="120" cy="140" r="5"/>
+                            <circle class="revenue-points" cx="200" cy="100" r="5"/>
+                            <circle class="revenue-points" cx="280" cy="80" r="5"/>
+                            <circle class="revenue-points" cx="360" cy="60" r="5"/>
+                            <circle class="revenue-points" cx="440" cy="40" r="5"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="chart-summary">📊 YoY Growth: +23% | MoM Growth: +8.5% | Annual Target: 67%</div>
+            </div>
+
+            <!-- 用户分析图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">👥</span>User Analytics
+                </div>
+                <div class="chart-description">User activity and retention analysis - Cross-platform user data comparison</div>
+                <div class="chart-container">
+                    <div class="user-chart">
+                        <div class="y-axis">
+                            <span>3M</span>
+                            <span>2.5M</span>
+                            <span>2M</span>
+                            <span>1.5M</span>
+                            <span>1M</span>
+                            <span>0.5M</span>
+                            <span>0</span>
+                        </div>
+                        <div class="user-bars">
+                            <div class="user-bar user-bar-1">
+                                <div class="user-bar-value">2.8M</div>
+                                <div class="user-bar-label">Mobile</div>
+                            </div>
+                            <div class="user-bar user-bar-2">
+                                <div class="user-bar-value">2.2M</div>
+                                <div class="user-bar-label">Desktop</div>
+                            </div>
+                            <div class="user-bar user-bar-3">
+                                <div class="user-bar-value">3.2M</div>
+                                <div class="user-bar-label">Mini-app</div>
+                            </div>
+                            <div class="user-bar user-bar-4">
+                                <div class="user-bar-value">2.5M</div>
+                                <div class="user-bar-label">H5 Page</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">👤 MAU: 2.4M | New Users: +45K | Retention Rate: 78.5%</div>
+            </div>
+
+            <!-- 产品表现图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">📱</span>Product Performance
+                </div>
+                <div class="chart-description">Product line performance comparison - Product performance by revenue share</div>
+                <div class="chart-container">
+                    <div class="product-chart">
+                        <svg class="product-pie" viewBox="0 0 220 220">
+                            <!-- 核心产品: 68% -->
+                            <path class="pie-slice slice-core" d="M 110 110 L 110 10 A 100 100 0 1 1 41.21 168.78 Z"/>
+                            <!-- 高端产品: 18% -->
+                            <path class="pie-slice slice-premium" d="M 110 110 L 41.21 168.78 A 100 100 0 0 1 91.27 15.45 Z"/>
+                            <!-- 基础产品: 10% -->
+                            <path class="pie-slice slice-basic" d="M 110 110 L 91.27 15.45 A 100 100 0 0 1 110 10 Z"/>
+                            <!-- 其他: 4% -->
+                            <path class="pie-slice slice-other" d="M 110 110 L 110 10 A 100 100 0 0 1 91.27 15.45 Z"/>
+                        </svg>
+                        <div class="product-legend">
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #ff8c00;"></div>
+                                <div class="product-legend-text">Core Products</div>
+                                <div class="product-legend-value">68%</div>
+                            </div>
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #0078d4;"></div>
+                                <div class="product-legend-text">Premium Products</div>
+                                <div class="product-legend-value">18%</div>
+                            </div>
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #107c10;"></div>
+                                <div class="product-legend-text">Basic Products</div>
+                                <div class="product-legend-value">10%</div>
+                            </div>
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #8e8e93;"></div>
+                                <div class="product-legend-text">Other Products</div>
+                                <div class="product-legend-value">4%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">🎯 Core Products: 68% | Premium Growth: +25% | Total Product Lines: 12</div>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>Generated by EmailWidget</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

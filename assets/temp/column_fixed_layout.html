@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定列数布局</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 固定2列布局样式 */
+        .column-widget {
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .column-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 30px;
+        }
+
+        .column-cell {
+            vertical-align: top;
+            width: 50%;
+        }
+
+        /* 状态组件样式 */
+        .status-widget {
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+
+        .status-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin: 0 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0078d4;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f2f1;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-size: 14px;
+            color: #323130;
+            font-weight: 500;
+        }
+
+        .status-value {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .status-success {
+            background: #e8f5e8;
+            color: #107c10;
+        }
+
+        .status-warning {
+            background: #fff4ce;
+            color: #ff8c00;
+        }
+
+        .status-info {
+            background: #f0f8ff;
+            color: #0078d4;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>系统监控报告</h1>
+            <div class="timestamp">生成时间: 2025年07月12日 14:51:28</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 固定2列布局 -->
+            <div class="column-widget">
+                <table class="column-table">
+                    <tr>
+                        <!-- 系统资源状态 -->
+                        <td class="column-cell">
+                            <div class="status-widget">
+                                <div class="status-title">系统资源</div>
+                                <div class="status-item">
+                                    <span class="status-label">CPU使用率</span>
+                                    <span class="status-value status-success">68%</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">内存使用</span>
+                                    <span class="status-value status-warning">85%</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">磁盘空间</span>
+                                    <span class="status-value status-success">45%</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">网络延迟</span>
+                                    <span class="status-value status-success">12ms</span>
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <!-- 服务状态 -->
+                        <td class="column-cell">
+                            <div class="status-widget">
+                                <div class="status-title">服务状态</div>
+                                <div class="status-item">
+                                    <span class="status-label">Web服务</span>
+                                    <span class="status-value status-success">运行中</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">数据库</span>
+                                    <span class="status-value status-success">正常</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">缓存服务</span>
+                                    <span class="status-value status-success">正常</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">消息队列</span>
+                                    <span class="status-value status-info">空闲</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

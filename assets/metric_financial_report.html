@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财务数据月报</title>
+    
+        <style>
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            
+                padding: 20px;
+            
+                background-color: #faf9f8;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+            
+            .responsive-table {
+                display: table !important;
+            }
+        </style>
+        <![endif]-->
+        
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>财务数据月报</h1>
+            <div class="timestamp">生成时间: 2025年07月12日 00:21:48</div>
+        </div>
+        
+        <div class="email-body">
+            
+    <div style="
+        background: #ffffff;
+        border: 1px solid #e1dfdd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 16px 0;
+        font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    ">
+        <h3 style="
+            color: #323130;
+            margin: 0 0 20px 0;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        ">财务概览</h3>
+        
+        <div style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            gap: 16px;
+        ">
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #f3f9f1;
+                border: 1px solid #c8e6c5;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #107c10;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    5M<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">元</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">总收入</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #107c10;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 6px;
+                ">
+                    <span style="margin-right: 4px;">↗</span>
+                    <span>+12.5%</span>
+                </div>
+                
+                <!-- 描述信息 -->
+                <div style="
+                    font-size: 11px;
+                    color: #8e8e93;
+                    line-height: 1.3;
+                    margin-top: 6px;
+                ">收入持续增长</div>
+            </div>
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #fff9f0;
+                border: 1px solid #ffd6a5;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #ff8c00;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    3M<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">元</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">总支出</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #ff8c00;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 6px;
+                ">
+                    <span style="margin-right: 4px;">→</span>
+                    <span>+8.3%</span>
+                </div>
+                
+                <!-- 描述信息 -->
+                <div style="
+                    font-size: 11px;
+                    color: #8e8e93;
+                    line-height: 1.3;
+                    margin-top: 6px;
+                ">支出增长需控制</div>
+            </div>
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #f3f9f1;
+                border: 1px solid #c8e6c5;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #107c10;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    2M<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">元</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">净利润</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #107c10;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 6px;
+                ">
+                    <span style="margin-right: 4px;">↗</span>
+                    <span>+18.7%</span>
+                </div>
+                
+                <!-- 描述信息 -->
+                <div style="
+                    font-size: 11px;
+                    color: #8e8e93;
+                    line-height: 1.3;
+                    margin-top: 6px;
+                ">利润率显著提升</div>
+            </div>
+            <div style="
+                flex: 1;
+                min-width: 150px;
+                max-width: 250px;
+                background: #f3f9f1;
+                border: 1px solid #c8e6c5;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 0;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #107c10;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    68.5<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">%</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">毛利率</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #107c10;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 6px;
+                ">
+                    <span style="margin-right: 4px;">↗</span>
+                    <span>+2.3%</span>
+                </div>
+                
+                <!-- 描述信息 -->
+                <div style="
+                    font-size: 11px;
+                    color: #8e8e93;
+                    line-height: 1.3;
+                    margin-top: 6px;
+                ">盈利能力增强</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="
+        background: #ffffff;
+        border: 1px solid #e1dfdd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 16px 0;
+        font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    ">
+        <h3 style="
+            color: #323130;
+            margin: 0 0 20px 0;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        ">成本分析</h3>
+        
+        <div style="
+            display: block;
+            gap: 12px;
+        ">
+            <div style="
+                width: 100%;
+                background: #f0f6ff;
+                border: 1px solid #a5c8f0;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 12px;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #0078d4;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    1M<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">元</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">人力成本</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #0078d4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">→</span>
+                    <span>+5.2%</span>
+                </div>
+                
+            </div>
+            <div style="
+                width: 100%;
+                background: #fff9f0;
+                border: 1px solid #ffd6a5;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 12px;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #ff8c00;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    680K<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">元</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">技术成本</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #ff8c00;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">→</span>
+                    <span>+12.8%</span>
+                </div>
+                
+            </div>
+            <div style="
+                width: 100%;
+                background: #f0f6ff;
+                border: 1px solid #a5c8f0;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 12px;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #0078d4;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    890K<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">元</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">运营成本</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #0078d4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">→</span>
+                    <span>+3.1%</span>
+                </div>
+                
+            </div>
+            <div style="
+                width: 100%;
+                background: #fdf2f2;
+                border: 1px solid #f5c6cb;
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                margin-bottom: 12px;
+                position: relative;
+                transition: transform 0.2s ease;
+            ">
+                <!-- 指标值 -->
+                <div style="
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #d13438;
+                    line-height: 1.1;
+                    margin-bottom: 4px;
+                ">
+                    600K<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">元</span>                </div>
+                
+                <!-- 指标标题 -->
+                <div style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #605e5c;
+                    margin-bottom: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">营销成本</div>
+                
+                <!-- 趋势显示 -->
+                <div style="
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #d13438;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0;
+                ">
+                    <span style="margin-right: 4px;">↘</span>
+                    <span>+25.6%</span>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+    </div>    </div>
+</body>
+</html>

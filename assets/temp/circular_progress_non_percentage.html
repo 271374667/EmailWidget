@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据处理进度</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 进度组件布局 */
+        .progress-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 20px;
+        }
+
+        /* 非百分比圆形进度条样式 */
+        .custom-circular-progress {
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .custom-progress-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .custom-progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: #ffffff;
+            z-index: 1;
+        }
+
+        .custom-progress-value {
+            position: relative;
+            z-index: 2;
+            font-size: 18px;
+            font-weight: 700;
+            color: #323130;
+            text-align: center;
+        }
+
+        .custom-progress-label {
+            margin-top: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #323130;
+        }
+
+        .custom-progress-details {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #605e5c;
+            line-height: 1.4;
+        }
+
+        /* 文件处理进度 (75%) */
+        .file-progress {
+            background: conic-gradient(
+                #0078d4 0deg,
+                #0078d4 270deg,
+                #f3f2f1 270deg,
+                #f3f2f1 360deg
+            );
+        }
+
+        .file-progress-container {
+            border-left: 4px solid #0078d4;
+        }
+
+        /* 数据下载进度 (70%) */
+        .download-progress {
+            background: conic-gradient(
+                #0078d4 0deg,
+                #0078d4 252deg,
+                #f3f2f1 252deg,
+                #f3f2f1 360deg
+            );
+        }
+
+        .download-progress-container {
+            border-left: 4px solid #0078d4;
+        }
+
+        /* 进度统计 */
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #323130;
+        }
+
+        .stat-label {
+            color: #8e8e93;
+            margin-top: 2px;
+        }
+
+        /* 说明框 */
+        .info-box {
+            margin: 30px 0;
+            padding: 16px;
+            background: #f0f8ff;
+            border: 1px solid #0078d4;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #323130;
+        }
+
+        .info-title {
+            font-weight: 600;
+            color: #0078d4;
+            margin-bottom: 8px;
+        }
+
+        /* 两列布局 */
+        .two-column-layout {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .column-item {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>数据处理进度</h1>
+            <div class="timestamp">生成时间: 2025年07月12日 14:55:48</div>
+        </div>
+        
+        <div class="email-body">
+            <!-- 说明信息 -->
+            <div class="info-box">
+                <div class="info-title">非百分比进度展示</div>
+                以下进度条展示的是具体的数值单位（文件数、数据大小等），而非传统的百分比形式，提供更直观的进度信息。
+            </div>
+
+            <!-- 两列布局展示不同单位的进度 -->
+            <div class="two-column-layout">
+                <!-- 文件处理进度 -->
+                <div class="column-item">
+                    <div class="custom-circular-progress file-progress-container">
+                        <div class="custom-progress-circle file-progress">
+                            <div class="custom-progress-value">
+                                75%<br/>
+                                <span style="font-size: 12px; font-weight: 400;">750/1000</span>
+                            </div>
+                        </div>
+                        <div class="custom-progress-label">文件处理</div>
+                        <div class="custom-progress-details">
+                            正在处理数据文件，已完成750个文件，共1000个文件
+                        </div>
+                        <div class="progress-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">750</div>
+                                <div class="stat-label">已处理</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">250</div>
+                                <div class="stat-label">剩余</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">1000</div>
+                                <div class="stat-label">总计</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 数据下载进度 -->
+                <div class="column-item">
+                    <div class="custom-circular-progress download-progress-container">
+                        <div class="custom-progress-circle download-progress">
+                            <div class="custom-progress-value">
+                                70%<br/>
+                                <span style="font-size: 12px; font-weight: 400;">350/500MB</span>
+                            </div>
+                        </div>
+                        <div class="custom-progress-label">数据下载</div>
+                        <div class="custom-progress-details">
+                            正在下载数据包，已下载350MB，总大小500MB
+                        </div>
+                        <div class="progress-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">350MB</div>
+                                <div class="stat-label">已下载</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">150MB</div>
+                                <div class="stat-label">剩余</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">500MB</div>
+                                <div class="stat-label">总计</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技术说明 -->
+            <div class="info-box" style="background: #f8f9fa; border-color: #8e8e93;">
+                <div class="info-title" style="color: #323130;">技术实现说明</div>
+                通过设置 <code>max_value</code> 参数，可以使用任意单位作为进度基准：
+                <ul style="margin: 8px 0; padding-left: 20px;">
+                    <li>文件处理：max_value=1000，当前值750，显示75%</li>
+                    <li>数据下载：max_value=500，当前值350，显示70%</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

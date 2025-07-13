@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统运维日报</title>
+    
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+        
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .email-
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 运维指标 */
+        .ops-metrics {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .metric-item {
+            flex: 1;
+        }
+
+        .metric-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0969da;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #656d76;
+            margin-top: 4px;
+        }
+
+        /* 真实loguru运维日志样式 */
+        .log-widget {
+            background: #0c0c0c;
+            border: 1px solid #2d2d2d;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        .log-title {
+            color: #4fc3f7;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2d2d2d;
+            display: flex;
+            align-items: center;
+        }
+
+        .ops-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .log-container {
+            max-height: 500px;
+            overflow-y: auto;
+            background: #0c0c0c;
+            border-radius: 4px;
+            padding: 0;
+        }
+
+        .log-line {
+            font-size: 13px;
+            line-height: 1.2;
+            margin: 0;
+            padding: 2px 0;
+            white-space: nowrap;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* loguru真实颜色方案 */
+        .log-time {
+            color: #458588;
+        }
+
+        .log-level-info {
+            color: #83a598;
+        }
+
+        .log-level-warning {
+            color: #fabd2f;
+        }
+
+        .log-level-error {
+            color: #fb4934;
+        }
+
+        .log-module {
+            color: #b8bb26;
+        }
+
+        .log-message {
+            color: #ebdbb2;
+        }
+
+        .log-separator {
+            color: #665c54;
+        }
+
+        /* 滚动条样式 */
+        .log-container::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .log-container::-webkit-scrollbar-track {
+            background: #1d2021;
+        }
+
+        .log-container::-webkit-scrollbar-thumb {
+            background: #504945;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+            <div class="email-header">
+                <h1>系统运维日报</h1>
+                <div class="timestamp">生成时间: 2025年07月12日 15:23:00</div>
+            </div>
+            
+            <div class="email-body">
+                <!-- 运维指标 -->
+                <div class="ops-metrics">
+                    <div class="metric-item">
+                        <div class="metric-value">99.9%</div>
+                        <div class="metric-label">系统可用性</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">5</div>
+                        <div class="metric-label">运维事件</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">1</div>
+                        <div class="metric-label">告警处理</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">16h</div>
+                        <div class="metric-label">运行时间</div>
+                    </div>
+                </div>
+
+                <!-- 真实loguru格式的运维日志 -->
+                <div class="log-widget">
+                    <div class="log-title">
+                        <span class="ops-icon">⚙️</span>运维事件日志
+                    </div>
+                    <div class="log-container">
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 16:15:00.234</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">service:redis:92</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">Redis服务重启，连接恢复正常</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 15:45:00.123</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-error">ERROR</span>    
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">service:redis:88</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">Redis连接超时，开始故障转移</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 14:30:00.567</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-warning">WARNING</span>  
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">monitor:memory:45</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">内存使用率达到85%，触发监控告警</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 12:00:00.789</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">backup:auto:25</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">数据库自动备份完成 (备份大小: 2.4GB)</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 08:00:00.012</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">system:startup:10</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">服务器启动完成，所有服务正常运行</span>
+                        </div>
+                        
+                        <div class="log-line">
+                            <span class="log-time">2024-01-15 02:00:00.345</span> 
+                            <span class="log-separator">|</span> 
+                            <span class="log-level-info">INFO</span>     
+                            <span class="log-separator">|</span> 
+                            <span class="log-module">cron:cleanup:30</span> 
+                            <span class="log-separator">-</span> 
+                            <span class="log-message">定时清理任务完成，释放磁盘空间: 1.2GB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="email-footer">
+                <p>此邮件由 EmailWidget 自动生成 | 运维团队: ops@company.com</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
