@@ -10,15 +10,15 @@ EmailWidget 采用组件化架构，所有显示元素都是 Widget：
 
 ```
 BaseWidget (抽象基类)
-├── TextWidget (文本组件)
+├── TextWidget (Text组件)
 ├── TableWidget (表格组件)
-├── ProgressWidget (进度条组件)
-├── AlertWidget (警告框组件)
+├── ProgressWidget (Progress条组件)
+├── AlertWidget (Alert框组件)
 ├── CustomWidget (您的自定义组件)
 └── ...
 ```
 
-## 🎨 模板系统
+## 🎨 模板System
 
 ### Jinja2集成
 
@@ -32,7 +32,7 @@ engine = TemplateEngine()
 
 # 渲染模板
 template = engine.get_template("widget_template.html")
-html = template.render(context={"title": "标题", "content": "内容"})
+html = template.render(context={"title": "Title", "content": "内容"})
 ```
 
 ### 模板结构
@@ -78,7 +78,7 @@ EmailWidget的渲染流程：
 ```mermaid
 graph TD
     A["Email.export_html()"] --> B["收集所有Widget"]
-    B --> C["验证Widget数据"]
+    B --> C["验证WidgetData"]
     C --> D["渲染各个Widget"]
     D --> E["生成CSS样式"]
     E --> F["合并HTML模板"]
@@ -92,7 +92,7 @@ EmailWidget在渲染过程中进行了多项优化：
 - **模板缓存** - 避免重复解析模板
 - **懒加载** - 按需加载资源
 - **HTML压缩** - 减小文件大小
-- **图片优化** - 自动压缩和编码
+- **Image优化** - 自动压缩和编码
 
 
 ### BaseWidget 基类
@@ -141,8 +141,8 @@ class BaseWidget:
 
 **功能定义**
 - Widget 的主要用途是什么？
-- 需要展示哪些数据？
-- 用户如何与它交互？
+- 需要Display哪些Data？
+- 用户如何与它Interactive？
 
 **API 设计**
 - 需要哪些配置方法？
@@ -190,7 +190,7 @@ class CustomWidget(BaseWidget):
 
 ```python
 def set_title(self, title: str) -> 'CustomWidget':
-    """设置标题"""
+    """设置Title"""
     self._validators['title'].validate(title)
     self._title = title
     return self
@@ -238,7 +238,7 @@ def render(self) -> str:
     """
 
 def _render_title(self) -> str:
-    """渲染标题部分"""
+    """渲染Title部分"""
     if not self._title:
         return ""
     
@@ -249,7 +249,9 @@ def _render_content(self) -> str:
     if not self._content:
         return ""
     
-    return f'<div style="line-height: 1.6;">{self._content}</div>'
+    return f'<div class="email-preview-wrapper">
+<div style="line-height: 1.6;">{self._content}</div>
+</div>'
 
 def _get_default_styles(self) -> Dict[str, str]:
     """获取默认样式"""
@@ -275,9 +277,9 @@ def _generate_style_string(self, styles: Dict[str, str]) -> str:
     return '; '.join(f'{key}: {value}' for key, value in styles.items())
 ```
 
-## 📝 完整示例：评分卡片 Widget
+## 📝 完整示例：评分Card Widget
 
-让我们创建一个完整的评分卡片组件作为示例：
+让我们创建一个完整的评分Card组件作为示例：
 
 ```python
 from email_widget.core.base import BaseWidget
@@ -285,7 +287,7 @@ from email_widget.core.validators import TypeValidator, RangeValidator
 from typing import Optional
 
 class RatingCardWidget(BaseWidget):
-    """评分卡片 Widget"""
+    """评分Card Widget"""
     
     def __init__(self):
         super().__init__()
@@ -305,7 +307,7 @@ class RatingCardWidget(BaseWidget):
         }
     
     def set_title(self, title: str) -> 'RatingCardWidget':
-        """设置卡片标题"""
+        """设置CardTitle"""
         self._validators['title'].validate(title)
         self._title = title
         return self
@@ -342,7 +344,7 @@ class RatingCardWidget(BaseWidget):
         return self
     
     def render(self) -> str:
-        """渲染评分卡片"""
+        """渲染评分Card"""
         # 获取样式
         styles = self._get_card_styles()
         styles.update(self._custom_styles)
@@ -364,16 +366,18 @@ class RatingCardWidget(BaseWidget):
         """
     
     def _render_header(self) -> str:
-        """渲染标题"""
+        """渲染Title"""
         if not self._title:
             return ""
         
         return f"""
-        <div style="margin-bottom: 15px;">
+        <div class="email-preview-wrapper">
+<div style="margin-bottom: 15px;">
             <h3 style="margin: 0; font-size: 18px; color: #2c3e50; font-weight: 600;">
                 {self._title}
             </h3>
         </div>
+</div>
         """
     
     def _render_rating(self) -> str:
@@ -382,23 +386,28 @@ class RatingCardWidget(BaseWidget):
         
         # 数字评分
         rating_number = f"""
-        <div style="font-size: 24px; font-weight: bold; color: {self._get_rating_color()}; margin-bottom: 5px;">
+        <div class="email-preview-wrapper">
+<div style="font-size: 24px; font-weight: bold; color: {self._get_rating_color()}; margin-bottom: 5px;">
             {self._rating:.1f} / {self._max_rating:.0f}
         </div>
+</div>
         """
         
         # 星形显示
         stars_html = ""
         if self._show_stars:
             stars_html = f"""
-            <div style="margin-bottom: 8px;">
+            <div class="email-preview-wrapper">
+<div style="margin-bottom: 8px;">
                 {self._generate_stars()}
             </div>
+</div>
             """
         
-        # 进度条
+        # Progress条
         progress_bar = f"""
-        <div style="background-color: #e9ecef; border-radius: 10px; height: 8px; overflow: hidden;">
+        <div class="email-preview-wrapper">
+<div style="background-color: #e9ecef; border-radius: 10px; height: 8px; overflow: hidden;">
             <div style="
                 background-color: {self._get_rating_color()};
                 height: 100%;
@@ -406,15 +415,18 @@ class RatingCardWidget(BaseWidget):
                 border-radius: 10px;
                 transition: width 0.3s ease;
             "></div>
+</div>
         </div>
         """
         
         return f"""
-        <div style="text-align: center; margin-bottom: 15px;">
+        <div class="email-preview-wrapper">
+<div style="text-align: center; margin-bottom: 15px;">
             {rating_number}
             {stars_html}
             {progress_bar}
         </div>
+</div>
         """
     
     def _render_description(self) -> str:
@@ -423,7 +435,8 @@ class RatingCardWidget(BaseWidget):
             return ""
         
         return f"""
-        <div style="
+        <div class="email-preview-wrapper">
+<div style="
             color: #6c757d;
             font-size: 14px;
             line-height: 1.5;
@@ -432,6 +445,7 @@ class RatingCardWidget(BaseWidget):
         ">
             {self._description}
         </div>
+</div>
         """
     
     def _generate_stars(self) -> str:
@@ -479,7 +493,7 @@ class RatingCardWidget(BaseWidget):
             return '#dc3545'  # 红色 - 较差
     
     def _get_card_styles(self) -> dict:
-        """获取卡片样式"""
+        """获取Card样式"""
         return {
             'background': 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
             'border': '1px solid #dee2e6',
@@ -498,27 +512,27 @@ class RatingCardWidget(BaseWidget):
 
 # 使用示例
 def demo_rating_card():
-    """评分卡片使用示例"""
+    """评分Card使用示例"""
     from email_widget import Email
     
-    email = Email("评分卡片演示")
+    email = Email("评分Card演示")
     
-    # 创建不同类型的评分卡片
+    # 创建不同类型的评分Card
     
-    # 产品评分
+    # Product评分
     product_rating = RatingCardWidget()
-    product_rating.set_title("产品用户满意度") \
+    product_rating.set_title("Product用户满意度") \
                   .set_rating(4.3, 5.0) \
                   .set_description("基于1,247个用户评价的平均分") \
                   .set_color_scheme("gold")
     
     email.add_widget(product_rating)
     
-    # 服务评分
+    # Service评分
     service_rating = RatingCardWidget()
-    service_rating.set_title("客户服务评分") \
+    service_rating.set_title("客户Service评分") \
                   .set_rating(8.7, 10.0) \
-                  .set_description("客户服务团队本月表现") \
+                  .set_description("客户Service团队本月表现") \
                   .set_color_scheme("green") \
                   .set_show_stars(False)
     
@@ -534,7 +548,7 @@ def demo_rating_card():
     email.add_widget(performance_rating)
     
     email.export_html("rating_card_demo.html")
-    print("✅ 评分卡片演示已生成")
+    print("✅ 评分Card演示已生成")
 
 if __name__ == "__main__":
     demo_rating_card()
@@ -549,7 +563,7 @@ import pytest
 from email_widget.widgets.rating_card_widget import RatingCardWidget
 
 class TestRatingCardWidget:
-    """评分卡片 Widget 测试"""
+    """评分Card Widget 测试"""
     
     def test_initialization(self):
         """测试初始化"""
@@ -560,12 +574,12 @@ class TestRatingCardWidget:
         assert widget._show_stars is True
     
     def test_set_title(self):
-        """测试设置标题"""
+        """测试设置Title"""
         widget = RatingCardWidget()
-        result = widget.set_title("测试标题")
+        result = widget.set_title("测试Title")
         
         assert result is widget  # 测试链式调用
-        assert widget._title == "测试标题"
+        assert widget._title == "测试Title"
     
     def test_set_rating(self):
         """测试设置评分"""
@@ -698,15 +712,17 @@ class CustomWidget(BaseWidget):
 ```python
 def render(self) -> str:
     # 好：使用内联样式
-    return '<div style="color: red; font-size: 16px;">内容</div>'
+    return '<div class="email-preview-wrapper">
+<div style="color: red; font-size: 16px;">内容</div>
+</div>'
     
     # 避免：使用外部 CSS 类（很多邮件客户端不支持）
     # return '<div class="my-class">内容</div>'
 ```
 
-**避免复杂布局**
+**避免复杂Layout**
 ```python
-# 好：使用表格布局
+# 好：使用表格Layout
 def _render_layout(self) -> str:
     return '''
     <table style="width: 100%; border-collapse: collapse;">
@@ -739,11 +755,11 @@ class CustomWidget(BaseWidget):
     
     示例用法:
         >>> widget = CustomWidget()
-        >>> widget.set_title("标题").set_content("内容")
+        >>> widget.set_title("Title").set_content("内容")
         >>> html = widget.render()
     
     支持的配置选项:
-        - title: 标题文字
+        - title: Title文字
         - content: 主要内容
         - theme: 主题样式 (default, primary, success, warning, danger)
     
@@ -760,7 +776,7 @@ class CustomWidget(BaseWidget):
 
 ## 🚀 进阶技巧
 
-### 1. 支持模板系统
+### 1. 支持模板System
 
 ```python
 from jinja2 import Template
@@ -779,7 +795,7 @@ class AdvancedWidget(BaseWidget):
         return self
     
     def set_data(self, **kwargs) -> 'AdvancedWidget':
-        """设置模板数据"""
+        """设置模板Data"""
         self._data.update(kwargs)
         return self
     
@@ -789,15 +805,16 @@ class AdvancedWidget(BaseWidget):
         return self._default_render()
 ```
 
-### 2. 响应式设计
+### 2. Responsive设计
 
 ```python
 class ResponsiveWidget(BaseWidget):
-    """支持响应式的 Widget"""
+    """支持Responsive的 Widget"""
     
     def render(self) -> str:
         return f'''
-        <div style="width: 100%; max-width: 600px;">
+        <div class="email-preview-wrapper">
+<div style="width: 100%; max-width: 600px;">
             <style>
                 @media (max-width: 600px) {{
                     .responsive-content {{ font-size: 14px !important; }}
@@ -806,20 +823,21 @@ class ResponsiveWidget(BaseWidget):
             <div class="responsive-content" style="font-size: 16px;">
                 {self._content}
             </div>
+</div>
         </div>
         '''
 ```
 
-### 3. 数据绑定
+### 3. Data绑定
 
 ```python
 import pandas as pd
 
 class DataBoundWidget(BaseWidget):
-    """支持数据绑定的 Widget"""
+    """支持Data绑定的 Widget"""
     
     def bind_dataframe(self, df: pd.DataFrame, columns: list = None) -> 'DataBoundWidget':
-        """绑定 DataFrame 数据"""
+        """绑定 DataFrame Data"""
         self._dataframe = df
         self._columns = columns or df.columns.tolist()
         return self
@@ -839,7 +857,7 @@ email_widget/
 ├── widgets/
 │   ├── __init__.py
 │   ├── custom_widget.py          # 您的 Widget
-│   └── rating_card_widget.py     # 评分卡片 Widget
+│   └── rating_card_widget.py     # 评分Card Widget
 ├── tests/
 │   ├── test_widgets/
 │   │   ├── test_custom_widget.py
@@ -873,7 +891,7 @@ __all__ = [
 class Email:
     def add_rating_card(self, title: str, rating: float, max_rating: float = 5.0, 
                        description: str = "") -> 'Email':
-        """添加评分卡片的便捷方法"""
+        """添加评分Card的便捷方法"""
         widget = RatingCardWidget()
         widget.set_title(title).set_rating(rating, max_rating)
         if description:
@@ -888,7 +906,7 @@ class Email:
 1. **继承 BaseWidget** - 遵循架构约定
 2. **实现 render 方法** - 核心渲染逻辑
 3. **支持链式调用** - 提升 API 易用性
-4. **输入验证** - 确保数据安全性
+4. **输入验证** - 确保Data安全性
 5. **邮件兼容性** - 使用内联样式
 6. **编写测试** - 保证代码质量
 7. **完善文档** - 帮助其他开发者
