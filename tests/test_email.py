@@ -899,6 +899,169 @@ class TestEmailConvenienceMethods:
         # 应该只添加了格式正确的指标
         assert metric.metric_count == 1
 
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_add_image_minimal(self, mock_process_image):
+        """测试添加最小图片"""
+        # Mock image processing to return a test URL
+        mock_process_image.return_value = "data:image/png;base64,test"
+        
+        result = self.email.add_image("https://example.com/image.png")
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.image_widget import ImageWidget
+
+        assert isinstance(self.email.widgets[0], ImageWidget)
+
+        image = self.email.widgets[0]
+        assert image.image_url == "data:image/png;base64,test"  # Mock返回的值
+        assert image.title is None
+        assert image.description is None
+        assert image.alt_text == ""  # 默认值
+        assert image.width is None
+        assert image.height is None
+        assert image.is_show_caption is True  # 默认值
+        
+        # 验证mock被正确调用
+        mock_process_image.assert_called_once_with(
+            "https://example.com/image.png", cache=True, embed=True
+        )
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_add_image_with_all_options(self, mock_process_image):
+        """测试添加带所有选项的图片"""
+        # Mock image processing to return a test URL
+        mock_process_image.return_value = "https://example.com/product.jpg"
+        
+        result = self.email.add_image(
+            "https://example.com/product.jpg",
+            title="产品展示",
+            description="最新款产品的展示图片",
+            alt_text="产品图片",
+            width="100%",
+            height="300px",
+            max_width="600px",
+            border_radius="8px",
+            cache=False,
+            embed=False,
+            show_caption=True,
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.image_widget import ImageWidget
+
+        assert isinstance(self.email.widgets[0], ImageWidget)
+
+        image = self.email.widgets[0]
+        assert image.title == "产品展示"
+        assert image.description == "最新款产品的展示图片"
+        assert image.alt_text == "产品图片"
+        assert image.width == "100%"
+        assert image.height == "300px"
+        assert image.border_radius == "8px"
+        assert image.is_show_caption is True
+        
+        # 验证mock被正确调用
+        mock_process_image.assert_called_once_with(
+            "https://example.com/product.jpg", cache=False, embed=False
+        )
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_add_image_with_partial_options(self, mock_process_image):
+        """测试添加带部分选项的图片"""
+        # Mock image processing to return a test URL
+        mock_process_image.return_value = "data:image/png;base64,logo"
+        
+        result = self.email.add_image(
+            "https://example.com/logo.png",
+            title="公司Logo",
+            alt_text="Logo图片",
+            max_width="400px",
+            show_caption=False,
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.image_widget import ImageWidget
+
+        assert isinstance(self.email.widgets[0], ImageWidget)
+
+        image = self.email.widgets[0]
+        assert image.title == "公司Logo"
+        assert image.description is None  # 未设置
+        assert image.alt_text == "Logo图片"
+        assert image.width is None  # 未设置
+        assert image.height is None  # 未设置
+        assert image.border_radius == "4px"  # 默认值
+        assert image.is_show_caption is False
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_add_image_with_path_object(self, mock_process_image):
+        """测试添加本地路径图片"""
+        from pathlib import Path
+
+        # 创建一个模拟的Path对象
+        mock_path = Path("./assets/test_image.png")
+        
+        # Mock image processing to return a test URL
+        mock_process_image.return_value = "data:image/png;base64,localimage"
+
+        result = self.email.add_image(
+            mock_path, title="本地图片", description="来自本地的测试图片"
+        )
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+        from email_widget.widgets.image_widget import ImageWidget
+
+        assert isinstance(self.email.widgets[0], ImageWidget)
+
+        image = self.email.widgets[0]
+        assert image.title == "本地图片"
+        assert image.description == "来自本地的测试图片"
+        
+        # 验证mock被正确调用
+        mock_process_image.assert_called_once_with(
+            mock_path, cache=True, embed=True
+        )
+
+    @patch("email_widget.utils.image_utils.ImageUtils.process_image_source")
+    def test_add_image_size_options(self, mock_process_image):
+        """测试添加图片尺寸选项"""
+        # Mock image processing to return test URLs
+        mock_process_image.return_value = "data:image/png;base64,test"
+        
+        # 测试只设置宽度
+        result = self.email.add_image("https://example.com/image1.png", width="200px")
+
+        assert result is self.email
+        assert len(self.email.widgets) == 1
+
+        image = self.email.widgets[0]
+        assert image.width == "200px"
+        assert image.height is None
+
+        # 清空并测试只设置高度
+        self.email.clear_widgets()
+        result = self.email.add_image("https://example.com/image2.png", height="150px")
+
+        assert len(self.email.widgets) == 1
+        image = self.email.widgets[0]
+        assert image.width is None
+        assert image.height == "150px"
+
+        # 清空并测试同时设置宽度和高度
+        self.email.clear_widgets()
+        result = self.email.add_image(
+            "https://example.com/image3.png", width="300px", height="200px"
+        )
+
+        assert len(self.email.widgets) == 1
+        image = self.email.widgets[0]
+        assert image.width == "300px"
+        assert image.height == "200px"
+
 
 class TestEmailRendering:
     """Email渲染功能测试类"""
@@ -1355,3 +1518,13 @@ class TestEmailTypeHints:
         assert "logs" in sig_add_log.parameters
         assert "show_timestamp" in sig_add_log.parameters
         assert "filter_level" in sig_add_log.parameters
+
+        sig_add_image = inspect.signature(Email.add_image)
+        assert "image_url" in sig_add_image.parameters
+        assert "title" in sig_add_image.parameters
+        assert "description" in sig_add_image.parameters
+        assert "alt_text" in sig_add_image.parameters
+        assert "width" in sig_add_image.parameters
+        assert "height" in sig_add_image.parameters
+        assert "cache" in sig_add_image.parameters
+        assert "embed" in sig_add_image.parameters

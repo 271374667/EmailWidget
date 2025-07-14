@@ -1001,6 +1001,79 @@ class Email:
 
         return self.add_widget(widget)
 
+    def add_image(
+        self,
+        image_url: str | Path,
+        title: str | None = None,
+        description: str | None = None,
+        alt_text: str | None = None,
+        width: str | None = None,
+        height: str | None = None,
+        max_width: str | None = None,
+        border_radius: str | None = None,
+        cache: bool = True,
+        embed: bool = True,
+        show_caption: bool = True,
+    ) -> "Email":
+        """快速添加图片Widget.
+
+        Args:
+            image_url: 图片的URL字符串或本地文件Path对象
+            title: 图片标题，可选
+            description: 图片描述，可选
+            alt_text: 图片替代文本，可选
+            width: 图片宽度，如\"300px\"、\"100%\"
+            height: 图片高度，如\"200px\"、\"auto\"
+            max_width: 图片最大宽度，如\"600px\"
+            border_radius: 边框圆角，如\"8px\"、\"50%\"
+            cache: 是否缓存网络图片，默认True
+            embed: 是否嵌入图片，默认True
+            show_caption: 是否显示标题和描述，默认True
+
+        Returns:
+            返回self以支持链式调用
+
+        Examples:
+            >>> email = Email()
+            >>> # 基本用法
+            >>> email.add_image("https://example.com/image.png")
+            >>> # 本地图片
+            >>> from pathlib import Path
+            >>> email.add_image(Path("./assets/logo.png"), title="公司Logo")
+            >>> # 完整选项
+            >>> email.add_image(
+            ...     "https://example.com/product.jpg",
+            ...     title="产品展示",
+            ...     description="最新款产品的展示图片",
+            ...     alt_text="产品图片",
+            ...     width="100%",
+            ...     max_width="600px",
+            ...     border_radius="8px"
+            ... )
+        """
+        from pathlib import Path
+
+        from email_widget.widgets.image_widget import ImageWidget
+
+        widget = ImageWidget().set_image_url(image_url, cache=cache, embed=embed)
+
+        if title is not None:
+            widget.set_title(title)
+        if description is not None:
+            widget.set_description(description)
+        if alt_text is not None:
+            widget.set_alt_text(alt_text)
+        if width is not None or height is not None:
+            widget.set_size(width=width, height=height)
+        if max_width is not None:
+            widget.set_max_width(max_width)
+        if border_radius is not None:
+            widget.set_border_radius(border_radius)
+
+        widget.show_caption(show_caption)
+
+        return self.add_widget(widget)
+
     def _generate_css_styles(self) -> str:
         """生成内联CSS样式.
 

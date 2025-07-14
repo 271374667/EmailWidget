@@ -485,10 +485,14 @@ class TestTemplateEngineIntegration:
         # 应该是同一个实例
         assert engine1 is engine2
 
+        # 记录初始缓存数量
+        initial_stats = engine1.get_cache_stats()
+        initial_count = initial_stats["cached_templates"]
+
         # 在一个实例中添加缓存
         template_string = "<div>Global test</div>"
         engine1._get_template(template_string)
 
-        # 另一个实例应该能看到缓存
+        # 另一个实例应该能看到缓存增加
         stats = engine2.get_cache_stats()
-        assert stats["cached_templates"] == 1
+        assert stats["cached_templates"] == initial_count + 1
