@@ -1,6 +1,6 @@
 [project]
 name = "EmailWidget"
-version = "0.21.31"
+version = "0.22.1"
 description = "🚀 一个现代化、易用的Python邮件组件库，让你轻松创建美观的HTML邮件报告"
 requires-python = ">=3.10"
 readme = "README.md"
@@ -38,6 +38,8 @@ dev = [
     "redmail>=0.6.0",
     "seaborn>=0.13.2",
     "ruff>=0.1.7",
+    "notebook>=7.4.4",
+    "psutil>=6.1.1",
 ]
 
 [project.optional-dependencies]
