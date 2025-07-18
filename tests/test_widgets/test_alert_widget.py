@@ -47,7 +47,7 @@ class TestAlertWidget:
             assert result is self.widget
             assert self.widget._content == content
         else:
-            with pytest.raises(ValueError, match="警告内容验证失败"):
+            with pytest.raises(ValueError, match="Alert content validation failed"):
                 self.widget.set_content(content)
 
     @pytest.mark.parametrize(
@@ -105,11 +105,11 @@ class TestAlertWidget:
     @pytest.mark.parametrize(
         "alert_type,expected_title",
         [
-            (AlertType.NOTE, "注意"),
-            (AlertType.TIP, "提示"),
-            (AlertType.IMPORTANT, "重要"),
-            (AlertType.WARNING, "警告"),
-            (AlertType.CAUTION, "危险"),
+            (AlertType.NOTE, "Note"),
+            (AlertType.TIP, "Tip"),
+            (AlertType.IMPORTANT, "Important"),
+            (AlertType.WARNING, "Warning"),
+            (AlertType.CAUTION, "Caution"),
         ],
     )
     def test_get_default_title(self, alert_type, expected_title):
@@ -166,7 +166,7 @@ class TestAlertWidget:
 
         assert context["content"] == "This is a warning message"
         assert context["show_icon"] is True
-        assert context["title"] == "警告"  # 默认标题
+        assert context["title"] == "Warning"  # 默认标题
         assert context["icon"] == "⚠️"  # 默认图标
         assert "container_style" in context
 

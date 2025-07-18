@@ -1,6 +1,6 @@
-"""EmailWidget面向对象验证器系统
+"""EmailWidget object-oriented validator system
 
-这个模块提供了基于类的验证器系统，使用通用基类和具体子类实现.
+This module provides a class-based validator system using generic base classes and concrete subclass implementations.
 """
 
 import re
@@ -9,50 +9,50 @@ from typing import Any
 
 
 class BaseValidator(ABC):
-    """验证器基类.
+    """Validator base class.
 
-    所有验证器都应该继承这个基类并实现validate方法.
+    All validators should inherit from this base class and implement the validate method.
 
     Attributes:
-        error_message: 验证失败时的错误消息
+        error_message: Error message when validation fails
     """
 
     def __init__(self, error_message: str | None = None):
-        """初始化验证器.
+        """Initialize validator.
 
         Args:
-            error_message: 自定义错误消息
+            error_message: Custom error message
         """
         self.error_message = error_message or self._get_default_error_message()
 
     @abstractmethod
     def validate(self, value: Any) -> bool:
-        """验证值是否有效.
+        """Validate whether value is valid.
 
         Args:
-            value: 要验证的值
+            value: Value to validate
 
         Returns:
-            验证是否通过
+            Whether validation passes
         """
         pass
 
     def _get_default_error_message(self) -> str:
-        """获取默认错误消息.
+        """Get default error message.
 
         Returns:
-            默认错误消息
+            Default error message
         """
-        return f"{self.__class__.__name__} 验证失败"
+        return f"{self.__class__.__name__} validation failed"
 
     def get_error_message(self, value: Any = None) -> str:
-        """获取错误消息.
+        """Get error message.
 
         Args:
-            value: 验证失败的值
+            value: Value that failed validation
 
         Returns:
-            错误消息
+            Error message
         """
         if value is not None:
             return f"{self.error_message}: {value}"
@@ -60,35 +60,35 @@ class BaseValidator(ABC):
 
 
 class ColorValidator(BaseValidator):
-    """CSS颜色值验证器."""
+    """CSS color value validator."""
 
     def _get_default_error_message(self) -> str:
-        return "无效的CSS颜色值"
+        return "Invalid CSS color value"
 
     def validate(self, value: Any) -> bool:
-        """验证CSS颜色值.
+        """Validate CSS color value.
 
         Args:
-            value: 要验证的颜色值
+            value: Color value to validate
 
         Returns:
-            是否为有效颜色
+            Whether it's a valid color
         """
         if not isinstance(value, str):
             return False
 
         value = value.strip().lower()
 
-        # 十六进制颜色
+        # Hexadecimal color
         if value.startswith("#") and len(value) in [4, 7]:
             hex_part = value[1:]
             return all(c in "0123456789abcdef" for c in hex_part)
 
-        # RGB/RGBA颜色
+        # RGB/RGBA color
         if value.startswith(("rgb(", "rgba(")):
             return True
 
-        # 预定义颜色名称
+        # Predefined color names
         css_colors = {
             "black",
             "white",
@@ -114,26 +114,26 @@ class ColorValidator(BaseValidator):
 
 
 class SizeValidator(BaseValidator):
-    """CSS尺寸值验证器."""
+    """CSS size value validator."""
 
     def _get_default_error_message(self) -> str:
-        return "无效的CSS尺寸值"
+        return "Invalid CSS size value"
 
     def validate(self, value: Any) -> bool:
-        """验证CSS尺寸值.
+        """Validate CSS size value.
 
         Args:
-            value: 要验证的尺寸值
+            value: Size value to validate
 
         Returns:
-            是否为有效尺寸
+            Whether it's a valid size
         """
         if not isinstance(value, str):
             return False
 
         value = value.strip().lower()
 
-        # 数字 + 单位
+        # Number + unit
         size_units = ["px", "em", "rem", "%", "pt", "pc", "in", "cm", "mm"]
 
         for unit in size_units:
@@ -145,7 +145,7 @@ class SizeValidator(BaseValidator):
                 except ValueError:
                     continue
 
-        # 纯数字（默认px）
+        # Pure number (default px)
         try:
             float(value)
             return True
@@ -154,7 +154,7 @@ class SizeValidator(BaseValidator):
 
 
 class RangeValidator(BaseValidator):
-    """数值范围验证器."""
+    """Numeric range validator."""
 
     def __init__(
         self,
@@ -162,28 +162,28 @@ class RangeValidator(BaseValidator):
         max_value: int | float,
         error_message: str | None = None,
     ):
-        """初始化范围验证器.
+        """Initialize range validator.
 
         Args:
-            min_value: 最小值
-            max_value: 最大值
-            error_message: 自定义错误消息
+            min_value: Minimum value
+            max_value: Maximum value
+            error_message: Custom error message
         """
         self.min_value = min_value
         self.max_value = max_value
         super().__init__(error_message)
 
     def _get_default_error_message(self) -> str:
-        return f"值必须在 {self.min_value} 到 {self.max_value} 之间"
+        return f"Value must be between {self.min_value} and {self.max_value}"
 
     def validate(self, value: Any) -> bool:
-        """验证数值是否在指定范围内.
+        """Validate whether numeric value is within specified range.
 
         Args:
-            value: 要验证的数值
+            value: Numeric value to validate
 
         Returns:
-            是否在范围内
+            Whether it's within range
         """
         if not isinstance(value, (int, float)):
             return False
@@ -192,29 +192,29 @@ class RangeValidator(BaseValidator):
 
 
 class ProgressValidator(RangeValidator):
-    """进度值验证器（0-100）."""
+    """Progress value validator (0-100)."""
 
     def __init__(self, error_message: str | None = None):
         super().__init__(0, 100, error_message)
 
     def _get_default_error_message(self) -> str:
-        return "进度值必须在 0 到 100 之间"
+        return "Progress value must be between 0 and 100"
 
 
 class UrlValidator(BaseValidator):
-    """URL格式验证器."""
+    """URL format validator."""
 
     def _get_default_error_message(self) -> str:
-        return "无效的URL格式"
+        return "Invalid URL format"
 
     def validate(self, value: Any) -> bool:
-        """验证URL格式.
+        """Validate URL format.
 
         Args:
-            value: 要验证的URL
+            value: URL to validate
 
         Returns:
-            是否为有效URL
+            Whether it's a valid URL
         """
         if not isinstance(value, str):
             return False
@@ -233,19 +233,19 @@ class UrlValidator(BaseValidator):
 
 
 class EmailValidator(BaseValidator):
-    """邮箱地址验证器."""
+    """Email address validator."""
 
     def _get_default_error_message(self) -> str:
-        return "无效的邮箱地址格式"
+        return "Invalid email address format"
 
     def validate(self, value: Any) -> bool:
-        """验证邮箱地址格式.
+        """Validate email address format.
 
         Args:
-            value: 要验证的邮箱地址
+            value: Email address to validate
 
         Returns:
-            是否为有效邮箱
+            Whether it's a valid email
         """
         if not isinstance(value, str):
             return False
@@ -256,25 +256,25 @@ class EmailValidator(BaseValidator):
 
 
 class NonEmptyStringValidator(BaseValidator):
-    """非空字符串验证器."""
+    """Non-empty string validator."""
 
     def _get_default_error_message(self) -> str:
-        return "字符串不能为空"
+        return "String cannot be empty"
 
     def validate(self, value: Any) -> bool:
-        """验证字符串是否非空.
+        """Validate whether string is non-empty.
 
         Args:
-            value: 要验证的字符串
+            value: String to validate
 
         Returns:
-            是否为非空字符串
+            Whether it's a non-empty string
         """
         return isinstance(value, str) and len(value.strip()) > 0
 
 
 class LengthValidator(BaseValidator):
-    """字符串长度验证器."""
+    """String length validator."""
 
     def __init__(
         self,
@@ -282,12 +282,12 @@ class LengthValidator(BaseValidator):
         max_length: int | None = None,
         error_message: str | None = None,
     ):
-        """初始化长度验证器.
+        """Initialize length validator.
 
         Args:
-            min_length: 最小长度
-            max_length: 最大长度，None表示无限制
-            error_message: 自定义错误消息
+            min_length: Minimum length
+            max_length: Maximum length, None means no limit
+            error_message: Custom error message
         """
         self.min_length = min_length
         self.max_length = max_length
@@ -295,18 +295,18 @@ class LengthValidator(BaseValidator):
 
     def _get_default_error_message(self) -> str:
         if self.max_length is not None:
-            return f"长度必须在 {self.min_length} 到 {self.max_length} 之间"
+            return f"Length must be between {self.min_length} and {self.max_length}"
         else:
-            return f"长度必须至少 {self.min_length}"
+            return f"Length must be at least {self.min_length}"
 
     def validate(self, value: Any) -> bool:
-        """验证字符串长度.
+        """Validate string length.
 
         Args:
-            value: 要验证的字符串
+            value: String to validate
 
         Returns:
-            长度是否符合要求
+            Whether length meets requirements
         """
         if not hasattr(value, "__len__"):
             return False
@@ -323,14 +323,14 @@ class LengthValidator(BaseValidator):
 
 
 class TypeValidator(BaseValidator):
-    """类型验证器."""
+    """Type validator."""
 
     def __init__(self, expected_type: type | tuple, error_message: str | None = None):
-        """初始化类型验证器.
+        """Initialize type validator.
 
         Args:
-            expected_type: 期望的类型或类型元组
-            error_message: 自定义错误消息
+            expected_type: Expected type or type tuple
+            error_message: Custom error message
         """
         self.expected_type = expected_type
         super().__init__(error_message)
@@ -338,52 +338,52 @@ class TypeValidator(BaseValidator):
     def _get_default_error_message(self) -> str:
         if isinstance(self.expected_type, tuple):
             type_names = [t.__name__ for t in self.expected_type]
-            return f"类型必须是 {' 或 '.join(type_names)} 之一"
+            return f"Type must be one of {' or '.join(type_names)}"
         else:
-            return f"类型必须是 {self.expected_type.__name__}"
+            return f"Type must be {self.expected_type.__name__}"
 
     def validate(self, value: Any) -> bool:
-        """验证值的类型.
+        """Validate value type.
 
         Args:
-            value: 要验证的值
+            value: Value to validate
 
         Returns:
-            类型是否匹配
+            Whether type matches
         """
         return isinstance(value, self.expected_type)
 
 
 class ChoicesValidator(BaseValidator):
-    """选项验证器."""
+    """Choices validator."""
 
     def __init__(self, choices: list[Any], error_message: str | None = None):
-        """初始化选项验证器.
+        """Initialize choices validator.
 
         Args:
-            choices: 允许的选项列表
-            error_message: 自定义错误消息
+            choices: List of allowed choices
+            error_message: Custom error message
         """
         self.choices = choices
         super().__init__(error_message)
 
     def _get_default_error_message(self) -> str:
-        return f"值必须是以下选项之一: {self.choices}"
+        return f"Value must be one of the following choices: {self.choices}"
 
     def validate(self, value: Any) -> bool:
-        """验证值是否在允许的选项中.
+        """Validate whether value is in allowed choices.
 
         Args:
-            value: 要验证的值
+            value: Value to validate
 
         Returns:
-            是否在允许的选项中
+            Whether it's in allowed choices
         """
         return value in self.choices
 
 
 class CompositeValidator(BaseValidator):
-    """组合验证器，可以组合多个验证器."""
+    """Composite validator, can combine multiple validators."""
 
     def __init__(
         self,
@@ -391,12 +391,12 @@ class CompositeValidator(BaseValidator):
         require_all: bool = True,
         error_message: str | None = None,
     ):
-        """初始化组合验证器.
+        """Initialize composite validator.
 
         Args:
-            validators: 验证器列表
-            require_all: 是否要求所有验证器都通过，False表示只要有一个通过即可
-            error_message: 自定义错误消息
+            validators: List of validators
+            require_all: Whether all validators must pass, False means only one needs to pass
+            error_message: Custom error message
         """
         self.validators = validators
         self.require_all = require_all
@@ -404,18 +404,18 @@ class CompositeValidator(BaseValidator):
 
     def _get_default_error_message(self) -> str:
         if self.require_all:
-            return "必须通过所有验证条件"
+            return "Must pass all validation conditions"
         else:
-            return "必须通过至少一个验证条件"
+            return "Must pass at least one validation condition"
 
     def validate(self, value: Any) -> bool:
-        """验证值是否通过组合条件.
+        """Validate whether value passes composite conditions.
 
         Args:
-            value: 要验证的值
+            value: Value to validate
 
         Returns:
-            是否通过验证
+            Whether validation passes
         """
         results = [validator.validate(value) for validator in self.validators]
 
@@ -425,13 +425,13 @@ class CompositeValidator(BaseValidator):
             return any(results)
 
     def get_failed_validators(self, value: Any) -> list[BaseValidator]:
-        """获取验证失败的验证器列表.
+        """Get list of validators that failed validation.
 
         Args:
-            value: 验证的值
+            value: Value being validated
 
         Returns:
-            失败的验证器列表
+            List of failed validators
         """
         failed = []
         for validator in self.validators:
@@ -440,7 +440,7 @@ class CompositeValidator(BaseValidator):
         return failed
 
 
-# 预定义的常用验证器实例
+# Predefined common validator instances
 color_validator = ColorValidator()
 size_validator = SizeValidator()
 progress_validator = ProgressValidator()
@@ -448,7 +448,7 @@ url_validator = UrlValidator()
 email_validator = EmailValidator()
 non_empty_string_validator = NonEmptyStringValidator()
 
-# 常用的类型验证器
+# Common type validators
 string_validator = TypeValidator(str)
 int_validator = TypeValidator(int)
 float_validator = TypeValidator(float)

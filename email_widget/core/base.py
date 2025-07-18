@@ -1,6 +1,6 @@
-"""基础Widget类定义
+"""Base Widget Class Definition
 
-这个模块定义了所有Widget的基础抽象类，提供了Widget的基本功能和接口。
+This module defines the abstract base class for all widgets, providing basic functionality and interfaces.
 """
 
 import uuid
@@ -15,14 +15,14 @@ if TYPE_CHECKING:
 
 
 class BaseWidget(ABC):
-    """所有Widget的基础抽象类。
+    """Abstract base class for all widgets.
 
-    这个类定义了所有Widget必须实现的基本接口和通用功能。
-    每个Widget都有一个唯一的ID，可以被添加到Email容器中。
+    This class defines the basic interface and common functionality that all widgets must implement.
+    Each widget has a unique ID and can be added to an Email container.
 
     Attributes:
-        widget_id (str): Widget的唯一标识符。
-        parent (Optional[Email]): 包含此Widget的Email容器。
+        widget_id (str): Unique identifier for the widget.
+        parent (Optional[Email]): Email container that contains this widget.
 
     Examples:
         ```python
@@ -39,19 +39,19 @@ class BaseWidget(ABC):
             def get_template_context(self) -> Dict[str, Any]:
                 return {"message": "This is a custom message.", "data": "some data"}
 
-        # 实例化自定义Widget
+        # Instantiate custom widget
         widget = MyCustomWidget()
-        print(widget.widget_id) # 打印生成的唯一ID
+        print(widget.widget_id) # Print generated unique ID
         html_output = widget.render_html()
-        print(html_output) # 打印渲染后的HTML
+        print(html_output) # Print rendered HTML
         ```
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化BaseWidget。
+        """Initialize BaseWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID，如果不提供则自动生成。
+            widget_id (Optional[str]): Optional widget ID, automatically generated if not provided.
         """
         self._widget_id: str = widget_id or self._generate_id()
         self._parent: Email | None = None
@@ -60,60 +60,61 @@ class BaseWidget(ABC):
 
     @property
     def widget_id(self) -> str:
-        """获取Widget的唯一ID。
+        """Get the unique ID of the widget.
 
         Returns:
-            str: Widget的唯一标识符字符串。
+            str: Unique identifier string for the widget.
         """
         return self._widget_id
 
     @property
     def parent(self) -> Optional["Email"]:
-        """获取包含此Widget的Email容器。
+        """Get the Email container that contains this widget.
 
         Returns:
-            Optional[Email]: 包含此Widget的Email对象，如果未被添加到容器中则返回None。
+            Optional[Email]: Email object containing this widget, or None if not added to a container.
         """
         return self._parent
 
     def _set_parent(self, parent: "Email") -> None:
-        """设置Widget的父容器。
+        """Set the parent container for the widget.
 
-        这是一个内部方法，当Widget被添加到Email容器时会自动调用。
+        This is an internal method that is automatically called when the widget is added to an Email container.
 
         Args:
-            parent (Email): Email容器对象。
+            parent (Email): Email container object.
         """
         self._parent = parent
 
     def _generate_id(self) -> str:
-        """生成唯一的Widget ID。
+        """Generate a unique widget ID.
 
-        ID格式为: `{类名小写}_{8位随机十六进制字符}`。
+        ID format: `{lowercase_class_name}_{8_random_hex_chars}`.
 
         Returns:
-            str: 生成的唯一ID字符串。
+            str: Generated unique ID string.
         """
         return f"{self.__class__.__name__.lower()}_{uuid.uuid4().hex[:8]}"
 
     @abstractmethod
     def _get_template_name(self) -> str:
-        """获取Widget对应的模板名称。
+        """Get the template name corresponding to the widget.
 
-        这是一个抽象方法，子类必须实现。
+        This is an abstract method that must be implemented by subclasses.
 
         Returns:
-            str: 模板文件名称。
+            str: Template file name.
         """
         pass
 
     def render_html(self) -> str:
-        """将Widget渲染为HTML字符串。
+        """Render the widget as an HTML string.
 
-        使用模板引擎渲染Widget，包含完整的容错机制。如果渲染失败，会返回错误提示的HTML。
+        Uses the template engine to render the widget with comprehensive error handling.
+        Returns error HTML if rendering fails.
 
         Returns:
-            str: 渲染后的HTML字符串。
+            str: Rendered HTML string.
 
         Examples:
             ```python
@@ -132,51 +133,51 @@ class BaseWidget(ABC):
             ```
         """
         try:
-            # 检查是否有模板定义
+            # Check if template is defined
             if not hasattr(self, "TEMPLATE") or not self.TEMPLATE:
                 self._logger.warning(
-                    f"Widget {self.__class__.__name__} 没有定义TEMPLATE"
+                    f"Widget {self.__class__.__name__} has no TEMPLATE defined"
                 )
-                return self._render_error_fallback("模板未定义")
+                return self._render_error_fallback("Template not defined")
 
-            # 获取模板上下文
+            # Get template context
             context = self.get_template_context()
             if not isinstance(context, dict):
                 self._logger.error(
-                    f"Widget {self.widget_id} 的get_template_context返回了非字典类型"
+                    f"Widget {self.widget_id} get_template_context returned non-dict type"
                 )
-                return self._render_error_fallback("上下文数据错误")
+                return self._render_error_fallback("Context data error")
 
-            # 渲染模板
+            # Render template
             return self._template_engine.render_safe(
                 self.TEMPLATE,
                 context,
-                fallback=self._render_error_fallback("模板渲染失败"),
+                fallback=self._render_error_fallback("Template rendering failed"),
             )
 
         except Exception as e:
-            self._logger.error(f"Widget {self.widget_id} 渲染失败: {e}")
-            return self._render_error_fallback(f"渲染异常: {e}")
+            self._logger.error(f"Widget {self.widget_id} rendering failed: {e}")
+            return self._render_error_fallback(f"Rendering exception: {e}")
 
     @abstractmethod
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据。
+        """Get the context data required for template rendering.
 
-        子类必须实现此方法，返回模板渲染所需的数据字典。
+        Subclasses must implement this method to return the data dictionary needed for template rendering.
 
         Returns:
-            Dict[str, Any]: 模板上下文数据字典。
+            Dict[str, Any]: Template context data dictionary.
         """
         pass
 
     def _render_error_fallback(self, error_msg: str = "") -> str:
-        """渲染失败时的降级处理。
+        """Fallback handling when rendering fails.
 
         Args:
-            error_msg (str): 错误信息。
+            error_msg (str): Error message.
 
         Returns:
-            str: 降级HTML字符串。
+            str: Fallback HTML string.
         """
         return f"""
         <div style="
@@ -189,23 +190,23 @@ class BaseWidget(ABC):
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
             font-size: 14px;
         ">
-            <strong>Widget渲染错误:</strong> {self.__class__.__name__} ({self.widget_id})
-            {f"<br/>错误详情: {error_msg}" if error_msg else ""}
+            <strong>Widget Rendering Error:</strong> {self.__class__.__name__} ({self.widget_id})
+            {f"<br/>Error Details: {error_msg}" if error_msg else ""}
         </div>
         """
 
     def set_widget_id(self, widget_id: str) -> "BaseWidget":
-        """设置Widget的ID。
+        """Set the widget ID.
 
         Args:
-            widget_id (str): 新的Widget ID。
+            widget_id (str): New widget ID.
 
         Returns:
-            BaseWidget: 返回self以支持链式调用。
+            BaseWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget.set_widget_id("my_custom_id")
-            >>> print(widget.widget_id)  # 输出: my_custom_id
+            >>> print(widget.widget_id)  # Output: my_custom_id
         """
         self._widget_id = widget_id
         return self

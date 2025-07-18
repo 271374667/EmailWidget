@@ -1,20 +1,20 @@
-"""可选依赖检查模块
+"""Optional dependency check module
 
-此模块提供检查和导入可选依赖的工具函数，用于支持渐进式功能启用。
+This module provides utility functions for checking and importing optional dependencies, to support progressive feature enablement.
 """
 
 from typing import Any
 
 
 def check_optional_dependency(module_name: str, extra_name: str | None = None) -> None:
-    """检查可选依赖是否可用
+    """Check if optional dependency is available
 
     Args:
-        module_name: 模块名称
-        extra_name: 可选依赖组名称
+        module_name: Module name
+        extra_name: Optional dependency group name
 
     Raises:
-        ImportError: 当依赖不可用时抛出，包含安装提示
+        ImportError: Thrown when dependency is not available, includes installation hints
 
     Examples:
         >>> check_optional_dependency("pandas")
@@ -50,17 +50,17 @@ def check_optional_dependency(module_name: str, extra_name: str | None = None) -
 
 
 def import_optional_dependency(module_name: str, extra_name: str | None = None) -> Any:
-    """导入可选依赖
+    """Import optional dependency
 
     Args:
-        module_name: 模块名称
-        extra_name: 可选依赖组名称
+        module_name: Module name
+        extra_name: Optional dependency group name
 
     Returns:
-        导入的模块对象
+        Imported module object
 
     Raises:
-        ImportError: 当依赖不可用时抛出，包含安装提示
+        ImportError: Thrown when dependency is not available, includes installation hints
 
     Examples:
         >>> pd = import_optional_dependency("pandas")
@@ -71,13 +71,13 @@ def import_optional_dependency(module_name: str, extra_name: str | None = None) 
 
 
 def requires_pandas(func):
-    """装饰器：要求pandas依赖可用
+    """Decorator: requires pandas dependency to be available
 
     Args:
-        func: 被装饰的函数
+        func: Function to be decorated
 
     Returns:
-        装饰后的函数
+        Decorated function
 
     Examples:
         >>> @requires_pandas
@@ -93,13 +93,13 @@ def requires_pandas(func):
 
 
 def requires_matplotlib(func):
-    """装饰器：要求matplotlib依赖可用
+    """Decorator: requires matplotlib dependency to be available
 
     Args:
-        func: 被装饰的函数
+        func: Function to be decorated
 
     Returns:
-        装饰后的函数
+        Decorated function
 
     Examples:
         >>> @requires_matplotlib
@@ -116,42 +116,42 @@ def requires_matplotlib(func):
 
 
 class PandasMixin:
-    """Pandas功能混入类
+    """Pandas functionality mixin class
 
-    为需要pandas功能的类提供通用的pandas检查方法。
+    Provides common pandas checking methods for classes that need pandas functionality.
     """
 
     def _check_pandas_available(self) -> None:
-        """检查pandas是否可用"""
+        """Check if pandas is available"""
         check_optional_dependency("pandas")
 
     def _import_pandas(self):
-        """导入pandas模块"""
+        """Import pandas module"""
         return import_optional_dependency("pandas")
 
 
 class ChartMixin:
-    """图表功能混入类
+    """Chart functionality mixin class
 
-    为需要图表功能的类提供通用的matplotlib检查方法。
+    Provides common matplotlib checking methods for classes that need chart functionality.
     """
 
     def _check_matplotlib_available(self) -> None:
-        """检查matplotlib是否可用"""
+        """Check if matplotlib is available"""
         check_optional_dependency("matplotlib")
 
     def _import_matplotlib_pyplot(self):
-        """导入matplotlib.pyplot模块"""
+        """Import matplotlib.pyplot module"""
         return import_optional_dependency("matplotlib.pyplot")
 
     def _import_matplotlib_font_manager(self):
-        """导入matplotlib.font_manager模块"""
+        """Import matplotlib.font_manager module"""
         return import_optional_dependency("matplotlib.font_manager")
 
     def _check_seaborn_available(self) -> None:
-        """检查seaborn是否可用"""
+        """Check if seaborn is available"""
         check_optional_dependency("seaborn")
 
     def _import_seaborn(self):
-        """导入seaborn模块"""
+        """Import seaborn module"""
         return import_optional_dependency("seaborn")

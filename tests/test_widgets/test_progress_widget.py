@@ -53,7 +53,7 @@ class TestProgressWidget:
             expected_value = max(0, min(value, self.widget._max_value))
             assert self.widget._value == expected_value
         elif not should_pass:
-            with pytest.raises(ValueError, match="进度值验证失败"):
+            with pytest.raises(ValueError, match="Progress value validation failed"):
                 self.widget.set_value(value)
 
     def test_set_max_value(self):
@@ -114,7 +114,7 @@ class TestProgressWidget:
             assert result is self.widget
             assert self.widget._width == width
         else:
-            with pytest.raises(ValueError, match="宽度值验证失败"):
+            with pytest.raises(ValueError, match="Width value validation failed"):
                 self.widget.set_width(width)
 
     def test_set_height(self):
@@ -148,7 +148,7 @@ class TestProgressWidget:
             assert result is self.widget
             assert self.widget._background_color == color
         else:
-            with pytest.raises(ValueError, match="背景颜色验证失败"):
+            with pytest.raises(ValueError, match="Background color validation failed"):
                 self.widget.set_background_color(color)
 
     def test_increment(self):

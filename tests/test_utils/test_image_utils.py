@@ -439,7 +439,7 @@ class TestImageUtilsIntegration:
                 # 应该发出警告
                 mock_logger_instance.warning.assert_called_once()
                 warning_call = mock_logger_instance.warning.call_args[0][0]
-                assert "本地图片文件无法通过链接访问，将强制嵌入" in warning_call
+                assert "Local image file cannot be accessed via link, will force embed" in warning_call
                 assert "local.png" in warning_call
 
                 # 仍然应该返回base64编码

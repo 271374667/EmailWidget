@@ -1,6 +1,6 @@
-"""EmailWidget项目日志系统
+"""EmailWidget project logging system
 
-提供统一的日志管理功能，支持环境变量控制和生产环境日志禁用.
+Provides unified logging management functionality with environment variable control and production environment log disabling.
 """
 
 import logging
@@ -9,21 +9,21 @@ from typing import Optional
 
 
 class EmailWidgetLogger:
-    """EmailWidget项目专用日志器.
+    """EmailWidget project dedicated logger.
 
-    提供统一的日志接口，支持通过环境变量控制日志级别.
-    在生产环境中可以完全禁用日志输出.
+    Provides unified logging interface with environment variable control for log levels.
+    Can completely disable log output in production environment.
 
-    日志级别:
-        - `DEBUG`: 调试信息，开发阶段的详细信息.
-        - `INFO`: 一般信息，正常操作记录.
-        - `WARNING`: 警告信息，可能的问题提醒.
-        - `ERROR`: 错误信息，错误但不致命的问题.
-        - `CRITICAL`: 严重错误，系统级严重问题.
+    Log Levels:
+        - `DEBUG`: Debug information, detailed information during development stage.
+        - `INFO`: General information, normal operation records.
+        - `WARNING`: Warning information, potential problem alerts.
+        - `ERROR`: Error information, errors but not fatal problems.
+        - `CRITICAL`: Critical errors, system-level serious problems.
 
-    环境变量配置:
-        - `EMAILWIDGET_LOG_LEVEL`: 设置日志级别，例如 `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`.
-        - `EMAILWIDGET_DISABLE_LOGGING`: 设置为 `true`, `1`, `yes` 可以完全禁用日志输出.
+    Environment Variable Configuration:
+        - `EMAILWIDGET_LOG_LEVEL`: Set log level, e.g., `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`.
+        - `EMAILWIDGET_DISABLE_LOGGING`: Set to `true`, `1`, `yes` to completely disable log output.
 
     Examples:
         ```python
@@ -31,21 +31,21 @@ class EmailWidgetLogger:
 
         logger = get_project_logger()
 
-        # 记录不同级别的日志
-        logger.debug("调试信息: 模板渲染开始")
-        logger.info("邮件创建成功")
-        logger.warning("使用了过时的方法")
-        logger.error("Widget 渲染失败")
-        logger.critical("系统内存不足")
+        # Log different levels
+        logger.debug("Debug info: template rendering started")
+        logger.info("Email created successfully")
+        logger.warning("Used deprecated method")
+        logger.error("Widget rendering failed")
+        logger.critical("System memory insufficient")
         ```
 
-        也可以直接使用便捷函数：
+        You can also use convenience functions directly:
 
         ```python
         from email_widget.core.logger import info, error
 
-        info("这是一个信息日志.")
-        error("这是一个错误日志.")
+        info("This is an info log.")
+        error("This is an error log.")
         ```
     """
 
@@ -53,10 +53,10 @@ class EmailWidgetLogger:
     _logger: logging.Logger | None = None
 
     def __new__(cls) -> "EmailWidgetLogger":
-        """单例模式确保全局唯一的日志器实例.
+        """Singleton pattern ensures globally unique logger instance.
 
         Returns:
-            EmailWidgetLogger: 全局唯一的日志器实例.
+            EmailWidgetLogger: Globally unique logger instance.
         """
         if cls._instance is None:
             cls._instance = super().__new__(cls)
@@ -64,103 +64,105 @@ class EmailWidgetLogger:
         return cls._instance
 
     def _initialize_logger(self) -> None:
-        """初始化日志器配置.
+        """Initialize logger configuration.
 
-        此方法根据环境变量 `EMAILWIDGET_LOG_LEVEL` 和 `EMAILWIDGET_DISABLE_LOGGING`
-        配置日志级别和输出行为.它确保日志器只被初始化一次.
+        This method configures log level and output behavior based on environment variables
+        `EMAILWIDGET_LOG_LEVEL` and `EMAILWIDGET_DISABLE_LOGGING`. It ensures the logger
+        is only initialized once.
         """
         self._logger = logging.getLogger("EmailWidget")
 
-        # 避免重复添加处理器
+        # Avoid adding duplicate handlers
         if self._logger.handlers:
             return
 
-        # 从环境变量获取日志级别，默认为INFO
+        # Get log level from environment variable, default to INFO
         log_level = os.getenv("EMAILWIDGET_LOG_LEVEL", "INFO").upper()
 
-        # 检查是否禁用日志（生产环境）
+        # Check if logging is disabled (production environment)
         if os.getenv("EMAILWIDGET_DISABLE_LOGGING", "").lower() in ("true", "1", "yes"):
-            self._logger.setLevel(logging.CRITICAL + 1)  # 禁用所有日志
+            self._logger.setLevel(logging.CRITICAL + 1)  # Disable all logging
             return
 
-        # 设置日志级别
+        # Set log level
         try:
             level = getattr(logging, log_level)
             self._logger.setLevel(level)
         except AttributeError:
             self._logger.setLevel(logging.INFO)
 
-        # 创建控制台处理器
+        # Create console handler
         console_handler = logging.StreamHandler()
         console_handler.setLevel(self._logger.level)
 
-        # 设置日志格式
+        # Set log format
         formatter = logging.Formatter(
             "%(asctime)s | %(levelname)-8s | %(name)s:%(funcName)s:%(lineno)d - %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S",
         )
         console_handler.setFormatter(formatter)
 
-        # 添加处理器
+        # Add handler
         self._logger.addHandler(console_handler)
 
     def debug(self, message: str) -> None:
-        """输出调试日志.
+        """Output debug log.
 
         Args:
-            message (str): 日志消息.
+            message (str): Log message.
         """
         if self._logger:
             self._logger.debug(message)
 
     def info(self, message: str) -> None:
-        """输出信息日志.
+        """Output info log.
 
         Args:
-            message (str): 日志消息.
+            message (str): Log message.
         """
         if self._logger:
             self._logger.info(message)
 
     def warning(self, message: str) -> None:
-        """输出警告日志.
+        """Output warning log.
 
         Args:
-            message (str): 日志消息.
+            message (str): Log message.
         """
         if self._logger:
             self._logger.warning(message)
 
     def error(self, message: str) -> None:
-        """输出错误日志.
+        """Output error log.
 
         Args:
-            message (str): 日志消息.
+            message (str): Log message.
         """
         if self._logger:
             self._logger.error(message)
 
     def critical(self, message: str) -> None:
-        """输出严重错误日志.
+        """Output critical error log.
 
         Args:
-            message (str): 日志消息.
+            message (str): Log message.
         """
         if self._logger:
             self._logger.critical(message)
 
 
-# 全局日志器实例
+# Global logger instance
 _global_logger: EmailWidgetLogger | None = None
 
 
 def get_project_logger() -> EmailWidgetLogger:
-    """获取项目日志器实例.
+    """Get project logger instance.
 
-    此函数实现了单例模式，确保在整个应用程序中只存在一个 `EmailWidgetLogger` 实例.
+    This function implements singleton pattern, ensuring only one `EmailWidgetLogger` instance
+    exists throughout the entire application.
 
     Returns:
-        EmailWidgetLogger: 全局唯一的 `EmailWidgetLogger` 实例.
+        EmailWidgetLogger: Globally unique `EmailWidgetLogger` instance.
 
     Examples:
         ```python
@@ -168,7 +170,7 @@ def get_project_logger() -> EmailWidgetLogger:
 
         logger1 = get_project_logger()
         logger2 = get_project_logger()
-        assert logger1 is logger2 # True，两者是同一个实例
+        assert logger1 is logger2 # True, both are the same instance
         ```
     """
     global _global_logger
@@ -177,47 +179,47 @@ def get_project_logger() -> EmailWidgetLogger:
     return _global_logger
 
 
-# 便捷函数
+# Convenience functions
 def debug(message: str) -> None:
-    """输出调试日志.
+    """Output debug log.
 
     Args:
-        message (str): 日志消息.
+        message (str): Log message.
     """
     get_project_logger().debug(message)
 
 
 def info(message: str) -> None:
-    """输出信息日志.
+    """Output info log.
 
     Args:
-        message (str): 日志消息.
+        message (str): Log message.
     """
     get_project_logger().info(message)
 
 
 def warning(message: str) -> None:
-    """输出警告日志.
+    """Output warning log.
 
     Args:
-        message (str): 日志消息.
+        message (str): Log message.
     """
     get_project_logger().warning(message)
 
 
 def error(message: str) -> None:
-    """输出错误日志.
+    """Output error log.
 
     Args:
-        message (str): 日志消息.
+        message (str): Log message.
     """
     get_project_logger().error(message)
 
 
 def critical(message: str) -> None:
-    """输出严重错误日志.
+    """Output critical error log.
 
     Args:
-        message (str): 日志消息.
+        message (str): Log message.
     """
     get_project_logger().critical(message)

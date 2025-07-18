@@ -1,4 +1,4 @@
-"""警告框Widget实现"""
+"""Alert Widget Implementation"""
 
 from typing import Any
 
@@ -8,42 +8,42 @@ from email_widget.core.validators import NonEmptyStringValidator, SizeValidator
 
 
 class AlertWidget(BaseWidget):
-    """创建一个类似 GitHub 风格的警告框（Admonition）。
+    """Create a GitHub-style alert box (Admonition).
 
-    该微件用于在邮件中突出显示特定信息，例如注释、提示、警告或重要提醒。
-    它支持多种预设的警告类型，每种类型都有独特的颜色和图标，以吸引读者的注意力。
+    This widget is used to highlight specific information in emails, such as notes, tips, warnings, or important reminders.
+    It supports multiple preset alert types, each with unique colors and icons to attract reader attention.
 
     Attributes:
-        content (str): 警告框中显示的主要文本内容。
-        alert_type (AlertType): 警告的类型，决定了其外观（颜色和图标）。
-        title (Optional[str]): 警告框的自定义标题。如果未设置，将使用基于 `alert_type` 的默认标题。
+        content (str): Main text content displayed in the alert box.
+        alert_type (AlertType): Type of alert, determines its appearance (color and icon).
+        title (Optional[str]): Custom title for the alert box. If not set, will use default title based on `alert_type`.
 
     Examples:
-        一个基本用法，创建一个警告类型的警告框：
+        Basic usage, creating a warning type alert box:
 
         ```python
         from email_widget.widgets import AlertWidget
         from email_widget.core.enums import AlertType
 
         alert = AlertWidget()
-        alert.set_content("系统将在5分钟后进行维护，请及时保存您的工作。")
+        alert.set_content("System will undergo maintenance in 5 minutes, please save your work in time.")
         alert.set_alert_type(AlertType.WARNING)
-        alert.set_title("系统维护通知")
+        alert.set_title("System Maintenance Notice")
 
-        # 你也可以使用链式调用来简化代码：
+        # You can also use method chaining to simplify code:
         alert_chained = (AlertWidget()
-                         .set_content("新功能已上线，快去体验吧！")
+                         .set_content("New features are online, go experience them!")
                          .set_alert_type(AlertType.TIP)
-                         .set_title("产品更新")
+                         .set_title("Product Update")
                          .set_icon("🎉"))
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     {% if content %}
         <div style="{{ container_style }}">
-            <!-- 标题行 -->
+            <!-- Title row -->
             {% if show_icon %}
                 <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
                     <span style="margin-right: 8px; font-size: 18px;">{{ icon }}</span>
@@ -53,17 +53,17 @@ class AlertWidget(BaseWidget):
                 <div style="margin-bottom: 8px; font-weight: 600; font-size: 16px;">{{ title }}</div>
             {% endif %}
             
-            <!-- 内容 -->
+            <!-- Content -->
             <div style="line-height: 1.5; font-size: 14px;">{{ content }}</div>
         </div>
     {% endif %}
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化AlertWidget。
+        """Initialize AlertWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID。
+            widget_id (Optional[str]): Optional Widget ID.
         """
         super().__init__(widget_id)
         self._content: str = ""
@@ -74,43 +74,43 @@ class AlertWidget(BaseWidget):
         self._border_radius: str = "6px"
         self._padding: str = "16px"
 
-        # 初始化验证器
+        # Initialize validators
         self._content_validator = NonEmptyStringValidator()
         self._size_validator = SizeValidator()
 
     def set_content(self, content: str) -> "AlertWidget":
-        """设置警告框中显示的主要文本内容。
+        """Set the main text content displayed in the alert box.
 
         Args:
-            content (str): 警告内容。
+            content (str): Alert content.
 
         Returns:
-            AlertWidget: 返回self以支持链式调用。
+            AlertWidget: Returns self to support method chaining.
 
         Raises:
-            ValueError: 当内容为空时。
+            ValueError: When content is empty.
 
         Examples:
-            >>> alert = AlertWidget().set_content("这是一个重要的通知。")
+            >>> alert = AlertWidget().set_content("This is an important notice.")
         """
         if not self._content_validator.validate(content):
             raise ValueError(
-                f"警告内容验证失败: {self._content_validator.get_error_message(content)}"
+                f"Alert content validation failed: {self._content_validator.get_error_message(content)}"
             )
 
         self._content = content
         return self
 
     def set_alert_type(self, alert_type: AlertType) -> "AlertWidget":
-        """设置警告的类型。
+        """Set the alert type.
 
-        不同的警告类型会应用不同的颜色和图标。
+        Different alert types will apply different colors and icons.
 
         Args:
-            alert_type (AlertType): 警告类型枚举值。
+            alert_type (AlertType): Alert type enumeration value.
 
         Returns:
-            AlertWidget: 返回self以支持链式调用。
+            AlertWidget: Returns self to support method chaining.
 
         Examples:
             >>> alert = AlertWidget().set_alert_type(AlertType.WARNING)
@@ -119,18 +119,18 @@ class AlertWidget(BaseWidget):
         return self
 
     def set_title(self, title: str) -> "AlertWidget":
-        """设置警告框的自定义标题。
+        """Set the alert box custom title.
 
-        如果未设置，将使用基于 `alert_type` 的默认标题。
+        If not set, will use the default title based on `alert_type`.
 
         Args:
-            title (str): 自定义标题文本。
+            title (str): Custom title text.
 
         Returns:
-            AlertWidget: 返回self以支持链式调用。
+            AlertWidget: Returns self to support method chaining.
 
         Examples:
-            >>> alert = AlertWidget().set_title("重要通知")
+            >>> alert = AlertWidget().set_title("Important Notice")
         """
         self._title = title
         return self
@@ -138,20 +138,20 @@ class AlertWidget(BaseWidget):
     def set_full_alert(
         self, content: str, alert_type: AlertType, title: str = None
     ) -> "AlertWidget":
-        """一次性设置完整的警告信息。
+        """Set complete alert information at once.
 
-        此方法允许同时设置警告内容、类型和可选标题，方便快速配置。
+        This method allows setting alert content, type, and optional title simultaneously for convenient quick configuration.
 
         Args:
-            content (str): 警告内容。
-            alert_type (AlertType): 警告类型。
-            title (str): 可选的自定义标题。
+            content (str): Alert content.
+            alert_type (AlertType): Alert type.
+            title (str): Optional custom title.
 
         Returns:
-            AlertWidget: 返回self以支持链式调用。
+            AlertWidget: Returns self to support method chaining.
 
         Examples:
-            >>> alert = AlertWidget().set_full_alert("操作成功！", AlertType.TIP, "完成")
+            >>> alert = AlertWidget().set_full_alert("Operation successful!", AlertType.TIP, "Complete")
         """
         self._content = content
         self._alert_type = alert_type
@@ -160,27 +160,27 @@ class AlertWidget(BaseWidget):
         return self
 
     def clear_title(self) -> "AlertWidget":
-        """清空警告框的自定义标题。
+        """Clear the alert box custom title.
 
-        调用此方法后，警告框将显示基于 `alert_type` 的默认标题。
+        After calling this method, the alert box will display the default title based on `alert_type`.
 
         Returns:
-            AlertWidget: 返回self以支持链式调用。
+            AlertWidget: Returns self to support method chaining.
 
         Examples:
-            >>> alert = AlertWidget().set_title("自定义标题").clear_title()
+            >>> alert = AlertWidget().set_title("Custom Title").clear_title()
         """
         self._title = None
         return self
 
     def set_icon(self, icon: str) -> "AlertWidget":
-        """设置警告框的自定义图标。
+        """Set the alert box custom icon.
 
         Args:
-            icon (str): 图标字符（如表情符号或Unicode字符）。
+            icon (str): Icon character (such as emoji or Unicode character).
 
         Returns:
-            AlertWidget: 返回self以支持链式调用。
+            AlertWidget: Returns self to support method chaining.
 
         Examples:
             >>> alert = AlertWidget().set_icon("🚀")
@@ -189,33 +189,33 @@ class AlertWidget(BaseWidget):
         return self
 
     def show_icon(self, show: bool = True) -> "AlertWidget":
-        """设置是否显示警告框的图标。
+        """Set whether to display the alert box icon.
 
         Args:
-            show (bool): 是否显示图标，默认为True。
+            show (bool): Whether to show the icon, defaults to True.
 
         Returns:
-            AlertWidget: 返回self以支持链式调用。
+            AlertWidget: Returns self to support method chaining.
 
         Examples:
-            >>> alert = AlertWidget().show_icon(False) # 隐藏图标
+            >>> alert = AlertWidget().show_icon(False)  # Hide icon
         """
         self._show_icon = show
         return self
 
     def _get_default_title(self) -> str:
-        """获取默认标题"""
+        """Get default title"""
         titles = {
-            AlertType.NOTE: "注意",
-            AlertType.TIP: "提示",
-            AlertType.IMPORTANT: "重要",
-            AlertType.WARNING: "警告",
-            AlertType.CAUTION: "危险",
+            AlertType.NOTE: "Note",
+            AlertType.TIP: "Tip",
+            AlertType.IMPORTANT: "Important",
+            AlertType.WARNING: "Warning",
+            AlertType.CAUTION: "Caution",
         }
         return titles[self._alert_type]
 
     def _get_default_icon(self) -> str:
-        """获取默认图标"""
+        """Get default icon"""
         icons = {
             AlertType.NOTE: "ℹ️",
             AlertType.TIP: "💡",
@@ -226,7 +226,7 @@ class AlertWidget(BaseWidget):
         return icons[self._alert_type]
 
     def _get_alert_styles(self) -> dict[str, str]:
-        """获取警告框样式"""
+        """Get alert box styles"""
         styles = {
             AlertType.NOTE: {
                 "background": "#dbeafe",
@@ -260,7 +260,7 @@ class AlertWidget(BaseWidget):
         return "alert.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据"""
+        """Get template context data required for rendering"""
         if not self._content:
             return {}
 

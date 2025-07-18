@@ -1,4 +1,4 @@
-"""引用样式Widget实现"""
+"""Quote Style Widget Implementation"""
 
 from typing import Any
 
@@ -7,23 +7,23 @@ from email_widget.core.enums import StatusType
 
 
 class QuoteWidget(BaseWidget):
-    """创建一个带有引述风格的文本块，用于突出显示引用的内容.
+    """Create a quote-style text block for highlighting quoted content.
 
-    该微件非常适合在邮件中引用名言、客户评价、重要声明或文献摘要.
-    它通过在左侧添加一条彩色的竖线来与其他文本区分开，使其在视觉上更引人注目.
+    This widget is perfect for quoting famous sayings, customer reviews, important statements, or literature excerpts in emails.
+    It distinguishes itself from other text by adding a colored vertical line on the left side, making it visually more prominent.
 
-    核心功能:
-        - **内容归属**: 支持设置引述的作者和来源.
-        - **主题化**: 引述的左侧边框颜色可以根据状态类型（如 INFO, SUCCESS, WARNING）改变.
+    Core features:
+        - **Content attribution**: Supports setting the author and source of the quote.
+        - **Theming**: The left border color of the quote can change based on status type (such as INFO, SUCCESS, WARNING).
 
     Attributes:
-        content (str): 被引用的主要文本内容.
-        author (Optional[str]): 引述的作者.
-        source (Optional[str]): 引述的出处或来源.
-        quote_type (StatusType): 引述的类型，决定了左侧边框的颜色.
+        content (str): The main text content being quoted.
+        author (Optional[str]): Author of the quote.
+        source (Optional[str]): Source or origin of the quote.
+        quote_type (StatusType): Type of quote, determines the color of the left border.
 
     Examples:
-        创建一个经典的名人名言引述：
+        Create a classic famous quote:
 
         ```python
         from email_widget.widgets import QuoteWidget
@@ -34,11 +34,11 @@ class QuoteWidget(BaseWidget):
                  .set_author("Steve Jobs")\
                  .set_quote_type(StatusType.INFO))
 
-        # 假设 email 是一个 Email 对象
+        # Assuming email is an Email object
         # email.add_widget(quote)
         ```
 
-        创建一个用于展示客户好评的引述：
+        Create a quote for showcasing customer testimonials:
 
         ```python
         customer_feedback = (QuoteWidget()\
@@ -49,7 +49,7 @@ class QuoteWidget(BaseWidget):
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     {% if content %}
         <!--[if mso]>
@@ -72,10 +72,10 @@ class QuoteWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化QuoteWidget.
+        """Initialize QuoteWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID.
+            widget_id (Optional[str]): Optional Widget ID.
         """
         super().__init__(widget_id)
         self._content: str = ""
@@ -84,60 +84,60 @@ class QuoteWidget(BaseWidget):
         self._quote_type: StatusType = StatusType.INFO
 
     def set_content(self, content: str) -> "QuoteWidget":
-        """设置引用的主要文本内容.
+        """Set the main text content of the quote.
 
         Args:
-            content (str): 被引用的文本内容.
+            content (str): The text content to be quoted.
 
         Returns:
-            QuoteWidget: 返回self以支持链式调用.
+            QuoteWidget: Returns self to support method chaining.
 
         Examples:
-            >>> quote = QuoteWidget().set_content("知识就是力量.")
+            >>> quote = QuoteWidget().set_content("Knowledge is power.")
         """
         self._content = content
         return self
 
     def set_author(self, author: str) -> "QuoteWidget":
-        """设置引用的作者.
+        """Set the author of the quote.
 
         Args:
-            author (str): 作者姓名.
+            author (str): Author name.
 
         Returns:
-            QuoteWidget: 返回self以支持链式调用.
+            QuoteWidget: Returns self to support method chaining.
 
         Examples:
-            >>> quote = QuoteWidget().set_author("鲁迅")
+            >>> quote = QuoteWidget().set_author("Lu Xun")
         """
         self._author = author
         return self
 
     def set_source(self, source: str) -> "QuoteWidget":
-        """设置引用的来源.
+        """Set the source of the quote.
 
         Args:
-            source (str): 来源描述（如书籍名称、网站、报告等）.
+            source (str): Source description (such as book name, website, report, etc.).
 
         Returns:
-            QuoteWidget: 返回self以支持链式调用.
+            QuoteWidget: Returns self to support method chaining.
 
         Examples:
-            >>> quote = QuoteWidget().set_source("《论语》")
+            >>> quote = QuoteWidget().set_source("The Analects")
         """
         self._source = source
         return self
 
     def set_quote_type(self, quote_type: StatusType) -> "QuoteWidget":
-        """设置引用的类型.
+        """Set the type of the quote.
 
-        此类型决定了引用块左侧边框的颜色.
+        This type determines the color of the left border of the quote block.
 
         Args:
-            quote_type (StatusType): 引用类型枚举值.
+            quote_type (StatusType): Quote type enum value.
 
         Returns:
-            QuoteWidget: 返回self以支持链式调用.
+            QuoteWidget: Returns self to support method chaining.
 
         Examples:
             >>> quote = QuoteWidget().set_quote_type(StatusType.WARNING)
@@ -148,20 +148,20 @@ class QuoteWidget(BaseWidget):
     def set_full_quote(
         self, content: str, author: str = None, source: str = None
     ) -> "QuoteWidget":
-        """一次性设置完整的引用信息.
+        """Set complete quote information at once.
 
-        此方法允许同时设置引用内容、作者和来源，方便快速配置.
+        This method allows you to set quote content, author, and source simultaneously for quick configuration.
 
         Args:
-            content (str): 引用内容.
-            author (str): 可选的作者姓名.
-            source (str): 可选的来源描述.
+            content (str): Quote content.
+            author (str): Optional author name.
+            source (str): Optional source description.
 
         Returns:
-            QuoteWidget: 返回self以支持链式调用.
+            QuoteWidget: Returns self to support method chaining.
 
         Examples:
-            >>> quote = QuoteWidget().set_full_quote("天行健，君子以自强不息.", "《周易》")
+            >>> quote = QuoteWidget().set_full_quote("Heaven is vigorous, and the gentleman strives for self-improvement.", "I Ching")
         """
         self._content = content
         if author:
@@ -171,10 +171,10 @@ class QuoteWidget(BaseWidget):
         return self
 
     def clear_attribution(self) -> "QuoteWidget":
-        """清空作者和来源信息.
+        """Clear author and source information.
 
         Returns:
-            QuoteWidget: 返回self以支持链式调用.
+            QuoteWidget: Returns self to support method chaining.
 
         Examples:
             >>> quote = QuoteWidget().clear_attribution()
@@ -184,7 +184,7 @@ class QuoteWidget(BaseWidget):
         return self
 
     def _get_quote_color(self) -> str:
-        """获取引用颜色"""
+        """Get quote color"""
         colors = {
             StatusType.SUCCESS: "#107c10",
             StatusType.WARNING: "#ff8c00",
@@ -198,7 +198,7 @@ class QuoteWidget(BaseWidget):
         return "quote.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据"""
+        """Get template context data required for rendering"""
         if not self._content:
             return {}
 
@@ -228,7 +228,7 @@ class QuoteWidget(BaseWidget):
             margin: 0;
         """
 
-        # 处理引用信息
+        # Process quote information
         citation = None
         if self._author or self._source:
             citation_text = ""

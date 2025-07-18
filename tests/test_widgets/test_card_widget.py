@@ -52,7 +52,7 @@ class TestCardWidget:
                 "get_error_message",
                 return_value="标题不能为空",
             ):
-                with pytest.raises(ValueError, match="标题验证失败: 标题不能为空"):
+                with pytest.raises(ValueError, match="Title validation failed: 标题不能为空"):
                     self.widget.set_title("")
 
     def test_set_content_valid(self):
@@ -71,7 +71,7 @@ class TestCardWidget:
                 "get_error_message",
                 return_value="内容不能为空",
             ):
-                with pytest.raises(ValueError, match="内容验证失败: 内容不能为空"):
+                with pytest.raises(ValueError, match="Content validation failed: 内容不能为空"):
                     self.widget.set_content("")
 
     def test_set_status(self):

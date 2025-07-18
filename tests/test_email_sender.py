@@ -230,11 +230,11 @@ class TestCreateEmailSender:
         """测试不支持的邮箱服务商"""
         with pytest.raises(ValueError) as exc_info:
             create_email_sender("gmail", "test@gmail.com", "password")
-        assert "不支持的邮箱服务商" in str(exc_info.value)
+        assert "Unsupported email provider" in str(exc_info.value)
 
         with pytest.raises(ValueError) as exc_info:
             create_email_sender("outlook", "test@outlook.com", "password")
-        assert "不支持的邮箱服务商" in str(exc_info.value)
+        assert "Unsupported email provider" in str(exc_info.value)
 
     def test_create_sender_with_kwargs(self):
         """测试工厂函数传递额外参数"""

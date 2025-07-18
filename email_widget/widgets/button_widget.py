@@ -1,4 +1,4 @@
-"""按钮Widget实现"""
+"""Button Widget Implementation"""
 
 from typing import Any
 
@@ -7,49 +7,49 @@ from email_widget.core.validators import NonEmptyStringValidator, UrlValidator
 
 
 class ButtonWidget(BaseWidget):
-    """创建一个美观的按钮样式链接。
+    """Create a beautiful button-style link.
 
-    该微件用于在邮件中创建按钮样式的链接，主要用于引导用户点击跳转到指定页面。
-    支持自定义按钮文本、链接地址、颜色和样式。
+    This widget is used to create button-style links in emails, mainly for guiding users to click and jump to specified pages.
+    Supports custom button text, link address, colors and styles.
 
     Attributes:
-        text (str): 按钮显示的文本内容。
-        href (str): 点击按钮后跳转的链接地址。
-        background_color (str): 按钮的背景颜色。
-        text_color (str): 按钮文字的颜色。
-        width (Optional[str]): 按钮的宽度，可以是像素值或百分比。
-        align (str): 按钮的对齐方式（left, center, right）。
+        text (str): Text content displayed on the button.
+        href (str): Link address to jump to after clicking the button.
+        background_color (str): Background color of the button.
+        text_color (str): Text color of the button.
+        width (Optional[str]): Width of the button, can be pixel value or percentage.
+        align (str): Alignment of the button (left, center, right).
 
     Examples:
-        创建一个基本的按钮：
+        Create a basic button:
 
         ```python
         from email_widget.widgets import ButtonWidget
 
-        # 创建一个简单的按钮
+        # Create a simple button
         button = ButtonWidget()
-        button.set_text("点击查看详情")
+        button.set_text("Click to View Details")
         button.set_href("https://example.com/details")
 
-        # 使用链式调用创建自定义样式的按钮
+        # Use method chaining to create custom styled button
         button_custom = (ButtonWidget()
-                        .set_text("立即购买")
+                        .set_text("Buy Now")
                         .set_href("https://shop.example.com")
                         .set_background_color("#22c55e")
                         .set_text_color("#ffffff")
                         .set_width("200px")
                         .set_align("center"))
 
-        # 创建完整配置的按钮
+        # Create fully configured button
         button_full = (ButtonWidget()
-                      .set_full_button("免费试用", "https://example.com/trial")
+                      .set_full_button("Free Trial", "https://example.com/trial")
                       .set_padding("12px 24px")
                       .set_font_size("16px")
                       .set_border_radius("8px"))
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     {% if text and href %}
         <div style="margin: 8px 0; text-align: {{ align }}; width: 100%;">
@@ -61,16 +61,16 @@ class ButtonWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化ButtonWidget。
+        """Initialize ButtonWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID。
+            widget_id (Optional[str]): Optional Widget ID.
         """
         super().__init__(widget_id)
         self._text: str = ""
         self._href: str = ""
-        self._background_color: str = "#3b82f6"  # 默认蓝色
-        self._text_color: str = "#ffffff"  # 默认白色
+        self._background_color: str = "#3b82f6"  # Default blue
+        self._text_color: str = "#ffffff"  # Default white
         self._width: str | None = None
         self._align: str = "left"
         self._padding: str = "10px 20px"
@@ -79,62 +79,62 @@ class ButtonWidget(BaseWidget):
         self._font_weight: str = "600"
         self._border: str | None = None
 
-        # 初始化验证器
+        # Initialize validators
         self._text_validator = NonEmptyStringValidator()
         self._url_validator = UrlValidator()
 
     def set_text(self, text: str) -> "ButtonWidget":
-        """设置按钮显示的文本。
+        """Set the text displayed on the button.
 
         Args:
-            text (str): 按钮文本内容。
+            text (str): Button text content.
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Raises:
-            ValueError: 当文本为空时。
+            ValueError: When text is empty.
 
         Examples:
-            >>> button = ButtonWidget().set_text("查看更多")
+            >>> button = ButtonWidget().set_text("View More")
         """
         if not self._text_validator.validate(text):
             raise ValueError(
-                f"按钮文本验证失败: {self._text_validator.get_error_message(text)}"
+                f"Button text validation failed: {self._text_validator.get_error_message(text)}"
             )
         self._text = text
         return self
 
     def set_href(self, href: str) -> "ButtonWidget":
-        """设置按钮的链接地址。
+        """Set the button's link address.
 
         Args:
-            href (str): 目标链接地址。
+            href (str): Target link address.
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Raises:
-            ValueError: 当链接格式无效时。
+            ValueError: When link format is invalid.
 
         Examples:
             >>> button = ButtonWidget().set_href("https://example.com")
         """
         if not self._url_validator.validate(href):
             raise ValueError(
-                f"链接地址验证失败: {self._url_validator.get_error_message(href)}"
+                f"Link address validation failed: {self._url_validator.get_error_message(href)}"
             )
         self._href = href
         return self
 
     def set_background_color(self, color: str) -> "ButtonWidget":
-        """设置按钮的背景颜色。
+        """Set the button's background color.
 
         Args:
-            color (str): 颜色值，支持hex格式（如#3b82f6）或颜色名称。
+            color (str): Color value, supports hex format (e.g., #3b82f6) or color names.
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_background_color("#22c55e")
@@ -143,13 +143,13 @@ class ButtonWidget(BaseWidget):
         return self
 
     def set_text_color(self, color: str) -> "ButtonWidget":
-        """设置按钮文字的颜色。
+        """Set the button text color.
 
         Args:
-            color (str): 颜色值，支持hex格式或颜色名称。
+            color (str): Color value, supports hex format or color names.
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_text_color("#ffffff")
@@ -158,14 +158,14 @@ class ButtonWidget(BaseWidget):
         return self
 
     def set_width(self, width: str | None) -> "ButtonWidget":
-        """设置按钮的宽度。
+        """Set the button width.
 
         Args:
-            width (Optional[str]): 宽度值，可以是像素值（如"200px"）或百分比（如"50%"）。
-                                  如果为None，按钮将根据内容自适应宽度。
+            width (Optional[str]): Width value, can be pixel value (e.g., "200px") or percentage (e.g., "50%").
+                                  If None, the button will adapt width based on content.
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_width("200px")
@@ -175,34 +175,34 @@ class ButtonWidget(BaseWidget):
         return self
 
     def set_align(self, align: str) -> "ButtonWidget":
-        """设置按钮的对齐方式。
+        """Set the button alignment.
 
         Args:
-            align (str): 对齐方式，可选值: "left", "center", "right"。
+            align (str): Alignment method, possible values: "left", "center", "right".
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Raises:
-            ValueError: 当对齐方式无效时。
+            ValueError: When alignment method is invalid.
 
         Examples:
             >>> button = ButtonWidget().set_align("center")
         """
         valid_aligns = ["left", "center", "right"]
         if align not in valid_aligns:
-            raise ValueError(f"无效的对齐方式: {align}。可选值: {valid_aligns}")
+            raise ValueError(f"Invalid alignment method: {align}. Valid values: {valid_aligns}")
         self._align = align
         return self
 
     def set_padding(self, padding: str) -> "ButtonWidget":
-        """设置按钮的内边距。
+        """Set the button padding.
 
         Args:
-            padding (str): 内边距值，如"10px 20px"。
+            padding (str): Padding value, e.g., "10px 20px".
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_padding("12px 24px")
@@ -211,13 +211,13 @@ class ButtonWidget(BaseWidget):
         return self
 
     def set_border_radius(self, radius: str) -> "ButtonWidget":
-        """设置按钮的圆角半径。
+        """Set the button border radius.
 
         Args:
-            radius (str): 圆角半径值，如"6px"。
+            radius (str): Border radius value, e.g., "6px".
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_border_radius("8px")
@@ -226,13 +226,13 @@ class ButtonWidget(BaseWidget):
         return self
 
     def set_font_size(self, size: str) -> "ButtonWidget":
-        """设置按钮文字的字体大小。
+        """Set the button text font size.
 
         Args:
-            size (str): 字体大小，如"16px"。
+            size (str): Font size, e.g., "16px".
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_font_size("16px")
@@ -241,13 +241,13 @@ class ButtonWidget(BaseWidget):
         return self
 
     def set_font_weight(self, weight: str) -> "ButtonWidget":
-        """设置按钮文字的字体粗细。
+        """Set the button text font weight.
 
         Args:
-            weight (str): 字体粗细，如"normal", "600", "bold"。
+            weight (str): Font weight, e.g., "normal", "600", "bold".
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_font_weight("bold")
@@ -256,13 +256,13 @@ class ButtonWidget(BaseWidget):
         return self
 
     def set_border(self, border: str | None) -> "ButtonWidget":
-        """设置按钮的边框样式。
+        """Set the button border style.
 
         Args:
-            border (Optional[str]): 边框样式，如"2px solid #3b82f6"。如果为None，则无边框。
+            border (Optional[str]): Border style, e.g., "2px solid #3b82f6". If None, no border.
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
             >>> button = ButtonWidget().set_border("2px solid #3b82f6")
@@ -273,18 +273,18 @@ class ButtonWidget(BaseWidget):
     def set_full_button(
         self, text: str, href: str, background_color: str | None = None
     ) -> "ButtonWidget":
-        """一次性设置按钮的基本信息。
+        """Set button basic information at once.
 
         Args:
-            text (str): 按钮文本。
-            href (str): 链接地址。
-            background_color (Optional[str]): 可选的背景颜色。
+            text (str): Button text.
+            href (str): Link address.
+            background_color (Optional[str]): Optional background color.
 
         Returns:
-            ButtonWidget: 返回self以支持链式调用。
+            ButtonWidget: Returns self to support method chaining.
 
         Examples:
-            >>> button = ButtonWidget().set_full_button("立即开始", "https://example.com", "#22c55e")
+            >>> button = ButtonWidget().set_full_button("Start Now", "https://example.com", "#22c55e")
         """
         self.set_text(text)
         self.set_href(href)
@@ -296,11 +296,11 @@ class ButtonWidget(BaseWidget):
         return "button.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据"""
+        """Get template context data required for rendering"""
         if not self._text or not self._href:
             return {}
 
-        # 构建按钮样式
+        # Build button style
         button_style_parts = [
             "display: inline-block",
             f"background-color: {self._background_color}",

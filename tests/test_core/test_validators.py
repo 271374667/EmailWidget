@@ -35,7 +35,7 @@ class TestBaseValidator:
     def test_init_default_error_message(self):
         """测试默认错误消息"""
         validator = MockValidator()
-        assert "MockValidator 验证失败" in validator.error_message
+        assert "MockValidator validation failed" in validator.error_message
 
     def test_init_custom_error_message(self):
         """测试自定义错误消息"""
@@ -94,7 +94,7 @@ class TestColorValidator:
 
     def test_default_error_message(self):
         """测试默认错误消息"""
-        assert self.validator.error_message == "无效的CSS颜色值"
+        assert self.validator.error_message == "Invalid CSS color value"
 
 
 class TestSizeValidator:
@@ -130,7 +130,7 @@ class TestSizeValidator:
 
     def test_default_error_message(self):
         """测试默认错误消息"""
-        assert self.validator.error_message == "无效的CSS尺寸值"
+        assert self.validator.error_message == "Invalid CSS size value"
 
 
 class TestRangeValidator:
@@ -168,7 +168,7 @@ class TestRangeValidator:
 
     def test_default_error_message(self):
         """测试默认错误消息"""
-        assert "值必须在 0 到 100 之间" in self.validator.error_message
+        assert "Value must be between 0 and 100" in self.validator.error_message
 
 
 class TestProgressValidator:
@@ -195,7 +195,7 @@ class TestProgressValidator:
 
     def test_default_error_message(self):
         """测试默认错误消息"""
-        assert "进度值必须在 0 到 100 之间" in self.validator.error_message
+        assert "Progress value must be between 0 and 100" in self.validator.error_message
 
 
 class TestUrlValidator:
@@ -231,7 +231,7 @@ class TestUrlValidator:
 
     def test_default_error_message(self):
         """测试默认错误消息"""
-        assert self.validator.error_message == "无效的URL格式"
+        assert self.validator.error_message == "Invalid URL format"
 
 
 class TestEmailValidator:
@@ -264,7 +264,7 @@ class TestEmailValidator:
 
     def test_default_error_message(self):
         """测试默认错误消息"""
-        assert self.validator.error_message == "无效的邮箱地址格式"
+        assert self.validator.error_message == "Invalid email address format"
 
 
 class TestNonEmptyStringValidator:
@@ -293,7 +293,7 @@ class TestNonEmptyStringValidator:
 
     def test_default_error_message(self):
         """测试默认错误消息"""
-        assert self.validator.error_message == "字符串不能为空"
+        assert self.validator.error_message == "String cannot be empty"
 
 
 class TestLengthValidator:
@@ -327,10 +327,10 @@ class TestLengthValidator:
     def test_error_messages(self):
         """测试错误消息"""
         validator1 = LengthValidator(min_length=3)
-        assert "长度必须至少 3" in validator1.error_message
+        assert "Length must be at least 3" in validator1.error_message
 
         validator2 = LengthValidator(min_length=3, max_length=10)
-        assert "长度必须在 3 到 10 之间" in validator2.error_message
+        assert "Length must be between 3 and 10" in validator2.error_message
 
 
 class TestTypeValidator:
@@ -354,12 +354,12 @@ class TestTypeValidator:
     def test_error_message_single_type(self):
         """测试单类型错误消息"""
         validator = TypeValidator(str)
-        assert "类型必须是 str" in validator.error_message
+        assert "Type must be str" in validator.error_message
 
     def test_error_message_multiple_types(self):
         """测试多类型错误消息"""
         validator = TypeValidator((str, int))
-        assert "类型必须是 str 或 int 之一" in validator.error_message
+        assert "Type must be one of str or int" in validator.error_message
 
 
 class TestChoicesValidator:
@@ -396,7 +396,7 @@ class TestChoicesValidator:
     def test_error_message(self):
         """测试错误消息"""
         assert (
-            "值必须是以下选项之一: ['red', 'green', 'blue']"
+            "Value must be one of the following choices: ['red', 'green', 'blue']"
             in self.validator.error_message
         )
 
@@ -455,10 +455,10 @@ class TestCompositeValidator:
         validator2 = MockValidator(should_pass=True)
 
         composite_all = CompositeValidator([validator1, validator2], require_all=True)
-        assert "必须通过所有验证条件" in composite_all.error_message
+        assert "Must pass all validation conditions" in composite_all.error_message
 
         composite_any = CompositeValidator([validator1, validator2], require_all=False)
-        assert "必须通过至少一个验证条件" in composite_any.error_message
+        assert "Must pass at least one validation condition" in composite_any.error_message
 
 
 class TestPredefinedValidators:

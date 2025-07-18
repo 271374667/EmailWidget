@@ -174,7 +174,7 @@ class TestBaseWidgetTemplateRendering:
         result = widget.render_html()
 
         # 应该返回错误回退HTML
-        assert "Widget渲染错误" in result
+        assert "Widget Rendering Error" in result
         assert "NoTemplateWidget" in result
 
     def test_render_html_with_invalid_context(self):
@@ -193,8 +193,8 @@ class TestBaseWidgetTemplateRendering:
         result = widget.render_html()
 
         # 应该返回错误回退HTML
-        assert "Widget渲染错误" in result
-        assert "上下文数据错误" in result
+        assert "Widget Rendering Error" in result
+        assert "Context data error" in result
 
     @patch("email_widget.core.base.get_template_engine")
     def test_render_html_template_engine_exception(self, mock_get_template_engine):
@@ -207,7 +207,7 @@ class TestBaseWidgetTemplateRendering:
         result = widget.render_html()
 
         # 应该返回错误回退HTML
-        assert "Widget渲染错误" in result
+        assert "Widget Rendering Error" in result
         assert "ConcreteWidget" in result
 
 
@@ -221,7 +221,7 @@ class TestBaseWidgetErrorHandling:
 
         result = widget._render_error_fallback(error_msg)
 
-        assert "Widget渲染错误" in result
+        assert "Widget Rendering Error" in result
         assert "ConcreteWidget" in result
         assert widget.widget_id in result
         assert error_msg in result
@@ -232,7 +232,7 @@ class TestBaseWidgetErrorHandling:
 
         result = widget._render_error_fallback()
 
-        assert "Widget渲染错误" in result
+        assert "Widget Rendering Error" in result
         assert "ConcreteWidget" in result
         assert widget.widget_id in result
 
@@ -252,7 +252,7 @@ class TestBaseWidgetErrorHandling:
         result = widget.render_html()
 
         # 应该返回错误回退HTML
-        assert "Widget渲染错误" in result
+        assert "Widget Rendering Error" in result
         assert "ExceptionWidget" in result
 
 

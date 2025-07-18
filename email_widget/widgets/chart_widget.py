@@ -1,6 +1,6 @@
-"""图表Widget实现
+"""Chart Widget Implementation
 
-这个模块提供了图表显示功能的Widget，支持matplotlib/seaborn图表的嵌入显示.
+This module provides chart display functionality widget, supporting embedded display of matplotlib/seaborn charts.
 """
 
 import base64
@@ -21,55 +21,55 @@ if TYPE_CHECKING:
 
 
 class ChartWidget(BaseWidget, ChartMixin):
-    """在邮件中嵌入图表，支持 `matplotlib` 和 `seaborn`.
+    """Embed charts in emails, supporting `matplotlib` and `seaborn`.
 
-    该微件能够将动态生成的图表（如 `matplotlib` 或 `seaborn` 的图表对象）
-    或静态的图片文件（本地或URL）无缝嵌入到邮件内容中.它会自动处理图表的
-    渲染、Base64 编码以及中文字符的显示问题，极大地方便了数据可视化报告的创建.
+    This widget can seamlessly embed dynamically generated charts (such as `matplotlib` or `seaborn` chart objects)
+    or static image files (local or URL) into email content. It automatically handles chart
+    rendering, Base64 encoding, and Chinese character display issues, greatly facilitating the creation of data visualization reports.
 
-    核心功能:
-        - **动态图表支持**: 直接接受 `matplotlib.pyplot` 或 `seaborn` 的图表对象.
-        - **静态图片支持**: 可通过 URL 或本地文件路径加载图片.
-        - **自动中文字体**: 自动检测并配置合适的中文字体，确保图表中的中文正常显示.
-        - **内容增强**: 支持为图表添加标题、描述和数据摘要.
+    Core features:
+        - **Dynamic chart support**: Directly accepts `matplotlib.pyplot` or `seaborn` chart objects.
+        - **Static image support**: Can load images through URL or local file paths.
+        - **Automatic Chinese fonts**: Automatically detects and configures appropriate Chinese fonts to ensure normal display of Chinese text in charts.
+        - **Content enhancement**: Supports adding titles, descriptions, and data summaries to charts.
 
     Examples:
-        使用 `matplotlib` 创建一个简单的柱状图并添加到邮件中：
+        Use `matplotlib` to create a simple bar chart and add it to an email:
 
         ```python
         import matplotlib.pyplot as plt
         from email_widget.widgets import ChartWidget
 
-        # 1. 创建一个 matplotlib 图表
+        # 1. Create a matplotlib chart
         plt.figure(figsize=(10, 6))
-        categories = ['第一季度', '第二季度', '第三季度', '第四季度']
+        categories = ['Q1', 'Q2', 'Q3', 'Q4']
         sales = [120, 150, 130, 180]
         plt.bar(categories, sales, color='skyblue')
-        plt.title('年度销售额（万元）')
-        plt.ylabel('销售额')
+        plt.title('Annual Sales (10k Yuan)')
+        plt.ylabel('Sales')
 
-        # 2. 创建 ChartWidget 并设置图表
+        # 2. Create ChartWidget and set chart
         chart = (ChartWidget()\
-                 .set_chart(plt)  # 将 plt 对象传入
-                 .set_title("2024年度销售业绩")\
-                 .set_description("各季度销售额对比图，展示了全年的销售趋势.")\
-                 .set_data_summary("总销售额: 580万元, 最高季度: 第四季度"))
+                 .set_chart(plt)  # Pass plt object
+                 .set_title("2024 Annual Sales Performance")\
+                 .set_description("Quarterly sales comparison chart showing annual sales trends.")\
+                 .set_data_summary("Total Sales: 5.8 million yuan, Highest Quarter: Q4"))
 
-        # 假设 email 是一个 Email 对象
+        # Assuming email is an Email object
         # email.add_widget(chart)
         ```
 
-        使用外部图片URL：
+        Using external image URL:
 
         ```python
         chart_from_url = (ChartWidget()\
                           .set_image_url("https://www.example.com/charts/monthly_trends.png")\
-                          .set_title("月度趋势图")\
-                          .set_alt_text("一张显示月度增长趋势的折线图"))
+                          .set_title("Monthly Trend Chart")\
+                          .set_alt_text("A line chart showing monthly growth trends"))
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     {% if image_url %}
         <!--[if mso]>
@@ -91,7 +91,7 @@ class ChartWidget(BaseWidget, ChartMixin):
                 <p style="{{ desc_style }}">{{ description }}</p>
             {% endif %}
             {% if data_summary %}
-                <div style="{{ summary_style }}">数据摘要: {{ data_summary }}</div>
+                <div style="{{ summary_style }}">Data Summary: {{ data_summary }}</div>
             {% endif %}
         </div>
         <!--[if mso]>
@@ -103,44 +103,45 @@ class ChartWidget(BaseWidget, ChartMixin):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化ChartWidget.
+        """Initialize ChartWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID.
+            widget_id (Optional[str]): Optional Widget ID.
         """
         super().__init__(widget_id)
         self._image_url: str | None = None
         self._title: str | None = None
         self._description: str | None = None
-        self._alt_text: str = "图表"
+        self._alt_text: str = "Chart"
         self._data_summary: str | None = None
         self._max_width: str = "100%"
 
     def set_image_url(self, image_url: str | Path, cache: bool = True) -> "ChartWidget":
-        """设置图表图片URL或文件路径.
+        """Set chart image URL or file path.
 
-        此方法支持从网络URL或本地文件路径加载图片.图片会被自动处理并转换为
-        Base64编码的data URI，直接嵌入到HTML中，以确保在邮件客户端中的兼容性.
+        This method supports loading images from network URLs or local file paths. Images are
+        automatically processed and converted to Base64-encoded data URIs, directly embedded
+        into HTML to ensure compatibility in email clients.
 
         Args:
-            image_url (Union[str, Path]): 图片的URL字符串或本地文件Path对象.
-            cache (bool): 是否缓存网络图片，默认为True.
+            image_url (Union[str, Path]): Image URL string or local file Path object.
+            cache (bool): Whether to cache network images, defaults to True.
 
         Returns:
-            ChartWidget: 返回self以支持链式调用.
+            ChartWidget: Returns self to support method chaining.
 
         Raises:
-            ValueError: 如果图片URL或路径无效，或图片处理失败.
+            ValueError: If image URL or path is invalid, or image processing fails.
 
         Examples:
-            >>> # 使用URL
+            >>> # Using URL
             >>> chart = ChartWidget().set_image_url("https://example.com/chart.png")
 
-            >>> # 使用本地文件路径
+            >>> # Using local file path
             >>> from pathlib import Path
             >>> chart = ChartWidget().set_image_url(Path("./charts/sales.png"))
         """
-        # 验证路径存在性（仅对本地路径）
+        # Validate path existence (for local paths only)
         if isinstance(image_url, (str, Path)):
             path_obj = (
                 Path(image_url)
@@ -149,86 +150,86 @@ class ChartWidget(BaseWidget, ChartMixin):
                 else None
             )
             if path_obj and not path_obj.exists():
-                self._logger.error(f"图片文件不存在: {path_obj}")
+                self._logger.error(f"Image file does not exist: {path_obj}")
                 self._image_url = None
                 return self
 
-        # 使用ImageUtils统一处理
+        # Use ImageUtils for unified processing
         self._image_url = ImageUtils.process_image_source(image_url, cache=cache)
         return self
 
     def set_title(self, title: str) -> "ChartWidget":
-        """设置图表标题.
+        """Set chart title.
 
         Args:
-            title (str): 图表标题文本.
+            title (str): Chart title text.
 
         Returns:
-            ChartWidget: 返回self以支持链式调用.
+            ChartWidget: Returns self to support method chaining.
 
         Examples:
-            >>> chart = ChartWidget().set_title("2024年销售趋势")
+            >>> chart = ChartWidget().set_title("2024 Sales Trends")
         """
         self._title = title
         return self
 
     def set_description(self, description: str) -> "ChartWidget":
-        """设置图表描述.
+        """Set chart description.
 
         Args:
-            description (str): 图表描述文本.
+            description (str): Chart description text.
 
         Returns:
-            ChartWidget: 返回self以支持链式调用.
+            ChartWidget: Returns self to support method chaining.
 
         Examples:
-            >>> chart = ChartWidget().set_description("展示了各地区的销售对比情况")
+            >>> chart = ChartWidget().set_description("Shows sales comparison by region")
         """
         self._description = description
         return self
 
     def set_alt_text(self, alt: str) -> "ChartWidget":
-        """设置图片的替代文本.
+        """Set image alternative text.
 
-        用于无障碍访问和图片加载失败时显示.
+        Used for accessibility and when image loading fails.
 
         Args:
-            alt (str): 替代文本.
+            alt (str): Alternative text.
 
         Returns:
-            ChartWidget: 返回self以支持链式调用.
+            ChartWidget: Returns self to support method chaining.
 
         Examples:
-            >>> chart = ChartWidget().set_alt_text("销售数据柱状图")
+            >>> chart = ChartWidget().set_alt_text("Sales data bar chart")
         """
         self._alt_text = alt
         return self
 
     def set_data_summary(self, summary: str) -> "ChartWidget":
-        """设置数据摘要.
+        """Set data summary.
 
-        在图表下方显示关键数据摘要信息.
+        Display key data summary information below the chart.
 
         Args:
-            summary (str): 数据摘要文本.
+            summary (str): Data summary text.
 
         Returns:
-            ChartWidget: 返回self以支持链式调用.
+            ChartWidget: Returns self to support method chaining.
 
         Examples:
-            >>> chart = ChartWidget().set_data_summary("平均增长率: 15.3%, 最高值: ¥50万")
+            >>> chart = ChartWidget().set_data_summary("Average growth rate: 15.3%, Peak value: ¥500k")
         """
         self._data_summary = summary
         return self
 
     def set_max_width(self, max_width: str) -> "ChartWidget":
-        """设置图表容器的最大宽度.
+        """Set maximum width of chart container.
 
         Args:
-            max_width (str): CSS最大宽度值.
+            max_width (str): CSS maximum width value.
 
         Returns:
-            ChartWidget: 返回self以支持链式调用.
+            ChartWidget: Returns self to support method chaining.
 
         Examples:
             >>> chart = ChartWidget().set_max_width("800px")
@@ -238,115 +239,115 @@ class ChartWidget(BaseWidget, ChartMixin):
         return self
 
     def set_chart(self, plt_obj: Any) -> "ChartWidget":
-        """设置matplotlib/seaborn图表对象.
+        """Set matplotlib/seaborn chart object.
 
-        将图表对象转换为Base64编码的PNG图片嵌入到邮件中.
-        自动配置中文字体支持.
+        Convert chart object to Base64-encoded PNG image embedded in email.
+        Automatically configure Chinese font support.
 
         Args:
-            plt_obj (Any): matplotlib的pyplot对象或figure对象.
+            plt_obj (Any): matplotlib pyplot object or figure object.
 
         Returns:
-            ChartWidget: 返回self以支持链式调用.
+            ChartWidget: Returns self to support method chaining.
 
         Raises:
-            ImportError: 如果未安装matplotlib库.
-            Exception: 如果图表转换失败.
+            ImportError: If matplotlib library is not installed.
+            Exception: If chart conversion fails.
 
         Examples:
             ```python
             import matplotlib.pyplot as plt
             fig, ax = plt.subplots(figsize=(10, 6))
             ax.bar(['Q1', 'Q2', 'Q3', 'Q4'], [100, 120, 140, 110])
-            ax.set_title('季度销售额')
+            ax.set_title('Quarterly Sales')
             chart = ChartWidget().set_chart(plt)
 
-            # 使用seaborn
+            # Using seaborn
             import seaborn as sns
             sns.barplot(data=df, x='month', y='sales')
             chart = ChartWidget().set_chart(plt)
             ```
 
         Note:
-            调用此方法后，原图表对象会被关闭以释放内存.
-            如果转换失败，图片URL会被设置为None.
+            After calling this method, the original chart object will be closed to free memory.
+            If conversion fails, the image URL will be set to None.
         """
-        # 检查matplotlib依赖
+        # Check matplotlib dependency
         check_optional_dependency("matplotlib")
 
         try:
-            # 设置中文字体
+            # Set Chinese font
             self._configure_chinese_font()
 
-            # 保存图表到内存中的字节流
+            # Save chart to in-memory byte stream
             img_buffer = io.BytesIO()
             plt_obj.savefig(img_buffer, format="png", bbox_inches="tight", dpi=150)
             img_buffer.seek(0)
 
-            # 转换为base64
+            # Convert to base64
             img_base64 = base64.b64encode(img_buffer.getvalue()).decode("utf-8")
             self._image_url = f"data:image/png;base64,{img_base64}"
 
-            # 关闭图表以释放内存
+            # Close chart to free memory
             plt_obj.close()
 
             img_buffer.close()
         except Exception as e:
-            self._logger.error(f"转换图表失败: {e}")
+            self._logger.error(f"Failed to convert chart: {e}")
             self._image_url = None
 
         return self
 
     def _configure_chinese_font(self):
-        """配置matplotlib的中文字体支持.
+        """Configure matplotlib Chinese font support.
 
-        从配置文件获取字体列表，自动选择可用的中文字体.
-        如果没有找到中文字体，会使用默认字体并输出警告.
+        Get font list from configuration file and automatically select available Chinese fonts.
+        If no Chinese fonts are found, use default font and output warning.
 
         Note:
-            这是一个内部方法，在set_chart时自动调用.
+            This is an internal method, automatically called when set_chart is used.
         """
         try:
-            # 导入matplotlib模块
+            # Import matplotlib modules
             plt = self._import_matplotlib_pyplot()
             fm = self._import_matplotlib_font_manager()
 
-            # 从配置文件获取字体列表
+            # Get font list from configuration file
             config = EmailConfig()
             font_list = config.get_chart_fonts()
 
-            # 寻找可用的中文字体
+            # Find available Chinese fonts
             available_fonts = [f.name for f in fm.fontManager.ttflist]
 
             for font_name in font_list:
                 if font_name in available_fonts:
                     plt.rcParams["font.sans-serif"] = [font_name]
-                    plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
-                    self._logger.info(f"使用字体: {font_name}")
+                    plt.rcParams["axes.unicode_minus"] = False  # Fix negative sign display issue
+                    self._logger.info(f"Using font: {font_name}")
                     break
             else:
-                # 如果没有找到中文字体，尝试使用系统默认
-                self._logger.warning("未找到合适的中文字体，可能无法正确显示中文")
+                # If no Chinese font found, try using system default
+                self._logger.warning("No suitable Chinese font found, may not display Chinese correctly")
                 plt.rcParams["font.sans-serif"] = ["DejaVu Sans"]
                 plt.rcParams["axes.unicode_minus"] = False
 
         except Exception as e:
-            self._logger.error(f"配置中文字体失败: {e}")
+            self._logger.error(f"Failed to configure Chinese font: {e}")
 
     def _get_template_name(self) -> str:
-        """获取模板名称.
+        """Get template name.
 
         Returns:
-            模板文件名
+            Template file name
         """
         return "chart.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据"""
+        """Get context data required for template rendering"""
         if not self._image_url:
             return {}
 
-        # 容器样式
+        # Container styles
         container_style = f"""
             background: #ffffff;
             border: 1px solid #e1dfdd;
@@ -357,7 +358,7 @@ class ChartWidget(BaseWidget, ChartMixin):
             max-width: {self._max_width};
         """
 
-        # 标题样式
+        # Title styles
         title_style = """
             font-size: 18px;
             font-weight: 600;
@@ -366,7 +367,7 @@ class ChartWidget(BaseWidget, ChartMixin):
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
         """
 
-        # 图片样式
+        # Image styles
         img_style = """
             max-width: 100%;
             height: auto;
@@ -374,7 +375,7 @@ class ChartWidget(BaseWidget, ChartMixin):
             margin: 8px 0;
         """
 
-        # 描述样式
+        # Description styles
         desc_style = """
             font-size: 14px;
             color: #605e5c;
@@ -383,7 +384,7 @@ class ChartWidget(BaseWidget, ChartMixin):
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
         """
 
-        # 数据摘要样式
+        # Data summary styles
         summary_style = """
             font-size: 13px;
             color: #8e8e93;

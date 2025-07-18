@@ -1,4 +1,4 @@
-"""列布局Widget实现"""
+"""Column Layout Widget Implementation"""
 
 from typing import Any
 
@@ -6,53 +6,53 @@ from email_widget.core.base import BaseWidget
 
 
 class ColumnWidget(BaseWidget):
-    """创建一个多列布局容器，用于水平排列多个微件。
+    """Create a multi-column layout container for horizontally arranging multiple widgets.
 
-    该微件使用 `<table>` 元素来确保在各种邮件客户端中的最大兼容性。
-    你可以将任何其他微件（如 `TextWidget`, `CardWidget`, `ChartWidget` 等）
-    放入列布局中，以创建复杂且美观的邮件版式。
+    This widget uses `<table>` elements to ensure maximum compatibility across various email clients.
+    You can place any other widgets (such as `TextWidget`, `CardWidget`, `ChartWidget`, etc.)
+    in the column layout to create complex and beautiful email layouts.
 
-    核心功能:
-        - **自动列数**: 默认情况下，它会根据内部微件的数量智能地计算出最佳列数。
-        - **手动列数**: 你也可以手动指定1到4之间的固定列数。
-        - **响应式**: 布局会根据屏幕宽度自动调整，确保在桌面和移动设备上都有良好体验。
-        - **间隔控制**: 可以自定义列与列之间的水平间距。
+    Core features:
+        - **Auto columns**: By default, it intelligently calculates the optimal number of columns based on the number of internal widgets.
+        - **Manual columns**: You can also manually specify a fixed number of columns between 1 and 4.
+        - **Responsive**: Layout automatically adjusts based on screen width, ensuring good experience on both desktop and mobile devices.
+        - **Spacing control**: Can customize horizontal spacing between columns.
 
-    自动列数规则:
-        - 1个微件: 1列
-        - 2个微件: 2列
-        - 3个微件: 3列
-        - 4个微件: 2列 (2x2 网格)
-        - 5-6个微件: 3列
-        - 7-8个微件: 2列
-        - 9个及以上: 3列
+    Auto column rules:
+        - 1 widget: 1 column
+        - 2 widgets: 2 columns
+        - 3 widgets: 3 columns
+        - 4 widgets: 2 columns (2x2 grid)
+        - 5-6 widgets: 3 columns
+        - 7-8 widgets: 2 columns
+        - 9+ widgets: 3 columns
 
     Examples:
-        创建一个两列布局，左侧是卡片，右侧是图表：
+        Create a two-column layout with a card on the left and chart on the right:
 
         ```python
         from email_widget.widgets import ColumnWidget, CardWidget, ChartWidget
         import matplotlib.pyplot as plt
 
-        # 准备左侧卡片
+        # Prepare left card
         left_card = (CardWidget()
-                     .set_title("关键指标")
-                     .add_metadata("用户增长", "+15%")
-                     .add_metadata("收入", "+12%"))
+                     .set_title("Key Metrics")
+                     .add_metadata("User Growth", "+15%")
+                     .add_metadata("Revenue", "+12%"))
 
-        # 准备右侧图表
+        # Prepare right chart
         plt.figure()
         plt.plot([1, 2, 3], [4, 5, 2])
         right_chart = ChartWidget().set_chart(plt)
 
-        # 创建2列布局并添加微件
+        # Create 2-column layout and add widgets
         two_column_layout = (ColumnWidget()
                              .set_columns(2)
                              .set_gap("24px")
                              .add_widget(left_card)
                              .add_widget(right_chart))
 
-        # 假设 email 是一个 Email 对象
+        # Assuming email is an Email object
         # email.add_widget(two_column_layout)
         ```
     """
@@ -86,10 +86,10 @@ class ColumnWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化ColumnWidget。
+        """Initialize ColumnWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID。
+            widget_id (Optional[str]): Optional Widget ID.
         """
         super().__init__(widget_id)
         self._widgets: list[BaseWidget] = []
@@ -97,28 +97,28 @@ class ColumnWidget(BaseWidget):
         self._gap: str = "20px"
 
     def add_widget(self, widget: BaseWidget) -> "ColumnWidget":
-        """向列布局中添加一个微件。
+        """Add a widget to the column layout.
 
         Args:
-            widget (BaseWidget): 要添加的微件实例。
+            widget (BaseWidget): Widget instance to add.
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Examples:
-            >>> column = ColumnWidget().add_widget(TextWidget().set_content("左侧内容"))
+            >>> column = ColumnWidget().add_widget(TextWidget().set_content("Left content"))
         """
         self._widgets.append(widget)
         return self
 
     def add_widgets(self, widgets: list[BaseWidget]) -> "ColumnWidget":
-        """向列布局中添加多个微件。
+        """Add multiple widgets to the column layout.
 
         Args:
-            widgets (List[BaseWidget]): 要添加的微件实例列表。
+            widgets (List[BaseWidget]): List of widget instances to add.
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Examples:
             >>> column = ColumnWidget().add_widgets([TextWidget(), ImageWidget()])
@@ -127,32 +127,32 @@ class ColumnWidget(BaseWidget):
         return self
 
     def set_columns(self, columns: int) -> "ColumnWidget":
-        """设置列布局的列数。
+        """Set the number of columns in the layout.
 
         Args:
-            columns (int): 列数。-1表示自动模式，其他值限制在1到4列之间。
+            columns (int): Number of columns. -1 indicates auto mode, other values are limited between 1 and 4 columns.
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Examples:
-            >>> column = ColumnWidget().set_columns(2) # 设置为2列
-            >>> column = ColumnWidget().set_columns(-1) # 自动模式
+            >>> column = ColumnWidget().set_columns(2) # Set to 2 columns
+            >>> column = ColumnWidget().set_columns(-1) # Auto mode
         """
         if columns == -1:
-            self._columns = -1  # 自动模式
+            self._columns = -1  # Auto mode
         else:
-            self._columns = max(1, min(columns, 4))  # 限制1-4列
+            self._columns = max(1, min(columns, 4))  # Limit to 1-4 columns
         return self
 
     def set_gap(self, gap: str) -> "ColumnWidget":
-        """设置列之间的水平间距。
+        """Set horizontal spacing between columns.
 
         Args:
-            gap (str): CSS间距值，如 "20px", "1em"。
+            gap (str): CSS spacing value, such as "20px", "1em".
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Examples:
             >>> column = ColumnWidget().set_gap("16px")
@@ -161,10 +161,10 @@ class ColumnWidget(BaseWidget):
         return self
 
     def clear_widgets(self) -> "ColumnWidget":
-        """清空列布局中的所有微件。
+        """Clear all widgets in the column layout.
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Examples:
             >>> column = ColumnWidget().clear_widgets()
@@ -173,13 +173,13 @@ class ColumnWidget(BaseWidget):
         return self
 
     def remove_widget(self, widget_id: str) -> "ColumnWidget":
-        """根据微件ID移除指定的微件。
+        """Remove specified widget by widget ID.
 
         Args:
-            widget_id (str): 要移除的微件的ID。
+            widget_id (str): ID of the widget to remove.
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Examples:
             >>> column = ColumnWidget().remove_widget("my_text_widget")
@@ -188,72 +188,72 @@ class ColumnWidget(BaseWidget):
         return self
 
     def remove_widget_by_index(self, index: int) -> "ColumnWidget":
-        """移除指定索引的微件。
+        """Remove widget at specified index.
 
         Args:
-            index (int): 要移除的微件的索引。
+            index (int): Index of the widget to remove.
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Raises:
-            IndexError: 如果索引超出范围。
+            IndexError: If index is out of range.
 
         Examples:
-            >>> column = ColumnWidget().remove_widget_by_index(0) # 移除第一个微件
+            >>> column = ColumnWidget().remove_widget_by_index(0) # Remove first widget
         """
         if 0 <= index < len(self._widgets):
             self._widgets.pop(index)
         return self
 
     def get_widget_count(self) -> int:
-        """获取列布局中微件的数量。
+        """Get the number of widgets in the column layout.
 
         Returns:
-            int: 微件的数量。
+            int: Number of widgets.
 
         Examples:
             >>> count = ColumnWidget().add_widget(TextWidget()).get_widget_count()
-            >>> print(count) # 输出: 1
+            >>> print(count) # Output: 1
         """
         return len(self._widgets)
 
     def is_auto_mode(self) -> bool:
-        """检查当前是否为自动列数模式。
+        """Check if currently in auto column mode.
 
         Returns:
-            bool: 如果是自动模式则为True，否则为False。
+            bool: True if in auto mode, False otherwise.
 
         Examples:
-            >>> column = ColumnWidget().is_auto_mode() # 默认为True
+            >>> column = ColumnWidget().is_auto_mode() # Default is True
         """
         return self._columns == -1
 
     def get_current_columns(self) -> int:
-        """获取当前实际使用的列数。
+        """Get the current number of columns actually used.
 
-        如果处于自动模式，则返回根据微件数量计算出的列数；否则返回手动设置的列数。
+        If in auto mode, returns the number of columns calculated based on widget count; otherwise returns the manually set number of columns.
 
         Returns:
-            int: 实际使用的列数。
+            int: Number of columns actually used.
 
         Examples:
             >>> column = ColumnWidget().add_widgets([TextWidget(), TextWidget()])
-            >>> column.get_current_columns() # 自动模式下，2个微件返回2列
+            >>> column.get_current_columns() # In auto mode, 2 widgets return 2 columns
         """
         return self.get_effective_columns()
 
     def set_equal_width(self, equal: bool = True) -> "ColumnWidget":
-        """设置列是否等宽。
+        """Set whether columns have equal width.
 
         Args:
-            equal (bool): 是否等宽，默认为True。
+            equal (bool): Whether equal width, defaults to True.
 
         Returns:
-            ColumnWidget: 返回self以支持链式调用。
+            ColumnWidget: Returns self to support method chaining.
 
         Note:
-            此方法目前仅为预留接口，实际渲染中列宽始终等分。
+            This method is currently only a reserved interface, column widths are always equally divided in actual rendering.
 
         Examples:
             >>> column = ColumnWidget().set_equal_width(False)
@@ -262,13 +262,13 @@ class ColumnWidget(BaseWidget):
         return self
 
     def _calculate_auto_columns(self, widget_count: int) -> int:
-        """根据微件数量自动计算合适的列数。
+        """Automatically calculate appropriate number of columns based on widget count.
 
         Args:
-            widget_count (int): 微件的数量。
+            widget_count (int): Number of widgets.
 
         Returns:
-            int: 自动计算出的列数。
+            int: Automatically calculated number of columns.
         """
         if widget_count <= 0:
             return 1
@@ -279,21 +279,21 @@ class ColumnWidget(BaseWidget):
         elif widget_count == 3:
             return 3
         elif widget_count == 4:
-            return 2  # 4个widget用2列，每列2个
+            return 2  # 4 widgets use 2 columns, 2 per column
         elif widget_count <= 6:
-            return 3  # 5-6个widget用3列
+            return 3  # 5-6 widgets use 3 columns
         elif widget_count <= 8:
-            return 2  # 7-8个widget用2列
+            return 2  # 7-8 widgets use 2 columns
         else:
-            return 3  # 超过8个widget用3列
+            return 3  # More than 8 widgets use 3 columns
 
     def get_effective_columns(self) -> int:
-        """获取实际生效的列数。
+        """Get the actual effective number of columns.
 
-        如果设置为自动模式，则根据当前微件数量计算；否则返回手动设置的列数。
+        If set to auto mode, calculates based on current widget count; otherwise returns manually set number of columns.
 
         Returns:
-            int: 实际使用的列数。
+            int: Number of columns actually used.
         """
         if self._columns == -1:
             return self._calculate_auto_columns(len(self._widgets))
@@ -304,17 +304,17 @@ class ColumnWidget(BaseWidget):
         return "column.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据"""
+        """Get template context data required for rendering"""
         if not self._widgets:
             return {}
 
-        # 获取有效列数（处理自动模式）
+        # Get effective columns (handle auto mode)
         effective_columns = self.get_effective_columns()
 
-        # 计算列宽度
+        # Calculate column width
         column_width = f"{100 / effective_columns:.2f}%"
 
-        # 使用table布局实现列效果 - 邮件客户端兼容
+        # Use table layout to achieve column effect - email client compatible
         table_style = f"""
             width: 100%;
             max-width: 100%;
@@ -334,7 +334,7 @@ class ColumnWidget(BaseWidget):
 
         empty_cell_style = f"width: {column_width}; vertical-align: top; padding: 0; box-sizing: border-box;"
 
-        # 分组处理Widget
+        # Group process widgets
         widget_groups = []
         for i in range(0, len(self._widgets), effective_columns):
             group = self._widgets[i : i + effective_columns]
@@ -344,11 +344,11 @@ class ColumnWidget(BaseWidget):
                     widget_html = widget.render_html()
                     group_html.append(widget_html)
                 except Exception as e:
-                    self._logger.error(f"渲染Widget失败: {e}")
-                    group_html.append("<p style='color: red;'>Widget渲染错误</p>")
+                    self._logger.error(f"Widget rendering failed: {e}")
+                    group_html.append("<p style='color: red;'>Widget rendering error</p>")
             widget_groups.append(group_html)
 
-        # 计算最后一行的空列数
+        # Calculate empty columns in the last row
         last_group_size = len(self._widgets) % effective_columns
         empty_columns = (
             (effective_columns - last_group_size) if last_group_size > 0 else 0

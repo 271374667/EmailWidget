@@ -1,7 +1,7 @@
-"""时间线组件模块
+"""Timeline component module
 
-提供TimelineWidget类，用于在邮件中创建时间线展示。
-支持多种事件类型、时间格式和样式配置。
+Provides TimelineWidget class for creating timeline displays in emails.
+Supports multiple event types, time formats, and style configurations.
 """
 
 from datetime import datetime
@@ -13,41 +13,41 @@ from email_widget.core.validators import TypeValidator
 
 
 class TimelineWidget(BaseWidget):
-    """时间线组件，用于创建事件时间线展示。
+    """Timeline component for creating event timeline displays.
 
-    TimelineWidget 用于显示一系列按时间顺序排列的事件，每个事件可以有不同的状态、描述和时间戳。
-    适用于项目进度、历史记录、流程步骤等场景。
+    TimelineWidget is used to display a series of events arranged in chronological order, each event can have different states, descriptions, and timestamps.
+    Suitable for project progress, history records, process steps, and other scenarios.
 
     Attributes:
-        events (List[Dict[str, Any]]): 时间线事件列表
-        title (str): 时间线标题
-        show_time (bool): 是否显示时间信息
-        reverse_order (bool): 是否按时间倒序排列
+        events (List[Dict[str, Any]]): Timeline events list
+        title (str): Timeline title
+        show_time (bool): Whether to show time information
+        reverse_order (bool): Whether to arrange in reverse chronological order
 
     Examples:
-        基础用法:
+        Basic usage:
         ```python
         timeline = TimelineWidget()
-        timeline.add_event("项目启动", "2024-01-01", "项目正式开始")
-        timeline.add_event("需求确认", "2024-01-15", "完成需求分析文档")
-        timeline.add_event("开发完成", "2024-02-28", "代码开发完成")
+        timeline.add_event("Project Launch", "2024-01-01", "Project officially started")
+        timeline.add_event("Requirements Confirmed", "2024-01-15", "Requirements analysis document completed")
+        timeline.add_event("Development Complete", "2024-02-28", "Code development completed")
         ```
 
-        使用链式调用:
+        Using method chaining:
         ```python
         timeline = (TimelineWidget()
-            .set_title("项目里程碑")
-            .add_event("立项", "2024-01-01", status_type="success")
-            .add_event("开发中", "2024-01-15", status_type="primary")
+            .set_title("Project Milestones")
+            .add_event("Project Initiation", "2024-01-01", status_type="success")
+            .add_event("In Development", "2024-01-15", status_type="primary")
             .show_timestamps(True))
         ```
 
-        自定义事件类型:
+        Custom event types:
         ```python
         timeline = TimelineWidget()
-        timeline.add_event("系统上线", "2024-03-01", "生产环境部署", "success")
-        timeline.add_event("发现bug", "2024-03-05", "用户反馈问题", "error")
-        timeline.add_event("修复完成", "2024-03-06", "问题已解决", "success")
+        timeline.add_event("System Launch", "2024-03-01", "Production environment deployment", "success")
+        timeline.add_event("Bug Found", "2024-03-05", "User feedback issue", "error")
+        timeline.add_event("Fix Complete", "2024-03-06", "Issue resolved", "success")
         ```
     """
 

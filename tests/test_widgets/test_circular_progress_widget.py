@@ -50,7 +50,7 @@ class TestCircularProgressWidget:
                 "get_error_message",
                 return_value="值超出范围",
             ):
-                with pytest.raises(ValueError, match="进度值验证失败: 值超出范围"):
+                with pytest.raises(ValueError, match="Progress value validation failed: 值超出范围"):
                     self.widget.set_value(-10)
 
     def test_set_value_clamp_to_max(self):
@@ -105,7 +105,7 @@ class TestCircularProgressWidget:
                 "get_error_message",
                 return_value="尺寸格式错误",
             ):
-                with pytest.raises(ValueError, match="尺寸值验证失败: 尺寸格式错误"):
+                with pytest.raises(ValueError, match="Size value validation failed: 尺寸格式错误"):
                     self.widget.set_size("invalid")
 
     def test_set_stroke_width(self):

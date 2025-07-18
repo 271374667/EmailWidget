@@ -1,7 +1,7 @@
-"""指标组件模块
+"""Metric component module
 
-提供MetricWidget类，用于在邮件中展示关键数据指标。
-支持多种指标类型、趋势显示和样式配置。
+Provides MetricWidget class for displaying key data metrics in emails.
+Supports multiple metric types, trend display, and style configurations.
 """
 
 from typing import Any
@@ -12,42 +12,42 @@ from email_widget.core.validators import TypeValidator
 
 
 class MetricWidget(BaseWidget):
-    """指标组件，用于展示关键数据指标。
+    """Metric component for displaying key data metrics.
 
-    MetricWidget 用于显示重要的数据指标，包括数值、标题、趋势变化等信息。
-    适用于仪表板、KPI展示、数据监控等场景。
+    MetricWidget is used to display important data metrics, including values, titles, trend changes, and other information.
+    Suitable for dashboards, KPI displays, data monitoring, and other scenarios.
 
     Attributes:
-        metrics (List[Dict[str, Any]]): 指标列表
-        title (str): 指标组标题
-        layout (str): 布局方式（horizontal/vertical）
-        show_trend (bool): 是否显示趋势
+        metrics (List[Dict[str, Any]]): Metrics list
+        title (str): Metric group title
+        layout (str): Layout method (horizontal/vertical)
+        show_trend (bool): Whether to show trends
 
     Examples:
-        基础用法:
+        Basic usage:
         ```python
         metric = MetricWidget()
-        metric.add_metric("用户总数", "12,345", "人")
-        metric.add_metric("月活跃", "8,456", "人", "+15.6%", "success")
-        metric.add_metric("转化率", "3.2", "%", "-0.8%", "warning")
+        metric.add_metric("Total Users", "12,345", "people")
+        metric.add_metric("Monthly Active", "8,456", "people", "+15.6%", "success")
+        metric.add_metric("Conversion Rate", "3.2", "%", "-0.8%", "warning")
         ```
 
-        使用链式调用:
+        Using method chaining:
         ```python
         metric = (MetricWidget()
-            .set_title("核心指标")
-            .add_metric("销售额", "¥1,250,000", "", "+12.3%", "success")
-            .add_metric("订单量", "2,456", "单", "-3.2%", "error")
+            .set_title("Core Metrics")
+            .add_metric("Sales", "¥1,250,000", "", "+12.3%", "success")
+            .add_metric("Orders", "2,456", "units", "-3.2%", "error")
             .set_layout("horizontal"))
         ```
 
-        多指标展示:
+        Multi-metric display:
         ```python
         metric = MetricWidget()
-        metric.set_title("系统性能")
-        metric.add_metric("CPU使用率", "45.2", "%", "+2.1%", "warning")
-        metric.add_metric("内存使用", "78.5", "%", "-1.3%", "success")
-        metric.add_metric("磁盘空间", "23.8", "GB", "+5.2GB", "info")
+        metric.set_title("System Performance")
+        metric.add_metric("CPU Usage", "45.2", "%", "+2.1%", "warning")
+        metric.add_metric("Memory Usage", "78.5", "%", "-1.3%", "success")
+        metric.add_metric("Disk Space", "23.8", "GB", "+5.2GB", "info")
         ```
     """
 
@@ -97,7 +97,7 @@ class MetricWidget(BaseWidget):
                 position: relative;
                 transition: transform 0.2s ease;
             ">
-                <!-- 指标值 -->
+                <!-- Metric value -->
                 <div style="
                     font-size: 28px;
                     font-weight: 700;
@@ -108,7 +108,7 @@ class MetricWidget(BaseWidget):
                     {{ metric.value }}{% if metric.unit %}<span style="font-size: 18px; font-weight: 500; color: #8e8e93;">{{ metric.unit }}</span>{% endif %}
                 </div>
                 
-                <!-- 指标标题 -->
+                <!-- Metric title -->
                 <div style="
                     font-size: 13px;
                     font-weight: 500;
@@ -119,7 +119,7 @@ class MetricWidget(BaseWidget):
                 ">{{ metric.label }}</div>
                 
                 {% if metric.trend %}
-                <!-- 趋势显示 -->
+                <!-- Trend display -->
                 <div style="
                     font-size: 12px;
                     font-weight: 600;
@@ -135,7 +135,7 @@ class MetricWidget(BaseWidget):
                 {% endif %}
                 
                 {% if metric.description %}
-                <!-- 描述信息 -->
+                <!-- Description info -->
                 <div style="
                     font-size: 11px;
                     color: #8e8e93;
@@ -150,7 +150,7 @@ class MetricWidget(BaseWidget):
     """
 
     def __init__(self):
-        """初始化指标组件。"""
+        """Initialize metric component."""
         super().__init__()
         self._metrics: list[dict[str, Any]] = []
         self._title: str = ""

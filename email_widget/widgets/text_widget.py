@@ -1,6 +1,6 @@
-"""文本Widget实现
+"""Text Widget Implementation
 
-这个模块提供了文本显示功能的Widget，支持多种文本类型和样式设置.
+This module provides a text display widget that supports multiple text types and style settings.
 """
 
 from typing import Any
@@ -15,31 +15,31 @@ from email_widget.core.validators import (
 
 
 class SectionNumberManager:
-    """章节编号管理器.
+    """Section number manager.
 
-    这是一个单例类，用于管理文档中的章节编号.
-    支持多级章节编号（H2-H5），自动处理编号的递增和重置.
+    This is a singleton class for managing section numbering in documents.
+    Supports multi-level section numbering (H2-H5), automatically handling increments and resets.
 
     Attributes:
-        _instance: 单例实例
-        _counters: 各级别的计数器字典
+        _instance: Singleton instance
+        _counters: Dictionary of counters for each level
 
     Examples:
         >>> manager = SectionNumberManager()
         >>> print(manager.get_next_number(2))  # "1."
         >>> print(manager.get_next_number(3))  # "1.1."
         >>> print(manager.get_next_number(2))  # "2."
-        >>> manager.reset()  # 重置所有计数器
+        >>> manager.reset()  # Reset all counters
     """
 
     _instance = None
-    _counters: dict[int, int] = {}  # 级别 -> 计数器
+    _counters: dict[int, int] = {}  # level -> counter
 
     def __new__(cls):
-        """创建单例实例.
+        """Create singleton instance.
 
         Returns:
-            SectionNumberManager的唯一实例
+            The unique instance of SectionNumberManager
         """
         if cls._instance is None:
             cls._instance = super().__new__(cls)
@@ -47,13 +47,13 @@ class SectionNumberManager:
         return cls._instance
 
     def get_next_number(self, level: int) -> str:
-        """获取指定级别的下一个章节编号.
+        """Get the next section number for the specified level.
 
         Args:
-            level: 章节级别（2-5，对应H2-H5）
+            level: Section level (2-5, corresponding to H2-H5)
 
         Returns:
-            格式化的章节编号字符串（如 "1.2.3."）
+            Formatted section number string (e.g., "1.2.3.")
 
         Examples:
             >>> manager = SectionNumberManager()
@@ -61,14 +61,14 @@ class SectionNumberManager:
             >>> manager.get_next_number(3)  # "1.1."
             >>> manager.get_next_number(3)  # "1.2."
         """
-        # 重置低级别计数器
+        # Reset lower level counters
         for l in range(level + 1, 6):
             self._counters[l] = 0
 
-        # 增加当前级别计数器
+        # Increment current level counter
         self._counters[level] += 1
 
-        # 生成编号字符串
+        # Generate number string
         numbers = []
         for l in range(2, level + 1):
             if self._counters[l] > 0:
@@ -77,64 +77,64 @@ class SectionNumberManager:
         return ".".join(numbers) + "."
 
     def reset(self):
-        """重置所有章节编号计数器.
+        """Reset all section number counters.
 
         Examples:
             >>> manager = SectionNumberManager()
             >>> manager.get_next_number(2)  # "1."
             >>> manager.reset()
-            >>> manager.get_next_number(2)  # "1." (重新开始)
+            >>> manager.get_next_number(2)  # "1." (restart)
         """
         self._counters = {2: 0, 3: 0, 4: 0, 5: 0}
 
 
 class TextWidget(BaseWidget):
-    """TextWidget 是用于显示各种类型文本内容的组件，支持多种预定义文本类型和丰富的样式配置.
+    """TextWidget is a component for displaying various types of text content, supporting multiple predefined text types and rich style configuration.
 
-    这个Widget支持多种文本类型（标题、正文、说明文字、章节标题等），
-    并提供丰富的样式设置选项.章节标题会自动添加编号.
+    This widget supports multiple text types (titles, body text, captions, section headings, etc.),
+    and provides rich style setting options. Section headings automatically add numbering.
 
-    主要功能：
-    - 支持多种预定义文本类型
-    - 自定义字体、颜色、对齐方式等样式
-    - 自动章节编号
-    - 多行文本支持
-    - 响应式设计
+    Main features:
+    - Support for multiple predefined text types
+    - Custom fonts, colors, alignment and other styles
+    - Automatic section numbering
+    - Multi-line text support
+    - Responsive design
 
     Attributes:
-        _content (str): 文本内容.
-        _text_type (TextType): 文本类型.
-        _font_size (str): 字体大小.
-        _align (TextAlign): 对齐方式.
-        _color (str): 文本颜色.
-        _line_height (str): 行高.
-        _font_weight (str): 字体粗细.
-        _font_family (str): 字体族.
-        _margin (str): 外边距.
-        _max_width (Optional[str]): 最大宽度.
-        _section_number (Optional[str]): 章节编号.
+        _content (str): Text content.
+        _text_type (TextType): Text type.
+        _font_size (str): Font size.
+        _align (TextAlign): Alignment.
+        _color (str): Text color.
+        _line_height (str): Line height.
+        _font_weight (str): Font weight.
+        _font_family (str): Font family.
+        _margin (str): Margin.
+        _max_width (Optional[str]): Maximum width.
+        _section_number (Optional[str]): Section number.
 
     Examples:
         ```python
         from email_widget.widgets import TextWidget
         from email_widget.core.enums import TextType, TextAlign
 
-        # 基本用法
+        # Basic usage
         text = TextWidget().set_content("Hello World")
 
-        # 链式调用
+        # Method chaining
         title = (TextWidget()\
-            .set_content("重要标题")\
+            .set_content("Important Title")\
             .set_type(TextType.TITLE_LARGE)\
             .set_color("#0078d4")\
             .set_align(TextAlign.CENTER))
 
-        # 章节标题（自动编号）
-        section = TextWidget().set_content("数据分析").set_type(TextType.SECTION_H2)
+        # Section heading (automatic numbering)
+        section = TextWidget().set_content("Data Analysis").set_type(TextType.SECTION_H2)
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -166,10 +166,10 @@ class TextWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化TextWidget.
+        """Initialize TextWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID.
+            widget_id (Optional[str]): Optional widget ID.
         """
         super().__init__(widget_id)
         self._content: str = ""
@@ -185,44 +185,44 @@ class TextWidget(BaseWidget):
         self._section_number: str | None = None
         self._section_manager = SectionNumberManager()
 
-        # 初始化验证器
+        # Initialize validators
         self._color_validator = ColorValidator()
         self._size_validator = SizeValidator()
         self._content_validator = NonEmptyStringValidator()
 
     def set_content(self, content: str) -> "TextWidget":
-        """设置文本内容，支持多行文本（使用`\n`分隔）.
+        """Set text content, supports multi-line text (separated by `\n`).
 
         Args:
-            content (str): 文本内容.
+            content (str): Text content.
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Raises:
-            ValueError: 当内容为空字符串时.
+            ValueError: When content is an empty string.
 
         Examples:
             >>> widget = TextWidget().set_content("Hello World")
-            >>> # 多行文本
-            >>> widget = TextWidget().set_content("第一行\n第二行\n第三行")
+            >>> # Multi-line text
+            >>> widget = TextWidget().set_content("Line 1\nLine 2\nLine 3")
         """
         if not self._content_validator.validate(content):
             raise ValueError(
-                f"文本内容验证失败: {self._content_validator.get_error_message(content)}"
+                f"Text content validation failed: {self._content_validator.get_error_message(content)}"
             )
 
         self._content = content
         return self
 
     def set_type(self, text_type: TextType) -> "TextWidget":
-        """设置文本类型，不同类型会应用不同的预设样式.
+        """Set text type, different types apply different preset styles.
 
         Args:
-            text_type (TextType): 文本类型枚举值.
+            text_type (TextType): Text type enum value.
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Examples:
             >>> widget = TextWidget().set_type(TextType.TITLE_LARGE)
@@ -233,16 +233,16 @@ class TextWidget(BaseWidget):
         return self
 
     def set_font_size(self, size: str) -> "TextWidget":
-        """设置字体大小.
+        """Set font size.
 
         Args:
-            size (str): CSS字体大小值（如 "16px", "1.2em", "120%"）.
+            size (str): CSS font size value (e.g., "16px", "1.2em", "120%").
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Raises:
-            ValueError: 当尺寸格式无效时.
+            ValueError: When size format is invalid.
 
         Examples:
             >>> widget = TextWidget().set_font_size("18px")
@@ -250,20 +250,20 @@ class TextWidget(BaseWidget):
         """
         if not self._size_validator.validate(size):
             raise ValueError(
-                f"字体大小验证失败: {self._size_validator.get_error_message(size)}"
+                f"Font size validation failed: {self._size_validator.get_error_message(size)}"
             )
 
         self._font_size = size
         return self
 
     def set_align(self, align: TextAlign) -> "TextWidget":
-        """设置文本对齐方式.
+        """Set text alignment.
 
         Args:
-            align (TextAlign): 对齐方式枚举值.
+            align (TextAlign): Alignment enum value.
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Examples:
             >>> widget = TextWidget().set_align(TextAlign.CENTER)
@@ -273,16 +273,16 @@ class TextWidget(BaseWidget):
         return self
 
     def set_color(self, color: str) -> "TextWidget":
-        """设置文本颜色.
+        """Set text color.
 
         Args:
-            color (str): CSS颜色值（如 "#ff0000", "red", "rgb(255,0,0)"）.
+            color (str): CSS color value (e.g., "#ff0000", "red", "rgb(255,0,0)").
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Raises:
-            ValueError: 当颜色格式无效时.
+            ValueError: When color format is invalid.
 
         Examples:
             >>> widget = TextWidget().set_color("#ff0000")
@@ -290,20 +290,20 @@ class TextWidget(BaseWidget):
         """
         if not self._color_validator.validate(color):
             raise ValueError(
-                f"颜色值验证失败: {self._color_validator.get_error_message(color)}"
+                f"Color value validation failed: {self._color_validator.get_error_message(color)}"
             )
 
         self._color = color
         return self
 
     def set_line_height(self, height: str) -> "TextWidget":
-        """设置行高.
+        """Set line height.
 
         Args:
-            height (str): CSS行高值（如 "1.5", "24px", "150%"）.
+            height (str): CSS line height value (e.g., "1.5", "24px", "150%").
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Examples:
             >>> widget = TextWidget().set_line_height("1.8")
@@ -313,13 +313,13 @@ class TextWidget(BaseWidget):
         return self
 
     def set_font_weight(self, weight: str) -> "TextWidget":
-        """设置字体粗细.
+        """Set font weight.
 
         Args:
-            weight (str): CSS字体粗细值（如 "normal", "bold", "600"）.
+            weight (str): CSS font weight value (e.g., "normal", "bold", "600").
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Examples:
             >>> widget = TextWidget().set_font_weight("bold")
@@ -329,13 +329,13 @@ class TextWidget(BaseWidget):
         return self
 
     def set_font_family(self, family: str) -> "TextWidget":
-        """设置字体族.
+        """Set font family.
 
         Args:
-            family (str): CSS字体族字符串.
+            family (str): CSS font family string.
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Supports method chaining.
 
         Examples:
             >>> widget = TextWidget().set_font_family("Arial, sans-serif")
@@ -345,13 +345,13 @@ class TextWidget(BaseWidget):
         return self
 
     def set_margin(self, margin: str) -> "TextWidget":
-        """设置外边距.
+        """Set margin.
 
         Args:
-            margin (str): CSS外边距值（如 "16px 0", "10px", "1em 2em"）.
+            margin (str): CSS margin value (e.g., "16px 0", "10px", "1em 2em").
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = TextWidget().set_margin("20px 0")
@@ -361,13 +361,13 @@ class TextWidget(BaseWidget):
         return self
 
     def set_max_width(self, max_width: str) -> "TextWidget":
-        """设置最大宽度.
+        """Set maximum width.
 
         Args:
-            max_width (str): CSS最大宽度值（如 "600px", "80%", "50em"）.
+            max_width (str): CSS maximum width value (e.g., "600px", "80%", "50em").
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = TextWidget().set_max_width("600px")
@@ -377,56 +377,56 @@ class TextWidget(BaseWidget):
         return self
 
     def set_bold(self, bold: bool = True) -> "TextWidget":
-        """设置是否为粗体.
+        """Set whether text is bold.
 
         Args:
-            bold (bool): 是否为粗体，默认为True.
+            bold (bool): Whether text is bold, defaults to True.
 
         Returns:
-            TextWidget: 支持链式调用.
+            TextWidget: Returns self to support method chaining.
 
         Examples:
-            >>> widget = TextWidget().set_bold()  # 设置为粗体
-            >>> widget = TextWidget().set_bold(False)  # 取消粗体
+            >>> widget = TextWidget().set_bold()  # Set to bold
+            >>> widget = TextWidget().set_bold(False)  # Cancel bold
         """
         self._font_weight = "bold" if bold else "normal"
         return self
 
     def set_italic(self, italic: bool = True) -> "TextWidget":
-        """设置是否为斜体.
+        """Set whether text is italic.
 
         Args:
-            italic: 是否为斜体，默认为True
+            italic: Whether text is italic, defaults to True
 
         Returns:
-            返回self以支持链式调用
+            Returns self to support method chaining
 
         Note:
-            当前版本暂未实现斜体功能，预留接口
+            Current version has not implemented italic functionality, interface reserved
 
         Examples:
-            >>> widget = TextWidget().set_italic()  # 设置为斜体
+            >>> widget = TextWidget().set_italic()  # Set to italic
         """
-        # 这里可以扩展支持斜体样式
+        # Can extend to support italic styles here
         return self
 
     @staticmethod
     def reset_section_numbers():
-        """重置章节编号计数器.
+        """Reset section number counters.
 
-        重置所有章节编号计数器，通常在开始新文档时调用.
+        Reset all section number counters, typically called when starting a new document.
 
         Examples:
             >>> TextWidget.reset_section_numbers()
-            >>> # 之后创建的章节标题将从1开始编号
+            >>> # Section titles created afterwards will start numbering from 1
         """
         manager = SectionNumberManager()
         manager.reset()
 
     def _apply_type_styles(self) -> None:
-        """根据文本类型应用预设样式.
+        """Apply preset styles based on text type.
 
-        内部方法，当设置文本类型时自动调用.
+        Internal method, automatically called when setting text type.
         """
         if self._text_type == TextType.TITLE_LARGE:
             self._font_size = "28px"
@@ -483,58 +483,58 @@ class TextWidget(BaseWidget):
 
     @property
     def content(self) -> str:
-        """获取当前文本内容.
+        """Get current text content.
 
         Returns:
-            str: 当前的文本内容.
+            str: Current text content.
         """
         return self._content
 
     @property
     def font_size(self) -> str:
-        """获取当前字体大小.
+        """Get current font size.
 
         Returns:
-            str: 当前的字体大小CSS值.
+            str: Current font size CSS value.
         """
         return self._font_size
 
     @property
     def align(self) -> TextAlign:
-        """获取当前对齐方式.
+        """Get current alignment.
 
         Returns:
-            TextAlign: 当前的对齐方式枚举值.
+            TextAlign: Current alignment enumeration value.
         """
         return self._align
 
     @property
     def color(self) -> str:
-        """获取当前文本颜色.
+        """Get current text color.
 
         Returns:
-            str: 当前的文本颜色CSS值.
+            str: Current text color CSS value.
         """
         return self._color
 
     def _get_template_name(self) -> str:
-        """获取模板名称.
+        """Get template name.
 
         Returns:
-            模板文件名
+            Template filename
         """
         return "text.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据.
+        """Get template context data required for rendering.
 
         Returns:
-            模板上下文数据字典
+            Template context data dictionary
         """
         if not self._content:
             return {}
 
-        # 构建样式
+        # Build styles
         style_parts = [
             f"font-size: {self._font_size}",
             f"text-align: {self._align.value}",
@@ -548,7 +548,7 @@ class TextWidget(BaseWidget):
         if self._max_width:
             style_parts.append(f"max-width: {self._max_width}")
 
-        # 确定HTML标签
+        # Determine HTML tag
         tag_name = "p"
         if self._text_type in [
             TextType.SECTION_H2,

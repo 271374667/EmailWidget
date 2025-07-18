@@ -1,4 +1,4 @@
-"""表格Widget实现"""
+"""Table Widget Implementation"""
 
 from typing import TYPE_CHECKING, Any, Optional
 
@@ -14,28 +14,28 @@ if TYPE_CHECKING:
 
 
 class TableCell:
-    """表格单元格类.
+    """Table cell class.
 
-    用于封装表格中单个单元格的数据和样式信息，支持设置单元格的值、状态、颜色、
-    字体粗细和对齐方式.这使得表格能够展示更丰富、更具表现力的数据.
+    Used to encapsulate data and style information for individual cells in a table, supporting setting cell values, status, color,
+    font weight, and alignment. This allows tables to display richer, more expressive data.
 
     Attributes:
-        value (Any): 单元格的实际值，可以是任何类型，最终会转换为字符串显示.
-        status (Optional[StatusType]): 单元格的状态类型，用于应用预定义的颜色和背景.
-        color (Optional[str]): 单元格文本的自定义颜色（CSS颜色值）.
-        bold (bool): 单元格文本是否加粗.
-        align (str): 单元格文本的对齐方式（如 "left", "center", "right"）.
+        value (Any): The actual value of the cell, can be any type, will be converted to string for display.
+        status (Optional[StatusType]): Status type of the cell, used to apply predefined colors and backgrounds.
+        color (Optional[str]): Custom color for cell text (CSS color value).
+        bold (bool): Whether cell text is bold.
+        align (str): Text alignment of the cell (e.g., "left", "center", "right").
 
     Examples:
         ```python
         from email_widget.widgets import TableCell
         from email_widget.core.enums import StatusType
 
-        # 创建一个成功状态的单元格
-        success_cell = TableCell("成功", status=StatusType.SUCCESS, bold=True)
+        # Create a success status cell
+        success_cell = TableCell("Success", status=StatusType.SUCCESS, bold=True)
 
-        # 创建一个自定义颜色的单元格
-        red_text_cell = TableCell("警告", color="#FF0000", align="right")
+        # Create a custom color cell
+        red_text_cell = TableCell("Warning", color="#FF0000", align="right")
         ```
     """
 
@@ -47,17 +47,17 @@ class TableCell:
         bold: bool = False,
         align: str = "center",
     ):
-        """初始化表格单元格.
+        """Initialize table cell.
 
         Args:
-            value (Any): 单元格值.
-            status (Optional[StatusType]): 状态类型，用于应用预定义的颜色和背景.
-            color (Optional[str]): 文字颜色（CSS颜色值）.
-            bold (bool): 是否粗体，默认为False.
-            align (str): 对齐方式，默认为"center".
+            value (Any): Cell value.
+            status (Optional[StatusType]): Status type, used to apply predefined colors and backgrounds.
+            color (Optional[str]): Text color (CSS color value).
+            bold (bool): Whether to bold, defaults to False.
+            align (str): Alignment method, defaults to "center".
 
         Examples:
-            >>> cell = TableCell("成功", status=StatusType.SUCCESS, bold=True)
+            >>> cell = TableCell("Success", status=StatusType.SUCCESS, bold=True)
         """
         self.value = value
         self.status = status
@@ -67,52 +67,52 @@ class TableCell:
 
 
 class TableWidget(BaseWidget):
-    """创建一个用于在邮件中展示表格数据的微件.
+    """Create a widget for displaying table data in emails.
 
-    该微件提供了灵活的方式来呈现结构化数据，无论是手动构建表格，
-    还是直接从 `pandas.DataFrame` 导入数据.它支持多种样式选项，
-    如斑马纹、边框、悬停效果，并能为特定单元格应用颜色和状态，
-    以增强数据的可读性和视觉吸引力.
+    This widget provides a flexible way to present structured data, whether manually constructing tables
+    or directly importing data from `pandas.DataFrame`. It supports various styling options,
+    such as striped patterns, borders, hover effects, and can apply colors and status to specific cells
+    to enhance data readability and visual appeal.
 
-    核心功能:
-        - **数据源多样**: 支持直接添加行数据，或从 `pandas.DataFrame` 导入.
-        - **样式定制**: 可设置标题、表头、斑马纹、边框、悬停效果等.
-        - **单元格样式**: 允许为单个单元格设置颜色、粗体和对齐方式，并支持状态着色.
-        - **邮件兼容性**: 生成的 HTML 针对主流邮件客户端进行了优化，确保显示效果一致.
+    Core features:
+        - **Diverse data sources**: Support for directly adding row data or importing from `pandas.DataFrame`.
+        - **Style customization**: Can set title, headers, striped patterns, borders, hover effects, etc.
+        - **Cell styling**: Allows setting colors, bold, and alignment for individual cells, and supports status coloring.
+        - **Email compatibility**: Generated HTML is optimized for mainstream email clients to ensure consistent display.
 
     Attributes:
-        title (Optional[str]): 表格的标题.
-        headers (List[str]): 表格的列头列表.
-        rows (List[List[Union[str, TableCell]]]): 表格的行数据，每行包含字符串或 `TableCell` 对象.
-        show_index (bool): 是否显示行索引.
-        striped (bool): 是否启用斑马纹样式.
-        bordered (bool): 是否显示所有单元格边框.
-        hover_effect (bool): 是否启用鼠标悬停高亮效果.
+        title (Optional[str]): Title of the table.
+        headers (List[str]): List of table column headers.
+        rows (List[List[Union[str, TableCell]]]): Table row data, each row contains strings or `TableCell` objects.
+        show_index (bool): Whether to display row indices.
+        striped (bool): Whether to enable striped pattern styling.
+        bordered (bool): Whether to display borders for all cells.
+        hover_effect (bool): Whether to enable mouse hover highlighting effect.
 
     Examples:
-        手动创建一个包含状态单元格的表格：
+        Manually create a table with status cells:
 
         ```python
         from email_widget.widgets import TableWidget, TableCell
         from email_widget.core.enums import StatusType
 
         project_status_table = (TableWidget()\
-                                .set_title("项目进度概览")\
-                                .set_headers(["项目名称", "负责人", "进度", "状态"])\
+                                .set_title("Project Progress Overview")\
+                                .set_headers(["Project Name", "Owner", "Progress", "Status"])\
                                 .add_row(["Website Redesign", "Alice", "85%",
-                                          TableCell("进行中", status=StatusType.INFO)])\
+                                          TableCell("In Progress", status=StatusType.INFO)])\
                                 .add_row(["Mobile App Dev", "Bob", "100%",
-                                          TableCell("已完成", status=StatusType.SUCCESS)])\
+                                          TableCell("Completed", status=StatusType.SUCCESS)])\
                                 .add_row(["Backend Optimization", "Charlie", "60%",
-                                          TableCell("有风险", status=StatusType.WARNING)])\
+                                          TableCell("At Risk", status=StatusType.WARNING)])\
                                 .set_striped(True)\
                                 .set_bordered(True))
 
-        # 假设 email 是一个 Email 对象
+        # Assuming email is an Email object
         # email.add_widget(project_status_table)
         ```
 
-        从 `pandas.DataFrame` 创建表格：
+        Create a table from `pandas.DataFrame`:
 
         ```python
         import pandas as pd
@@ -126,13 +126,13 @@ class TableWidget(BaseWidget):
 
         sales_table = (TableWidget()\
                        .set_dataframe(df)\
-                       .set_title("产品销售数据")\
-                       .show_index(False) # 不显示索引
+                       .set_title("Product Sales Data")\
+                       .show_index(False) # Don't display index
                        .set_hover_effect(True))
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     <!--[if mso]>
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -152,7 +152,7 @@ class TableWidget(BaseWidget):
                             <thead>
                                 <tr>
                                     {% if show_index %}
-                                        <th style="{{ index_th_style }}">索引</th>
+                                        <th style="{{ index_th_style }}">Index</th>
                                     {% endif %}
                                     {% for header in headers %}
                                         <th style="{{ th_style }}">{{ header }}</th>
@@ -185,10 +185,10 @@ class TableWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化TableWidget实例.
+        """Initialize TableWidget instance.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID.
+            widget_id (Optional[str]): Optional Widget ID.
 
         Examples:
             >>> table = TableWidget()
@@ -208,21 +208,21 @@ class TableWidget(BaseWidget):
         self._border_color: str = "#e1dfdd"
 
     def set_dataframe(self, df: "pd.DataFrame") -> "TableWidget":
-        """设置DataFrame数据.
+        """Set DataFrame data.
 
         Args:
-            df (pd.DataFrame): pandas DataFrame对象.
+            df (pd.DataFrame): pandas DataFrame object.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Raises:
-            ImportError: 如果未安装pandas库.
+            ImportError: If pandas library is not installed.
 
         Examples:
             ```python
             import pandas as pd
-            df = pd.DataFrame({'名称': ['项目A', '项目B'], '状态': ['完成', '进行中']})
+            df = pd.DataFrame({'Name': ['Project A', 'Project B'], 'Status': ['Completed', 'In Progress']})
             table = TableWidget().set_dataframe(df)
             ```
         """
@@ -236,7 +236,7 @@ class TableWidget(BaseWidget):
             for col in df.columns:
                 value = row[col]
                 if isinstance(value, dict) and "status" in value:
-                    # 处理状态类型数据
+                    # Handle status type data
                     cell = TableCell(
                         value=value.get("text", str(value)),
                         status=StatusType(value["status"])
@@ -250,64 +250,64 @@ class TableWidget(BaseWidget):
         return self
 
     def set_title(self, title: str) -> "TableWidget":
-        """设置表格标题.
+        """Set table title.
 
         Args:
-            title (str): 表格标题.
+            title (str): Table title.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
-            >>> table = TableWidget().set_title("项目进度表")
+            >>> table = TableWidget().set_title("Project Progress Table")
         """
         self._title = title
         return self
 
     def set_headers(self, headers: list[str]) -> "TableWidget":
-        """设置表头.
+        """Set table headers.
 
         Args:
-            headers (List[str]): 表头列表.
+            headers (List[str]): Header list.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
-            >>> table = TableWidget().set_headers(["项目名称", "进度", "状态"])
+            >>> table = TableWidget().set_headers(["Project Name", "Progress", "Status"])
         """
         self._headers = headers.copy()
         return self
 
     def add_row(self, row: list[str | TableCell]) -> "TableWidget":
-        """添加行数据.
+        """Add row data.
 
         Args:
-            row (List[Union[str, TableCell]]): 行数据，可以是字符串或TableCell对象.
+            row (List[Union[str, TableCell]]): Row data, can be strings or TableCell objects.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
-            >>> table = TableWidget().add_row(["项目A", "80%", TableCell("进行中", status=StatusType.INFO)])
+            >>> table = TableWidget().add_row(["Project A", "80%", TableCell("In Progress", status=StatusType.INFO)])
         """
         self._rows.append(row)
         return self
 
     def set_rows(self, rows: list[list[str | TableCell]]) -> "TableWidget":
-        """设置所有行数据.
+        """Set all row data.
 
         Args:
-            rows (List[List[Union[str, TableCell]]]): 行数据列表.
+            rows (List[List[Union[str, TableCell]]]): Row data list.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             ```python
             rows = [
-                ["项目A", "80%", TableCell("进行中", status=StatusType.INFO)],
-                ["项目B", "100%", TableCell("完成", status=StatusType.SUCCESS)]
+                ["Project A", "80%", TableCell("In Progress", status=StatusType.INFO)],
+                ["Project B", "100%", TableCell("Completed", status=StatusType.SUCCESS)]
             ]
             table = TableWidget().set_rows(rows)
             ```
@@ -316,10 +316,10 @@ class TableWidget(BaseWidget):
         return self
 
     def clear_rows(self) -> "TableWidget":
-        """清空行数据.
+        """Clear row data.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().clear_rows()
@@ -328,13 +328,13 @@ class TableWidget(BaseWidget):
         return self
 
     def show_index(self, show: bool = True) -> "TableWidget":
-        """设置是否显示索引.
+        """Set whether to display index.
 
         Args:
-            show (bool): 是否显示索引，默认为True.
+            show (bool): Whether to display index, defaults to True.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().show_index(False)
@@ -343,13 +343,13 @@ class TableWidget(BaseWidget):
         return self
 
     def set_striped(self, striped: bool = True) -> "TableWidget":
-        """设置是否使用斑马纹.
+        """Set whether to use striped pattern.
 
         Args:
-            striped (bool): 是否使用斑马纹，默认为True.
+            striped (bool): Whether to use striped pattern, defaults to True.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().set_striped(False)
@@ -358,13 +358,13 @@ class TableWidget(BaseWidget):
         return self
 
     def set_bordered(self, bordered: bool = True) -> "TableWidget":
-        """设置是否显示边框.
+        """Set whether to display borders.
 
         Args:
-            bordered (bool): 是否显示边框，默认为True.
+            bordered (bool): Whether to display borders, defaults to True.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().set_bordered(False)
@@ -373,13 +373,13 @@ class TableWidget(BaseWidget):
         return self
 
     def set_hover_effect(self, hover: bool = True) -> "TableWidget":
-        """设置是否启用悬停效果.
+        """Set whether to enable hover effect.
 
         Args:
-            hover (bool): 是否启用悬停效果，默认为True.
+            hover (bool): Whether to enable hover effect, defaults to True.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().set_hover_effect(False)
@@ -388,13 +388,13 @@ class TableWidget(BaseWidget):
         return self
 
     def set_max_width(self, width: str) -> "TableWidget":
-        """设置最大宽度.
+        """Set maximum width.
 
         Args:
-            width (str): CSS宽度值.
+            width (str): CSS width value.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().set_max_width("800px")
@@ -403,13 +403,13 @@ class TableWidget(BaseWidget):
         return self
 
     def set_header_bg_color(self, color: str) -> "TableWidget":
-        """设置表头背景色.
+        """Set header background color.
 
         Args:
-            color (str): CSS颜色值.
+            color (str): CSS color value.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().set_header_bg_color("#4CAF50")
@@ -418,13 +418,13 @@ class TableWidget(BaseWidget):
         return self
 
     def set_border_color(self, color: str) -> "TableWidget":
-        """设置边框颜色.
+        """Set border color.
 
         Args:
-            color (str): CSS颜色值.
+            color (str): CSS color value.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().set_border_color("#ddd")
@@ -433,45 +433,45 @@ class TableWidget(BaseWidget):
         return self
 
     def add_data_row(self, row_data: list) -> "TableWidget":
-        """添加数据行（基于DataFrame）.
+        """Add data row (based on DataFrame).
 
-        此方法用于向表格添加一行数据.如果表格已通过 `set_dataframe` 初始化，
-        新行将添加到现有DataFrame中；否则，将创建一个新的DataFrame.
+        This method is used to add a row of data to the table. If the table has been initialized through `set_dataframe`,
+        the new row will be added to the existing DataFrame; otherwise, a new DataFrame will be created.
 
         Args:
-            row_data (list): 包含行数据的列表.列表的长度应与表头数量匹配.
+            row_data (list): List containing row data. The length of the list should match the number of headers.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Raises:
-            ImportError: 如果未安装pandas库.
+            ImportError: If pandas library is not installed.
 
         Examples:
-            >>> table = TableWidget().add_data_row(["新项目", "0%", "开始"])
+            >>> table = TableWidget().add_data_row(["New Project", "0%", "Started"])
         """
         check_optional_dependency("pandas")
         pd = import_optional_dependency("pandas")
 
         if self._dataframe is not None:
-            # 如果已有DataFrame，添加新行
+            # If DataFrame exists, add new row
             new_row = pd.Series(row_data, index=self._dataframe.columns)
             self._dataframe = pd.concat(
                 [self._dataframe, new_row.to_frame().T], ignore_index=True
             )
         else:
-            # 如果没有DataFrame，创建新的
+            # If no DataFrame exists, create new one
             self._dataframe = pd.DataFrame([row_data])
         return self
 
     def clear_data(self) -> "TableWidget":
-        """清空表格数据.
+        """Clear table data.
 
-        此方法将清除通过 `set_dataframe` 或 `add_data_row` 添加的所有数据，
-        并重置内部的DataFrame和行数据列表.
+        This method will clear all data added through `set_dataframe` or `add_data_row`,
+        and reset the internal DataFrame and row data list.
 
         Returns:
-            TableWidget: 返回self以支持链式调用.
+            TableWidget: Returns self to support method chaining.
 
         Examples:
             >>> table = TableWidget().clear_data()
@@ -481,53 +481,53 @@ class TableWidget(BaseWidget):
         return self
 
     def set_column_width(self, column: str, width: str) -> "TableWidget":
-        """设置列宽度"""
+        """Set column width"""
         if not hasattr(self, "_column_widths"):
             self._column_widths = {}
         self._column_widths[column] = width
         return self
 
     def add_status_cell(self, value: str, status: StatusType) -> TableCell:
-        """创建状态单元格.
+        """Create status cell.
 
-        此辅助方法用于快速创建一个带有特定状态（如成功、警告、错误）的 `TableCell` 对象.
-        状态单元格会自动应用预定义的颜色和背景样式.
+        This helper method is used to quickly create a `TableCell` object with a specific status (such as success, warning, error).
+        Status cells automatically apply predefined color and background styles.
 
         Args:
-            value (str): 单元格显示的值.
-            status (StatusType): 单元格的状态类型.
+            value (str): Value displayed in the cell.
+            status (StatusType): Status type of the cell.
 
         Returns:
-            TableCell: 一个配置好的 `TableCell` 对象.
+            TableCell: A configured `TableCell` object.
 
         Examples:
-            >>> cell = table.add_status_cell("成功", StatusType.SUCCESS)
+            >>> cell = table.add_status_cell("Success", StatusType.SUCCESS)
         """
         return TableCell(value=value, status=status)
 
     def add_colored_cell(
         self, value: str, color: str, bold: bool = False, align: str = "center"
     ) -> TableCell:
-        """创建彩色单元格.
+        """Create colored cell.
 
-        此辅助方法用于快速创建一个带有自定义颜色、字体粗细和对齐方式的 `TableCell` 对象.
+        This helper method is used to quickly create a `TableCell` object with custom color, font weight, and alignment.
 
         Args:
-            value (str): 单元格显示的值.
-            color (str): 单元格文本的颜色（CSS颜色值）.
-            bold (bool): 是否加粗，默认为False.
-            align (str): 对齐方式，默认为"center".
+            value (str): Value displayed in the cell.
+            color (str): Color of the cell text (CSS color value).
+            bold (bool): Whether to bold, defaults to False.
+            align (str): Alignment method, defaults to "center".
 
         Returns:
-            TableCell: 一个配置好的 `TableCell` 对象.
+            TableCell: A configured `TableCell` object.
 
         Examples:
-            >>> cell = table.add_colored_cell("重要", "#ff0000", bold=True)
+            >>> cell = table.add_colored_cell("Important", "#ff0000", bold=True)
         """
         return TableCell(value=value, color=color, bold=bold, align=align)
 
     def _get_status_style(self, status: StatusType) -> dict[str, str]:
-        """获取状态样式"""
+        """Get status style"""
         styles = {
             StatusType.SUCCESS: {"color": "#107c10", "background": "#dff6dd"},
             StatusType.WARNING: {"color": "#ff8c00", "background": "#fff4e6"},
@@ -539,37 +539,37 @@ class TableWidget(BaseWidget):
 
     @property
     def dataframe(self) -> Optional["pd.DataFrame"]:
-        """获取DataFrame数据.
+        """Get DataFrame data.
 
         Returns:
-            Optional[pd.DataFrame]: DataFrame对象或None.
+            Optional[pd.DataFrame]: DataFrame object or None.
         """
         return self._dataframe
 
     @property
     def title(self) -> str | None:
-        """获取表格标题.
+        """Get table title.
 
         Returns:
-            Optional[str]: 标题或None.
+            Optional[str]: Title or None.
         """
         return self._title
 
     @property
     def headers(self) -> list[str]:
-        """获取表头列表.
+        """Get header list.
 
         Returns:
-            List[str]: 表头列表.
+            List[str]: Header list.
         """
         return self._headers.copy()
 
     @property
     def rows(self) -> list[list[str | TableCell]]:
-        """获取行数据.
+        """Get row data.
 
         Returns:
-            List[List[Union[str, TableCell]]]: 行数据列表.
+            List[List[Union[str, TableCell]]]: Row data list.
         """
         return self._rows.copy()
 
@@ -577,16 +577,16 @@ class TableWidget(BaseWidget):
         return "table.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据"""
+        """Get template context data required for rendering"""
         if not self._headers and not self._rows:
             return {}
 
-        # 容器样式 - 居中对齐，左右内边距5px实现边距效果
+        # Container style - center alignment, 5px left and right padding for margin effect
         container_style = "margin: 16px auto; width: 100%; max-width: 100%; padding: 0 5px; box-sizing: border-box;"
         if self._max_width:
             container_style += f" max-width: {self._max_width};"
 
-        # 表格样式 - 邮件客户端兼容，居中对齐
+        # Table style - email client compatible, center alignment
         table_style = """
             width: 100%;
             min-width: 400px;
@@ -602,13 +602,13 @@ class TableWidget(BaseWidget):
         if self._bordered:
             table_style += f" border: 1px solid {self._border_color};"
 
-        # 表头样式
+        # Header style
         header_style = f"""
             background: {self._header_bg_color};
             border-bottom: 2px solid {self._border_color};
         """
 
-        # 表头单元格样式 - 居中对齐
+        # Header cell style - center alignment
         index_th_style = f"""
             padding: 12px 8px;
             text-align: center;
@@ -626,7 +626,7 @@ class TableWidget(BaseWidget):
         if self._bordered:
             th_style += f" border-right: 1px solid {self._border_color};"
 
-        # 索引列样式 - 居中对齐
+        # Index column style - center alignment
         index_td_style = """
             padding: 8px;
             vertical-align: top;
@@ -636,23 +636,23 @@ class TableWidget(BaseWidget):
         if self._bordered:
             index_td_style += f" border-right: 1px solid {self._border_color};"
 
-        # 处理行数据
+        # Process row data
         rows_data = []
         for idx, row in enumerate(self._rows):
-            # 行样式
+            # Row style
             row_style = ""
             if self._striped and idx % 2 == 1:
                 row_style = "background: #faf9f8;"
             if self._bordered:
                 row_style += f" border-bottom: 1px solid {self._border_color};"
 
-            # 处理单元格数据
+            # Process cell data
             cells_data = []
             for cell in row:
                 td_style = "padding: 8px; vertical-align: top;"
 
                 if isinstance(cell, TableCell):
-                    # 处理TableCell
+                    # Handle TableCell
                     if cell.status:
                         status_style = self._get_status_style(cell.status)
                         td_style += f" color: {status_style['color']}; background: {status_style['background']};"
@@ -670,7 +670,7 @@ class TableWidget(BaseWidget):
 
                     cells_data.append({"value": cell.value, "style": td_style})
                 else:
-                    # 处理普通字符串 - 默认居中对齐
+                    # Handle regular strings - default center alignment
                     td_style += " color: #323130; text-align: center;"
                     if self._bordered:
                         td_style += f" border-right: 1px solid {self._border_color};"

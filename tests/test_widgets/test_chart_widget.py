@@ -25,7 +25,7 @@ class TestChartWidgetInitialization:
         assert widget._image_url is None
         assert widget._title is None
         assert widget._description is None
-        assert widget._alt_text == "图表"
+        assert widget._alt_text == "Chart"
         assert widget._data_summary is None
         assert widget._max_width == "100%"
 
@@ -382,7 +382,7 @@ class TestChartWidgetChaining:
 
         assert widget._title == "部分标题"
         assert widget._description == "部分描述"
-        assert widget._alt_text == "图表"  # 默认值
+        assert widget._alt_text == "Chart"  # 默认值
         assert widget._data_summary is None
 
 

@@ -1,6 +1,6 @@
-"""EmailWidget模板引擎
+"""EmailWidget template engine
 
-基于Jinja2的轻量级模板渲染引擎，支持模板字符串渲染和错误处理.
+Lightweight template rendering engine based on Jinja2, supports template string rendering and error handling.
 """
 
 from typing import Any
@@ -11,35 +11,35 @@ from email_widget.core.logger import get_project_logger
 
 
 class StringTemplateLoader(BaseLoader):
-    """字符串模板加载器.
+    """String template loader.
 
-    用于直接从字符串加载模板，而不是从文件系统.这使得模板引擎能够处理
-    动态生成的或存储在内存中的模板字符串.
+    Used to load templates directly from strings rather than from filesystem. This enables
+    the template engine to handle dynamically generated or in-memory template strings.
     """
 
     def get_source(self, environment: Environment, template: str) -> tuple:
-        """获取模板源代码.
+        """Get template source code.
 
         Args:
-            environment (Environment): Jinja2环境.
-            template (str): 模板字符串.
+            environment (Environment): Jinja2 environment.
+            template (str): Template string.
 
         Returns:
-            tuple: (源代码, 模板名, 是否最新) 的元组.
+            tuple: (source code, template name, is_latest) tuple.
         """
         return template, None, lambda: True
 
 
 class TemplateEngine:
-    """模板渲染引擎.
+    """Template rendering engine.
 
-    提供统一的模板渲染接口，支持模板缓存和错误处理.
+    Provides unified template rendering interface with template caching and error handling.
 
-    核心功能:
-        - **模板渲染**: 使用 Jinja2 渲染 Widget 模板.
-        - **缓存管理**: 模板编译缓存提升性能.
-        - **错误处理**: 安全的模板渲染和错误恢复.
-        - **上下文处理**: 自动处理模板上下文数据.
+    Core Features:
+        - **Template Rendering**: Uses Jinja2 to render Widget templates.
+        - **Cache Management**: Template compilation caching improves performance.
+        - **Error Handling**: Safe template rendering and error recovery.
+        - **Context Processing**: Automatic handling of template context data.
 
     Examples:
         ```python
@@ -47,126 +47,126 @@ class TemplateEngine:
 
         engine = get_template_engine()
 
-        # 渲染一个简单的模板
+        # Render a simple template
         html = engine.render_safe(
             "<div>Hello, {{ name }}!</div>",
             {"name": "EmailWidget"}
         )
-        print(html) # 输出: <div>Hello, EmailWidget!</div>
+        print(html) # Output: <div>Hello, EmailWidget!</div>
 
-        # 渲染一个带有错误的模板，并使用降级内容
+        # Render a template with errors and use fallback content
         error_html = engine.render_safe(
             "<div>{% for item in items %} {{ item.name }} {% endfor %}</div>",
-            {"items": "not_a_list"}, # 故意传入错误类型
-            fallback="<div>渲染失败，请联系管理员.</div>"
+            {"items": "not_a_list"}, # Intentionally pass wrong type
+            fallback="<div>Rendering failed, please contact administrator.</div>"
         )
-        print(error_html) # 输出: <div>渲染失败，请联系管理员.</div>
+        print(error_html) # Output: <div>Rendering failed, please contact administrator.</div>
         ```
     """
 
     def __init__(self):
-        """初始化模板引擎."""
+        """Initialize template engine."""
         self._logger = get_project_logger()
 
-        # 创建Jinja2环境
+        # Create Jinja2 environment
         self._env = Environment(
             loader=StringTemplateLoader(),
-            autoescape=False,  # 邮件HTML不需要自动转义
+            autoescape=False,  # Email HTML doesn't need auto-escaping
             trim_blocks=True,
             lstrip_blocks=True,
         )
 
-        # 模板缓存 {template_string: Template}
+        # Template cache {template_string: Template}
         self._template_cache: dict[str, Template] = {}
 
-        self._logger.debug("模板引擎初始化完成")
+        self._logger.debug("Template engine initialization complete")
 
     def _get_template(self, template_string: str) -> Template:
-        """获取编译后的模板对象.
+        """Get compiled template object.
 
         Args:
-            template_string (str): 模板字符串.
+            template_string (str): Template string.
 
         Returns:
-            Template: 编译后的Template对象.
+            Template: Compiled Template object.
 
         Raises:
-            TemplateError: 模板编译失败时抛出.
+            TemplateError: Thrown when template compilation fails.
         """
-        # 检查缓存
+        # Check cache
         if template_string in self._template_cache:
             return self._template_cache[template_string]
 
         try:
-            # 编译模板
+            # Compile template
             template = self._env.from_string(template_string)
 
-            # 缓存模板
+            # Cache template
             self._template_cache[template_string] = template
 
-            self._logger.debug(f"编译并缓存模板，长度: {len(template_string)} 字符")
+            self._logger.debug(f"Compiled and cached template, length: {len(template_string)} characters")
             return template
 
         except TemplateError as e:
-            self._logger.error(f"模板编译失败: {e}")
+            self._logger.error(f"Template compilation failed: {e}")
             raise
 
     def render(self, template_string: str, context: dict[str, Any]) -> str:
-        """渲染模板.
+        """Render template.
 
         Args:
-            template_string (str): 模板字符串.
-            context (Dict[str, Any]): 模板上下文数据.
+            template_string (str): Template string.
+            context (Dict[str, Any]): Template context data.
 
         Returns:
-            str: 渲染后的HTML字符串.
+            str: Rendered HTML string.
 
         Raises:
-            TemplateError: 模板渲染失败时抛出.
+            TemplateError: Thrown when template rendering fails.
         """
         try:
             template = self._get_template(template_string)
             result = template.render(**context)
 
-            self._logger.debug(f"模板渲染成功，输出长度: {len(result)} 字符")
+            self._logger.debug(f"Template rendering successful, output length: {len(result)} characters")
             return result
 
         except TemplateError as e:
-            self._logger.error(f"模板渲染失败: {e}")
+            self._logger.error(f"Template rendering failed: {e}")
             raise
         except Exception as e:
-            self._logger.error(f"模板渲染出现未知错误: {e}")
-            raise TemplateError(f"模板渲染失败: {e}")
+            self._logger.error(f"Template rendering encountered unknown error: {e}")
+            raise TemplateError(f"Template rendering failed: {e}")
 
     def render_safe(
         self, template_string: str, context: dict[str, Any], fallback: str = ""
     ) -> str:
-        """安全渲染模板.
+        """Safely render template.
 
-        在渲染失败时返回降级内容而不是抛出异常.
+        Returns fallback content instead of throwing exception on rendering failure.
 
         Args:
-            template_string (str): 模板字符串.
-            context (Dict[str, Any]): 模板上下文数据.
-            fallback (str): 渲染失败时的降级内容.
+            template_string (str): Template string.
+            context (Dict[str, Any]): Template context data.
+            fallback (str): Fallback content on rendering failure.
 
         Returns:
-            str: 渲染后的HTML字符串或降级内容.
+            str: Rendered HTML string or fallback content.
         """
         try:
             return self.render(template_string, context)
         except Exception as e:
-            self._logger.warning(f"模板安全渲染失败，使用降级内容: {e}")
+            self._logger.warning(f"Template safe rendering failed, using fallback content: {e}")
             return fallback
 
     def validate_template(self, template_string: str) -> bool:
-        """验证模板语法.
+        """Validate template syntax.
 
         Args:
-            template_string (str): 模板字符串.
+            template_string (str): Template string.
 
         Returns:
-            bool: 模板语法是否正确.
+            bool: Whether template syntax is correct.
         """
         try:
             self._env.from_string(template_string)
@@ -177,15 +177,15 @@ class TemplateEngine:
             return False
 
     def clear_cache(self) -> None:
-        """清空模板缓存."""
+        """Clear template cache."""
         self._template_cache.clear()
-        self._logger.debug("清空模板缓存")
+        self._logger.debug("Cleared template cache")
 
     def get_cache_stats(self) -> dict[str, Any]:
-        """获取缓存统计信息.
+        """Get cache statistics.
 
         Returns:
-            Dict[str, Any]: 缓存统计信息字典，包含缓存的模板数量和总大小（字节）.
+            Dict[str, Any]: Cache statistics dictionary, including cached template count and total size (bytes).
         """
         return {
             "cached_templates": len(self._template_cache),
@@ -195,17 +195,18 @@ class TemplateEngine:
         }
 
 
-# 全局模板引擎实例
+# Global template engine instance
 _global_template_engine: TemplateEngine | None = None
 
 
 def get_template_engine() -> TemplateEngine:
-    """获取全局模板引擎实例.
+    """Get global template engine instance.
 
-    此函数实现了单例模式，确保在整个应用程序中只存在一个 `TemplateEngine` 实例.
+    This function implements singleton pattern, ensuring only one `TemplateEngine` instance
+    exists throughout the entire application.
 
     Returns:
-        TemplateEngine: 全局唯一的 `TemplateEngine` 实例.
+        TemplateEngine: Globally unique `TemplateEngine` instance.
 
     Examples:
         ```python
@@ -213,7 +214,7 @@ def get_template_engine() -> TemplateEngine:
 
         engine1 = get_template_engine()
         engine2 = get_template_engine()
-        assert engine1 is engine2 # True，两者是同一个实例
+        assert engine1 is engine2 # True, both are the same instance
         ```
     """
     global _global_template_engine

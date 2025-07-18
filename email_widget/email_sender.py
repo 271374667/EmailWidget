@@ -1,17 +1,17 @@
-"""邮件发送模块
+"""Email sending module
 
-这个模块提供了邮件发送的抽象接口和各种邮箱服务商的具体实现.
-支持QQ邮箱和网易邮箱.
+This module provides abstract interfaces for email sending and specific implementations for various email service providers.
+Supports QQ Mail and NetEase Mail.
 
 Examples:
     >>> from email_widget import Email
     >>> from email_widget.email_sender import QQEmailSender
     >>>
-    >>> # 创建邮件对象
-    >>> email = Email("测试邮件")
-    >>> email.add_text("这是一封测试邮件")
+    >>> # Create email object
+    >>> email = Email("Test Email")
+    >>> email.add_text("This is a test email")
     >>>
-    >>> # 创建发送器并发送邮件
+    >>> # Create sender and send email
     >>> sender = QQEmailSender("your_qq@qq.com", "your_password")
     >>> sender.send(email, to=["recipient@example.com"])
 """
@@ -25,25 +25,25 @@ from email.mime.text import MIMEText
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from email_widget.email import Email  # 避免循环导入问题
+    from email_widget.email import Email  # Avoid circular import issues
 
 
 class EmailSender(ABC):
-    """邮件发送器抽象基类.
+    """Email sender abstract base class.
 
-    定义了发送邮件的标准接口，所有具体的邮箱服务商实现都需要继承此类.
-    这个基类处理了通用的邮件构建和发送逻辑，子类只需提供特定于服务商的
-    SMTP服务器地址和端口号即可.
+    Defines the standard interface for sending emails, all specific email service provider implementations must inherit from this class.
+    This base class handles common email construction and sending logic, subclasses only need to provide service-specific
+    SMTP server addresses and port numbers.
 
     Attributes:
-        username (str): 邮箱用户名（通常是完整的邮箱地址）.
-        password (str): 邮箱密码或授权码/应用密码.
-        use_tls (bool): 是否使用TLS加密连接.
-        smtp_server (str): SMTP服务器地址.
-        smtp_port (int): SMTP服务器端口.
+        username (str): Email username (usually the complete email address).
+        password (str): Email password or authorization code/app password.
+        use_tls (bool): Whether to use TLS encrypted connection.
+        smtp_server (str): SMTP server address.
+        smtp_port (int): SMTP server port.
 
     Raises:
-        ValueError: 如果用户名或密码为空.
+        ValueError: If username or password is empty.
     """
 
     def __init__(
@@ -56,22 +56,22 @@ class EmailSender(ABC):
         *args: Any,
         **kwargs: Any,
     ) -> None:
-        """初始化邮件发送器.
+        """Initialize email sender.
 
         Args:
-            username: 邮箱用户名/邮箱地址
-            password: 邮箱密码或授权码
-            use_tls: 是否使用TLS加密连接，默认为True
-            smtp_server: SMTP服务器地址，如果不提供则使用默认值
-            smtp_port: SMTP服务器端口，如果不提供则使用默认值
-            *args: 其他位置参数
-            **kwargs: 其他关键字参数
+            username: Email username/email address
+            password: Email password or authorization code
+            use_tls: Whether to use TLS encrypted connection, defaults to True
+            smtp_server: SMTP server address, if not provided, uses default value
+            smtp_port: SMTP server port, if not provided, uses default value
+            *args: Other positional arguments
+            **kwargs: Other keyword arguments
 
         Raises:
-            ValueError: 当用户名或密码为空时抛出
+            ValueError: Raised when username or password is empty
         """
         if not username or not password:
-            raise ValueError("用户名和密码不能为空")
+            raise ValueError("Username and password cannot be empty")
 
         self.username = username
         self.password = password
@@ -81,49 +81,49 @@ class EmailSender(ABC):
 
     @abstractmethod
     def _get_default_smtp_server(self) -> str:
-        """获取默认的SMTP服务器地址.
+        """Get default SMTP server address.
 
         Returns:
-            SMTP服务器地址
+            SMTP server address
         """
         pass
 
     @abstractmethod
     def _get_default_smtp_port(self) -> int:
-        """获取默认的SMTP服务器端口.
+        """Get default SMTP server port.
 
         Returns:
-            SMTP服务器端口号
+            SMTP server port number
         """
         pass
 
     def _create_message(
         self, email: "Email", sender: str | None = None, to: list[str] | None = None
     ) -> MIMEMultipart:
-        """创建邮件消息对象.
+        """Create email message object.
 
         Args:
-            email: 邮件对象
-            sender: 发送者邮箱地址，如果为None则使用username
-            to: 接收者邮箱地址列表，如果为None则使用sender作为接收者
+            email: Email object
+            sender: Sender email address, uses username if None
+            to: Recipient email address list, uses sender as recipient if None
 
         Returns:
-            配置好的邮件消息对象
+            Configured email message object
         """
         msg = MIMEMultipart("alternative")
 
-        # 设置发送者 - 对于大多数邮箱服务商，From必须与登录用户名一致
-        # 忽略sender参数，始终使用登录的username作为发送者
+        # Set sender - For most email service providers, From must match the logged-in username
+        # Ignore sender parameter, always use logged-in username as sender
         msg["From"] = self.username
 
-        # 设置接收者
+        # Set recipients
         recipients = to or [sender or self.username]
         msg["To"] = ", ".join(recipients)
 
-        # 设置主题
+        # Set subject
         msg["Subject"] = Header(email.title, "utf-8")
 
-        # 设置邮件内容
+        # Set email content
         html_content = email.export_str()
         html_part = MIMEText(html_content, "html", "utf-8")
         msg.attach(html_part)
@@ -131,57 +131,57 @@ class EmailSender(ABC):
         return msg
 
     def _send_message(self, msg: MIMEMultipart, to: list[str]) -> None:
-        """发送邮件消息.
+        """Send email message.
 
         Args:
-            msg: 邮件消息对象
-            to: 接收者邮箱地址列表
+            msg: Email message object
+            to: Recipient email address list
 
         Raises:
-            smtplib.SMTPException: SMTP发送错误
-            Exception: 其他发送错误
+            smtplib.SMTPException: SMTP sending error
+            Exception: Other sending errors
         """
         server = None
         try:
-            # 创建SMTP连接
+            # Create SMTP connection
             if self.use_tls:
-                # 使用TLS连接（STARTTLS）
+                # Use TLS connection (STARTTLS)
                 server = smtplib.SMTP(self.smtp_server, self.smtp_port)
                 server.starttls()
             else:
-                # 使用SSL连接
+                # Use SSL connection
                 server = smtplib.SMTP_SSL(self.smtp_server, self.smtp_port)
 
-            # 登录验证
+            # Login authentication
             server.login(self.username, self.password)
 
-            # 发送邮件 - 明确指定from_addr以确保兼容性
+            # Send email - explicitly specify from_addr for compatibility
             server.send_message(msg, from_addr=self.username, to_addrs=to)
 
         except smtplib.SMTPAuthenticationError as e:
             raise smtplib.SMTPException(
-                f"SMTP认证失败: {str(e)}.请检查用户名、密码或授权码是否正确."
+                f"SMTP authentication failed: {str(e)}. Please check username, password or authorization code."
             )
         except smtplib.SMTPConnectError as e:
             raise smtplib.SMTPException(
-                f"SMTP连接失败: {str(e)}.请检查服务器地址和端口设置."
+                f"SMTP connection failed: {str(e)}. Please check server address and port settings."
             )
         except smtplib.SMTPRecipientsRefused as e:
             raise smtplib.SMTPException(
-                f"收件人被拒绝: {str(e)}.请检查收件人邮箱地址是否正确."
+                f"Recipients refused: {str(e)}. Please check recipient email addresses."
             )
         except smtplib.SMTPSenderRefused as e:
             raise smtplib.SMTPException(
-                f"发件人被拒绝: {str(e)}.请检查发件人邮箱地址是否正确."
+                f"Sender refused: {str(e)}. Please check sender email address."
             )
         except smtplib.SMTPDataError as e:
-            raise smtplib.SMTPException(f"SMTP数据错误: {str(e)}.邮件内容可能有问题.")
+            raise smtplib.SMTPException(f"SMTP data error: {str(e)}. Email content may have issues.")
         except smtplib.SMTPException as e:
-            raise smtplib.SMTPException(f"SMTP发送失败: {str(e)}")
+            raise smtplib.SMTPException(f"SMTP sending failed: {str(e)}")
         except Exception as e:
-            raise Exception(f"邮件发送失败: {str(e)}")
+            raise Exception(f"Email sending failed: {str(e)}")
         finally:
-            # 确保连接被正确关闭
+            # Ensure connection is properly closed
             if server:
                 with suppress(Exception):
                     server.quit()
@@ -189,143 +189,143 @@ class EmailSender(ABC):
     def send(
         self, email: "Email", sender: str | None = None, to: list[str] | None = None
     ) -> None:
-        """发送邮件.
+        """Send email.
 
         Args:
-            email: 要发送的邮件对象
-            sender: 发送者邮箱地址，如果为None则使用初始化时的username
-            to: 接收者邮箱地址列表，如果为None则发送给sender
+            email: Email object to send
+            sender: Sender email address, uses username if None
+            to: Recipient email address list, sends to sender if None
 
         Raises:
-            ValueError: 当邮件对象为None时抛出
-            smtplib.SMTPException: SMTP发送错误
-            Exception: 其他发送错误
+            ValueError: Raised when email object is None
+            smtplib.SMTPException: SMTP sending error
+            Exception: Other sending errors
 
         Examples:
             >>> sender = QQEmailSender("user@qq.com", "password")
-            >>> email = Email("测试邮件")
+            >>> email = Email("Test Email")
             >>>
-            >>> # 发送给自己
+            >>> # Send to self
             >>> sender.send(email)
             >>>
-            >>> # 发送给指定收件人
+            >>> # Send to specified recipients
             >>> sender.send(email, to=["recipient@example.com"])
             >>>
-            >>> # 指定发送者和收件人
+            >>> # Specify sender and recipients
             >>> sender.send(email, sender="custom@qq.com", to=["recipient@example.com"])
         """
         if email is None:
-            raise ValueError("邮件对象不能为None")
+            raise ValueError("Email object cannot be None")
 
-        # 准备接收者列表
+        # Prepare recipient list
         recipients = to or [sender or self.username]
 
-        # 创建邮件消息
+        # Create email message
         msg = self._create_message(email, sender, recipients)
 
-        # 发送邮件
+        # Send email
         self._send_message(msg, recipients)
 
 
 class QQEmailSender(EmailSender):
-    """QQ邮箱发送器.
+    """QQ Email sender.
 
-    专门用于通过 QQ 邮箱（包括企业邮箱）发送邮件.
-    它预设了 QQ 邮箱的 SMTP 服务器地址和推荐的端口.
+    Specifically designed for sending emails through QQ Email (including enterprise email).
+    It presets the SMTP server address and recommended port for QQ Email.
 
-    重要提示:
-        - **必须使用授权码**: 出于安全原因，QQ邮箱的SMTP服务要求使用"授权码"而非你的登录密码.你需要在QQ邮箱的"设置"->"账户"页面下生成此授权码.
-        - **开启SMTP服务**: 请确保你已经在QQ邮箱设置中开启了IMAP/SMTP服务.
+    Important notes:
+        - **Must use authorization code**: For security reasons, QQ Email's SMTP service requires using an "authorization code" instead of your login password. You need to generate this authorization code in QQ Email's "Settings" -> "Account" page.
+        - **Enable SMTP service**: Please ensure you have enabled IMAP/SMTP service in QQ Email settings.
 
     Examples:
         ```python
         from email_widget import Email, QQEmailSender
         import os
 
-        # 建议从环境变量读取敏感信息
+        # Recommend reading sensitive information from environment variables
         # export EMAIL_USER="your_account@qq.com"
         # export EMAIL_AUTH_CODE="your_generated_auth_code"
 
         qq_user = os.getenv("EMAIL_USER")
         auth_code = os.getenv("EMAIL_AUTH_CODE")
 
-        # 创建邮件内容
-        email = Email("来自QQ邮箱的报告")
-        email.add_text("这是一封通过 EmailWidget 发送的测试邮件.")
+        # Create email content
+        email = Email("Report from QQ Email")
+        email.add_text("This is a test email sent through EmailWidget.")
 
-        # 初始化QQ邮箱发送器
+        # Initialize QQ Email sender
         sender = QQEmailSender(username=qq_user, password=auth_code)
 
-        # 发送邮件给一个或多个收件人
+        # Send email to one or more recipients
         try:
             sender.send(email, to=["recipient1@example.com", "recipient2@example.com"])
-            print("邮件发送成功！")
+            print("Email sent successfully!")
         except Exception as e:
-            print(f"邮件发送失败: {e}")
+            print(f"Email sending failed: {e}")
         ```
     """
 
     def __init__(
         self, username: str, password: str, use_tls: bool = True, *args: Any, **kwargs: Any
     ) -> None:
-        """初始化QQ邮箱发送器.
+        """Initialize QQ Email sender.
 
         Args:
-            username: QQ邮箱地址
-            password: QQ邮箱授权码（非登录密码）
-            use_tls: 是否使用TLS加密，默认为True
-            *args: 其他位置参数
-            **kwargs: 其他关键字参数
+            username: QQ Email address
+            password: QQ Email authorization code (not login password)
+            use_tls: Whether to use TLS encryption, defaults to True
+            *args: Other positional arguments
+            **kwargs: Other keyword arguments
         """
         super().__init__(username, password, use_tls, *args, **kwargs)
 
     def _get_default_smtp_server(self) -> str:
-        """获取QQ邮箱的默认SMTP服务器地址.
+        """Get default SMTP server address for QQ Email.
 
         Returns:
-            QQ邮箱SMTP服务器地址
+            QQ Email SMTP server address
         """
         return "smtp.qq.com"
 
     def _get_default_smtp_port(self) -> int:
-        """获取QQ邮箱的默认SMTP端口.
+        """Get default SMTP port for QQ Email.
 
         Returns:
-            QQ邮箱SMTP端口号
+            QQ Email SMTP port number
         """
         return 587 if self.use_tls else 465
 
 
 class NetEaseEmailSender(EmailSender):
-    """网易邮箱发送器.
+    """NetEase Email sender.
 
-    支持网易旗下的 163、126 和 yeah.net 邮箱.
-    它会自动根据你的邮箱地址后缀选择正确的SMTP服务器.
+    Supports NetEase's 163, 126, and yeah.net email services.
+    It automatically selects the correct SMTP server based on your email address suffix.
 
-    重要提示:
-        - **必须使用授权码**: 与QQ邮箱类似，网易邮箱也需要使用专用的"客户端授权密码"，而不是你的邮箱登录密码.
-        - **开启SMTP服务**: 请在你的网易邮箱设置中开启POP3/SMTP/IMAP服务.
-        - **SSL连接**: 网易邮箱的SMTP服务主要使用SSL加密（端口465），因此默认 `use_tls` 为 `False`.
+    Important notes:
+        - **Must use authorization code**: Similar to QQ Email, NetEase Email also requires using a dedicated "client authorization password" instead of your email login password.
+        - **Enable SMTP service**: Please enable POP3/SMTP/IMAP service in your NetEase Email settings.
+        - **SSL connection**: NetEase Email's SMTP service primarily uses SSL encryption (port 465), so the default `use_tls` is `False`.
 
     Examples:
         ```python
         from email_widget import Email, NetEaseEmailSender
         import os
 
-        # 使用163邮箱
+        # Using 163 email
         user_163 = os.getenv("NETEASE_USER_163") # e.g., "my_account@163.com"
         auth_code_163 = os.getenv("NETEASE_AUTH_CODE_163")
 
-        email = Email("来自163邮箱的问候")
-        email.add_text("这是通过 NetEaseEmailSender 发送的邮件.")
+        email = Email("Greetings from 163 Email")
+        email.add_text("This is an email sent through NetEaseEmailSender.")
 
         sender = NetEaseEmailSender(username=user_163, password=auth_code_163)
 
         try:
             sender.send(email, to=["friend@example.com"])
-            print("163邮件发送成功！")
+            print("163 email sent successfully!")
         except Exception as e:
-            print(f"邮件发送失败: {e}")
+            print(f"Email sending failed: {e}")
         ```
     """
 
@@ -337,27 +337,27 @@ class NetEaseEmailSender(EmailSender):
         *args: Any,
         **kwargs: Any,
     ) -> None:
-        """初始化网易邮箱发送器.
+        """Initialize NetEase Email sender.
 
         Args:
-            username: 网易邮箱地址
-            password: 网易邮箱授权码
-            use_tls: 是否使用TLS加密，默认为False（网易邮箱使用SSL）
-            *args: 其他位置参数
-            **kwargs: 其他关键字参数
+            username: NetEase Email address
+            password: NetEase Email authorization code
+            use_tls: Whether to use TLS encryption, defaults to False (NetEase Email uses SSL)
+            *args: Other positional arguments
+            **kwargs: Other keyword arguments
 
         Note:
-            网易邮箱只支持SSL连接（端口465），建议保持use_tls=False.
+            NetEase Email only supports SSL connection (port 465), recommend keeping use_tls=False.
         """
         super().__init__(username, password, use_tls, *args, **kwargs)
 
     def _get_default_smtp_server(self) -> str:
-        """获取网易邮箱的默认SMTP服务器地址.
+        """Get default SMTP server address for NetEase Email.
 
         Returns:
-            网易邮箱SMTP服务器地址
+            NetEase Email SMTP server address
         """
-        # 根据邮箱域名返回对应的SMTP服务器
+        # Return corresponding SMTP server based on email domain
         if "@163.com" in self.username:
             return "smtp.163.com"
         elif "@126.com" in self.username:
@@ -365,21 +365,21 @@ class NetEaseEmailSender(EmailSender):
         elif "@yeah.net" in self.username:
             return "smtp.yeah.net"
         else:
-            return "smtp.163.com"  # 默认使用163的服务器
+            return "smtp.163.com"  # Default to 163's server
 
     def _get_default_smtp_port(self) -> int:
-        """获取网易邮箱的默认SMTP端口.
+        """Get default SMTP port for NetEase Email.
 
         Returns:
-            网易邮箱SMTP端口号
+            NetEase Email SMTP port number
 
         Note:
-            网易邮箱只支持SSL连接（端口465）.
+            NetEase Email only supports SSL connection (port 465).
         """
-        return 465  # 网易邮箱只支持SSL端口465
+        return 465  # NetEase Email only supports SSL port 465
 
 
-# 邮箱服务商映射字典，方便用户选择
+# Email provider mapping dictionary for user convenience
 EMAIL_PROVIDERS: dict[str, type] = {
     "qq": QQEmailSender,
     "netease": NetEaseEmailSender,
@@ -391,35 +391,35 @@ EMAIL_PROVIDERS: dict[str, type] = {
 def create_email_sender(
     provider: str, username: str, password: str, **kwargs: Any
 ) -> EmailSender:
-    """工厂函数，根据服务商名称快速创建对应的邮件发送器实例.
+    """Factory function to quickly create corresponding email sender instances based on provider name.
 
-    这是一个便捷的辅助函数，让你无需直接导入和实例化特定的发送器类.
-    它通过一个字符串标识来选择正确的发送器，特别适合在配置文件中指定服务商的场景.
+    This is a convenient helper function that allows you to avoid directly importing and instantiating specific sender classes.
+    It selects the correct sender through a string identifier, particularly suitable for scenarios where the provider is specified in configuration files.
 
     Args:
-        provider (str): 邮箱服务商的标识符.支持的值（不区分大小写）包括：
+        provider (str): Email provider identifier. Supported values (case-insensitive) include:
                       'qq', 'netease', '163', '126'.
-        username (str): 邮箱账户，通常是完整的邮箱地址.
-        password (str): 邮箱的授权码或应用密码.
-        **kwargs: 其他关键字参数，将直接传递给所选发送器类的构造函数.
+        username (str): Email account, usually the complete email address.
+        password (str): Email authorization code or app password.
+        **kwargs: Other keyword arguments, will be passed directly to the selected sender class constructor.
 
     Returns:
-        EmailSender: 一个具体的邮件发送器实例 (例如 `QQEmailSender`).
+        EmailSender: A concrete email sender instance (e.g. `QQEmailSender`).
 
     Raises:
-        ValueError: 如果提供的 `provider` 名称不被支持.
+        ValueError: If the provided `provider` name is not supported.
 
     Examples:
         ```python
         from email_widget import Email, create_email_sender
         import os
 
-        # 从配置或环境变量中读取服务商和凭证
+        # Read provider and credentials from config or environment variables
         email_provider = os.getenv("EMAIL_PROVIDER", "qq") # e.g., 'qq' or 'netease'
         email_user = os.getenv("EMAIL_USER")
         email_password = os.getenv("EMAIL_PASSWORD")
 
-        # 使用工厂函数创建发送器
+        # Create sender using factory function
         try:
             sender = create_email_sender(
                 provider=email_provider,
@@ -427,21 +427,21 @@ def create_email_sender(
                 password=email_password
             )
 
-            email = Email(f"来自 {email_provider.upper()} 的邮件")
-            email.add_text("通过工厂函数创建的发送器.")
+            email = Email(f"Email from {email_provider.upper()}")
+            email.add_text("Sender created through factory function.")
             sender.send(email, to=["test@example.com"])
-            print("邮件发送成功！")
+            print("Email sent successfully!")
 
         except ValueError as e:
-            print(f"配置错误: {e}")
+            print(f"Configuration error: {e}")
         except Exception as e:
-            print(f"发送失败: {e}")
+            print(f"Sending failed: {e}")
         ```
     """
     provider_lower = provider.lower()
     if provider_lower not in EMAIL_PROVIDERS:
         supported = ", ".join(EMAIL_PROVIDERS.keys())
-        raise ValueError(f"不支持的邮箱服务商: {provider}.支持的服务商: {supported}")
+        raise ValueError(f"Unsupported email provider: {provider}. Supported providers: {supported}")
 
     sender_class = EMAIL_PROVIDERS[provider_lower]
     return sender_class(username, password, **kwargs)

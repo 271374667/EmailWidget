@@ -1,4 +1,4 @@
-"""图片Widget实现"""
+"""Image Widget Implementation"""
 
 from pathlib import Path
 from typing import Any
@@ -13,35 +13,35 @@ from email_widget.utils.image_utils import ImageUtils
 
 
 class ImageWidget(BaseWidget):
-    """在邮件中嵌入图片，并可选择性地附带标题和描述。
+    """Embed images in emails with optional titles and descriptions.
 
-    该微件简化了在邮件中添加图片的过程。它能够处理来自网络 URL 或本地文件
-    的图片，并自动将其转换为 Base64 编码的 data URI，以确保图片能在绝大多数
-    邮件客户端中正确显示，无需依赖外部链接。
+    This widget simplifies the process of adding images to emails. It can handle images from network URLs or local files
+    and automatically converts them to Base64-encoded data URIs to ensure images display correctly in most
+    email clients without relying on external links.
 
-    核心功能:
-        - **多源支持**: 可加载来自 URL 或本地文件路径的图片。
-        - **自动内联**: 所有图片都会被自动转换为 Base64 并嵌入 HTML，提高兼容性。
-        - **图文并茂**: 支持为图片添加标题和描述，形成图文说明。
-        - **样式控制**: 可以自定义图片的尺寸、最大宽度和边框圆角。
+    Core features:
+        - **Multi-source support**: Can load images from URLs or local file paths.
+        - **Automatic inline**: All images are automatically converted to Base64 and embedded in HTML for better compatibility.
+        - **Rich media**: Supports adding titles and descriptions to images for rich media explanations.
+        - **Style control**: Can customize image dimensions, maximum width, and border radius.
 
     Attributes:
-        image_url (Optional[str]): 处理后的图片来源，通常为 Base64 data URI。
-        title (Optional[str]): 图片下方的标题。
-        description (Optional[str]): 图片标题下方的详细描述。
-        alt_text (str): 图片的替代文本，用于可访问性（Accessibility）。
+        image_url (Optional[str]): Processed image source, usually a Base64 data URI.
+        title (Optional[str]): Title below the image.
+        description (Optional[str]): Detailed description below the image title.
+        alt_text (str): Alternative text for the image, used for accessibility.
 
     Examples:
-        从网络 URL 加载一张图片并添加说明：
+        Load an image from a network URL and add description:
 
         ```python
         from email_widget.widgets import ImageWidget
 
         image_from_url = (ImageWidget()
                           .set_image_url("https://www.example.com/images/product_photo.jpg")
-                          .set_title("最新产品展示")
-                          .set_description("展示了我们最新型号的设计和功能。")
-                          .set_alt_text("最新产品的正面照片")
+                          .set_title("Latest Product Showcase")
+                          .set_description("Shows the design and features of our latest model.")
+                          .set_alt_text("Front view of the latest product")
                           .set_size(width="100%", height="auto")
                           .set_max_width("600px")
                           .set_border_radius("8px"))
@@ -147,7 +147,7 @@ class ImageWidget(BaseWidget):
         return self
 
     def _get_mime_type(self, ext: str) -> str:
-        """根据文件扩展名获取MIME类型"""
+        """Get MIME type based on file extension"""
         mime_types = {
             ".png": "image/png",
             ".jpg": "image/jpeg",

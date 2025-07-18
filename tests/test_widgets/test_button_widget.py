@@ -53,7 +53,7 @@ class TestButtonWidget:
             assert result is self.widget
             assert self.widget._text == text
         else:
-            with pytest.raises(ValueError, match="按钮文本验证失败"):
+            with pytest.raises(ValueError, match="Button text validation failed"):
                 self.widget.set_text(text)
 
     @pytest.mark.parametrize(
@@ -85,7 +85,7 @@ class TestButtonWidget:
             assert result is self.widget
             assert self.widget._href == href
         else:
-            with pytest.raises(ValueError, match="链接地址验证失败"):
+            with pytest.raises(ValueError, match="Link address validation failed"):
                 self.widget.set_href(href)
 
     @pytest.mark.parametrize(
@@ -153,7 +153,7 @@ class TestButtonWidget:
             assert result is self.widget
             assert self.widget._align == align
         else:
-            with pytest.raises(ValueError, match="无效的对齐方式"):
+            with pytest.raises(ValueError, match="Invalid alignment method"):
                 self.widget.set_align(align)
 
     @pytest.mark.parametrize(

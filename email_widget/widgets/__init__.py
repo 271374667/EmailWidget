@@ -1,4 +1,4 @@
-"""EWidget组件模块"""
+"""EmailWidget Components Module"""
 
 from email_widget.widgets.alert_widget import AlertWidget
 from email_widget.widgets.button_widget import ButtonWidget

@@ -1,4 +1,4 @@
-"""状态信息Widget实现"""
+"""Status Information Widget Implementation"""
 
 from typing import Any
 
@@ -7,36 +7,36 @@ from email_widget.core.enums import LayoutType, StatusType
 
 
 class StatusItem:
-    """表示单个状态项的数据结构.
+    """Data structure representing a single status item.
 
-    每个状态项包含一个标签（描述）、一个值以及一个可选的状态类型，
-    用于在 `StatusWidget` 中展示.
+    Each status item contains a label (description), a value, and an optional status type,
+    used for display in `StatusWidget`.
 
     Attributes:
-        label (str): 状态项的描述性标签.
-        value (str): 状态项的实际值.
-        status (Optional[StatusType]): 状态项的类型，用于决定值的颜色.
+        label (str): Descriptive label for the status item.
+        value (str): Actual value of the status item.
+        status (Optional[StatusType]): Type of the status item, used to determine the color of the value.
 
     Examples:
         ```python
         from email_widget.widgets import StatusItem
         from email_widget.core.enums import StatusType
 
-        # 创建一个成功状态的CPU使用率项
+        # Create a success status CPU usage item
         cpu_status = StatusItem("CPU Usage", "15%", StatusType.SUCCESS)
 
-        # 创建一个普通的信息项
+        # Create a regular info item
         uptime_info = StatusItem("System Uptime", "30 days")
         ```
     """
 
     def __init__(self, label: str, value: str, status: StatusType | None = None):
-        """初始化StatusItem.
+        """Initialize StatusItem.
 
         Args:
-            label (str): 状态项的描述性标签.
-            value (str): 状态项的实际值.
-            status (Optional[StatusType]): 状态项的类型，用于决定值的颜色.
+            label (str): Descriptive label for the status item.
+            value (str): Actual value of the status item.
+            status (Optional[StatusType]): Type of the status item, used to determine the color of the value.
         """
         self.label = label
         self.value = value
@@ -44,25 +44,24 @@ class StatusItem:
 
 
 class StatusWidget(BaseWidget):
-    """创建一个用于显示键值对状态信息的列表.
+    """Create a list for displaying key-value pair status information.
 
-    该微件非常适合用于展示系统监控指标、服务状态、配置参数等一系列
-    结构化的数据.每一项都由一个标签（Label）和一个值（Value）组成，并且
-    可以根据状态（如成功、警告、错误）显示不同的颜色.
+    This widget is very suitable for displaying system monitoring metrics, service status, configuration parameters, and other
+    structured data. Each item consists of a label and a value, and can display different colors based on status (such as success, warning, error).
 
-    核心功能:
-        - **键值对列表**: 以清晰的列表形式展示多个状态项.
-        - **布局切换**: 支持垂直（默认）和水平两种布局方式.
-        **状态着色**: 可以为每个状态项的值设置不同的颜色，以直观反映其状态.
-        - **动态管理**: 支持在运行时添加、更新或移除状态项.
+    Core features:
+        - **Key-value pair list**: Display multiple status items in a clear list format.
+        - **Layout switching**: Support both vertical (default) and horizontal layout modes.
+        - **Status coloring**: Can set different colors for each status item value to visually reflect its status.
+        - **Dynamic management**: Support adding, updating, or removing status items at runtime.
 
     Attributes:
-        items (List[StatusItem]): 包含所有状态项的列表.
-        title (Optional[str]): 整个状态列表的标题.
-        layout (LayoutType): 列表的布局方式（垂直或水平）
+        items (List[StatusItem]): List containing all status items.
+        title (Optional[str]): Title of the entire status list.
+        layout (LayoutType): Layout mode of the list (vertical or horizontal).
 
     Examples:
-        创建一个垂直布局的系统监控状态列表：
+        Create a vertical layout system monitoring status list:
 
         ```python
         from email_widget.widgets import StatusWidget
@@ -76,11 +75,11 @@ class StatusWidget(BaseWidget):
                           .add_status_item("Disk Space", "95%", StatusType.ERROR)\
                           .add_status_item("Uptime", "32 days"))
 
-        # 假设 email 是一个 Email 对象
+        # Assuming email is an Email object
         # email.add_widget(system_monitor)
         ```
 
-        创建一个水平布局的服务状态列表：
+        Create a horizontal layout service status list:
 
         ```python
         service_status = (StatusWidget()\
@@ -91,7 +90,7 @@ class StatusWidget(BaseWidget):
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     {% if items %}
         <!--[if mso]>
@@ -124,10 +123,10 @@ class StatusWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化StatusWidget.
+        """Initialize StatusWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID.
+            widget_id (Optional[str]): Optional Widget ID.
         """
         super().__init__(widget_id)
         self._items: list[StatusItem] = []
@@ -137,45 +136,45 @@ class StatusWidget(BaseWidget):
     def add_status_item(
         self, label: str, value: str, status: StatusType | None = None
     ) -> "StatusWidget":
-        """添加一个状态项到列表中.
+        """Add a status item to the list.
 
         Args:
-            label (str): 状态项的描述性标签.
-            value (str): 状态项的实际值.
-            status (Optional[StatusType]): 状态项的类型，用于决定值的颜色.
+            label (str): Descriptive label for the status item.
+            value (str): Actual value of the status item.
+            status (Optional[StatusType]): Type of the status item, used to determine the color of the value.
 
         Returns:
-            StatusWidget: 返回self以支持链式调用.
+            StatusWidget: Returns self to support method chaining.
 
         Examples:
-            >>> widget = StatusWidget().add_status_item("服务状态", "运行中", StatusType.SUCCESS)
+            >>> widget = StatusWidget().add_status_item("Service Status", "Running", StatusType.SUCCESS)
         """
         self._items.append(StatusItem(label, value, status))
         return self
 
     def set_title(self, title: str) -> "StatusWidget":
-        """设置状态列表的标题.
+        """Set the title of the status list.
 
         Args:
-            title (str): 标题文本.
+            title (str): Title text.
 
         Returns:
-            StatusWidget: 返回self以支持链式调用.
+            StatusWidget: Returns self to support method chaining.
 
         Examples:
-            >>> widget = StatusWidget().set_title("服务器健康状态")
+            >>> widget = StatusWidget().set_title("Server Health Status")
         """
         self._title = title
         return self
 
     def set_layout(self, layout: LayoutType) -> "StatusWidget":
-        """设置状态项的布局方式.
+        """Set the layout mode of status items.
 
         Args:
-            layout (LayoutType): 布局类型，可以是 `LayoutType.VERTICAL` 或 `LayoutType.HORIZONTAL`.
+            layout (LayoutType): Layout type, can be `LayoutType.VERTICAL` or `LayoutType.HORIZONTAL`.
 
         Returns:
-            StatusWidget: 返回self以支持链式调用.
+            StatusWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = StatusWidget().set_layout(LayoutType.HORIZONTAL)
@@ -184,10 +183,10 @@ class StatusWidget(BaseWidget):
         return self
 
     def clear_items(self) -> "StatusWidget":
-        """清空所有状态项.
+        """Clear all status items.
 
         Returns:
-            StatusWidget: 返回self以支持链式调用.
+            StatusWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = StatusWidget().clear_items()
@@ -196,13 +195,13 @@ class StatusWidget(BaseWidget):
         return self
 
     def remove_item(self, label: str) -> "StatusWidget":
-        """根据标签移除指定的状态项.
+        """Remove specified status item by label.
 
         Args:
-            label (str): 要移除的状态项的标签.
+            label (str): Label of the status item to remove.
 
         Returns:
-            StatusWidget: 返回self以支持链式调用.
+            StatusWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = StatusWidget().remove_item("CPU Usage")
@@ -213,17 +212,17 @@ class StatusWidget(BaseWidget):
     def update_item(
         self, label: str, value: str, status: StatusType = None
     ) -> "StatusWidget":
-        """更新指定标签的状态项的值和状态.
+        """Update value and status of the status item with specified label.
 
-        如果找到匹配的标签，则更新其值和状态；否则不执行任何操作.
+        If a matching label is found, update its value and status; otherwise, do nothing.
 
         Args:
-            label (str): 要更新的状态项的标签.
-            value (str): 新的值.
-            status (StatusType): 可选的新状态类型.
+            label (str): Label of the status item to update.
+            value (str): New value.
+            status (StatusType): Optional new status type.
 
         Returns:
-            StatusWidget: 返回self以支持链式调用.
+            StatusWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = StatusWidget().update_item("CPU Usage", "20%", StatusType.WARNING)
@@ -237,19 +236,19 @@ class StatusWidget(BaseWidget):
         return self
 
     def get_item_count(self) -> int:
-        """获取当前状态项的数量.
+        """Get the count of current status items.
 
         Returns:
-            int: 状态项的数量.
+            int: Number of status items.
 
         Examples:
             >>> count = StatusWidget().add_status_item("A", "1").get_item_count()
-            >>> print(count) # 输出: 1
+            >>> print(count) # Output: 1
         """
         return len(self._items)
 
     def _get_status_color(self, status: StatusType) -> str:
-        """获取状态颜色"""
+        """Get status color"""
         colors = {
             StatusType.SUCCESS: "#107c10",
             StatusType.WARNING: "#ff8c00",
@@ -263,7 +262,7 @@ class StatusWidget(BaseWidget):
         return "status_info.html"
 
     def get_template_context(self) -> dict[str, Any]:
-        """获取模板渲染所需的上下文数据"""
+        """Get template context data required for rendering"""
         if not self._items:
             return {}
 
@@ -280,7 +279,7 @@ class StatusWidget(BaseWidget):
             "font-size: 16px; font-weight: 600; color: #323130; margin-bottom: 12px;"
         )
 
-        # 处理状态项
+        # Process status items
         items_data = []
         for item in self._items:
             if self._layout == LayoutType.HORIZONTAL:

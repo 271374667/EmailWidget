@@ -1,10 +1,10 @@
-"""枚举类定义模块"""
+"""Enum class definition module"""
 
 from enum import Enum
 
 
 class LogLevel(Enum):
-    """日志级别枚举"""
+    """Log level enumeration"""
 
     DEBUG = "DEBUG"
     INFO = "INFO"
@@ -14,7 +14,7 @@ class LogLevel(Enum):
 
 
 class StatusType(Enum):
-    """状态类型枚举"""
+    """Status type enumeration"""
 
     SUCCESS = "success"
     WARNING = "warning"
@@ -24,7 +24,7 @@ class StatusType(Enum):
 
 
 class AlertType(Enum):
-    """警告类型枚举"""
+    """Alert type enumeration"""
 
     NOTE = "note"
     TIP = "tip"
@@ -34,14 +34,14 @@ class AlertType(Enum):
 
 
 class TextAlign(Enum):
-    """文本对齐方式枚举.
+    """Text alignment enumeration.
 
-    | 枚举值 | 描述 |
-    |--------|------|
-    | `LEFT` | 左对齐 |
-    | `CENTER` | 居中对齐 |
-    | `RIGHT` | 右对齐 |
-    | `JUSTIFY` | 两端对齐 |
+    | Enum Value | Description |
+    |------------|-------------|
+    | `LEFT` | Left alignment |
+    | `CENTER` | Center alignment |
+    | `RIGHT` | Right alignment |
+    | `JUSTIFY` | Justified alignment |
     """
 
     LEFT = "left"
@@ -51,18 +51,18 @@ class TextAlign(Enum):
 
 
 class TextType(Enum):
-    """文本类型枚举，定义了不同的文本样式和语义级别.
+    """Text type enumeration, defining different text styles and semantic levels.
 
-    | 枚举值 | 描述 | 默认字体大小 |
-    |--------|------|-------------|
-    | `TITLE_LARGE` | 大标题 | 24px |
-    | `TITLE_SMALL` | 小标题 | 20px |
-    | `BODY` | 正文 | 14px |
-    | `CAPTION` | 说明文字 | 12px |
-    | `SECTION_H2` | 二级标题 | 18px |
-    | `SECTION_H3` | 三级标题 | 16px |
-    | `SECTION_H4` | 四级标题 | 15px |
-    | `SECTION_H5` | 五级标题 | 14px |
+    | Enum Value | Description | Default Font Size |
+    |------------|-------------|------------------|
+    | `TITLE_LARGE` | Large title | 24px |
+    | `TITLE_SMALL` | Small title | 20px |
+    | `BODY` | Body text | 14px |
+    | `CAPTION` | Caption text | 12px |
+    | `SECTION_H2` | Second-level heading | 18px |
+    | `SECTION_H3` | Third-level heading | 16px |
+    | `SECTION_H4` | Fourth-level heading | 15px |
+    | `SECTION_H5` | Fifth-level heading | 14px |
     """
 
     TITLE_LARGE = "title_large"
@@ -76,7 +76,7 @@ class TextType(Enum):
 
 
 class ProgressTheme(Enum):
-    """进度条主题枚举"""
+    """Progress bar theme enumeration"""
 
     PRIMARY = "primary"
     SUCCESS = "success"
@@ -86,50 +86,50 @@ class ProgressTheme(Enum):
 
 
 class LayoutType(Enum):
-    """布局类型枚举"""
+    """Layout type enumeration"""
 
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
 
 
 class SeparatorType(Enum):
-    """分隔符类型枚举"""
+    """Separator type enumeration"""
 
-    SOLID = "solid"  # 实线
-    DASHED = "dashed"  # 虚线
-    DOTTED = "dotted"  # 点线
+    SOLID = "solid"  # Solid line
+    DASHED = "dashed"  # Dashed line
+    DOTTED = "dotted"  # Dotted line
 
 
 class IconType(Enum):
-    """图标类型枚举 - 爬虫和数据处理领域常用图标"""
+    """Icon type enumeration - Common icons for web scraping and data processing"""
 
-    # 数据相关
+    # Data-related
     DATA = "📊"
     DATABASE = "🗄️"
     CHART = "📈"
     TABLE = "📋"
     REPORT = "📄"
 
-    # 爬虫相关
+    # Web scraping-related
     SPIDER = "🕷️"
     WEB = "🌐"
     LINK = "🔗"
     SEARCH = "🔍"
     DOWNLOAD = "⬇️"
 
-    # 系统相关
+    # System-related
     SERVER = "🖥️"
     NETWORK = "🌐"
     STORAGE = "💾"
     MEMORY = "🧠"
     CPU = "⚡"
 
-    # 状态相关
+    # Status-related
     SUCCESS = "✅"
     ERROR = "❌"
     WARNING = "⚠️"
     INFO = "ℹ️"
     PROCESSING = "⚙️"
 
-    # 默认图标
+    # Default icon
     DEFAULT = "📋"

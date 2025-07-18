@@ -341,7 +341,7 @@ class TestChecklistWidget:
         html = widget.render_html()
 
         assert "进度测试" in html
-        assert "完成进度" in html
+        assert "Completion Progress" in html
         assert "50.0%" in html
 
     def test_type_validation(self):

@@ -1,31 +1,31 @@
-"""EmailWidget - 强大的邮件组件库
+"""EmailWidget - Powerful Email Component Library
 
-这是一个现代化、易用的Python邮件组件库，让你轻松创建美观的HTML邮件报告。
+A modern, easy-to-use Python email component library that allows you to effortlessly create beautiful HTML email reports.
 
-主要功能：
-- 丰富的Widget组件库
-- 基于Jinja2的模板系统
-- 支持matplotlib/seaborn图表
-- 响应式设计
-- 邮件客户端兼容
+Key Features:
+- Rich widget component library
+- Jinja2-based template system
+- Support for matplotlib/seaborn charts
+- Responsive design
+- Email client compatibility
 
 Examples:
     >>> from email_widget import Email, TextWidget, TableWidget
     >>> from email_widget import TextType, AlertType
     >>>
-    >>> email = Email("每日报告")
+    >>> email = Email("Daily Report")
     >>> email.add_widget(TextWidget().set_content("Hello").set_type(TextType.TITLE_LARGE))
     >>> email.export_html("report.html")
 """
 
-# 核心类
-# 基础类（供高级用户扩展使用）
+# Core classes
+# Base classes (for advanced users to extend)
 from email_widget.core.base import BaseWidget
 
-# 配置类
+# Configuration classes
 from email_widget.core.config import EmailConfig
 
-# 枚举和类型
+# Enums and types
 from email_widget.core.enums import (
     AlertType,
     IconType,
@@ -38,7 +38,7 @@ from email_widget.core.enums import (
     TextType,
 )
 
-# 验证器系统（供高级用户使用）
+# Validator system (for advanced users)
 from email_widget.core.validators import (
     BaseValidator,
     ChoicesValidator,
@@ -55,7 +55,7 @@ from email_widget.core.validators import (
 )
 from email_widget.email import Email
 
-# 邮件发送器类
+# Email sender classes
 from email_widget.email_sender import (
     EmailSender,
     NetEaseEmailSender,
@@ -78,27 +78,27 @@ from email_widget.widgets.separator_widget import SeparatorWidget
 from email_widget.widgets.status_widget import StatusItem, StatusWidget
 from email_widget.widgets.table_widget import TableCell, TableWidget
 
-# 所有Widget组件
+# All widget components
 from email_widget.widgets.text_widget import TextWidget
 from email_widget.widgets.timeline_widget import TimelineWidget
 
-# 版本信息
+# Version information
 __version__ = "0.22.1"
 __author__ = "PythonImporter"
 __email__ = "271374667@qq.com"
 
-# 导出所有公共接口
+# Export all public interfaces
 __all__ = [
-    # 核心类
+    # Core classes
     "Email",
     "BaseWidget",
     "EmailConfig",
-    # 邮件发送器
+    # Email senders
     "EmailSender",
     "QQEmailSender",
     "NetEaseEmailSender",
     "create_email_sender",
-    # Widget组件
+    # Widget components
     "TextWidget",
     "TableWidget",
     "TableCell",
@@ -119,7 +119,7 @@ __all__ = [
     "ColumnWidget",
     "LogWidget",
     "LogEntry",
-    # 枚举类型
+    # Enum types
     "TextType",
     "TextAlign",
     "AlertType",
@@ -129,7 +129,7 @@ __all__ = [
     "LayoutType",
     "LogLevel",
     "IconType",
-    # 验证器（供高级用户使用）
+    # Validators (for advanced users)
     "BaseValidator",
     "ColorValidator",
     "SizeValidator",
@@ -142,7 +142,7 @@ __all__ = [
     "TypeValidator",
     "ChoicesValidator",
     "CompositeValidator",
-    # 版本信息
+    # Version information
     "__version__",
     "__author__",
     "__email__",

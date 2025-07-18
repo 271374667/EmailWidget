@@ -109,7 +109,7 @@ class TestTextWidget:
             assert result is self.widget
             assert self.widget._content == content
         else:
-            with pytest.raises(ValueError, match="文本内容验证失败"):
+            with pytest.raises(ValueError, match="Text content validation failed"):
                 self.widget.set_content(content)
 
     @pytest.mark.parametrize(
@@ -165,7 +165,7 @@ class TestTextWidget:
             assert result is self.widget
             assert self.widget._font_size == font_size
         else:
-            with pytest.raises(ValueError, match="字体大小验证失败"):
+            with pytest.raises(ValueError, match="Font size validation failed"):
                 self.widget.set_font_size(font_size)
 
     @pytest.mark.parametrize(
@@ -203,7 +203,7 @@ class TestTextWidget:
             assert result is self.widget
             assert self.widget._color == color
         else:
-            with pytest.raises(ValueError, match="颜色值验证失败"):
+            with pytest.raises(ValueError, match="Color value validation failed"):
                 self.widget.set_color(color)
 
     @pytest.mark.parametrize(

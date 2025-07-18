@@ -1,7 +1,7 @@
-"""清单组件模块
+"""Checklist component module
 
-提供ChecklistWidget类，用于在邮件中创建任务清单、待办事项或检查列表。
-支持多种状态、主题颜色和样式配置。
+Provides ChecklistWidget class for creating task lists, todo items, or checklists in emails.
+Supports multiple states, theme colors, and style configurations.
 """
 
 from typing import Any
@@ -12,42 +12,42 @@ from email_widget.core.validators import TypeValidator
 
 
 class ChecklistWidget(BaseWidget):
-    """清单组件，用于创建任务清单和检查列表。
+    """Checklist component for creating task lists and checklists.
 
-    ChecklistWidget 用于显示一系列检查项目，每个项目可以有不同的状态（已完成、未完成、跳过等）。
-    适用于任务清单、步骤指南、检查表等场景。
+    ChecklistWidget is used to display a series of checklist items, each item can have different states (completed, incomplete, skipped, etc.).
+    Suitable for task lists, step guides, checklists, and other scenarios.
 
     Attributes:
-        items (List[Dict[str, Any]]): 清单项目列表
-        title (str): 清单标题
-        show_progress (bool): 是否显示进度统计
-        compact_mode (bool): 是否使用紧凑模式
+        items (List[Dict[str, Any]]): List of checklist items
+        title (str): Checklist title
+        show_progress (bool): Whether to show progress statistics
+        compact_mode (bool): Whether to use compact mode
 
     Examples:
-        基础用法:
+        Basic usage:
         ```python
         checklist = ChecklistWidget()
-        checklist.add_item("完成需求分析", True)
-        checklist.add_item("设计数据库", True)
-        checklist.add_item("编写代码", False)
-        checklist.add_item("测试功能", False)
+        checklist.add_item("Complete Requirements Analysis", True)
+        checklist.add_item("Design Database", True)
+        checklist.add_item("Write Code", False)
+        checklist.add_item("Test Functions", False)
         ```
 
-        使用链式调用:
+        Using method chaining:
         ```python
         checklist = (ChecklistWidget()
-            .set_title("项目检查清单")
-            .add_item("环境配置", True)
-            .add_item("代码审查", False)
+            .set_title("Project Checklist")
+            .add_item("Environment Setup", True)
+            .add_item("Code Review", False)
             .show_progress_stats(True))
         ```
 
-        自定义样式:
+        Custom styling:
         ```python
         checklist = ChecklistWidget()
-        checklist.add_item("数据备份", True, "success")
-        checklist.add_item("服务检查", False, "warning")
-        checklist.add_item("性能测试", None, "info")  # None表示跳过
+        checklist.add_item("Data Backup", True, "success")
+        checklist.add_item("Service Check", False, "warning")
+        checklist.add_item("Performance Test", None, "info")  # None means skip
         ```
     """
 
@@ -79,7 +79,7 @@ class ChecklistWidget(BaseWidget):
             font-size: 14px;
         ">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="color: #605e5c; font-weight: 500;">完成进度</span>
+                <span style="color: #605e5c; font-weight: 500;">Completion Progress</span>
                 <span style="color: #323130; font-weight: 600;">{{ completed_count }}/{{ total_count }} ({{ progress_percentage }}%)</span>
             </div>
             <div style="
@@ -158,31 +158,31 @@ class ChecklistWidget(BaseWidget):
     """
 
     def __init__(self):
-        """初始化清单组件。"""
+        """Initialize checklist component."""
         super().__init__()
         self._items: list[dict[str, Any]] = []
         self._title: str = ""
         self._show_progress: bool = False
         self._compact_mode: bool = False
 
-        # 初始化验证器
+        # Initialize validators
         self._str_validator = TypeValidator(str)
         self._bool_validator = TypeValidator(bool)
         self._int_validator = TypeValidator(int)
 
-        # 状态主题映射
+        # Status theme mapping
         self._status_themes = {
-            "success": {"color": "#107c10", "icon": "✓", "text": "完成"},
-            "warning": {"color": "#ff8c00", "icon": "!", "text": "注意"},
-            "error": {"color": "#d13438", "icon": "✗", "text": "失败"},
-            "info": {"color": "#0078d4", "icon": "i", "text": "信息"},
-            "primary": {"color": "#0078d4", "icon": "●", "text": "进行中"},
-            "pending": {"color": "#8e8e93", "icon": "○", "text": "待办"},
-            "skipped": {"color": "#8e8e93", "icon": "—", "text": "跳过"},
+            "success": {"color": "#107c10", "icon": "✓", "text": "Complete"},
+            "warning": {"color": "#ff8c00", "icon": "!", "text": "Warning"},
+            "error": {"color": "#d13438", "icon": "✗", "text": "Failed"},
+            "info": {"color": "#0078d4", "icon": "i", "text": "Info"},
+            "primary": {"color": "#0078d4", "icon": "●", "text": "In Progress"},
+            "pending": {"color": "#8e8e93", "icon": "○", "text": "Pending"},
+            "skipped": {"color": "#8e8e93", "icon": "—", "text": "Skipped"},
         }
 
     def _get_template_name(self) -> str:
-        """获取模板名称。"""
+        """Get template name."""
         return "checklist_widget.html"
 
     def add_item(
@@ -193,31 +193,31 @@ class ChecklistWidget(BaseWidget):
         description: str = "",
         status_text: str = "",
     ) -> "ChecklistWidget":
-        """添加清单项目。
+        """Add checklist item.
 
         Args:
-            text (str): 项目文本内容
-            completed (Union[bool, None]): 完成状态。True=已完成，False=未完成，None=跳过
-            status_type (Union[str, StatusType, None]): 状态类型，可选值见StatusType枚举
-            description (str): 项目描述信息
-            status_text (str): 自定义状态文本
+            text (str): Item text content
+            completed (Union[bool, None]): Completion status. True=completed, False=incomplete, None=skipped
+            status_type (Union[str, StatusType, None]): Status type, see StatusType enum for valid values
+            description (str): Item description information
+            status_text (str): Custom status text
 
         Returns:
-            ChecklistWidget: 返回self以支持链式调用
+            ChecklistWidget: Returns self to support method chaining
 
         Examples:
             ```python
-            checklist.add_item("完成设计", True, "success", "UI设计已完成")
-            checklist.add_item("代码审查", False, "warning", "等待审查")
-            checklist.add_item("性能测试", None, "info", "暂时跳过")
+            checklist.add_item("Complete Design", True, "success", "UI design completed")
+            checklist.add_item("Code Review", False, "warning", "Awaiting review")
+            checklist.add_item("Performance Test", None, "info", "Temporarily skipped")
             ```
         """
         if not self._str_validator.validate(text):
             raise TypeError(
-                f"text参数必须是字符串类型，当前类型为: {type(text).__name__}"
+                f"text parameter must be string type, current type: {type(text).__name__}"
             )
 
-        # 确定状态
+        # Determine status
         if completed is True:
             default_status = "success"
         elif completed is False:

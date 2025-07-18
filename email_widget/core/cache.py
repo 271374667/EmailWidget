@@ -1,6 +1,6 @@
-"""EmailWidget缓存系统
+"""EmailWidget caching system
 
-提供图片缓存管理功能，支持LRU策略和文件系统存储.
+Provides image cache management functionality with LRU strategy and filesystem storage.
 """
 
 import hashlib
@@ -14,22 +14,23 @@ from email_widget.core.logger import get_project_logger
 
 
 class ImageCache:
-    """LRU 缓存系统，用于提升图片处理性能.
+    """LRU cache system for improving image processing performance.
 
-    该缓存管理器使用最近最少使用（LRU）策略来管理图片数据，
-    支持将图片存储到文件系统，并维护内存中的索引以实现快速查找.
-    这对于在邮件中嵌入大量图片时，避免重复下载和处理，从而显著提升性能.
+    This cache manager uses the Least Recently Used (LRU) strategy to manage image data,
+    supports storing images to the filesystem, and maintains an in-memory index for fast lookup.
+    This significantly improves performance when embedding large amounts of images in emails by
+    avoiding redundant downloading and processing.
 
-    核心功能:
-        - **LRU 策略**: 自动淘汰最久未使用的缓存项.
-        - **文件系统存储**: 将图片数据持久化到本地文件，减少内存占用.
-        - **内存索引**: 快速查找缓存项，提高访问速度.
-        - **性能监控**: 提供缓存命中率和大小统计.
+    Core Features:
+        - **LRU Strategy**: Automatically evicts least recently used cache items.
+        - **Filesystem Storage**: Persists image data to local files, reducing memory usage.
+        - **Memory Index**: Fast cache item lookup, improving access speed.
+        - **Performance Monitoring**: Provides cache hit rate and size statistics.
 
     Attributes:
-        _cache_dir (Path): 缓存文件存储的目录.
-        _max_size (int): 缓存中允许的最大项目数量.
-        _cache_index (Dict[str, Dict[str, Any]): 内存中的缓存索引.
+        _cache_dir (Path): Directory for storing cache files.
+        _max_size (int): Maximum number of items allowed in cache.
+        _cache_index (Dict[str, Dict[str, Any]]): In-memory cache index.
 
     Examples:
         ```python
@@ -37,36 +38,36 @@ class ImageCache:
 
         cache = get_image_cache()
 
-        # 存储数据
-        # 假设 some_image_data 是图片的二进制内容，mime_type 是图片的MIME类型
+        # Store data
+        # Assuming some_image_data is the binary content of an image, mime_type is the MIME type
         # cache.set("image_url_or_path_1", some_image_data, "image/png")
 
-        # 获取数据
+        # Get data
         # cached_data = cache.get("image_url_or_path_1")
         # if cached_data:
         #     image_bytes, mime = cached_data
-        #     print(f"从缓存获取图片，大小: {len(image_bytes)} 字节, 类型: {mime}")
+        #     print(f"Retrieved image from cache, size: {len(image_bytes)} bytes, type: {mime}")
 
-        # 清空缓存
+        # Clear cache
         # cache.clear()
 
-        # 获取缓存统计信息
+        # Get cache statistics
         stats = cache.get_cache_stats()
-        print(f"缓存项目数量: {stats['total_items']}, 总大小: {stats['total_size_bytes']} 字节")
+        print(f"Cache items: {stats['total_items']}, total size: {stats['total_size_bytes']} bytes")
         ```
     """
 
     def __init__(self, cache_dir: Path | None = None, max_size: int = 100):
-        """初始化缓存管理器.
+        """Initialize the cache manager.
 
         Args:
-            cache_dir (Optional[Path]): 缓存目录路径，默认为系统临时目录下的 `emailwidget_cache`.
-            max_size (int): 缓存中允许的最大项目数量，默认为100.
+            cache_dir (Optional[Path]): Cache directory path, defaults to `emailwidget_cache` in system temp directory.
+            max_size (int): Maximum number of items allowed in cache, defaults to 100.
         """
         self._logger = get_project_logger()
         self._max_size = max_size
 
-        # 设置缓存目录
+        # Set cache directory
         if cache_dir is None:
             import tempfile
 
@@ -75,85 +76,85 @@ class ImageCache:
         self._cache_dir = Path(cache_dir)
         self._cache_dir.mkdir(parents=True, exist_ok=True)
 
-        # 缓存索引文件
+        # Cache index file
         self._index_file = self._cache_dir / "cache_index.json"
 
-        # 内存中的缓存索引 {cache_key: {"file_path": str, "access_time": float, "size": int}}
+        # In-memory cache index {cache_key: {"file_path": str, "access_time": float, "size": int}}
         self._cache_index: dict[str, dict[str, Any]] = {}
 
-        # 加载现有缓存索引
+        # Load existing cache index
         self._load_cache_index()
 
-        self._logger.debug(f"图片缓存初始化完成，缓存目录: {self._cache_dir}")
+        self._logger.debug(f"Image cache initialization complete, cache directory: {self._cache_dir}")
 
     def _load_cache_index(self) -> None:
-        """从文件加载缓存索引"""
+        """Load cache index from file"""
         if self._index_file.exists():
             with suppress(Exception):
                 with open(self._index_file, encoding="utf-8") as f:
                     self._cache_index = json.load(f)
-                self._logger.debug(f"加载缓存索引，共 {len(self._cache_index)} 项")
+                self._logger.debug(f"Loaded cache index, {len(self._cache_index)} items")
 
     def _save_cache_index(self) -> None:
-        """保存缓存索引到文件"""
+        """Save cache index to file"""
         with suppress(Exception):
             with open(self._index_file, "w", encoding="utf-8") as f:
                 json.dump(self._cache_index, f, ensure_ascii=False, indent=2)
 
     def _generate_cache_key(self, source: str) -> str:
-        """生成缓存键
+        """Generate cache key
 
         Args:
-            source: 图片源（URL或文件路径）
+            source: Image source (URL or file path)
 
         Returns:
-            缓存键字符串
+            Cache key string
         """
         return hashlib.md5(source.encode("utf-8")).hexdigest()
 
     def _cleanup_old_cache(self) -> None:
-        """清理过期的缓存项"""
+        """Clean up expired cache items"""
         if len(self._cache_index) <= self._max_size:
             return
 
-        # 按访问时间排序，删除最久未访问的项目
+        # Sort by access time, delete least recently accessed items
         sorted_items = sorted(
             self._cache_index.items(), key=lambda x: x[1].get("access_time", 0)
         )
 
-        # 删除超出限制的项目
+        # Delete items exceeding the limit
         items_to_remove = sorted_items[: len(self._cache_index) - self._max_size]
 
         for cache_key, cache_info in items_to_remove:
             self._remove_cache_item(cache_key, cache_info)
 
-        self._logger.debug(f"清理了 {len(items_to_remove)} 个过期缓存项")
+        self._logger.debug(f"Cleaned {len(items_to_remove)} expired cache items")
 
     def _remove_cache_item(self, cache_key: str, cache_info: dict[str, Any]) -> None:
-        """删除单个缓存项
+        """Delete a single cache item
 
         Args:
-            cache_key: 缓存键
-            cache_info: 缓存信息
+            cache_key: Cache key
+            cache_info: Cache information
         """
-        # 删除文件
+        # Delete file
         file_path = Path(cache_info.get("file_path", ""))
         if file_path.exists():
             with suppress(Exception):
                 file_path.unlink()
 
-        # 从索引中删除
+        # Remove from index
         self._cache_index.pop(cache_key, None)
 
     def get(self, source: str) -> tuple[bytes, str] | None:
-        """从缓存中获取图片数据.
+        """Get image data from cache.
 
         Args:
-            source (str): 图片源（URL或文件路径），用于生成缓存键.
+            source (str): Image source (URL or file path), used to generate cache key.
 
         Returns:
-            Optional[Tuple[bytes, str]]: 如果找到缓存，返回 (图片二进制数据, MIME类型) 的元组；
-                                         否则返回None.
+            Optional[Tuple[bytes, str]]: If cache found, returns (image binary data, MIME type) tuple;
+                                         otherwise returns None.
         """
         cache_key = self._generate_cache_key(source)
 
@@ -163,106 +164,106 @@ class ImageCache:
         cache_info = self._cache_index[cache_key]
         file_path = Path(cache_info["file_path"])
 
-        # 检查文件是否存在
+        # Check if file exists
         if not file_path.exists():
             self._cache_index.pop(cache_key, None)
-            self._logger.warning(f"缓存文件不存在: {file_path}")
+            self._logger.warning(f"Cache file does not exist: {file_path}")
             return None
 
         try:
-            # 读取文件内容
+            # Read file content
             with open(file_path, "rb") as f:
                 data = f.read()
 
-            # 获取MIME类型
+            # Get MIME type
             mime_type = cache_info.get("mime_type", "image/png")
 
-            # 更新访问时间
+            # Update access time
             cache_info["access_time"] = time.time()
             self._save_cache_index()
 
-            self._logger.debug(f"从缓存获取图片: {source[:50]}... ")
+            self._logger.debug(f"Retrieved image from cache: {source[:50]}... ")
             return data, mime_type
 
         except Exception as e:
-            self._logger.error(f"读取缓存文件失败: {e}")
+            self._logger.error(f"Failed to read cache file: {e}")
             self._remove_cache_item(cache_key, cache_info)
             return None
 
     def set(self, source: str, data: bytes, mime_type: str = "image/png") -> bool:
-        """向缓存中存储图片数据.
+        """Store image data in cache.
 
         Args:
-            source (str): 图片源（URL或文件路径），作为缓存的键.
-            data (bytes): 图片的二进制数据.
-            mime_type (str): 图片的MIME类型，默认为 "image/png".
+            source (str): Image source (URL or file path), used as cache key.
+            data (bytes): Image binary data.
+            mime_type (str): Image MIME type, defaults to "image/png".
 
         Returns:
-            bool: 是否成功存储到缓存.
+            bool: Whether successfully stored in cache.
         """
         try:
             cache_key = self._generate_cache_key(source)
 
-            # 生成缓存文件路径
+            # Generate cache file path
             ext = mime_type.split("/")[-1] if "/" in mime_type else "png"
             cache_file = self._cache_dir / f"{cache_key}.{ext}"
 
-            # 写入文件
+            # Write to file
             with open(cache_file, "wb") as f:
                 f.write(data)
 
-            # 更新索引
+            # Update index
             self._cache_index[cache_key] = {
                 "file_path": str(cache_file),
                 "access_time": time.time(),
                 "size": len(data),
                 "mime_type": mime_type,
-                "source": source[:100],  # 保存源的前100个字符用于调试
+                "source": source[:100],  # Save first 100 characters of source for debugging
             }
 
-            # 清理过期缓存
+            # Clean up expired cache
             self._cleanup_old_cache()
 
-            # 保存索引
+            # Save index
             self._save_cache_index()
 
-            self._logger.debug(f"缓存图片成功: {source[:50]}... -> {cache_file.name}")
+            self._logger.debug(f"Successfully cached image: {source[:50]}... -> {cache_file.name}")
             return True
 
         except Exception as e:
-            self._logger.error(f"缓存图片失败: {e}")
+            self._logger.error(f"Failed to cache image: {e}")
             return False
 
     def clear(self) -> None:
-        """清空所有缓存数据.
+        """Clear all cache data.
 
-        此方法会删除所有缓存文件和缓存索引.
+        This method will delete all cache files and cache index.
         """
         try:
-            # 删除所有缓存文件
+            # Delete all cache files
             for cache_info in self._cache_index.values():
                 file_path = Path(cache_info.get("file_path", ""))
                 if file_path.exists():
                     with suppress(Exception):
                         file_path.unlink()
 
-            # 清空索引
+            # Clear index
             self._cache_index.clear()
 
-            # 删除索引文件
+            # Delete index file
             if self._index_file.exists():
                 self._index_file.unlink()
 
-            self._logger.info("清空所有图片缓存")
+            self._logger.info("Cleared all image cache")
 
         except Exception as e:
-            self._logger.error(f"清空缓存失败: {e}")
+            self._logger.error(f"Failed to clear cache: {e}")
 
     def get_cache_stats(self) -> dict[str, Any]:
-        """获取缓存统计信息
+        """Get cache statistics
 
         Returns:
-            缓存统计信息字典
+            Cache statistics dictionary
         """
         total_size = sum(info.get("size", 0) for info in self._cache_index.values())
 
@@ -277,17 +278,18 @@ class ImageCache:
         }
 
 
-# 全局缓存实例
+# Global cache instance
 _global_cache: ImageCache | None = None
 
 
 def get_image_cache() -> ImageCache:
-    """获取全局图片缓存实例.
+    """Get global image cache instance.
 
-    此函数实现了单例模式，确保在整个应用程序中只存在一个 `ImageCache` 实例.
+    This function implements singleton pattern, ensuring only one `ImageCache` instance exists
+    throughout the entire application.
 
     Returns:
-        ImageCache: 全局唯一的 `ImageCache` 实例.
+        ImageCache: Global unique `ImageCache` instance.
 
     Examples:
         ```python
@@ -295,7 +297,7 @@ def get_image_cache() -> ImageCache:
 
         cache1 = get_image_cache()
         cache2 = get_image_cache()
-        assert cache1 is cache2 # True，两者是同一个实例
+        assert cache1 is cache2 # True, both are the same instance
         ```
     """
     global _global_cache

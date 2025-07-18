@@ -1,18 +1,18 @@
-"""配置管理模块
+"""Configuration management module
 
-这个模块提供了EmailWidget库的配置管理功能，使用直接声明的常量.
+This module provides configuration management functionality for the EmailWidget library, using directly declared constants.
 """
 
 from pathlib import Path
 from typing import Any
 
-# 配置常量声明
+# Configuration constant declarations
 OUTPUT_DIR: Path = Path(".")
-DEFAULT_TITLE: str = "EmailWidget 邮件报告"
+DEFAULT_TITLE: str = "EmailWidget Email Report"
 CHARSET: str = "UTF-8"
-LANG: str = "zh-CN"
+LANG: str = "en-US"
 
-# 样式常量
+# Style constants
 PRIMARY_COLOR: str = "#0078d4"
 FONT_FAMILY: str = "'Segoe UI', Tahoma, Arial, sans-serif"
 MAX_WIDTH: str = "800px"
@@ -20,12 +20,12 @@ BACKGROUND_COLOR: str = "#ffffff"
 BASE_FONT_SIZE: str = "14px"
 LINE_HEIGHT: str = "1.5"
 
-# 组件常量
+# Component constants
 TABLE_STRIPED: bool = True
 LOG_MAX_HEIGHT: str = "400px"
 COLUMN_DEFAULT_GAP: str = "20px"
 
-# 文本Widget常量
+# Text Widget constants
 TEXT_DEFAULT_COLOR: str = "#323130"
 TITLE_LARGE_SIZE: str = "28px"
 TITLE_SMALL_SIZE: str = "20px"
@@ -36,119 +36,119 @@ SECTION_H3_SIZE: str = "20px"
 SECTION_H4_SIZE: str = "18px"
 SECTION_H5_SIZE: str = "16px"
 
-# 图表字体常量
+# Chart font constants
 CHINESE_FONTS: list[str] = ["SimHei", "Microsoft YaHei", "SimSun", "KaiTi", "FangSong"]
 FALLBACK_FONTS: list[str] = ["DejaVu Sans", "Arial", "sans-serif"]
 
 
 class EmailConfig:
-    """邮件配置管理类.
+    """Email configuration management class.
 
-    这个类负责管理EmailWidget库的所有配置选项，包括邮件样式、Widget配置等.
-    使用直接声明的常量提供配置值.
+    This class manages all configuration options for the EmailWidget library, including email styles, Widget configurations, etc.
+    Uses directly declared constants to provide configuration values.
 
     Examples:
         >>> config = EmailConfig()
         >>> print(config.get_primary_color())  # #0078d4
-        >>> config.get_email_title()  # 返回配置的标题
+        >>> config.get_email_title()  # Returns the configured title
     """
 
     def __init__(self):
-        """初始化配置管理器."""
+        """Initialize the configuration manager."""
         pass
 
     def get_output_dir(self) -> str:
-        """获取输出目录配置.
+        """Get output directory configuration.
 
         Returns:
-            输出目录路径字符串
+            Output directory path string
         """
         return str(OUTPUT_DIR)
 
     def get_primary_color(self) -> str:
-        """获取主色调配置.
+        """Get primary color configuration.
 
         Returns:
-            主色调的十六进制颜色值
+            Primary color hexadecimal value
         """
         return PRIMARY_COLOR
 
     def get_font_family(self) -> str:
-        """获取字体族配置.
+        """Get font family configuration.
 
         Returns:
-            CSS字体族字符串
+            CSS font family string
         """
         return FONT_FAMILY
 
     def get_max_width(self) -> str:
-        """获取最大宽度配置.
+        """Get maximum width configuration.
 
         Returns:
-            最大宽度的CSS值
+            Maximum width CSS value
         """
         return MAX_WIDTH
 
     def get_email_title(self) -> str:
-        """获取邮件默认标题.
+        """Get default email title.
 
         Returns:
-            邮件标题字符串
+            Email title string
         """
         return DEFAULT_TITLE
 
     def get_email_charset(self) -> str:
-        """获取邮件字符集配置.
+        """Get email charset configuration.
 
         Returns:
-            字符集名称
+            Charset name
         """
         return CHARSET
 
     def get_email_lang(self) -> str:
-        """获取邮件语言配置.
+        """Get email language configuration.
 
         Returns:
-            语言代码
+            Language code
         """
         return LANG
 
     def get_background_color(self) -> str:
-        """获取背景颜色配置.
+        """Get background color configuration.
 
         Returns:
-            背景颜色的十六进制值
+            Background color hexadecimal value
         """
         return BACKGROUND_COLOR
 
     def get_base_font_size(self) -> str:
-        """获取基础字体大小配置.
+        """Get base font size configuration.
 
         Returns:
-            字体大小的CSS值
+            Font size CSS value
         """
         return BASE_FONT_SIZE
 
     def get_line_height(self) -> str:
-        """获取行高配置.
+        """Get line height configuration.
 
         Returns:
-            行高的CSS值
+            Line height CSS value
         """
         return LINE_HEIGHT
 
-    # Widget相关配置
+    # Widget-related configuration
     def get_text_config(self, key: str, default: Any = None) -> Any:
-        """获取文本Widget的配置项.
+        """Get text Widget configuration item.
 
         Args:
-            key: 配置键名
-            default: 默认值
+            key: Configuration key name
+            default: Default value
 
         Returns:
-            配置值
+            Configuration value
         """
-        # 根据key返回对应的常量
+        # Return corresponding constant based on key
         text_config_map = {
             "default_color": TEXT_DEFAULT_COLOR,
             "title_large_size": TITLE_LARGE_SIZE,
@@ -163,23 +163,23 @@ class EmailConfig:
         return text_config_map.get(key, default)
 
     def get_chart_fonts(self) -> list[str]:
-        """获取图表中文字体列表.
+        """Get chart Chinese font list.
 
         Returns:
-            字体名称列表，包含中文字体和备用字体
+            Font name list, including Chinese fonts and fallback fonts
         """
         return CHINESE_FONTS + FALLBACK_FONTS
 
     def get_widget_config(self, widget_type: str, key: str, default: Any = None) -> Any:
-        """获取指定Widget类型的配置项.
+        """Get configuration item for specified Widget type.
 
         Args:
-            widget_type: Widget类型名称（如 "text", "chart", "table"）
-            key: 配置键名
-            default: 默认值
+            widget_type: Widget type name (e.g., "text", "chart", "table")
+            key: Configuration key name
+            default: Default value
 
         Returns:
-            配置值
+            Configuration value
 
         Examples:
             >>> config = EmailConfig()

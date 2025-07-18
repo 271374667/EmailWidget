@@ -1,4 +1,4 @@
-"""日志Widget实现"""
+"""Log Widget Implementation"""
 
 import re
 from abc import ABC, abstractmethod
@@ -13,11 +13,11 @@ if TYPE_CHECKING:
 
 
 class LogParser(ABC):
-    """日志解析器抽象基类。
+    """Log parser abstract base class.
 
-    这个抽象基类定义了所有日志解析器必须实现的接口。
-    每个具体的解析器都应该能够检查是否能解析特定格式的日志行，
-    并将其转换为LogEntry对象。
+    This abstract base class defines the interface that all log parsers must implement.
+    Each concrete parser should be able to check if it can parse a specific format of log line,
+    and convert it to a LogEntry object.
 
     Examples:
         ```python
@@ -27,8 +27,8 @@ class LogParser(ABC):
 
             def parse(self, log_line: str) -> Optional[LogEntry]:
                 if self.can_parse(log_line):
-                    # 解析逻辑
-                    return LogEntry("解析后的消息", LogLevel.INFO)
+                    # Parse logic
+                    return LogEntry("Parsed message", LogLevel.INFO)
                 return None
 
             @property
@@ -39,63 +39,63 @@ class LogParser(ABC):
 
     @abstractmethod
     def can_parse(self, log_line: str) -> bool:
-        """检查是否能解析该日志行。
+        """Check if this log line can be parsed.
 
         Args:
-            log_line (str): 待检查的日志行。
+            log_line (str): Log line to check.
 
         Returns:
-            bool: 如果可以解析返回True，否则返回False。
+            bool: True if can be parsed, False otherwise.
         """
         pass
 
     @abstractmethod
     def parse(self, log_line: str) -> Optional["LogEntry"]:
-        """解析日志行，返回LogEntry对象。
+        """Parse log line and return LogEntry object.
 
         Args:
-            log_line (str): 待解析的日志行。
+            log_line (str): Log line to parse.
 
         Returns:
-            Optional[LogEntry]: 解析成功返回LogEntry对象，失败返回None。
+            Optional[LogEntry]: LogEntry object if parsing succeeds, None if fails.
         """
         pass
 
     @property
     @abstractmethod
     def parser_name(self) -> str:
-        """解析器名称。
+        """Parser name.
 
         Returns:
-            str: 解析器的唯一名称标识。
+            str: Unique name identifier for the parser.
         """
         pass
 
 
 class LogEntry:
-    """表示单个日志条目的数据结构。
+    """Data structure representing a single log entry.
 
-    这个类用于封装从日志字符串中解析出来或手动创建的日志信息，
-    包括消息内容、日志级别、时间戳以及来源（模块、函数、行号）。
+    This class is used to encapsulate log information parsed from log strings or manually created,
+    including message content, log level, timestamp, and source (module, function, line number).
 
     Attributes:
-        message (str): 日志消息内容。
-        level (LogLevel): 日志级别，默认为 `LogLevel.INFO`。
-        timestamp (datetime): 日志记录的时间戳，默认为当前时间。
-        module (Optional[str]): 记录日志的模块名称。
-        function (Optional[str]): 记录日志的函数名称。
-        line_number (Optional[int]): 记录日志的代码行号。
+        message (str): Log message content.
+        level (LogLevel): Log level, defaults to `LogLevel.INFO`.
+        timestamp (datetime): Timestamp of the log record, defaults to current time.
+        module (Optional[str]): Name of the module that recorded the log.
+        function (Optional[str]): Name of the function that recorded the log.
+        line_number (Optional[int]): Line number where the log was recorded.
 
     Examples:
         ```python
         from datetime import datetime
         from email_widget.core.enums import LogLevel
 
-        # 创建一个信息级别的日志条目
-        info_log = LogEntry("用户登录成功", level=LogLevel.INFO, timestamp=datetime.now())
+        # Create an info-level log entry
+        info_log = LogEntry("User login successful", level=LogLevel.INFO, timestamp=datetime.now())
 
-        # 创建一个错误级别的日志条目，包含来源信息
-        error_log = LogEntry("数据库连接失败", level=LogLevel.ERROR,
+        # Create an error-level log entry with source information
+        error_log = LogEntry("Database connection failed", level=LogLevel.ERROR,
                              module="db_connector", function="connect", line_number=123)
         ```
     """
@@ -109,15 +109,15 @@ class LogEntry:
         function: str | None = None,
         line_number: int | None = None,
     ):
-        """初始化LogEntry。
+        """Initialize LogEntry.
 
         Args:
-            message (str): 日志消息内容。
-            level (LogLevel): 日志级别，默认为 `LogLevel.INFO`。
-            timestamp (Optional[datetime]): 日志记录的时间戳，默认为当前时间。
-            module (Optional[str]): 记录日志的模块名称。
-            function (Optional[str]): 记录日志的函数名称。
-            line_number (Optional[int]): 记录日志的代码行号。
+            message (str): Log message content.
+            level (LogLevel): Log level, defaults to `LogLevel.INFO`.
+            timestamp (Optional[datetime]): Timestamp of the log record, defaults to current time.
+            module (Optional[str]): Name of the module that recorded the log.
+            function (Optional[str]): Name of the function that recorded the log.
+            line_number (Optional[int]): Line number where the log was recorded.
         """
         self.message = message
         self.level = level
@@ -128,12 +128,12 @@ class LogEntry:
 
 
 class LoGuruLogParser(LogParser):
-    """Loguru格式日志解析器。
+    """Loguru format log parser.
 
-    解析Loguru库生成的日志格式：
+    Parses log formats generated by the Loguru library:
     "2024-07-07 10:30:00.123 | INFO | my_app.main:run:45 - Application started"
 
-    这是原有LogWidget默认支持的格式。
+    This is the format originally supported by LogWidget by default.
     """
 
     LOG_PATTERN = re.compile(
@@ -143,11 +143,11 @@ class LoGuruLogParser(LogParser):
     )
 
     def can_parse(self, log_line: str) -> bool:
-        """检查是否为Loguru格式的日志行"""
+        """Check if it's a Loguru format log line"""
         return bool(self.LOG_PATTERN.match(log_line.strip()))
 
     def parse(self, log_line: str) -> Optional["LogEntry"]:
-        """解析Loguru格式的日志行"""
+        """Parse Loguru format log line"""
         match = self.LOG_PATTERN.match(log_line.strip())
         if not match:
             return None
@@ -179,9 +179,9 @@ class LoGuruLogParser(LogParser):
 
 
 class StandardLoggingParser(LogParser):
-    """标准logging库格式日志解析器。
+    """Standard logging library format log parser.
 
-    解析Python标准库logging模块生成的日志格式：
+    Parses log formats generated by Python's standard library logging module:
     "WARNING:root:hello world"
     "ERROR:my_module:Connection failed"
     """
@@ -189,11 +189,11 @@ class StandardLoggingParser(LogParser):
     LOG_PATTERN = re.compile(r"(DEBUG|INFO|WARNING|ERROR|CRITICAL):([^:]*):(.+)")
 
     def can_parse(self, log_line: str) -> bool:
-        """检查是否为标准logging格式的日志行"""
+        """Check if it's a standard logging format log line"""
         return bool(self.LOG_PATTERN.match(log_line.strip()))
 
     def parse(self, log_line: str) -> Optional["LogEntry"]:
-        """解析标准logging格式的日志行"""
+        """Parse standard logging format log line"""
         match = self.LOG_PATTERN.match(log_line.strip())
         if not match:
             return None
@@ -218,9 +218,9 @@ class StandardLoggingParser(LogParser):
 
 
 class TimestampLogParser(LogParser):
-    """时间戳格式日志解析器。
+    """Timestamp format log parser.
 
-    解析带时间戳的简单日志格式：
+    Parses simple log format with timestamps:
     "2025-07-07 15:24:39,055 - WARNING - hello world"
     "2025-01-15 10:30:45,123 - ERROR - Connection timeout"
     """
@@ -230,11 +230,11 @@ class TimestampLogParser(LogParser):
     )
 
     def can_parse(self, log_line: str) -> bool:
-        """检查是否为时间戳格式的日志行"""
+        """Check if this is a timestamp format log line"""
         return bool(self.LOG_PATTERN.match(log_line.strip()))
 
     def parse(self, log_line: str) -> Optional["LogEntry"]:
-        """解析时间戳格式的日志行"""
+        """Parse timestamp format log line"""
         match = self.LOG_PATTERN.match(log_line.strip())
         if not match:
             return None
@@ -263,23 +263,23 @@ class TimestampLogParser(LogParser):
 
 
 class PlainTextParser(LogParser):
-    """纯文本日志解析器。
+    """Plain text log parser.
 
-    这是兜底解析器，将任何文本都视为INFO级别的日志消息。
-    输出格式使用 "> 文本内容" 的形式。
+    This is a fallback parser that treats any text as INFO level log messages.
+    Output format uses "> text content" format.
     """
 
     def can_parse(self, log_line: str) -> bool:
-        """纯文本解析器总是返回True，作为兜底解析器"""
+        """Plain text parser always returns True, as a fallback parser"""
         return True
 
     def parse(self, log_line: str) -> Optional["LogEntry"]:
-        """将任何文本解析为INFO级别的日志条目"""
+        """Parse any text as INFO level log entry"""
         text = log_line.strip()
         if not text:
             return None
 
-        # 使用 "> 文本内容" 格式
+        # Use "> text content" format
         message = f"> {text}"
 
         return LogEntry(
@@ -294,22 +294,22 @@ class PlainTextParser(LogParser):
 
 
 class LogWidget(BaseWidget):
-    """创建一个用于在邮件中优雅地显示日志信息的代码块。
+    """Create a code block for elegantly displaying log information in emails.
 
-    该微件特别适合展示程序运行日志、错误报告或任何需要按时间顺序和
-    严重性级别呈现的信息。它能够自动解析 `loguru` 格式的日志字符串，
-    并根据日志级别（如 INFO, WARNING, ERROR）以不同的颜色高亮显示，
-    使其内容清晰易读。
+    This widget is particularly suitable for displaying program runtime logs, error reports, or any
+    information that needs to be presented in chronological order and by severity level. It can automatically
+    parse `loguru` format log strings and highlight them in different colors based on log level
+    (such as INFO, WARNING, ERROR), making the content clear and readable.
 
-    核心功能:
-        - **Loguru 格式解析**: 自动解析包含时间戳、级别、来源和消息的日志行。
-        - **级别高亮**: 为不同的日志级别（DEBUG, INFO, WARNING, ERROR, CRITICAL）应用不同的颜色。
-        - **内容过滤**: 可以设置一个最低日志级别，只显示该级别及以上的日志。
-        - **显示控制**: 可以选择性地显示或隐藏时间戳、日志级别和来源信息。
-        - **滚动条**: 当日志内容超出预设的最大高度时，会自动显示滚动条。
+    Core features:
+        - **Loguru format parsing**: Automatically parses log lines containing timestamps, levels, sources, and messages.
+        - **Level highlighting**: Applies different colors for different log levels (DEBUG, INFO, WARNING, ERROR, CRITICAL).
+        - **Content filtering**: Can set a minimum log level to only display logs at that level and above.
+        - **Display control**: Can selectively show or hide timestamps, log levels, and source information.
+        - **Scrollbar**: Automatically displays a scrollbar when log content exceeds the preset maximum height.
 
     Examples:
-        接收一个 `loguru` 格式的日志列表并显示：
+        Receive a list of `loguru` format logs and display them:
 
         ```python
         from email_widget.widgets import LogWidget
@@ -325,13 +325,13 @@ class LogWidget(BaseWidget):
                       .set_title("Application Run Log")
                       .set_logs(log_messages)
                       .set_max_height("300px")
-                      .filter_by_level(LogLevel.WARNING)) # 只显示 WARNING 和 ERROR
+                      .filter_by_level(LogLevel.WARNING)) # Only show WARNING and ERROR
 
-        # 假设 email 是一个 Email 对象
+        # Assuming email is an Email object
         # email.add_widget(log_viewer)
         ```
 
-        通过 `add_log_entry` 方法逐条添加日志：
+        Add logs one by one using the `add_log_entry` method:
 
         ```python
         manual_log = (LogWidget()
@@ -341,7 +341,7 @@ class LogWidget(BaseWidget):
         ```
     """
 
-    # 模板定义
+    # Template definition
     TEMPLATE = """
     {% if logs %}
         <div style="{{ container_style }}">
@@ -367,10 +367,10 @@ class LogWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: str | None = None):
-        """初始化LogWidget。
+        """Initialize LogWidget.
 
         Args:
-            widget_id (Optional[str]): 可选的Widget ID。
+            widget_id (Optional[str]): Optional Widget ID.
         """
         super().__init__(widget_id)
         self._logs: list[LogEntry] = []
@@ -383,44 +383,44 @@ class LogWidget(BaseWidget):
         self._background_color: str = "#faf9f8"
         self._border_color: str = "#e1dfdd"
 
-        # 初始化解析器链，按优先级排序
+        # Initialize parser chain, sorted by priority
         self._log_parsers: list[LogParser] = [
             LoGuruLogParser(),
             StandardLoggingParser(),
             TimestampLogParser(),
-            PlainTextParser(),  # 兜底解析器，必须放在最后
+            PlainTextParser(),  # Fallback parser, must be placed last
         ]
 
     def set_log_level(self, level: LogLevel) -> "LogWidget":
-        """设置日志过滤级别。
+        """Set log filter level.
 
-        只有达到或高于此级别的日志才会被显示。
+        Only logs at or above this level will be displayed.
 
         Args:
-            level (LogLevel): 最低日志级别。
+            level (LogLevel): Minimum log level.
 
         Returns:
-            LogWidget: 返回self以支持链式调用。
+            LogWidget: Returns self to support method chaining.
 
         Examples:
-            >>> widget = LogWidget().set_log_level(LogLevel.WARNING) # 只显示WARNING及以上日志
+            >>> widget = LogWidget().set_log_level(LogLevel.WARNING) # Only show WARNING and above logs
         """
         self._filter_level = level
         return self
 
     def append_log(self, log: str) -> "LogWidget":
-        """追加单条日志字符串。
+        """Append a single log string.
 
-        日志字符串会被自动解析为 `LogEntry` 对象并添加到日志列表中。
+        The log string will be automatically parsed as a `LogEntry` object and added to the log list.
 
         Args:
-            log (str): 单条日志字符串。
+            log (str): Single log string.
 
         Returns:
-            LogWidget: 返回self以支持链式调用。
+            LogWidget: Returns self to support method chaining.
 
         Examples:
-            >>> widget = LogWidget().append_log("2024-07-07 10:00:00 | INFO | app:main - 应用启动")
+            >>> widget = LogWidget().append_log("2024-07-07 10:00:00 | INFO | app:main - Application started")
         """
         parsed_entry = self._parse_single_log(log)
         if parsed_entry:
@@ -428,15 +428,15 @@ class LogWidget(BaseWidget):
         return self
 
     def set_logs(self, logs: list[str]) -> "LogWidget":
-        """设置日志列表。
+        """Set log list.
 
-        此方法会清空现有日志，并解析新的日志字符串列表。
+        This method will clear existing logs and parse the new log string list.
 
         Args:
-            logs (List[str]): 日志字符串列表。
+            logs (List[str]): Log string list.
 
         Returns:
-            LogWidget: 返回self以支持链式调用。
+            LogWidget: Returns self to support method chaining.
 
         Examples:
             >>> logs = ["INFO: App started", "ERROR: Failed to connect"]
@@ -448,10 +448,10 @@ class LogWidget(BaseWidget):
         return self
 
     def clear(self) -> "LogWidget":
-        """清空所有日志。
+        """Clear all logs.
 
         Returns:
-            LogWidget: 返回self以支持链式调用。
+            LogWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = LogWidget().clear()
@@ -475,15 +475,15 @@ class LogWidget(BaseWidget):
         return self
 
     def set_max_height(self, height: str) -> "LogWidget":
-        """设置日志显示区域的最大高度。
+        """Set maximum height of the log display area.
 
-        当日志内容超出此高度时，将出现滚动条。
+        When log content exceeds this height, a scrollbar will appear.
 
         Args:
-            height (str): CSS高度值，如 "400px", "50vh"。
+            height (str): CSS height value, such as "400px", "50vh".
 
         Returns:
-            LogWidget: 返回self以支持链式调用。
+            LogWidget: Returns self to support method chaining.
 
         Examples:
             >>> widget = LogWidget().set_max_height("300px")
@@ -492,24 +492,24 @@ class LogWidget(BaseWidget):
         return self
 
     def filter_by_level(self, level: LogLevel) -> "LogWidget":
-        """按日志级别过滤显示。
+        """Filter display by log level.
 
-        只有级别等于或高于指定 `level` 的日志条目才会被显示。
+        Only log entries with level equal to or higher than the specified `level` will be displayed.
 
         Args:
-            level (LogLevel): 过滤的最低日志级别。
+            level (LogLevel): Minimum log level for filtering.
 
         Returns:
-            LogWidget: 返回self以支持链式调用。
+            LogWidget: Returns self to support method chaining.
 
         Examples:
-            >>> widget = LogWidget().filter_by_level(LogLevel.ERROR) # 只显示ERROR和CRITICAL日志
+            >>> widget = LogWidget().filter_by_level(LogLevel.ERROR) # Only show ERROR and CRITICAL logs
         """
         self._filter_level = level
         return self
 
     def show_timestamp(self, show: bool = True) -> "LogWidget":
-        """设置是否显示日志条目的时间戳。
+        """Set whether to display timestamps for log entries.
 
         Args:
             show (bool): 是否显示时间戳，默认为True。

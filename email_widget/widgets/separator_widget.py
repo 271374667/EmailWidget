@@ -1,4 +1,4 @@
-"""分隔符Widget实现"""
+"""Separator Widget Implementation"""
 
 from typing import Any
 
@@ -7,26 +7,26 @@ from email_widget.core.enums import SeparatorType, StatusType
 
 
 class SeparatorWidget(BaseWidget):
-    """创建一个分隔符，用于在邮件中分割不同的内容区块.
+    """Create a separator for dividing different content blocks in emails.
 
-    该微件可以创建不同样式的分隔线，包括实线、虚线和点线，
-    帮助组织邮件内容的层次结构，提升可读性。
+    This widget can create different styles of separator lines, including solid, dashed, and dotted lines,
+    helping organize email content hierarchy and improve readability.
 
-    核心功能:
-        - **多种样式**: 支持实线、虚线、点线三种分隔符样式.
-        - **颜色主题**: 支持基于StatusType的主题颜色配置.
-        - **灵活配置**: 可自定义颜色、粗细、宽度和边距.
-        - **邮件兼容**: 使用邮件客户端兼容的CSS实现.
+    Core features:
+        - **Multiple styles**: Supports solid, dashed, and dotted separator styles.
+        - **Color themes**: Supports theme color configuration based on StatusType.
+        - **Flexible configuration**: Customizable color, thickness, width, and margin.
+        - **Email compatibility**: Uses email client compatible CSS implementation.
 
     Attributes:
-        separator_type (SeparatorType): 分隔符类型.
-        color (str): 分隔符颜色.
-        thickness (str): 分隔符粗细.
-        width (str): 分隔符宽度.
-        margin (str): 上下边距.
+        separator_type (SeparatorType): Separator type.
+        color (str): Separator color.
+        thickness (str): Separator thickness.
+        width (str): Separator width.
+        margin (str): Top and bottom margin.
 
     Examples:
-        创建一个基础的实线分隔符：
+        Create a basic solid separator:
 
         ```python
         from email_widget.widgets import SeparatorWidget
@@ -34,11 +34,11 @@ class SeparatorWidget(BaseWidget):
 
         separator = SeparatorWidget().set_type(SeparatorType.SOLID)
 
-        # 假设 email 是一个 Email 对象
+        # Assuming email is an Email object
         # email.add_widget(separator)
         ```
 
-        创建一个带颜色的虚线分隔符：
+        Create a colored dashed separator:
 
         ```python
         colorful_separator = (SeparatorWidget()
@@ -47,7 +47,7 @@ class SeparatorWidget(BaseWidget):
                                .set_thickness("3px"))
         ```
 
-        创建一个占据50%宽度的点线分隔符：
+        Create a dotted separator with 50% width:
 
         ```python
         narrow_separator = (SeparatorWidget()
