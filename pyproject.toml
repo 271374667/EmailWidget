@@ -1,7 +1,7 @@
 [project]
 name = "EmailWidget"
-version = "0.22.1"
-description = "🚀 一个现代化、易用的Python邮件组件库，让你轻松创建美观的HTML邮件报告"
+version = "0.22.2"
+description = "🚀 A modern and user-friendly Python email component library that enables you to easily create beautiful HTML email reports"
 requires-python = ">=3.10"
 readme = "README.md"
 dependencies = [

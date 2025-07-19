@@ -83,7 +83,7 @@ from email_widget.widgets.text_widget import TextWidget
 from email_widget.widgets.timeline_widget import TimelineWidget
 
 # Version information
-__version__ = "0.22.1"
+__version__ = "0.22.2"
 __author__ = "PythonImporter"
 __email__ = "271374667@qq.com"
 
