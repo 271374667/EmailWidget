@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商运营数据仪表板</title>
+    
+        <style>
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            
+                padding: 20px;
+            
+                background-color: #faf9f8;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+            
+            .responsive-table {
+                display: table !important;
+            }
+        </style>
+        <![endif]-->
+        
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>电商运营数据仪表板</h1>
+            <div class="timestamp">生成时间: 2025年07月07日 23:56:58</div>
+        </div>
+        
+        <div class="email-body">
+            
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 28px; text-align: center; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 24px 0 16px 0">🛒 电商运营数据仪表板</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">报告周期: 2025-06-30 至 2025-07-07</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">1. 📊 核心指标概览</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+💰 总销售额
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">¥12,500,000</div>
+        </div>
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+📦 订单数量
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">8,547</div>
+        </div>
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+👥 活跃用户
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">125,000</div>
+        </div>
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+📈 转化率
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">3.2%</div>
+        </div>
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+💳 客单价
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">¥1,462</div>
+        </div>
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">2. 🏆 产品销售排行</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+    <div style="margin: 16px auto; width: 100%; max-width: 100%; padding: 0 5px; box-sizing: border-box;">
+        <!-- 使用表格布局实现居中对齐 -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0;">
+            <tr>
+                <td align="center" style="padding: 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="
+            width: 100%;
+            min-width: 400px;
+            max-width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            background: #ffffff;
+            margin: 0;
+            text-align: center;
+         border: 1px solid #e1dfdd;">
+                            <thead>
+                                <tr>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">产品名称</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">销售额</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">销量</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">毛利率</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">市场表现</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">智能手机</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">¥3,200,000</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">1,200台</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">22.5%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">🔥 热销</td>
+                                </tr>
+                                <tr style="background: #faf9f8; border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">笔记本电脑</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">¥4,800,000</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">800台</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">18.3%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">🔥 热销</td>
+                                </tr>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">平板电脑</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">¥2,100,000</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">1,050台</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">25.1%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">📈 良好</td>
+                                </tr>
+                                <tr style="background: #faf9f8; border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">智能手表</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">¥1,800,000</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">1,800台</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">35.2%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">📈 良好</td>
+                                </tr>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">耳机</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">¥600,000</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">2,000台</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">45.8%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">📊 一般</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">3. 🌐 销售渠道分析</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">🔹 官网直销</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">¥6,250,000 (3,500单)</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 50.0%;
+            height: 100%;
+            background: #107c10;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #323130;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">50.0%</div>
+        </div>
+    </div>
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">🔹 天猫旗舰店</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">¥3,750,000 (2,800单)</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 30.0%;
+            height: 100%;
+            background: #107c10;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #323130;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">30.0%</div>
+        </div>
+    </div>
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">🔹 京东店铺</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">¥1,875,000 (1,547单)</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 15.0%;
+            height: 100%;
+            background: #0078d4;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #323130;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">15.0%</div>
+        </div>
+    </div>
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">🔹 线下门店</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">¥625,000 (700单)</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 5.0%;
+            height: 100%;
+            background: #d13438;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #323130;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">5.0%</div>
+        </div>
+    </div>
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">4. 💡 运营策略建议</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <div style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">**基于数据分析的运营建议：**</p>
+                        <br/>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">🎯 **产品策略**</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 重点推广 笔记本电脑，销售额领先</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 提升高毛利产品推广：智能手表, 耳机</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 优化低转化产品的营销策略</p>
+                        <br/>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">📈 **渠道优化**</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 加强官网直销渠道建设，占比已达50%</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 增加京东店铺投入，提升市场份额</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 考虑开拓新的销售渠道</p>
+                        <br/>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">💰 **收益提升**</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 当前客单价¥1,462",</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 转化率3.2%有提升空间，优化用户体验</p>
+            </div>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+    </div>    </div>
+</body>
+</html>

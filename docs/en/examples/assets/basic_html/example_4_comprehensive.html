@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统监控周报</title>
+    
+        <style>
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            
+                padding: 20px;
+            
+                background-color: #faf9f8;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+            
+            .responsive-table {
+                display: table !important;
+            }
+        </style>
+        <![endif]-->
+        
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>系统监控周报</h1>
+            <div class="timestamp">生成时间: 2025年07月11日 23:07:46</div>
+        </div>
+        
+        <div class="email-body">
+            
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 28px; text-align: center; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 24px 0 16px 0">系统监控周报</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 12px; text-align: left; color: #8e8e93; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 8px 0">监控时间：2024年7月8日 - 2024年7月14日</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">5. 系统状态概览</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        <div style="
+            background: #dcfce7;
+            border: 1px solid #22c55e;
+            border-left: 4px solid #22c55e;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            color: #15803d;
+        ">
+            <!-- 标题行 -->
+                <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+                    <span style="margin-right: 8px; font-size: 18px;">💡</span>
+                    <span>提示</span>
+                </div>
+            
+            <!-- 内容 -->
+            <div style="line-height: 1.5; font-size: 14px;">Web服务运行正常，响应时间稳定</div>
+        </div>
+
+        <div style="
+            background: #dcfce7;
+            border: 1px solid #22c55e;
+            border-left: 4px solid #22c55e;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            color: #15803d;
+        ">
+            <!-- 标题行 -->
+                <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+                    <span style="margin-right: 8px; font-size: 18px;">💡</span>
+                    <span>提示</span>
+                </div>
+            
+            <!-- 内容 -->
+            <div style="line-height: 1.5; font-size: 14px;">数据库连接良好，查询性能优秀</div>
+        </div>
+
+        <div style="
+            background: #fed7aa;
+            border: 1px solid #f97316;
+            border-left: 4px solid #f97316;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            color: #ea580c;
+        ">
+            <!-- 标题行 -->
+                <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+                    <span style="margin-right: 8px; font-size: 18px;">⚠️</span>
+                    <span>警告</span>
+                </div>
+            
+            <!-- 内容 -->
+            <div style="line-height: 1.5; font-size: 14px;">缓存服务偶有延迟，建议关注</div>
+        </div>
+
+        <!--[if mso]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+        <![endif]-->
+        <div style="
+            text-align: center;
+            margin: 16px 0;
+            width: 100%;
+        ">
+            <div style="
+            width: 100%;
+            height: 0;
+            border-top: 1px solid #e1dfdd;
+            margin: 0 auto;
+            display: inline-block;
+        "></div>
+        </div>
+        <!--[if mso]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">6. 关键性能指标</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+    <div style="margin: 16px auto; width: 100%; max-width: 100%; padding: 0 5px; box-sizing: border-box;">
+        <!-- 使用表格布局实现居中对齐 -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0;">
+            <tr>
+                <td align="center" style="padding: 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="
+            width: 100%;
+            min-width: 400px;
+            max-width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            background: #ffffff;
+            margin: 0;
+            text-align: center;
+         border: 1px solid #e1dfdd;">
+                            <thead>
+                                <tr>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">指标</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">当前值</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">目标值</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">状态</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">CPU使用率</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">65%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">< 80%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">正常</td>
+                                </tr>
+                                <tr style="background: #faf9f8; border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">内存使用率</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">72%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">< 85%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">正常</td>
+                                </tr>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">磁盘使用率</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">45%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">< 90%</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">正常</td>
+                                </tr>
+                                <tr style="background: #faf9f8; border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">响应时间</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">120ms</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">< 200ms</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">优秀</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h3 style="font-size: 20px; text-align: left; color: #323130; line-height: 1.5; font-weight: 600; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 18px 0 10px 0">6.1. 资源使用情况</h3>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">CPU使用率</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 65.0%;
+            height: 100%;
+            background: #107c10;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">65.0%</div>
+        </div>
+    </div>
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">内存使用率</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 72.0%;
+            height: 100%;
+            background: #107c10;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">72.0%</div>
+        </div>
+    </div>
+
+    <div style="margin: 16px 0;">
+            <div style="
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        ">磁盘使用率</div>
+        <div style="
+            width: 100%;
+            height: 20px;
+            background: #e1dfdd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        ">
+            <div style="
+            width: 45.0%;
+            height: 100%;
+            background: #107c10;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        "></div>
+                <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: #323130;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        ">45.0%</div>
+        </div>
+    </div>
+
+        <!--[if mso]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+        <![endif]-->
+        <div style="
+            text-align: center;
+            margin: 16px 0;
+            width: 100%;
+        ">
+            <div style="
+            width: 100%;
+            height: 0;
+            border-top: 1px solid #e1dfdd;
+            margin: 0 auto;
+            display: inline-block;
+        "></div>
+        </div>
+        <!--[if mso]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">7. 总结与建议</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">本周系统运行稳定，各项指标均在正常范围内。建议：</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">1. 继续监控缓存服务性能</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">2. 优化数据库查询，进一步提升响应速度</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">3. 定期清理日志文件，保持磁盘空间充足</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        <div style="
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-left: 4px solid #f59e0b;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            color: #d97706;
+        ">
+            <!-- 标题行 -->
+                <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+                    <span style="margin-right: 8px; font-size: 18px;">❗</span>
+                    <span>重要</span>
+                </div>
+            
+            <!-- 内容 -->
+            <div style="line-height: 1.5; font-size: 14px;">下周计划进行系统维护，请提前做好准备！</div>
+        </div>
+
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+    </div>    </div>
+</body>
+</html>

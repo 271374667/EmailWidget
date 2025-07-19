@@ -1,5 +1,5 @@
-site_name: EmailWidget - 邮件组件库
-site_description: 一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过600+个测试用例验证，90%+代码覆盖率。
+site_name: EmailWidget
+site_description: A powerful and beautiful Python email component library for generating HTML email reports. Verified by 600+ test cases with 90%+ code coverage.
 site_author: PythonImporter
 site_url: https://271374667.github.io/EmailWidget/
 copyright: Copyright &copy; 2025 PythonImporter
@@ -16,7 +16,7 @@ theme:
         logo: material/email-outline
         repo: fontawesome/brands/github
     name: material
-    language: zh
+    language: en
     palette:
         # 切换到亮色
         - media: "(prefers-color-scheme: light)"
@@ -24,8 +24,6 @@ theme:
           primary: pink
           accent: pink
     features:
-        - navigation.instant
-        - navigation.instant.prefetch
         - navigation.tabs
         - navigation.tabs.sticky
         - navigation.tracking
@@ -107,77 +105,129 @@ markdown_extensions:
     - tables
 
 nav:
-    - 首页: index.md
-    - 快速开始:
+    - Home: index.md
+    - Getting Started:
         - getting-started/index.md
-        - 安装配置: getting-started/installation.md
-        - 第一个邮件: getting-started/first-email.md
-        - 基本概念: getting-started/concepts.md
-        - 常见问题: getting-started/faq.md
-    - 用户指南:
+        - Installation: getting-started/installation.md
+        - First Email: getting-started/first-email.md
+        - Basic Concepts: getting-started/concepts.md
+        - FAQ: getting-started/faq.md
+    - User Guide:
         - user-guide/index.md
-        - 核心类: user-guide/core-classes.md
-        - 组件概览: user-guide/widget-overview.md
-        - 文本组件: user-guide/text-widget.md
-        - 表格组件: user-guide/table-widget.md
-        - 图片组件: user-guide/image-widget.md
-        - 警告组件: user-guide/alert-widget.md
-        - 进度组件: user-guide/progress-widget.md
-        - 圆形进度组件: user-guide/circular-progress-widget.md
-        - 状态组件: user-guide/status-widget.md
-        - 卡片组件: user-guide/card-widget.md
-        - 引用组件: user-guide/quote-widget.md
-        - 按钮组件: user-guide/button-widget.md
-        - 分隔符组件: user-guide/separator-widget.md
-        - 清单组件: user-guide/checklist-widget.md
-        - 时间线组件: user-guide/timeline-widget.md
-        - 指标组件: user-guide/metric-widget.md
-        - 布局组件: user-guide/column-widget.md
-        - 图表组件: user-guide/chart-widget.md
-        - 日志组件: user-guide/log-widget.md
-    - API参考:
+        - Core Classes: user-guide/core-classes.md
+        - Widget Overview: user-guide/widget-overview.md
+        - Text Widget: user-guide/text-widget.md
+        - Table Widget: user-guide/table-widget.md
+        - Image Widget: user-guide/image-widget.md
+        - Alert Widget: user-guide/alert-widget.md
+        - Progress Widget: user-guide/progress-widget.md
+        - Circular Progress: user-guide/circular-progress-widget.md
+        - Status Widget: user-guide/status-widget.md
+        - Card Widget: user-guide/card-widget.md
+        - Quote Widget: user-guide/quote-widget.md
+        - Button Widget: user-guide/button-widget.md
+        - Separator Widget: user-guide/separator-widget.md
+        - Checklist Widget: user-guide/checklist-widget.md
+        - Timeline Widget: user-guide/timeline-widget.md
+        - Metric Widget: user-guide/metric-widget.md
+        - Column Widget: user-guide/column-widget.md
+        - Chart Widget: user-guide/chart-widget.md
+        - Log Widget: user-guide/log-widget.md
+    - API Reference:
         - api/index.md
-        - 核心模块: api/core.md
-        - Email主类: api/email.md
-        - 邮件发送器: api/email-sender.md
-        - 文本组件: api/text-widget.md
-        - 表格组件: api/table-widget.md
-        - 图片组件: api/image-widget.md
-        - 警告组件: api/alert-widget.md
-        - 进度组件: api/progress-widget.md
-        - 圆形进度组件: api/circular-progress-widget.md
-        - 状态组件: api/status-widget.md
-        - 卡片组件: api/card-widget.md
-        - 引用组件: api/quote-widget.md
-        - 按钮组件: api/button-widget.md
-        - 分隔符组件: api/separator-widget.md
-        - 清单组件: api/checklist-widget.md
-        - 时间线组件: api/timeline-widget.md
-        - 指标组件: api/metric-widget.md
-        - 布局组件: api/column-widget.md
-        - 图表组件: api/chart-widget.md
-        - 日志组件: api/log-widget.md
-    - 示例代码:
+        - Core Module: api/core.md
+        - Email Class: api/email.md
+        - Email Sender: api/email-sender.md
+        - Text Widget: api/text-widget.md
+        - Table Widget: api/table-widget.md
+        - Image Widget: api/image-widget.md
+        - Alert Widget: api/alert-widget.md
+        - Progress Widget: api/progress-widget.md
+        - Circular Progress: api/circular-progress-widget.md
+        - Status Widget: api/status-widget.md
+        - Card Widget: api/card-widget.md
+        - Quote Widget: api/quote-widget.md
+        - Button Widget: api/button-widget.md
+        - Separator Widget: api/separator-widget.md
+        - Checklist Widget: api/checklist-widget.md
+        - Timeline Widget: api/timeline-widget.md
+        - Metric Widget: api/metric-widget.md
+        - Column Widget: api/column-widget.md
+        - Chart Widget: api/chart-widget.md
+        - Log Widget: api/log-widget.md
+    - Examples:
         - examples/index.md
-        - 基础示例: examples/basic.md
-        - 数据报告: examples/data-reports.md
-        - 系统监控: examples/system-monitoring.md
-        - 爬虫报告: examples/spider-reports.md
-        - 实际应用: examples/real-world.md
-    - 开发指南:
+        - Basic Examples: examples/basic.md
+        - Data Reports: examples/data-reports.md
+        - System Monitoring: examples/system-monitoring.md
+        - Spider Reports: examples/spider-reports.md
+        - Real Applications: examples/real-world.md
+    - Development:
         - development/index.md
-        - 贡献指南: development/contributing.md
-        - 开发环境: development/setup.md
-        - 创建Widget: development/creating-widgets.md
-        - 测试指南: development/testing.md
-        - 发布流程: development/release.md
-    # - 更新日志: changelog.md
+        - Contributing: development/contributing.md
+        - Setup Environment: development/setup.md
+        - Creating Widgets: development/creating-widgets.md
+        - Testing Guide: development/testing.md
+        - Release Process: development/release.md
 
 plugins:
     - search:
         lang: ['zh', 'en']
         separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
-        
+    - i18n:
+        docs_structure: folder
+        languages:
+          - locale: en
+            default: true
+            name: English
+            build: true
+          - locale: zh
+            name: 简体中文
+            build: true
+            nav_translations:
+              Home: 首页
+              Getting Started: 快速开始
+              Installation: 安装配置
+              First Email: 第一个邮件
+              Basic Concepts: 基本概念
+              FAQ: 常见问题
+              User Guide: 用户指南
+              Core Classes: 核心类
+              Widget Overview: 组件概览
+              Text Widget: 文本组件
+              Table Widget: 表格组件
+              Image Widget: 图片组件
+              Alert Widget: 警告组件
+              Progress Widget: 进度组件
+              Circular Progress: 圆形进度组件
+              Status Widget: 状态组件
+              Card Widget: 卡片组件
+              Quote Widget: 引用组件
+              Button Widget: 按钮组件
+              Separator Widget: 分隔符组件
+              Checklist Widget: 清单组件
+              Timeline Widget: 时间线组件
+              Metric Widget: 指标组件
+              Column Widget: 布局组件
+              Chart Widget: 图表组件
+              Log Widget: 日志组件
+              API Reference: API参考
+              Core Module: 核心模块
+              Email Class: Email主类
+              Email Sender: 邮件发送器
+              Examples: 示例代码
+              Basic Examples: 基础示例
+              Data Reports: 数据报告
+              System Monitoring: 系统监控
+              Spider Reports: 爬虫报告
+              Real Applications: 实际应用
+              Development: 开发指南
+              Contributing: 贡献指南
+              Setup Environment: 开发环境
+              Creating Widgets: 创建Widget
+              Testing Guide: 测试指南
+              Release Process: 发布流程
+
     - mkdocstrings:
           handlers:
               python:

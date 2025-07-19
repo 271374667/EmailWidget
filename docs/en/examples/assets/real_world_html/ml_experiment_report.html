@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机器学习实验报告</title>
+    
+        <style>
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+            
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            
+                padding: 20px;
+            
+                background-color: #faf9f8;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+            .email-
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+            
+            .responsive-table {
+                display: table !important;
+            }
+        </style>
+        <![endif]-->
+        
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>机器学习实验报告</h1>
+            <div class="timestamp">生成时间: 2025年07月07日 23:58:57</div>
+        </div>
+        
+        <div class="email-body">
+            
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 28px; text-align: center; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 24px 0 16px 0">🧠 机器学习实验报告</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">实验目标: 用户购买意向预测模型</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <p style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">实验时间: 2025-07-07</p>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">1. 📊 实验概览</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+📊 数据集大小
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">125,000条</div>
+        </div>
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+⏱️ 训练时间
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">45.2分钟</div>
+        </div>
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+✂️ 验证集比例
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">20%</div>
+        </div>
+
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+         box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 18px; font-weight: 600; color: #323130; margin-bottom: 8px;">
+🔄 交叉验证
+                </h3>
+                <div style="color: #323130; line-height: 1.5; font-size: 14px;">5折</div>
+        </div>
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">2. 🏆 模型性能对比</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+    <div style="margin: 16px auto; width: 100%; max-width: 100%; padding: 0 5px; box-sizing: border-box;">
+        <!-- 使用表格布局实现居中对齐 -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin: 0;">
+            <tr>
+                <td align="center" style="padding: 0;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="
+            width: 100%;
+            min-width: 400px;
+            max-width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            background: #ffffff;
+            margin: 0;
+            text-align: center;
+         border: 1px solid #e1dfdd;">
+                            <thead>
+                                <tr>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">模型</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">准确率</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">精确率</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">召回率</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">F1分数</th>
+                                        <th style="
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #323130;
+         border-right: 1px solid #e1dfdd;">综合评价</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">Random Forest</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.892</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.885</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.898</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.891</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">🌟🌟🌟</td>
+                                </tr>
+                                <tr style="background: #faf9f8; border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">XGBoost</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.907</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.902</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.911</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.906</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">🌟🌟🌟🌟</td>
+                                </tr>
+                                <tr style=" border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">SVM</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.875</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.871</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.879</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.875</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">🌟🌟</td>
+                                </tr>
+                                <tr style="background: #faf9f8; border-bottom: 1px solid #e1dfdd;">
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">Neural Network</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.923</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.919</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.927</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">0.923</td>
+                                        <td style="padding: 8px; vertical-align: top; color: #323130; text-align: center; border-right: 1px solid #e1dfdd;">🌟🌟🌟🌟🌟</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">3. 🔍 特征重要性分析</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        <!--[if mso]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center">
+        <![endif]-->
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+            max-width: 100%;
+        ">
+                <h3 style="
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 12px;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        ">特征重要性分布</h3>
+            <div style="width: 100%; max-width: 100%; overflow-x: auto; text-align: center;">
+                <img src="data:image/png;base64,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v/pX/yoLFy7MgAEDMnny5OzYsSMPPfRQHn/88SxbtixnnXXW4Xw1AACgg3iyHACAbueOO+7IihUrcs4552TDhg158MEHs3LlysyePTvbt29PQ0NDm881adKk3H777VmyZElWrVrVpmPmz5+fhQsXpra2NuvWrcvChQvzs5/9LH//93+ft99+O1/60pfy7rvvHu7XAwAAOsARx/Kampo2/cydOzdJMnPmzDaNHzp0aKfOAQBA97Bnz57cc889SZL77rsv/fr127vv+uuvz5gxY/LEE0/k+eefb9P57rrrrtx888256KKLMnDgwDYdM3v27L3HDhkyZO/2K6+8MlOmTEljY2MeffTRtn4lAACgE7TLa1gWLVqU2traA+6/+uqrW32eNGlS5syZc8Dxzz77bG644YZOnwMAgKPfk08+mZ07d2bUqFEZN27cPvuvuuqqrFmzJosXL86ECRPaff6NGzfmpZdeSp8+fTJ58uT9zr9o0aIsXrw4V155ZbvPDwAAHJ52ieUjR4486B85Ov7441t97t+//0HHb9u2rSpzAABw9Gt5v/j48eP3u79l+wd9D/kHnf/jH/94jj322E6fHwAAODzeWQ4AQLeyZcuWJMnw4cP3u79le8u47jY/AABweMRyAAC6lTfffDPJvv/ysEXfvn1bjetu8wMAAIdHLAcAoFupVCpJfv9H4g+2v1rzAwAAXVO7vLO8u6uvr9/v9sbGxpx43JBOXg0AAAfTv3//JMlbb7213/1NTU1Jkn79+lVl/pbtHTU/AABweDxZDgBAtzJixIgkydatW/e7v2V7y7juNj8AAHB4PFneBmvXrt3v9vr6+ryx1bsmAQC6krFjxyZJVq1atd/9LdvHjBnTofO/+OKL2bNnT4499thOnR8AADg8niwHAKBbOe+883LCCSeksbExL7zwwj77Fy5cmCS59NJLO2T+kSNHZvTo0Xn77bfz+OOPd/r8AADA4RHLAQDoVnr16pVp06YlSaZNm9bq3eF333131qxZk/PPPz9nnnnm3u333ntv6urqctNNN7XLGq6//vokyQ033JDXX3997/aHH344ixYtysiRI3PFFVe0y1wAAED78BoWAAC6nVtuuSVLly7NihUrUltbm4kTJ2bz5s1ZuXJlBg0alPnz57cav2PHjqxfvz6vvfbaPueaN29e5s2blyTZvXt3kmTz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mTt3bpJk5syZbRo/dOjQTp0DAACovj179uSee+5Jktx3333p16/f3n3XX399xowZkyeeeCLPP/98m85311135eabb85FF12UgQMHHnL8v/gX/yILFizIuHHjWm0/4YQTMn/+/CTJ008/nc2bN7f1KwEAcJTo2R4nWbRoUWpraw+4/+qrr271edKkSZkzZ84Bxz/77LO54YYbOn0OAACgup588sns3Lkzo0aN2idYJ8lVV12VNWvWZPHixZkwYUKnru2kk07K4MGDs3379rz66qv58Ic/3KnzAwDQsdollo8cOfKgfyTn+OOPb/W5f//+Bx2/bdu2qswBAABUV8v7xceP3//fBWrZ/sfvIe8MO3fuzBtvvJEk/pUqAEA35J3lAABAl7Fly5YkyfDhw/e7v2V7y7jOdN999+Xdd9/NJz7xiYwcObLT5wcAoGOJ5QAAQJfx5ptvJtn3X4626Nu3b6txneWFF17IX//1XydJ/sN/+A+dOjcAAJ1DLAcAALqMSqWSJKmpqTno/s60bdu2fPazn01zc3Ouu+66XHLJJZ2+BgAAOl67vLO8u6uvr9/v9sbGxnz42GM6eTUAANB99e/fP0ny1ltv7Xd/U1NTkqRfv36dsp7/+3//by655JJs2rQpn/vc5zJ79uxOmRcAgM7nyXIAAKDLGDFiRJJk69at+93fsr1lXEd6++23c9lll+WXv/xlJk2alB/+8Ifp0cP/hQIA6K48Wd4Ga9eu3e/2+vr6vLtlU+cuBgAAurGxY8cmSVatWrXf/S3bx4wZ06HrePfdd/O5z30uP//5z3Puuefm4YcfTq9evTp0TgAAqstjEQAAQJdx3nnn5YQTTkhjY2NeeOGFffYvXLgwSXLppZd22BoqlUquueaaPP744/nkJz+Zxx9/fO8fFgUAoPsSywEAgC6jV69emTZtWpJk2rRprd5dfvfdd2fNmjU5//zzc+aZZ+7dfu+996auri433XRTu6xh+vTp+a//9b+mrq4uS5YsyYABA9rlvAAAdG1ewwIAAHQpt9xyS5YuXZoVK1aktrY2EydOzObNm7Ny5coMGjQo8+fPbzV+x44dWb9+fV577bV9zjVv3rzMmzcvSbJ79+4kyebNm3P22WfvHXP//fdn/PjxSZJHH30099xzT5LklFNOyTe/+c39rvHGG29MXV3dkX9ZAAC6DLEcAADo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4b6H/IN4+OGH89BDD+W9997LyJEjc9lllx3yj4MCAAfnneUAAADQBlu2bEmSDB8+fL/7W7a3jOtILa+DafGXf/mX+Yu/+IvMmTMnPXv6v/oAcDiO+J3lAAAAUII333wzyb7/srlF3759W43rCOPGjcvcuXOzYcOGNDU15eWXX859992XAQMG5P777883v/nNDpsbALo7sRwAAADaoFKpJElqamoOur8jTZ8+PV/72tdSW1ubPn36ZOTIkfn617+eJ554Ir169co999yTV155pcPXAQDdkX+b1Qb19fX73d7Y2JiRgzp5MQAAAFRF//79kyRvvfXWfvc3NTUlSfr169dpa2rx8Y9/PFOmTMnChQuzdOnSfPnLX+70NQDA0c6T5QAAANAGI0aMSJJs3bp1v/tbtreM62y1tbVJktdee60q8wPA0c6T5W2wdu3a/W6vr6/P+zvXd/JqAAAAqIaxY8cmSVatWrXf/S3bx4wZ02lr+kNvvPFGkuo82Q4A3YEnywEAAKANzjvvvJxwwglpbGzMCy+8sM/+hQsXJkkuvfTSzl5adu/enccffzxJMmHChE6fHwC6A7EcAAAA2qBXr16ZNm1akmTatGmt3l1+9913Z82aNTn//PNz5pln7t1+7733pq6uLjfddNMRz79+/fo8+uijee+991pt3759e77whS/klVdeydixY3Puuece8VwAUCKvYQEAAIA2uuWWW7J06dKsWLEitbW1mThxYjZv3pyVK1dm0KBBmT9/fqvxO3bsyPr16/f7HvF58+Zl3rx5SX7/ZHiSbN68OWefffbeMffff3/Gjx+f5PfvIr/iiisyaNCg1NXV5eSTT87rr7+e559/Prt27crw4cPzox/9KDU1NR319QGgWxPLAQAAoI169+6dZcuW5c4778yCBQvyyCOPZODAgZk6dWq+/e1v55RTTmnzubZu3ZqVK1e22tbc3Nxq2+9+97u9v5922mm57rrr8swzz6SxsTHPPvtsjjvuuJx22mm57LLLMn369AwcOPDIvyQAFEosBwAAgA+gT58+mTVrVmbNmnXIsTNnzszMmTM/8L79GTZsWL7zne+0eTwA8MF4ZzkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8drlneUbN25Mz54HPlVTU1Orz7t27cq6desOOH7Lli1VmQMAAAAAgDK1SyyfMmXKIcc0NDTs/X3JkiUZPXr0QccPGTKk0+cAAAAAAKBMNZVKpVLtRRyt6uvr8/7O9fnFrBOqvRQAAICq6veV31R7CQBAJ6mvr0+SrF27tsoraV/eWQ4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOL1rPYCjnY9Bpyefl9ZW+1lAAAAAABwBDxZDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFC8ntVewNGusXlbxj5/fbWXAQAAABRo9YS7q70EgG7Dk+UAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAgKNCc3NzZsyYkdNOOy29e/fOsGHD0tDQkK1bt36g8yxfvjy33XZbJk+enMGDB6empiZ1dXWHPO5//a//lS996Us56aSTctxxx+UjH/lIrr322uzYseNwvxLQhfSs9gIAAAAA4FCam5tz4YUXZsWKFTnppJNy+eWXZ9OmTZk/f34ee+yxPP300xk1alSbzjV9+vSsXr36A83/P//n/8xll12WpqamjB49Oueee25+9atf5d57782jjz6ap59+OieffPLhfDWgi/BkOQAAAABd3h133JEVK1bknHPOyYYNG/Lggw9m5cqVmT17drZv356GhoY2n2vSpEm5/fbbs2TJkqxateqQ45uamvLFL34xTU1NmTFjRl566aU89NBDWbduXa677rq88sor+epXv3okXw/oAo44ltfU1LTpZ+7cuUmSmTNntmn80KFDO3UOAAAAALqmPXv25J577kmS3HfffenXr9/efddff33GjBmTJ554Is8//3ybznfXXXfl5ptvzkUXXZSBAwcecvzDDz+c//N//k9OP/30fOtb39q7vUePHvmbv/mbnHzyyfnv//2/Z82aNR/wmwFdSbu8hmXRokWpra094P6rr7661edJkyZlzpw5Bxz/7LPP5oYbbuj0OQAAAADoep588sns3Lkzo0aNyrhx4/bZf9VVV2XNmjVZvHhxJkyY0O7zt0T4T33qU+nRo/Wzp8cdd1zOOeecLFy4MI8++mjGjBnT7vMDnaNdYvnIkSMP+kcQjj/++Faf+/fvf9Dx27Ztq8ocAAAAAHQ9Le8XHz9+/H73t2z/oO8hb6u33norSQ74FPqJJ57YofMDncM7ywEAAADo0rZs2ZIkGT58+H73t2xvGdfeBg8enCTZvHnzfve3bN+0aVOHzA90DrEcAAAAgC7tzTffTLLvmwVa9O3bt9W49vbP/tk/S5I8/vjj2bFjR6t9W7ZsybJly5Iku3bt6pD5gc4hlgMAAADQpVUqlSRJTU3NQfd3lIsuuihnnHFG3nzzzVxyySX5xS9+kTfffDNPPfVUPv3pT+f9999Pkn3eZw4cXdrlneXdXX19/X63NzY2Jif37eTVAAAAAJSlf//+Sf7fu8P/WFNTU5KkX79+HTJ/TU1NHn744UyePDnPPfdc/vRP/3TvvkGDBuVb3/pWvvWtbx3wnebA0UEsBwAAAKBLGzFiRJJk69at+93fsr1lXEc45ZRTsmrVqjz66KN56qmn0tTUlLq6unzpS1/KwoULkxz4gUvg6CCWt8HatWv3u72+vj6Nzds6eTUAAAAAZRk7dmySZNWqVfvd37J9zJgxHbqOnj175sorr8yVV17ZavvSpUuTJBdccEGHzg90LC9SAgAAAKBLO++883LCCSeksbExL7zwwj77W57svvTSSzt7afmnf/qnPPbYYxk0aFA++9nPdvr8QPsRywEAAADo0nr16pVp06YlSaZNm9bq3eV333131qxZk/PPPz9nnnnm3u333ntv6urqctNNN7XLGtauXZvm5uZW2xobG/OZz3wm77zzTmbPnp0+ffq0y1xAdXgNCwAAAABd3i233JKlS5dmxYoVqa2tzcSJE7N58+asXLkygwYNyvz581uN37FjR9avX5/XXnttn3PNmzcv8+bNS5Ls3r07SbJ58+acffbZe8fcf//9GT9+/N7P//E//sc88sgjGT9+fIYOHZrXXnstTz31VPbs2ZNbb701U6dO7YivDXQisRwAAACALq93795ZtmxZ7rzzzixYsCCPPPJIBg4cmKlTp+bb3/52TjnllDafa+vWrVm5cmWrbc3Nza22/e53v2u1/4orrsi2bduyevXqPPnkkxk4cGA+/elP57rrrvOucugmxHIAAAAAjgp9+vTJrFmzMmvWrEOOnTlzZmbOnPmB9x3IFVdckSuuuOIDHQMcXbyzHAAAAACA4onlAAAAAAAUTywHAAAAAKB47fLO8o0bN6ZnzwOfqqmpqdXnXbt2Zd26dQccv2XLlqrMAQAAAABAmdollk+ZMuWQYxoaGvb+vmTJkowePfqg44cMGdLpcwAAAAAAUKaaSqVSqfYijlb19fVpbN6W0380tdpLAQAA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8WoqlUql2os4WvXv3z979uzJqFGjqr0UAAAAAIBO0djYmGOPPTa7du2q9lLaVc9qL+Bo9vbbb8d/awDaW2NjY5L4D3FAu3N9ATqK6wvQEVxboOs69thj07dv32ovo92J5Ufg9NNPT5KsXbu2yisBupP6+vokri1A+3N9ATqK6wvQEVxbgM7mneUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxaiqVSqXaiwAAAAAAgGryZDkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFK+4WN7c3JwZM2bktNNOS+/evTNs2LA0NDRk69atH/hcO3fuzHXXXZcPf/jDOe644/LhD38406dPz86dOw94zPvvv5/vfve7+cQnPpE+ffpk8ODB+dznPpeXXnrpCL4VUG3VvLZcc801qampOeDP3Llzj/DbAdXUXteX5cuX57bbbsvkyZMzePDg1NTUpK6u7pDHuXeB7qua1xf3L9C9tcf1ZefOnVmwYEG++MUv5mMf+1j69u2b/v3756yzzsqcOXOyZ8+eAx7r/gU4XDWVSqVS7UV0lubm5lx44YVZsWJFTjrppEycODGbNm3Ks88+m8GDB+fpp5/OqFGj2nSu3/zmNznnnHPyT//0T/noRz+aM844I2vXrs3atWtz6qmn5plnnsmgQYNaHVOpVPL5z38+CxcuzIABA3LhhRdmx44deeKJJ9K7d+8sW7YsZ511Vkd8daADVfvacs011+QHP/hBLr744gwdOnSfc06dOjX//J//83b5rkDnas/ryyc/+cmsXr261bbTTz8969atO+Ax7l2g+6r29cX9C3Rf7XV9ueWWW3L77benR48eGTduXE499dRs3749Tz31VHbv3p3zzz8///iP/5jjjz++1XHuX4AjUinIrbfeWklSOeeccyq7du3au3327NmVJJVPfepTbT7Xv/k3/6aSpPLZz362smfPnr3br7322kqSytVXX73PMX/7t39bSVKpra2tbNu2be/2hQsXVpJURo0a1epcwNGh2teWqVOnVpJUli1bdkTfA+h62vP68s1vfrNy++23V5YsWVJZtWpVJUnl9NNPP+gx7l2g+6r29cX9C3Rf7XV9ufPOOys333xzZevWra22b9iwoTJixIhK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" alt="图表" 
+                     style="
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 8px 0;
+        " 
+                     width="" 
+                     height="" />
+            </div>
+                <p style="
+            font-size: 14px;
+            color: #605e5c;
+            margin: 12px 0;
+            line-height: 1.5;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        ">显示各特征对模型预测结果的影响程度</p>
+        </div>
+        <!--[if mso]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">4. 📝 实验结论</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+            <div style="font-size: 14px; text-align: left; color: #323130; line-height: 1.5; font-weight: normal; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 16px 0">
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">**实验结论与建议：**</p>
+                        <br/>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">🏆 **最优模型**</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• Neural Network 表现最佳，F1分数达到 0.923</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 建议作为生产环境的主要模型</p>
+                        <br/>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">🔍 **关键发现**</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 用户年龄 是最重要的预测特征 (重要性: 0.23)</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 模型整体性能稳定，各指标均衡</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 交叉验证结果一致，模型泛化能力强</p>
+                        <br/>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">🚀 **后续工作**</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 进行超参数优化，进一步提升性能</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 收集更多样本数据，特别是边缘案例</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 开发模型解释性工具，提高业务可理解性</p>
+                        <p style="margin: 4px 0; font-family: Arial, sans-serif;">• 建立A/B测试框架，验证线上效果</p>
+            </div>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        <div style="
+            background: #dcfce7;
+            border: 1px solid #22c55e;
+            border-left: 4px solid #22c55e;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            color: #15803d;
+        ">
+            <!-- 标题行 -->
+                <div style="display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; font-size: 16px;">
+                    <span style="margin-right: 8px; font-size: 18px;">💡</span>
+                    <span>✅ 部署建议</span>
+                </div>
+            
+            <!-- 内容 -->
+            <div style="line-height: 1.5; font-size: 14px;">Neural Network 模型性能优秀，建议部署到生产环境</div>
+        </div>
+
+        </div>
+        
+        <div class="email-footer">
+            <p>此邮件由 EmailWidget 自动生成</p>
+        </div>
+    </div>    </div>
+</body>
+</html>
