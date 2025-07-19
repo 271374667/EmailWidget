@@ -22,11 +22,11 @@ The email style below can be created with just **3 lines of code**, and the gene
 ```python
 from email_widget import Email
 
-email = Email("Welcome to EmailWidget")
+email = Email("欢迎使用EmailWidget")
 
-email.add_card("Python Version", "You need Python 3.10 or above to use EmailWidget", metadata={"Python Version": "3.10+"})
+email.add_card("Python版本", "您需要Python3.10或以上才能使用EmailWidget", metadata={"Python版本": "3.10+"})
 
-email.add_quote("EmailWidget is a Python library for building and sending HTML emails.", "EmailWidget")
+email.add_quote("EmailWidget是一个用于构建和发送HTML邮件的Python库。", "EmailWidget")
 
 email.export_html('welcome_email.html')
 ```
@@ -47,25 +47,25 @@ pip install EmailWidget
 from email_widget import Email, TextWidget, ProgressWidget
 from email_widget.core.enums import TextType, ProgressTheme
 
-# Create email
-email = Email("📊 Business Report")
+# 创建邮件
+email = Email("📊 业务报告")
 
-# Add title
+# 添加标题
 email.add_widget(
     TextWidget()
-    .set_content("Quarterly Performance Summary")
+    .set_content("季度业绩总结")
     .set_type(TextType.TITLE_LARGE)
 )
 
-# Add progress indicator
+# 添加进度指标
 email.add_widget(
     ProgressWidget()
     .set_value(92)
-    .set_label("Goal Completion Rate")
+    .set_label("目标完成率")
     .set_theme(ProgressTheme.SUCCESS)
 )
 
-# Export HTML
+# 导出HTML
 email.export_html("report.html")
 ```
 
@@ -183,22 +183,22 @@ email.export_html("report.html")
 === "Text Component"
     
     ```python
-    # 8 preset styles
+    # 8种预设样式
     email.add_widget(
         TextWidget()
-        .set_content("Large Title")
+        .set_content("大标题")
         .set_type(TextType.TITLE_LARGE)
     )
     
     email.add_widget(
         TextWidget()
-        .set_content("Section Title")
+        .set_content("章节标题")
         .set_type(TextType.SECTION_H2)
     )
     
     email.add_widget(
         TextWidget()
-        .set_content("Body content, supports multi-line text and automatic formatting.")
+        .set_content("正文内容，支持多行文本和自动格式化。")
         .set_type(TextType.BODY)
     )
     ```
@@ -208,13 +208,13 @@ email.export_html("report.html")
 === "Table Component"
 
     ```python
-    # Direct DataFrame import
-    table = TableWidget().set_title("Sales Data")
+    # DataFrame直接导入
+    table = TableWidget().set_title("销售数据")
     table.set_dataframe(df)
     
-    # Manual row addition
+    # 手动添加行
     table = TableWidget()
-    table.set_headers(["Product", "Sales", "Status"])
+    table.set_headers(["产品", "销量", "状态"])
     table.add_row(["iPhone", "1000", "success"])
     table.add_row(["iPad", "800", "warning"])
     
@@ -226,16 +226,16 @@ email.export_html("report.html")
 === "Chart Component"
 
     ```python
-    # matplotlib charts
+    # matplotlib图表
     fig, ax = plt.subplots()
     ax.plot([1, 2, 3, 4], [1, 4, 2, 3])
-    ax.set_title("Trend Chart")
+    ax.set_title("趋势图")
     
     email.add_widget(
         ChartWidget()
         .set_chart(plt)
-        .set_title("Data Trends")
-        .set_description("Shows business metric trends")
+        .set_title("数据趋势")
+        .set_description("显示业务指标变化趋势")
     )
     ```
     
@@ -246,19 +246,19 @@ email.export_html("report.html")
 === "Progress Component"
     
     ```python
-    # Linear progress bar
+    # 线性进度条
     email.add_widget(
         ProgressWidget()
         .set_value(75)
-        .set_label("Project Progress")
+        .set_label("项目进度")
         .set_theme(ProgressTheme.PRIMARY)
     )
     
-    # Circular progress bar
+    # 圆形进度条
     email.add_widget(
         CircularProgressWidget()
         .set_value(85)
-        .set_label("Completion Rate")
+        .set_label("完成率")
     )
     ```
     
@@ -267,18 +267,18 @@ email.export_html("report.html")
 === "Status Component"
     
     ```python
-    # Status card
+    # 状态卡片
     email.add_widget(
         CardWidget()
-        .set_title("System Status")
-        .set_content("All services running normally")
+        .set_title("系统状态")
+        .set_content("所有服务正常运行")
         .set_icon("✅")
     )
     
-    # Status list
+    # 状态列表
     status_items = [
-        {"label": "Database", "status": "success", "value": "Connection stable"},
-        {"label": "API", "status": "warning", "value": "Response time high"}
+        {"label": "数据库", "status": "success", "value": "连接稳定"},
+        {"label": "API", "status": "warning", "value": "响应时间较长"}
     ]
     email.add_status_items(status_items)
     ```
@@ -288,20 +288,20 @@ email.export_html("report.html")
 === "Notification Component"
     
     ```python
-    # Alert box
+    # 警告框
     email.add_widget(
         AlertWidget()
-        .set_content("System maintenance notification")
+        .set_content("系统维护通知")
         .set_alert_type(AlertType.WARNING)
-        .set_title("Important Notice")
+        .set_title("重要提醒")
     )
     
-    # Quote style
+    # 引用样式
     email.add_widget(
         QuoteWidget()
-        .set_content("Data is the new oil")
+        .set_content("数据是新时代的石油")
         .set_author("Clive Humby")
-        .set_source("Data Scientist")
+        .set_source("数据科学家")
     )
     ```
     

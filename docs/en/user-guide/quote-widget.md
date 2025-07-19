@@ -22,33 +22,33 @@ QuoteWidget is a component specifically designed for displaying quoted content, 
 from email_widget import Email
 from email_widget.widgets import QuoteWidget
 
-# Create basic quote
+# 创建基础引用
 quote = QuoteWidget()
-quote.set_content("Knowledge is power, learning is endless.")
-quote.set_author("Francis Bacon")
-quote.set_source("Essays")
+quote.set_content("知识就是力量，学习永无止境。")
+quote.set_author("培根")
+quote.set_source("《随笔集》")
 
-email = Email("Quote Example")
+email = Email("引用示例")
 email.add_widget(quote)
 ```
 
 ### Advanced Usage
 
 ```python
-# Quote with theme
+# 带主题的引用
 quote = QuoteWidget()
-quote.set_content("Success is not final, failure is not fatal: it is the courage to continue that counts.")
-quote.set_author("Winston Churchill")
+quote.set_content("成功不是终点，失败不是致命的，重要的是继续前进的勇气。")
+quote.set_author("温斯顿·丘吉尔")
 quote.set_theme("success")
 
 email.add_widget(quote)
 
-# Set all information at once
+# 一次性设置所有信息
 quote2 = QuoteWidget()
 quote2.set_quote(
-    content="Code is poetry, simple and elegant.",
-    author="A Programmer",
-    source="Programming Insights"
+    content="代码如诗，简洁而优雅。",
+    author="某位程序员",
+    source="编程感悟"
 )
 ```
 
@@ -71,22 +71,22 @@ quote2.set_quote(
 from email_widget import Email
 from email_widget.widgets import QuoteWidget
 
-email = Email("User Feedback Summary")
+email = Email("用户反馈汇总")
 
-# Positive feedback
+# 正面反馈
 positive_quote = QuoteWidget()
-positive_quote.set_content("This product is really great! The interface is clean, powerful features, completely meets our needs.")
-positive_quote.set_author("Manager Li")
-positive_quote.set_source("Company Customer")
+positive_quote.set_content("这个产品真的很棒！界面简洁，功能强大，完全满足了我们的需求。")
+positive_quote.set_author("李经理")
+positive_quote.set_source("某公司客户")
 positive_quote.set_theme("success")
 
 email.add_widget(positive_quote)
 
-# Improvement suggestions
+# 改进建议
 suggestion_quote = QuoteWidget()
-suggestion_quote.set_content("The product is good overall, but there's room for improvement in mobile experience.")
-suggestion_quote.set_author("Director Zhang")
-suggestion_quote.set_source("User Research")
+suggestion_quote.set_content("产品整体不错，但是在移动端的体验还有提升空间。")
+suggestion_quote.set_author("张总监")
+suggestion_quote.set_source("用户调研")
 suggestion_quote.set_theme("warning")
 
 email.add_widget(suggestion_quote)
@@ -100,13 +100,13 @@ email.add_widget(suggestion_quote)
 from email_widget import Email
 from email_widget.widgets import QuoteWidget
 
-email = Email("Project Documentation")
+email = Email("项目文档")
 
-# Important statement
+# 重要声明
 important_quote = QuoteWidget()
-important_quote.set_content("This system involves sensitive data, all operators must strictly follow data security regulations.")
-important_quote.set_author("Technical Department")
-important_quote.set_source("Security Regulation Document")
+important_quote.set_content("本系统涉及敏感数据，所有操作人员必须严格遵守数据安全规范。")
+important_quote.set_author("技术部")
+important_quote.set_source("安全规范文档")
 important_quote.set_theme("error")
 
 email.add_widget(important_quote)
@@ -119,11 +119,11 @@ email.add_widget(important_quote)
 The Email class provides the `add_quote` shortcut method:
 
 ```python
-# Shortcut method with parameters
+# 带参数的快捷方法
 email.add_quote(
-    content="Innovation is the driving force of enterprise development",
-    author="A CEO", 
-    source="Annual Report",
+    content="创新是企业发展的源动力",
+    author="某CEO", 
+    source="企业年报",
     theme="info"
 )
 ```
@@ -133,7 +133,7 @@ email.add_quote(
 ### Q: Can I set only content without setting author?
 A: Yes, both author and source are optional:
 ```python
-quote.set_content("This is an unsigned quote.")
+quote.set_content("这是一句没有署名的引用。")
 ```
 
 ### Q: How to clear already set author information?

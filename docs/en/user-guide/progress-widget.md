@@ -80,7 +80,7 @@ Sets the progress bar label.
 ```python
 progress = (ProgressWidget()
     .set_value(60)
-    .set_label("Download Progress"))
+    .set_label("下载Progress"))
 ```
 
 ### `set_theme(theme: ProgressTheme)`
@@ -89,7 +89,7 @@ Sets the progress bar theme color.
 ```python
 from email_widget.core.enums import ProgressTheme
 
-# Different themed progress bars
+# 不同主题的Progress条
 primary = ProgressWidget().set_value(50).set_theme(ProgressTheme.PRIMARY)
 success = ProgressWidget().set_value(95).set_theme(ProgressTheme.SUCCESS)
 warning = ProgressWidget().set_value(80).set_theme(ProgressTheme.WARNING)
@@ -100,10 +100,10 @@ error = ProgressWidget().set_value(15).set_theme(ProgressTheme.ERROR)
 Controls whether to display percentage text.
 
 ```python
-# Hide percentage
+# 隐藏Percentage
 progress = (ProgressWidget()
     .set_value(45)
-    .set_label("Processing Progress")
+    .set_label("处理Progress")
     .show_percentage(False))
 ```
 
@@ -112,8 +112,8 @@ Increases progress value.
 
 ```python
 progress = ProgressWidget().set_value(50)
-progress.increment(10)  # Now 60
-progress.increment()    # Now 61 (default increase by 1)
+progress.increment(10)  # 现在是60
+progress.increment()    # 现在是61（默认增加1）
 ```
 
 ### `decrement(amount: float = 1.0)`
@@ -121,7 +121,7 @@ Decreases progress value.
 
 ```python
 progress = ProgressWidget().set_value(50)
-progress.decrement(5)   # Now 45
+progress.decrement(5)   # 现在是45
 ```
 
 ### `reset()`
@@ -129,7 +129,7 @@ Resets progress to 0.
 
 ```python
 progress = ProgressWidget().set_value(80)
-progress.reset()  # Now 0
+progress.reset()  # 现在是0
 ```
 
 ### `complete()`
@@ -137,7 +137,7 @@ Sets to complete status (100%).
 
 ```python
 progress = ProgressWidget().set_value(80)
-progress.complete()  # Now 100%
+progress.complete()  # 现在是100%
 ```
 
 ## Practical Examples
@@ -148,41 +148,41 @@ progress.complete()  # Now 100%
 from email_widget.widgets import ProgressWidget
 from email_widget.core.enums import ProgressTheme
 
-# Basic progress bar
+# 基本Progress条
 basic = (ProgressWidget()
     .set_value(65)
-    .set_label("Task Completion")
+    .set_label("TaskComplete度")
     .set_theme(ProgressTheme.PRIMARY))
 
-# Success status progress bar
+# 成功StatusProgress条
 success = (ProgressWidget()
     .set_value(95)
-    .set_label("Test Pass Rate")
+    .set_label("测试通过率")
     .set_theme(ProgressTheme.SUCCESS))
 
-# Warning status progress bar
+# AlertStatusProgress条
 warning = (ProgressWidget()
     .set_value(85)
-    .set_label("Memory Usage")
+    .set_label("内存使用率")
     .set_theme(ProgressTheme.WARNING))
 ```
 
 ### Custom Styling
 
 ```python
-# Custom size and color
+# 自定义尺寸和颜色
 custom = (ProgressWidget()
     .set_value(70)
-    .set_label("Custom Progress Bar")
+    .set_label("自定义Progress条")
     .set_width("80%")
     .set_height("24px")
     .set_border_radius("12px")
     .set_background_color("#f0f0f0"))
 
-# No percentage display
+# 无Percentage显示
 no_percent = (ProgressWidget()
     .set_value(40)
-    .set_label("Silent Progress")
+    .set_label("静默Progress")
     .show_percentage(False)
     .set_theme(ProgressTheme.INFO))
 ```
@@ -190,68 +190,68 @@ no_percent = (ProgressWidget()
 ### System Monitoring Scenarios
 
 ```python
-# CPU usage
+# CPU使用率
 cpu_usage = (ProgressWidget()
     .set_value(45)
-    .set_label("CPU Usage")
+    .set_label("CPU使用率")
     .set_theme(ProgressTheme.SUCCESS))
 
-# Memory usage (warning status)
+# 内存使用率（AlertStatus）
 memory_usage = (ProgressWidget()
     .set_value(78)
-    .set_label("Memory Usage")
+    .set_label("内存使用率")
     .set_theme(ProgressTheme.WARNING))
 
-# Disk usage (danger status)
+# 磁盘使用率（危险Status）
 disk_usage = (ProgressWidget()
     .set_value(92)
-    .set_label("Disk Usage")
+    .set_label("磁盘使用率")
     .set_theme(ProgressTheme.ERROR))
 ```
 
 ### Task Progress Management
 
 ```python
-# Project progress
+# ProjectProgress
 project_progress = (ProgressWidget()
     .set_value(0)
-    .set_label("Project Total Progress")
+    .set_label("Project总Progress")
     .set_theme(ProgressTheme.PRIMARY))
 
-# Simulate task progress updates
+# 模拟TaskProgress更新
 project_progress.increment(25)  # 25%
 project_progress.increment(30)  # 55%
 project_progress.increment(20)  # 75%
 
-# Data processing progress
+# Data处理Progress
 data_processing = (ProgressWidget()
     .set_value(1250)
     .set_max_value(2000)
-    .set_label("Data Processing Progress")
+    .set_label("Data处理Progress")
     .set_theme(ProgressTheme.INFO))  # 62.5%
 ```
 
 ### Business Metrics Display
 
 ```python
-# Sales target completion
+# 销售目标Complete度
 sales_target = (ProgressWidget()
     .set_value(1250000)
-    .set_max_value(1000000)  # Over-achieved
-    .set_label("Monthly Sales Target")
+    .set_max_value(1000000)  # 超额Complete
+    .set_label("月度销售目标")
     .set_theme(ProgressTheme.SUCCESS))  # 125%
 
-# User satisfaction
+# 用户满意度
 satisfaction = (ProgressWidget()
     .set_value(88)
-    .set_label("User Satisfaction")
+    .set_label("用户满意度")
     .set_theme(ProgressTheme.SUCCESS))
 
-# Task completion rate
+# TaskComplete率
 task_completion = (ProgressWidget()
     .set_value(156)
     .set_max_value(200)
-    .set_label("Weekly Task Completion Rate")
+    .set_label("本周TaskComplete率")
     .set_theme(ProgressTheme.PRIMARY))  # 78%
 ```
 
@@ -270,7 +270,7 @@ task_completion = (ProgressWidget()
 ### Theme Selection Guide
 
 ```python
-# Choose appropriate theme based on progress value
+# 根据Progress值选择合适的主题
 def get_progress_theme(value, max_value=100):
     percentage = (value / max_value) * 100
     
@@ -283,7 +283,7 @@ def get_progress_theme(value, max_value=100):
     else:
         return ProgressTheme.ERROR
 
-# Usage example
+# 使用示例
 progress_value = 85
 theme = get_progress_theme(progress_value)
 progress = ProgressWidget().set_value(progress_value).set_theme(theme)
@@ -293,40 +293,40 @@ progress = ProgressWidget().set_value(progress_value).set_theme(theme)
 
 ### 1. Choose Appropriate Theme
 ```python
-# ✅ Good practice: Choose theme based on progress status
+# ✅ 好的做法：根据ProgressStatus选择主题
 low_progress = ProgressWidget().set_value(25).set_theme(ProgressTheme.ERROR)
 medium_progress = ProgressWidget().set_value(60).set_theme(ProgressTheme.WARNING)
 high_progress = ProgressWidget().set_value(90).set_theme(ProgressTheme.SUCCESS)
 
-# ❌ Avoid: Using same theme for all progress bars
+# ❌ 避免：所有Progress条都使用同一主题
 ```
 
 ### 2. Provide Clear Labels
 ```python
-# ✅ Good practice: Descriptive labels
-progress = ProgressWidget().set_value(75).set_label("Data Sync Progress")
+# ✅ 好的做法：描述性的标签
+progress = ProgressWidget().set_value(75).set_label("Data同步Progress")
 
-# ❌ Avoid: Vague labels
+# ❌ 避免：模糊的标签
 progress = ProgressWidget().set_value(75).set_label("Progress")
 ```
 
 ### 3. Set Reasonable Maximum Values
 ```python
-# ✅ Good practice: Set maximum value based on actual scenario
-file_progress = ProgressWidget().set_value(512).set_max_value(1024).set_label("File Download")  # MB
-task_progress = ProgressWidget().set_value(8).set_max_value(10).set_label("Task Completion")      # count
+# ✅ 好的做法：根据实际场景设置最大值
+file_progress = ProgressWidget().set_value(512).set_max_value(1024).set_label("文件下载")  # MB
+task_progress = ProgressWidget().set_value(8).set_max_value(10).set_label("TaskComplete")      # 个
 
-# ✅ Good practice: Use default maximum value 100 for percentage scenarios
-percent_progress = ProgressWidget().set_value(85).set_label("Completion Rate")
+# ✅ 好的做法：Percentage场景使用默认最大值100
+percent_progress = ProgressWidget().set_value(85).set_label("Complete率")
 ```
 
 ### 4. Show Percentage Appropriately
 ```python
-# ✅ Good practice: Show percentage for important progress
-important = ProgressWidget().set_value(90).set_label("Critical Task").show_percentage(True)
+# ✅ 好的做法：重要Progress显示Percentage
+important = ProgressWidget().set_value(90).set_label("关键Task").show_percentage(True)
 
-# ✅ Good practice: Hide percentage for decorative progress
-decorative = ProgressWidget().set_value(60).set_label("Overall Status").show_percentage(False)
+# ✅ 好的做法：装饰性Progress隐藏Percentage
+decorative = ProgressWidget().set_value(60).set_label("整体Status").show_percentage(False)
 ```
 
 ## Common Issues

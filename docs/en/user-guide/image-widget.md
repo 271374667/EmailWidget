@@ -23,34 +23,34 @@ ImageWidget is a component specifically designed for displaying images in emails
 from email_widget import Email
 from email_widget.widgets import ImageWidget
 
-# Create basic image widget
+# 创建基础图片组件
 image = ImageWidget()
 image.set_image_url("./charts/sales.png")
-image.set_title("Sales Data Chart")
-image.set_description("2024 quarterly sales data comparison analysis")
+image.set_title("销售数据图表")
+image.set_description("2024年各季度销售数据对比分析")
 
-email = Email("Data Report")
+email = Email("数据报告")
 email.add_widget(image)
 ```
 
 ### Advanced Usage
 
 ```python
-# Image with styling and cache control
+# 带样式和缓存控制的图片
 image = (ImageWidget()
          .set_image_url("https://example.com/chart.png", cache=True)
-         .set_title("Online Chart")
+         .set_title("在线图表")
          .set_size(width="600px")
          .set_border_radius("8px")
          .set_max_width("100%")
-         .set_alt_text("Sales trend chart"))
+         .set_alt_text("销售趋势图表"))
 
 email.add_widget(image)
 
-# Local file image
+# 本地文件图片
 local_image = (ImageWidget()
                .set_image_url("./reports/monthly_report.jpg")
-               .set_title("Monthly Report")
+               .set_title("月度报告")
                .set_size(width="400px", height="300px"))
 ```
 
@@ -80,23 +80,23 @@ local_image = (ImageWidget()
 from email_widget import Email
 from email_widget.widgets import ImageWidget
 
-email = Email("Business Data Report")
+email = Email("业务数据报告")
 
-# Main data chart
+# 主要数据图表
 main_chart = (ImageWidget()
               .set_image_url("./charts/sales_trend.png")
-              .set_title("Sales Trend Analysis")
-              .set_description("Sales data change trends over the past 12 months")
+              .set_title("销售趋势分析")
+              .set_description("过去12个月的销售数据变化趋势")
               .set_size(width="700px")
               .set_border_radius("6px"))
 
 email.add_widget(main_chart)
 
-# Supporting chart
+# 补充图表
 support_chart = (ImageWidget()
                  .set_image_url("./charts/region_comparison.png")
-                 .set_title("Regional Comparison")
-                 .set_description("Sales performance comparison by region")
+                 .set_title("地区对比")
+                 .set_description("各地区销售表现对比")
                  .set_size(width="500px"))
 
 email.add_widget(support_chart)
@@ -108,16 +108,16 @@ email.add_widget(support_chart)
 from email_widget import Email
 from email_widget.widgets import ImageWidget
 
-email = Email("New Product Launch")
+email = Email("新品发布")
 
-# Product main image
+# 产品主图
 product_image = (ImageWidget()
                  .set_image_url("./products/new_product.jpg")
-                 .set_title("New Product Showcase")
-                 .set_description("Our latest revolutionary product")
+                 .set_title("新品展示")
+                 .set_description("我们最新推出的革命性产品")
                  .set_size(width="400px", height="300px")
                  .set_border_radius("10px")
-                 .set_alt_text("New product appearance image"))
+                 .set_alt_text("新产品外观图片"))
 
 email.add_widget(product_image)
 ```
@@ -127,20 +127,20 @@ email.add_widget(product_image)
 The Email class provides the `add_image` shortcut method:
 
 ```python
-# Basic shortcut method
+# 基础快捷方法
 email.add_image(
     image_url="./charts/data.png",
-    title="Data Chart",
-    description="Key business metrics display"
+    title="数据图表",
+    description="关键业务指标展示"
 )
 
-# Shortcut method with styling
+# 带样式的快捷方法
 email.add_image(
     image_url="./assets/logo.png",
-    title="Company Logo",
+    title="公司Logo",
     width="200px",
     border_radius="8px",
-    alt_text="Company logo"
+    alt_text="公司标志"
 )
 ```
 
@@ -167,7 +167,7 @@ image.set_image_url("./dynamic/chart.png", cache=False)
 ### Q: How to ensure accessibility?
 A: Always set meaningful alternative text:
 ```python
-image.set_alt_text("2024 sales data bar chart")
+image.set_alt_text("2024年销售数据柱状图")
 ```
 
 ## 🔗 Related Widgets

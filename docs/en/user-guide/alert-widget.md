@@ -23,38 +23,38 @@ from email_widget import Email
 from email_widget.widgets import AlertWidget
 from email_widget.core.enums import AlertType
 
-# Create email
-email = Email("Alert Widget Example")
+# 创建邮件
+email = Email("警告组件示例")
 
-# Create different types of alert boxes
-note = AlertWidget().set_content("Please check the attachments in the email").set_alert_type(AlertType.NOTE)
+# 创建不同类型的警告框
+note = AlertWidget().set_content("请注意查收邮件中的附件").set_alert_type(AlertType.NOTE)
 email.add_widget(note)
 
-tip = AlertWidget().set_content("Use Ctrl+S shortcut to save quickly").set_alert_type(AlertType.TIP)
+tip = AlertWidget().set_content("使用快捷键 Ctrl+S 可以快速保存").set_alert_type(AlertType.TIP)
 email.add_widget(tip)
 
-# Using shortcut method
-email.add_alert("System will undergo maintenance upgrade tonight at 22:00", AlertType.IMPORTANT)
+# 使用快捷方法
+email.add_alert("系统将在今晚22:00进行升级维护", AlertType.IMPORTANT)
 
-# Export HTML
+# 导出HTML
 email.export_html("alert_demo.html")
 ```
 
 ### Advanced Usage
 
 ```python
-# Custom title and icon
+# 自定义标题和图标
 custom_alert = (AlertWidget()
-    .set_content("New version released with important security updates")
+    .set_content("新版本已发布，包含重要安全更新")
     .set_alert_type(AlertType.IMPORTANT)
-    .set_title("Version Update Notice")
+    .set_title("版本更新通知")
     .set_icon("🚀"))
 
 email.add_widget(custom_alert)
 
-# Hide icon
+# 隐藏图标
 text_only = (AlertWidget()
-    .set_content("Plain text alert message")
+    .set_content("纯文本警告信息")
     .set_alert_type(AlertType.NOTE)
     .show_icon(False))
 
@@ -90,31 +90,31 @@ from email_widget import Email
 from email_widget.widgets import AlertWidget
 from email_widget.core.enums import AlertType
 
-# Create system notification email
-email = Email("System Notification Email")
+# 创建系统通知邮件
+email = Email("系统通知邮件")
 
-# Important system maintenance notice
+# 重要系统维护通知
 email.add_alert(
-    "System will undergo maintenance upgrade from 22:00-24:00 tonight, service will be temporarily unavailable",
+    "系统将在今晚22:00-24:00进行维护升级，期间服务将暂停使用",
     AlertType.IMPORTANT,
-    "System Maintenance Notice"
+    "系统维护通知"
 )
 
-# Backup reminder
+# 备份提醒
 email.add_alert(
-    "We recommend backing up your important data before maintenance",
+    "建议在维护前备份您的重要数据",
     AlertType.TIP,
-    "Data Backup Suggestion"
+    "数据备份建议"
 )
 
-# Emergency contact information
+# 紧急联系方式
 email.add_alert(
-    "For urgent issues, please contact technical support: 400-123-4567",
+    "如遇紧急问题，请联系技术支持：400-123-4567",
     AlertType.WARNING,
-    "Emergency Contact"
+    "紧急联系方式"
 )
 
-# Export HTML file
+# 导出HTML文件
 email.export_html("system_notification.html")
 ```
 
@@ -123,28 +123,28 @@ email.export_html("system_notification.html")
 ### 2. Product Release Announcement
 
 ```python
-# Create product release announcement email
-email = Email("Product Release Announcement")
+# 创建产品发布公告邮件
+email = Email("产品发布公告")
 
-# New feature release
+# 新功能发布
 email.add_alert(
-    "EmailWidget v2.0 officially released! Added timeline and metric widgets to enhance email display",
+    "EmailWidget v2.0正式发布！新增时间线和指标组件，提升邮件展示效果",
     AlertType.TIP,
-    "New Version Release"
+    "新版本发布"
 )
 
-# Important change reminder
+# 重要变更提醒
 email.add_alert(
-    "This update includes important security fixes, all users are recommended to upgrade promptly",
+    "本次更新包含重要的安全修复，建议所有用户尽快升级",
     AlertType.IMPORTANT,
-    "Security Update"
+    "安全更新"
 )
 
-# Compatibility warning
+# 兼容性警告
 email.add_alert(
-    "New version requires Python 3.8+, please check your runtime environment",
+    "新版本要求Python 3.8+，请检查您的运行环境",
     AlertType.WARNING,
-    "Compatibility Requirements"
+    "兼容性要求"
 )
 
 email.export_html("product_release_announcement.html")
@@ -155,28 +155,28 @@ email.export_html("product_release_announcement.html")
 ### 3. Learning Guide Email
 
 ```python
-# Create learning guide email
-email = Email("EmailWidget Learning Guide")
+# 创建学习指南邮件
+email = Email("EmailWidget学习指南")
 
-# Learning tips
+# 学习提示
 email.add_alert(
-    "Recommend starting with basic widgets and gradually mastering advanced features",
+    "建议从基础组件开始学习，逐步掌握高级功能",
     AlertType.TIP,
-    "Learning Suggestions"
+    "学习建议"
 )
 
-# Documentation links
+# 文档链接
 email.add_alert(
-    "Complete API documentation and sample code are available on the official website",
+    "完整的API文档和示例代码可在官网查看",
     AlertType.NOTE,
-    "Documentation Resources"
+    "文档资源"
 )
 
-# Precautions
+# 注意事项
 email.add_alert(
-    "Before using in production, thoroughly test email display in different clients",
+    "在生产环境使用前，请充分测试邮件在不同客户端的显示效果",
     AlertType.CAUTION,
-    "Usage Precautions"
+    "使用注意"
 )
 
 email.export_html("learning_guide.html")
@@ -189,17 +189,17 @@ email.export_html("learning_guide.html")
 The Email class provides the `add_alert` shortcut method:
 
 ```python
-# Basic shortcut method
-email.add_alert("Alert content", AlertType.NOTE)
+# 基础快捷方法
+email.add_alert("提示内容", AlertType.NOTE)
 
-# Shortcut method with title
-email.add_alert("Important notice content", AlertType.IMPORTANT, "Notice Title")
+# 带标题的快捷方法
+email.add_alert("重要通知内容", AlertType.IMPORTANT, "通知标题")
 
-# Batch add alerts
+# 批量添加警告
 alerts = [
-    ("System maintenance notice", AlertType.WARNING, "Maintenance Reminder"),
-    ("New feature release", AlertType.TIP, "Feature Update"), 
-    ("Security update", AlertType.IMPORTANT, "Security Alert")
+    ("系统维护通知", AlertType.WARNING, "维护提醒"),
+    ("新功能发布", AlertType.TIP, "功能更新"), 
+    ("安全更新", AlertType.IMPORTANT, "安全提醒")
 ]
 
 for content, alert_type, title in alerts:

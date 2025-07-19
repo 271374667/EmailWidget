@@ -12,113 +12,113 @@ from email_widget import Email, TableWidget, ChartWidget, TextWidget
 from email_widget.core.enums import TextType, TextAlign
 import matplotlib.pyplot as plt
 
-# Create sales data
+# 创建销售数据
 sales_data = {
-    'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    'Revenue': [150000, 180000, 220000, 195000, 250000, 280000],
-    'Orders': [450, 520, 680, 590, 720, 850],
-    'AOV': [333, 346, 324, 331, 347, 329]
+    '月份': ['1月', '2月', '3月', '4月', '5月', '6月'],
+    '销售额': [150000, 180000, 220000, 195000, 250000, 280000],
+    '订单数': [450, 520, 680, 590, 720, 850],
+    '客单价': [333, 346, 324, 331, 347, 329]
 }
 
 df = pd.DataFrame(sales_data)
 
-# Create email report
-email = Email("2024 H1 Sales Data Report")
+# 创建邮件报告
+email = Email("2024年上半年销售数据报告")
 
-# Report title
-email.add_title("📊 2024 H1 Sales Data Analysis", TextType.TITLE_LARGE)
-email.add_text(f"Report Generated: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M')}", 
+# 报告标题
+email.add_title("📊 2024年上半年销售数据分析", TextType.TITLE_LARGE)
+email.add_text(f"报告生成时间: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M')}", 
                align=TextAlign.RIGHT, color="#666666")
 
-# Key metrics summary
-email.add_title("📈 Key Metrics", TextType.SECTION_H2)
+# 关键指标汇总
+email.add_title("📈 关键指标", TextType.SECTION_H2)
 
-# Calculate overall metrics
-total_sales = df['Revenue'].sum()
-total_orders = df['Orders'].sum()
-avg_order_value = df['AOV'].mean()
-growth_rate = ((df['Revenue'].iloc[-1] - df['Revenue'].iloc[0]) / df['Revenue'].iloc[0]) * 100
+# 计算总体指标
+total_sales = df['销售额'].sum()
+total_orders = df['订单数'].sum()
+avg_order_value = df['客单价'].mean()
+growth_rate = ((df['销售额'].iloc[-1] - df['销售额'].iloc[0]) / df['销售额'].iloc[0]) * 100
 
-# Display key metrics using cards
+# 使用卡片展示关键指标
 metrics = [
-    ("Total Revenue", f"${total_sales:,}", "💰"),
-    ("Total Orders", f"{total_orders:,}", "📋"),
-    ("Average AOV", f"${avg_order_value:.0f}", "👤"),
-    ("Growth Rate", f"{growth_rate:.1f}%", "📈")
+    ("总销售额", f"¥{total_sales:,}", "💰"),
+    ("总订单数", f"{total_orders:,}", "📋"),
+    ("平均客单价", f"¥{avg_order_value:.0f}", "👤"),
+    ("增长率", f"{growth_rate:.1f}%", "📈")
 ]
 
 for title, value, icon in metrics:
     email.add_card(title=title, content=value, icon=icon)
 
-# Detailed data table
-email.add_title("📋 Detailed Data", TextType.SECTION_H2)
+# 详细数据表格
+email.add_title("📋 详细数据", TextType.SECTION_H2)
 
-# Create table directly from DataFrame
+# 直接从 DataFrame 创建表格
 table = TableWidget()
 table.set_headers(df.columns.tolist())
 
-# Add data rows with formatting
+# 添加数据行并格式化
 for _, row in df.iterrows():
     formatted_row = [
-        row['Month'],
-        f"${row['Revenue']:,}",  # Format currency
-        f"{row['Orders']:,}",    # Format quantity
-        f"${row['AOV']:.0f}"     # Format AOV
+        row['月份'],
+        f"¥{row['销售额']:,}",  # 格式化金额
+        f"{row['订单数']:,}",    # 格式化数量
+        f"¥{row['客单价']:.0f}" # 格式化客单价
     ]
     table.add_row(formatted_row)
 
 table.set_striped(True)
 email.add_widget(table)
 
-# Trend analysis
-email.add_title("📉 Trend Analysis", TextType.SECTION_H2)
+# 趋势分析
+email.add_title("📉 趋势分析", TextType.SECTION_H2)
 
-# Create trend chart
+# 创建趋势图表
 plt.figure(figsize=(10, 6))
-plt.plot(df['Month'], df['Revenue'], marker='o', linewidth=2, label='Revenue')
-plt.title('Revenue Trend', fontsize=14)
-plt.xlabel('Month')
-plt.ylabel('Revenue ($)')
+plt.plot(df['月份'], df['销售额'], marker='o', linewidth=2, label='销售额')
+plt.title('销售额趋势', fontsize=14)
+plt.xlabel('月份')
+plt.ylabel('销售额 (元)')
 plt.grid(True, alpha=0.3)
 plt.xticks(rotation=45)
 plt.tight_layout()
 
-# Save chart
+# 保存图表
 chart_path = "sales_trend.png"
 plt.savefig(chart_path, dpi=150, bbox_inches='tight')
 plt.close()
 
-# Add chart to email
+# 添加图表到邮件
 chart = ChartWidget()
 chart.set_chart_path(chart_path) \
-     .set_title("Monthly Revenue Trend") \
-     .set_description("Shows monthly revenue changes in H1")
+     .set_title("销售额月度趋势") \
+     .set_description("显示上半年销售额的月度变化情况")
 email.add_widget(chart)
 
-# Analysis summary
-email.add_title("💡 Analysis Summary", TextType.SECTION_H2)
+# 分析总结
+email.add_title("💡 分析总结", TextType.SECTION_H2)
 summary_text = f"""
-Based on H1 data analysis:
+根据上半年数据分析：
 
-✅ **Positive Indicators**
-• Revenue steadily increased with total growth rate of {growth_rate:.1f}%
-• June achieved highest monthly revenue of ${df['Revenue'].max():,}
-• Orders continuously growing, indicating expanding customer base
+✅ **积极指标**
+• 销售额稳步增长，总增长率达到 {growth_rate:.1f}%
+• 6月份创造了单月最高销售额 ¥{df['销售额'].max():,}
+• 订单数持续增长，显示客户基础扩大
 
-⚠️ **Areas to Monitor**
-• April showed slight decline, needs cause analysis
-• AOV fluctuates significantly, recommend optimizing product mix
+⚠️ **需要关注**
+• 4月份出现小幅回落，需分析原因
+• 客单价波动较大，建议优化产品结构
 
-🎯 **H2 Recommendations**
-• Maintain growth momentum, target annual revenue of ${total_sales * 2:,}
-• Strengthen marketing activities during April period
-• Stabilize AOV, enhance product value
+🎯 **下半年建议**
+• 保持增长势头，目标年销售额 ¥{total_sales * 2:,}
+• 加强4月份同期市场活动
+• 稳定客单价，提升产品价值
 """
 
 email.add_text(summary_text.strip())
 
 email.export_html("sales_report.html")
-print("✅ Sales data report generated: sales_report.html")
+print("✅ 销售数据报告已生成：sales_report.html")
 ```
 
 --8<-- "examples/assets/data_reports_html/sales_report.html"
@@ -140,70 +140,70 @@ import pandas as pd
 from email_widget import Email, TableWidget, ProgressWidget, AlertWidget
 from email_widget.core.enums import TextType, ProgressTheme, AlertType
 
-# Financial data
+# 财务数据
 financial_data = {
-    'Account': ['Operating Revenue', 'Operating Cost', 'Gross Profit', 'Sales Expense', 'Admin Expense', 'Finance Expense', 'Operating Profit', 'Net Profit'],
-    'Current Amount': [2800000, 1680000, 1120000, 280000, 350000, 45000, 445000, 356000],
-    'Prior Amount': [2400000, 1440000, 960000, 240000, 320000, 40000, 360000, 288000],
-    'Budget Amount': [3000000, 1800000, 1200000, 300000, 360000, 50000, 490000, 392000]
+    '科目': ['营业收入', '营业成本', '毛利润', '销售费用', '管理费用', '财务费用', '营业利润', '净利润'],
+    '本期金额': [2800000, 1680000, 1120000, 280000, 350000, 45000, 445000, 356000],
+    '上期金额': [2400000, 1440000, 960000, 240000, 320000, 40000, 360000, 288000],
+    '预算金额': [3000000, 1800000, 1200000, 300000, 360000, 50000, 490000, 392000]
 }
 
 df_financial = pd.DataFrame(financial_data)
 
-# Calculate YoY and budget completion
-df_financial['YoY Growth'] = ((df_financial['Current Amount'] - df_financial['Prior Amount']) / df_financial['Prior Amount'] * 100).round(1)
-df_financial['Budget Completion'] = (df_financial['Current Amount'] / df_financial['Budget Amount'] * 100).round(1)
+# 计算同比和预算完成率
+df_financial['同比增长'] = ((df_financial['本期金额'] - df_financial['上期金额']) / df_financial['上期金额'] * 100).round(1)
+df_financial['预算完成率'] = (df_financial['本期金额'] / df_financial['预算金额'] * 100).round(1)
 
-# Create financial report
-email = Email("2024 Q2 Financial Report")
+# 创建财务报告
+email = Email("2024年Q2财务报告")
 
-email.add_title("💼 2024 Q2 Financial Report", TextType.TITLE_LARGE)
+email.add_title("💼 2024年第二季度财务报告", TextType.TITLE_LARGE)
 
-# Core financial metrics
-email.add_title("🎯 Core Metrics", TextType.SECTION_H2)
+# 核心财务指标
+email.add_title("🎯 核心指标", TextType.SECTION_H2)
 
-# Key metric cards
+# 关键指标卡片
 key_metrics = [
-    ("Operating Revenue", df_financial.loc[0, 'Current Amount'], "💰"),
-    ("Net Profit", df_financial.loc[7, 'Current Amount'], "📈"),
-    ("Gross Margin", f"{(df_financial.loc[2, 'Current Amount'] / df_financial.loc[0, 'Current Amount'] * 100):.1f}%", "📊"),
-    ("Net Margin", f"{(df_financial.loc[7, 'Current Amount'] / df_financial.loc[0, 'Current Amount'] * 100):.1f}%", "🎯")
+    ("营业收入", df_financial.loc[0, '���期金额'], "💰"),
+    ("净利润", df_financial.loc[7, '本期金额'], "📈"),
+    ("毛利率", f"{(df_financial.loc[2, '本期金额'] / df_financial.loc[0, '本期金额'] * 100):.1f}%", "📊"),
+    ("净利率", f"{(df_financial.loc[7, '本期金额'] / df_financial.loc[0, '本期金额'] * 100):.1f}%", "🎯")
 ]
 
 for title, value, icon in key_metrics:
     if isinstance(value, (int, float)):
-        value = f"${value:,}"
+        value = f"¥{value:,}"
     email.add_card(title=title, content=value, icon=icon)
 
-# Financial detail table
-email.add_title("📊 Financial Details", TextType.SECTION_H2)
+# 财务数据详表
+email.add_title("📊 财务明细", TextType.SECTION_H2)
 
 table = TableWidget()
-table.set_headers(['Account', 'Current Amount', 'Prior Amount', 'YoY Growth', 'Budget Completion'])
+table.set_headers(['科目', '本期金额', '上期金额', '同比增长', '预算完成率'])
 
 for _, row in df_financial.iterrows():
     formatted_row = [
-        row['Account'],
-        f"${row['Current Amount']:,}",
-        f"${row['Prior Amount']:,}",
-        f"{row['YoY Growth']:+.1f}%",
-        f"{row['Budget Completion']:.1f}%"
+        row['科目'],
+        f"¥{row['本期金额']:,}",
+        f"¥{row['上期金额']:,}",
+        f"{row['同比增长']:+.1f}%",
+        f"{row['预算完成率']:.1f}%"
     ]
     table.add_row(formatted_row)
 
 table.set_striped(True)
 email.add_widget(table)
 
-# Budget execution analysis
-email.add_title("🎯 Budget Execution Analysis", TextType.SECTION_H2)
+# 预算执行情况
+email.add_title("🎯 预算执行分析", TextType.SECTION_H2)
 
-# Display budget completion progress for key items
-key_items = ['Operating Revenue', 'Operating Profit', 'Net Profit']
+# 为主要科目显示预算完成进度
+key_items = ['营业收入', '营业利润', '净利润']
 for item in key_items:
-    row = df_financial[df_financial['Account'] == item].iloc[0]
-    completion_rate = row['Budget Completion']
+    row = df_financial[df_financial['科目'] == item].iloc[0]
+    completion_rate = row['预算完成率']
     
-    # Select theme color based on completion rate
+    # 根据完成率选择主题色
     if completion_rate >= 100:
         theme = ProgressTheme.SUCCESS
     elif completion_rate >= 80:
@@ -215,51 +215,51 @@ for item in key_items:
     
     email.add_text(f"📋 {item}")
     email.add_progress(
-        value=min(completion_rate, 100),  # Limit display to 100%
-        label=f"Budget Completion: {completion_rate:.1f}%",
+        value=min(completion_rate, 100),  # 限制在100%内显示
+        label=f"预算完成率: {completion_rate:.1f}%",
         theme=theme
     )
 
-# Risk alerts
-email.add_title("⚠️ Risk Alerts", TextType.SECTION_H2)
+# 风险提示
+email.add_title("⚠️ 风险提示", TextType.SECTION_H2)
 
-# Analyze budget completion and generate alerts
-risk_items = df_financial[df_financial['Budget Completion'] < 90]
+# 分析预算完成情况，生成提醒
+risk_items = df_financial[df_financial['预算完成率'] < 90]
 if not risk_items.empty:
     for _, item in risk_items.iterrows():
-        alert_type = AlertType.WARNING if item['Budget Completion'] >= 80 else AlertType.CAUTION
+        alert_type = AlertType.WARNING if item['预算完成率'] >= 80 else AlertType.CAUTION
         email.add_alert(
-            f"{item['Account']} budget completion only {item['Budget Completion']:.1f}%, needs attention",
+            f"{item['科目']}预算完成率仅为{item['预算完成率']:.1f}%，需要重点关注",
             alert_type,
-            "Budget Execution Alert"
+            "预算执行预警"
         )
 
-# Financial analysis
-email.add_title("📈 Financial Analysis", TextType.SECTION_H2)
+# 财务分析
+email.add_title("📈 财务分析", TextType.SECTION_H2)
 
-revenue_growth = df_financial.loc[0, 'YoY Growth']
-profit_growth = df_financial.loc[7, 'YoY Growth']
+revenue_growth = df_financial.loc[0, '同比增长']
+profit_growth = df_financial.loc[7, '同比增长']
 
 analysis = f"""
-**Operating Performance Analysis:**
+**经营业绩分析：**
 
-📊 **Revenue Analysis**
-• Operating revenue grew {revenue_growth:.1f}% YoY, performance is {'excellent' if revenue_growth > 15 else 'good' if revenue_growth > 5 else 'average'}
-• Revenue budget completion: {df_financial.loc[0, 'Budget Completion']:.1f}%
+📊 **收入分析**
+• 营业收入同比增长 {revenue_growth:.1f}%，表现{('优秀' if revenue_growth > 15 else '良好' if revenue_growth > 5 else '一般')}
+• 收入预算完成率 {df_financial.loc[0, '预算完成率']:.1f}%
 
-💰 **Profitability**
-• Net profit grew {profit_growth:.1f}% YoY, profitability {'significantly improved' if profit_growth > 20 else 'steadily improved' if profit_growth > 0 else 'declined'}
-• Net margin: {(df_financial.loc[7, 'Current Amount'] / df_financial.loc[0, 'Current Amount'] * 100):.1f}%, maintaining healthy levels
+💰 **盈利能力**
+• 净利润同比增长 {profit_growth:.1f}%，盈利能力{'显著提升' if profit_growth > 20 else '稳步提升' if profit_growth > 0 else '有所下降'}
+• 净利率 {(df_financial.loc[7, '本期金额'] / df_financial.loc[0, '本期金额'] * 100):.1f}%，保持健康水平
 
-🎯 **Budget Execution**
-• Operating revenue budget completion: {df_financial.loc[0, 'Budget Completion']:.1f}%
-• Net profit budget completion: {df_financial.loc[7, 'Budget Completion']:.1f}%
+🎯 **预算执行**
+• 营业收入预算完成率 {df_financial.loc[0, '预算完成率']:.1f}%
+• 净利润预算完成率 {df_financial.loc[7, '预算完成率']:.1f}%
 """
 
 email.add_text(analysis.strip())
 
 email.export_html("financial_report.html")
-print("✅ Financial report generated: financial_report.html")
+print("✅ 财务报告已生成：financial_report.html")
 ```
 
 --8<-- "examples/assets/data_reports_html/financial_report.html"
@@ -283,80 +283,80 @@ import seaborn as sns
 from email_widget import Email, ChartWidget, TableWidget
 from email_widget.core.enums import TextType
 
-# Set font (adjust based on system)
+# 设置中文字体（根据系统调整）
 plt.rcParams['font.sans-serif'] = ['SimHei', 'Arial Unicode MS', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
-# Product sales data
+# 产品销售数据
 products_data = {
-    'Product Name': ['Smartphone A', 'Smartphone B', 'Tablet C', 'Laptop D', 'Headphones E', 'Charger F'],
-    'Sales Quantity': [1200, 800, 600, 450, 2000, 1500],
-    'Unit Price': [2999, 3999, 1999, 5999, 299, 99],
-    'Cost': [2100, 2800, 1400, 4200, 180, 60],
-    'Inventory': [300, 150, 200, 100, 500, 800],
-    'Rating': [4.5, 4.7, 4.2, 4.8, 4.3, 4.0]
+    '产品名称': ['智能手机A', '智能手机B', '平板电脑C', '笔记本D', '耳机E', '充电器F'],
+    '销售数量': [1200, 800, 600, 450, 2000, 1500],
+    '单价': [2999, 3999, 1999, 5999, 299, 99],
+    '成本': [2100, 2800, 1400, 4200, 180, 60],
+    '库存': [300, 150, 200, 100, 500, 800],
+    '评分': [4.5, 4.7, 4.2, 4.8, 4.3, 4.0]
 }
 
 df_products = pd.DataFrame(products_data)
 
-# Calculate derived metrics
-df_products['Revenue'] = df_products['Sales Quantity'] * df_products['Unit Price']
-df_products['Gross Profit'] = (df_products['Unit Price'] - df_products['Cost']) * df_products['Sales Quantity']
-df_products['Gross Margin'] = ((df_products['Unit Price'] - df_products['Cost']) / df_products['Unit Price'] * 100).round(1)
-df_products['Inventory Turnover'] = (df_products['Sales Quantity'] / (df_products['Inventory'] + df_products['Sales Quantity']) * 100).round(1)
+# 计算衍生指标
+df_products['销售额'] = df_products['销售数量'] * df_products['单价']
+df_products['毛利润'] = (df_products['单价'] - df_products['成本']) * df_products['销售数量']
+df_products['毛利率'] = ((df_products['单价'] - df_products['成本']) / df_products['单价'] * 100).round(1)
+df_products['库存周转'] = (df_products['销售数量'] / (df_products['库存'] + df_products['销售数量']) * 100).round(1)
 
-# Create product analysis report
-email = Email("Product Sales Analysis Report")
+# 创建产品分析报告
+email = Email("产品销售分析报告")
 
-email.add_title("📱 Product Sales Analysis Report", TextType.TITLE_LARGE)
+email.add_title("📱 产品销售分析报告", TextType.TITLE_LARGE)
 
-# Product portfolio overview
-email.add_title("🎯 Product Portfolio Overview", TextType.SECTION_H2)
+# 产品组合概览
+email.add_title("🎯 产品组合概览", TextType.SECTION_H2)
 
-# Calculate overall metrics
-total_revenue = df_products['Revenue'].sum()
-total_profit = df_products['Gross Profit'].sum()
-avg_rating = df_products['Rating'].mean()
-best_seller = df_products.loc[df_products['Sales Quantity'].idxmax(), 'Product Name']
+# 计算总体指标
+total_revenue = df_products['销售额'].sum()
+total_profit = df_products['毛利润'].sum()
+avg_rating = df_products['评分'].mean()
+best_seller = df_products.loc[df_products['销售数量'].idxmax(), '产品名称']
 
 overview_metrics = [
-    ("Total Revenue", f"${total_revenue:,}", "💰"),
-    ("Total Gross Profit", f"${total_profit:,}", "📈"),
-    ("Average Rating", f"{avg_rating:.1f}★", "⭐"),
-    ("Best Seller", best_seller, "🏆")
+    ("总销售额", f"¥{total_revenue:,}", "💰"),
+    ("总毛利润", f"¥{total_profit:,}", "📈"),
+    ("平均评分", f"{avg_rating:.1f}★", "⭐"),
+    ("最佳销量", best_seller, "🏆")
 ]
 
 for title, value, icon in overview_metrics:
     email.add_card(title=title, content=value, icon=icon)
 
-# Product detail table
-email.add_title("📊 Product Sales Details", TextType.SECTION_H2)
+# 产品明细表
+email.add_title("📊 产品销售明细", TextType.SECTION_H2)
 
 table = TableWidget()
-table.set_headers(['Product', 'Quantity', 'Unit Price', 'Revenue', 'Gross Margin', 'Rating'])
+table.set_headers(['产品', '数量', '单价', '销售额', '毛利率', '评分'])
 
 for _, row in df_products.iterrows():
     formatted_row = [
-        row['Product Name'],
-        f"{row['Sales Quantity']:,}",
-        f"${row['Unit Price']:,}",
-        f"${row['Revenue']:,}",
-        f"{row['Gross Margin']:.1f}%",
-        f"{row['Rating']:.1f}★"
+        row['产品名称'],
+        f"{row['销售数量']:,}",
+        f"¥{row['单价']:,}",
+        f"¥{row['销售额']:,}",
+        f"{row['毛利率']:.1f}%",
+        f"{row['评分']:.1f}★"
     ]
     table.add_row(formatted_row)
 
 table.set_striped(True)
 email.add_widget(table)
 
-# Revenue distribution chart
-email.add_title("📈 Revenue Distribution", TextType.SECTION_H2)
+# 销售额分布图
+email.add_title("📈 销售额分布", TextType.SECTION_H2)
 
 plt.figure(figsize=(10, 6))
 colors = plt.cm.Set3(range(len(df_products)))
-plt.pie(df_products['Revenue'], labels=df_products['Product Name'], 
+plt.pie(df_products['销售额'], labels=df_products['产品名称'], 
         autopct='%1.1f%%', startangle=90, colors=colors)
-plt.title('Product Revenue Distribution', fontsize=14)
+plt.title('各产品销售额占比', fontsize=14)
 plt.axis('equal')
 
 pie_chart_path = "sales_distribution.png"
@@ -365,25 +365,25 @@ plt.close()
 
 chart1 = ChartWidget()
 chart1.set_chart_path(pie_chart_path) \
-      .set_title("Product Revenue Distribution") \
-      .set_description("Shows each product's contribution to total revenue")
+      .set_title("产品销售额分布") \
+      .set_description("展示各产品对总销售额的贡献比例")
 email.add_widget(chart1)
 
-# Gross margin vs sales volume analysis
-email.add_title("🔍 Gross Margin vs Sales Analysis", TextType.SECTION_H2)
+# 毛利率与销量关系分析
+email.add_title("🔍 毛利率与销量分析", TextType.SECTION_H2)
 
 plt.figure(figsize=(10, 6))
-scatter = plt.scatter(df_products['Sales Quantity'], df_products['Gross Margin'], 
-                     s=df_products['Rating']*50, alpha=0.7, c=colors)
+scatter = plt.scatter(df_products['销售数量'], df_products['毛利率'], 
+                     s=df_products['评分']*50, alpha=0.7, c=colors)
 
-# Add product labels
-for i, txt in enumerate(df_products['Product Name']):
-    plt.annotate(txt, (df_products['Sales Quantity'].iloc[i], df_products['Gross Margin'].iloc[i]),
+# 添加产品标签
+for i, txt in enumerate(df_products['产品名称']):
+    plt.annotate(txt, (df_products['销售数量'].iloc[i], df_products['毛利率'].iloc[i]),
                 xytext=(5, 5), textcoords='offset points', fontsize=8)
 
-plt.xlabel('Sales Quantity')
-plt.ylabel('Gross Margin (%)')
-plt.title('Product Gross Margin vs Sales (Bubble size represents rating)', fontsize=14)
+plt.xlabel('销售数量')
+plt.ylabel('毛利率 (%)')
+plt.title('产品毛利率与销量关系（气泡大小代表评分）', fontsize=14)
 plt.grid(True, alpha=0.3)
 
 scatter_chart_path = "profit_sales_analysis.png"
@@ -392,43 +392,43 @@ plt.close()
 
 chart2 = ChartWidget()
 chart2.set_chart_path(scatter_chart_path) \
-      .set_title("Gross Margin vs Sales Relationship") \
-      .set_description("Analyze relationship between profitability and market performance")
+      .set_title("毛利率与销量关系") \
+      .set_description("分析各产品的盈利能力与市场表现的关系")
 email.add_widget(chart2)
 
-# Product strategy recommendations
-email.add_title("💡 Product Strategy Recommendations", TextType.SECTION_H2)
+# 产品策略建议
+email.add_title("💡 产品策略建议", TextType.SECTION_H2)
 
-# Analyze product performance
-high_margin_products = df_products[df_products['Gross Margin'] > df_products['Gross Margin'].mean()]
-high_volume_products = df_products[df_products['Sales Quantity'] > df_products['Sales Quantity'].mean()]
-low_stock_products = df_products[df_products['Inventory Turnover'] > 80]
+# 分析各产品表现
+high_margin_products = df_products[df_products['毛利率'] > df_products['毛利率'].mean()]
+high_volume_products = df_products[df_products['销售数量'] > df_products['销售数量'].mean()]
+low_stock_products = df_products[df_products['库存周转'] > 80]
 
 strategy_text = f"""
-**Data-driven Product Strategy Recommendations:**
+**基于数据分析的产品策略建议：**
 
-🌟 **Premium Products** (High Gross Margin)
-{', '.join(high_margin_products['Product Name'].tolist())}
-• Recommend increasing marketing investment to expand market share
+🌟 **优势产品** (高毛利率)
+{', '.join(high_margin_products['产品名称'].tolist())}
+• 建议加大营销投入，扩大市场份额
 
-📈 **Best Sellers** (High Volume)
-{', '.join(high_volume_products['Product Name'].tolist())}
-• Maintain adequate inventory, optimize supply chain
+📈 **热销产品** (高销量)
+{', '.join(high_volume_products['产品名称'].tolist())}
+• 保持库存充足，优化供应链
 
-⚡ **Fast Movers** (Inventory Turnover >80%)
-{', '.join(low_stock_products['Product Name'].tolist()) if not low_stock_products.empty else 'None'}
-• Timely restocking to avoid stockouts affecting sales
+⚡ **快周转产品** (库存周转率>80%)
+{', '.join(low_stock_products['产品名称'].tolist()) if not low_stock_products.empty else '暂无'}
+• 及时补货，避免缺货影响销售
 
-🎯 **Overall Strategy**
-• Focus on marketing high-margin products
-• Optimize user experience for low-rated products
-• Balance product portfolio, reduce single product dependency
+🎯 **综合策略**
+• 重点关注高毛利率产品的市场推广
+• 优化低评分产品的用户体验
+• 平衡产品组合，降低单一产品依赖
 """
 
 email.add_text(strategy_text.strip())
 
 email.export_html("product_analysis.html")
-print("✅ Product analysis report generated: product_analysis.html")
+print("✅ 产品分析报告已生成：product_analysis.html")
 ```
 
 --8<-- "examples/assets/data_reports_html/product_analysis.html"
@@ -452,117 +452,117 @@ from datetime import datetime, timedelta
 from email_widget import Email, TableWidget, ProgressWidget
 from email_widget.core.enums import TextType, ProgressTheme
 
-# Generate customer data
+# 生成客户数据
 np.random.seed(42)
 customer_data = {
-    'Customer ID': [f'C{str(i).zfill(4)}' for i in range(1, 101)],
-    'Days Since Purchase': np.random.randint(1, 365, 100),
-    'Purchase Frequency': np.random.randint(1, 20, 100),
-    'Purchase Amount': np.random.randint(100, 10000, 100)
+    '客户ID': [f'C{str(i).zfill(4)}' for i in range(1, 101)],
+    '最近购买天数': np.random.randint(1, 365, 100),
+    '购买频次': np.random.randint(1, 20, 100),
+    '购买金额': np.random.randint(100, 10000, 100)
 }
 
 df_customers = pd.DataFrame(customer_data)
 
-# RFM analysis function
+# RFM分析函数
 def rfm_analysis(df):
-    """RFM customer value analysis"""
-    # Calculate RFM quartiles
-    r_quartiles = pd.qcut(df['Days Since Purchase'], 4, labels=[4, 3, 2, 1])  # Recent purchases, fewer days = higher score
-    f_quartiles = pd.qcut(df['Purchase Frequency'].rank(method='first'), 4, labels=[1, 2, 3, 4])
-    m_quartiles = pd.qcut(df['Purchase Amount'], 4, labels=[1, 2, 3, 4])
+    """RFM客户价值分析"""
+    # 计算RFM分位数
+    r_quartiles = pd.qcut(df['最近购买天数'], 4, labels=[4, 3, 2, 1])  # 最近购买，天数越少分值越高
+    f_quartiles = pd.qcut(df['购买频次'].rank(method='first'), 4, labels=[1, 2, 3, 4])
+    m_quartiles = pd.qcut(df['购买金额'], 4, labels=[1, 2, 3, 4])
     
-    df['R Score'] = r_quartiles
-    df['F Score'] = f_quartiles  
-    df['M Score'] = m_quartiles
+    df['R分值'] = r_quartiles
+    df['F分值'] = f_quartiles  
+    df['M分值'] = m_quartiles
     
-    # Calculate RFM composite score
-    df['RFM Score'] = df['R Score'].astype(str) + df['F Score'].astype(str) + df['M Score'].astype(str)
+    # 计算RFM综合分值
+    df['RFM综合分值'] = df['R分值'].astype(str) + df['F分值'].astype(str) + df['M分值'].astype(str)
     
-    # Customer segmentation
+    # 客户分级
     def customer_segment(rfm_score):
         score = int(rfm_score)
         if score >= 444:
-            return 'High Value'
+            return '重要价值客户'
         elif score >= 344:
-            return 'High Potential'
+            return '重要发展客户'
         elif score >= 244:
-            return 'High Retention'
+            return '重要保持客户'
         elif score >= 144:
-            return 'High Risk'
+            return '重要挽留客户'
         elif score >= 134:
-            return 'Medium Value'
+            return '一般价值客户'
         elif score >= 124:
-            return 'Medium Potential'
+            return '一般发展客户'
         elif score >= 114:
-            return 'Medium Retention'
+            return '一般保持客户'
         else:
-            return 'Medium Risk'
+            return '一般挽留客户'
     
-    df['Customer Segment'] = df['RFM Score'].apply(customer_segment)
+    df['客户分级'] = df['RFM综合分值'].apply(customer_segment)
     return df
 
-# Execute RFM analysis
+# 执行RFM分析
 df_rfm = rfm_analysis(df_customers.copy())
 
-# Create customer analysis report
-email = Email("RFM Customer Value Analysis Report")
+# 创建客户分析报告
+email = Email("RFM客户价值分析报告")
 
-email.add_title("👥 RFM Customer Value Analysis Report", TextType.TITLE_LARGE)
+email.add_title("👥 RFM客户价值分析报告", TextType.TITLE_LARGE)
 
-# Customer overview
-email.add_title("📊 Customer Overview", TextType.SECTION_H2)
+# 客户总体概况
+email.add_title("📊 客户总体概况", TextType.SECTION_H2)
 
 total_customers = len(df_rfm)
-avg_frequency = df_rfm['Purchase Frequency'].mean()
-avg_monetary = df_rfm['Purchase Amount'].mean()
-avg_recency = df_rfm['Days Since Purchase'].mean()
+avg_frequency = df_rfm['购买频次'].mean()
+avg_monetary = df_rfm['购买金额'].mean()
+avg_recency = df_rfm['最近购买天数'].mean()
 
 overview_stats = [
-    ("Total Customers", f"{total_customers:,}", "👥"),
-    ("Avg Purchase Frequency", f"{avg_frequency:.1f} times", "🔄"),
-    ("Avg Purchase Amount", f"${avg_monetary:,.0f}", "💰"),
-    ("Avg Days Since Purchase", f"{avg_recency:.0f} days", "📅")
+    ("客户总数", f"{total_customers:,}", "👥"),
+    ("平均购买频次", f"{avg_frequency:.1f}次", "🔄"),
+    ("平均购买金额", f"¥{avg_monetary:,.0f}", "💰"),
+    ("平均间隔天数", f"{avg_recency:.0f}天", "📅")
 ]
 
 for title, value, icon in overview_stats:
     email.add_card(title=title, content=value, icon=icon)
 
-# Customer segment statistics
-email.add_title("🎯 Customer Segment Distribution", TextType.SECTION_H2)
+# 客户分级统计
+email.add_title("🎯 客户分级分布", TextType.SECTION_H2)
 
-segment_stats = df_rfm['Customer Segment'].value_counts().sort_index()
+segment_stats = df_rfm['客户分级'].value_counts().sort_index()
 
 table = TableWidget()
-table.set_headers(['Customer Level', 'Count', 'Percentage', 'Avg Amount'])
+table.set_headers(['客户级别', '客户数量', '占比', '平均金额'])
 
 for segment, count in segment_stats.items():
-    segment_customers = df_rfm[df_rfm['Customer Segment'] == segment]
-    avg_amount = segment_customers['Purchase Amount'].mean()
+    segment_customers = df_rfm[df_rfm['客户分级'] == segment]
+    avg_amount = segment_customers['购买金额'].mean()
     percentage = (count / total_customers * 100)
     
     table.add_row([
         segment,
         f"{count:,}",
         f"{percentage:.1f}%",
-        f"${avg_amount:,.0f}"
+        f"¥{avg_amount:,.0f}"
     ])
 
 table.set_striped(True)
 email.add_widget(table)
 
-# Customer segment percentage progress bars
-email.add_title("📈 Customer Segment Percentages", TextType.SECTION_H2)
+# 各级别客户占比进度条
+email.add_title("📈 客户分级占比", TextType.SECTION_H2)
 
-# Define themes for customer segments
+# 定义客户级别对应的主题色
 segment_themes = {
-    'High Value': ProgressTheme.SUCCESS,
-    'High Potential': ProgressTheme.INFO,
-    'High Retention': ProgressTheme.WARNING,
-    'High Risk': ProgressTheme.ERROR,
-    'Medium Value': ProgressTheme.SUCCESS,
-    'Medium Potential': ProgressTheme.INFO,
-    'Medium Retention': ProgressTheme.WARNING,
-    'Medium Risk': ProgressTheme.ERROR
+    '重要价值客户': ProgressTheme.SUCCESS,
+    '重要发展客户': ProgressTheme.INFO,
+    '重要保持客户': ProgressTheme.WARNING,
+    '重要挽留客户': ProgressTheme.ERROR,
+    '一般价值客户': ProgressTheme.SUCCESS,
+    '一般发展客户': ProgressTheme.INFO,
+    '一般保持客户': ProgressTheme.WARNING,
+    '一般挽留客户': ProgressTheme.ERROR
 }
 
 for segment, count in segment_stats.items():
@@ -572,70 +572,70 @@ for segment, count in segment_stats.items():
     email.add_text(f"🔹 {segment}")
     email.add_progress(
         value=percentage,
-        label=f"{count} customers ({percentage:.1f}%)",
+        label=f"{count}人 ({percentage:.1f}%)",
         theme=theme
     )
 
-# High-value customer details
-email.add_title("⭐ High-Value Customer Analysis", TextType.SECTION_H2)
+# 高价值客户详情
+email.add_title("⭐ 高价值客户分析", TextType.SECTION_H2)
 
-high_value_customers = df_rfm[df_rfm['Customer Segment'].str.contains('High Value|High Potential')]
+high_value_customers = df_rfm[df_rfm['客户分级'].str.contains('重要价值|重要发展')]
 
 if not high_value_customers.empty:
     hv_table = TableWidget()
-    hv_table.set_headers(['Customer ID', 'R Score', 'F Score', 'M Score', 'Segment', 'Amount'])
+    hv_table.set_headers(['客户ID', 'R分值', 'F分值', 'M分值', '客户级别', '购买金额'])
     
-    # Show top 10 high-value customers
+    # 显示前10个高价值客户
     for _, customer in high_value_customers.head(10).iterrows():
         hv_table.add_row([
-            customer['Customer ID'],
-            str(customer['R Score']),
-            str(customer['F Score']),
-            str(customer['M Score']),
-            customer['Customer Segment'],
-            f"${customer['Purchase Amount']:,}"
+            customer['客户ID'],
+            str(customer['R分值']),
+            str(customer['F分值']),
+            str(customer['M分值']),
+            customer['客户分级'],
+            f"¥{customer['购买金额']:,}"
         ])
     
     hv_table.set_striped(True)
     email.add_widget(hv_table)
 
-# Marketing strategy recommendations
-email.add_title("💡 Marketing Strategy Recommendations", TextType.SECTION_H2)
+# 营销策略建议
+email.add_title("💡 营销策略建议", TextType.SECTION_H2)
 
-# Statistics for customer categories
-important_customers_pct = (segment_stats.filter(regex='High').sum() / total_customers * 100)
-high_frequency_pct = (len(df_rfm[df_rfm['Purchase Frequency'] > avg_frequency]) / total_customers * 100)
+# 统计各类客户比例
+important_customers_pct = (segment_stats.filter(regex='重要').sum() / total_customers * 100)
+high_frequency_pct = (len(df_rfm[df_rfm['购买频次'] > avg_frequency]) / total_customers * 100)
 
 strategy_recommendations = f"""
-**RFM Analysis-Based Marketing Strategy Recommendations:**
+**基于RFM分析的营销策略建议：**
 
-🎯 **High-Value Customer Retention** ({important_customers_pct:.1f}% of customers)
-• High Value: Provide VIP service, personalized recommendations
-• High Potential: Increase touchpoint frequency, boost purchase frequency
-• High Retention: Regular care, prevent churn
-• High Risk: Urgent retention strategy, special offers
+🎯 **重要客户维护** ({important_customers_pct:.1f}%的客户)
+• 重要价值客户：提供VIP服务，个性化推荐
+• 重要发展客户：增加触达频率，提升购买频次
+• 重要保持客户：定期关怀，防止流失
+• 重要挽留客户：紧急挽回策略，特别优惠
 
-📈 **Medium-Value Customer Enhancement**
-• Medium Value: Cross-selling, increase average order value
-• Medium Potential: Build loyalty, increase purchase frequency
-• Medium Retention: Maintain status quo, moderate marketing
-• Medium Risk: Churn alert, retention measures
+📈 **一般客户提升**
+• 一般价值客户：交叉销售，提升客单价
+• 一般发展客户：培养忠诚度，增加购买频次
+• 一般保持客户：保持现状，适度营销
+• 一般挽留客户：流失预警，挽回措施
 
-📊 **Key Focus Metrics**
-• High-frequency customer percentage: {high_frequency_pct:.1f}%
-• Average customer lifecycle: {avg_recency:.0f} days
-• Customer value improvement potential: Focus on customers with low F and M scores
+�� **重点关注指标**
+• 高频购买客户占比：{high_frequency_pct:.1f}%
+• 平均客户生命周期：{avg_recency:.0f}天
+• 客户价值提升潜力：关注F分值和M分值较低的客户
 
-💰 **ROI Optimization**
-• Allocate 80% of marketing resources to high-value customers
-• Use 20% of resources for medium-value customer enhancement
-• Regularly review RFM model, optimize segmentation criteria
+💰 **投入产出优化**
+• 80%的营销资源投入到重要客户
+• 20%的资源用于一般客户的价值提升
+• 定期复评RFM模型，优化客户分级标准
 """
 
 email.add_text(strategy_recommendations.strip())
 
 email.export_html("rfm_customer_analysis.html")
-print("✅ RFM customer analysis report generated: rfm_customer_analysis.html")
+print("✅ RFM客户分析报告已生成：rfm_customer_analysis.html")
 ```
 
 --8<-- "examples/assets/data_reports_html/rfm_customer_analysis.html"

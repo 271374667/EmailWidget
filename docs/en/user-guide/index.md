@@ -19,16 +19,16 @@ EmailWidget uses a component-based architecture that allows you to flexibly buil
 from email_widget import Email
 from email_widget.widgets import TextWidget, TableWidget, ChartWidget, ButtonWidget
 
-# Create email container
-email = Email("Data Report")
+# 创建邮件容器
+email = Email("数据报告")
 
-# Add widgets
-email.add_widget(TextWidget().set_content("Weekly Data Overview"))
-email.add_widget(TableWidget().set_headers(["Item", "Value"]))
+# 添加组件
+email.add_widget(TextWidget().set_content("本周数据概览"))
+email.add_widget(TableWidget().set_headers(["项目", "数值"]))
 email.add_widget(ChartWidget().set_image_url("chart.png"))
-email.add_button("View Full Report", "https://dashboard.example.com")
+email.add_button("查看完整报告", "https://dashboard.example.com")
 
-# Generate HTML
+# 生成HTML
 html = email.render_html()
 ```
 

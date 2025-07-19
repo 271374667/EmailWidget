@@ -23,38 +23,38 @@ ColumnWidget is a powerful layout component used to create multi-column layouts,
 from email_widget import Email
 from email_widget.widgets import ColumnWidget, TextWidget
 
-# Create column layout widget
+# 创建列布局组件
 column = ColumnWidget()
 
-# Create child widgets
-widget1 = TextWidget().set_content("First column content")
-widget2 = TextWidget().set_content("Second column content")  
-widget3 = TextWidget().set_content("Third column content")
+# 创建子组件
+widget1 = TextWidget().set_content("第一列内容")
+widget2 = TextWidget().set_content("第二列内容")  
+widget3 = TextWidget().set_content("第三列内容")
 
-# Add to layout (3 widgets automatically use 3 columns)
+# 添加到布局中（3个Widget自动使用3列）
 column.add_widgets([widget1, widget2, widget3])
 
-email = Email("Multi-column Layout Example")
+email = Email("多列布局示例")
 email.add_widget(column)
 ```
 
 ### Advanced Usage
 
 ```python
-# Fixed column layout
+# 固定列数布局
 column = ColumnWidget()
-column.set_columns(2)  # Fixed 2 columns
-column.set_gap("25px")  # Set column gap
+column.set_columns(2)  # 固定使用2列
+column.set_gap("25px")  # 设置列间距
 
-# Create multiple widgets
+# 创建多个组件
 from email_widget.widgets import StatusWidget, MetricWidget
 
-status = StatusWidget().set_title("System Status")
+status = StatusWidget().set_title("系统状态")
 status.add_status("CPU", "68%", "warning")
-status.add_status("Memory", "4.2GB", "info")
+status.add_status("内存", "4.2GB", "info")
 
-metric = MetricWidget().set_title("Key Metrics")
-metric.add_metric("Users", 12345, "people", "+15.6%", "success")
+metric = MetricWidget().set_title("核心指标")
+metric.add_metric("用户数", 12345, "人", "+15.6%", "success")
 
 column.add_widgets([status, metric])
 email.add_widget(column)
@@ -91,17 +91,17 @@ email.add_widget(column)
 from email_widget import Email
 from email_widget.widgets import ColumnWidget, CardWidget
 
-email = Email("Dashboard Report")
+email = Email("仪表板报告")
 
-# Create auto column layout
-auto_column = ColumnWidget()  # Default auto mode
+# 创建自动列数布局
+auto_column = ColumnWidget()  # 默认自动模式
 
-# Create multiple cards (6 widgets automatically use 3 columns)
+# 创建多个卡片（6个Widget自动使用3列）
 cards = []
 for i in range(6):
     card = CardWidget()
-    card.set_title(f"Metric {i+1}")
-    card.set_content(f"This is data display for metric {i+1}")
+    card.set_title(f"指标 {i+1}")
+    card.set_content(f"这是第{i+1}个指标的数据展示")
     cards.append(card)
 
 auto_column.add_widgets(cards)
@@ -116,23 +116,23 @@ email.add_widget(auto_column)
 from email_widget import Email
 from email_widget.widgets import ColumnWidget, StatusWidget
 
-email = Email("System Monitoring Report")
+email = Email("系统监控报告")
 
-# Create fixed 2-column layout
+# 创建固定2列布局
 fixed_column = ColumnWidget().set_columns(2)
 fixed_column.set_gap("30px")
 
-# System status widget
+# 系统状态组件
 system_status = StatusWidget()
-system_status.set_title("System Resources")
-system_status.add_status("CPU Usage", "68%", "success")
-system_status.add_status("Memory Usage", "85%", "warning")
+system_status.set_title("系统资源")
+system_status.add_status("CPU使用率", "68%", "success")
+system_status.add_status("内存使用", "85%", "warning")
 
-# Service status widget
+# 服务状态组件
 service_status = StatusWidget()
-service_status.set_title("Service Status")
-service_status.add_status("Web Service", "Running", "success")
-service_status.add_status("Database", "Normal", "success")
+service_status.set_title("服务状态")
+service_status.add_status("Web服务", "运行中", "success")
+service_status.add_status("数据库", "正常", "success")
 
 fixed_column.add_widgets([system_status, service_status])
 email.add_widget(fixed_column)
@@ -149,15 +149,15 @@ from email_widget.widgets import (
     ProgressWidget, ImageWidget
 )
 
-email = Email("Comprehensive Report")
+email = Email("综合报告")
 
-# Create mixed component layout
+# 创建混合组件布局
 mixed_column = ColumnWidget().set_columns(3)
 
-# Different types of widgets
-text_widget = TextWidget().set_content("Welcome to this month's report")
-alert_widget = AlertWidget().set_content("Note: System maintenance tonight").set_alert_type("warning")
-progress_widget = ProgressWidget().set_progress(75).set_label("Project Progress")
+# 不同类型的组件
+text_widget = TextWidget().set_content("欢迎查看本月报告")
+alert_widget = AlertWidget().set_content("注意：系统将于今晚维护").set_alert_type("warning")
+progress_widget = ProgressWidget().set_progress(75).set_label("项目进度")
 
 mixed_column.add_widgets([text_widget, alert_widget, progress_widget])
 email.add_widget(mixed_column)
@@ -172,22 +172,22 @@ from email_widget import Email
 from email_widget.widgets import ColumnWidget
 
 def create_responsive_layout(widgets):
-    """Create responsive layout"""
-    column = ColumnWidget()  # Use auto mode
+    """创建响应式布局"""
+    column = ColumnWidget()  # 使用自动模式
     
-    # Set gap based on widget count
+    # 根据Widget数量设置间距
     if len(widgets) <= 2:
-        column.set_gap("30px")  # Increase gap for few widgets
+        column.set_gap("30px")  # 少量Widget时增加间距
     elif len(widgets) <= 4:
-        column.set_gap("20px")  # Default gap for medium count
+        column.set_gap("20px")  # 中等数量使用默认间距
     else:
-        column.set_gap("15px")  # Reduce gap for many widgets
+        column.set_gap("15px")  # 大量Widget时减少间距
     
     column.add_widgets(widgets)
     return column
 
-# Use responsive layout
-email = Email("Responsive Layout Example")
+# 使用响应式布局
+email = Email("响应式布局示例")
 widgets = [widget1, widget2, widget3, widget4]
 responsive_layout = create_responsive_layout(widgets)
 email.add_widget(responsive_layout)
@@ -200,17 +200,17 @@ email.add_widget(responsive_layout)
 The Email class provides the `add_column` shortcut method:
 
 ```python
-# Auto column shortcut method
+# 自动列数快捷方法
 email.add_column([widget1, widget2, widget3])
 
-# Specified column shortcut method
+# 指定列数的快捷方法
 email.add_column(
     widgets=[widget1, widget2, widget3, widget4],
     columns=2,
     gap="25px"
 )
 
-# Responsive column layout
+# 响应式列布局
 email.add_column(
     widgets=[widget1, widget2, widget3],
     auto_columns=True,
@@ -223,38 +223,38 @@ email.add_column(
 ### Q: How to determine the optimal column count?
 A: Recommend using auto mode, the system will automatically choose based on content quantity:
 ```python
-column = ColumnWidget()  # Auto mode, no need to set column count
+column = ColumnWidget()  # 自动模式，无需设置列数
 ```
 
 ### Q: How does it display on mobile devices?
 A: Email clients usually automatically adjust to single column display:
 ```python
-# Set smaller gap for mobile adaptation
-column.set_gap("15px")  # Smaller gap suitable for mobile
+# 设置最大宽度确保移动端适配
+column.set_gap("15px")  # 较小间距适合移动端
 ```
 
 ### Q: How to handle widgets with different heights?
 A: Components automatically use `vertical-align: top` to ensure top alignment:
 ```python
-# No additional settings needed, components auto-align
+# 不需要额外设置，组件会自动对齐
 column.add_widgets([tall_widget, short_widget])
 ```
 
 ### Q: What if column gap is too large or too small?
 A: Use the `set_gap()` method to adjust:
 ```python
-column.set_gap("15px")  # Small gap
-column.set_gap("25px")  # Large gap
+column.set_gap("15px")  # 小间距
+column.set_gap("25px")  # 大间距
 ```
 
 ### Q: How to dynamically update layout?
 A: Use dynamic management methods:
 ```python
-# Clear and re-add
+# 清空后重新添加
 column.clear_widgets()
 column.add_widgets(new_widgets)
 
-# Or remove by index
+# 或按索引移除
 column.remove_widget_by_index(0)
 ```
 

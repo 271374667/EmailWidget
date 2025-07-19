@@ -128,21 +128,21 @@ email_widget/ewidget/widgets/
 ### 2. 📝 Widget Base Template
 
 ```python
-"""Your new Widget implementation
+"""你的新Widget实现
 
-This module provides Widget functionality for XXX.
+这个模块提供了XXX功能的Widget。
 """
 from typing import Optional
 from email_widget.core.base import BaseWidget
 
 
 class YourNewWidget(BaseWidget):
-    """Your new Widget class for XXX functionality.
+    """你的新Widget类，用于XXX功能。
     
-    Detailed class description...
+    详细的类说明...
     
     Attributes:
-        _your_attr: Attribute description
+        _your_attr: 属性说明
         
     Examples:
         >>> widget = YourNewWidget()
@@ -151,42 +151,42 @@ class YourNewWidget(BaseWidget):
     """
 
     def __init__(self, widget_id: Optional[str] = None):
-        """Initialize Widget.
+        """初始化Widget。
         
         Args:
-            widget_id: Optional Widget ID
+            widget_id: 可选的Widget ID
         """
         super().__init__(widget_id)
-        # Initialize your attributes
+        # 初始化你的属性
         self._your_attr = "default_value"
 
     def set_something(self, value: str) -> 'YourNewWidget':
-        """Set some attribute.
+        """设置某个属性。
         
         Args:
-            value: Attribute value
+            value: 属性值
             
         Returns:
-            Returns self to support method chaining
+            返回self以支持链式调用
         """
         self._your_attr = value
         return self
 
     def _get_template_name(self) -> str:
-        """Get template name.
+        """获取模板名称。
         
         Returns:
-            Template filename
+            模板文件名
         """
         return "your_new_widget.html"
 
     def render_html(self) -> str:
-        """Render to HTML string.
+        """渲染为HTML字符串。
         
         Returns:
-            Rendered HTML string
+            渲染后的HTML字符串
         """
-        # Implement your rendering logic
+        # 实现你的渲染逻辑
         return f'<div>{self._your_attr}</div>'
 ```
 
@@ -208,20 +208,20 @@ from email_widget.widgets import YourNewWidget
 
 class TestYourNewWidget:
     def test_init(self):
-        """Test Widget initialization"""
+        """测试Widget初始化"""
         widget = YourNewWidget()
         assert widget._your_attr == "default_value"
 
     def test_set_something(self):
-        """Test setting attributes"""
+        """测试设置属性"""
         widget = YourNewWidget()
         result = widget.set_something("test_value")
 
         assert widget._your_attr == "test_value"
-        assert result is widget  # Test method chaining
+        assert result is widget  # 测试链式调用
 
     def test_render_html(self):
-        """Test HTML rendering"""
+        """测试HTML渲染"""
         widget = YourNewWidget()
         widget.set_something("test")
 
@@ -237,7 +237,7 @@ Add import in `email_widget/ewidget/widgets/__init__.py`:
 from .your_new_widget import YourNewWidget
 
 __all__ = [
-    # ... other Widgets
+    # ... 其他Widget
     'YourNewWidget',
 ]
 ```

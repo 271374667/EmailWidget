@@ -12,70 +12,70 @@ import random
 from email_widget import Email, ProgressWidget, TableWidget, StatusWidget
 from email_widget.core.enums import TextType, ProgressTheme, StatusType
 
-# Simulate spider task data
+# 模拟爬虫任务数据
 spider_tasks = [
     {
-        'name': 'E-commerce Product Info Collection',
+        'name': '电商产品信息采集',
         'target_count': 10000,
         'completed_count': 8500,
         'success_rate': 95.2,
-        'avg_speed': 120,  # records/minute
-        'status': 'Running',
+        'avg_speed': 120,  # 条/分钟
+        'status': '运行中',
         'start_time': datetime.now() - timedelta(hours=2)
     },
     {
-        'name': 'News Article Scraping',
+        'name': '新闻资讯爬取',
         'target_count': 5000,
         'completed_count': 5000,
         'success_rate': 98.8,
         'avg_speed': 200,
-        'status': 'Completed',
+        'status': '已完成',
         'start_time': datetime.now() - timedelta(hours=1, minutes=30)
     },
     {
-        'name': 'User Review Data',
+        'name': '用户评论数据',
         'target_count': 20000,
         'completed_count': 12000,
         'success_rate': 92.1,
         'avg_speed': 80,
-        'status': 'Running',
+        'status': '运行中',
         'start_time': datetime.now() - timedelta(hours=3)
     }
 ]
 
-# Create spider monitoring report
-email = Email("Spider Task Monitoring Report")
+# 创建爬虫监控报告
+email = Email("爬虫任务监控报告")
 
-email.add_title("🕷️ Spider Task Monitoring Report", TextType.TITLE_LARGE)
-email.add_text(f"Report Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+email.add_title("🕷️ 爬虫任务监控报告", TextType.TITLE_LARGE)
+email.add_text(f"报告时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
-# Task overview statistics
-email.add_title("📊 Task Overview", TextType.SECTION_H2)
+# 任务概览统计
+email.add_title("📊 任务概览", TextType.SECTION_H2)
 
 total_tasks = len(spider_tasks)
-running_tasks = sum(1 for task in spider_tasks if task['status'] == 'Running')
-completed_tasks = sum(1 for task in spider_tasks if task['status'] == 'Completed')
+running_tasks = sum(1 for task in spider_tasks if task['status'] == '运行中')
+completed_tasks = sum(1 for task in spider_tasks if task['status'] == '已完成')
 total_collected = sum(task['completed_count'] for task in spider_tasks)
 
 overview_stats = [
-    ("Total Tasks", f"{total_tasks}", "🎯"),
-    ("Running", f"{running_tasks}", "🔄"),
-    ("Completed", f"{completed_tasks}", "✅"),
-    ("Total Collected", f"{total_collected:,}", "📦")
+    ("任务总数", f"{total_tasks}", "🎯"),
+    ("运行中", f"{running_tasks}", "🔄"),
+    ("已完成", f"{completed_tasks}", "✅"),
+    ("总采集量", f"{total_collected:,}", "📦")
 ]
 
 for title, value, icon in overview_stats:
     email.add_card(title=title, content=value, icon=icon)
 
-# Detailed progress for each task
-email.add_title("📈 Task Progress Details", TextType.SECTION_H2)
+# 各任务详细进度
+email.add_title("📈 任务进度详情", TextType.SECTION_H2)
 
 for task in spider_tasks:
-    # Calculate progress percentage
+    # 计算进度百分比
     progress_percent = (task['completed_count'] / task['target_count']) * 100
     
-    # Set theme color based on status
-    if task['status'] == 'Completed':
+    # 根据状态设置主题色
+    if task['status'] == '已完成':
         theme = ProgressTheme.SUCCESS
         status_type = StatusType.SUCCESS
     elif task['success_rate'] > 95:
@@ -88,26 +88,26 @@ for task in spider_tasks:
         theme = ProgressTheme.ERROR
         status_type = StatusType.ERROR
     
-    # Task status card
+    # 任务状态卡片
     status_widget = StatusWidget()
     status_widget.set_title(task['name']) \
                  .set_status(task['status']) \
                  .set_status_type(status_type) \
-                 .set_description(f"Success Rate: {task['success_rate']:.1f}% | Speed: {task['avg_speed']} records/min")
+                 .set_description(f"成功率: {task['success_rate']:.1f}% | 速度: {task['avg_speed']}条/分钟")
     email.add_widget(status_widget)
     
-    # Progress bar
+    # 进度条
     email.add_progress(
         value=progress_percent,
         label=f"{task['completed_count']:,}/{task['target_count']:,} ({progress_percent:.1f}%)",
         theme=theme
     )
 
-# Detailed data table
-email.add_title("📋 Detailed Task Data", TextType.SECTION_H2)
+# 详细数据表格
+email.add_title("📋 任务详细数据", TextType.SECTION_H2)
 
 table = TableWidget()
-table.set_headers(["Task Name", "Target Count", "Completed", "Completion Rate", "Success Rate", "Avg Speed", "Runtime"])
+table.set_headers(["任务名称", "目标数量", "已完成", "完成率", "成功率", "平均速度", "运行时长"])
 
 for task in spider_tasks:
     runtime = datetime.now() - task['start_time']
@@ -121,38 +121,38 @@ for task in spider_tasks:
         f"{task['completed_count']:,}",
         f"{progress_percent:.1f}%",
         f"{task['success_rate']:.1f}%",
-        f"{task['avg_speed']} records/min",
+        f"{task['avg_speed']}条/分钟",
         runtime_str
     ])
 
 table.set_striped(True)
 email.add_widget(table)
 
-# Performance analysis
-email.add_title("⚡ Performance Analysis", TextType.SECTION_H2)
+# 性能分析
+email.add_title("⚡ 性能分析", TextType.SECTION_H2)
 
 avg_success_rate = sum(task['success_rate'] for task in spider_tasks) / len(spider_tasks)
 fastest_task = max(spider_tasks, key=lambda x: x['avg_speed'])
 slowest_task = min(spider_tasks, key=lambda x: x['avg_speed'])
 
 performance_text = f"""
-**Spider Performance Analysis:**
+**爬虫性能分析：**
 
-📊 **Overall Performance**
-• Average Success Rate: {avg_success_rate:.1f}%
-• Fastest Task: {fastest_task['name']} ({fastest_task['avg_speed']} records/min)
-• Slowest Task: {slowest_task['name']} ({slowest_task['avg_speed']} records/min)
+📊 **整体表现**
+• 平均成功率: {avg_success_rate:.1f}%
+• 最快任务: {fastest_task['name']} ({fastest_task['avg_speed']}条/分钟)
+• 最慢任务: {slowest_task['name']} ({slowest_task['avg_speed']}条/分钟)
 
-💡 **Optimization Recommendations**
-• Tasks with success rate below 90% need anti-scraping strategy review
-• Consider adjusting concurrency to improve collection speed
-• Monitor target website response time changes
+💡 **优化建议**
+• 成功率低于90%的任务需要检查反爬策略
+• 考虑调整并发数以提高采集速度
+• 监控目标网站的响应时间变化
 """
 
 email.add_text(performance_text.strip())
 
 email.export_html("spider_monitor.html")
-print("✅ Spider monitoring report generated: spider_monitor.html")
+print("✅ 爬虫监控报告已生成：spider_monitor.html")
 ```
 
 --8<-- "examples/assets/spider_reports_html/spider_monitor.html"
@@ -174,7 +174,7 @@ import pandas as pd
 from email_widget import Email, TableWidget, AlertWidget, ProgressWidget
 from email_widget.core.enums import TextType, AlertType, ProgressTheme
 
-# Simulate collected data quality statistics
+# 模拟采集的数据质量统计
 data_quality_stats = {
     'total_records': 50000,
     'valid_records': 47500,
@@ -182,22 +182,22 @@ data_quality_stats = {
     'incomplete_records': 800,
     'invalid_format': 500,
     'fields_quality': {
-        'Title': {'completeness': 98.5, 'validity': 99.2},
-        'Price': {'completeness': 95.2, 'validity': 92.8},
-        'Image URL': {'completeness': 89.3, 'validity': 88.1},
-        'Description': {'completeness': 78.6, 'validity': 95.4},
-        'Rating': {'completeness': 92.1, 'validity': 98.7}
+        '标题': {'completeness': 98.5, 'validity': 99.2},
+        '价格': {'completeness': 95.2, 'validity': 92.8},
+        '图片URL': {'completeness': 89.3, 'validity': 88.1},
+        '商品描述': {'completeness': 78.6, 'validity': 95.4},
+        '评分': {'completeness': 92.1, 'validity': 98.7}
     }
 }
 
-# Create data quality report
-email = Email("Data Quality Check Report")
+# 创建数据质量报告
+email = Email("数据质量检查报告")
 
-email.add_title("🔍 Data Quality Check Report", TextType.TITLE_LARGE)
-email.add_text(f"Data Check Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+email.add_title("🔍 数据质量检查报告", TextType.TITLE_LARGE)
+email.add_text(f"数据检查时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
-# Data quality overview
-email.add_title("📊 Data Quality Overview", TextType.SECTION_H2)
+# 数据质量概览
+email.add_title("📊 数据质量概览", TextType.SECTION_H2)
 
 total = data_quality_stats['total_records']
 valid = data_quality_stats['valid_records']
@@ -209,53 +209,53 @@ quality_rate = (valid / total) * 100
 duplicate_rate = (duplicate / total) * 100
 
 quality_overview = [
-    ("Total Records", f"{total:,}", "📦"),
-    ("Valid Records", f"{valid:,}", "✅"),
-    ("Data Quality Rate", f"{quality_rate:.1f}%", "🎯"),
-    ("Duplicate Rate", f"{duplicate_rate:.1f}%", "🔄")
+    ("总记录数", f"{total:,}", "📦"),
+    ("有效记录", f"{valid:,}", "✅"),
+    ("数据质量率", f"{quality_rate:.1f}%", "🎯"),
+    ("重复率", f"{duplicate_rate:.1f}%", "🔄")
 ]
 
 for title, value, icon in quality_overview:
     email.add_card(title=title, content=value, icon=icon)
 
-# Detailed data quality analysis
-email.add_title("📈 Quality Metrics Analysis", TextType.SECTION_H2)
+# 数据质量详细分析
+email.add_title("📈 质量指标分析", TextType.SECTION_H2)
 
-# Overall quality score
+# 整体质量评分
 overall_quality = (valid / total) * 100
 quality_theme = ProgressTheme.SUCCESS if overall_quality > 95 else \
                ProgressTheme.WARNING if overall_quality > 90 else ProgressTheme.ERROR
 
-email.add_text("🔹 Overall Data Quality")
-email.add_progress(overall_quality, f"Quality Rate: {overall_quality:.1f}%", theme=quality_theme)
+email.add_text("🔹 整体数据质量")
+email.add_progress(overall_quality, f"质量率: {overall_quality:.1f}%", theme=quality_theme)
 
-# Duplicate data rate
+# 重复数据率
 dup_theme = ProgressTheme.SUCCESS if duplicate_rate < 2 else \
            ProgressTheme.WARNING if duplicate_rate < 5 else ProgressTheme.ERROR
 
-email.add_text("🔹 Duplicate Data Ratio")
-email.add_progress(duplicate_rate, f"Duplicate Rate: {duplicate_rate:.1f}%", theme=dup_theme)
+email.add_text("🔹 重复数据比例")
+email.add_progress(duplicate_rate, f"重复率: {duplicate_rate:.1f}%", theme=dup_theme)
 
-# Field quality details
-email.add_title("🔍 Field Quality Details", TextType.SECTION_H2)
+# 字段质量详情
+email.add_title("🔍 字段质量详情", TextType.SECTION_H2)
 
 field_table = TableWidget()
-field_table.set_headers(["Field Name", "Completeness", "Validity", "Quality Grade"])
+field_table.set_headers(["字段名称", "完整性", "有效性", "质量评级"])
 
 for field_name, quality in data_quality_stats['fields_quality'].items():
     completeness = quality['completeness']
     validity = quality['validity']
     avg_quality = (completeness + validity) / 2
     
-    # Quality grade
+    # 质量评级
     if avg_quality >= 95:
-        grade = "🟢 Excellent"
+        grade = "🟢 优秀"
     elif avg_quality >= 90:
-        grade = "🟡 Good"
+        grade = "🟡 良好"
     elif avg_quality >= 80:
-        grade = "🟠 Average"
+        grade = "🟠 一般"
     else:
-        grade = "🔴 Poor"
+        grade = "🔴 较差"
     
     field_table.add_row([
         field_name,
@@ -267,20 +267,20 @@ for field_name, quality in data_quality_stats['fields_quality'].items():
 field_table.set_striped(True)
 email.add_widget(field_table)
 
-# Data issue statistics
-email.add_title("⚠️ Data Issue Statistics", TextType.SECTION_H2)
+# 数据问题统计
+email.add_title("⚠️ 数据问题统计", TextType.SECTION_H2)
 
 problem_table = TableWidget()
-problem_table.set_headers(["Issue Type", "Record Count", "Percentage", "Impact Level"])
+problem_table.set_headers(["问题类型", "记录数", "占比", "影响等级"])
 
 problems = [
-    ("Duplicate Records", duplicate, (duplicate/total)*100, "Medium"),
-    ("Incomplete Records", incomplete, (incomplete/total)*100, "High"),
-    ("Format Errors", invalid, (invalid/total)*100, "High"),
+    ("重复记录", duplicate, (duplicate/total)*100, "中等"),
+    ("不完整记录", incomplete, (incomplete/total)*100, "高"),
+    ("格式错误", invalid, (invalid/total)*100, "高"),
 ]
 
 for problem_type, count, percentage, impact in problems:
-    impact_emoji = "🟢" if impact == "Low" else "🟡" if impact == "Medium" else "🔴"
+    impact_emoji = "🟢" if impact == "低" else "🟡" if impact == "中等" else "🔴"
     problem_table.add_row([
         problem_type,
         f"{count:,}",
@@ -291,48 +291,48 @@ for problem_type, count, percentage, impact in problems:
 problem_table.set_striped(True)
 email.add_widget(problem_table)
 
-# Quality improvement recommendations
-email.add_title("💡 Quality Improvement Recommendations", TextType.SECTION_H2)
+# 质量改进建议
+email.add_title("💡 质量改进建议", TextType.SECTION_H2)
 
-# Generate recommendations based on data quality
+# 根据数据质量情况生成建议
 if overall_quality < 90:
     email.add_alert(
-        "Data quality below 90%, recommend immediate optimization of spider logic and data cleaning process",
+        "数据质量低于90%，建议立即优化爬虫逻辑和数据清洗流程",
         AlertType.CAUTION,
-        "🚨 Quality Alert"
+        "🚨 质量告警"
     )
 
 if duplicate_rate > 5:
     email.add_alert(
-        f"Duplicate data rate reached {duplicate_rate:.1f}%, recommend enhancing deduplication mechanism",
+        f"重复数据率达到{duplicate_rate:.1f}%，建议增强去重机制",
         AlertType.WARNING,
-        "⚠️ Duplicate Data Alert"
+        "⚠️ 重复数据告警"
     )
 
-# Improvement suggestions
+# 改进建议
 improvement_suggestions = f"""
-**Data Quality Improvement Recommendations:**
+**数据质量改进建议：**
 
-🔧 **Technical Improvements**
-• Strengthen data validation rules to improve field validity
-• Optimize deduplication algorithms to reduce duplicate data rate
-• Improve exception handling to reduce incomplete records
+🔧 **技术改进**
+• 加强数据验证规则，提高字段有效性
+• 优化去重算法，降低重复数据率
+• 完善异常处理，减少不完整记录
 
-📊 **Quality Monitoring**
-• Set quality threshold alerts (recommended: quality rate >95%, duplicate rate <2%)
-• Real-time monitoring of key field completeness
-• Regular data quality assessments
+📊 **质量监控**
+• 设置质量阈值告警 (建议: 质量率>95%, 重复率<2%)
+• 实时监控关键字段的完整性
+• 定期进行数据质量评估
 
-⚡ **Process Optimization**
-• Perform quality checks before data insertion
-• Establish data quality scoring system
-• Automate data cleaning and repair processes
+⚡ **流程优化**
+• 在数据入库前进行质量检查
+• 建立数据质量评分体系
+• 自动化数据清洗和修复流程
 """
 
 email.add_text(improvement_suggestions.strip())
 
 email.export_html("data_quality_report.html")
-print("✅ Data quality report generated: data_quality_report.html")
+print("✅ 数据质量报告已生成：data_quality_report.html")
 ```
 
 --8<-- "examples/assets/spider_reports_html/data_quality_report.html"
@@ -355,55 +355,55 @@ from email_widget import Email, ChartWidget, TableWidget, AlertWidget
 from email_widget.core.enums import TextType, AlertType
 import matplotlib.pyplot as plt
 
-# Simulate spider exception data
+# 模拟爬虫异常数据
 spider_errors = [
-    {'timestamp': '2024-01-20 10:15', 'error_type': 'HTTP_TIMEOUT', 'url': 'example1.com', 'message': 'Request timeout'},
-    {'timestamp': '2024-01-20 10:16', 'error_type': 'PARSING_ERROR', 'url': 'example2.com', 'message': 'Parsing failed'},
-    {'timestamp': '2024-01-20 10:17', 'error_type': 'HTTP_404', 'url': 'example3.com', 'message': 'Page not found'},
-    {'timestamp': '2024-01-20 10:18', 'error_type': 'RATE_LIMITED', 'url': 'example4.com', 'message': 'Request rate limited'},
-    {'timestamp': '2024-01-20 10:19', 'error_type': 'HTTP_TIMEOUT', 'url': 'example5.com', 'message': 'Connection timeout'},
-    {'timestamp': '2024-01-20 10:20', 'error_type': 'CAPTCHA_DETECTED', 'url': 'example6.com', 'message': 'Captcha detected'},
-    {'timestamp': '2024-01-20 10:21', 'error_type': 'PARSING_ERROR', 'url': 'example7.com', 'message': 'Data structure changed'},
-    {'timestamp': '2024-01-20 10:22', 'error_type': 'HTTP_403', 'url': 'example8.com', 'message': 'Access forbidden'},
+    {'timestamp': '2024-01-20 10:15', 'error_type': 'HTTP_TIMEOUT', 'url': 'example1.com', 'message': '请求超时'},
+    {'timestamp': '2024-01-20 10:16', 'error_type': 'PARSING_ERROR', 'url': 'example2.com', 'message': '解析失败'},
+    {'timestamp': '2024-01-20 10:17', 'error_type': 'HTTP_404', 'url': 'example3.com', 'message': '页面不存在'},
+    {'timestamp': '2024-01-20 10:18', 'error_type': 'RATE_LIMITED', 'url': 'example4.com', 'message': '请求被限制'},
+    {'timestamp': '2024-01-20 10:19', 'error_type': 'HTTP_TIMEOUT', 'url': 'example5.com', 'message': '连接超时'},
+    {'timestamp': '2024-01-20 10:20', 'error_type': 'CAPTCHA_DETECTED', 'url': 'example6.com', 'message': '检测到验证码'},
+    {'timestamp': '2024-01-20 10:21', 'error_type': 'PARSING_ERROR', 'url': 'example7.com', 'message': '数据结构变化'},
+    {'timestamp': '2024-01-20 10:22', 'error_type': 'HTTP_403', 'url': 'example8.com', 'message': '访问被禁止'},
 ]
 
-# Create exception monitoring report
-email = Email("Spider Exception Monitoring Report")
+# 创建异常监控报告
+email = Email("爬虫异常监控报告")
 
-email.add_title("🚨 Spider Exception Monitoring Report", TextType.TITLE_LARGE)
-email.add_text(f"Exception Statistics Time: Last 1 hour")
+email.add_title("🚨 爬虫异常监控报告", TextType.TITLE_LARGE)
+email.add_text(f"异常统计时间: 最近1小时")
 
-# Exception statistics overview
+# 异常统计概览
 error_counts = Counter(error['error_type'] for error in spider_errors)
 total_errors = len(spider_errors)
 
-email.add_title("📊 Exception Statistics Overview", TextType.SECTION_H2)
+email.add_title("📊 异常统计概览", TextType.SECTION_H2)
 
 error_overview = [
-    ("Total Exceptions", f"{total_errors}", "🚨"),
-    ("Exception Types", f"{len(error_counts)}", "🔍"),
-    ("Most Common", f"{error_counts.most_common(1)[0][0]}", "⚠️"),
-    ("Time Range", "Last 1 hour", "⏰")
+    ("异常总数", f"{total_errors}", "🚨"),
+    ("异常类型", f"{len(error_counts)}", "🔍"),
+    ("最多异常", f"{error_counts.most_common(1)[0][0]}", "⚠️"),
+    ("时间范围", "最近1小时", "⏰")
 ]
 
 for title, value, icon in error_overview:
     email.add_card(title=title, content=value, icon=icon)
 
-# Exception type distribution
-email.add_title("📈 Exception Type Distribution", TextType.SECTION_H2)
+# 异常类型分布
+email.add_title("📈 异常类型分布", TextType.SECTION_H2)
 
-# Create exception distribution chart
+# 创建异常分布图表
 plt.figure(figsize=(10, 6))
 error_types = list(error_counts.keys())
 error_values = list(error_counts.values())
 
 bars = plt.bar(error_types, error_values, color=['#e74c3c', '#f39c12', '#3498db', '#9b59b6', '#1abc9c', '#95a5a6'])
-plt.title('Exception Type Distribution', fontsize=14)
-plt.xlabel('Exception Type')
-plt.ylabel('Occurrence Count')
+plt.title('异常类型分布', fontsize=14)
+plt.xlabel('异常类型')
+plt.ylabel('发生次数')
 plt.xticks(rotation=45)
 
-# Add value labels
+# 添加数值标签
 for bar, value in zip(bars, error_values):
     plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1, 
              str(value), ha='center', va='bottom')
@@ -415,17 +415,17 @@ plt.close()
 
 chart = ChartWidget()
 chart.set_chart_path(error_chart_path) \
-     .set_title("Exception Type Distribution Chart") \
-     .set_description("Shows occurrence frequency of each exception type")
+     .set_title("异常类型分布图") \
+     .set_description("显示各类异常的发生频率")
 email.add_widget(chart)
 
-# Exception details table
-email.add_title("📋 Exception Details List", TextType.SECTION_H2)
+# 异常详情表格
+email.add_title("📋 异常详情列表", TextType.SECTION_H2)
 
 error_table = TableWidget()
-error_table.set_headers(["Time", "Exception Type", "Target URL", "Error Message"])
+error_table.set_headers(["时间", "异常类型", "目标URL", "错误信息"])
 
-for error in spider_errors[-10:]:  # Show last 10 exceptions
+for error in spider_errors[-10:]:  # 显示最近10条异常
     error_table.add_row([
         error['timestamp'],
         error['error_type'],
@@ -436,10 +436,10 @@ for error in spider_errors[-10:]:  # Show last 10 exceptions
 error_table.set_striped(True)
 email.add_widget(error_table)
 
-# Exception analysis and recommendations
-email.add_title("💡 Exception Analysis and Recommendations", TextType.SECTION_H2)
+# 异常分析和建议
+email.add_title("💡 异常分析与建议", TextType.SECTION_H2)
 
-# Generate alerts and recommendations based on exception types
+# 基于异常类型生成告警和建议
 critical_errors = ['RATE_LIMITED', 'CAPTCHA_DETECTED', 'HTTP_403']
 timeout_errors = ['HTTP_TIMEOUT']
 parsing_errors = ['PARSING_ERROR']
@@ -447,53 +447,53 @@ parsing_errors = ['PARSING_ERROR']
 for error_type, count in error_counts.items():
     if error_type in critical_errors:
         email.add_alert(
-            f"{error_type} occurred {count} times, may have triggered anti-scraping mechanism",
+            f"{error_type} 发生 {count} 次，可能触发反爬虫机制",
             AlertType.CAUTION,
-            f"🚨 {error_type} Alert"
+            f"🚨 {error_type} 告警"
         )
     elif error_type in timeout_errors and count > 3:
         email.add_alert(
-            f"Frequent timeout errors ({count} times), recommend checking network connection and timeout settings",
+            f"超时错误频发 ({count} 次)，建议检查网络连接和超时设置",
             AlertType.WARNING,
-            "⚠️ Timeout Alert"
+            "⚠️ 超时告警"
         )
 
 analysis_text = f"""
-**Exception Analysis Results:**
+**异常分析结果：**
 
-🔍 **Main Issues**
-• {error_counts.most_common(1)[0][0]} is the most frequent exception type ({error_counts.most_common(1)[0][1]} times)
-• Total exception rate needs attention, recommend optimizing spider strategy
+🔍 **主要问题**
+• {error_counts.most_common(1)[0][0]} 是最频繁的异常类型 ({error_counts.most_common(1)[0][1]} 次)
+• 总异常率需要关注，建议优化爬虫策略
 
-🛠️ **Solutions**
+🛠️ **解决建议**
 """
 
-# Provide recommendations for different exception types
+# 针对不同异常类型给出建议
 if 'HTTP_TIMEOUT' in error_counts:
-    analysis_text += f"\n• Timeout exceptions ({error_counts['HTTP_TIMEOUT']} times): Increase timeout duration, optimize network connection"
+    analysis_text += f"\n• 超时异常 ({error_counts['HTTP_TIMEOUT']} 次): 增加超时时间，优化网络连接"
 
 if 'RATE_LIMITED' in error_counts:
-    analysis_text += f"\n• Rate limit exceptions ({error_counts['RATE_LIMITED']} times): Reduce request frequency, increase proxy pool"
+    analysis_text += f"\n• 限流异常 ({error_counts['RATE_LIMITED']} 次): 降低请求频率，增加代理池"
 
 if 'CAPTCHA_DETECTED' in error_counts:
-    analysis_text += f"\n• Captcha exceptions ({error_counts['CAPTCHA_DETECTED']} times): Integrate captcha recognition service"
+    analysis_text += f"\n• 验证码异常 ({error_counts['CAPTCHA_DETECTED']} 次): 集成验证码识别服务"
 
 if 'PARSING_ERROR' in error_counts:
-    analysis_text += f"\n• Parsing exceptions ({error_counts['PARSING_ERROR']} times): Update parsing rules, enhance error tolerance"
+    analysis_text += f"\n• 解析异常 ({error_counts['PARSING_ERROR']} 次): 更新解析规则，增强容错性"
 
 analysis_text += f"""
 
-⚡ **Optimization Measures**
-• Implement intelligent retry mechanism
-• Add exception handling logic
-• Monitor target website changes
-• Regularly update spider strategies
+⚡ **优化措施**
+• 实施智能重试机制
+• 增加异常处理逻辑
+• 监控目标网站变化
+• 定期更新爬虫策略
 """
 
 email.add_text(analysis_text.strip())
 
 email.export_html("spider_error_analysis.html")
-print("✅ Spider exception analysis report generated: spider_error_analysis.html")
+print("✅ 爬虫异常分析报告已生成：spider_error_analysis.html")
 ```
 
 --8<-- "examples/assets/spider_reports_html/spider_error_analysis.html"
@@ -514,33 +514,33 @@ print("✅ Spider exception analysis report generated: spider_error_analysis.htm
 from email_widget import Email, ProgressWidget, TableWidget
 from email_widget.core.enums import TextType, ProgressTheme
 
-# Spider performance data
+# 爬虫性能数据
 performance_data = {
     'spider_configs': [
-        {'name': 'Single Thread Mode', 'threads': 1, 'success_rate': 98.5, 'speed': 50, 'cpu_usage': 15, 'memory_mb': 128},
-        {'name': 'Multi Thread Mode', 'threads': 5, 'success_rate': 95.2, 'speed': 200, 'cpu_usage': 45, 'memory_mb': 512},
-        {'name': 'Async Mode', 'threads': 10, 'success_rate': 92.8, 'speed': 450, 'cpu_usage': 35, 'memory_mb': 256},
-        {'name': 'Distributed Mode', 'threads': 20, 'success_rate': 89.1, 'speed': 800, 'cpu_usage': 25, 'memory_mb': 1024}
+        {'name': '单线程模式', 'threads': 1, 'success_rate': 98.5, 'speed': 50, 'cpu_usage': 15, 'memory_mb': 128},
+        {'name': '多线程模式', 'threads': 5, 'success_rate': 95.2, 'speed': 200, 'cpu_usage': 45, 'memory_mb': 512},
+        {'name': '异步模式', 'threads': 10, 'success_rate': 92.8, 'speed': 450, 'cpu_usage': 35, 'memory_mb': 256},
+        {'name': '分布式模式', 'threads': 20, 'success_rate': 89.1, 'speed': 800, 'cpu_usage': 25, 'memory_mb': 1024}
     ]
 }
 
-# Create performance analysis report
-email = Email("Spider Performance Optimization Analysis")
+# 创建性能分析报告
+email = Email("爬虫性能优化分析")
 
-email.add_title("⚡ Spider Performance Optimization Analysis", TextType.TITLE_LARGE)
+email.add_title("⚡ 爬虫性能优化分析", TextType.TITLE_LARGE)
 
-# Performance configuration comparison overview
-email.add_title("📊 Performance Configuration Comparison", TextType.SECTION_H2)
+# 性能对比概览
+email.add_title("📊 性能配置对比", TextType.SECTION_H2)
 
 perf_table = TableWidget()
-perf_table.set_headers(["Configuration Mode", "Threads", "Success Rate", "Collection Speed", "CPU Usage", "Memory Usage"])
+perf_table.set_headers(["配置模式", "线程数", "成功率", "采集速度", "CPU使用", "内存使用"])
 
 for config in performance_data['spider_configs']:
     perf_table.add_row([
         config['name'],
         str(config['threads']),
         f"{config['success_rate']:.1f}%",
-        f"{config['speed']} records/min",
+        f"{config['speed']} 条/分钟",
         f"{config['cpu_usage']}%",
         f"{config['memory_mb']} MB"
     ])
@@ -548,56 +548,56 @@ for config in performance_data['spider_configs']:
 perf_table.set_striped(True)
 email.add_widget(perf_table)
 
-# Detailed analysis for each configuration
-email.add_title("🔍 Detailed Configuration Analysis", TextType.SECTION_H2)
+# 各配置详细分析
+email.add_title("🔍 配置详细分析", TextType.SECTION_H2)
 
 for config in performance_data['spider_configs']:
     email.add_text(f"📋 {config['name']}")
     
-    # Success rate progress bar
+    # 成功率进度条
     success_theme = ProgressTheme.SUCCESS if config['success_rate'] > 95 else \
                    ProgressTheme.WARNING if config['success_rate'] > 90 else ProgressTheme.ERROR
     
-    # Efficiency score (considering both speed and success rate)
+    # 效率评分 (综合考虑速度和成功率)
     efficiency_score = (config['speed'] / 10) * (config['success_rate'] / 100)
     efficiency_percent = min(efficiency_score, 100)
     
-    email.add_progress(config['success_rate'], f"Success Rate: {config['success_rate']:.1f}%", theme=success_theme)
-    email.add_progress(efficiency_percent, f"Efficiency Score: {efficiency_score:.1f}", theme=ProgressTheme.INFO)
+    email.add_progress(config['success_rate'], f"成功率: {config['success_rate']:.1f}%", theme=success_theme)
+    email.add_progress(efficiency_percent, f"效率评分: {efficiency_score:.1f}", theme=ProgressTheme.INFO)
 
-# Optimization recommendations
-email.add_title("💡 Performance Optimization Recommendations", TextType.SECTION_H2)
+# 优化建议
+email.add_title("💡 性能优化建议", TextType.SECTION_H2)
 
-# Find best configuration
+# 找出最佳配置
 best_config = max(performance_data['spider_configs'], 
                  key=lambda x: (x['speed'] / 10) * (x['success_rate'] / 100))
 
 optimization_text = f"""
-**Performance Optimization Analysis Results:**
+**性能优化分析结果：**
 
-🏆 **Recommended Configuration**
-• Best overall performance: {best_config['name']}
-• Collection speed: {best_config['speed']} records/min
-• Success rate: {best_config['success_rate']:.1f}%
-• Resource consumption: CPU {best_config['cpu_usage']}%, Memory {best_config['memory_mb']}MB
+🏆 **推荐配置**
+• 最佳综合性能: {best_config['name']}
+• 采集速度: {best_config['speed']} 条/分钟
+• 成功率: {best_config['success_rate']:.1f}%
+• 资源消耗: CPU {best_config['cpu_usage']}%, 内存 {best_config['memory_mb']}MB
 
-⚖️ **Configuration Trade-offs**
-• Single Thread Mode: High success rate, low resource consumption, suitable for small-scale collection
-• Multi Thread Mode: Balanced performance, suitable for medium-scale projects
-• Async Mode: High efficiency low resource, suitable for large-scale fast collection
-• Distributed Mode: Ultra-high speed, suitable for massive projects
+⚖️ **配置权衡**
+• 单线程模式: 高成功率，低资源消耗，适合小规模采集
+• 多线程模式: 平衡性能，适合中等规模项目
+• 异步模式: 高效率低资源，适合大规模快速采集
+• 分布式模式: 超高速度，适合超大规模项目
 
-🎯 **Optimization Recommendations**
-• Choose appropriate concurrency mode based on target website characteristics
-• Monitor success rate changes, adjust concurrency timely
-• Find optimal balance between speed and stability
-• Consider website anti-scraping strategies, avoid overly aggressive configurations
+🎯 **优化建议**
+• 根据目标网站特性选择合适的并发模式
+• 监控成功率变化，及时调整并发数
+• 在速度和稳定性之间找到最佳平衡点
+• 考虑网站反爬策略，避免过度激进的配置
 """
 
 email.add_text(optimization_text.strip())
 
 email.export_html("spider_performance_analysis.html")
-print("✅ Spider performance analysis report generated: spider_performance_analysis.html")
+print("✅ 爬虫性能分析报告已生成：spider_performance_analysis.html")
 ```
 
 --8<-- "examples/assets/spider_reports_html/spider_performance_analysis.html"
@@ -618,80 +618,80 @@ print("✅ Spider performance analysis report generated: spider_performance_anal
 from email_widget import Email, ColumnWidget, StatusWidget, CardWidget
 from email_widget.core.enums import TextType, StatusType
 
-# Create comprehensive spider project report
-email = Email("Spider Project Comprehensive Report")
+# 创建综合爬虫项目报告
+email = Email("爬虫项目综合报告")
 
-email.add_title("🕷️ Spider Project Comprehensive Report", TextType.TITLE_LARGE)
-email.add_text(f"Project Period: January 15, 2024 - January 21, 2024")
+email.add_title("🕷️ 爬虫项目综合报告", TextType.TITLE_LARGE)
+email.add_text(f"项目周期: 2024年1月15日 - 2024年1月21日")
 
-# Project overall overview
-email.add_title("📊 Project Overall Overview", TextType.SECTION_H2)
+# 项目整体概况
+email.add_title("📊 项目整体概况", TextType.SECTION_H2)
 
 project_summary = [
-    ("Target Websites", "15", "🌐"),
-    ("Total Collected", "125,000 records", "📦"),
-    ("Average Success Rate", "94.3%", "✅"),
-    ("Data Quality Rate", "92.8%", "🎯")
+    ("目标网站", "15个", "🌐"),
+    ("总采集量", "125,000条", "📦"),
+    ("平均成功率", "94.3%", "✅"),
+    ("数据质量率", "92.8%", "🎯")
 ]
 
 for title, value, icon in project_summary:
     email.add_card(title=title, content=value, icon=icon)
 
-# Key achievements showcase
-email.add_title("🏆 Key Achievements", TextType.SECTION_H2)
+# 关键成果展示
+email.add_title("🏆 关键成果", TextType.SECTION_H2)
 
 achievements = f"""
-**Project Main Achievements:**
+**项目主要成果：**
 
-✅ **Collection Results**
-• Successfully completed data collection from 15 target websites
-• Accumulated 125,000 valid data records
-• Data coverage reached 105% of expected target
+✅ **采集成果**
+• 成功完成15个目标网站的数据采集
+• 累计获取有效数据125,000条
+• 数据覆盖率达到预期目标的105%
 
-🎯 **Quality Assurance**
-• Data quality rate 92.8%, exceeding expected 90%
-• Duplicate data rate controlled within 2.1%
-• Key field completeness above 95%
+🎯 **质量保证**
+• 数据质量率92.8%，超过预期90%
+• 重复数据率控制在2.1%以内
+• 关键字段完整性达到95%以上
 
-⚡ **Technical Breakthroughs**
-• Successfully handled 5 different anti-scraping mechanisms
-• Developed intelligent retry and fallback strategies
-• Implemented distributed collection architecture
+⚡ **技术突破**
+• 成功应对5种不同的反爬机制
+• 开发了智能重试和降级策略
+• 实现了分布式采集架构
 
-📈 **Efficiency Improvement**
-• 300% efficiency improvement compared to traditional methods
-• Exception handling mechanism reduced manual intervention by 80%
-• Automation level reached 95%
+📈 **效率提升**
+• 相比传统方式，效率提升300%
+• 异常处理机制减少人工干预80%
+• 自动化程度达到95%
 """
 
 email.add_text(achievements.strip())
 
-# Experience summary
-email.add_title("💡 Experience Summary", TextType.SECTION_H2)
+# 经验总结
+email.add_title("💡 经验总结", TextType.SECTION_H2)
 
 lessons_learned = f"""
-**Project Experience and Lessons:**
+**项目经验与教训：**
 
-🎓 **Successful Experience**
-• Thorough preliminary research and technology selection
-• Comprehensive monitoring and alert mechanisms
-• Flexible strategy adjustment and optimization
+🎓 **成功经验**
+• 充分的前期调研和技术选型
+• 完善的监控和告警机制
+• 灵活的策略调整和优化
 
-🚧 **Challenges Encountered**
-• Target websites frequently updated anti-scraping strategies
-• Data structure changes required timely adaptation
-• Resource management optimization under high concurrency
+🚧 **遇到的挑战**
+• 目标网站频繁更新反爬策略
+• 数据结构变化需要及时适配
+• 高并发下的资源管理优化
 
-🔄 **Continuous Improvement**
-• Establish website change monitoring mechanism
-• Improve automated testing processes
-• Optimize data quality check rules
+🔄 **持续改进**
+• 建立网站变化监控机制
+• 完善自动化测试流程
+• 优化数据质量检查规则
 """
 
 email.add_text(lessons_learned.strip())
 
 email.export_html("spider_project_summary.html")
-print("✅ Spider project comprehensive report generated: spider_project_summary.html")
+print("✅ 爬虫项目综合报告已生成：spider_project_summary.html")
 ```
 
 --8<-- "examples/assets/spider_reports_html/spider_project_summary.html"

@@ -71,13 +71,13 @@ All APIs provide complete type hints:
 
 ```python
 def set_content(self, content: str) -> 'TextWidget':
-    """Set text content
+    """设置文本内容
     
     Args:
-        content: Text content string
+        content: 文本内容字符串
         
     Returns:
-        Returns self to support method chaining
+        返回self以支持链式调用
     """
 ```
 
@@ -90,7 +90,7 @@ from email_widget.core.validators import ValidationError
 try:
     widget.set_color("invalid-color")
 except ValidationError as e:
-    print(f"Color format error: {e}")
+    print(f"颜色格式错误: {e}")
 ```
 
 ### Common Patterns
@@ -101,17 +101,17 @@ except ValidationError as e:
 from email_widget import Email, TextWidget, TableWidget
 from email_widget.core.enums import TextType
 
-# Create email
-email = Email("Data Report")
+# 创建邮件
+email = Email("数据报告")
 
-# Add title
+# 添加标题
 email.add_widget(
     TextWidget()\
-    .set_content("Monthly Performance Summary")\
+    .set_content("月度业绩汇总")\
     .set_type(TextType.TITLE_LARGE)
 )
 
-# Export HTML
+# 导出HTML
 email.export_html("report.html")
 ```
 
@@ -121,18 +121,18 @@ email.export_html("report.html")
 from email_widget.widgets import ChartWidget, ProgressWidget
 from email_widget.core.enums import ProgressTheme
 
-# Add chart
+# 添加图表
 email.add_widget(
     ChartWidget()\
     .set_image_url("chart.png")\
-    .set_title("Sales Trends")
+    .set_title("销售趋势")
 )
 
-# Add progress indicator
+# 添加进度指标
 email.add_widget(
     ProgressWidget()\
     .set_value(85)\
-    .set_label("Goal Completion Rate")\
+    .set_label("目标完成度")\
     .set_theme(ProgressTheme.SUCCESS)
 )
 ```
@@ -142,12 +142,12 @@ email.add_widget(
 ```python
 from email_widget.core.config import EmailConfig
 
-# Configure theme
+# 配置主题
 config = EmailConfig()
 config.set_primary_color("#6c5ce7")
 config.set_font_family("'Helvetica Neue', Arial, sans-serif")
 
-# Apply to email
+# 应用到邮件
 email.config = config
 ```
 

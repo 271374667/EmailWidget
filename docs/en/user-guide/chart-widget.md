@@ -22,13 +22,13 @@ ChartWidget is specifically designed for displaying various charts and data visu
 from email_widget import Email
 from email_widget.widgets import ChartWidget
 
-# Create basic chart
-email = Email("Data Report")
+# 创建基本图表
+email = Email("数据报告")
 
 chart = ChartWidget()
 chart.set_image_url("https://example.com/sales_chart.png")
-chart.set_title("Monthly Sales Trends")
-chart.set_description("Shows sales data changes over the last 6 months")
+chart.set_title("月度销售趋势")
+chart.set_description("显示最近6个月的销售数据变化")
 
 email.add_widget(chart)
 ```
@@ -36,13 +36,13 @@ email.add_widget(chart)
 ### Advanced Usage
 
 ```python
-# Detailed chart with data summary
+# 带数据摘要的详细图表
 performance_chart = ChartWidget()
 performance_chart.set_image_url("performance_chart.png")
-performance_chart.set_title("System Performance Monitoring")
-performance_chart.set_description("Displays real-time status of system key performance indicators")
-performance_chart.set_data_summary("Average Response Time: 245ms | Peak QPS: 12,500 | Error Rate: 0.02%")
-performance_chart.set_alt_text("System performance monitoring chart")
+performance_chart.set_title("系统性能监控")
+performance_chart.set_description("展示系统关键性能指标的实时状态")
+performance_chart.set_data_summary("平均响应时间: 245ms | 峰值QPS: 12,500 | 错误率: 0.02%")
+performance_chart.set_alt_text("系统性能监控图表")
 performance_chart.set_max_width("800px")
 
 email.add_widget(performance_chart)
@@ -57,9 +57,9 @@ email.add_widget(performance_chart)
 ```python
 trend_chart = ChartWidget()
 trend_chart.set_image_url("trend_line.png")
-trend_chart.set_title("User Growth Trend")
-trend_chart.set_description("Shows user registration and active user count changes over the past 12 months")
-trend_chart.set_data_summary("New Users: +15% | Active Users: +8% | Retention Rate: 76%")
+trend_chart.set_title("用户增长趋势")
+trend_chart.set_description("显示过去12个月的用户注册和活跃用户数量变化")
+trend_chart.set_data_summary("新增用户: +15% | 活跃用户: +8% | 留存率: 76%")
 ```
 
 ### Bar Chart
@@ -67,9 +67,9 @@ trend_chart.set_data_summary("New Users: +15% | Active Users: +8% | Retention Ra
 ```python
 bar_chart = ChartWidget()
 bar_chart.set_image_url("sales_by_region.png")
-bar_chart.set_title("Regional Sales Comparison")
-bar_chart.set_description("Shows sales performance and market share by region")
-bar_chart.set_data_summary("East China: 35% | South China: 28% | North China: 22% | Others: 15%")
+bar_chart.set_title("各地区销售对比")
+bar_chart.set_description("展示不同地区的销售业绩和市场占比")
+bar_chart.set_data_summary("华东: 35% | 华南: 28% | 华北: 22% | 其他: 15%")
 ```
 
 ### Pie Chart
@@ -77,9 +77,9 @@ bar_chart.set_data_summary("East China: 35% | South China: 28% | North China: 22
 ```python
 pie_chart = ChartWidget()
 pie_chart.set_image_url("market_share.png")
-pie_chart.set_title("Market Share Distribution")
-pie_chart.set_description("Shows each product line's share of total revenue")
-pie_chart.set_data_summary("Product A: 45% | Product B: 30% | Product C: 15% | Others: 10%")
+pie_chart.set_title("市场份额分布")
+pie_chart.set_description("各产品线在总营收中的占比情况")
+pie_chart.set_data_summary("产品A: 45% | 产品B: 30% | 产品C: 15% | 其他: 10%")
 ```
 
 ## 🔗 Integration with Data Analysis Libraries
@@ -92,30 +92,30 @@ import numpy as np
 from email_widget import Email
 from email_widget.widgets import ChartWidget
 
-# Generate data and create chart
-months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+# 生成数据并创建图表
+months = ['1月', '2月', '3月', '4月', '5月', '6月']
 sales = [120, 135, 148, 162, 178, 195]
 
 plt.figure(figsize=(10, 6))
 plt.plot(months, sales, marker='o', linewidth=2, markersize=8)
-plt.title('Monthly Sales Trends', fontsize=16, fontweight='bold')
-plt.xlabel('Month')
-plt.ylabel('Sales (10K)')
+plt.title('月度销售趋势', fontsize=16, fontweight='bold')
+plt.xlabel('月份')
+plt.ylabel('销售额(万元)')
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 
-# Save chart
+# 保存图表
 chart_path = 'monthly_sales.png'
 plt.savefig(chart_path, dpi=300, bbox_inches='tight')
 plt.close()
 
-# Display in email
-email = Email("Sales Data Report")
+# 在邮件中展示
+email = Email("销售数据报告")
 chart_widget = ChartWidget()
 chart_widget.set_image_url(chart_path)
-chart_widget.set_title("Monthly Sales Trend Analysis")
-chart_widget.set_description("Shows continuous growth in sales performance for the first half of 2024")
-chart_widget.set_data_summary(f"Total Sales: {sum(sales)}0K | Average Growth Rate: {((sales[-1]/sales[0])-1)*100:.1f}%")
+chart_widget.set_title("月度销售趋势分析")
+chart_widget.set_description("展示2024年上半年销售业绩的持续增长态势")
+chart_widget.set_data_summary(f"总销售额: {sum(sales)}万元 | 平均增长率: {((sales[-1]/sales[0])-1)*100:.1f}%")
 
 email.add_widget(chart_widget)
 ```
@@ -128,25 +128,25 @@ email.add_widget(chart_widget)
 from email_widget import Email
 from email_widget.widgets import ChartWidget
 
-email = Email("Data Visualization Best Practices")
+email = Email("数据可视化最佳实践")
 
-# Trend data -> Line chart
+# 趋势数据 -> 线图
 trend_chart = ChartWidget()
 trend_chart.set_image_url("time_series.png")
-trend_chart.set_title("Time Series Trends")
-trend_chart.set_description("Suitable for displaying data changes over time")
+trend_chart.set_title("时间序列趋势")
+trend_chart.set_description("适合展示随时间变化的数据")
 
-# Category comparison -> Bar chart  
+# 分类对比 -> 柱状图  
 comparison_chart = ChartWidget()
 comparison_chart.set_image_url("category_comparison.png")
-comparison_chart.set_title("Category Data Comparison")
-comparison_chart.set_description("Suitable for displaying comparisons between different categories")
+comparison_chart.set_title("分类数据对比")
+comparison_chart.set_description("适合展示不同类别之间的比较")
 
-# Proportion relationship -> Pie chart
+# 占比关系 -> 饼图
 proportion_chart = ChartWidget()
 proportion_chart.set_image_url("proportion_chart.png")
-proportion_chart.set_title("Proportion Distribution")
-proportion_chart.set_description("Suitable for displaying part-to-whole relationships")
+proportion_chart.set_title("比例分布")
+proportion_chart.set_description("适合展示部分与整体的关系")
 
 email.add_widgets([trend_chart, comparison_chart, proportion_chart])
 ```
@@ -160,35 +160,35 @@ from email_widget import Email
 from email_widget.widgets import ChartWidget, TextWidget
 from email_widget.core.enums import TextType
 
-# Create dashboard email
-dashboard = Email("Business Data Dashboard")
+# 创建仪表板邮件
+dashboard = Email("业务数据仪表板")
 
-# Add title
+# 添加标题
 title = TextWidget()
-title.set_content("Business Data Dashboard")
+title.set_content("业务数据仪表板")
 title.set_type(TextType.TITLE_LARGE)
 title.set_align("center")
 dashboard.add_widget(title)
 
-# Create multiple charts
+# 创建多个图表
 charts_data = [
     {
         'file': 'revenue_trend.png',
-        'title': 'Revenue Trends',
-        'desc': 'Monthly revenue growth situation',
-        'summary': 'YoY Growth: +23%'
+        'title': '营收趋势',
+        'desc': '月度营收增长情况',
+        'summary': '同比增长: +23%'
     },
     {
         'file': 'user_analytics.png', 
-        'title': 'User Analytics',
-        'desc': 'User activity and retention analysis',
-        'summary': 'Monthly Active Users: 2.4M'
+        'title': '用户分析',
+        'desc': '用户活跃度和留存分析',
+        'summary': '月活用户: 2.4M'
     },
     {
         'file': 'product_performance.png',
-        'title': 'Product Performance', 
-        'desc': 'Performance comparison of product lines',
-        'summary': 'Core Product Share: 68%'
+        'title': '产品表现', 
+        'desc': '各产品线业绩对比',
+        'summary': '核心产品占比: 68%'
     }
 ]
 
@@ -210,39 +210,39 @@ from email_widget import Email
 from email_widget.widgets import ChartWidget, TextWidget
 from email_widget.core.enums import TextType
 
-# Create business report
-report = Email("Q4 Business Analysis Report")
+# 创建业务报告
+report = Email("Q4业务分析报告")
 
-# Report title
+# 报告标题
 report_title = TextWidget()
-report_title.set_content("Fourth Quarter Business Analysis Report")
+report_title.set_content("第四季度业务分析报告")
 report_title.set_type(TextType.TITLE_LARGE)
 report_title.set_align("center")
 report_title.set_color("#0078d4")
 report.add_widget(report_title)
 
-# Revenue analysis chart
+# 营收分析图表
 revenue_chart = ChartWidget()
 revenue_chart.set_image_url("q4_revenue_analysis.png")
-revenue_chart.set_title("Revenue Analysis")
-revenue_chart.set_description("Q4 monthly revenue and year-over-year comparison")
-revenue_chart.set_data_summary("Q4 Total Revenue: ¥18.5M | YoY Growth: +15.2% | QoQ Growth: +8.7%")
+revenue_chart.set_title("营收分析")
+revenue_chart.set_description("第四季度各月营收情况及与去年同期对比")
+revenue_chart.set_data_summary("Q4总营收: ¥18.5M | 同比增长: +15.2% | 环比增长: +8.7%")
 
-# User growth chart  
+# 用户增长图表  
 growth_chart = ChartWidget()
 growth_chart.set_image_url("user_growth_funnel.png")
-growth_chart.set_title("User Growth Funnel")
-growth_chart.set_description("User churn analysis from visits to conversion")
-growth_chart.set_data_summary("Visitors: 2.4M | Registration Rate: 12% | Payment Rate: 3.2%")
+growth_chart.set_title("用户增长漏斗")
+growth_chart.set_description("从访问到转化的用户流失情况分析")
+growth_chart.set_data_summary("访问用户: 2.4M | 注册转化: 12% | 付费转化: 3.2%")
 
-# Product performance chart
+# 产品表现图表
 product_chart = ChartWidget()
 product_chart.set_image_url("product_performance_matrix.png") 
-product_chart.set_title("Product Performance Matrix")
-product_chart.set_description("Market performance and growth potential analysis of product lines")
-product_chart.set_data_summary("Star Products: 3 | Problem Products: 1 | Cash Cow Products: 2")
+product_chart.set_title("产品表现矩阵")
+product_chart.set_description("各产品线的市场表现和增长潜力分析")
+product_chart.set_data_summary("明星产品: 3个 | 问题产品: 1个 | 现金牛产品: 2个")
 
-# Add to report
+# 添加到报告
 report.add_widgets([revenue_chart, growth_chart, product_chart])
 ```
 
@@ -253,18 +253,18 @@ report.add_widgets([revenue_chart, growth_chart, product_chart])
 The Email class provides the `add_chart` shortcut method:
 
 ```python
-# Basic shortcut method
+# 基础快捷方法
 email.add_chart(
     image_url="sales_chart.png",
-    title="Sales Chart"
+    title="销售图表"
 )
 
-# Shortcut method with detailed information
+# 带详细信息的快捷方法
 email.add_chart(
     image_url="performance_chart.png",
-    title="Performance Monitor",
-    description="Real-time monitoring of system key metrics",
-    data_summary="Response Time: 245ms | QPS: 12.5K",
+    title="性能监控",
+    description="系统关键指标实时监控",
+    data_summary="响应时间: 245ms | QPS: 12.5K",
     max_width="800px"
 )
 ```
@@ -274,25 +274,25 @@ email.add_chart(
 ### Image Size Optimization
 
 ```python
-# Set maximum width to avoid oversized images
+# 设置最大宽度避免图片过大
 large_chart = ChartWidget()
 large_chart.set_image_url("wide_chart.png")
 large_chart.set_max_width("800px")
 
-# Mobile responsive
+# 移动端自适应
 responsive_chart = ChartWidget()
 responsive_chart.set_image_url("responsive_chart.png")
-responsive_chart.set_max_width("100%")  # Auto-adapt to container width
+responsive_chart.set_max_width("100%")  # 自动适配容器宽度
 ```
 
 ### Provide Clear Titles and Descriptions
 
 ```python
 chart = ChartWidget()
-chart.set_title("Q4 Revenue Analysis")  # Clear and concise title
-chart.set_description("Shows Q4 monthly revenue changes and year-over-year growth")  # Detailed explanation
-chart.set_data_summary("Total Revenue: ¥2.4M | Growth Rate: +15%")  # Key data
-chart.set_alt_text("Q4 revenue analysis bar chart")  # Accessibility
+chart.set_title("Q4营收分析")  # 简洁明确的标题
+chart.set_description("展示第四季度月度营收变化及同比增长情况")  # 详细说明
+chart.set_data_summary("总营收: ¥2.4M | 增长率: +15%")  # 关键数据
+chart.set_alt_text("Q4营收分析柱状图")  # 无障碍访问
 ```
 
 ## 🐛 Common Issues
@@ -306,21 +306,21 @@ A: Check the following:
 ### Q: How to choose appropriate image formats?
 A: Recommend using PNG format for best compatibility:
 ```python
-chart.set_image_url("chart.png")  # ✅ Recommended
-# chart.set_image_url("chart.webp")  # ❌ Poor compatibility
+chart.set_image_url("chart.png")  # ✅ 推荐
+# chart.set_image_url("chart.webp")  # ❌ 兼容性较差
 ```
 
 ### Q: Chart displays abnormally on mobile?
 A: Set appropriate maximum width:
 ```python
-chart.set_max_width("100%")  # Auto-adapt
-chart.set_max_width("600px")  # Limit maximum width
+chart.set_max_width("100%")  # 自动适配
+chart.set_max_width("600px")  # 限制最大宽度
 ```
 
 ### Q: How to add data summaries?
 A: Use the `set_data_summary()` method:
 ```python
-chart.set_data_summary("Key Metrics: Conversion Rate 12% | ROI 3.2x | Average Order Value ¥890")
+chart.set_data_summary("关键指标: 转化率 12% | ROI 3.2x | 客单价 ¥890")
 ```
 
 ## 🚨 Important Notes

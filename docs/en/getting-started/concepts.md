@@ -11,19 +11,19 @@ The `Email` class is the core of EmailWidget, serving as the container and manag
 ```python
 from email_widget import Email, TextWidget
 
-# Create email object
-email = Email(title="Report Title")
+# 创建邮件对象
+email = Email(title="报告标题")
 
-# Set metadata
-email.set_subtitle("Subtitle")
-email.set_footer("Footer Information")
+# 设置元信息
+email.set_subtitle("副标题")
+email.set_footer("脚注信息")
 
-# Manage Widgets
+# 管理Widget
 email.add_widget(TextWidget('Hello, World!'))
 email.remove_widget("Hello, World!")
 email.clear_widgets()
 
-# Export results
+# 导出结果
 html_content = email.export_str()
 file_path = email.export_html("report.html")
 ```
@@ -43,36 +43,36 @@ The typical lifecycle of an Email object:
 === "Convenience Methods"
     
     ```python
-    # Directly add common content
-    email.add_text("Title", text_type="title_large")
+    # 直接添加常用内容
+    email.add_text("标题", text_type="title_large")
     email.add_table_from_data(data, headers)
-    email.add_progress(75, "Completion")
-    email.add_chart_from_plt(title="Chart")
+    email.add_progress(75, "完成度")
+    email.add_chart_from_plt(title="图表")
     ```
 
 === "Widget Management"
     
     ```python
-    # Get Widget
+    # 获取Widget
     widget = email.get_widget("my_widget_id")
     
-    # Remove Widget
+    # 移除Widget
     email.remove_widget("widget_id")
     
-    # Clear all Widgets
+    # 清空所有Widget
     email.clear_widgets()
     
-    # Get Widget count
+    # 获取Widget数量
     count = email.get_widget_count()
     ```
 
 === "Method Chaining"
     
     ```python
-    # Fluent API design
-    email = (Email("Title")
-             .set_subtitle("Subtitle")
-             .set_footer("Footer")
+    # 流畅的API设计
+    email = (Email("标题")
+             .set_subtitle("副标题")
+             .set_footer("脚注")
              .add_widget(widget1)
              .add_widget(widget2))
     ```
@@ -92,7 +92,7 @@ class MyCustomWidget(BaseWidget):
         self.widget_type = "custom"
     
     def render(self) -> str:
-        # Rendering logic
+        # 渲染逻辑
         return self._render_template("custom.html", context)
 ```
 
@@ -103,23 +103,23 @@ All Widgets share the following common features:
 === "ID Management"
     
     ```python
-    # Set unique ID
+    # 设置唯一ID
     widget.set_widget_id("my_unique_id")
     
-    # Get ID
+    # 获取ID
     widget_id = widget.widget_id
     
-    # Get type
+    # 获取类型
     widget_type = widget.widget_type
     ```
 
 === "Template Rendering"
     
     ```python
-    # Get rendering context
+    # 获取渲染上下文
     context = widget.get_template_context()
     
-    # Render to HTML
+    # 渲染为HTML
     html = widget.render_html()
     ```
 
@@ -155,28 +155,28 @@ EmailWidget provides 12 professional components, categorized by function:
 Recommended code organization:
 
 ```python
-# 1. Import necessary libraries
+# 1. 导入必要的库
 from email_widget import Email, TextWidget, TableWidget, EmailConfig
 from email_widget.core.enums import TextType
 
 
-# 2. Data preparation
+# 2. 数据准备
 def prepare_data():
     return {"sales": [100, 200, 300]}
 
 
-# 3. Email building
+# 3. 邮件构建
 def build_email(data):
-    email = Email("Sales Report")
-    # Add content
+    email = Email("销售报告")
+    # 添加内容
     email.add_widget(
-        TextWidget().set_content("Sales Data Analysis").set_type(TextType.TITLE_LARGE)
+        TextWidget().set_content("销售数据分析").set_type(TextType.TITLE_LARGE)
     )
 
     return email
 
 
-# 4. Main function
+# 4. 主函数
 def main():
     data = prepare_data()
     email = build_email(data)

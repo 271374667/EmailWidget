@@ -10,19 +10,19 @@ If you want to experience the powerful features of EmailWidget right away, here'
 from email_widget import Email, TextWidget
 from email_widget.core.enums import TextType
 
-# Create email
-email = Email("My First Report")
+# 创建邮件
+email = Email("我的第一份报告")
 
-# Add title
+# 添加标题
 email.add_widget(
     TextWidget()
-    .set_content("Welcome to EmailWidget! 🎉")
+    .set_content("欢迎使用 EmailWidget! 🎉")
     .set_type(TextType.TITLE_LARGE)
 )
 
-# Export HTML file
+# 导出HTML文件
 file_path = email.export_html("my_first_report.html")
-print(f"Report generated: {file_path}")
+print(f"报告已生成: {file_path}")
 ```
 
 Run this code and you'll get a beautiful HTML email file!

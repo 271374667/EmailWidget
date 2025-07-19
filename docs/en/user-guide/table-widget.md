@@ -11,11 +11,11 @@ TableWidget is a professional component for displaying structured data, supporti
 ```python
 from email_widget.widgets import TableWidget
 
-# Create basic table
+# 创建基本表格
 table = TableWidget()
-table.set_headers(["Name", "Age", "Department"])
-table.add_row(["John", "28", "Tech"])
-table.add_row(["Jane", "32", "Sales"])
+table.set_headers(["姓名", "年龄", "部门"])
+table.add_row(["张三", "28", "技术部"])
+table.add_row(["李四", "32", "销售部"])
 ```
 
 <div class="email-preview-wrapper">
@@ -49,20 +49,20 @@ table.add_row(["Jane", "32", "Sales"])
 ### Setting Headers and Data
 
 ```python
-# Set headers
+# 设置表头
 table = TableWidget()
-table.set_headers(["Project", "Status", "Progress", "Owner"])
+table.set_headers(["项目", "状态", "进度", "负责人"])
 
-# Add data rows
-table.add_row(["User System", "In Development", "75%", "John"])
-table.add_row(["Payment Module", "Testing", "90%", "Jane"])
-table.add_row(["Data Analytics", "Completed", "100%", "Bob"])
+# 添加数据行
+table.add_row(["用户系统", "开发中", "75%", "张工"])
+table.add_row(["支付模块", "测试中", "90%", "李工"])
+table.add_row(["数据统计", "已完成", "100%", "王工"])
 
-# Batch add rows
+# 批量添加行
 rows_data = [
-    ["Project A", "In Progress", "60%", "Employee A"],
-    ["Project B", "Completed", "100%", "Employee B"],
-    ["Project C", "Planning", "0%", "Employee C"]
+    ["项目A", "进行中", "60%", "员工A"],
+    ["项目B", "已完成", "100%", "员工B"],
+    ["项目C", "计划中", "0%", "员工C"]
 ]
 table.add_rows(rows_data)
 ```
@@ -71,9 +71,9 @@ table.add_rows(rows_data)
 
 ```python
 table = TableWidget()
-table.set_title("Project Progress Statistics")
-table.set_headers(["Project Name", "Completion Status"])
-table.add_row(["Project Alpha", "75%"])
+table.set_title("项目进度统计表")
+table.set_headers(["项目名称", "完成状态"])
+table.add_row(["项目Alpha", "75%"])
 ```
 
 <div class="email-preview-wrapper">
@@ -101,15 +101,15 @@ table.add_row(["Project Alpha", "75%"])
 ### Striped Style
 
 ```python
-# Enable striped style
+# 启用条纹样式
 table = TableWidget()
 table.set_striped(True)
-table.set_headers(["No.", "Product", "Sales"])
+table.set_headers(["序号", "产品", "销量"])
 table.add_rows([
-    ["1", "Product A", "1,200"],
-    ["2", "Product B", "980"],
-    ["3", "Product C", "1,500"],
-    ["4", "Product D", "750"]
+    ["1", "产品A", "1,200"],
+    ["2", "产品B", "980"],
+    ["3", "产品C", "1,500"],
+    ["4", "产品D", "750"]
 ])
 ```
 
@@ -152,15 +152,15 @@ table.add_rows([
 ### Borders and Index Column
 
 ```python
-# Show borders and index column
+# 显示边框和索引列
 table = TableWidget()
 table.set_show_border(True)
 table.set_show_index(True)
-table.set_headers(["Task", "Status"])
+table.set_headers(["任务", "状态"])
 table.add_rows([
-    ["Data Backup", "Complete"],
-    ["System Update", "In Progress"],
-    ["Security Check", "Pending"]
+    ["数据备份", "完成"],
+    ["系统更新", "进行中"],
+    ["安全检查", "待开始"]
 ])
 ```
 
@@ -204,21 +204,21 @@ from email_widget.widgets import TableWidget, TableCell
 from email_widget.core.enums import StatusType
 
 table = TableWidget()
-table.set_headers(["Service", "Status", "Response Time"])
+table.set_headers(["服务", "状态", "响应时间"])
 table.add_row([
-    "Web Service",
-    TableCell("Normal", StatusType.SUCCESS),
+    "Web服务",
+    TableCell("正常", StatusType.SUCCESS),
     "145ms"
 ])
 table.add_row([
-    "Database",
-    TableCell("Warning", StatusType.WARNING),
+    "数据库",
+    TableCell("警告", StatusType.WARNING),
     "892ms"
 ])
 table.add_row([
-    "Cache Service",
-    TableCell("Error", StatusType.ERROR),
-    "Timeout"
+    "缓存服务",
+    TableCell("故障", StatusType.ERROR),
+    "超时"
 ])
 ```
 
@@ -271,23 +271,23 @@ from email_widget import Email
 from email_widget.widgets import TableWidget, TableCell
 from email_widget.core.enums import StatusType
 
-# Create email
-email = Email("System Monitoring Report")
+# 创建邮件
+email = Email("系统监控报告")
 
-# Create monitoring table
+# 创建监控表格
 monitor_table = TableWidget()
-monitor_table.set_title("System Service Status")
-monitor_table.set_headers(["Service Name", "Status", "CPU Usage", "Memory Usage", "Last Check"])
+monitor_table.set_title("系统服务状态")
+monitor_table.set_headers(["服务名称", "状态", "CPU使用率", "内存使用率", "最后检查时间"])
 monitor_table.set_striped(True)
 monitor_table.set_show_index(True)
 
-# Add monitoring data
+# 添加监控数据
 monitor_table.add_rows([
-    ["Web Server", TableCell("Running", StatusType.SUCCESS), "23%", "45%", "2024-01-15 10:30"],
-    ["Database", TableCell("Warning", StatusType.WARNING), "78%", "67%", "2024-01-15 10:29"],
-    ["Redis Cache", TableCell("Normal", StatusType.SUCCESS), "12%", "34%", "2024-01-15 10:30"],
-    ["Message Queue", TableCell("Error", StatusType.ERROR), "0%", "0%", "2024-01-15 09:45"],
-    ["File Service", TableCell("Normal", StatusType.SUCCESS), "15%", "28%", "2024-01-15 10:30"]
+    ["Web服务器", TableCell("运行", StatusType.SUCCESS), "23%", "45%", "2024-01-15 10:30"],
+    ["数据库", TableCell("警告", StatusType.WARNING), "78%", "67%", "2024-01-15 10:29"],
+    ["Redis缓存", TableCell("正常", StatusType.SUCCESS), "12%", "34%", "2024-01-15 10:30"],
+    ["消息队列", TableCell("故障", StatusType.ERROR), "0%", "0%", "2024-01-15 09:45"],
+    ["文件服务", TableCell("正常", StatusType.SUCCESS), "15%", "28%", "2024-01-15 10:30"]
 ])
 
 email.add_widget(monitor_table)
@@ -296,18 +296,18 @@ email.add_widget(monitor_table)
 ### Sales Data Table
 
 ```python
-# Create sales data table
+# 创建销售数据表格
 sales_table = TableWidget()
-sales_table.set_title("Monthly Sales Data")
-sales_table.set_headers(["Product Name", "Sales Quantity", "Sales Amount", "Growth Rate", "Status"])
+sales_table.set_title("月度销售数据")
+sales_table.set_headers(["产品名称", "销售数量", "销售额", "增长率", "状态"])
 sales_table.set_show_border(True)
 
-# Add sales data
+# 添加销售数据
 sales_table.add_rows([
-    ["Smartphone", "1,250", "¥2,500,000", "+15%", TableCell("Exceeded", StatusType.SUCCESS)],
-    ["Tablet", "680", "¥1,360,000", "+8%", TableCell("Met Target", StatusType.SUCCESS)],
-    ["Laptop", "420", "¥2,100,000", "-5%", TableCell("Needs Improvement", StatusType.WARNING)],
-    ["Smartwatch", "890", "¥1,780,000", "+25%", TableCell("Excellent", StatusType.SUCCESS)]
+    ["智能手机", "1,250", "¥2,500,000", "+15%", TableCell("超额", StatusType.SUCCESS)],
+    ["平板电脑", "680", "¥1,360,000", "+8%", TableCell("达标", StatusType.SUCCESS)],
+    ["笔记本电脑", "420", "¥2,100,000", "-5%", TableCell("待改进", StatusType.WARNING)],
+    ["智能手表", "890", "¥1,780,000", "+25%", TableCell("优秀", StatusType.SUCCESS)]
 ])
 
 email.add_widget(sales_table)
@@ -319,33 +319,33 @@ email.add_widget(sales_table)
 
 ### 1. Proper Use of Status Cells
 ```python
-# Recommended: Use status cells for status-related columns
+# 推荐：为状态相关的列使用状态单元格
 table.add_row([
-    "Task Name",
-    TableCell("Completed", StatusType.SUCCESS),  # Status column
-    "2024-01-15"  # Regular text column
+    "任务名称",
+    TableCell("已完成", StatusType.SUCCESS),  # 状态列
+    "2024-01-15"  # 普通文本列
 ])
 ```
 
 ### 2. Maintain Data Consistency
 ```python
-# Recommended: Ensure each row has same number of columns as headers
-headers = ["Name", "Age", "Department"]
+# 推荐：确保每行数据列数与表头一致
+headers = ["姓名", "年龄", "部门"]
 table.set_headers(headers)
-table.add_row(["John", "28", "Tech"])  # 3 columns matching 3 headers
+table.add_row(["张三", "28", "技术部"])  # 3列数据匹配3个表头
 ```
 
 ### 3. Use Appropriate Styling for Better Readability
 ```python
-# Recommended: Use striped style for large data tables
+# 推荐：大数据表格使用条纹样式
 large_table = TableWidget()
 large_table.set_striped(True)
-large_table.set_show_index(True)  # Easy to reference specific rows
+large_table.set_show_index(True)  # 便于引用特定行
 ```
 
 ### 4. Control Table Width to Avoid Layout Issues
 ```python
-# Recommended: Set max width for tables with many columns
+# 推荐：为包含大量列的表格设置最大宽度
 wide_table = TableWidget()
 wide_table.set_max_width("800px")
 ```

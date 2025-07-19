@@ -23,47 +23,47 @@ from email_widget import Email
 from email_widget.widgets import CardWidget
 from email_widget.core.enums import StatusType, IconType
 
-# Create email
-email = Email("Card Widget Example")
+# 创建邮件
+email = Email("卡片组件示例")
 
-# Create basic card
+# 创建基础卡片
 card = CardWidget()
-card.set_title("Product Introduction")
-card.set_content("This is a powerful email widget library that provides rich UI components.")
+card.set_title("产品介绍")
+card.set_content("这是一个功能强大的邮件组件库，提供了丰富的UI组件。")
 card.set_icon(IconType.INFO)
 
 email.add_widget(card)
 
-# Using shortcut method
-email.add_card("Quick Card", "Card component created with shortcut method")
+# 使用快捷方法
+email.add_card("快捷卡片", "使用快捷方法创建的卡片组件")
 
-# Export HTML
+# 导出HTML
 email.export_html("card_demo.html")
 ```
 
 ### Advanced Usage
 
 ```python
-# Create detailed card with metadata
+# 创建带元数据的详细卡片
 product_card = CardWidget()
 product_card.set_title("EmailWidget Pro")
-product_card.set_content("Professional Python email widget library providing rich UI components and powerful email rendering capabilities.")
+product_card.set_content("专业的Python邮件组件库，提供丰富的UI组件和强大的邮件渲染能力。")
 product_card.set_icon(IconType.SUCCESS)
 product_card.set_status(StatusType.SUCCESS)
 
-# Add metadata information
-product_card.add_metadata("Version", "v2.1.0")
-product_card.add_metadata("License", "MIT")
-product_card.add_metadata("Python Support", "3.8+")
-product_card.add_metadata("Last Updated", "2024-01-15")
+# 添加元数据信息
+product_card.add_metadata("版本", "v2.1.0")
+product_card.add_metadata("许可证", "MIT")
+product_card.add_metadata("支持Python", "3.8+")
+product_card.add_metadata("最后更新", "2024-01-15")
 
 email.add_widget(product_card)
 
-# Batch set metadata
+# 批量设置元数据
 metadata = {
-    "Author": "Python Development Team",
-    "Size": "2.5MB",
-    "Downloads": "10K+"
+    "作者": "Python开发团队",
+    "大小": "2.5MB",
+    "下载量": "10K+"
 }
 product_card.set_metadata(metadata)
 ```
@@ -97,33 +97,33 @@ from email_widget import Email
 from email_widget.widgets import CardWidget
 from email_widget.core.enums import StatusType, IconType
 
-# Create product showcase email
-email = Email("Product Showcase")
+# 创建产品展示邮件
+email = Email("产品展示")
 
-# Main product card
+# 主要产品卡片
 product_card = CardWidget()
 product_card.set_title("EmailWidget Pro")
-product_card.set_content("Professional Python email widget library providing rich UI components and powerful email rendering capabilities. Supports multiple widget types and perfectly adapts to various email clients.")
+product_card.set_content("专业的Python邮件组件库，提供丰富的UI组件和强大的邮件渲染能力。支持多种组件类型，完美适配各种邮件客户端。")
 product_card.set_icon("🎯")
 product_card.set_status(StatusType.SUCCESS)
 
-# Add product information
-product_card.add_metadata("Version", "v2.1.0")
-product_card.add_metadata("License", "MIT")
-product_card.add_metadata("Python Support", "3.8+")
-product_card.add_metadata("Last Updated", "2024-01-15")
+# 添加产品信息
+product_card.add_metadata("版本", "v2.1.0")
+product_card.add_metadata("许可证", "MIT")
+product_card.add_metadata("支持Python", "3.8+")
+product_card.add_metadata("最后更新", "2024-01-15")
 
 email.add_widget(product_card)
 
-# Feature card
+# 功能特性卡片
 feature_card = CardWidget()
-feature_card.set_title("Core Features")
-feature_card.set_content("Provides 15+ beautiful widgets, supports tables, charts, progress bars, timelines, and other display methods to meet various email scenario needs.")
+feature_card.set_title("核心功能")
+feature_card.set_content("提供15+个精美组件，支持表格、图表、进度条、时间线等多种展示方式，满足各种邮件场景需求。")
 feature_card.set_icon("⚡")
 
 email.add_widget(feature_card)
 
-# Export HTML file
+# 导出HTML文件
 email.export_html("product_showcase.html")
 ```
 
@@ -132,34 +132,34 @@ email.export_html("product_showcase.html")
 ### 2. User Information Panel
 
 ```python
-# Create user information panel email
-email = Email("User Information Panel")
+# 创建用户信息面板邮件
+email = Email("用户信息面板")
 
-# User basic information card
+# 用户基本信息卡片
 user_card = CardWidget()
-user_card.set_title("User Profile")
-user_card.set_content("Senior Development Engineer, focusing on Python backend development and data analysis. Has 5+ years of project experience, familiar with multiple development frameworks and tools.")
+user_card.set_title("用户档案")
+user_card.set_content("高级开发工程师，专注于Python后端开发和数据分析。拥有5年以上的项目经验，熟悉多种开发框架和工具。")
 user_card.set_icon("👤")
 user_card.set_status(StatusType.SUCCESS)
 
-# Add user detailed information
-user_card.add_metadata("Name", "Li Developer")
-user_card.add_metadata("Position", "Senior Engineer")
-user_card.add_metadata("Department", "Technology Department")
-user_card.add_metadata("Join Date", "2019-03-15")
-user_card.add_metadata("Email", "li.dev@example.com")
+# 添加用户详细信息
+user_card.add_metadata("姓名", "李开发")
+user_card.add_metadata("职位", "高级工程师")
+user_card.add_metadata("部门", "技术部")
+user_card.add_metadata("入职时间", "2019-03-15")
+user_card.add_metadata("邮箱", "li.dev@example.com")
 
 email.add_widget(user_card)
 
-# Skills display card
+# 技能展示卡片
 skill_card = CardWidget()
-skill_card.set_title("Technical Skills")
-skill_card.set_content("Proficient in Python, Django, FastAPI and other backend technology stacks, with rich experience in database design and API development.")
+skill_card.set_title("技能专长")
+skill_card.set_content("精通Python、Django、FastAPI等后端技术栈，具备丰富的数据库设计和API开发经验。")
 skill_card.set_icon("🛠️")
 
-skill_card.add_metadata("Main Skills", "Python, Django, FastAPI")
-skill_card.add_metadata("Database", "MySQL, PostgreSQL, Redis")
-skill_card.add_metadata("Project Experience", "5+ years")
+skill_card.add_metadata("主要技能", "Python, Django, FastAPI")
+skill_card.add_metadata("数据库", "MySQL, PostgreSQL, Redis")
+skill_card.add_metadata("项目经验", "5年+")
 
 email.add_widget(skill_card)
 
@@ -171,32 +171,32 @@ email.export_html("user_profile.html")
 ### 3. Project Status Dashboard
 
 ```python
-# Create project status dashboard email
-email = Email("Project Status Dashboard")
+# 创建项目状态仪表板邮件
+email = Email("项目状态仪表板")
 
-# Project progress card
+# 项目进展卡片
 project_card = CardWidget()
-project_card.set_title("Project Progress")
-project_card.set_content("EmailWidget project development is progressing smoothly. Core functionality development is complete, currently in testing and documentation phase. Expected to release official version by the end of this month.")
+project_card.set_title("项目进展")
+project_card.set_content("EmailWidget项目开发进展顺利，目前已完成核心功能开发，正在进行测试和文档编写阶段。预计本月底发布正式版本。")
 project_card.set_icon("📊")
 project_card.set_status(StatusType.SUCCESS)
 
-project_card.add_metadata("Project Name", "EmailWidget")
-project_card.add_metadata("Current Version", "v2.1.0-beta")
-project_card.add_metadata("Completion", "85%")
-project_card.add_metadata("Expected Release", "2024-01-30")
+project_card.add_metadata("项目名称", "EmailWidget")
+project_card.add_metadata("当前版本", "v2.1.0-beta")
+project_card.add_metadata("完成进度", "85%")
+project_card.add_metadata("预计发布", "2024-01-30")
 
 email.add_widget(project_card)
 
-# Team status card
+# 团队状态卡片
 team_card = CardWidget()
-team_card.set_title("Team Status")
-team_card.set_content("Development team is running normally, all members are actively participating in project development. Currently conducting final testing and optimization.")
+team_card.set_title("团队状态")
+team_card.set_content("开发团队运转正常，所有成员积极参与项目开发。当前正在进行最后的测试和优化工作。")
 team_card.set_icon("👥")
 
-team_card.add_metadata("Team Size", "6 people")
-team_card.add_metadata("Developers", "4 people")
-team_card.add_metadata("Testers", "2 people")
+team_card.add_metadata("团队规模", "6人")
+team_card.add_metadata("开发人员", "4人")
+team_card.add_metadata("测试人员", "2人")
 
 email.add_widget(team_card)
 
@@ -210,27 +210,27 @@ email.export_html("project_dashboard.html")
 The Email class provides the `add_card` shortcut method:
 
 ```python
-# Basic shortcut method
-email.add_card("Card Title", "Card Content")
+# 基础快捷方法
+email.add_card("卡片标题", "卡片内容")
 
-# Shortcut method with icon
-email.add_card("Product Introduction", "This is an excellent product", icon="🎯")
+# 带图标的快捷方法
+email.add_card("产品介绍", "这是一个优秀的产品", icon="🎯")
 
-# Shortcut method with metadata
+# 带元数据的快捷方法
 email.add_card(
-    title="User Information",
-    content="User detailed information display",
+    title="用户信息",
+    content="用户详细信息展示",
     metadata={
-        "Name": "Zhang San",
-        "Department": "Technology Department",
-        "Position": "Engineer"
+        "姓名": "张三",
+        "部门": "技术部",
+        "职位": "工程师"
     }
 )
 
-# Shortcut method with status
+# 带状态的快捷方法
 email.add_card(
-    title="System Status",
-    content="System running normally",
+    title="系统状态",
+    content="系统运行正常",
     status=StatusType.SUCCESS,
     icon=IconType.SUCCESS
 )
@@ -254,8 +254,8 @@ A: CardWidget uses email client-compatible layout methods. If issues occur, try 
 A: Organize card information into lists, then use loops to create in batch:
 ```python
 cards_data = [
-    {"title": "Card 1", "content": "Content 1"},
-    {"title": "Card 2", "content": "Content 2"}
+    {"title": "卡片1", "content": "内容1"},
+    {"title": "卡片2", "content": "内容2"}
 ]
 for data in cards_data:
     email.add_card(data["title"], data["content"])

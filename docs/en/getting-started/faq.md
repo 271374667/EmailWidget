@@ -94,19 +94,19 @@ EmailWidget automatically handles Chinese fonts, but if issues persist:
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 
-# Option 1: Set system fonts
+# 方案1：设置系统字体
 plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
-# Option 2: Check available fonts
+# 方案2：检查可用字体
 available_fonts = [f.name for f in font_manager.fontManager.ttflist]
-chinese_fonts = [f for f in available_fonts if 'YaHei' in f or 'SimHei' in f]
-print("Available Chinese fonts:", chinese_fonts)
+chinese_fonts = [f for f in available_fonts if '微软雅黑' in f or 'SimHei' in f]
+print("可用中文字体：", chinese_fonts)
 
-# Option 3: Use EmailWidget's font settings
+# 方案3：使用EmailWidget的字体设置
 from email_widget import Email
-email = Email("Test")
-email.config.set_font_family("Microsoft YaHei")  # This affects the entire email
+email = Email("测试")
+email.config.set_font_family("Microsoft YaHei")  # 这会影响整个邮件
 ```
 
 ## 🐛 Debugging Related
@@ -118,30 +118,30 @@ email.config.set_font_family("Microsoft YaHei")  # This affects the entire email
 **Solution**:
 
 ```python
-# 1. Enable debug mode
+# 1. 启用调试模式
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
 from email_widget.core.logger import logger
 logger.set_level("DEBUG")
 
-# 2. Check template variables
+# 2. 检查模板变量
 widget = TextWidget()
 context = widget.get_template_context()
-print("Template context:", context)
+print("模板上下文：", context)
 
-# 3. Manually render template
+# 3. 手动渲染模板
 from email_widget.core.template_engine import TemplateEngine
 engine = TemplateEngine()
 template = engine.get_template("text_widget.html")
 html = template.render(**context)
-print("Render result:", html)
+print("渲染结果：", html)
 
-# 4. Validate template syntax
+# 4. 验证模板语法
 try:
     email.export_html("test.html")
 except Exception as e:
-    print(f"Render error: {e}")
+    print(f"渲染错误：{e}")
     import traceback
     traceback.print_exc()
 ```
@@ -155,11 +155,11 @@ except Exception as e:
 **Solution**:
 
 ```python
-# 1. Preview HTML in Jupyter
+# 1. 在Jupyter中预览HTML
 from IPython.display import HTML, display
 
-email = Email("Jupyter Test")
-# ... add content
+email = Email("Jupyter测试")
+# ... 添加内容
 html_content = email.export_str()
 display(HTML(html_content))
 ```
@@ -174,20 +174,20 @@ display(HTML(html_content))
 import pandas as pd
 from email_widget.widgets import TableWidget
 
-# 1. Create table directly from DataFrame
+# 1. 直接从DataFrame创建表格
 df = pd.read_csv('data.csv')
 table = TableWidget()
 table.set_data_from_dataframe(df)
 
-# 3. Data preprocessing
-df_clean = df.dropna()  # Remove null values
-df_formatted = df_clean.round(2)  # Format numbers
+# 3. 数据预处理
+df_clean = df.dropna()  # 删除空值
+df_formatted = df_clean.round(2)  # 格式化数字
 table.set_data_from_dataframe(df_formatted)
 
-# 4. Add data summary
+# 4. 添加数据摘要
 summary = df.describe()
 summary_table = TableWidget()
-summary_table.set_title("Data Summary")
+summary_table.set_title("数据摘要")
 summary_table.set_data_from_dataframe(summary)
 ```
 
@@ -232,7 +232,7 @@ When submitting issues, please provide the following information:
 
 **Code Example**
 ```python
-# Minimal reproduction code
+# 最小复现代码
 ```
 
 **Error Information**

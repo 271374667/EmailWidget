@@ -22,26 +22,26 @@ from email_widget import Email
 from email_widget.widgets import SeparatorWidget
 from email_widget.core.enums import SeparatorType, TextType
 
-# Create email
-email = Email("Separator Example")
+# 创建邮件
+email = Email("分隔符示例")
 
-# Add title
-email.add_text("Separator Demo", TextType.TITLE_LARGE)
+# 添加标题
+email.add_text("分隔符演示", TextType.TITLE_LARGE)
 
-# Add content
-email.add_text("This is content above the separator")
+# 添加内容
+email.add_text("这是分隔符上方的内容")
 
-# Create basic separator
+# 创建基础分隔符
 separator = SeparatorWidget().set_type(SeparatorType.SOLID)
 email.add_widget(separator)
 
-# Add more content
-email.add_text("This is content below the separator")
+# 添加更多内容
+email.add_text("这是分隔符下方的内容")
 
-# Use shortcut method
+# 使用快捷方法
 email.add_separator()
 
-# Export HTML
+# 导出HTML
 email.export_html("separator_demo.html")
 ```
 
@@ -52,10 +52,10 @@ from email_widget import Email
 from email_widget.widgets import SeparatorWidget
 from email_widget.core.enums import SeparatorType, TextType
 
-email = Email("Custom Separator Styles")
+email = Email("自定义分隔符样式")
 
-# Create styled dashed separator
-email.add_text("Dashed Separator Example", TextType.SECTION_H2)
+# 创建带样式的虚线分隔符
+email.add_text("虚线分隔符示例", TextType.SECTION_H2)
 dashed_separator = (SeparatorWidget()
     .set_type(SeparatorType.DASHED)
     .set_color("#0078d4")
@@ -65,8 +65,8 @@ dashed_separator = (SeparatorWidget()
 
 email.add_widget(dashed_separator)
 
-# Use shortcut method to create dotted separator
-email.add_text("Dotted Separator Example", TextType.SECTION_H2)
+# 使用快捷方法创建点线分隔符
+email.add_text("点线分隔符示例", TextType.SECTION_H2)
 email.add_separator(
     separator_type=SeparatorType.DOTTED,
     color="#ff8c00",
@@ -120,20 +120,20 @@ email.export_html("custom_separator_demo.html")
 from email_widget import Email
 from email_widget.core.enums import SeparatorType, TextType
 
-email = Email("Hierarchical Content")
+email = Email("层次化内容")
 
-# Thick solid lines between main sections
-email.add_text("Chapter 1", TextType.TITLE_LARGE)
-email.add_text("Chapter content...")
+# 主要章节间用粗实线
+email.add_text("第一章", TextType.TITLE_LARGE)
+email.add_text("章节内容...")
 email.add_separator(
     separator_type=SeparatorType.SOLID,
     thickness="2px",
     margin="30px"
 )
 
-# Thin dashed lines between subsections
-email.add_text("1.1 Subsection", TextType.SECTION_H2)
-email.add_text("Subsection content...")
+# 子节间用细虚线
+email.add_text("1.1 小节", TextType.SECTION_H2)
+email.add_text("小节内容...")
 email.add_separator(
     separator_type=SeparatorType.DASHED,
     thickness="1px",
@@ -151,18 +151,18 @@ email.export_html("hierarchical_content.html")
 from email_widget import Email
 from email_widget.core.enums import SeparatorType, AlertType
 
-email = Email("Themed Separators")
+email = Email("主题化分隔符")
 
-# Separator after success status
-email.add_alert("Task Complete", AlertType.TIP)
+# 成功状态后的分隔
+email.add_alert("任务完成", AlertType.TIP)
 email.add_separator(
     separator_type=SeparatorType.SOLID,
     color="#107c10",
     thickness="2px"
 )
 
-# Separator after warning status
-email.add_alert("Important Notice", AlertType.WARNING)
+# 警告状态后的分隔
+email.add_alert("注意事项", AlertType.WARNING)
 email.add_separator(
     separator_type=SeparatorType.DASHED,
     color="#ff8c00",
@@ -180,26 +180,26 @@ email.export_html("themed_separators.html")
 from email_widget import Email
 from email_widget.core.enums import SeparatorType
 
-email = Email("System Status Monitoring")
+email = Email("系统状态监控")
 
-# Normal service
-email.add_text("Web Service: Normal")
+# 正常服务
+email.add_text("Web服务: 正常")
 email.add_separator(
     separator_type=SeparatorType.SOLID,
     color="#107c10",
     thickness="1px"
 )
 
-# Warning service
-email.add_text("Database: Warning")
+# 警告服务
+email.add_text("数据库: 警告")
 email.add_separator(
     separator_type=SeparatorType.DASHED,
     color="#ff8c00",
     thickness="2px"
 )
 
-# Error service
-email.add_text("Cache: Error")
+# 错误服务
+email.add_text("缓存: 故障")
 email.add_separator(
     separator_type=SeparatorType.SOLID,
     color="#d13438",
@@ -216,10 +216,10 @@ email.export_html("system_monitoring.html")
 The Email class provides the `add_separator` shortcut method:
 
 ```python
-# Basic shortcut method
+# 基础快捷方法
 email.add_separator()
 
-# Shortcut method with parameters
+# 带参数的快捷方法
 email.add_separator(
     separator_type=SeparatorType.DASHED,
     color="#0078d4",

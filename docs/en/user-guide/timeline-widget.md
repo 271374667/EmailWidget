@@ -22,27 +22,27 @@ TimelineWidget is a component for displaying time-series events in emails. It ca
 from email_widget import Email
 from email_widget.widgets import TimelineWidget
 
-# Create basic timeline
+# 创建基础时间线
 timeline = TimelineWidget()
-timeline.set_title("Project Timeline")
-timeline.add_event("Project Launch", "2024-01-01", "Project officially started")
-timeline.add_event("Requirements Confirmed", "2024-01-15", "Completed requirements analysis")
-timeline.add_event("Design Review", "2024-02-01", "UI design passed review")
+timeline.set_title("项目历程")
+timeline.add_event("项目启动", "2024-01-01", "项目正式开始")
+timeline.add_event("需求确认", "2024-01-15", "完成需求分析")
+timeline.add_event("设计评审", "2024-02-01", "UI设计通过评审")
 
-email = Email("Project Progress Report")
+email = Email("项目进展报告")
 email.add_widget(timeline)
 ```
 
 ### Advanced Usage
 
 ```python
-# Detailed timeline with status and timestamps
+# 带状态和时间戳的详细时间线
 timeline = TimelineWidget()
-timeline.set_title("System Monitoring Log")
-timeline.add_event("System Startup", "2024-01-01 09:00:00", "Server started successfully", "success")
-timeline.add_event("User Login", "2024-01-01 09:15:30", "Administrator user logged in", "info")
-timeline.add_event("Warning Detected", "2024-01-01 10:30:00", "High CPU usage detected", "warning")
-timeline.add_event("Issue Resolved", "2024-01-01 11:00:00", "System performance restored to normal", "success")
+timeline.set_title("系统监控日志")
+timeline.add_event("系统启动", "2024-01-01 09:00:00", "服务器启动成功", "success")
+timeline.add_event("用户登录", "2024-01-01 09:15:30", "管理员用户登录", "info")
+timeline.add_event("发现警告", "2024-01-01 10:30:00", "CPU使用率过高", "warning")
+timeline.add_event("问题解决", "2024-01-01 11:00:00", "系统性能恢复正常", "success")
 timeline.show_timestamps(True)
 timeline.set_reverse_order(True)
 
@@ -69,22 +69,22 @@ email.add_widget(timeline)
 from email_widget import Email
 from email_widget.widgets.timeline_widget import TimelineWidget
 
-# Create project progress report email
-email = Email("Project Progress Report")
+# 创建项目进展报告邮件
+email = Email("项目进展报告")
 
-# Project key milestones
+# 项目关键里程碑
 timeline1 = TimelineWidget()
-timeline1.set_title("Project Milestones")
-timeline1.add_event("Project Launch", "2024-01-01", "Project officially launched", "success")
-timeline1.add_event("Requirements Confirmed", "2024-01-15", "Requirements document confirmation completed", "success")
-timeline1.add_event("Design Review", "2024-02-01", "Technical architecture design approved", "success")
-timeline1.add_event("Development Phase", "2024-02-15", "Entered development phase", "info")
-timeline1.add_event("Testing Phase", "2024-03-15", "Functional testing started", "warning")
+timeline1.set_title("项目里程碑")
+timeline1.add_event("项目启动", "2024-01-01", "项目正式启动", "success")
+timeline1.add_event("需求确认", "2024-01-15", "需求文档确认完成", "success")
+timeline1.add_event("设计评审", "2024-02-01", "技术架构设计通过", "success")
+timeline1.add_event("开发阶段", "2024-02-15", "进入开发阶段", "info")
+timeline1.add_event("测试阶段", "2024-03-15", "功能测试开始", "warning")
 timeline1.show_timestamps(True)
 
 email.add_widget(timeline1)
 
-# Export HTML file
+# 导出HTML文件
 email.export_html("project_progress_report.html")
 ```
 
@@ -96,17 +96,17 @@ email.export_html("project_progress_report.html")
 from email_widget import Email
 from email_widget.widgets.timeline_widget import TimelineWidget
 
-# Create system operations daily report email
-email = Email("System Operations Daily Report")
+# 创建系统运维日报邮件
+email = Email("系统运维日报")
 
-# System event timeline
+# 系统事件时间线
 timeline = TimelineWidget()
-timeline.set_title("System Event Log")
-timeline.add_event("System Startup", "2024-01-01 08:00:00", "Server restart completed", "success")
-timeline.add_event("Scheduled Backup", "2024-01-01 12:00:00", "Database automatic backup", "info")
-timeline.add_event("Memory Warning", "2024-01-01 14:30:00", "Memory usage reached 85%", "warning")
-timeline.add_event("Service Exception", "2024-01-01 15:45:00", "Redis connection timeout", "error")
-timeline.add_event("Issue Fixed", "2024-01-01 16:15:00", "Redis service restarted, connection restored", "success")
+timeline.set_title("系统事件日志")
+timeline.add_event("系统启动", "2024-01-01 08:00:00", "服务器重启完成", "success")
+timeline.add_event("定时备份", "2024-01-01 12:00:00", "数据库自动备份", "info")
+timeline.add_event("内存警告", "2024-01-01 14:30:00", "内存使用率达到85%", "warning")
+timeline.add_event("服务异常", "2024-01-01 15:45:00", "Redis连接超时", "error")
+timeline.add_event("问题修复", "2024-01-01 16:15:00", "Redis服务重启，连接恢复", "success")
 timeline.show_timestamps(True)
 timeline.set_reverse_order(True)
 
@@ -120,13 +120,13 @@ email.add_widget(timeline)
 The Email class provides the `add_timeline` shortcut method:
 
 ```python
-# Shortcut method with parameters
+# 带参数的快捷方法
 email.add_timeline(
-    title="Project Timeline",
+    title="项目时间线",
     events=[
-        ("Event 1", "2024-01-01", "Description 1"),
-        ("Event 2", "2024-01-02", "Description 2", "success"),
-        ("Event 3", "2024-01-03", "Description 3", "warning")
+        ("事件1", "2024-01-01", "描述1"),
+        ("事件2", "2024-01-02", "描述2", "success"),
+        ("事件3", "2024-01-03", "描述3", "warning")
     ],
     show_time=True,
     reverse_order=True
@@ -138,9 +138,9 @@ email.add_timeline(
 ### Q: What are the requirements for time formats?
 A: Supports multiple time formats with automatic parsing:
 ```python
-timeline.add_event("Event 1", "2024-01-01")              # Date
-timeline.add_event("Event 2", "2024-01-01 15:30")        # Date and time
-timeline.add_event("Event 3", datetime.now())            # datetime object
+timeline.add_event("事件1", "2024-01-01")              # 日期
+timeline.add_event("事件2", "2024-01-01 15:30")        # 日期时间
+timeline.add_event("事件3", datetime.now())            # datetime对象
 ```
 
 ### Q: How to handle events with the same time?

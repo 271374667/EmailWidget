@@ -150,7 +150,7 @@ __version__ = "1.2.0"
 __author__ = "EmailWidget Team"
 __email__ = "support@emailwidget.com"
 
-# ... other imports
+# ... 其他导入
 ```
 
 #### Update CHANGELOG.md
@@ -395,30 +395,30 @@ import time
 from datetime import datetime
 
 def check_pypi_availability(package_name, version):
-    """Check if PyPI package is available"""
+    """检查 PyPI 包是否可用"""
     url = f"https://pypi.org/pypi/{package_name}/{version}/json"
     
     try:
         response = requests.get(url)
         if response.status_code == 200:
-            print(f"✅ {package_name} v{version} is available on PyPI")
+            print(f"✅ {package_name} v{version} 在 PyPI 上可用")
             return True
         else:
-            print(f"❌ {package_name} v{version} is not available on PyPI")
+            print(f"❌ {package_name} v{version} 在 PyPI 上不可用")
             return False
     except Exception as e:
-        print(f"❌ Error checking PyPI: {e}")
+        print(f"❌ 检查 PyPI 时出错: {e}")
         return False
 
 def check_installation(package_name, version):
-    """Check if package can be installed normally"""
+    """检查包是否可以正常安装"""
     import subprocess
     
     try:
-        # Create temporary virtual environment
+        # 创建临时虚拟环境
         subprocess.run(["python", "-m", "venv", "temp_env"], check=True)
         
-        # Activate environment and install package
+        # 激活环境并安装包
         if os.name == 'nt':  # Windows
             activate_cmd = r"temp_env\Scripts\Activate.ps1"
             install_cmd = f"temp_env\\Scripts\\pip install {package_name}=={version}"
@@ -427,31 +427,31 @@ def check_installation(package_name, version):
             install_cmd = f"temp_env/bin/pip install {package_name}=={version}"
         
         subprocess.run(install_cmd, shell=True, check=True)
-        print(f"✅ {package_name} v{version} installed successfully")
+        print(f"✅ {package_name} v{version} 安装成功")
         
-        # Clean up
+        # 清理
         subprocess.run(["rm", "-rf", "temp_env"], check=True)
         return True
         
     except subprocess.CalledProcessError as e:
-        print(f"❌ Installation failed: {e}")
+        print(f"❌ 安装失败: {e}")
         return False
 
 def monitor_release(package_name, version, duration_minutes=30):
-    """Monitor release status"""
-    print(f"Starting to monitor {package_name} v{version} release status...")
+    """监控发布状态"""
+    print(f"开始监控 {package_name} v{version} 的发布状态...")
     start_time = time.time()
     
     while time.time() - start_time < duration_minutes * 60:
         if check_pypi_availability(package_name, version):
             if check_installation(package_name, version):
-                print(f"🎉 {package_name} v{version} released successfully!")
+                print(f"🎉 {package_name} v{version} 发布成功!")
                 return True
         
-        print(f"⏳ Waiting 30 seconds before retry...")
+        print(f"⏳ 等待 30 秒后重试...")
         time.sleep(30)
     
-    print(f"⏰ Monitoring timeout ({duration_minutes} minutes)")
+    print(f"⏰ 监控超时 ({duration_minutes} 分钟)")
     return False
 
 if __name__ == "__main__":

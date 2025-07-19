@@ -24,49 +24,49 @@ from email_widget import Email
 from email_widget.widgets import CircularProgressWidget
 from email_widget.core.enums import ProgressTheme
 
-# Create basic circular progress bar
+# 创建基础圆形进度条
 progress = CircularProgressWidget()
 progress.set_value(65)
-progress.set_label("Download Progress")
+progress.set_label("下载进度")
 progress.set_theme(ProgressTheme.PRIMARY)
 
-email = Email("Progress Report")
+email = Email("进度报告")
 email.add_widget(progress)
 ```
 
 ### Advanced Usage
 
 ```python
-# System monitoring metrics combination
+# 系统监控指标组合
 from email_widget.widgets import ColumnWidget
 
-email = Email("System Monitoring Dashboard")
+email = Email("系统监控仪表板")
 
-# CPU usage
+# CPU使用率
 cpu_progress = (CircularProgressWidget()
                 .set_value(35)
-                .set_label("CPU Usage")
+                .set_label("CPU使用率")
                 .set_theme(ProgressTheme.SUCCESS)
                 .set_size("100px")
                 .set_stroke_width("8px"))
 
-# Memory usage
+# 内存使用率
 memory_progress = (CircularProgressWidget()
                    .set_value(68)
-                   .set_label("Memory Usage")
+                   .set_label("内存使用率")
                    .set_theme(ProgressTheme.WARNING)
                    .set_size("100px")
                    .set_stroke_width("8px"))
 
-# Disk usage
+# 磁盘使用率
 disk_progress = (CircularProgressWidget()
                  .set_value(85)
-                 .set_label("Disk Usage")
+                 .set_label("磁盘使用率")
                  .set_theme(ProgressTheme.ERROR)
                  .set_size("100px")
                  .set_stroke_width("8px"))
 
-# Use column layout for combination
+# 使用列布局组合
 column = ColumnWidget().set_columns(3)
 column.add_widgets([cpu_progress, memory_progress, disk_progress])
 email.add_widget(column)
@@ -100,9 +100,9 @@ from email_widget import Email
 from email_widget.widgets import CircularProgressWidget, ColumnWidget
 from email_widget.core.enums import ProgressTheme
 
-email = Email("System Resource Monitoring")
+email = Email("系统资源监控")
 
-# Choose appropriate theme based on value
+# 根据数值选择合适主题
 def get_theme_by_value(value):
     if value < 50:
         return ProgressTheme.SUCCESS
@@ -111,12 +111,12 @@ def get_theme_by_value(value):
     else:
         return ProgressTheme.ERROR
 
-# Create monitoring metrics
+# 创建监控指标
 metrics = [
     {"label": "CPU", "value": 45, "size": "80px"},
-    {"label": "Memory", "value": 72, "size": "80px"},
-    {"label": "Network", "value": 28, "size": "80px"},
-    {"label": "Disk", "value": 91, "size": "80px"}
+    {"label": "内存", "value": 72, "size": "80px"},
+    {"label": "网络", "value": 28, "size": "80px"},
+    {"label": "磁盘", "value": 91, "size": "80px"}
 ]
 
 progress_widgets = []
@@ -129,7 +129,7 @@ for metric in metrics:
                 .set_stroke_width("6px"))
     progress_widgets.append(progress)
 
-# Use 4-column layout
+# 使用4列布局
 dashboard = ColumnWidget().set_columns(4)
 dashboard.add_widgets(progress_widgets)
 email.add_widget(dashboard)
@@ -144,24 +144,24 @@ from email_widget import Email
 from email_widget.widgets import CircularProgressWidget
 from email_widget.core.enums import ProgressTheme
 
-email = Email("Project Progress Report")
+email = Email("项目进度报告")
 
-# Main project progress
+# 主要项目进度
 main_progress = (CircularProgressWidget()
                  .set_value(75)
-                 .set_label("Overall Project Progress")
+                 .set_label("项目总体进度")
                  .set_theme(ProgressTheme.INFO)
                  .set_size("150px")
                  .set_stroke_width("12px"))
 
 email.add_widget(main_progress)
 
-# Phase progress
+# 各阶段进度
 phases = [
-    {"name": "Requirements Analysis", "progress": 100, "theme": ProgressTheme.SUCCESS},
-    {"name": "System Design", "progress": 100, "theme": ProgressTheme.SUCCESS},
-    {"name": "Development", "progress": 80, "theme": ProgressTheme.WARNING},
-    {"name": "Testing", "progress": 30, "theme": ProgressTheme.INFO}
+    {"name": "需求分析", "progress": 100, "theme": ProgressTheme.SUCCESS},
+    {"name": "系统设计", "progress": 100, "theme": ProgressTheme.SUCCESS},
+    {"name": "开发实施", "progress": 80, "theme": ProgressTheme.WARNING},
+    {"name": "测试验收", "progress": 30, "theme": ProgressTheme.INFO}
 ]
 
 phase_widgets = []
@@ -188,23 +188,23 @@ from email_widget import Email
 from email_widget.widgets import CircularProgressWidget
 from email_widget.core.enums import ProgressTheme
 
-email = Email("Data Processing Progress")
+email = Email("数据处理进度")
 
-# File processing progress (in file count)
+# 文件处理进度（以文件数为单位）
 file_progress = (CircularProgressWidget()
-                 .set_max_value(1000)      # Total 1000 files
-                 .set_value(750)           # 750 processed
-                 .set_label("File Processing")     # Shows 75%
+                 .set_max_value(1000)      # 总共1000个文件
+                 .set_value(750)           # 已处理750个
+                 .set_label("文件处理")     # 显示75%
                  .set_theme(ProgressTheme.INFO)
                  .set_size("120px"))
 
 email.add_widget(file_progress)
 
-# Data download progress (in MB)
+# 数据下载进度（以MB为单位）
 download_progress = (CircularProgressWidget()
-                     .set_max_value(500)      # Total size 500MB
-                     .set_value(350)          # 350MB downloaded
-                     .set_label("Data Download")    # Shows 70%
+                     .set_max_value(500)      # 总大小500MB
+                     .set_value(350)          # 已下载350MB
+                     .set_label("数据下载")    # 显示70%
                      .set_theme(ProgressTheme.PRIMARY)
                      .set_size("120px"))
 
@@ -218,27 +218,27 @@ email.add_widget(download_progress)
 The Email class provides the `add_circular_progress` shortcut method:
 
 ```python
-# Basic shortcut method
+# 基础快捷方法
 email.add_circular_progress(
     value=75,
-    label="Task Progress",
+    label="任务进度",
     theme="success"
 )
 
-# Shortcut method with styling
+# 带样式的快捷方法
 email.add_circular_progress(
     value=68,
-    label="CPU Usage",
+    label="CPU使用率",
     theme="warning",
     size="100px",
     stroke_width="8px"
 )
 
-# Non-percentage progress
+# 非百分比进度
 email.add_circular_progress(
     value=750,
     max_value=1000,
-    label="File Processing",
+    label="文件处理",
     theme="info",
     size="120px"
 )
@@ -257,25 +257,25 @@ def auto_theme(value):
     else:
         return ProgressTheme.ERROR
 
-progress.set_theme(auto_theme(85))  # Automatically choose ERROR theme
+progress.set_theme(auto_theme(85))  # 自动选择ERROR主题
 ```
 
 ### Q: How to implement dynamic progress updates?
 A: Use increment and decrement methods:
 ```python
 progress = CircularProgressWidget().set_value(50)
-progress.increment(10)  # Increase to 60%
-progress.decrement(5)   # Decrease to 55%
-progress.complete()     # Set to 100%
-progress.reset()        # Reset to 0%
+progress.increment(10)  # 增加到60%
+progress.decrement(5)   # 减少到55%
+progress.complete()     # 设置为100%
+progress.reset()        # 重置为0%
 ```
 
 ### Q: What if circular progress bar is too small or too large?
 A: Adjust size and line width:
 ```python
-# Small size
+# 小尺寸
 progress.set_size("60px").set_stroke_width("4px")
-# Large size
+# 大尺寸
 progress.set_size("200px").set_stroke_width("15px")
 ```
 
@@ -283,8 +283,8 @@ progress.set_size("200px").set_stroke_width("15px")
 A: Values are automatically limited between 0 and max_value:
 ```python
 progress.set_max_value(100)
-progress.set_value(150)  # Automatically limited to 100
-progress.set_value(-10)  # Automatically limited to 0
+progress.set_value(150)  # 自动限制为100
+progress.set_value(-10)  # 自动限制为0
 ```
 
 ### Q: How to create multiple progress bars with same style?
@@ -299,7 +299,7 @@ def create_standard_progress(value, label):
             .set_theme(get_theme_by_value(value)))
 
 progress1 = create_standard_progress(60, "CPU")
-progress2 = create_standard_progress(80, "Memory")
+progress2 = create_standard_progress(80, "内存")
 ```
 
 ## 🔗 Related Widgets

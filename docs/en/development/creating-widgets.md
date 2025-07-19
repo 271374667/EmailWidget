@@ -27,12 +27,12 @@ EmailWidget uses Jinja2 as its template engine:
 ```python
 from email_widget.core.template_engine import TemplateEngine
 
-# Get template engine
+# 获取模板引擎
 engine = TemplateEngine()
 
-# Render template
+# 渲染模板
 template = engine.get_template("widget_template.html")
-html = template.render(context={"title": "Title", "content": "Content"})
+html = template.render(context={"title": "Title", "content": "内容"})
 ```
 
 ### Template Structure
@@ -103,31 +103,31 @@ from email_widget.core.base import BaseWidget
 from typing import Any, Dict, Optional
 
 class BaseWidget:
-    """Widget base class defining common interface"""
+    """Widget 基类，定义通用接口"""
     
     def __init__(self):
-        """Initialize basic attributes"""
+        """初始化基本属性"""
         self._id: Optional[str] = None
         self._css_classes: List[str] = []
         self._custom_styles: Dict[str, str] = {}
     
     def render(self) -> str:
-        """Render Widget to HTML - subclasses must implement"""
-        raise NotImplementedError("Subclasses must implement render method")
+        """渲染 Widget 为 HTML - 子类必须实现"""
+        raise NotImplementedError("子类必须实现 render 方法")
     
     def set_id(self, widget_id: str) -> 'BaseWidget':
-        """Set Widget ID"""
+        """设置 Widget ID"""
         self._id = widget_id
         return self
     
     def add_css_class(self, css_class: str) -> 'BaseWidget':
-        """Add CSS class"""
+        """添加 CSS 类"""
         if css_class not in self._css_classes:
             self._css_classes.append(css_class)
         return self
     
     def set_custom_style(self, property_name: str, value: str) -> 'BaseWidget':
-        """Set custom style"""
+        """设置自定义样式"""
         self._custom_styles[property_name] = value
         return self
 ```
@@ -163,16 +163,16 @@ from email_widget.core.validators import TypeValidator
 from typing import Optional, Union
 
 class CustomWidget(BaseWidget):
-    """Custom Widget example"""
+    """自定义 Widget 示例"""
     
     def __init__(self):
         super().__init__()
-        # Initialize Widget-specific attributes
+        # 初始化 Widget 特有属性
         self._title: str = ""
         self._content: str = ""
         self._theme: str = "default"
         
-        # Initialize validators
+        # 初始化验证器
         self._validators = {
             'title': TypeValidator(str),
             'content': TypeValidator(str),
@@ -180,8 +180,8 @@ class CustomWidget(BaseWidget):
         }
     
     def render(self) -> str:
-        """Render to HTML"""
-        # Implement rendering logic
+        """渲染为 HTML"""
+        # 实现渲染逻辑
         pass
 ```
 
@@ -189,22 +189,22 @@ class CustomWidget(BaseWidget):
 
 ```python
 def set_title(self, title: str) -> 'CustomWidget':
-    """Set title"""
+    """设置Title"""
     self._validators['title'].validate(title)
     self._title = title
     return self
 
 def set_content(self, content: str) -> 'CustomWidget':
-    """Set content"""
+    """设置内容"""
     self._validators['content'].validate(content)
     self._content = content
     return self
 
 def set_theme(self, theme: str) -> 'CustomWidget':
-    """Set theme"""
+    """设置主题"""
     allowed_themes = ['default', 'primary', 'success', 'warning', 'danger']
     if theme not in allowed_themes:
-        raise ValueError(f"Theme must be one of: {allowed_themes}")
+        raise ValueError(f"主题必须是以下之一: {allowed_themes}")
     self._theme = theme
     return self
 ```
@@ -213,20 +213,20 @@ def set_theme(self, theme: str) -> 'CustomWidget':
 
 ```python
 def render(self) -> str:
-    """Render to HTML"""
-    # Generate CSS class names
+    """渲染为 HTML"""
+    # 生成 CSS 类名
     css_classes = ['custom-widget', f'theme-{self._theme}'] + self._css_classes
     class_attr = f'class="{" ".join(css_classes)}"' if css_classes else ''
     
-    # Generate ID attribute
+    # 生成 ID 属性
     id_attr = f'id="{self._id}"' if self._id else ''
     
-    # Generate inline styles
+    # 生成内联样式
     styles = self._get_default_styles()
     styles.update(self._custom_styles)
     style_attr = f'style="{self._generate_style_string(styles)}"' if styles else ''
     
-    # Combine attributes
+    # 组合属性
     attributes = ' '.join(filter(None, [class_attr, id_attr, style_attr]))
     
     return f"""
@@ -237,14 +237,14 @@ def render(self) -> str:
     """
 
 def _render_title(self) -> str:
-    """Render title section"""
+    """渲染Title部分"""
     if not self._title:
         return ""
     
     return f'<h3 style="margin: 0 0 10px 0; color: #2c3e50;">{self._title}</h3>'
 
 def _render_content(self) -> str:
-    """Render content section"""
+    """渲染内容部分"""
     if not self._content:
         return ""
     
@@ -253,7 +253,7 @@ def _render_content(self) -> str:
 </div>'
 
 def _get_default_styles(self) -> Dict[str, str]:
-    """Get default styles"""
+    """获取默认样式"""
     theme_colors = {
         'default': '#f8f9fa',
         'primary': '#007bff',
@@ -272,7 +272,7 @@ def _get_default_styles(self) -> Dict[str, str]:
     }
 
 def _generate_style_string(self, styles: Dict[str, str]) -> str:
-    """Generate style string"""
+    """生成样式字符串"""
     return '; '.join(f'{key}: {value}' for key, value in styles.items())
 ```
 
@@ -286,7 +286,7 @@ from email_widget.core.validators import TypeValidator, RangeValidator
 from typing import Optional
 
 class RatingCardWidget(BaseWidget):
-    """Rating Card Widget"""
+    """评分Card Widget"""
     
     def __init__(self):
         super().__init__()
@@ -297,7 +297,7 @@ class RatingCardWidget(BaseWidget):
         self._show_stars: bool = True
         self._color_scheme: str = "default"
         
-        # Set validators
+        # 设置验证器
         self._validators = {
             'title': TypeValidator(str),
             'rating': RangeValidator(0, 10),
@@ -306,50 +306,50 @@ class RatingCardWidget(BaseWidget):
         }
     
     def set_title(self, title: str) -> 'RatingCardWidget':
-        """Set card title"""
+        """设置CardTitle"""
         self._validators['title'].validate(title)
         self._title = title
         return self
     
     def set_rating(self, rating: float, max_rating: float = 5.0) -> 'RatingCardWidget':
-        """Set rating"""
+        """设置评分"""
         self._validators['rating'].validate(rating)
         self._validators['max_rating'].validate(max_rating)
         
         if rating > max_rating:
-            raise ValueError(f"Rating ({rating}) cannot exceed maximum ({max_rating})")
+            raise ValueError(f"评分 ({rating}) 不能超过最大值 ({max_rating})")
         
         self._rating = rating
         self._max_rating = max_rating
         return self
     
     def set_description(self, description: str) -> 'RatingCardWidget':
-        """Set description text"""
+        """设置描述文字"""
         self._validators['description'].validate(description)
         self._description = description
         return self
     
     def set_show_stars(self, show: bool) -> 'RatingCardWidget':
-        """Set whether to show star icons"""
+        """设置是否显示星形图标"""
         self._show_stars = show
         return self
     
     def set_color_scheme(self, scheme: str) -> 'RatingCardWidget':
-        """Set color scheme"""
+        """设置颜色方案"""
         allowed_schemes = ['default', 'gold', 'blue', 'green', 'red']
         if scheme not in allowed_schemes:
-            raise ValueError(f"Color scheme must be: {allowed_schemes}")
+            raise ValueError(f"颜色方案必须是: {allowed_schemes}")
         self._color_scheme = scheme
         return self
     
     def render(self) -> str:
-        """Render rating card"""
-        # Get styles
+        """渲染评分Card"""
+        # 获取样式
         styles = self._get_card_styles()
         styles.update(self._custom_styles)
         style_attr = self._generate_style_string(styles)
         
-        # Generate other attributes
+        # 生成其他属性
         css_classes = ['rating-card'] + self._css_classes
         class_attr = f'class="{" ".join(css_classes)}"'
         id_attr = f'id="{self._id}"' if self._id else ''
@@ -365,7 +365,7 @@ class RatingCardWidget(BaseWidget):
         """
     
     def _render_header(self) -> str:
-        """Render header"""
+        """渲染Title"""
         if not self._title:
             return ""
         
@@ -380,10 +380,10 @@ class RatingCardWidget(BaseWidget):
         """
     
     def _render_rating(self) -> str:
-        """Render rating display"""
+        """渲染评分显示"""
         percentage = (self._rating / self._max_rating) * 100
         
-        # Numeric rating
+        # 数字评分
         rating_number = f"""
         <div class="email-preview-wrapper">
 <div style="font-size: 24px; font-weight: bold; color: {self._get_rating_color()}; margin-bottom: 5px;">
@@ -392,7 +392,7 @@ class RatingCardWidget(BaseWidget):
 </div>
         """
         
-        # Stars display
+        # 星形显示
         stars_html = ""
         if self._show_stars:
             stars_html = f"""
@@ -403,7 +403,7 @@ class RatingCardWidget(BaseWidget):
 </div>
             """
         
-        # Progress bar
+        # Progress条
         progress_bar = f"""
         <div class="email-preview-wrapper">
 <div style="background-color: #e9ecef; border-radius: 10px; height: 8px; overflow: hidden;">
@@ -429,7 +429,7 @@ class RatingCardWidget(BaseWidget):
         """
     
     def _render_description(self) -> str:
-        """Render description"""
+        """渲染描述"""
         if not self._description:
             return ""
         
@@ -448,29 +448,29 @@ class RatingCardWidget(BaseWidget):
         """
     
     def _generate_stars(self) -> str:
-        """Generate star icons"""
+        """生成星形图标"""
         full_stars = int(self._rating)
         has_half_star = (self._rating - full_stars) >= 0.5
         empty_stars = int(self._max_rating) - full_stars - (1 if has_half_star else 0)
         
         stars_html = ""
         
-        # Full stars
+        # 满星
         for _ in range(full_stars):
             stars_html += '<span style="color: #ffc107; font-size: 18px;">★</span>'
         
-        # Half star
+        # 半星
         if has_half_star:
             stars_html += '<span style="color: #ffc107; font-size: 18px;">☆</span>'
         
-        # Empty stars
+        # 空星
         for _ in range(empty_stars):
             stars_html += '<span style="color: #dee2e6; font-size: 18px;">☆</span>'
         
         return stars_html
     
     def _get_rating_color(self) -> str:
-        """Get color based on rating"""
+        """根据评分获取颜色"""
         if self._color_scheme != 'default':
             colors = {
                 'gold': '#ffc107',
@@ -480,19 +480,19 @@ class RatingCardWidget(BaseWidget):
             }
             return colors.get(self._color_scheme, '#007bff')
         
-        # Dynamically set color based on rating
+        # 根据评分动态设置颜色
         percentage = (self._rating / self._max_rating) * 100
         if percentage >= 80:
-            return '#28a745'  # Green - Excellent
+            return '#28a745'  # 绿色 - 优秀
         elif percentage >= 60:
-            return '#ffc107'  # Yellow - Good
+            return '#ffc107'  # 黄色 - 良好
         elif percentage >= 40:
-            return '#fd7e14'  # Orange - Average
+            return '#fd7e14'  # 橙色 - 一般
         else:
-            return '#dc3545'  # Red - Poor
+            return '#dc3545'  # 红色 - 较差
     
     def _get_card_styles(self) -> dict:
-        """Get card styles"""
+        """获取Card样式"""
         return {
             'background': 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
             'border': '1px solid #dee2e6',
@@ -505,49 +505,49 @@ class RatingCardWidget(BaseWidget):
         }
     
     def _generate_style_string(self, styles: dict) -> str:
-        """Generate style string"""
+        """生成样式字符串"""
         return '; '.join(f'{key}: {value}' for key, value in styles.items())
 
 
-# Usage example
+# 使用示例
 def demo_rating_card():
-    """Rating card usage example"""
+    """评分Card使用示例"""
     from email_widget import Email
     
-    email = Email("Rating Card Demo")
+    email = Email("评分Card演示")
     
-    # Create different types of rating cards
+    # 创建不同类型的评分Card
     
-    # Product rating
+    # Product评分
     product_rating = RatingCardWidget()
-    product_rating.set_title("Product User Satisfaction") \
+    product_rating.set_title("Product用户满意度") \
                   .set_rating(4.3, 5.0) \
-                  .set_description("Average score based on 1,247 user reviews") \
+                  .set_description("基于1,247个用户评价的平均分") \
                   .set_color_scheme("gold")
     
     email.add_widget(product_rating)
     
-    # Service rating
+    # Service评分
     service_rating = RatingCardWidget()
-    service_rating.set_title("Customer Service Rating") \
+    service_rating.set_title("客户Service评分") \
                   .set_rating(8.7, 10.0) \
-                  .set_description("Customer service team performance this month") \
+                  .set_description("客户Service团队本月表现") \
                   .set_color_scheme("green") \
                   .set_show_stars(False)
     
     email.add_widget(service_rating)
     
-    # Website performance rating
+    # 网站性能评分
     performance_rating = RatingCardWidget()
-    performance_rating.set_title("Website Performance Score") \
+    performance_rating.set_title("网站性能得分") \
                       .set_rating(2.1, 5.0) \
-                      .set_description("Page loading speed needs optimization") \
+                      .set_description("需要优化页面加载速度") \
                       .set_color_scheme("red")
     
     email.add_widget(performance_rating)
     
     email.export_html("rating_card_demo.html")
-    print("✅ Rating card demo generated")
+    print("✅ 评分Card演示已生成")
 
 if __name__ == "__main__":
     demo_rating_card()
@@ -562,10 +562,10 @@ import pytest
 from email_widget.widgets.rating_card_widget import RatingCardWidget
 
 class TestRatingCardWidget:
-    """Rating Card Widget tests"""
+    """评分Card Widget 测试"""
     
     def test_initialization(self):
-        """Test initialization"""
+        """测试初始化"""
         widget = RatingCardWidget()
         assert widget._title == ""
         assert widget._rating == 0.0
@@ -573,15 +573,15 @@ class TestRatingCardWidget:
         assert widget._show_stars is True
     
     def test_set_title(self):
-        """Test setting title"""
+        """测试设置Title"""
         widget = RatingCardWidget()
-        result = widget.set_title("Test Title")
+        result = widget.set_title("测试Title")
         
-        assert result is widget  # Test method chaining
-        assert widget._title == "Test Title"
+        assert result is widget  # 测试链式调用
+        assert widget._title == "测试Title"
     
     def test_set_rating(self):
-        """Test setting rating"""
+        """测试设置评分"""
         widget = RatingCardWidget()
         widget.set_rating(4.5, 5.0)
         
@@ -589,56 +589,56 @@ class TestRatingCardWidget:
         assert widget._max_rating == 5.0
     
     def test_invalid_rating(self):
-        """Test invalid rating"""
+        """测试无效评分"""
         widget = RatingCardWidget()
         
         with pytest.raises(ValueError):
-            widget.set_rating(6.0, 5.0)  # Rating exceeds maximum
+            widget.set_rating(6.0, 5.0)  # 评分超过最大值
     
     def test_render_basic(self):
-        """Test basic rendering"""
+        """测试基本渲染"""
         widget = RatingCardWidget()
-        widget.set_title("Test Rating").set_rating(4.0, 5.0)
+        widget.set_title("测试评分").set_rating(4.0, 5.0)
         
         html = widget.render()
         
-        assert "Test Rating" in html
+        assert "测试评分" in html
         assert "4.0" in html
         assert "class=" in html
         assert "style=" in html
     
     def test_render_with_description(self):
-        """Test rendering with description"""
+        """测试包含描述的渲染"""
         widget = RatingCardWidget()
-        widget.set_title("Test").set_rating(3.5).set_description("Test description")
+        widget.set_title("测试").set_rating(3.5).set_description("测试描述")
         
         html = widget.render()
-        assert "Test description" in html
+        assert "测试描述" in html
     
     def test_color_schemes(self):
-        """Test color schemes"""
+        """测试颜色方案"""
         widget = RatingCardWidget()
         
-        # Test valid color schemes
+        # 测试有效颜色方案
         for scheme in ['default', 'gold', 'blue', 'green', 'red']:
             widget.set_color_scheme(scheme)
             assert widget._color_scheme == scheme
         
-        # Test invalid color scheme
+        # 测试无效颜色方案
         with pytest.raises(ValueError):
             widget.set_color_scheme("invalid")
     
     def test_stars_generation(self):
-        """Test star generation"""
+        """测试星形生成"""
         widget = RatingCardWidget()
         widget.set_rating(3.5, 5.0)
         
-        # Test star HTML generation (need to implement _generate_stars test)
+        # 测试星形 HTML 生成（需要实现 _generate_stars 的测试）
         stars_html = widget._generate_stars()
-        assert "★" in stars_html  # Should contain full stars
-        assert "☆" in stars_html  # Should contain empty or half stars
+        assert "★" in stars_html  # 应该包含满星
+        assert "☆" in stars_html  # 应该包含空星或半星
 
-# Run tests
+# 运行测试
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
 ```
@@ -664,31 +664,31 @@ if __name__ == "__main__":
 **Input Validation**
 ```python
 def set_value(self, value: Any) -> 'CustomWidget':
-    """Validate when setting value"""
+    """设置值时进行验证"""
     if not self._validate_value(value):
-        raise ValueError(f"Invalid value: {value}")
+        raise ValueError(f"无效的值: {value}")
     self._value = value
     return self
 
 def _validate_value(self, value: Any) -> bool:
-    """Validate if value is valid"""
-    # Implement specific validation logic
+    """验证值是否有效"""
+    # 实现具体的验证逻辑
     return True
 ```
 
 **Error Handling**
 ```python
 def render(self) -> str:
-    """Safe rendering method"""
+    """安全的渲染方法"""
     try:
         return self._safe_render()
     except Exception as e:
-        # Log error but don't interrupt entire email generation
-        return f'<div class="widget-error">Widget rendering failed: {str(e)}</div>'
+        # 记录错误但不中断整个邮件生成
+        return f'<div class="widget-error">Widget 渲染失败: {str(e)}</div>'
 
 def _safe_render(self) -> str:
-    """Actual rendering logic"""
-    # Implement rendering
+    """实际的渲染逻辑"""
+    # 实现渲染
     pass
 ```
 
@@ -700,8 +700,8 @@ class CustomWidget(BaseWidget):
     
     @lru_cache(maxsize=128)
     def _get_cached_template(self, template_key: str) -> str:
-        """Cache template content"""
-        # Avoid repeatedly generating the same template
+        """缓存模板内容"""
+        # 避免重复生成相同的模板
         return self._generate_template(template_key)
 ```
 
@@ -710,29 +710,29 @@ class CustomWidget(BaseWidget):
 **Use Inline Styles**
 ```python
 def render(self) -> str:
-    # Good: Use inline styles
+    # 好：使用内联样式
     return '<div class="email-preview-wrapper">
-<div style="color: red; font-size: 16px;">Content</div>
+<div style="color: red; font-size: 16px;">内容</div>
 </div>'
     
-    # Avoid: Use external CSS classes (many email clients don't support)
-    # return '<div class="my-class">Content</div>'
+    # 避免：使用外部 CSS 类（很多邮件客户端不支持）
+    # return '<div class="my-class">内容</div>'
 ```
 
 **Avoid Complex Layouts**
 ```python
-# Good: Use table layout
+# 好：使用表格Layout
 def _render_layout(self) -> str:
     return '''
     <table style="width: 100%; border-collapse: collapse;">
         <tr>
-            <td style="padding: 10px;">Left column</td>
-            <td style="padding: 10px;">Right column</td>
+            <td style="padding: 10px;">左列</td>
+            <td style="padding: 10px;">右列</td>
         </tr>
     </table>
     '''
 
-# Avoid: Use flexbox or grid (poor compatibility)
+# 避免：使用 flexbox 或 grid（兼容性差）
 ```
 
 **Test Multiple Email Clients**
@@ -748,28 +748,28 @@ Write clear documentation for your Widget:
 ```python
 class CustomWidget(BaseWidget):
     """
-    Custom Widget component
+    自定义 Widget 组件
     
-    This Widget is used to display...
+    这个 Widget 用于显示...
     
-    Example usage:
+    示例用法:
         >>> widget = CustomWidget()
-        >>> widget.set_title("Title").set_content("Content")
+        >>> widget.set_title("Title").set_content("内容")
         >>> html = widget.render()
     
-    Supported configuration options:
-        - title: Title text
-        - content: Main content
-        - theme: Theme style (default, primary, success, warning, danger)
+    支持的配置选项:
+        - title: Title文字
+        - content: 主要内容
+        - theme: 主题样式 (default, primary, success, warning, danger)
     
     Args:
-        None
+        无
         
     Returns:
-        CustomWidget: Widget instance, supports method chaining
+        CustomWidget: Widget 实例，支持链式调用
         
     Raises:
-        ValueError: When parameter values are invalid
+        ValueError: 当参数值无效时
     """
 ```
 
@@ -781,7 +781,7 @@ class CustomWidget(BaseWidget):
 from jinja2 import Template
 
 class AdvancedWidget(BaseWidget):
-    """Advanced Widget with template support"""
+    """支持模板的高级 Widget"""
     
     def __init__(self):
         super().__init__()
@@ -789,12 +789,12 @@ class AdvancedWidget(BaseWidget):
         self._data = {}
     
     def set_template(self, template_string: str) -> 'AdvancedWidget':
-        """Set custom template"""
+        """设置自定义模板"""
         self._template = Template(template_string)
         return self
     
     def set_data(self, **kwargs) -> 'AdvancedWidget':
-        """Set template data"""
+        """设置模板Data"""
         self._data.update(kwargs)
         return self
     
@@ -808,7 +808,7 @@ class AdvancedWidget(BaseWidget):
 
 ```python
 class ResponsiveWidget(BaseWidget):
-    """Widget with responsive support"""
+    """支持Responsive的 Widget"""
     
     def render(self) -> str:
         return f'''
@@ -833,10 +833,10 @@ class ResponsiveWidget(BaseWidget):
 import pandas as pd
 
 class DataBoundWidget(BaseWidget):
-    """Widget with data binding support"""
+    """支持Data绑定的 Widget"""
     
     def bind_dataframe(self, df: pd.DataFrame, columns: list = None) -> 'DataBoundWidget':
-        """Bind DataFrame data"""
+        """绑定 DataFrame Data"""
         self._dataframe = df
         self._columns = columns or df.columns.tolist()
         return self
@@ -878,7 +878,7 @@ from .rating_card_widget import RatingCardWidget
 __all__ = [
     'CustomWidget',
     'RatingCardWidget',
-    # ... other Widgets
+    # ... 其他 Widget
 ]
 ```
 
@@ -890,7 +890,7 @@ Add convenience methods to `Email` class:
 class Email:
     def add_rating_card(self, title: str, rating: float, max_rating: float = 5.0, 
                        description: str = "") -> 'Email':
-        """Convenience method for adding rating card"""
+        """添加评分Card的便捷方法"""
         widget = RatingCardWidget()
         widget.set_title(title).set_rating(rating, max_rating)
         if description:

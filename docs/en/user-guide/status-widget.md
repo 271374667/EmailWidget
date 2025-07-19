@@ -22,27 +22,27 @@ StatusWidget is a component specifically designed for displaying system status, 
 from email_widget import Email
 from email_widget.widgets import StatusWidget
 
-# Create basic status widget
+# 创建基础状态组件
 status = StatusWidget()
-status.set_title("System Status")
-status.add_status("CPU Usage", "68%")
-status.add_status("Memory Usage", "4.2GB / 8GB")
-status.add_status("Disk Space", "256GB / 512GB")
+status.set_title("系统状态")
+status.add_status("CPU使用率", "68%")
+status.add_status("内存使用", "4.2GB / 8GB")
+status.add_status("磁盘空间", "256GB / 512GB")
 
-email = Email("Status Report")
+email = Email("状态报告")
 email.add_widget(status)
 ```
 
 ### Advanced Usage
 
 ```python
-# Detailed status with status types
+# 带状态类型的详细状态
 status = StatusWidget()
-status.set_title("Service Monitoring")
-status.add_status("API Service", "Running", "success")
-status.add_status("Database", "Connection Normal", "success")
-status.add_status("Cache Service", "Slow Response", "warning")
-status.add_status("Network Status", "Disconnected", "error")
+status.set_title("服务监控")
+status.add_status("API服务", "运行中", "success")
+status.add_status("数据库", "连接正常", "success")
+status.add_status("缓存服务", "响应慢", "warning")
+status.add_status("网络状态", "断开连接", "error")
 status.set_layout("horizontal")
 
 email.add_widget(status)
@@ -68,26 +68,26 @@ email.add_widget(status)
 from email_widget import Email
 from email_widget.widgets import StatusWidget
 
-email = Email("System Monitoring Report")
+email = Email("系统监控报告")
 
-# System resource status
+# 系统资源状态
 system_status = StatusWidget()
-system_status.set_title("System Resources")
-system_status.add_status("CPU Usage", "68%", "success")
-system_status.add_status("Memory Usage", "85%", "warning")
-system_status.add_status("Disk Space", "256GB / 512GB", "success")
-system_status.add_status("Network Status", "Disconnected", "error")
+system_status.set_title("系统资源")
+system_status.add_status("CPU使用率", "68%", "success")
+system_status.add_status("内存使用", "85%", "warning")
+system_status.add_status("磁盘空间", "256GB / 512GB", "success")
+system_status.add_status("网络状态", "断开连接", "error")
 system_status.set_layout("vertical")
 
 email.add_widget(system_status)
 
-# Service status
+# 服务状态
 service_status = StatusWidget()
-service_status.set_title("Service Status")
-service_status.add_status("Web Service", "Running", "success")
-service_status.add_status("Database", "Connection Normal", "success")
-service_status.add_status("Cache Service", "Slow Response", "warning")
-service_status.add_status("Message Queue", "Queue Backlog", "warning")
+service_status.set_title("服务状态")
+service_status.add_status("Web服务", "运行中", "success")
+service_status.add_status("数据库", "连接正常", "success")
+service_status.add_status("缓存服务", "响应慢", "warning")
+service_status.add_status("消息队列", "队列积压", "warning")
 
 email.add_widget(service_status)
 ```
@@ -100,15 +100,15 @@ email.add_widget(service_status)
 from email_widget import Email
 from email_widget.widgets import StatusWidget
 
-email = Email("Project Configuration Report")
+email = Email("项目配置报告")
 
-# Environment configuration
+# 环境配置
 config_status = StatusWidget()
-config_status.set_title("Environment Configuration")
-config_status.add_status("Environment", "Production", "info")
-config_status.add_status("Version", "v2.1.0", "info")
-config_status.add_status("Deploy Time", "2024-07-11 15:30", "info")
-config_status.add_status("Responsible", "Development Team", "info")
+config_status.set_title("环境配置")
+config_status.add_status("环境", "生产环境", "info")
+config_status.add_status("版本", "v2.1.0", "info")
+config_status.add_status("部署时间", "2024-07-11 15:30", "info")
+config_status.add_status("负责人", "开发团队", "info")
 config_status.set_layout("horizontal")
 
 email.add_widget(config_status)
@@ -119,13 +119,13 @@ email.add_widget(config_status)
 The Email class provides the `add_status` shortcut method:
 
 ```python
-# Shortcut method with parameters
+# 带参数的快捷方法
 email.add_status(
-    title="System Status",
+    title="系统状态",
     statuses=[
         ("CPU", "68%", "success"),
-        ("Memory", "85%", "warning"),
-        ("Disk", "50%", "success")
+        ("内存", "85%", "warning"),
+        ("磁盘", "50%", "success")
     ],
     layout="vertical"
 )
@@ -141,7 +141,7 @@ A:
 ### Q: How to update existing status items?
 A: Use the `update_status` method:
 ```python
-status.update_status("CPU Usage", "75%", "warning")
+status.update_status("CPU使用率", "75%", "warning")
 ```
 
 ### Q: Can status values contain HTML?

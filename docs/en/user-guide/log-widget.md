@@ -24,34 +24,34 @@ from email_widget import Email
 from email_widget.widgets import LogWidget
 from email_widget.core.enums import LogLevel
 
-# Create log widget
+# 创建日志组件
 log = LogWidget()
-log.set_title("Application Log")
-log.add_log_entry("Application started successfully", LogLevel.INFO)
-log.add_log_entry("Configuration file loaded", LogLevel.DEBUG)
-log.add_log_entry("Database connection failed", LogLevel.ERROR)
+log.set_title("应用日志")
+log.add_log_entry("应用启动成功", LogLevel.INFO)
+log.add_log_entry("配置文件加载完成", LogLevel.DEBUG)
+log.add_log_entry("数据库连接失败", LogLevel.ERROR)
 
-email = Email("System Log Report")
+email = Email("系统日志报告")
 email.add_widget(log)
 ```
 
 ### Advanced Usage
 
 ```python
-# Parse loguru format logs
+# 解析loguru格式日志
 log = LogWidget()
-log.set_title("System Running Log")
+log.set_title("系统运行日志")
 
-# loguru format log strings
+# loguru格式的日志字符串
 loguru_logs = [
-    "2024-01-15 10:30:25.123 | DEBUG | app:main:15 - Debug information",
-    "2024-01-15 10:30:26.456 | INFO | config:load:42 - Configuration loaded",
-    "2024-01-15 10:30:27.789 | WARNING | db:connect:88 - Database connection slow",
-    "2024-01-15 10:30:28.012 | ERROR | api:request:156 - API request failed"
+    "2024-01-15 10:30:25.123 | DEBUG | app:main:15 - 调试信息",
+    "2024-01-15 10:30:26.456 | INFO | config:load:42 - 配置加载完成",
+    "2024-01-15 10:30:27.789 | WARNING | db:connect:88 - 数据库连接慢",
+    "2024-01-15 10:30:28.012 | ERROR | api:request:156 - API请求失败"
 ]
 
 log.set_logs(loguru_logs)
-log.filter_by_level(LogLevel.WARNING)  # Only show WARNING and above levels
+log.filter_by_level(LogLevel.WARNING)  # 只显示WARNING及以上级别
 log.show_timestamp(True)
 log.set_max_height("400px")
 
@@ -88,16 +88,16 @@ from email_widget.widgets import LogWidget
 from email_widget.core.enums import LogLevel
 from datetime import datetime
 
-email = Email("Application Startup Report")
+email = Email("应用启动报告")
 
-# Startup process log
+# 启动过程日志
 startup_log = LogWidget()
-startup_log.set_title("Application Startup Log")
-startup_log.add_log_entry("Starting application", LogLevel.INFO, datetime.now())
-startup_log.add_log_entry("Loading configuration file", LogLevel.DEBUG, datetime.now())
-startup_log.add_log_entry("Initializing database connection", LogLevel.INFO, datetime.now())
-startup_log.add_log_entry("Starting web server", LogLevel.INFO, datetime.now())
-startup_log.add_log_entry("Application startup complete", LogLevel.INFO, datetime.now())
+startup_log.set_title("应用启动日志")
+startup_log.add_log_entry("开始启动应用", LogLevel.INFO, datetime.now())
+startup_log.add_log_entry("加载配置文件", LogLevel.DEBUG, datetime.now())
+startup_log.add_log_entry("初始化数据库连接", LogLevel.INFO, datetime.now())
+startup_log.add_log_entry("启动Web服务器", LogLevel.INFO, datetime.now())
+startup_log.add_log_entry("应用启动完成", LogLevel.INFO, datetime.now())
 startup_log.show_timestamp(True)
 
 email.add_widget(startup_log)
@@ -112,17 +112,17 @@ from email_widget import Email
 from email_widget.widgets import LogWidget
 from email_widget.core.enums import LogLevel
 
-email = Email("Error Log Report")
+email = Email("错误日志报告")
 
-# Only show error level logs
+# 只显示错误级别日志
 error_log = LogWidget()
-error_log.set_title("Error Log Monitoring")
-error_log.filter_by_level(LogLevel.ERROR)  # Only show ERROR and CRITICAL
+error_log.set_title("错误日志监控")
+error_log.filter_by_level(LogLevel.ERROR)  # 只显示ERROR和CRITICAL
 
-# Add error logs
-error_log.add_log_entry("Database connection timeout", LogLevel.ERROR, datetime.now(), "database", "connect", 88)
-error_log.add_log_entry("API request failed", LogLevel.ERROR, datetime.now(), "api", "request", 156)
-error_log.add_log_entry("System memory insufficient", LogLevel.CRITICAL, datetime.now(), "system", "memory", 200)
+# 添加错误日志
+error_log.add_log_entry("数据库连接超时", LogLevel.ERROR, datetime.now(), "database", "connect", 88)
+error_log.add_log_entry("API请求失败", LogLevel.ERROR, datetime.now(), "api", "request", 156)
+error_log.add_log_entry("系统内存不足", LogLevel.CRITICAL, datetime.now(), "system", "memory", 200)
 
 error_log.show_timestamp(True)
 error_log.show_source(True)
@@ -139,24 +139,24 @@ email.add_widget(error_log)
 from email_widget import Email
 from email_widget.widgets import LogWidget
 
-email = Email("System Operations Daily Report")
+email = Email("系统运维日报")
 
-# System event log
+# 系统事件日志
 ops_log = LogWidget()
-ops_log.set_title("Operations Event Log")
+ops_log.set_title("运维事件日志")
 
-# Batch set loguru format logs
+# 批量设置loguru格式日志
 ops_logs = [
-    "2024-01-15 08:00:00 | INFO | system:startup:10 - Server startup complete",
-    "2024-01-15 12:00:00 | INFO | backup:auto:25 - Database auto backup complete",
-    "2024-01-15 14:30:00 | WARNING | monitor:memory:45 - Memory usage reached 85%",
-    "2024-01-15 15:45:00 | ERROR | service:redis:88 - Redis connection timeout",
-    "2024-01-15 16:15:00 | INFO | service:redis:92 - Redis service restarted, connection restored"
+    "2024-01-15 08:00:00 | INFO | system:startup:10 - 服务器启动完成",
+    "2024-01-15 12:00:00 | INFO | backup:auto:25 - 数据库自动备份完成",
+    "2024-01-15 14:30:00 | WARNING | monitor:memory:45 - 内存使用率达到85%",
+    "2024-01-15 15:45:00 | ERROR | service:redis:88 - Redis连接超时",
+    "2024-01-15 16:15:00 | INFO | service:redis:92 - Redis服务重启，连接恢复"
 ]
 
 ops_log.set_logs(ops_logs)
 ops_log.show_timestamps(True)
-ops_log.set_reverse_order(True)  # Latest logs first
+ops_log.set_reverse_order(True)  # 最新日志在前
 ops_log.set_max_height("500px")
 
 email.add_widget(ops_log)
@@ -169,24 +169,24 @@ email.add_widget(ops_log)
 The Email class provides the `add_log` shortcut method:
 
 ```python
-# Quick add log widget
+# 快捷添加日志组件
 email.add_log(
-    title="System Log",
+    title="系统日志",
     logs=[
-        ("Application started", "info"),
-        ("Configuration loaded", "debug"),
-        ("Connection error", "error")
+        ("应用启动", "info"),
+        ("配置加载", "debug"),
+        ("连接异常", "error")
     ],
     show_time=True,
     max_height="400px"
 )
 
-# Add loguru format logs
+# 添加loguru格式日志
 email.add_log(
-    title="Running Log",
+    title="运行日志",
     loguru_logs=[
-        "2024-01-15 10:30:25 | INFO | app:main:15 - Application running normally",
-        "2024-01-15 10:30:26 | WARNING | db:query:42 - Query taking too long"
+        "2024-01-15 10:30:25 | INFO | app:main:15 - 应用运行正常",
+        "2024-01-15 10:30:26 | WARNING | db:query:42 - 查询耗时较长"
     ],
     filter_level="warning"
 )
@@ -198,28 +198,28 @@ email.add_log(
 A: Set reasonable maximum height and log entry limits:
 ```python
 log.set_max_height("400px")
-log.filter_by_level(LogLevel.WARNING)  # Only show important logs
+log.filter_by_level(LogLevel.WARNING)  # 只显示重要日志
 ```
 
 ### Q: Can log time format be customized?
 A: Currently uses fixed format, can pre-format when adding:
 ```python
 formatted_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-log.add_log_entry("Message", LogLevel.INFO, formatted_time)
+log.add_log_entry("消息", LogLevel.INFO, formatted_time)
 ```
 
 ### Q: How to implement real-time log updates?
 A: Achieved by periodically calling add methods:
 ```python
-# Periodically add new logs
-log.add_log_entry("New event", LogLevel.INFO)
-log.append_log("2024-01-15 10:30:25 | INFO | app:event:15 - New event occurred")
+# 定期添加新日志
+log.add_log_entry("新事件", LogLevel.INFO)
+log.append_log("2024-01-15 10:30:25 | INFO | app:event:15 - 新事件发生")
 ```
 
 ### Q: How to search logs with specific content?
 A: Filter content before adding:
 ```python
-keyword = "database"
+keyword = "数据库"
 if keyword in log_message:
     log.add_log_entry(log_message, LogLevel.INFO)
 ```

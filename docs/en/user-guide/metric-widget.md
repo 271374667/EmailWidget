@@ -23,27 +23,27 @@ MetricWidget is a component for displaying key data metrics in emails. It can sh
 from email_widget import Email
 from email_widget.widgets import MetricWidget
 
-# Create basic metric widget
+# 创建基础指标组件
 metric = MetricWidget()
-metric.set_title("Key Metrics")
-metric.add_metric("Active Users", 12345, "people")
-metric.add_metric("Monthly Revenue", "¥1,250,000")
-metric.add_metric("Conversion Rate", "3.2", "%")
+metric.set_title("核心指标")
+metric.add_metric("活跃用户", 12345, "人")
+metric.add_metric("月收入", "¥1,250,000")
+metric.add_metric("转化率", "3.2", "%")
 
-email = Email("Business Data Report")
+email = Email("业务数据报告")
 email.add_widget(metric)
 ```
 
 ### Advanced Usage
 
 ```python
-# Create detailed metrics with trends
+# 创建带趋势的详细指标
 metric = MetricWidget()
-metric.set_title("Business Key Metrics")
-metric.add_metric("New User Registration", 1567, "people", "+15.6%", "success", "Significant growth compared to last month")
-metric.add_metric("User Activity", "78.9", "%", "+2.3%", "success", "User engagement improved")
-metric.add_metric("Average Response Time", "156", "ms", "+12ms", "warning", "Performance optimization needed")
-metric.add_metric("Error Rate", "0.23", "%", "-0.1%", "success", "System stability improved")
+metric.set_title("业务关键指标")
+metric.add_metric("新用户注册", 1567, "人", "+15.6%", "success", "较上月增长显著")
+metric.add_metric("用户活跃度", "78.9", "%", "+2.3%", "success", "用户参与度提升")
+metric.add_metric("平均响应时间", "156", "ms", "+12ms", "warning", "需要优化性能")
+metric.add_metric("错误率", "0.23", "%", "-0.1%", "success", "系统稳定性改善")
 metric.set_layout("horizontal")
 metric.show_trends(True)
 
@@ -76,22 +76,22 @@ email.add_widget(metric)
 from email_widget import Email
 from email_widget.widgets.metric_widget import MetricWidget
 
-# Create business data dashboard email
-email = Email("Business Data Dashboard")
+# 创建业务数据仪表板邮件
+email = Email("业务数据仪表板")
 
-# Core business metrics
+# 核心业务指标
 metric1 = MetricWidget()
-metric1.set_title("Core KPIs")
-metric1.add_metric("Monthly Active Users", 125436, "people", "+15.6%", "success", "Strong user growth")
-metric1.add_metric("Monthly Revenue", 2850000, "yuan", "+18.2%", "success", "Revenue reaches historical high")
-metric1.add_metric("Conversion Rate", "4.23", "%", "+0.8%", "success", "Conversion effectiveness improved")
-metric1.add_metric("Average Order Value", "168.5", "yuan", "-2.3%", "warning", "Pricing strategy needs attention")
+metric1.set_title("核心KPI")
+metric1.add_metric("月活用户", 125436, "人", "+15.6%", "success", "用户增长强劲")
+metric1.add_metric("月收入", 2850000, "元", "+18.2%", "success", "收入创历史新高")
+metric1.add_metric("转化率", "4.23", "%", "+0.8%", "success", "转化效果提升")
+metric1.add_metric("客单价", "168.5", "元", "-2.3%", "warning", "需要关注定价策略")
 metric1.set_layout("horizontal")
 metric1.show_trends(True)
 
 email.add_widget(metric1)
 
-# Export HTML file
+# 导出HTML文件
 email.export_html("business_dashboard.html")
 ```
 
@@ -103,16 +103,16 @@ email.export_html("business_dashboard.html")
 from email_widget import Email
 from email_widget.widgets.metric_widget import MetricWidget
 
-# Create system performance report email
-email = Email("System Performance Report")
+# 创建系统性能报告邮件
+email = Email("系统性能报告")
 
-# System resource usage
+# 系统资源使用
 metric = MetricWidget()
-metric.set_title("System Resources")
-metric.add_metric("CPU Usage", "45.2", "%", "+2.1%", "warning", "Load slightly increased")
-metric.add_metric("Memory Usage", "78.5", "%", "-1.3%", "success", "Memory usage normal")
-metric.add_metric("Disk I/O", "234", "MB/s", "+45MB/s", "info", "Read/write frequency increased")
-metric.add_metric("Network Bandwidth", "1.2", "GB/s", "+0.3GB/s", "info", "Traffic growth stable")
+metric.set_title("系统资源")
+metric.add_metric("CPU使用率", "45.2", "%", "+2.1%", "warning", "负载略有上升")
+metric.add_metric("内存使用率", "78.5", "%", "-1.3%", "success", "内存使用正常")
+metric.add_metric("磁盘I/O", "234", "MB/s", "+45MB/s", "info", "读写频率增加")
+metric.add_metric("网络带宽", "1.2", "GB/s", "+0.3GB/s", "info", "流量增长稳定")
 metric.set_layout("horizontal")
 
 email.add_widget(metric)
@@ -125,13 +125,13 @@ email.add_widget(metric)
 The Email class provides the `add_metric` shortcut method:
 
 ```python
-# Shortcut method with parameters
+# 带参数的快捷方法
 email.add_metric(
-    title="Key Metrics",
+    title="核心指标",
     metrics=[
-        ("Metric 1", 1234, "unit", "+10%", "success", "description"),
-        ("Metric 2", "5.6", "%", "-2%", "warning"),
-        ("Metric 3", "¥1,250,000", "", "+15%", "success")
+        ("指标1", 1234, "单位", "+10%", "success", "描述"),
+        ("指标2", "5.6", "%", "-2%", "warning"),
+        ("指标3", "¥1,250,000", "", "+15%", "success")
     ],
     layout="horizontal",
     show_trends=True
@@ -148,8 +148,8 @@ A:
 ### Q: How to customize number format?
 A: Pass pre-formatted string as value:
 ```python
-metric.add_metric("Custom", "1,234.56", "10K yuan")      # Custom format
-metric.add_metric("Percentage", "99.95", "%")            # Keep decimals
+metric.add_metric("自定义", "1,234.56", "万元")      # 自定义格式
+metric.add_metric("百分比", "99.95", "%")            # 保留小数
 ```
 
 ### Q: Why don't trends show?

@@ -128,69 +128,69 @@ from email_widget.widgets.text_widget import TextWidget
 from email_widget.core.enums import TextType, TextAlign
 
 class TestTextWidget:
-    """Text widget unit tests"""
+    """文本组件单元测试"""
     
     def setup_method(self):
-        """Setup before each test method"""
+        """每个测试方法前的初始化"""
         self.widget = TextWidget()
     
     def test_initialization(self):
-        """Test initialization state"""
+        """测试初始化状态"""
         assert self.widget._content == ""
         assert self.widget._text_type == TextType.BODY
         assert self.widget._align == TextAlign.LEFT
     
     def test_set_content(self):
-        """Test setting content"""
-        content = "Test content"
+        """测试设置内容"""
+        content = "测试内容"
         result = self.widget.set_content(content)
         
-        # Test return value (method chaining)
+        # 测试返回值（链式调用）
         assert result is self.widget
-        # Test state change
+        # 测试状态变化
         assert self.widget._content == content
     
     def test_set_content_validation(self):
-        """Test content validation"""
-        # Test valid input
-        self.widget.set_content("Valid content")
-        assert self.widget._content == "Valid content"
+        """测试内容验证"""
+        # 测试有效输入
+        self.widget.set_content("有效内容")
+        assert self.widget._content == "有效内容"
         
-        # Test invalid input
+        # 测试无效输入
         with pytest.raises(TypeError):
-            self.widget.set_content(123)  # Not a string
+            self.widget.set_content(123)  # 不是字符串
         
         with pytest.raises(ValueError):
-            self.widget.set_content("")  # Empty string
+            self.widget.set_content("")  # 空字符串
     
     def test_set_type(self):
-        """Test setting text type"""
+        """测试设置文本类型"""
         self.widget.set_type(TextType.TITLE_LARGE)
         assert self.widget._text_type == TextType.TITLE_LARGE
     
     def test_set_align(self):
-        """Test setting alignment"""
+        """测试设置对齐方式"""
         self.widget.set_align(TextAlign.CENTER)
         assert self.widget._align == TextAlign.CENTER
     
     def test_render_basic(self):
-        """Test basic rendering"""
-        self.widget.set_content("Test text")
+        """测试基本渲染"""
+        self.widget.set_content("测试文本")
         html = self.widget.render()
         
-        assert "Test text" in html
-        assert "<" in html and ">" in html  # Contains HTML tags
+        assert "测试文本" in html
+        assert "<" in html and ">" in html  # 包含 HTML 标签
     
     def test_render_with_styling(self):
-        """Test rendering with styling"""
-        self.widget.set_content("Title text") \
+        """测试带样式的渲染"""
+        self.widget.set_content("标题文本") \
                   .set_type(TextType.TITLE_LARGE) \
                   .set_align(TextAlign.CENTER) \
                   .set_color("#ff0000")
         
         html = self.widget.render()
         
-        assert "Title text" in html
+        assert "标题文本" in html
         assert "text-align: center" in html
         assert "color: #ff0000" in html
     
@@ -203,20 +203,20 @@ class TestTextWidget:
         (TextType.CAPTION, "small")
     ])
     def test_render_html_tags(self, text_type, expected_tag):
-        """Test HTML tags for different text types"""
-        self.widget.set_content("Test").set_type(text_type)
+        """测试不同文本类型的 HTML 标签"""
+        self.widget.set_content("测试").set_type(text_type)
         html = self.widget.render()
         assert f"<{expected_tag}" in html
     
     def test_chain_methods(self):
-        """Test method chaining"""
-        result = self.widget.set_content("Test") \
+        """测试链式调用"""
+        result = self.widget.set_content("测试") \
                            .set_type(TextType.TITLE_LARGE) \
                            .set_align(TextAlign.CENTER) \
                            .set_color("#blue")
         
         assert result is self.widget
-        assert self.widget._content == "Test"
+        assert self.widget._content == "测试"
         assert self.widget._text_type == TextType.TITLE_LARGE
         assert self.widget._align == TextAlign.CENTER
         assert self.widget._color == "#blue"
@@ -235,19 +235,19 @@ from email_widget.widgets import TextWidget, TableWidget
 
 @pytest.fixture
 def sample_email():
-    """Create sample email object"""
-    return Email("Test Email")
+    """创建示例邮件对象"""
+    return Email("测试邮件")
 
 @pytest.fixture
 def sample_text_widget():
-    """Create sample text widget"""
+    """创建示例文本组件"""
     widget = TextWidget()
-    widget.set_content("Test content")
+    widget.set_content("测试内容")
     return widget
 
 @pytest.fixture
 def sample_dataframe():
-    """Create sample DataFrame"""
+    """创建示例 DataFrame"""
     return pd.DataFrame({
         'Name': ['Alice', 'Bob', 'Charlie'],
         'Age': [25, 30, 35],
@@ -256,27 +256,27 @@ def sample_dataframe():
 
 @pytest.fixture
 def temp_output_dir(tmp_path):
-    """Create temporary output directory"""
+    """创建临时输出目录"""
     output_dir = tmp_path / "output"
     output_dir.mkdir()
     return output_dir
 
 @pytest.fixture
 def mock_image_path():
-    """Mock image path"""
+    """模拟图片路径"""
     return "tests/fixtures/test_images/sample.png"
 
-# Tests using fixtures
+# 使用 fixture 的测试
 class TestEmailGeneration:
     
     def test_add_widget(self, sample_email, sample_text_widget):
-        """Test adding widget"""
+        """测试添加组件"""
         sample_email.add_widget(sample_text_widget)
         assert len(sample_email._widgets) == 1
         assert sample_email._widgets[0] is sample_text_widget
     
     def test_export_html(self, sample_email, sample_text_widget, temp_output_dir):
-        """Test HTML export"""
+        """测试导出 HTML"""
         sample_email.add_widget(sample_text_widget)
         output_path = temp_output_dir / "test.html"
         
@@ -284,7 +284,7 @@ class TestEmailGeneration:
         
         assert output_path.exists()
         content = output_path.read_text(encoding='utf-8')
-        assert "Test content" in content
+        assert "测试内容" in content
 ```
 
 ### Mock and Stub
@@ -297,37 +297,37 @@ from unittest.mock import Mock, patch
 from email_widget.utils.image_utils import ImageUtils
 
 class TestImageUtils:
-    """Image utility tests"""
+    """图片工具测试"""
     
     @patch('requests.get')
     def test_download_image_success(self, mock_get):
-        """Test successful image download"""
-        # Set mock return value
+        """测试成功下载图片"""
+        # 设置 mock 返回值
         mock_response = Mock()
         mock_response.status_code = 200
         mock_response.content = b'fake_image_data'
         mock_get.return_value = mock_response
         
-        # Execute test
+        # 执行测试
         result = ImageUtils.download_image("http://example.com/image.jpg")
         
-        # Verify result
+        # 验证结果
         assert result == b'fake_image_data'
         mock_get.assert_called_once_with("http://example.com/image.jpg")
     
     @patch('requests.get')
     def test_download_image_failure(self, mock_get):
-        """Test image download failure"""
-        # Set mock to raise exception
-        mock_get.side_effect = ConnectionError("Network error")
+        """测试下载图片失败"""
+        # 设置 mock 抛出异常
+        mock_get.side_effect = ConnectionError("网络错误")
         
-        # Verify exception
+        # 验证异常
         with pytest.raises(ConnectionError):
             ImageUtils.download_image("http://example.com/image.jpg")
     
     def test_validate_image_format(self, mocker):
-        """Test image format validation"""
-        # Use mocker fixture
+        """测试图片格式验证"""
+        # 使用 mocker fixture
         mock_is_valid = mocker.patch.object(ImageUtils, '_is_valid_format')
         mock_is_valid.return_value = True
         
@@ -346,37 +346,37 @@ import pytest
 from email_widget.core.validators import ColorValidator
 
 class TestColorValidator:
-    """Color validator tests"""
+    """颜色验证器测试"""
     
     @pytest.mark.parametrize("color,expected", [
-        ("#ff0000", True),          # Standard hex
-        ("#FF0000", True),          # Uppercase hex
-        ("#f00", True),             # Short hex
-        ("red", True),              # Color name
-        ("rgb(255,0,0)", True),     # RGB format
-        ("rgba(255,0,0,0.5)", True), # RGBA format
-        ("invalid", False),         # Invalid color
-        ("", False),                # Empty string
-        ("#gggggg", False),         # Invalid hex
+        ("#ff0000", True),          # 标准十六进制
+        ("#FF0000", True),          # 大写十六进制
+        ("#f00", True),             # 短十六进制
+        ("red", True),              # 颜色名称
+        ("rgb(255,0,0)", True),     # RGB 格式
+        ("rgba(255,0,0,0.5)", True), # RGBA 格式
+        ("invalid", False),         # 无效颜色
+        ("", False),                # 空字符串
+        ("#gggggg", False),         # 无效十六进制
     ])
     def test_color_validation(self, color, expected):
-        """Test validation of various color formats"""
+        """测试各种颜色格式的验证"""
         validator = ColorValidator()
         
         if expected:
-            # Should pass validation
-            validator.validate(color)  # Should not raise exception
+            # 应该通过验证
+            validator.validate(color)  # 不应该抛出异常
         else:
-            # Should fail validation
+            # 应该验证失败
             with pytest.raises(ValueError):
                 validator.validate(color)
     
     @pytest.mark.parametrize("rgb_value", [0, 128, 255])
     def test_rgb_values(self, rgb_value):
-        """Test RGB value range"""
+        """测试 RGB 值范围"""
         color = f"rgb({rgb_value},{rgb_value},{rgb_value})"
         validator = ColorValidator()
-        validator.validate(color)  # Should pass validation
+        validator.validate(color)  # 应该通过验证
 ```
 
 ## 🔗 Integration Testing
@@ -390,65 +390,65 @@ from email_widget import Email
 from email_widget.widgets import TextWidget, TableWidget, ProgressWidget
 
 class TestWidgetIntegration:
-    """Widget integration tests"""
+    """组件集成测试"""
     
     def test_email_with_multiple_widgets(self):
-        """Test email with multiple widgets"""
-        email = Email("Integration Test Email")
+        """测试邮件包含多个组件"""
+        email = Email("集成测试邮件")
         
-        # Add title
+        # 添加标题
         title = TextWidget()
-        title.set_content("Test Report").set_type(TextType.TITLE_LARGE)
+        title.set_content("测试报告").set_type(TextType.TITLE_LARGE)
         email.add_widget(title)
         
-        # Add table
+        # 添加表格
         table = TableWidget()
-        table.set_headers(["Name", "Age"])
-        table.add_row(["John", "25"])
-        table.add_row(["Jane", "30"])
+        table.set_headers(["姓名", "年龄"])
+        table.add_row(["张三", "25"])
+        table.add_row(["李四", "30"])
         email.add_widget(table)
         
-        # Add progress bar
+        # 添加进度条
         progress = ProgressWidget()
-        progress.set_value(75).set_label("Completion")
+        progress.set_value(75).set_label("完成度")
         email.add_widget(progress)
         
-        # Render email
+        # 渲染邮件
         html = email.export_str()
         
-        # Verify all widgets are in output
-        assert "Test Report" in html
-        assert "John" in html
-        assert "Jane" in html
+        # 验证所有组件都在输出中
+        assert "测试报告" in html
+        assert "张三" in html
+        assert "李四" in html
         assert "75%" in html or "75.0%" in html
     
     def test_dataframe_to_table_integration(self):
-        """Test DataFrame and table widget integration"""
-        # Create test data
+        """测试 DataFrame 与表格组件集成"""
+        # 创建测试数据
         df = pd.DataFrame({
-            'Product': ['A', 'B', 'C'],
-            'Sales': [100, 200, 150],
-            'Price': [10.5, 20.0, 15.8]
+            '产品': ['A', 'B', 'C'],
+            '销量': [100, 200, 150],
+            '价格': [10.5, 20.0, 15.8]
         })
         
-        email = Email("Data Report")
+        email = Email("数据报告")
         
-        # Use convenience method to create table from DataFrame
-        email.add_table_from_df(df, title="Product Sales Data")
+        # 使用便捷方法从 DataFrame 创建表格
+        email.add_table_from_df(df, title="产品销售数据")
         
         html = email.export_str()
         
-        # Verify data is correctly rendered
-        assert "Product Sales Data" in html
-        assert "Product" in html and "Sales" in html and "Price" in html
+        # 验证数据正确渲染
+        assert "产品销售数据" in html
+        assert "产品" in html and "销量" in html and "价格" in html
         assert "100" in html and "200" in html and "150" in html
     
     @pytest.mark.integration
     def test_template_engine_integration(self):
-        """Test template engine integration"""
-        email = Email("Template Test")
+        """测试模板引擎集成"""
+        email = Email("模板测试")
         
-        # Use custom template
+        # 使用自定义模板
         custom_widget = CustomTemplateWidget()
         custom_widget.set_template("Hello {{name}}!")
         custom_widget.set_data(name="World")
@@ -470,52 +470,52 @@ import tempfile
 from email_widget import Email
 
 class TestE2EWorkflows:
-    """End-to-end tests"""
+    """端到端测试"""
     
     @pytest.mark.e2e
     def test_complete_report_generation(self):
-        """Test complete report generation workflow"""
-        # 1. Create email
-        email = Email("Monthly Business Report")
+        """测试完整报告生成流程"""
+        # 1. 创建邮件
+        email = Email("月度业务报告")
         
-        # 2. Add title and description
-        email.add_title("January 2024 Business Report", TextType.TITLE_LARGE)
-        email.add_text("This report contains key business metrics and analysis.")
+        # 2. 添加标题和说明
+        email.add_title("2024年1月业务报告", TextType.TITLE_LARGE)
+        email.add_text("本报告包含主要业务指标和分析。")
         
-        # 3. Add key metrics
-        email.add_card("Total Revenue", "$1,250,000", "💰")
-        email.add_card("New Users", "2,847", "👥")
+        # 3. 添加关键指标
+        email.add_card("总收入", "¥1,250,000", "💰")
+        email.add_card("新用户", "2,847", "👥")
         
-        # 4. Add detailed data table
+        # 4. 添加详细数据表格
         data = [
-            ["Product A", "$500,000", "1,200"],
-            ["Product B", "$750,000", "1,647"]
+            ["产品A", "¥500,000", "1,200"],
+            ["产品B", "¥750,000", "1,647"]
         ]
-        email.add_table_from_data(data, ["Product", "Revenue", "Sales"])
+        email.add_table_from_data(data, ["产品", "收入", "销量"])
         
-        # 5. Add progress metrics
-        email.add_progress(85, "Goal Completion", ProgressTheme.SUCCESS)
+        # 5. 添加进度指标
+        email.add_progress(85, "目标完成度", ProgressTheme.SUCCESS)
         
-        # 6. Add alert
-        email.add_alert("Need to focus on Product A inventory next month", AlertType.WARNING)
+        # 6. 添加提醒
+        email.add_alert("下月需要重点关注产品A的库存情况", AlertType.WARNING)
         
-        # 7. Export to HTML
+        # 7. 导出为 HTML
         with tempfile.NamedTemporaryFile(suffix='.html', delete=False) as f:
             email.export_html(f.name)
             
-            # 8. Verify file generation
+            # 8. 验证文件生成
             output_path = Path(f.name)
             assert output_path.exists()
             
-            # 9. Verify content completeness
+            # 9. 验证内容完整性
             content = output_path.read_text(encoding='utf-8')
-            assert "Monthly Business Report" in content
-            assert "$1,250,000" in content
-            assert "Product A" in content
+            assert "月度业务报告" in content
+            assert "¥1,250,000" in content
+            assert "产品A" in content
             assert "85%" in content or "85.0%" in content
-            assert "inventory" in content
+            assert "库存情况" in content
             
-            # 10. Verify HTML structure
+            # 10. 验证 HTML 结构
             assert "<html" in content
             assert "</html>" in content
             assert "<head>" in content
@@ -524,28 +524,28 @@ class TestE2EWorkflows:
     @pytest.mark.e2e
     @pytest.mark.slow
     def test_large_dataset_performance(self):
-        """Test large dataset performance"""
+        """测试大数据集性能"""
         import time
         
-        # Create large amount of data
-        email = Email("Large Data Test")
+        # 创建大量数据
+        email = Email("大数据测试")
         
-        # Add large table
+        # 添加大表格
         large_data = []
         for i in range(1000):
-            large_data.append([f"Item{i}", f"Value{i}", f"Description{i}"])
+            large_data.append([f"项目{i}", f"值{i}", f"描述{i}"])
         
         start_time = time.time()
-        email.add_table_from_data(large_data, ["Item", "Value", "Description"])
+        email.add_table_from_data(large_data, ["项目", "值", "描述"])
         
-        # Rendering time should be within reasonable range
+        # 渲染时间应该在合理范围内
         html = email.export_str()
         end_time = time.time()
         
-        # Performance assertions (adjust based on actual conditions)
-        assert (end_time - start_time) < 10.0  # Should complete within 10 seconds
-        assert len(html) > 10000  # Ensure content is generated
-        assert "Item999" in html  # Ensure all data is included
+        # 性能断言（根据实际情况调整）
+        assert (end_time - start_time) < 10.0  # 应该在10秒内完成
+        assert len(html) > 10000  # 确保内容已生成
+        assert "项目999" in html  # 确保所有数据都包含
 ```
 
 ## ⚡ Performance Testing
@@ -560,72 +560,72 @@ import os
 from email_widget import Email
 
 class TestPerformance:
-    """Performance tests"""
+    """性能测试"""
     
     @pytest.mark.performance
     def test_rendering_speed(self):
-        """Test rendering speed"""
-        email = Email("Performance Test")
+        """测试渲染速度"""
+        email = Email("性能测试")
         
-        # Add multiple widgets
+        # 添加多个组件
         for i in range(100):
-            email.add_text(f"Text content {i}")
+            email.add_text(f"文本内容 {i}")
         
-        # Measure rendering time
+        # 测量渲染时间
         start_time = time.perf_counter()
         html = email.export_str()
         end_time = time.perf_counter()
         
         render_time = end_time - start_time
         
-        # Assert rendering time
-        assert render_time < 1.0, f"Rendering time too long: {render_time:.3f}s"
-        assert len(html) > 1000, "Output content too short"
+        # 断言渲染时间
+        assert render_time < 1.0, f"渲染时间过长: {render_time:.3f}秒"
+        assert len(html) > 1000, "输出内容太少"
     
     @pytest.mark.performance
     def test_memory_usage(self):
-        """Test memory usage"""
+        """测试内存使用"""
         process = psutil.Process(os.getpid())
         initial_memory = process.memory_info().rss
         
-        # Create many objects
+        # 创建大量对象
         emails = []
         for i in range(50):
-            email = Email(f"Test Email {i}")
+            email = Email(f"测试邮件 {i}")
             for j in range(20):
-                email.add_text(f"Content {i}-{j}")
+                email.add_text(f"内容 {i}-{j}")
             emails.append(email)
         
-        # Check memory growth
+        # 检查内存增长
         peak_memory = process.memory_info().rss
         memory_increase = peak_memory - initial_memory
         
-        # Assert reasonable memory usage (adjust based on actual conditions)
-        assert memory_increase < 100 * 1024 * 1024, f"Memory usage too high: {memory_increase / 1024 / 1024:.1f}MB"
+        # 断言内存使用合理（根据实际情况调整）
+        assert memory_increase < 100 * 1024 * 1024, f"内存使用过多: {memory_increase / 1024 / 1024:.1f}MB"
     
     @pytest.mark.performance
     def test_cache_effectiveness(self):
-        """Test cache effectiveness"""
+        """测试缓存效果"""
         from email_widget.core.cache import Cache
         
         cache = Cache(max_size=100)
         
-        # First access (not cached)
+        # 第一次访问（未缓存）
         start_time = time.perf_counter()
         result1 = cache.get_or_set("test_key", lambda: expensive_operation())
         first_time = time.perf_counter() - start_time
         
-        # Second access (cached)
+        # 第二次访问（已缓存）
         start_time = time.perf_counter()
         result2 = cache.get("test_key")
         second_time = time.perf_counter() - start_time
         
-        # Cache should significantly improve performance
+        # 缓存应该显著提升性能
         assert result1 == result2
-        assert second_time < first_time / 10, "Cache did not significantly improve performance"
+        assert second_time < first_time / 10, "缓存没有显著提升性能"
 
 def expensive_operation():
-    """Simulate expensive operation"""
+    """模拟耗时操作"""
     time.sleep(0.1)
     return "expensive_result"
 ```
@@ -648,14 +648,14 @@ python -m pytest --cov=email_widget --cov-report=term-missing
 ### Coverage Goals
 
 ```python
-# Set coverage requirements in pytest.ini
+# pytest.ini 中设置覆盖率要求
 [tool:pytest]
 addopts = --cov-fail-under=90
 
-# Exclude certain files
+# 排除某些文件
 --cov-config=.coveragerc
 
-# .coveragerc file content
+# .coveragerc 文件内容
 [run]
 source = email_widget
 omit = 
@@ -716,7 +716,7 @@ Create `scripts/run_tests.py` script:
 ```python
 #!/usr/bin/env python
 """
-Test runner script
+测试运行脚本
 """
 import subprocess
 import sys
@@ -724,32 +724,32 @@ import argparse
 from pathlib import Path
 
 def run_command(cmd, description):
-    """Run command and check result"""
+    """运行命令并检查结果"""
     print(f"\n🔄 {description}...")
     result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
     
     if result.returncode == 0:
-        print(f"✅ {description} successful")
+        print(f"✅ {description} 成功")
         if result.stdout:
             print(result.stdout)
     else:
-        print(f"❌ {description} failed")
+        print(f"❌ {description} 失败")
         print(result.stderr)
         return False
     return True
 
 def main():
-    parser = argparse.ArgumentParser(description="Run EmailWidget tests")
-    parser.add_argument("--unit", action="store_true", help="Run only unit tests")
-    parser.add_argument("--integration", action="store_true", help="Run only integration tests")
-    parser.add_argument("--e2e", action="store_true", help="Run only end-to-end tests")
-    parser.add_argument("--performance", action="store_true", help="Run only performance tests")
-    parser.add_argument("--coverage", action="store_true", help="Generate coverage report")
-    parser.add_argument("--html", action="store_true", help="Generate HTML report")
+    parser = argparse.ArgumentParser(description="运行 EmailWidget 测试")
+    parser.add_argument("--unit", action="store_true", help="只运行单元测试")
+    parser.add_argument("--integration", action="store_true", help="只运行集成测试")
+    parser.add_argument("--e2e", action="store_true", help="只运行端到端测试")
+    parser.add_argument("--performance", action="store_true", help="只运行性能测试")
+    parser.add_argument("--coverage", action="store_true", help="生成覆盖率报告")
+    parser.add_argument("--html", action="store_true", help="生成 HTML 报告")
     
     args = parser.parse_args()
     
-    # Base test command
+    # 基本测试命令
     pytest_cmd = "python -m pytest"
     
     if args.unit:
@@ -769,16 +769,16 @@ def main():
     if args.html:
         pytest_cmd += " --html=reports/test_report.html --self-contained-html"
     
-    # Ensure reports directory exists
+    # 确保报告目录存在
     Path("reports").mkdir(exist_ok=True)
     
-    # Run tests
-    success = run_command(pytest_cmd, "Running tests")
+    # 运行测试
+    success = run_command(pytest_cmd, "运行测试")
     
     if success:
-        print("\n🎉 All tests passed!")
+        print("\n🎉 所有测试通过!")
     else:
-        print("\n💥 Tests failed!")
+        print("\n💥 测试失败!")
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -858,7 +858,7 @@ jobs:
 ### Test Naming
 
 ```python
-# Good test names
+# 好的测试名称
 def test_set_title_with_valid_string_updates_title():
     pass
 
@@ -868,25 +868,25 @@ def test_render_returns_html_with_title_content():
 def test_add_widget_with_none_raises_type_error():
     pass
 
-# Avoid these test names
-def test_title():  # Too vague
+# 避免的测试名称
+def test_title():  # 太模糊
     pass
 
-def test_1():  # Meaningless
+def test_1():  # 没有意义
     pass
 ```
 
 ### Test Data
 
 ```python
-# Use meaningful test data
+# 使用有意义的测试数据
 def test_user_registration():
     user_data = {
-        "name": "John Doe",
-        "email": "john@example.com",
+        "name": "张三",
+        "email": "zhangsan@example.com",
         "age": 25
     }
-    # Instead of
+    # 而不是
     # user_data = {"a": "b", "c": "d"}
 ```
 
@@ -894,14 +894,14 @@ def test_user_registration():
 
 ```python
 def test_invalid_input_handling():
-    """Test handling of invalid input"""
+    """测试无效输入的处理"""
     widget = TextWidget()
     
-    # Test specific exception type and message
-    with pytest.raises(ValueError, match="Content cannot be empty"):
+    # 测试具体的异常类型和消息
+    with pytest.raises(ValueError, match="内容不能为空"):
         widget.set_content("")
     
-    with pytest.raises(TypeError, match="Content must be a string"):
+    with pytest.raises(TypeError, match="内容必须是字符串"):
         widget.set_content(123)
 ```
 

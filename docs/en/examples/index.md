@@ -60,8 +60,8 @@ python your_example.py
 Each example provides HTML preview, allowing you to see the effect immediately:
 
 ```python
-# Example code
-email = Email("My Report")
+# 示例代码
+email = Email("我的报告")
 email.add_text("Hello World", TextType.TITLE_LARGE)
 email.export_html("report.html")
 ```

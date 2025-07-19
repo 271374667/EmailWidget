@@ -23,21 +23,21 @@ This is the simplest example, showing how to create a basic email with title, te
 from email_widget import Email
 from email_widget.core.enums import TextType, AlertType
 
-# Create email object
-email = Email("My First Report")
+# 创建邮件对象
+email = Email("我的第一个报告")
 
-# Add main title
-email.add_text("Welcome to EmailWidget", TextType.TITLE_LARGE)
+# 添加主标题
+email.add_text("欢迎使用 EmailWidget", TextType.TITLE_LARGE)
 
-# Add description text
-email.add_text("This is a simple email report example demonstrating basic functionality.", TextType.BODY)
+# 添加说明文本
+email.add_text("这是一个简单的邮件报告示例，展示基本功能。", TextType.BODY)
 
-# Add important tip
-email.add_alert("EmailWidget makes creating beautiful HTML emails simple and fast!", AlertType.TIP)
+# 添加重要提示
+email.add_alert("EmailWidget 让创建美观的HTML邮件变得简单快捷！", AlertType.TIP)
 
-# Export as HTML file
+# 导出为HTML文件
 email.export_html("my_first_report.html")
-print("✅ Email report generated: my_first_report.html")
+print("✅ 邮件报告已生成：my_first_report.html")
 ```
 
 --8<-- "examples/assets/basic_html/example_1_quick_start_fixed.html"
@@ -61,38 +61,38 @@ from email_widget import Email
 from email_widget.widgets.text_widget import TextWidget
 from email_widget.core.enums import TextType
 
-email = Email("Text Style Display")
+email = Email("文本样式展示")
 
-# Display different text types
-email.add_text("Text Type Display", TextType.TITLE_LARGE)
+# 展示不同的文本类型
+email.add_text("文本类型展示", TextType.TITLE_LARGE)
 
-email.add_text("This is a Large Title", TextType.TITLE_LARGE)
-email.add_text("This is a Small Title", TextType.TITLE_SMALL)
-email.add_text("This is a Level 2 Section Header", TextType.SECTION_H2)
-email.add_text("This is a Level 3 Section Header", TextType.SECTION_H3)
-email.add_text("This is body content, used for paragraph descriptions and detailed explanations.", TextType.BODY)
-email.add_text("This is caption text, usually used for supplementary information.", TextType.CAPTION)
+email.add_text("这是大标题", TextType.TITLE_LARGE)
+email.add_text("这是小标题", TextType.TITLE_SMALL)
+email.add_text("这是二级章节标题", TextType.SECTION_H2)
+email.add_text("这是三级章节标题", TextType.SECTION_H3)
+email.add_text("这是正文内容，用于段落描述和详细说明。", TextType.BODY)
+email.add_text("这是说明文字，通常用于补充信息。", TextType.CAPTION)
 
-# Separator
+# 分隔线
 email.add_separator()
 
-# Colored text
-email.add_text("Color Style Display", TextType.TITLE_SMALL)
+# 带颜色的文本
+email.add_text("颜色样式展示", TextType.TITLE_SMALL)
 
 blue_text = (TextWidget()
-            .set_content("This is blue important text")
+            .set_content("这是蓝色的重要文本")
             .set_type(TextType.BODY)
             .set_color("#0078d4"))
 email.add_widget(blue_text)
 
 green_text = (TextWidget()
-             .set_content("This is green success text")
+             .set_content("这是绿色的成功文本")
              .set_type(TextType.BODY)
              .set_color("#107c10"))
 email.add_widget(green_text)
 
 red_text = (TextWidget()
-           .set_content("This is red warning text")
+           .set_content("这是红色的警告文本")
            .set_type(TextType.BODY)
            .set_color("#d13438"))
 email.add_widget(red_text)
@@ -121,25 +121,25 @@ from email_widget import Email
 from email_widget.widgets.table_widget import TableWidget
 from email_widget.core.enums import TextType, ProgressTheme
 
-email = Email("Data Display Example")
+email = Email("数据展示示例")
 
-# Title
-email.add_text("Project Progress Report", TextType.TITLE_LARGE)
+# 标题
+email.add_text("项目进度报告", TextType.TITLE_LARGE)
 
-# Project overview
-email.add_text("Project Overview", TextType.SECTION_H2)
-email.add_text("Here's the progress of each project this month:", TextType.BODY)
+# 项目概况
+email.add_text("项目概况", TextType.SECTION_H2)
+email.add_text("以下是本月各项目的进展情况：", TextType.BODY)
 
-# Create data table
+# 创建数据表格
 table = TableWidget()
-table.set_headers(["Project Name", "Lead", "Progress", "Status"])
+table.set_headers(["项目名称", "负责人", "进度", "状态"])
 
-# Add data rows
+# 添加数据行
 table_data = [
-    ["Website Redesign", "John Smith", "85%", "In Progress"],
-    ["Mobile App", "Jane Doe", "60%", "In Progress"],
-    ["Data Analysis", "Bob Wilson", "100%", "Completed"],
-    ["System Optimization", "Alice Brown", "30%", "Just Started"]
+    ["网站重构", "张三", "85%", "进行中"],
+    ["移动应用", "李四", "60%", "进行中"],
+    ["数据分析", "王五", "100%", "已完成"],
+    ["系统优化", "赵六", "30%", "刚开始"]
 ]
 
 for row in table_data:
@@ -147,21 +147,21 @@ for row in table_data:
 
 email.add_widget(table)
 
-# Separator
+# 分隔线
 email.add_separator()
 
-# Overall progress
-email.add_text("Overall Progress", TextType.SECTION_H2)
+# 整体进度
+email.add_text("整体进度", TextType.SECTION_H2)
 
-# Progress bar display
-email.add_progress(68.7, label="Total Project Completion", theme=ProgressTheme.PRIMARY)
-email.add_progress(85, label="Website Redesign", theme=ProgressTheme.SUCCESS)
-email.add_progress(60, label="Mobile App", theme=ProgressTheme.PRIMARY)
-email.add_progress(30, label="System Optimization", theme=ProgressTheme.PRIMARY)
+# 进度条展示
+email.add_progress(68.7, label="项目总体完成度", theme=ProgressTheme.PRIMARY)
+email.add_progress(85, label="网站重构", theme=ProgressTheme.SUCCESS)
+email.add_progress(60, label="移动应用", theme=ProgressTheme.PRIMARY)
+email.add_progress(30, label="系统优化", theme=ProgressTheme.PRIMARY)
 
-# Conclusion
-email.add_text("Summary", TextType.SECTION_H2)
-email.add_text("Overall progress this month is good. The website redesign project is nearing completion, and we need to focus on the system optimization project progress.", TextType.BODY)
+# 结论
+email.add_text("总结", TextType.SECTION_H2)
+email.add_text("本月整体进度良好，网站重构项目即将完成，需要重点关注系统优化项目的进展。", TextType.BODY)
 
 email.export_html("data_display.html")
 ```
@@ -187,37 +187,37 @@ from email_widget import Email
 from email_widget.widgets.table_widget import TableWidget
 from email_widget.core.enums import TextType, AlertType, ProgressTheme
 
-email = Email("System Monitoring Weekly Report")
+email = Email("系统监控周报")
 
-# Report title
-email.add_text("System Monitoring Weekly Report", TextType.TITLE_LARGE)
-email.add_text("Monitoring Period: July 8, 2024 - July 14, 2024", TextType.CAPTION)
+# 报告标题
+email.add_text("系统监控周报", TextType.TITLE_LARGE)
+email.add_text("监控时间：2024年7月8日 - 2024年7月14日", TextType.CAPTION)
 
-# System status overview
-email.add_text("System Status Overview", TextType.SECTION_H2)
+# 系统状态概览
+email.add_text("系统状态概览", TextType.SECTION_H2)
 
-# Normal services
-email.add_alert("Web service running normally with stable response time", AlertType.TIP)
-email.add_alert("Database connection good with excellent query performance", AlertType.TIP)
+# 正常服务
+email.add_alert("Web服务运行正常，响应时间稳定", AlertType.TIP)
+email.add_alert("数据库连接良好，查询性能优秀", AlertType.TIP)
 
-# Warning information
-email.add_alert("Cache service occasionally has delays, recommend monitoring", AlertType.WARNING)
+# 警告信息
+email.add_alert("缓存服务偶有延迟，建议关注", AlertType.WARNING)
 
-# Separator
+# 分隔线
 email.add_separator()
 
-# Performance metrics
-email.add_text("Key Performance Indicators", TextType.SECTION_H2)
+# 性能指标
+email.add_text("关键性能指标", TextType.SECTION_H2)
 
-# Performance table
+# 性能表格
 perf_table = TableWidget()
-perf_table.set_headers(["Metric", "Current Value", "Target Value", "Status"])
+perf_table.set_headers(["指标", "当前值", "目标值", "状态"])
 
 perf_data = [
-    ["CPU Usage", "65%", "< 80%", "Normal"],
-    ["Memory Usage", "72%", "< 85%", "Normal"],
-    ["Disk Usage", "45%", "< 90%", "Normal"],
-    ["Response Time", "120ms", "< 200ms", "Excellent"]
+    ["CPU使用率", "65%", "< 80%", "正常"],
+    ["内存使用率", "72%", "< 85%", "正常"],
+    ["磁盘使用率", "45%", "< 90%", "正常"],
+    ["响应时间", "120ms", "< 200ms", "优秀"]
 ]
 
 for row in perf_data:
@@ -225,26 +225,26 @@ for row in perf_data:
 
 email.add_widget(perf_table)
 
-# Performance progress bars
-email.add_text("Resource Usage", TextType.SECTION_H3)
-email.add_progress(65, label="CPU Usage", theme=ProgressTheme.SUCCESS)
-email.add_progress(72, label="Memory Usage", theme=ProgressTheme.SUCCESS)
-email.add_progress(45, label="Disk Usage", theme=ProgressTheme.SUCCESS)
+# 性能进度条
+email.add_text("资源使用情况", TextType.SECTION_H3)
+email.add_progress(65, label="CPU使用率", theme=ProgressTheme.SUCCESS)
+email.add_progress(72, label="内存使用率", theme=ProgressTheme.SUCCESS)
+email.add_progress(45, label="磁盘使用率", theme=ProgressTheme.SUCCESS)
 
-# Separator
+# 分隔线
 email.add_separator()
 
-# Summary and recommendations
-email.add_text("Summary and Recommendations", TextType.SECTION_H2)
-email.add_text("The system has been running stably this week, with all indicators within normal ranges. Recommendations:", TextType.BODY)
+# 总结和建议
+email.add_text("总结与建议", TextType.SECTION_H2)
+email.add_text("本周系统运行稳定，各项指标均在正常范围内。建议：", TextType.BODY)
 
-# Recommendation list
-email.add_text("1. Continue monitoring cache service performance", TextType.BODY)
-email.add_text("2. Optimize database queries to further improve response speed", TextType.BODY)
-email.add_text("3. Regularly clean log files to maintain sufficient disk space", TextType.BODY)
+# 建议列表
+email.add_text("1. 继续监控缓存服务性能", TextType.BODY)
+email.add_text("2. 优化数据库查询，进一步提升响应速度", TextType.BODY)
+email.add_text("3. 定期清理日志文件，保持磁盘空间充足", TextType.BODY)
 
-# Important reminder
-email.add_alert("System maintenance is planned for next week, please prepare in advance!", AlertType.IMPORTANT)
+# 重要提醒
+email.add_alert("下周计划进行系统维护，请提前做好准备！", AlertType.IMPORTANT)
 
 email.export_html("system_monitoring.html")
 ```
@@ -291,22 +291,22 @@ Generated HTML files can be:
 ```python
 from email_widget import Email, QQEmailSender
 
-# Create email content
-email = Email("Monitoring Report")
-email.add_text("System Running Normally", TextType.TITLE_LARGE)
+# 创建邮件内容
+email = Email("监控报告")
+email.add_text("系统运行正常", TextType.TITLE_LARGE)
 
-# Get HTML content
+# 获取HTML内容
 html_content = email.export_str()
 
-# Send email (requires SMTP configuration)
+# 发送邮件（需要配置SMTP）
 sender = QQEmailSender(
     email_address="your_email@qq.com",
-    password="your_password"  # Use app password
+    password="your_password"  # 使用应用密码
 )
 
 sender.send_email(
     to_emails=["recipient@example.com"],
-    subject="System Monitoring Report",
+    subject="系统监控报告",
     html_body=html_content
 )
 ```

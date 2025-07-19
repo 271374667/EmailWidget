@@ -49,16 +49,16 @@ After installation, you can verify the installation was successful in the follow
 try:
     from email_widget import Email
     from email_widget.widgets import TextWidget
-    print("✅ EmailWidget installed successfully!")
+    print("✅ EmailWidget 安装成功！")
 except ImportError as e:
-    print(f"❌ Installation failed: {e}")
+    print(f"❌ 安装失败: {e}")
 ```
 
 ### 2. Version Check
 
 ```python
 import email_widget
-print(f"EmailWidget version: {email_widget.__version__}")
+print(f"EmailWidget 版本: {email_widget.__version__}")
 ```
 
 ### 3. Create Test Email
@@ -68,17 +68,17 @@ from email_widget import Email
 from email_widget.widgets import TextWidget
 from email_widget.core.enums import TextType
 
-# Create test email
-email = Email("Installation Test")
+# 创建测试邮件
+email = Email("安装测试")
 email.add_widget(
     TextWidget()
-    .set_content("EmailWidget installed successfully! 🎉")
+    .set_content("EmailWidget 安装成功！🎉")
     .set_type(TextType.TITLE_LARGE)
 )
 
-# Export test file
+# 导出测试文件
 file_path = email.export_html("installation_test.html")
-print(f"Test file generated: {file_path}")
+print(f"测试文件已生成: {file_path}")
 ```
 
 ## Optional Dependencies
@@ -128,7 +128,7 @@ pip install matplotlib seaborn
 This is usually a font configuration issue:
 
 ```python
-# Manually configure Chinese fonts
+# 手动配置中文字体
 import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei']
 plt.rcParams['axes.unicode_minus'] = False
@@ -144,11 +144,11 @@ EmailWidget is fully compatible with Jupyter Notebook:
 from email_widget import Email
 from email_widget.widgets import TextWidget
 
-# Create email
-email = Email("Jupyter Test")
-email.add_widget(TextWidget().set_content("Using EmailWidget in Jupyter"))
+# 创建邮件
+email = Email("Jupyter 测试")
+email.add_widget(TextWidget().set_content("在 Jupyter 中使用 EmailWidget"))
 
-# Preview HTML (display directly in Jupyter)
+# 预览 HTML（在 Jupyter 中直接显示）
 from IPython.display import HTML
 HTML(email.export_str())
 ```

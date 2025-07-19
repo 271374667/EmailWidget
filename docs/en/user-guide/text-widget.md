@@ -23,29 +23,29 @@ from email_widget import Email
 from email_widget.widgets import TextWidget
 from email_widget.core.enums import TextType
 
-# Create basic text
+# 创建基本文本
 text = TextWidget()
-text.set_content("This is a regular text")
+text.set_content("这是一段普通文本")
 text.set_type(TextType.BODY)
 
-email = Email("Text Widget Example")
+email = Email("文本组件示例")
 email.add_widget(text)
 ```
 
 ### Advanced Usage
 
 ```python
-# Method chaining for style setting
+# 链式调用设置样式
 styled_text = (TextWidget()
-              .set_content("Important Title")
+              .set_content("重要标题")
               .set_type(TextType.SECTION_H2)
               .set_color("#0078d4")
               .set_align("center"))
 
 email.add_widget(styled_text)
 
-# Using shortcut method
-email.add_text("Text created with shortcut method", TextType.BODY)
+# 使用快捷方法
+email.add_text("快捷方法创建的文本", TextType.BODY)
 ```
 
 📚 **Complete API Documentation**: [TextWidget API](../api/text-widget.md)
@@ -80,24 +80,24 @@ from email_widget import Email
 from email_widget.widgets.text_widget import TextWidget
 from email_widget.core.enums import TextType
 
-# Create structured document
-email = Email("Project Report")
+# 创建结构化文档
+email = Email("项目报告")
 
-# Main title
-email.add_text("2024 Q1 Project Progress Report", TextType.TITLE_LARGE)
+# 主标题
+email.add_text("2024年Q1项目进展报告", TextType.TITLE_LARGE)
 
-# Section title
-email.add_text("Project Overview", TextType.SECTION_H2)
-email.add_text("This quarter mainly completed the development of user system and data analysis modules.", TextType.BODY)
+# 章节标题
+email.add_text("项目概述", TextType.SECTION_H2)
+email.add_text("本季度主要完成了用户系统和数据分析模块的开发工作。", TextType.BODY)
 
-# Subsections
-email.add_text("User System Module", TextType.SECTION_H3)
-email.add_text("Implemented core functions including user registration, login, and permission management.", TextType.BODY)
+# 子章节
+email.add_text("用户系统模块", TextType.SECTION_H3)
+email.add_text("实现了用户注册、登录、权限管理等核心功能。", TextType.BODY)
 
-email.add_text("Data Analysis Module", TextType.SECTION_H3)
-email.add_text("Completed data collection, cleaning, and basic analysis functions.", TextType.BODY)
+email.add_text("数据分析模块", TextType.SECTION_H3)
+email.add_text("完成了数据采集、清洗和基础分析功能。", TextType.BODY)
 
-# Export
+# 导出
 email.export_html("structured_document.html")
 ```
 
@@ -108,26 +108,26 @@ from email_widget import Email
 from email_widget.widgets.text_widget import TextWidget
 from email_widget.core.enums import TextType
 
-email = Email("Formatted Text Example")
+email = Email("格式化文本示例")
 
-# Emphasize important information
+# 强调重要信息
 important_text = (TextWidget()
-                 .set_content("Important Notice: System maintenance will be performed tonight")
+                 .set_content("重要通知：系统将于今晚进行维护")
                  .set_type(TextType.BODY)
                  .set_color("#d13438")
                  .set_align("center"))
 email.add_widget(important_text)
 
-# Success information
+# 成功信息
 success_text = (TextWidget()
-               .set_content("✅ Project has been successfully deployed to production")
+               .set_content("✅ 项目已成功部署到生产环境")
                .set_type(TextType.BODY)
                .set_color("#107c10"))
 email.add_widget(success_text)
 
-# HTML formatting
+# HTML格式化
 html_text = (TextWidget()
-            .set_content("Supports <strong>bold</strong>, <em>italic</em> and <u>underline</u>")
+            .set_content("支持 <strong>粗体</strong>、<em>斜体</em> 和 <u>下划线</u>")
             .set_type(TextType.BODY))
 email.add_widget(html_text)
 ```
@@ -137,14 +137,14 @@ email.add_widget(html_text)
 The Email class provides the `add_text` shortcut method:
 
 ```python
-# Basic shortcut method
-email.add_text("This is a text")
+# 基础快捷方法
+email.add_text("这是一段文本")
 
-# Shortcut method with type
-email.add_text("This is a title", TextType.SECTION_H2)
+# 带类型的快捷方法
+email.add_text("这是标题", TextType.SECTION_H2)
 
-# Shortcut method with style
-email.add_text("Emphasized text", TextType.BODY, color="#0078d4", align="center")
+# 带样式的快捷方法
+email.add_text("强调文本", TextType.BODY, color="#0078d4", align="center")
 ```
 
 ## 🐛 Common Issues
@@ -152,9 +152,9 @@ email.add_text("Emphasized text", TextType.BODY, color="#0078d4", align="center"
 ### Q: How to create multi-line text?
 A: Use line breaks or HTML `<br>` tags in the content:
 ```python
-text.set_content("Line 1\nLine 2\nLine 3")
-# or
-text.set_content("Line 1<br>Line 2<br>Line 3")
+text.set_content("第一行\n第二行\n第三行")
+# 或者
+text.set_content("第一行<br>第二行<br>第三行")
 ```
 
 ### Q: How does title numbering work?
