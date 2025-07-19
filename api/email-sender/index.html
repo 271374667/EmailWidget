@@ -1,12 +1,12 @@
 
 <!doctype html>
-<html lang="zh" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过600+个测试用例验证，90%+代码覆盖率。">
+        <meta name="description" content="A powerful and beautiful Python email component library for generating HTML email reports. Verified by 600+ test cases with 90%+ code coverage.">
       
       
         <meta name="author" content="PythonImporter">
@@ -26,7 +26,7 @@
     
     
       
-        <title>邮件发送器 - EmailWidget - 邮件组件库</title>
+        <title>Email Sender - EmailWidget</title>
       
     
     
@@ -92,8 +92,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
-          跳转至
+        <a href="#email-sender" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -111,8 +111,8 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="EmailWidget - 邮件组件库" class="md-header__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EmailWidget" class="md-header__button md-logo" aria-label="EmailWidget" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
@@ -126,13 +126,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            EmailWidget - 邮件组件库
+            EmailWidget
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              邮件发送器
+              Email Sender
             
           </span>
         </div>
@@ -155,6 +155,32 @@
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/api/email-sender/" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
     
       
       
@@ -166,21 +192,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="查找">
+      <nav class="md-search__options" aria-label="Search">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -193,7 +219,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -205,7 +231,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+        <a href="https://github.com/271374667/EmailWidget" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -220,7 +246,7 @@
   
     
       
-<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -236,7 +262,7 @@
   
     
   
-  首页
+  Home
 
       </a>
     </li>
@@ -257,7 +283,7 @@
   
     
   
-  快速开始
+  Getting Started
 
         </a>
       </li>
@@ -279,7 +305,7 @@
   
     
   
-  用户指南
+  User Guide
 
         </a>
       </li>
@@ -303,7 +329,7 @@
   
     
   
-  API参考
+  API Reference
 
         </a>
       </li>
@@ -325,7 +351,7 @@
   
     
   
-  示例代码
+  Examples
 
         </a>
       </li>
@@ -347,7 +373,7 @@
   
     
   
-  开发指南
+  Development
 
         </a>
       </li>
@@ -383,19 +409,19 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="EmailWidget - 邮件组件库" class="md-nav__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+    <a href="../.." title="EmailWidget" class="md-nav__button md-logo" aria-label="EmailWidget" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
 
     </a>
-    EmailWidget - 邮件组件库
+    EmailWidget
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+      <a href="https://github.com/271374667/EmailWidget" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -420,7 +446,7 @@
   
   
   <span class="md-ellipsis">
-    首页
+    Home
     
   </span>
   
@@ -476,7 +502,7 @@
   
   
   <span class="md-ellipsis">
-    快速开始
+    Getting Started
     
   </span>
   
@@ -568,7 +594,7 @@
   
   
   <span class="md-ellipsis">
-    用户指南
+    User Guide
     
   </span>
   
@@ -666,7 +692,7 @@
   
   
   <span class="md-ellipsis">
-    API参考
+    API Reference
     
   </span>
   
@@ -683,7 +709,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            API参考
+            API Reference
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -701,7 +727,7 @@
   
   
   <span class="md-ellipsis">
-    核心模块
+    Core Module
     
   </span>
   
@@ -724,7 +750,7 @@
   
   
   <span class="md-ellipsis">
-    Email主类
+    Email Class
     
   </span>
   
@@ -756,7 +782,7 @@
   
   
   <span class="md-ellipsis">
-    邮件发送器
+    Email Sender
     
   </span>
   
@@ -769,7 +795,7 @@
   
   
   <span class="md-ellipsis">
-    邮件发送器
+    Email Sender
     
   </span>
   
@@ -778,7 +804,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目录">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -787,33 +813,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#smtp" class="md-nav__link">
+  <a href="#common-email-smtp-configuration-and-authorization-code-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      常见邮箱SMTP配置与授权码获取
+      Common Email SMTP Configuration and Authorization Code Setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="常见邮箱SMTP配置与授权码获取">
+    <nav class="md-nav" aria-label="Common Email SMTP Configuration and Authorization Code Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#qq" class="md-nav__link">
+  <a href="#qq-email" class="md-nav__link">
     <span class="md-ellipsis">
-      QQ邮箱
+      QQ Email
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#163" class="md-nav__link">
+  <a href="#163-email" class="md-nav__link">
     <span class="md-ellipsis">
-      163邮箱
+      163 Email
     </span>
   </a>
   
@@ -834,13 +860,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#sender-base-class" class="md-nav__link">
     <span class="md-ellipsis">
-      发送器基类
+      Sender Base Class
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="发送器基类">
+    <nav class="md-nav" aria-label="Sender Base Class">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -873,13 +899,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#factory-function" class="md-nav__link">
     <span class="md-ellipsis">
-      工厂函数
+      Factory Function
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="工厂函数">
+    <nav class="md-nav" aria-label="Factory Function">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -897,13 +923,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#concrete-implementations" class="md-nav__link">
     <span class="md-ellipsis">
-      具体实现
+      Concrete Implementations
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="具体实现">
+    <nav class="md-nav" aria-label="Concrete Implementations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -998,7 +1024,7 @@
   
   
   <span class="md-ellipsis">
-    文本组件
+    Text Widget
     
   </span>
   
@@ -1021,7 +1047,7 @@
   
   
   <span class="md-ellipsis">
-    表格组件
+    Table Widget
     
   </span>
   
@@ -1044,7 +1070,7 @@
   
   
   <span class="md-ellipsis">
-    图片组件
+    Image Widget
     
   </span>
   
@@ -1067,7 +1093,7 @@
   
   
   <span class="md-ellipsis">
-    警告组件
+    Alert Widget
     
   </span>
   
@@ -1090,7 +1116,7 @@
   
   
   <span class="md-ellipsis">
-    进度组件
+    Progress Widget
     
   </span>
   
@@ -1113,7 +1139,7 @@
   
   
   <span class="md-ellipsis">
-    圆形进度组件
+    Circular Progress
     
   </span>
   
@@ -1136,7 +1162,7 @@
   
   
   <span class="md-ellipsis">
-    状态组件
+    Status Widget
     
   </span>
   
@@ -1159,7 +1185,7 @@
   
   
   <span class="md-ellipsis">
-    卡片组件
+    Card Widget
     
   </span>
   
@@ -1182,7 +1208,7 @@
   
   
   <span class="md-ellipsis">
-    引用组件
+    Quote Widget
     
   </span>
   
@@ -1205,7 +1231,7 @@
   
   
   <span class="md-ellipsis">
-    按钮组件
+    Button Widget
     
   </span>
   
@@ -1228,7 +1254,7 @@
   
   
   <span class="md-ellipsis">
-    分隔符组件
+    Separator Widget
     
   </span>
   
@@ -1251,7 +1277,7 @@
   
   
   <span class="md-ellipsis">
-    清单组件
+    Checklist Widget
     
   </span>
   
@@ -1274,7 +1300,7 @@
   
   
   <span class="md-ellipsis">
-    时间线组件
+    Timeline Widget
     
   </span>
   
@@ -1297,7 +1323,7 @@
   
   
   <span class="md-ellipsis">
-    指标组件
+    Metric Widget
     
   </span>
   
@@ -1320,7 +1346,7 @@
   
   
   <span class="md-ellipsis">
-    布局组件
+    Column Widget
     
   </span>
   
@@ -1343,7 +1369,7 @@
   
   
   <span class="md-ellipsis">
-    图表组件
+    Chart Widget
     
   </span>
   
@@ -1366,7 +1392,7 @@
   
   
   <span class="md-ellipsis">
-    日志组件
+    Log Widget
     
   </span>
   
@@ -1432,7 +1458,7 @@
   
   
   <span class="md-ellipsis">
-    示例代码
+    Examples
     
   </span>
   
@@ -1496,7 +1522,7 @@
   
   
   <span class="md-ellipsis">
-    开发指南
+    Development
     
   </span>
   
@@ -1531,73 +1557,73 @@
   
 
 
-<h1 id="_1">邮件发送器<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h1>
-<h2 id="smtp">常见邮箱SMTP配置与授权码获取<a class="headerlink" href="#smtp" title="Anchor link to this section">&para;</a></h2>
-<p>以下为主流邮箱（QQ、163、Outlook、Gmail）SMTP服务器参数及授权码获取方法，便于快速配置。</p>
+<h1 id="email-sender">Email Sender<a class="headerlink" href="#email-sender" title="Anchor link to this section">&para;</a></h1>
+<h2 id="common-email-smtp-configuration-and-authorization-code-setup">Common Email SMTP Configuration and Authorization Code Setup<a class="headerlink" href="#common-email-smtp-configuration-and-authorization-code-setup" title="Anchor link to this section">&para;</a></h2>
+<p>Below are the SMTP server parameters and authorization code setup methods for mainstream email providers (QQ, 163, Outlook, Gmail) for quick configuration.</p>
 <table>
 <thead>
 <tr>
-<th>邮箱类型</th>
-<th>SMTP服务器</th>
-<th>端口</th>
-<th>加密方式</th>
-<th>用户名</th>
-<th>密码类型</th>
+<th>Email Type</th>
+<th>SMTP Server</th>
+<th>Port</th>
+<th>Encryption</th>
+<th>Username</th>
+<th>Password Type</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>QQ邮箱</td>
+<td>QQ Email</td>
 <td>smtp.qq.com</td>
 <td>465</td>
 <td>SSL</td>
-<td>完整邮箱地址</td>
-<td>授权码</td>
+<td>Full email address</td>
+<td>Authorization code</td>
 </tr>
 <tr>
-<td>163邮箱</td>
+<td>163 Email</td>
 <td>smtp.163.com</td>
 <td>465</td>
 <td>SSL</td>
-<td>完整邮箱地址</td>
-<td>授权码</td>
+<td>Full email address</td>
+<td>Authorization code</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="qq">QQ邮箱<a class="headerlink" href="#qq" title="Anchor link to this section">&para;</a></h3>
+<h3 id="qq-email">QQ Email<a class="headerlink" href="#qq-email" title="Anchor link to this section">&para;</a></h3>
 <ol>
-<li>登录QQ邮箱网页版，点击右上角"设置"&gt;"账户"。</li>
-<li>在"POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务"处，勾选"开启SMTP服务"，保存。</li>
-<li>按提示进行手机验证，获取授权码（此码即为SMTP登录密码）。</li>
-<li>邮件客户端配置时，用户名为完整邮箱，密码为授权码。</li>
-<li>详细官方说明：<a href="https://service.mail.qq.com/">QQ邮箱帮助中心</a></li>
-<li>微软官方Outlook对接QQ邮箱说明（含授权码获取步骤）：<a href="https://support.microsoft.com/en-us/office/add-a-qqmail-account-to-outlook-34ef1254-0d07-405a-856f-0409c7c905eb">查看</a></li>
+<li>Log in to QQ Email web version, click "Settings" &gt; "Account" in the top right corner.</li>
+<li>Under "POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV Services", check "Enable SMTP Service" and save.</li>
+<li>Follow the prompts for mobile verification to get the authorization code (this code is the SMTP login password).</li>
+<li>When configuring email client, use the full email address as username and authorization code as password.</li>
+<li>Official documentation: <a href="https://service.mail.qq.com/">QQ Email Help Center</a></li>
+<li>Microsoft official guide for connecting QQ Email to Outlook (including authorization code setup): <a href="https://support.microsoft.com/en-us/office/add-a-qqmail-account-to-outlook-34ef1254-0d07-405a-856f-0409c7c905eb">View</a></li>
 </ol>
-<h3 id="163">163邮箱<a class="headerlink" href="#163" title="Anchor link to this section">&para;</a></h3>
+<h3 id="163-email">163 Email<a class="headerlink" href="#163-email" title="Anchor link to this section">&para;</a></h3>
 <ol>
-<li>登录163邮箱网页版，点击"设置"&gt;"POP3/SMTP/IMAP"。</li>
-<li>开启"SMTP服务"，如需验证请按提示操作。</li>
-<li>获取授权码（部分账号需手机验证），此码即为SMTP登录密码。</li>
-<li>邮件客户端配置时，用户名为完整邮箱，密码为授权码。</li>
-<li>官方帮助中心：<a href="https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2c9926ce59ec02fa9">网易邮箱帮助</a></li>
-<li>参考博客：<a href="https://www.getmailbird.com/setup/access-163-com-via-imap-smtp">Mailbird 163邮箱配置</a></li>
+<li>Log in to 163 Email web version, click "Settings" &gt; "POP3/SMTP/IMAP".</li>
+<li>Enable "SMTP Service", follow prompts for verification if required.</li>
+<li>Get the authorization code (some accounts require mobile verification), this code is the SMTP login password.</li>
+<li>When configuring email client, use the full email address as username and authorization code as password.</li>
+<li>Official help center: <a href="https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2c9926ce59ec02fa9">NetEase Email Help</a></li>
+<li>Reference blog: <a href="https://www.getmailbird.com/setup/access-163-com-via-imap-smtp">Mailbird 163 Email Configuration</a></li>
 </ol>
 <hr />
 <h3 id="faq">FAQ<a class="headerlink" href="#faq" title="Anchor link to this section">&para;</a></h3>
-<p><strong>Q1：什么是授权码/应用专用密码？</strong>
-A：授权码/应用专用密码是邮箱服务商为提升安全性而生成的专用密码，用于第三方应用（如邮件客户端、自动化脚本）登录邮箱，不能用普通登录密码代替。</p>
-<p><strong>Q2：为什么要用授权码/应用专用密码？</strong>
-A：开启两步验证后，普通密码无法直接用于SMTP等第三方服务，必须使用授权码/应用专用密码，保障账户安全。</p>
-<p><strong>Q3：授权码/应用专用密码丢失怎么办？</strong>
-A：可随时在邮箱安全设置中重新生成新的授权码/应用专用密码，原有的可作废。</p>
-<p><strong>Q4：配置失败常见原因有哪些？</strong>
-A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、端口/加密方式配置错误、邮箱被限制登录等。</p>
-<p>如遇特殊问题，建议优先查阅各邮箱官方帮助中心或联系邮箱服务商客服。</p>
+<p><strong>Q1: What is an authorization code/app-specific password?</strong>
+A: An authorization code/app-specific password is a special password generated by email service providers to enhance security, used for third-party applications (such as email clients, automation scripts) to log into the mailbox. It cannot be replaced by regular login passwords.</p>
+<p><strong>Q2: Why use authorization codes/app-specific passwords?</strong>
+A: After enabling two-factor authentication, regular passwords cannot be directly used for SMTP and other third-party services. Authorization codes/app-specific passwords must be used to ensure account security.</p>
+<p><strong>Q3: What to do if authorization code/app-specific password is lost?</strong>
+A: You can regenerate new authorization codes/app-specific passwords in the mailbox security settings at any time, and the old ones can be revoked.</p>
+<p><strong>Q4: What are common reasons for configuration failures?</strong>
+A: Common reasons include not enabling SMTP service, not using authorization codes/app-specific passwords, incorrect port/encryption configuration, restricted mailbox login, etc.</p>
+<p>For specific issues, it's recommended to consult the official help centers of respective email providers or contact email service customer support.</p>
 <hr />
-<p><code>EmailSender</code> 模块提供了一套完整且易于使用的邮件发送解决方案，它内置了对多种主流邮箱服务商的支持。</p>
-<h2 id="_2">发送器基类<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h2>
-<p>所有具体的发送器都继承自 <code>EmailSender</code> 抽象基类。</p>
+<p>The <code>EmailSender</code> module provides a complete and easy-to-use email sending solution with built-in support for multiple mainstream email service providers.</p>
+<h2 id="sender-base-class">Sender Base Class<a class="headerlink" href="#sender-base-class" title="Anchor link to this section">&para;</a></h2>
+<p>All concrete senders inherit from the <code>EmailSender</code> abstract base class.</p>
 
 
 <div class="doc doc-object doc-class">
@@ -1615,10 +1641,10 @@ A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、�
               Bases: <code><span title="abc.ABC">ABC</span></code></p>
 
 
-        <p>邮件发送器抽象基类.</p>
-<p>定义了发送邮件的标准接口，所有具体的邮箱服务商实现都需要继承此类.
-这个基类处理了通用的邮件构建和发送逻辑，子类只需提供特定于服务商的
-SMTP服务器地址和端口号即可.</p>
+        <p>Email sender abstract base class.</p>
+<p>Defines the standard interface for sending emails, all specific email service provider implementations must inherit from this class.
+This base class handles common email construction and sending logic, subclasses only need to provide service-specific
+SMTP server addresses and port numbers.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -1638,7 +1664,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>邮箱用户名（通常是完整的邮箱地址）.</p>
+                <p>Email username (usually the complete email address).</p>
               </div>
             </td>
           </tr>
@@ -1649,7 +1675,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>邮箱密码或授权码/应用密码.</p>
+                <p>Email password or authorization code/app password.</p>
               </div>
             </td>
           </tr>
@@ -1660,7 +1686,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>是否使用TLS加密连接.</p>
+                <p>Whether to use TLS encrypted connection.</p>
               </div>
             </td>
           </tr>
@@ -1671,7 +1697,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>SMTP服务器地址.</p>
+                <p>SMTP server address.</p>
               </div>
             </td>
           </tr>
@@ -1682,7 +1708,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>SMTP服务器端口.</p>
+                <p>SMTP server port.</p>
               </div>
             </td>
           </tr>
@@ -1705,14 +1731,14 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>如果用户名或密码为空.</p>
+                <p>If username or password is empty.</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
 
-        <p>初始化邮件发送器.</p>
+        <p>Initialize email sender.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1735,7 +1761,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>邮箱用户名/邮箱地址</p>
+                <p>Email username/email address</p>
               </div>
             </td>
             <td>
@@ -1751,7 +1777,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>邮箱密码或授权码</p>
+                <p>Email password or authorization code</p>
               </div>
             </td>
             <td>
@@ -1767,7 +1793,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>是否使用TLS加密连接，默认为True</p>
+                <p>Whether to use TLS encrypted connection, defaults to True</p>
               </div>
             </td>
             <td>
@@ -1783,7 +1809,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>SMTP服务器地址，如果不提供则使用默认值</p>
+                <p>SMTP server address, if not provided, uses default value</p>
               </div>
             </td>
             <td>
@@ -1799,7 +1825,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>SMTP服务器端口，如果不提供则使用默认值</p>
+                <p>SMTP server port, if not provided, uses default value</p>
               </div>
             </td>
             <td>
@@ -1815,7 +1841,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他位置参数</p>
+                <p>Other positional arguments</p>
               </div>
             </td>
             <td>
@@ -1831,7 +1857,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他关键字参数</p>
+                <p>Other keyword arguments</p>
               </div>
             </td>
             <td>
@@ -1857,7 +1883,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>当用户名或密码为空时抛出</p>
+                <p>Raised when username or password is empty</p>
               </div>
             </td>
           </tr>
@@ -1894,7 +1920,7 @@ SMTP服务器地址和端口号即可.</p>
 
     <div class="doc doc-contents ">
 
-        <p>发送邮件.</p>
+        <p>Send email.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1913,11 +1939,11 @@ SMTP服务器地址和端口号即可.</p>
                 <code>email</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;邮件报告&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email.Email&lt;/code&gt;)" href="../email/#email_widget.email.Email">Email</a></code>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Email Report&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email.Email&lt;/code&gt;)" href="../email/#email_widget.email.Email">Email</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>要发送的邮件对象</p>
+                <p>Email object to send</p>
               </div>
             </td>
             <td>
@@ -1933,7 +1959,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>发送者邮箱地址，如果为None则使用初始化时的username</p>
+                <p>Sender email address, uses username if None</p>
               </div>
             </td>
             <td>
@@ -1949,7 +1975,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>接收者邮箱地址列表，如果为None则发送给sender</p>
+                <p>Recipient email address list, sends to sender if None</p>
               </div>
             </td>
             <td>
@@ -1975,7 +2001,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>当邮件对象为None时抛出</p>
+                <p>Raised when email object is None</p>
               </div>
             </td>
           </tr>
@@ -1985,7 +2011,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>SMTP发送错误</p>
+                <p>SMTP sending error</p>
               </div>
             </td>
           </tr>
@@ -1995,7 +2021,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他发送错误</p>
+                <p>Other sending errors</p>
               </div>
             </td>
           </tr>
@@ -2005,15 +2031,15 @@ SMTP服务器地址和端口号即可.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="language-pycon highlight"><span class="filename">Python Console Session</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">sender</span> <span class="o">=</span> <span class="n">QQEmailSender</span><span class="p">(</span><span class="s2">&quot;user@qq.com&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;测试邮件&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;Test Email&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="gp">&gt;&gt;&gt;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 发送给自己</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Send to self</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="gp">&gt;&gt;&gt;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 发送给指定收件人</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Send to specified recipients</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;recipient@example.com&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="gp">&gt;&gt;&gt;</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 指定发送者和收件人</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Specify sender and recipients</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="gp">&gt;&gt;&gt; </span><span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="s2">&quot;custom@qq.com&quot;</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;recipient@example.com&quot;</span><span class="p">])</span>
 </code></pre></div>
 
@@ -2028,8 +2054,8 @@ SMTP服务器地址和端口号即可.</p>
 
     </div>
 
-</div><h2 id="_3">工厂函数<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h2>
-<p>为了方便使用，我们推荐使用 <code>create_email_sender</code> 工厂函数来创建发送器实例。</p>
+</div><h2 id="factory-function">Factory Function<a class="headerlink" href="#factory-function" title="Anchor link to this section">&para;</a></h2>
+<p>For convenience, we recommend using the <code>create_email_sender</code> factory function to create sender instances.</p>
 
 
 <div class="doc doc-object doc-function">
@@ -2043,9 +2069,9 @@ SMTP服务器地址和端口号即可.</p>
 
     <div class="doc doc-contents first">
 
-        <p>工厂函数，根据服务商名称快速创建对应的邮件发送器实例.</p>
-<p>这是一个便捷的辅助函数，让你无需直接导入和实例化特定的发送器类.
-它通过一个字符串标识来选择正确的发送器，特别适合在配置文件中指定服务商的场景.</p>
+        <p>Factory function to quickly create corresponding email sender instances based on provider name.</p>
+<p>This is a convenient helper function that allows you to avoid directly importing and instantiating specific sender classes.
+It selects the correct sender through a string identifier, particularly suitable for scenarios where the provider is specified in configuration files.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2068,7 +2094,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>邮箱服务商的标识符.支持的值（不区分大小写）包括：
+                <p>Email provider identifier. Supported values (case-insensitive) include:
           'qq', 'netease', '163', '126'.</p>
               </div>
             </td>
@@ -2085,7 +2111,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>邮箱账户，通常是完整的邮箱地址.</p>
+                <p>Email account, usually the complete email address.</p>
               </div>
             </td>
             <td>
@@ -2101,7 +2127,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>邮箱的授权码或应用密码.</p>
+                <p>Email authorization code or app password.</p>
               </div>
             </td>
             <td>
@@ -2117,7 +2143,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他关键字参数，将直接传递给所选发送器类的构造函数.</p>
+                <p>Other keyword arguments, will be passed directly to the selected sender class constructor.</p>
               </div>
             </td>
             <td>
@@ -2143,7 +2169,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>一个具体的邮件发送器实例 (例如 <code>QQEmailSender</code>).</p>
+                <p>A concrete email sender instance (e.g. <code>QQEmailSender</code>).</p>
               </div>
             </td>
           </tr>
@@ -2166,7 +2192,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>如果提供的 <code>provider</code> 名称不被支持.</p>
+                <p>If the provided <code>provider</code> name is not supported.</p>
               </div>
             </td>
           </tr>
@@ -2178,12 +2204,12 @@ SMTP服务器地址和端口号即可.</p>
     <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">create_email_sender</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 从配置或环境变量中读取服务商和凭证</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># Read provider and credentials from config or environment variables</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email_provider</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EMAIL_PROVIDER&quot;</span><span class="p">,</span> <span class="s2">&quot;qq&quot;</span><span class="p">)</span> <span class="c1"># e.g., &#39;qq&#39; or &#39;netease&#39;</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">email_user</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EMAIL_USER&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">email_password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EMAIL_PASSWORD&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># 使用工厂函数创建发送器</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># Create sender using factory function</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="n">sender</span> <span class="o">=</span> <span class="n">create_email_sender</span><span class="p">(</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a>        <span class="n">provider</span><span class="o">=</span><span class="n">email_provider</span><span class="p">,</span>
@@ -2191,22 +2217,22 @@ SMTP服务器地址和端口号即可.</p>
 <a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a>        <span class="n">password</span><span class="o">=</span><span class="n">email_password</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="p">)</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16"></a><a href="#__codelineno-0-16"><span class="linenos" data-linenos="16 "></span></a>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;来自 </span><span class="si">{</span><span class="n">email_provider</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> 的邮件&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18"></a><a href="#__codelineno-0-18"><span class="linenos" data-linenos="18 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;通过工厂函数创建的发送器.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Email from </span><span class="si">{</span><span class="n">email_provider</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><a href="#__codelineno-0-18"><span class="linenos" data-linenos="18 "></span></a>    <span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;Sender created through factory function.&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-19" name="__codelineno-0-19"></a><a href="#__codelineno-0-19"><span class="linenos" data-linenos="19 "></span></a>    <span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;test@example.com&quot;</span><span class="p">])</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20"></a><a href="#__codelineno-0-20"><span class="linenos" data-linenos="20 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;邮件发送成功！&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><a href="#__codelineno-0-20"><span class="linenos" data-linenos="20 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Email sent successfully!&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-21" name="__codelineno-0-21"></a><a href="#__codelineno-0-21"><span class="linenos" data-linenos="21 "></span></a>
 <a id="__codelineno-0-22" name="__codelineno-0-22"></a><a href="#__codelineno-0-22"><span class="linenos" data-linenos="22 "></span></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a><a href="#__codelineno-0-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;配置错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><a href="#__codelineno-0-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuration error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-24" name="__codelineno-0-24"></a><a href="#__codelineno-0-24"><span class="linenos" data-linenos="24 "></span></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25"></a><a href="#__codelineno-0-25"><span class="linenos" data-linenos="25 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;发送失败: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><a href="#__codelineno-0-25"><span class="linenos" data-linenos="25 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 
     </div>
 
-</div><h2 id="_4">具体实现<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h2>
-<p>以下是针对不同邮箱服务商的具体实现类。通常你只需要通过工厂函数来使用它们。</p>
+</div><h2 id="concrete-implementations">Concrete Implementations<a class="headerlink" href="#concrete-implementations" title="Anchor link to this section">&para;</a></h2>
+<p>Below are specific implementation classes for different email service providers. Usually you only need to use them through the factory function.</p>
 <h3 id="qqemailsender">QQEmailSender<a class="headerlink" href="#qqemailsender" title="Anchor link to this section">&para;</a></h3>
 
 
@@ -2220,16 +2246,16 @@ SMTP服务器地址和端口号即可.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;EmailSender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use_tls&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;smtp_server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;smtp_port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email_sender.EmailSender&lt;/code&gt;)" href="#email_widget.email_sender.EmailSender">EmailSender</a></code></p>
 
 
-        <p>QQ邮箱发送器.</p>
-<p>专门用于通过 QQ 邮箱（包括企业邮箱）发送邮件.
-它预设了 QQ 邮箱的 SMTP 服务器地址和推荐的端口.</p>
+        <p>QQ Email sender.</p>
+<p>Specifically designed for sending emails through QQ Email (including enterprise email).
+It presets the SMTP server address and recommended port for QQ Email.</p>
 
 
-<details class="重要提示" open>
-  <summary>重要提示</summary>
+<details class="important-notes" open>
+  <summary>Important notes</summary>
   <ul>
-<li><strong>必须使用授权码</strong>: 出于安全原因，QQ邮箱的SMTP服务要求使用"授权码"而非你的登录密码.你需要在QQ邮箱的"设置"-&gt;"账户"页面下生成此授权码.</li>
-<li><strong>开启SMTP服务</strong>: 请确保你已经在QQ邮箱设置中开启了IMAP/SMTP服务.</li>
+<li><strong>Must use authorization code</strong>: For security reasons, QQ Email's SMTP service requires using an "authorization code" instead of your login password. You need to generate this authorization code in QQ Email's "Settings" -&gt; "Account" page.</li>
+<li><strong>Enable SMTP service</strong>: Please ensure you have enabled IMAP/SMTP service in QQ Email settings.</li>
 </ul>
 </details>
 
@@ -2237,29 +2263,29 @@ SMTP服务器地址和端口号即可.</p>
     <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">QQEmailSender</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 建议从环境变量读取敏感信息</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># Recommend reading sensitive information from environment variables</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># export EMAIL_USER=&quot;your_account@qq.com&quot;</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="c1"># export EMAIL_AUTH_CODE=&quot;your_generated_auth_code&quot;</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a>
 <a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">qq_user</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EMAIL_USER&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">auth_code</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EMAIL_AUTH_CODE&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="c1"># 创建邮件内容</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;来自QQ邮箱的报告&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;这是一封通过 EmailWidget 发送的测试邮件.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="c1"># Create email content</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;Report from QQ Email&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;This is a test email sent through EmailWidget.&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a><span class="c1"># 初始化QQ邮箱发送器</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a><span class="c1"># Initialize QQ Email sender</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16"></a><a href="#__codelineno-0-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">sender</span> <span class="o">=</span> <span class="n">QQEmailSender</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">qq_user</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">auth_code</span><span class="p">)</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18"></a><a href="#__codelineno-0-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 发送邮件给一个或多个收件人</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><a href="#__codelineno-0-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># Send email to one or more recipients</span>
 <a id="__codelineno-0-19" name="__codelineno-0-19"></a><a href="#__codelineno-0-19"><span class="linenos" data-linenos="19 "></span></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-20" name="__codelineno-0-20"></a><a href="#__codelineno-0-20"><span class="linenos" data-linenos="20 "></span></a>    <span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;recipient1@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;recipient2@example.com&quot;</span><span class="p">])</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21"></a><a href="#__codelineno-0-21"><span class="linenos" data-linenos="21 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;邮件发送成功！&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><a href="#__codelineno-0-21"><span class="linenos" data-linenos="21 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Email sent successfully!&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-22" name="__codelineno-0-22"></a><a href="#__codelineno-0-22"><span class="linenos" data-linenos="22 "></span></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a><a href="#__codelineno-0-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;邮件发送失败: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><a href="#__codelineno-0-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Email sending failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-        <p>初始化QQ邮箱发送器.</p>
+        <p>Initialize QQ Email sender.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2282,7 +2308,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>QQ邮箱地址</p>
+                <p>QQ Email address</p>
               </div>
             </td>
             <td>
@@ -2298,7 +2324,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>QQ邮箱授权码（非登录密码）</p>
+                <p>QQ Email authorization code (not login password)</p>
               </div>
             </td>
             <td>
@@ -2314,7 +2340,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>是否使用TLS加密，默认为True</p>
+                <p>Whether to use TLS encryption, defaults to True</p>
               </div>
             </td>
             <td>
@@ -2330,7 +2356,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他位置参数</p>
+                <p>Other positional arguments</p>
               </div>
             </td>
             <td>
@@ -2346,7 +2372,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他关键字参数</p>
+                <p>Other keyword arguments</p>
               </div>
             </td>
             <td>
@@ -2394,17 +2420,17 @@ SMTP服务器地址和端口号即可.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;EmailSender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use_tls&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;smtp_server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;smtp_port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;email_widget.email_sender.EmailSender&lt;/code&gt;)" href="#email_widget.email_sender.EmailSender">EmailSender</a></code></p>
 
 
-        <p>网易邮箱发送器.</p>
-<p>支持网易旗下的 163、126 和 yeah.net 邮箱.
-它会自动根据你的邮箱地址后缀选择正确的SMTP服务器.</p>
+        <p>NetEase Email sender.</p>
+<p>Supports NetEase's 163, 126, and yeah.net email services.
+It automatically selects the correct SMTP server based on your email address suffix.</p>
 
 
-<details class="重要提示" open>
-  <summary>重要提示</summary>
+<details class="important-notes" open>
+  <summary>Important notes</summary>
   <ul>
-<li><strong>必须使用授权码</strong>: 与QQ邮箱类似，网易邮箱也需要使用专用的"客户端授权密码"，而不是你的邮箱登录密码.</li>
-<li><strong>开启SMTP服务</strong>: 请在你的网易邮箱设置中开启POP3/SMTP/IMAP服务.</li>
-<li><strong>SSL连接</strong>: 网易邮箱的SMTP服务主要使用SSL加密（端口465），因此默认 <code>use_tls</code> 为 <code>False</code>.</li>
+<li><strong>Must use authorization code</strong>: Similar to QQ Email, NetEase Email also requires using a dedicated "client authorization password" instead of your email login password.</li>
+<li><strong>Enable SMTP service</strong>: Please enable POP3/SMTP/IMAP service in your NetEase Email settings.</li>
+<li><strong>SSL connection</strong>: NetEase Email's SMTP service primarily uses SSL encryption (port 465), so the default <code>use_tls</code> is <code>False</code>.</li>
 </ul>
 </details>
 
@@ -2412,23 +2438,23 @@ SMTP服务器地址和端口号即可.</p>
     <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span><span class="p">,</span> <span class="n">NetEaseEmailSender</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 使用163邮箱</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># Using 163 email</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">user_163</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NETEASE_USER_163&quot;</span><span class="p">)</span> <span class="c1"># e.g., &quot;my_account@163.com&quot;</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">auth_code_163</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;NETEASE_AUTH_CODE_163&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;来自163邮箱的问候&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;这是通过 NetEaseEmailSender 发送的邮件.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;Greetings from 163 Email&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;This is an email sent through NetEaseEmailSender.&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a>
 <a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">sender</span> <span class="o">=</span> <span class="n">NetEaseEmailSender</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">user_163</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">auth_code_163</span><span class="p">)</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a>
 <a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a>    <span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;friend@example.com&quot;</span><span class="p">])</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;163邮件发送成功！&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;163 email sent successfully!&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16"></a><a href="#__codelineno-0-16"><span class="linenos" data-linenos="16 "></span></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;邮件发送失败: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><a href="#__codelineno-0-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Email sending failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-        <p>初始化网易邮箱发送器.</p>
+        <p>Initialize NetEase Email sender.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2451,7 +2477,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>网易邮箱地址</p>
+                <p>NetEase Email address</p>
               </div>
             </td>
             <td>
@@ -2467,7 +2493,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>网易邮箱授权码</p>
+                <p>NetEase Email authorization code</p>
               </div>
             </td>
             <td>
@@ -2483,7 +2509,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>是否使用TLS加密，默认为False（网易邮箱使用SSL）</p>
+                <p>Whether to use TLS encryption, defaults to False (NetEase Email uses SSL)</p>
               </div>
             </td>
             <td>
@@ -2499,7 +2525,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他位置参数</p>
+                <p>Other positional arguments</p>
               </div>
             </td>
             <td>
@@ -2515,7 +2541,7 @@ SMTP服务器地址和端口号即可.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>其他关键字参数</p>
+                <p>Other keyword arguments</p>
               </div>
             </td>
             <td>
@@ -2528,7 +2554,7 @@ SMTP服务器地址和端口号即可.</p>
 
 <details class="note" open>
   <summary>Note</summary>
-  <p>网易邮箱只支持SSL连接（端口465），建议保持use_tls=False.</p>
+  <p>NetEase Email only supports SSL connection (port 465), recommend keeping use_tls=False.</p>
 </details>
 
 
@@ -2583,7 +2609,7 @@ SMTP服务器地址和端口号即可.</p>
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  回到页面顶部
+  Back to top
 </button>
         
       </main>
@@ -2592,33 +2618,33 @@ SMTP服务器地址和端口号即可.</p>
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../email/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Email主类">
+          <a href="../email/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Email Class">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                上一页
+                Previous
               </span>
               <div class="md-ellipsis">
-                Email主类
+                Email Class
               </div>
             </div>
           </a>
         
         
           
-          <a href="../text-widget/" class="md-footer__link md-footer__link--next" aria-label="下一页: 文本组件">
+          <a href="../text-widget/" class="md-footer__link md-footer__link--next" aria-label="Next: Text Widget">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                下一页
+                Next
               </span>
               <div class="md-ellipsis">
-                文本组件
+                Text Widget
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2689,7 +2715,7 @@ SMTP服务器地址和端口号即可.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>

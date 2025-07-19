@@ -1,0 +1,390 @@
+/* EmailWidget Documentation Custom Styles */
+
+/* 
+ * 修复表格组件在 MkDocs 中的显示问题
+ * 确保表格能够占满宽度，就像在导出的 HTML 中一样
+ */
+
+/* 修复表格容器宽度问题 - 使用最高优先级 */
+.md-content table,
+.md-content .md-typeset table,
+.md-content .md-typeset .component-preview table,
+.md-content div[style] table,
+table[style*="width"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
+}
+
+/* 确保所有内联样式的表格也生效 */
+div[style*="background: #ffffff"] table,
+div[style*="border: 1px solid #e1dfdd"] table {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 确保表格单元格正确分布 */
+.md-content .md-typeset table th,
+.md-content .md-typeset table td,
+.md-content .md-typeset .component-preview table th,
+.md-content .md-typeset .component-preview table td {
+    padding: 8px 12px !important;
+    border: 1px solid #e1dfdd !important;
+    text-align: left !important;
+    word-wrap: break-word !important;
+}
+
+/* 表头样式 */
+.md-content .md-typeset table thead th,
+.md-content .md-typeset .component-preview table thead th {
+    background-color: #f8f9fa !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid #e9ecef !important;
+}
+
+/* 表格条纹样式 */
+.md-content .md-typeset table tbody tr:nth-child(even),
+.md-content .md-typeset .component-preview table tbody tr:nth-child(even) {
+    background-color: #f8f9fa !important;
+}
+
+.md-content .md-typeset table tbody tr:nth-child(odd),
+.md-content .md-typeset .component-preview table tbody tr:nth-child(odd) {
+    background-color: #ffffff !important;
+}
+
+/* 移除 MkDocs 默认的表格宽度限制 */
+.md-content .md-typeset table:not([class]) {
+    font-size: 0.64rem !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 16px 0 !important;
+}
+
+/* Material 主题特定的表格修复 */
+.md-typeset__table {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+
+.md-typeset__table table {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+}
+
+/* 修复 Material 主题的响应式表格包装器 */
+.md-typeset .md-typeset__scrollwrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+
+.md-typeset .md-typeset__scrollwrap table {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 确保文档中演示表格的样式不被覆盖 */
+.md-content div[style*="padding: 16px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.md-content div[style*="padding: 16px"] table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+/* 确保表格容器不会被限制宽度 */
+.md-content .md-typeset .component-preview {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+
+.md-content .md-typeset .component-preview > div {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 修复在组件预览中的表格显示 */
+.component-preview table {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+
+/* 修复 Material 主题的表格响应式问题 */
+.md-content .md-typeset .tabular-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+}
+
+/* 确保内联 HTML 表格正常显示 */
+.md-content .md-typeset [data-md-component="content"] table {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 组件概览页面特定样式增强 */
+.component-grid .component-preview {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 120px !important;
+}
+
+/* 修复按钮组件预览样式 */
+.component-preview a[style*="background"] {
+    display: inline-block !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: none !important;
+}
+
+/* 确保进度条在文档中正确显示 */
+.component-preview [style*="background: #e1dfdd"] {
+    width: 100% !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* 修复圆形进度条在文档中的显示 */
+.component-preview [style*="conic-gradient"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 确保状态组件在文档中正确显示 */
+.component-preview [style*="border-bottom: 1px solid #f3f2f1"] {
+    border-bottom: 1px solid #f3f2f1 !important;
+}
+
+/* 日志组件等宽字体确保 */
+.component-preview [style*="font-family: 'Courier New'"] {
+    font-family: 'Courier New', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+}
+
+/* 修复卡片组件阴影在文档中的显示 */
+.component-preview [style*="box-shadow"] {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* 确保引用组件的边框线显示正确 */
+.component-preview [style*="border-left: 4px solid"] {
+    border-left: 4px solid #0078d4 !important;
+}
+
+/* 移除可能影响表格的额外样式 */
+.md-content .md-typeset table th,
+.md-content .md-typeset table td {
+    vertical-align: top !important;
+}
+
+/* 确保表格在移动设备上也能正确显示 */
+@media (max-width: 768px) {
+    .md-content .md-typeset table {
+        font-size: 11px !important;
+    }
+    
+    .md-content .md-typeset table th,
+    .md-content .md-typeset table td {
+        padding: 6px 8px !important;
+    }
+}
+
+/* 修复代码块中的表格 */
+.md-content .md-typeset .highlight table,
+.md-content .md-typeset .codehilite table {
+    width: auto !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.md-content .md-typeset .highlight table th,
+.md-content .md-typeset .highlight table td,
+.md-content .md-typeset .codehilite table th,
+.md-content .md-typeset .codehilite table td {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* 确保文档内容区域有足够宽度 */
+.md-content {
+    max-width: none !important;
+}
+
+.md-content .md-typeset {
+    max-width: none !important;
+}
+
+/* 确保主内容区域宽度 */
+.md-main .md-content {
+    flex-grow: 1 !important;
+}
+
+/* 
+ * 最强力的表格宽度修复 - 针对 Material 主题
+ * 这些样式会覆盖所有可能的限制
+ */
+
+/* 覆盖 Material 主题的表格样式 */
+:is(.md-typeset) table:not([class]) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    margin: 1.6rem 0 !important;
+    font-size: .64rem !important;
+    line-height: 1.4 !important;
+    break-inside: auto !important;
+    border-radius: .1rem !important;
+    box-shadow: none !important;
+    display: table !important;
+}
+
+/* 强制所有内联表格样式生效 */
+.md-content [style*="width: 100%"] {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 强制演示容器内的表格占满宽度 */
+.md-content div[style*="background: #ffffff"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.md-content div[style*="background: #ffffff"] table {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 移除任何可能的表格宽度限制 */
+.md-typeset table,
+.md-typeset .tabular-container table,
+.md-typeset__table table {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}
+
+/* 确保没有横向滚动 */
+.md-typeset .tabular-container {
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 强制覆盖所有表格相关的类 */
+.md-content table,
+.md-content .md-typeset table,
+.md-typeset table {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* 
+ * 修复HTML预览文件中的标题颜色问题
+ * 确保预览文件中的标题保持正确的白色，不被MkDocs主题覆盖
+ */
+
+/* 针对所有HTML预览文件中的email-header区域 */
+.md-content .email-header,
+.md-content .email-header h1,
+.md-content .email-header h2,
+.md-content .email-header h3,
+.md-content .email-header h4,
+.md-content .email-header h5,
+.md-content .email-header h6 {
+    color: #ffffff !important;
+}
+
+/* 确保email-header的背景色不被覆盖 */
+.md-content .email-header {
+    background: #0078d4 !important;
+    color: #ffffff !important;
+}
+
+/* 修复所有带有蓝色背景的header区域 */
+.md-content div[style*="background: #0078d4"] h1,
+.md-content div[style*="background: #0078d4"] h2,
+.md-content div[style*="background: #0078d4"] h3,
+.md-content div[style*="background: #0078d4"] h4,
+.md-content div[style*="background: #0078d4"] h5,
+.md-content div[style*="background: #0078d4"] h6,
+.md-content div[style*="background: #0078d4"] {
+    color: #ffffff !important;
+}
+
+/* 修复带有color: #ffffff样式的元素 */
+.md-content [style*="color: #ffffff"],
+.md-content [style*="color:#ffffff"] {
+    color: #ffffff !important;
+}
+
+/* 确保时间戳和副标题也保持白色 */
+.md-content .email-header .timestamp,
+.md-content .email-header .subtitle,
+.md-content .email-header div {
+    color: #ffffff !important;
+}
+
+/* 针对特定背景色的区域强制白色文字 */
+.md-content div[style*="background: #0078d4"] *,
+.md-content div[style*="background:#0078d4"] * {
+    color: #ffffff !important;
+}
+
+/* 
+ * 全局HTML预览样式隔离解决方案
+ * 修复style泄露问题，确保嵌入的HTML不影响MkDocs布局
+ */
+
+/* 针对email-preview-wrapper容器的样式隔离 */
+.md-content .email-preview-wrapper {
+    margin: 16px 0 !important;
+    padding: 20px !important;
+    background-color: #faf9f8 !important;
+    border-radius: 8px !important;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+    line-height: 1.6 !important;
+    color: #323130 !important;
+    /* 重要：隔离内部样式，防止影响外部布局 */
+    contain: layout style !important;
+    overflow: hidden !important;
+}
+
+/* 确保email-container在wrapper内正确显示 */
+.md-content .email-preview-wrapper .email-container {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    background: #ffffff !important;
+    border: 1px solid #e1dfdd !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* 防止wrapper内的样式影响MkDocs其他元素 */
+.md-content .email-preview-wrapper * {
+    box-sizing: border-box !important;
+}

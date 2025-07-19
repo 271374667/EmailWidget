@@ -1,0 +1,3716 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A powerful and beautiful Python email component library for generating HTML email reports. Verified by 600+ test cases with 90%+ code coverage.">
+      
+      
+        <meta name="author" content="PythonImporter">
+      
+      
+        <link rel="canonical" href="https://271374667.github.io/EmailWidget/zh/user-guide/chart-widget/">
+      
+      
+        <link rel="prev" href="../column-widget/">
+      
+      
+        <link rel="next" href="../log-widget/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>图表组件 - EmailWidget</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chartwidget" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="EmailWidget" class="md-header__button md-logo" aria-label="EmailWidget" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EmailWidget
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              图表组件
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="pink"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../user-guide/chart-widget/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  快速开始
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  用户指南
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API参考
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  示例代码
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发指南
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="EmailWidget" class="md-nav__button md-logo" aria-label="EmailWidget" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+
+    </a>
+    EmailWidget
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    271374667/EmailWidget
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../getting-started/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    快速开始
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    用户指南
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            用户指南
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    核心类
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../widget-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    组件概览
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    文本组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../table-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    表格组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../image-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    图片组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alert-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    警告组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    进度组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../circular-progress-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    圆形进度组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../status-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    状态组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../card-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    卡片组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quote-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    引用组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../button-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    按钮组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../separator-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    分隔符组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checklist-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    清单组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timeline-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    时间线组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metric-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    指标组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../column-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    布局组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    图表组件
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    图表组件
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 组件预览
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ 核心特性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 快速开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 快速开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      进阶用法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 图表类型示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 图表类型示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      趋势线图表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      柱状图表
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      饼图
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 与数据分析库集成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 与数据分析库集成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      与Matplotlib集成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      📱 最佳实践
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📱 最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 选择合适的图表类型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 业务数据仪表板
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 完整业务报告
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ 快捷方法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 样式和尺寸控制
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 样式和尺寸控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      图片尺寸优化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      提供清晰的标题和描述
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐛 常见问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐛 常见问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: 图片无法显示怎么办？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: 如何选择合适的图片格式？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: 图表在移动端显示异常？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q: 如何添加数据摘要？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 注意事项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 相关组件
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log-widget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    日志组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    API参考
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../examples/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    示例代码
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../development/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    开发指南
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chartwidget">ChartWidget 图表组件<a class="headerlink" href="#chartwidget" title="Anchor link to this section">&para;</a></h1>
+<p>ChartWidget 专门用于在邮件中展示各种图表和数据可视化内容。它不仅支持显示图片格式的图表，还提供了丰富的配置选项来增强图表的展示效果。</p>
+<h2 id="_1">🎯 组件预览<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h2>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Component Preview</title>
+
+        <style>
+
+            .email-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 8px;
+                overflow: hidden;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+
+                padding: 20px;
+
+                background-color: #faf9f8;
+            }
+
+            .email-header {
+                background: #0078d4;
+                color: #ffffff;
+                padding: 24px;
+                text-align: center;
+            }
+
+            .email-header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .email-header .timestamp {
+                margin-top: 8px;
+                font-size: 14px;
+                opacity: 0.9;
+            }
+
+            .email-header .subtitle {
+                margin-top: 8px;
+                font-size: 16px;
+                opacity: 0.95;
+                font-weight: 400;
+            }
+
+
+            .email-footer {
+                background: #f3f2f1;
+                padding: 16px 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #605e5c;
+                border-top: 1px solid #e1dfdd;
+            }
+
+            /* 通用样式 */
+            .fluent-card {
+                background: #ffffff;
+                border: 1px solid #e1dfdd;
+                border-radius: 4px;
+                margin: 16px 0;
+                overflow: hidden;
+            }
+
+            .fluent-card-elevated {
+                border: 1px solid #d2d0ce;
+                box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+            }
+
+            /* 响应式设计 - 使用邮件客户端兼容的方式 */
+
+            /* 通用响应式样式 */
+
+            /* 表格响应式样式 */
+            .responsive-table {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .responsive-table table {
+                width: 100%;
+                min-width: 400px;
+                border-collapse: collapse;
+            }
+
+            /* 图片响应式样式 */
+            .responsive-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 内容区域响应式 */
+            .responsive-content {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+            }
+
+            /* 移动端优化的文字大小 */
+            .mobile-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        <!-- MSO条件注释样式 - 针对Outlook -->
+        <!--[if mso]>
+        <style type="text/css">
+
+            .responsive-table {
+                display: table !important;
+            }
+        </style>
+        <![endif]-->
+
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>Chart Component Preview</h1>
+            <div class="timestamp">Generated: July 12, 2025 00:02:23</div>
+        </div>
+
+        <div class="email-body">
+
+    <!--[if mso]>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td>
+    <![endif]-->
+        <h2 style="font-size: 24px; text-align: left; color: #323130; line-height: 1.5; font-weight: bold; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 20px 0 12px 0">1. Chart Component Display</h2>
+    <!--[if mso]>
+            </td>
+        </tr>
+    </table>
+    <![endif]-->
+
+        <!--[if mso]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="center">
+        <![endif]-->
+        <div style="
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 4px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+            max-width: 100%;
+        ">
+                <h3 style="
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 12px;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        ">2024 Annual Sales Performance</h3>
+            <div style="width: 100%; max-width: 100%; overflow-x: auto; text-align: center;">
+                <img src="data:image/png;base64,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MmTIkBx++OGZNm3aar/etGnTcvjhh2fIkCEZMGBAdt9993zve99r78MCAACATq9LhoTJkyfn6KOPznXXXZfly5fn0EMPzb777puXXnop559/fsaMGZM33nhjpXVnnXVWTjrppDzzzDP56Ec/mt133z1Tp07Nfvvtl5tvvrnNr3XzzTdnv/32y913350dd9wxhx56aJ577rmMHz8+Z511VkcfKgAAAHQqXTIk9O7dO6eeemp+97vf5ZlnnslPf/rT3H333fntb3+bnXfeObNnz84Xv/jFVmseeOCBXHHFFdl4443z1FNP5ZZbbsndd9+dRx55JPX19ZkwYUIWLFjQas2CBQsyYcKENDc3Z8qUKXnooYcyZcqUzJ49O9tss02uuOKKPPjgg+vxyAEAAKC6umRI+PSnP51vfOMbGTFiRKvtm222Wa655pokyU033ZSlS5eueOzrX/96kuS8885rtW6vvfbKKaeckjfffDPXXXddq+f79re/nTfffDNHHnlkjjnmmBXbP/CBD+TSSy9Nklx++eXte3AAAADQiXXJkLA6o0ePTpIsWbIk8+fPT5I0NTXl/vvvT5Icd9xxK61p2Xbbbbe12n777bevcs0RRxyRvn375r777ktTU1P7HQAAAAB0Yt0uJLz44otJkl69emXIkCFJktmzZ2fJkiXZZJNNsvnmm6+0ZpdddkmSPP300622t3ze8vh79e7dOx/5yEfS1NSU3/72t+16DAAAANBZdbuQcNVVVyVJDj300PTp0ydJ8sorryRJmxEhSfr375/BgwdnwYIFefvtt5Mkb731VhYuXLjadS3bW54fAAAAurue1R6gPd155535zne+k169emXSpEkrtrfcDnKDDTZY5dr+/ftn4cKFaWxszMCBA1vdQnJV6/r379/q+d/PqFGj2tz+wgsvZMstt8y8efOKnofu680336z2CFBznHdQHc49WP+cd7xXc3Nz6uvr12pttwkJzz77bMaNG5dKpZKvfe1rK66VkCSVSiVJUldXt8r1Lfus6vOSNQAAwNpr/Nd/rfYI3do7DQ1Jknr/gdmhBlx2WbVH6HDdIiS89tprOfTQQ7NgwYKcddZZOeOMM1o9PnDgwCTJokWLVvkcixcvTpIMGDCg1ZqWxwYNGvS+a97PrFmz2tze8kqFhv85scHvBVj/nHdQHc493qvn669Xe4Sa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hgzJddddl7/7u7/Lcccdl/333z8NDQ257777snDhwpx++uk5+OCD18vxAgAAQGfQZUPC3LlzM2PGjFbbKpVKq21z585Nkmy88cY555xzMn369Dz//PN58sknU19fn6222irjx4/PmWeemWGruGftsccem0ceeSQXXXRRpk+fnqVLl2b77bfPF77whUyYMKHjDhAAAAA6oS4bEsaPH5/x48cX7Ttw4MBccskla/219tlnn9x1111rvR4AAAC6i5q4RgIAAADQPoQEAAAAoJiQAAAAABQTEgAAAIBiQgIAAABQTEgAAAAAigkJAAAAQDEhAQAAACgmJAAAAADFhAQAAACgmJAAAAAAFBMSAAAAgGJCAgAAAFBMSAAAAACKCQkAAABAMSEBAAAAKCYkAAAAAMWEBAAAAKCYkAAAAAAUExIAAACAYkICAAAAUExIAAAAAIoJCQAAAEAxIQEAAAAoJiQAAAAAxYQEAAAAoJiQAAAAABQTEgAAAIBiQgIAAABQTEgAAAAAigkJAAAAQDEhAQAAACgmJAAAAADFhAQAAACgmJAAAAAAFBMSAAAAgGJCAgAAAFBMSAAAAACKCQkAAABAMSEBAAAAKCYkAAAAAMWEBAAAAKCYkAAAAAAUExIAAACAYkICAAAAUExIAAAAAIoJCQAAAEAxIQEAAAAoJiQAAAAAxYQEAAAAoJiQAAAAABQTEgAAAIBiQgIAAABQTEgAAAAAigkJAAAAQDEhAQAAACgmJAAAAADFhAQAAACgmJAAAAAAFBMSAAAAgGJCAgAAAFBMSAAAAACKCQkAAABAMSEBAAAAKCYkAAAAAMWEBAAAAKBYlw0JTzzxRC655JIcc8wxGTZsWOrq6tK3b982912+fHkeffTRnH322dljjz2y6aabpk+fPtl6661zyimn5KWXXmpz3UMPPZS6urpVfuy5554deYgAAADQ6fSs9gBra9KkSbn11luL9n3xxRez3377JUmGDRuWvffeOz169Mgvf/nLXHvttZk8eXLuvPPOjB07ts31W2+9dZuPbb311mt/AAAAANAFddmQsNdee2X06NEZM2ZMxowZk6FDh65y37q6unz84x/PueeeuyIoJMmSJUtyyimn5Prrr8+JJ56Y559/Pr169Vpp/dixY3P99dd3xGEAAABAl9JlQ8I555xTvO/WW2+du+++e6Xtffr0yX/913/l5ptvziuvvJJp06Zl//33b88xAQAAoFvpstdIaC99+/bNyJEjkyR/+MMfqjwNAAAAdG5d9hUJ7aW5uTkvv/xykqzy7RHPPfdcvvKVr2T+/PlpaGjI2LFjc+ihh6ZHj5rvMAAAANSYmg8JP/7xj/PGG29kk002yd57793mPtOmTcu0adNabdthhx1y4403ZsSIEetjTAAAAOgUajokvPrqq/niF7+YJLnwwgvTp0+fVo9vuOGG+bd/+7cce+yxK4LBk08+ma9+9auZPn16DjnkkDz11FPZcMMNi77eqFGj2tz+wgsvZMstt8y8efPW/mDoFt58881qj0AntF1z/2qP0K0NX96v2iPUhK74M66p5/bVHqFbe7t+i2qPUBMWd7Fzr3HYsGqP0K01NjRUe4Sa8G4XOe+am5tTX1+/VmtrNiQsWrQoRx99dObNm5ejjjoqp5xyykr77Lzzztl5551bbTvooIPyi1/8IgceeGAeffTRXHPNNTn33HPX19gAAABQVTUZEpYtW5Zjjz02TzzxRMaOHZvJkyev0fr6+vqcc845efTRR3PPPfcUh4RZs2a1ub3llQoNCiH/w+8F3mt2/aJqj1ATfJ87Vlf8c23xu89We4SaMMT3uUNt0MXOvZ6vv17tEWrCYN/nDjW4i5x3a/tqhKQG79qwfPnyjBs3Lvfcc09Gjx6d2267Lf36rfnLWlve6jBnzpz2HhEAAAA6rZoLCZ///Ofz05/+NCNHjsy9996bwYMHr9XzLFiwIEkyYMCAdpwOAAAAOreaCgnnnnturr322gwfPjxTp07NpptuutbPdeONNyZJdt111/YaDwAAADq9mgkJl19+eS6++OIMHTo09913X4YPH/6+a6699trMnz+/1bZKpZJrr702V1xxRerq6tq8SCMAAAB0V132Yot33HFHJk2a1Grb0qVLs+eee674fOLEiTniiCPy5JNP5l//9V+TJFtttVX+1//6X20+58knn5yxY8eu+Pziiy/Oaaedlg9/+MPZYou/3KLo17/+dV566aX06NEjV111lVckAAAAUFO6bEiYO3duZsyY0WpbpVJptW3u3LlJkoULF6ZSqSRJHnvssTz22GNtPucBBxzQKiR86Utfyr333ptZs2bl/vvvz7Jly7LZZptl3LhxOf300zNmzJj2PiwAAADo1LpsSBg/fnzG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rmtNz73ly5fn0Ucfzdlnn5099tgjm266afr06ZOtt946p5xySl566aUqHAV0LWvzM+/nP/95TjrppOywww5paGhIr169summm+bwww/PHXfcsZ6PALqmtTn32vLRj340dXV1qauryx//+McOnJiurK5SqVSqPQR0Z/fdd1+OP/74LFy4MJtsskn22muv9OnTJ7/+9a8ze/bs1NfX56KLLsqXv/zlVuuuvPLKnHnmmSs932OPPZY999xzfY0PXdbanHvPP/98RowYkSQZNmxYdtttt/To0SO//OUv8/rrr2fgwIG58847M3bs2GodFnRqa/sz77jjjstNN92UUaNGZfjw4Rk4cGB+//vfZ8aMGUmSiRMn5sILL6zGIUGXsLbn3l+7/vrrM2HChNTV1aVSqWTOnDkZOnToejoKupQK0GF++ctfVnr37l2pq6urXHzxxZVly5a1evyOO+6obLTRRpUklauuuqrVY7feemvlzDPPrEyePLny3HPPVfbff/9Kkspjjz22Pg8BuqS1Pfeef/75ysc//vHKww8/3Gr/pqamyvjx4ytJKsOHD68sXbp0vRwHdCXr8jNv5syZlXnz5q30nNOnT68MGDCgUldXV5k1a1aHzg9d1bqce+/1xhtvVDbeeOPKxz72scoWW2xRSVKZM2dOR49PFyUkQAdZvnx5Zfvtt68kqUyaNGmV+z388MOVurq6St++fSsvv/zyKvcTEqBMe597Ld55553KhhtuWElSeeihh9pzZOjyOuq8q1QqlZNPPrmSpHLNNde017jQbbTnuXfCCSdU+vbtW3n++eeFBN6XayRAB7nrrrvy7LPPZtiwYTnnnHNWud9+++2X448/Pk1NTfnGN76xHieE7qmjzr2+fftm5MiRSZI//OEP7TYvdAcd+TOvvr4+SdK7d+92mRW6k/Y69+65555Mnjw5X/3qV7P11lt35Mh0E0ICdJA777wzSXL88cenV69eq933hBNOaLUGWHsdde41Nzfn5ZdfThLvF4W/0lHn3dNPP52f/OQn6dWrVw4++OB1HxS6mfY49xYvXpxTTjkl2223Xc4+++yOGZRup2e1B4Du6sknn0yS7Lrrru+7b8s+s2bNyrvvvpuePZ2asLY66tz78Y9/nDfeeCObbLJJ9t5773aZFbqL9jrvbrvtttx4441ZtmxZXnnllUybNi29evXKN7/5zWy11VYdMjt0Ze1x7k2cODG///3v8+CDD3rlD8X8awU6yPz585Mkm2666fvuu8kmmyT5y63n/vznPxetAdrWEefeq6++mi9+8YtJkgsvvDB9+vRpn2Ghm2iv8+6pp57K9773vRWf9+3bN1deeWU+/elPt/PE0D2s67k3c+bMXHXVVTnppJNywAEHdOSodDPe2gAdpPI/d1atFNxh9b37NDc3d9hMUAva+9xbtGhRjj766MybNy9HHXVUTjnllPYZFLqR9jrvzjvvvFQqlbzzzjv59a9/nc985jM59dRTc+SRR2bp0qXtOzR0A+ty7jU3N+ef/umfMnjw4Fx22WUdNiPdk5AAHaShoSFJ8sYbb7zvvnPnzk2S9OjRIxtttFGHzgXdXXuee8uWLcuxxx6bJ554ImPHjs3kyZPbd1joJtr7Z17fvn3zkY98JNdcc01OO+203H777fnP//zP9hsYuol1OfeuvPLKzJw5M5deeumK54FSQgJ0kNGjRydJnnjiiffdt2WfrbfeOn379u3QuaC7a69zb/ny5Rk3blzuueeejB49Orfddlv69evX/gNDN9CRP/PGjRuXJLn11lvXYULontbl3LvttttSV1eX733veznggANaffzxj39MkhxzzDE54IAD8otf/KLjDoIuSUiADnLYYYclSaZMmZJly5atdt+W/+U8/PDDO3wu6O7a69z7/Oc/n5/+9KcZOXJk7r333gwePLjdZ4XuoiN/5rX8T2nL/6YC/8+6nnuVSiWPPPJIHn744VYfS5YsSZI89thjefjhhzNv3rwOOgK6KiEBOsjhhx+ebbfdNq+//nr+4z/+Y5X7PfLII5kyZUp69+6dL3zhC+txQuie2uPcO/fcc3Pttddm+PDhmTp1qgugwvvoyJ95Dz/8cJK4tz20YV3OvYceeiiVSqXNjy222CJJMmfOnFQqlRx11FHr43DoQoQE6CA9evTI9ddfn169euXf//3f8x//8R8rXVTqrrvuylFHHZVKpZIrrrgiI0aMqNK00H2s67l3+eWX5+KLL87QoUNz3333Zfjw4ev7EKDLWZfz7o033sjXv/71LFy4cKXnnTp16or72k+YMKHDjwO6Gn/fpFrqKiWX+ATW2t13351/+Id/yJtvvplNN900e+21V/r06ZNf//rXefbZZ9OrV69MnDgxEydObLVuzpw5Ofroo1d8/pvf/CZvv/12Ro0alQEDBiRJjjjiiJXWAX+xNufek08+mV122SWVSiV77bVXRo4c2eZzn3zyyRk7duz6OhToMtbmvPv973+frbbaKv369ctuu+2WzTffPIsWLcrvfve7zJ49O0ly5pln5vLLL6/WYUGnt7Z/31yVLbfcMi+//HLmzJmToUOHdvD0dEVCAqwHc+fOzVVXXZXbb789L774Yt5+++0Vj91yyy058sgjV1rT8her1TnppJNy/fXXt/e40G2s6bn30EMP5cADD3zf5/3ud7+b8ePHt/e40C2s6Xm3ePHiXHPNNXnooYcya9asvPHGG1m+fHk222yz7Lnnnvnnf/5n97eHAmvz981VERJ4P0ICVMmXvvSlXH755dl2223z3//939l4442rPRLUBOcerH/OO6gO5x4dRUiAKqlUKhk3blwmT56cPffcM/fff3822GCDao8F3Z5zD9Y/5x1Uh3OPjiIkQBUtW7Ysl19+ed55550ceOCB2X///as9EtQE5x6sf847qA7nHh1BSAAAAACKuf0jAAAAUExIAAAAAIoJCQAAAEAxIQEAAAAoJiQAAAAAxYQEAAAAoJiQAAAAABQTEgAAAIBiQgIAAABQTEgAAAAAigkJAAAAQDEhAQAAACgmJAAAAADFhAQAAACg2P8PPxuO6QSxEPkAAAAASUVORK5CYII=" alt="图表" 
+                     style="
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 8px 0;
+        " 
+                     width="" 
+                     height="" />
+            </div>
+                <p style="
+            font-size: 14px;
+            color: #605e5c;
+            margin: 12px 0;
+            line-height: 1.5;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        ">Quarterly sales comparison showing steady growth trend</p>
+        </div>
+        <!--[if mso]>
+                </td>
+            </tr>
+        </table>
+        <![endif]-->
+
+        </div>
+
+        <div class="email-footer">
+            <p>Generated by EmailWidget</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<h2 id="_2">✨ 核心特性<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong>📊 多种图表</strong>: 支持线图、柱状图、饼图等各种图表类型</li>
+<li><strong>🖼️ 图片展示</strong>: 支持网络图片、本地文件和Base64编码图片</li>
+<li><strong>📝 详细标注</strong>: 支持标题、描述和数据摘要等详细信息</li>
+<li><strong>📱 响应式</strong>: 自动适配不同设备的显示效果</li>
+<li><strong>📧 邮件兼容</strong>: 使用邮件客户端兼容的HTML和CSS实现
+/</li>
+</ul>
+<h2 id="_3">🚀 快速开始<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_4">基础用法<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChartWidget</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建基本图表</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;数据报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;https://example.com/sales_chart.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;月度销售趋势&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;显示最近6个月的销售数据变化&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_5">进阶用法<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 带数据摘要的详细图表</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">performance_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">performance_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;performance_chart.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">performance_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;系统性能监控&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">performance_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;展示系统关键性能指标的实时状态&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">performance_chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;平均响应时间: 245ms | 峰值QPS: 12,500 | 错误率: 0.02%&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">performance_chart</span><span class="o">.</span><span class="n">set_alt_text</span><span class="p">(</span><span class="s2">&quot;系统性能监控图表&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">performance_chart</span><span class="o">.</span><span class="n">set_max_width</span><span class="p">(</span><span class="s2">&quot;800px&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><a href="#__codelineno-1-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">performance_chart</span><span class="p">)</span>
+</code></pre></div>
+<p>📚 <strong>完整API文档</strong>: <a href="../../api/chart-widget/">ChartWidget API</a></p>
+<h2 id="_6">📊 图表类型示例<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_7">趋势线图表<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">trend_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">trend_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;trend_line.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">trend_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;用户增长趋势&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">trend_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;显示过去12个月的用户注册和活跃用户数量变化&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">trend_chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;新增用户: +15% | 活跃用户: +8% | 留存率: 76%&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_8">柱状图表<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">bar_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">bar_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;sales_by_region.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">bar_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;各地区销售对比&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">bar_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;展示不同地区的销售业绩和市场占比&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">bar_chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;华东: 35% | 华南: 28% | 华北: 22% | 其他: 15%&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_9">饼图<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">pie_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">pie_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;market_share.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">pie_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;市场份额分布&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">pie_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;各产品线在总营收中的占比情况&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">pie_chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;产品A: 45% | 产品B: 30% | 产品C: 15% | 其他: 10%&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_10">🔗 与数据分析库集成<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h2>
+<h3 id="matplotlib">与Matplotlib集成<a class="headerlink" href="#matplotlib" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChartWidget</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="c1"># 生成数据并创建图表</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1月&#39;</span><span class="p">,</span> <span class="s1">&#39;2月&#39;</span><span class="p">,</span> <span class="s1">&#39;3月&#39;</span><span class="p">,</span> <span class="s1">&#39;4月&#39;</span><span class="p">,</span> <span class="s1">&#39;5月&#39;</span><span class="p">,</span> <span class="s1">&#39;6月&#39;</span><span class="p">]</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">sales</span> <span class="o">=</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">148</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">178</span><span class="p">,</span> <span class="mi">195</span><span class="p">]</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><a href="#__codelineno-5-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><a href="#__codelineno-5-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><a href="#__codelineno-5-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">months</span><span class="p">,</span> <span class="n">sales</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><a href="#__codelineno-5-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;月度销售趋势&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><a href="#__codelineno-5-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;月份&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><a href="#__codelineno-5-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;销售额(万元)&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><a href="#__codelineno-5-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><a href="#__codelineno-5-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><a href="#__codelineno-5-17"><span class="linenos" data-linenos="17 "></span></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><a href="#__codelineno-5-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 保存图表</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><a href="#__codelineno-5-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">chart_path</span> <span class="o">=</span> <span class="s1">&#39;monthly_sales.png&#39;</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a><a href="#__codelineno-5-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">chart_path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><a href="#__codelineno-5-21"><span class="linenos" data-linenos="21 "></span></a><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a><a href="#__codelineno-5-22"><span class="linenos" data-linenos="22 "></span></a>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a><a href="#__codelineno-5-23"><span class="linenos" data-linenos="23 "></span></a><span class="c1"># 在邮件中展示</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a><a href="#__codelineno-5-24"><span class="linenos" data-linenos="24 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;销售数据报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a><a href="#__codelineno-5-25"><span class="linenos" data-linenos="25 "></span></a><span class="n">chart_widget</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a><a href="#__codelineno-5-26"><span class="linenos" data-linenos="26 "></span></a><span class="n">chart_widget</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="n">chart_path</span><span class="p">)</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a><a href="#__codelineno-5-27"><span class="linenos" data-linenos="27 "></span></a><span class="n">chart_widget</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;月度销售趋势分析&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28"></a><a href="#__codelineno-5-28"><span class="linenos" data-linenos="28 "></span></a><span class="n">chart_widget</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;展示2024年上半年销售业绩的持续增长态势&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29"></a><a href="#__codelineno-5-29"><span class="linenos" data-linenos="29 "></span></a><span class="n">chart_widget</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;总销售额: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span><span class="si">}</span><span class="s2">万元 | 平均增长率: </span><span class="si">{</span><span class="p">((</span><span class="n">sales</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">sales</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30"></a><a href="#__codelineno-5-30"><span class="linenos" data-linenos="30 "></span></a>
+<a id="__codelineno-5-31" name="__codelineno-5-31"></a><a href="#__codelineno-5-31"><span class="linenos" data-linenos="31 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">chart_widget</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_11">📱 最佳实践<a class="headerlink" href="#_11" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1">1. 选择合适的图表类型<a class="headerlink" href="#1" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChartWidget</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;数据可视化最佳实践&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="c1"># 趋势数据 -&gt; 线图</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">trend_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><a href="#__codelineno-6-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">trend_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;time_series.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><a href="#__codelineno-6-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">trend_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;时间序列趋势&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><a href="#__codelineno-6-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">trend_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;适合展示随时间变化的数据&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><a href="#__codelineno-6-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><a href="#__codelineno-6-12"><span class="linenos" data-linenos="12 "></span></a><span class="c1"># 分类对比 -&gt; 柱状图  </span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><a href="#__codelineno-6-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">comparison_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><a href="#__codelineno-6-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">comparison_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;category_comparison.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><a href="#__codelineno-6-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">comparison_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;分类数据对比&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a><a href="#__codelineno-6-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">comparison_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;适合展示不同类别之间的比较&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a><a href="#__codelineno-6-17"><span class="linenos" data-linenos="17 "></span></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a><a href="#__codelineno-6-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># 占比关系 -&gt; 饼图</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a><a href="#__codelineno-6-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">proportion_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a><a href="#__codelineno-6-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">proportion_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;proportion_chart.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21"></a><a href="#__codelineno-6-21"><span class="linenos" data-linenos="21 "></span></a><span class="n">proportion_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;比例分布&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22"></a><a href="#__codelineno-6-22"><span class="linenos" data-linenos="22 "></span></a><span class="n">proportion_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;适合展示部分与整体的关系&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23"></a><a href="#__codelineno-6-23"><span class="linenos" data-linenos="23 "></span></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24"></a><a href="#__codelineno-6-24"><span class="linenos" data-linenos="24 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_widgets</span><span class="p">([</span><span class="n">trend_chart</span><span class="p">,</span> <span class="n">comparison_chart</span><span class="p">,</span> <span class="n">proportion_chart</span><span class="p">])</span>
+</code></pre></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Type Selection Guide</title>
+
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: #0078d4;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* Chart component styles */
+        .chart-widget {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #323130;
+            margin: 0 0 8px 0;
+        }
+
+        .chart-description {
+            font-size: 14px;
+            color: #605e5c;
+            margin: 0 0 16px 0;
+            line-height: 1.4;
+        }
+
+        .chart-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        /* Line chart styles */
+        .line-chart {
+            width: 500px;
+            height: 280px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            position: relative;
+            padding: 30px 20px 40px 50px;
+        }
+
+        .chart-grid {
+            position: absolute;
+            top: 30px;
+            left: 50px;
+            width: 400px;
+            height: 200px;
+            background-image: 
+                linear-gradient(to right, #e9ecef 1px, transparent 1px),
+                linear-gradient(to bottom, #e9ecef 1px, transparent 1px);
+            background-size: 66.67px 40px;
+        }
+
+        .line-path {
+            position: absolute;
+            top: 30px;
+            left: 50px;
+            width: 400px;
+            height: 200px;
+        }
+
+        .data-line {
+            stroke: #0078d4;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .data-points {
+            fill: #0078d4;
+            stroke: #ffffff;
+            stroke-width: 2;
+        }
+
+        .y-axis {
+            position: absolute;
+            left: 10px;
+            top: 30px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #8e8e93;
+        }
+
+        .x-axis {
+            position: absolute;
+            bottom: 10px;
+            left: 50px;
+            width: 400px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #8e8e93;
+        }
+
+        /* Bar chart styles */
+        .bar-chart {
+            width: 500px;
+            height: 280px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            position: relative;
+            padding: 30px 20px 40px 50px;
+        }
+
+        .bar-container {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            width: 340px;
+            height: 180px;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+        }
+
+        .bar {
+            width: 50px;
+            background: linear-gradient(180deg, #107c10 0%, #0e6b0e 100%);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            animation: growBar 1.5s ease-out;
+        }
+
+        @keyframes growBar {
+            from { height: 0; }
+            to { height: var(--bar-height); }
+        }
+
+        .bar-1 { --bar-height: 90px; height: 90px; }
+        .bar-2 { --bar-height: 64px; height: 64px; }
+        .bar-3 { --bar-height: 112px; height: 112px; }
+        .bar-4 { --bar-height: 71px; height: 71px; }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #8e8e93;
+            white-space: nowrap;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #323130;
+            font-weight: 600;
+        }
+
+        /* Pie chart styles */
+        .pie-chart {
+            width: 500px;
+            height: 280px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pie-svg {
+            width: 180px;
+            height: 180px;
+        }
+
+        .pie-slice {
+            stroke: #ffffff;
+            stroke-width: 2;
+        }
+
+        .slice-1 { fill: #0078d4; }
+        .slice-2 { fill: #107c10; }
+        .slice-3 { fill: #ff8c00; }
+        .slice-4 { fill: #d13438; }
+
+        .pie-legend {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 12px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+            <div class="email-header">
+                <h1>Chart Type Selection Guide</h1>
+                <div class="timestamp">Generated: July 12, 2025 15:25:20</div>
+            </div>
+
+            <div class="email-body">
+                <!-- Time Series Trend -> Line Chart -->
+                <div class="chart-widget">
+                    <div class="chart-title">Time Series Trend</div>
+                    <div class="chart-description">Best for showing data changes over time - Website traffic over 6 months</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <div class="chart-grid"></div>
+                            <div class="y-axis">
+                                <span>25K</span>
+                                <span>20K</span>
+                                <span>15K</span>
+                                <span>10K</span>
+                                <span>5K</span>
+                                <span>0</span>
+                            </div>
+                            <div class="x-axis">
+                                <span>Jan</span>
+                                <span>Feb</span>
+                                <span>Mar</span>
+                                <span>Apr</span>
+                                <span>May</span>
+                                <span>Jun</span>
+                            </div>
+                            <svg class="line-path" viewBox="0 0 400 200">
+                                <path class="data-line" d="M 33 150 L 100 120 L 167 80 L 233 70 L 300 45 L 367 30"/>
+                                <circle class="data-points" cx="33" cy="150" r="4"/>
+                                <circle class="data-points" cx="100" cy="120" r="4"/>
+                                <circle class="data-points" cx="167" cy="80" r="4"/>
+                                <circle class="data-points" cx="233" cy="70" r="4"/>
+                                <circle class="data-points" cx="300" cy="45" r="4"/>
+                                <circle class="data-points" cx="367" cy="30" r="4"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Comparison -> Bar Chart -->
+                <div class="chart-widget">
+                    <div class="chart-title">Category Comparison</div>
+                    <div class="chart-description">Best for comparing different categories - Regional sales performance</div>
+                    <div class="chart-container">
+                        <div class="bar-chart">
+                            <div class="y-axis">
+                                <span>150M</span>
+                                <span>120M</span>
+                                <span>90M</span>
+                                <span>60M</span>
+                                <span>30M</span>
+                                <span>0</span>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar bar-1">
+                                    <div class="bar-value">120M</div>
+                                    <div class="bar-label">East</div>
+                                </div>
+                                <div class="bar bar-2">
+                                    <div class="bar-value">85M</div>
+                                    <div class="bar-label">South</div>
+                                </div>
+                                <div class="bar bar-3">
+                                    <div class="bar-value">150M</div>
+                                    <div class="bar-label">North</div>
+                                </div>
+                                <div class="bar bar-4">
+                                    <div class="bar-value">95M</div>
+                                    <div class="bar-label">West</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proportion Distribution -> Pie Chart -->
+                <div class="chart-widget">
+                    <div class="chart-title">Proportion Distribution</div>
+                    <div class="chart-description">Best for showing part-to-whole relationships - Product sales breakdown</div>
+                    <div class="chart-container">
+                        <div class="pie-chart">
+                            <svg class="pie-svg" viewBox="0 0 180 180">
+                                <!-- Product A: 45% -->
+                                <path class="pie-slice slice-1" d="M 90 90 L 90 20 A 70 70 0 0 1 137.8 37.8 Z"/>
+                                <!-- Product B: 30% -->
+                                <path class="pie-slice slice-2" d="M 90 90 L 137.8 37.8 A 70 70 0 0 1 137.8 142.2 Z"/>
+                                <!-- Product C: 15% -->
+                                <path class="pie-slice slice-3" d="M 90 90 L 137.8 142.2 A 70 70 0 0 1 90 160 Z"/>
+                                <!-- Others: 10% -->
+                                <path class="pie-slice slice-4" d="M 90 90 L 90 160 A 70 70 0 0 1 90 20 Z"/>
+                            </svg>
+                            <div class="pie-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #0078d4;"></div>
+                                    <span>Product A (45%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #107c10;"></div>
+                                    <span>Product B (30%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #ff8c00;"></div>
+                                    <span>Product C (15%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color" style="background: #d13438;"></div>
+                                    <span>Others (10%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="email-footer">
+                <p>Generated by EmailWidget</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<h3 id="2">2. 业务数据仪表板<a class="headerlink" href="#2" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChartWidget</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># 创建仪表板邮件</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">dashboard</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;业务数据仪表板&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="c1"># 添加标题</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><a href="#__codelineno-7-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">title</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><a href="#__codelineno-7-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">title</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;业务数据仪表板&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><a href="#__codelineno-7-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">title</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><a href="#__codelineno-7-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">title</span><span class="o">.</span><span class="n">set_align</span><span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><a href="#__codelineno-7-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">dashboard</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><a href="#__codelineno-7-14"><span class="linenos" data-linenos="14 "></span></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><a href="#__codelineno-7-15"><span class="linenos" data-linenos="15 "></span></a><span class="c1"># 创建多个图表</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><a href="#__codelineno-7-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">charts_data</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><a href="#__codelineno-7-17"><span class="linenos" data-linenos="17 "></span></a>    <span class="p">{</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a><a href="#__codelineno-7-18"><span class="linenos" data-linenos="18 "></span></a>        <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="s1">&#39;revenue_trend.png&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><a href="#__codelineno-7-19"><span class="linenos" data-linenos="19 "></span></a>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;营收趋势&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><a href="#__codelineno-7-20"><span class="linenos" data-linenos="20 "></span></a>        <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;月度营收增长情况&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a><a href="#__codelineno-7-21"><span class="linenos" data-linenos="21 "></span></a>        <span class="s1">&#39;summary&#39;</span><span class="p">:</span> <span class="s1">&#39;同比增长: +23%&#39;</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a><a href="#__codelineno-7-22"><span class="linenos" data-linenos="22 "></span></a>    <span class="p">},</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a><a href="#__codelineno-7-23"><span class="linenos" data-linenos="23 "></span></a>    <span class="p">{</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a><a href="#__codelineno-7-24"><span class="linenos" data-linenos="24 "></span></a>        <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="s1">&#39;user_analytics.png&#39;</span><span class="p">,</span> 
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a><a href="#__codelineno-7-25"><span class="linenos" data-linenos="25 "></span></a>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;用户分析&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a><a href="#__codelineno-7-26"><span class="linenos" data-linenos="26 "></span></a>        <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;用户活跃度和留存分析&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a><a href="#__codelineno-7-27"><span class="linenos" data-linenos="27 "></span></a>        <span class="s1">&#39;summary&#39;</span><span class="p">:</span> <span class="s1">&#39;月活用户: 2.4M&#39;</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a><a href="#__codelineno-7-28"><span class="linenos" data-linenos="28 "></span></a>    <span class="p">},</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a><a href="#__codelineno-7-29"><span class="linenos" data-linenos="29 "></span></a>    <span class="p">{</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a><a href="#__codelineno-7-30"><span class="linenos" data-linenos="30 "></span></a>        <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="s1">&#39;product_performance.png&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a><a href="#__codelineno-7-31"><span class="linenos" data-linenos="31 "></span></a>        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;产品表现&#39;</span><span class="p">,</span> 
+<a id="__codelineno-7-32" name="__codelineno-7-32"></a><a href="#__codelineno-7-32"><span class="linenos" data-linenos="32 "></span></a>        <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;各产品线业绩对比&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a><a href="#__codelineno-7-33"><span class="linenos" data-linenos="33 "></span></a>        <span class="s1">&#39;summary&#39;</span><span class="p">:</span> <span class="s1">&#39;核心产品占比: 68%&#39;</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a><a href="#__codelineno-7-34"><span class="linenos" data-linenos="34 "></span></a>    <span class="p">}</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a><a href="#__codelineno-7-35"><span class="linenos" data-linenos="35 "></span></a><span class="p">]</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a><a href="#__codelineno-7-36"><span class="linenos" data-linenos="36 "></span></a>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a><a href="#__codelineno-7-37"><span class="linenos" data-linenos="37 "></span></a><span class="k">for</span> <span class="n">chart_info</span> <span class="ow">in</span> <span class="n">charts_data</span><span class="p">:</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a><a href="#__codelineno-7-38"><span class="linenos" data-linenos="38 "></span></a>    <span class="n">chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a><a href="#__codelineno-7-39"><span class="linenos" data-linenos="39 "></span></a>    <span class="n">chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="n">chart_info</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a><a href="#__codelineno-7-40"><span class="linenos" data-linenos="40 "></span></a>    <span class="n">chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">chart_info</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a><a href="#__codelineno-7-41"><span class="linenos" data-linenos="41 "></span></a>    <span class="n">chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="n">chart_info</span><span class="p">[</span><span class="s1">&#39;desc&#39;</span><span class="p">])</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42"></a><a href="#__codelineno-7-42"><span class="linenos" data-linenos="42 "></span></a>    <span class="n">chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="n">chart_info</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">])</span>
+<a id="__codelineno-7-43" name="__codelineno-7-43"></a><a href="#__codelineno-7-43"><span class="linenos" data-linenos="43 "></span></a>    <span class="n">dashboard</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</code></pre></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Data Dashboard</title>
+
+    <style>
+
+        .email-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 标题组件样式 */
+        .title-widget {
+            text-align: center;
+            margin: 20px 0 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            border-left: 4px solid #0078d4;
+        }
+
+        .title-large {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0078d4;
+            margin: 0;
+        }
+
+        /* 图表组件样式 */
+        .chart-widget {
+            margin: 24px 0;
+            padding: 20px;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .chart-widget:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #323130;
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .chart-icon {
+            margin-right: 8px;
+            font-size: 22px;
+        }
+
+        .chart-description {
+            font-size: 14px;
+            color: #605e5c;
+            margin: 0 0 16px 0;
+            line-height: 1.4;
+        }
+
+        .chart-summary {
+            font-size: 16px;
+            color: #0078d4;
+            font-weight: 600;
+            margin: 16px 0 0 0;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            border-left: 4px solid #0078d4;
+            border-radius: 6px;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        /* 营收趋势图表 */
+        .revenue-chart {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fdf8 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            position: relative;
+            padding: 20px;
+        }
+
+        .revenue-grid {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            width: 480px;
+            height: 200px;
+            background-image: 
+                linear-gradient(to right, #e8f5e8 1px, transparent 1px),
+                linear-gradient(to bottom, #e8f5e8 1px, transparent 1px);
+            background-size: 80px 40px;
+        }
+
+        .revenue-line {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            width: 480px;
+            height: 200px;
+        }
+
+        .revenue-path {
+            stroke: #107c10;
+            stroke-width: 4;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 2px 4px rgba(16, 124, 16, 0.3));
+        }
+
+        .revenue-area {
+            fill: url(#revenueGradient);
+            opacity: 0.3;
+        }
+
+        .revenue-points {
+            fill: #107c10;
+            stroke: #ffffff;
+            stroke-width: 3;
+        }
+
+        /* 用户分析图表 */
+        .user-chart {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f8ff 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            position: relative;
+            padding: 20px;
+        }
+
+        .user-bars {
+            position: absolute;
+            bottom: 50px;
+            left: 60px;
+            width: 480px;
+            height: 180px;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+        }
+
+        .user-bar {
+            width: 50px;
+            background: linear-gradient(180deg, #0078d4 0%, #005a9e 100%);
+            border-radius: 6px 6px 0 0;
+            position: relative;
+            animation: growUserBar 2s ease-out;
+            box-shadow: 0 2px 8px rgba(0, 120, 212, 0.3);
+        }
+
+        @keyframes growUserBar {
+            from { height: 0; }
+            to { height: var(--bar-height); }
+        }
+
+        .user-bar-1 { --bar-height: 140px; height: 140px; }
+        .user-bar-2 { --bar-height: 110px; height: 110px; }
+        .user-bar-3 { --bar-height: 160px; height: 160px; }
+        .user-bar-4 { --bar-height: 125px; height: 125px; }
+
+        .user-bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #605e5c;
+            font-weight: 500;
+        }
+
+        .user-bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #0078d4;
+            font-weight: 700;
+        }
+
+        /* 产品表现图表 */
+        .product-chart {
+            width: 600px;
+            height: 300px;
+            background: linear-gradient(180deg, #ffffff 0%, #fff8f0 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-pie {
+            width: 220px;
+            height: 220px;
+            position: relative;
+        }
+
+        .pie-slice {
+            stroke: #ffffff;
+            stroke-width: 3;
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+
+        .pie-slice:hover {
+            transform: scale(1.05);
+        }
+
+        .slice-core { fill: #ff8c00; }
+        .slice-premium { fill: #0078d4; }
+        .slice-basic { fill: #107c10; }
+        .slice-other { fill: #8e8e93; }
+
+        .product-legend {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .product-legend-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 13px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-legend-item:hover {
+            opacity: 0.8;
+        }
+
+        .product-legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+
+        .product-legend-text {
+            font-weight: 500;
+        }
+
+        .product-legend-value {
+            margin-left: 8px;
+            color: #8e8e93;
+            font-size: 12px;
+        }
+
+        /* 图表轴标签 */
+        .chart-axis {
+            position: absolute;
+            font-size: 12px;
+            color: #8e8e93;
+        }
+
+        .y-axis {
+            left: 10px;
+            top: 40px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .x-axis {
+            bottom: 20px;
+            left: 60px;
+            width: 480px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>Business Data Dashboard</h1>
+            <div class="timestamp">Generated: July 12, 2025 15:07:30</div>
+        </div>
+
+        <div class="email-body">
+            <!-- 仪表板标题 -->
+            <div class="title-widget">
+                <h1 class="title-large">📊 Business Data Dashboard</h1>
+            </div>
+
+            <!-- 营收趋势图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">📈</span>Revenue Trends
+                </div>
+                <div class="chart-description">Monthly revenue growth - Shows revenue trend changes over the last 6 months</div>
+                <div class="chart-container">
+                    <div class="revenue-chart">
+                        <div class="revenue-grid"></div>
+                        <div class="y-axis">
+                            <span>5M</span>
+                            <span>4M</span>
+                            <span>3M</span>
+                            <span>2M</span>
+                            <span>1M</span>
+                            <span>0</span>
+                        </div>
+                        <div class="x-axis">
+                            <span>Jan</span>
+                            <span>Feb</span>
+                            <span>Mar</span>
+                            <span>Apr</span>
+                            <span>May</span>
+                            <span>Jun</span>
+                        </div>
+                        <svg class="revenue-line" viewBox="0 0 480 200">
+                            <defs>
+                                <linearGradient id="revenueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#107c10;stop-opacity:0.3"/>
+                                    <stop offset="100%" style="stop-color:#107c10;stop-opacity:0.1"/>
+                                </linearGradient>
+                            </defs>
+                            <path class="revenue-area" d="M 40 160 L 120 140 L 200 100 L 280 80 L 360 60 L 440 40 L 440 200 L 40 200 Z"/>
+                            <path class="revenue-path" d="M 40 160 L 120 140 L 200 100 L 280 80 L 360 60 L 440 40"/>
+                            <circle class="revenue-points" cx="40" cy="160" r="5"/>
+                            <circle class="revenue-points" cx="120" cy="140" r="5"/>
+                            <circle class="revenue-points" cx="200" cy="100" r="5"/>
+                            <circle class="revenue-points" cx="280" cy="80" r="5"/>
+                            <circle class="revenue-points" cx="360" cy="60" r="5"/>
+                            <circle class="revenue-points" cx="440" cy="40" r="5"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="chart-summary">📊 YoY Growth: +23% | MoM Growth: +8.5% | Annual Target: 67%</div>
+            </div>
+
+            <!-- 用户分析图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">👥</span>User Analytics
+                </div>
+                <div class="chart-description">User activity and retention analysis - Cross-platform user data comparison</div>
+                <div class="chart-container">
+                    <div class="user-chart">
+                        <div class="y-axis">
+                            <span>3M</span>
+                            <span>2.5M</span>
+                            <span>2M</span>
+                            <span>1.5M</span>
+                            <span>1M</span>
+                            <span>0.5M</span>
+                            <span>0</span>
+                        </div>
+                        <div class="user-bars">
+                            <div class="user-bar user-bar-1">
+                                <div class="user-bar-value">2.8M</div>
+                                <div class="user-bar-label">Mobile</div>
+                            </div>
+                            <div class="user-bar user-bar-2">
+                                <div class="user-bar-value">2.2M</div>
+                                <div class="user-bar-label">Desktop</div>
+                            </div>
+                            <div class="user-bar user-bar-3">
+                                <div class="user-bar-value">3.2M</div>
+                                <div class="user-bar-label">Mini-app</div>
+                            </div>
+                            <div class="user-bar user-bar-4">
+                                <div class="user-bar-value">2.5M</div>
+                                <div class="user-bar-label">H5 Page</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">👤 MAU: 2.4M | New Users: +45K | Retention Rate: 78.5%</div>
+            </div>
+
+            <!-- 产品表现图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">📱</span>Product Performance
+                </div>
+                <div class="chart-description">Product line performance comparison - Product performance by revenue share</div>
+                <div class="chart-container">
+                    <div class="product-chart">
+                        <svg class="product-pie" viewBox="0 0 220 220">
+                            <!-- 核心产品: 68% -->
+                            <path class="pie-slice slice-core" d="M 110 110 L 110 10 A 100 100 0 1 1 41.21 168.78 Z"/>
+                            <!-- 高端产品: 18% -->
+                            <path class="pie-slice slice-premium" d="M 110 110 L 41.21 168.78 A 100 100 0 0 1 91.27 15.45 Z"/>
+                            <!-- 基础产品: 10% -->
+                            <path class="pie-slice slice-basic" d="M 110 110 L 91.27 15.45 A 100 100 0 0 1 110 10 Z"/>
+                            <!-- 其他: 4% -->
+                            <path class="pie-slice slice-other" d="M 110 110 L 110 10 A 100 100 0 0 1 91.27 15.45 Z"/>
+                        </svg>
+                        <div class="product-legend">
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #ff8c00;"></div>
+                                <div class="product-legend-text">Core Products</div>
+                                <div class="product-legend-value">68%</div>
+                            </div>
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #0078d4;"></div>
+                                <div class="product-legend-text">Premium Products</div>
+                                <div class="product-legend-value">18%</div>
+                            </div>
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #107c10;"></div>
+                                <div class="product-legend-text">Basic Products</div>
+                                <div class="product-legend-value">10%</div>
+                            </div>
+                            <div class="product-legend-item">
+                                <div class="product-legend-color" style="background: #8e8e93;"></div>
+                                <div class="product-legend-text">Other Products</div>
+                                <div class="product-legend-value">4%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">🎯 Core Products: 68% | Premium Growth: +25% | Total Product Lines: 12</div>
+            </div>
+        </div>
+
+        <div class="email-footer">
+            <p>Generated by EmailWidget</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<h3 id="3">3. 完整业务报告<a class="headerlink" href="#3" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChartWidget</span><span class="p">,</span> <span class="n">TextWidget</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextType</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># 创建业务报告</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">report</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;Q4业务分析报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><a href="#__codelineno-8-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="c1"># 报告标题</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><a href="#__codelineno-8-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">report_title</span> <span class="o">=</span> <span class="n">TextWidget</span><span class="p">()</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><a href="#__codelineno-8-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">report_title</span><span class="o">.</span><span class="n">set_content</span><span class="p">(</span><span class="s2">&quot;第四季度业务分析报告&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><a href="#__codelineno-8-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">report_title</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">TextType</span><span class="o">.</span><span class="n">TITLE_LARGE</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><a href="#__codelineno-8-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">report_title</span><span class="o">.</span><span class="n">set_align</span><span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><a href="#__codelineno-8-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">report_title</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;#0078d4&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><a href="#__codelineno-8-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">report</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">report_title</span><span class="p">)</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><a href="#__codelineno-8-15"><span class="linenos" data-linenos="15 "></span></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><a href="#__codelineno-8-16"><span class="linenos" data-linenos="16 "></span></a><span class="c1"># 营收分析图表</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><a href="#__codelineno-8-17"><span class="linenos" data-linenos="17 "></span></a><span class="n">revenue_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><a href="#__codelineno-8-18"><span class="linenos" data-linenos="18 "></span></a><span class="n">revenue_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;q4_revenue_analysis.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a><a href="#__codelineno-8-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">revenue_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;营收分析&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a><a href="#__codelineno-8-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">revenue_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;第四季度各月营收情况及与去年同期对比&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a><a href="#__codelineno-8-21"><span class="linenos" data-linenos="21 "></span></a><span class="n">revenue_chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;Q4总营收: ¥18.5M | 同比增长: +15.2% | 环比增长: +8.7%&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a><a href="#__codelineno-8-22"><span class="linenos" data-linenos="22 "></span></a>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a><a href="#__codelineno-8-23"><span class="linenos" data-linenos="23 "></span></a><span class="c1"># 用户增长图表  </span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a><a href="#__codelineno-8-24"><span class="linenos" data-linenos="24 "></span></a><span class="n">growth_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a><a href="#__codelineno-8-25"><span class="linenos" data-linenos="25 "></span></a><span class="n">growth_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;user_growth_funnel.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a><a href="#__codelineno-8-26"><span class="linenos" data-linenos="26 "></span></a><span class="n">growth_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;用户增长漏斗&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a><a href="#__codelineno-8-27"><span class="linenos" data-linenos="27 "></span></a><span class="n">growth_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;从访问到转化的用户流失情况分析&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a><a href="#__codelineno-8-28"><span class="linenos" data-linenos="28 "></span></a><span class="n">growth_chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;访问用户: 2.4M | 注册转化: 12% | 付费转化: 3.2%&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a><a href="#__codelineno-8-29"><span class="linenos" data-linenos="29 "></span></a>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a><a href="#__codelineno-8-30"><span class="linenos" data-linenos="30 "></span></a><span class="c1"># 产品表现图表</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a><a href="#__codelineno-8-31"><span class="linenos" data-linenos="31 "></span></a><span class="n">product_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a><a href="#__codelineno-8-32"><span class="linenos" data-linenos="32 "></span></a><span class="n">product_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;product_performance_matrix.png&quot;</span><span class="p">)</span> 
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a><a href="#__codelineno-8-33"><span class="linenos" data-linenos="33 "></span></a><span class="n">product_chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;产品表现矩阵&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a><a href="#__codelineno-8-34"><span class="linenos" data-linenos="34 "></span></a><span class="n">product_chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;各产品线的市场表现和增长潜力分析&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35"></a><a href="#__codelineno-8-35"><span class="linenos" data-linenos="35 "></span></a><span class="n">product_chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;明星产品: 3个 | 问题产品: 1个 | 现金牛产品: 2个&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36"></a><a href="#__codelineno-8-36"><span class="linenos" data-linenos="36 "></span></a>
+<a id="__codelineno-8-37" name="__codelineno-8-37"></a><a href="#__codelineno-8-37"><span class="linenos" data-linenos="37 "></span></a><span class="c1"># 添加到报告</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38"></a><a href="#__codelineno-8-38"><span class="linenos" data-linenos="38 "></span></a><span class="n">report</span><span class="o">.</span><span class="n">add_widgets</span><span class="p">([</span><span class="n">revenue_chart</span><span class="p">,</span> <span class="n">growth_chart</span><span class="p">,</span> <span class="n">product_chart</span><span class="p">])</span>
+</code></pre></div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Business Analysis Report</title>
+
+    <style>
+
+        .email-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 8px;
+            overflow: hidden;
+
+                padding: 20px;
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+                background-color: #faf9f8;
+
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                line-height: 1.6;
+                color: #323130;
+            }
+
+        .email-header {
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .email-header .timestamp {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+
+        .email-footer {
+            background: #f3f2f1;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #605e5c;
+            border-top: 1px solid #e1dfdd;
+        }
+
+        /* 报告标题样式 */
+        .report-title {
+            text-align: center;
+            margin: 20px 0 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #e1dfdd;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0078d4, #107c10, #ff8c00, #d13438);
+        }
+
+        .title-large {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0078d4;
+            margin: 0;
+        }
+
+        .report-period {
+            font-size: 16px;
+            color: #605e5c;
+            margin-top: 8px;
+        }
+
+        /* 图表组件样式 */
+        .chart-widget {
+            margin: 32px 0;
+            padding: 24px;
+            border: 1px solid #e1dfdd;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart-widget:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .chart-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #323130;
+            margin: 0 0 12px 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #0078d4;
+            display: flex;
+            align-items: center;
+        }
+
+        .chart-icon {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .chart-description {
+            font-size: 15px;
+            color: #605e5c;
+            margin: 0 0 20px 0;
+            line-height: 1.5;
+        }
+
+        .chart-summary {
+            font-size: 16px;
+            color: #0078d4;
+            font-weight: 600;
+            margin: 20px 0 0 0;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            border-left: 4px solid #0078d4;
+            border-radius: 8px;
+            border: 1px solid #b3d9ff;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        /* 营收分析图表 */
+        .revenue-analysis-chart {
+            width: 700px;
+            height: 350px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fff0 100%);
+            border: 2px solid #e1dfdd;
+            border-radius: 10px;
+            position: relative;
+            padding: 25px;
+        }
+
+        .revenue-grid {
+            position: absolute;
+            top: 35px;
+            left: 70px;
+            width: 550px;
+            height: 240px;
+            background-image: 
+                linear-gradient(to right, #e8f5e8 1px, transparent 1px),
+                linear-gradient(to bottom, #e8f5e8 1px, transparent 1px);
+            background-size: 91.67px 48px;
+        }
+
+        .revenue-line-path {
+            position: absolute;
+            top: 35px;
+            left: 70px;
+            width: 550px;
+            height: 240px;
+        }
+
+        .revenue-trend-line {
+            stroke: #107c10;
+            stroke-width: 5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 3px 6px rgba(16, 124, 16, 0.4));
+        }
+
+        .revenue-area-fill {
+            fill: url(#revenueAreaGradient);
+            opacity: 0.4;
+        }
+
+        .revenue-data-points {
+            fill: #107c10;
+            stroke: #ffffff;
+            stroke-width: 4;
+        }
+
+        .revenue-label {
+            font-size: 11px;
+            fill: #323130;
+            font-weight: 600;
+        }
+
+        /* 用户漏斗图表 */
+        .funnel-chart {
+            width: 700px;
+            height: 350px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f8ff 100%);
+            border: 2px solid #e1dfdd;
+            border-radius: 10px;
+            position: relative;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .funnel-container {
+            width: 300px;
+            height: 280px;
+            position: relative;
+        }
+
+        .funnel-stage {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #0078d4, #005a9e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+        }
+
+        .stage-1 {
+            top: 0;
+            width: 300px;
+            height: 45px;
+        }
+
+        .stage-2 {
+            top: 60px;
+            width: 240px;
+            height: 45px;
+        }
+
+        .stage-3 {
+            top: 120px;
+            width: 180px;
+            height: 45px;
+        }
+
+        .stage-4 {
+            top: 180px;
+            width: 120px;
+            height: 45px;
+        }
+
+        .funnel-stats {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 200px;
+        }
+
+        .funnel-stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 8px 12px;
+            background: #ffffff;
+            border: 1px solid #e1dfdd;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .stat-label {
+            font-weight: 500;
+            color: #323130;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #0078d4;
+        }
+
+        /* 产品矩阵图表 */
+        .matrix-chart {
+            width: 700px;
+            height: 350px;
+            background: linear-gradient(180deg, #ffffff 0%, #fff8f0 100%);
+            border: 2px solid #e1dfdd;
+            border-radius: 10px;
+            position: relative;
+            padding: 25px;
+        }
+
+        .matrix-grid {
+            position: absolute;
+            top: 35px;
+            left: 70px;
+            width: 500px;
+            height: 240px;
+            border: 2px solid #e1dfdd;
+            background: linear-gradient(90deg, #ffffff 50%, #f8f9fa 50%),
+                        linear-gradient(0deg, #ffffff 50%, #f8f9fa 50%);
+        }
+
+        .matrix-quadrant-label {
+            position: absolute;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8e8e93;
+        }
+
+        .quadrant-1 { top: 45px; right: 80px; }
+        .quadrant-2 { top: 45px; left: 80px; }
+        .quadrant-3 { bottom: 75px; left: 80px; }
+        .quadrant-4 { bottom: 75px; right: 80px; }
+
+        .product-bubble {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .bubble-star { background: linear-gradient(135deg, #ff8c00, #e67e00); }
+        .bubble-problem { background: linear-gradient(135deg, #d13438, #b02a2f); }
+        .bubble-cash { background: linear-gradient(135deg, #107c10, #0e6b0e); }
+
+        .matrix-legend {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        /* 图表轴标签 */
+        .y-axis {
+            left: 10px;
+            top: 45px;
+            height: 240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: absolute;
+            font-size: 12px;
+            color: #8e8e93;
+        }
+
+        .x-axis {
+            bottom: 15px;
+            left: 70px;
+            width: 550px;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            font-size: 12px;
+            color: #8e8e93;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-preview-wrapper">
+        <div class="email-container">
+        <div class="email-header">
+            <h1>Q4 Business Analysis Report</h1>
+            <div class="timestamp">Generated: July 12, 2025 15:09:45</div>
+        </div>
+
+        <div class="email-body">
+            <!-- 报告标题 -->
+            <div class="report-title">
+                <h1 class="title-large">Q4 Business Analysis Report</h1>
+                <div class="report-period">Report Period: October 2024 - December 2024</div>
+            </div>
+
+            <!-- 营收分析图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">💰</span>Revenue Analysis
+                </div>
+                <div class="chart-description">Q4 monthly revenue comparison with year-over-year analysis, showing business growth trends and seasonal characteristics</div>
+                <div class="chart-container">
+                    <div class="revenue-analysis-chart">
+                        <div class="revenue-grid"></div>
+                        <div class="y-axis">
+                            <span>20M</span>
+                            <span>16M</span>
+                            <span>12M</span>
+                            <span>8M</span>
+                            <span>4M</span>
+                            <span>0</span>
+                        </div>
+                        <div class="x-axis">
+                            <span>Oct</span>
+                            <span>Nov</span>
+                            <span>Dec</span>
+                            <span>Oct(LY)</span>
+                            <span>Nov(LY)</span>
+                            <span>Dec(LY)</span>
+                        </div>
+                        <svg class="revenue-line-path" viewBox="0 0 550 240">
+                            <defs>
+                                <linearGradient id="revenueAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#107c10;stop-opacity:0.4"/>
+                                    <stop offset="100%" style="stop-color:#107c10;stop-opacity:0.1"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- 当年数据线 -->
+                            <path class="revenue-area-fill" d="M 45 120 L 137 100 L 229 60 L 321 140 L 413 110 L 505 70 L 505 240 L 45 240 Z"/>
+                            <path class="revenue-trend-line" d="M 45 120 L 137 100 L 229 60 L 321 140 L 413 110 L 505 70"/>
+                            <circle class="revenue-data-points" cx="45" cy="120" r="6"/>
+                            <circle class="revenue-data-points" cx="137" cy="100" r="6"/>
+                            <circle class="revenue-data-points" cx="229" cy="60" r="6"/>
+                            <circle class="revenue-data-points" cx="321" cy="140" r="6"/>
+                            <circle class="revenue-data-points" cx="413" cy="110" r="6"/>
+                            <circle class="revenue-data-points" cx="505" cy="70" r="6"/>
+                            <!-- 数值标签 -->
+                            <text class="revenue-label" x="45" y="110" text-anchor="middle">1.2M</text>
+                            <text class="revenue-label" x="137" y="90" text-anchor="middle">1.4M</text>
+                            <text class="revenue-label" x="229" y="50" text-anchor="middle">1.85M</text>
+                            <text class="revenue-label" x="321" y="130" text-anchor="middle">1.0M</text>
+                            <text class="revenue-label" x="413" y="100" text-anchor="middle">1.3M</text>
+                            <text class="revenue-label" x="505" y="60" text-anchor="middle">1.7M</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="chart-summary">💹 Q4 Total Revenue: $18.5M | YoY Growth: +15.2% | QoQ Growth: +8.7% | Dec Record High</div>
+            </div>
+
+            <!-- 用户增长漏斗图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">🔄</span>User Growth Funnel
+                </div>
+                <div class="chart-description">User conversion analysis from visit to purchase, identifying key bottlenecks and optimization opportunities</div>
+                <div class="chart-container">
+                    <div class="funnel-chart">
+                        <div class="funnel-container">
+                            <div class="funnel-stage stage-1">Website Visitors - 2.4M</div>
+                            <div class="funnel-stage stage-2">Registered Users - 288K</div>
+                            <div class="funnel-stage stage-3">Active Users - 180K</div>
+                            <div class="funnel-stage stage-4">Paying Users - 76.8K</div>
+                        </div>
+                        <div class="funnel-stats">
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Visit→Register</span>
+                                <span class="stat-value">12.0%</span>
+                            </div>
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Register→Active</span>
+                                <span class="stat-value">62.5%</span>
+                            </div>
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Active→Paying</span>
+                                <span class="stat-value">42.7%</span>
+                            </div>
+                            <div class="funnel-stat-item">
+                                <span class="stat-label">Total Conversion</span>
+                                <span class="stat-value">3.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">🎯 Visitors: 2.4M | Registration Rate: 12% | Payment Rate: 3.2% | User LTV: $67</div>
+            </div>
+
+            <!-- 产品表现矩阵图表 -->
+            <div class="chart-widget">
+                <div class="chart-title">
+                    <span class="chart-icon">📈</span>Product Performance Matrix
+                </div>
+                <div class="chart-description">Product line market performance and growth potential analysis using BCG matrix based on market share and growth rate</div>
+                <div class="chart-container">
+                    <div class="matrix-chart">
+                        <div class="matrix-grid"></div>
+                        <div class="matrix-quadrant-label quadrant-1">Star Products</div>
+                        <div class="matrix-quadrant-label quadrant-2">Question Mark</div>
+                        <div class="matrix-quadrant-label quadrant-3">Dogs</div>
+                        <div class="matrix-quadrant-label quadrant-4">Cash Cow</div>
+
+                        <div class="y-axis">
+                            <span>High Growth</span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span>Low Growth</span>
+                        </div>
+                        <div class="x-axis">
+                            <span>Low Share</span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span>High Share</span>
+                        </div>
+
+                        <!-- 产品气泡 -->
+                        <div class="product-bubble bubble-star" style="top: 60px; right: 120px; width: 80px; height: 80px;">
+                            Core SaaS<br/>38%
+                        </div>
+                        <div class="product-bubble bubble-star" style="top: 80px; right: 220px; width: 60px; height: 60px;">
+                            Mobile<br/>18%
+                        </div>
+                        <div class="product-bubble bubble-cash" style="bottom: 100px; right: 100px; width: 90px; height: 90px;">
+                            Enterprise<br/>30%
+                        </div>
+                        <div class="product-bubble bubble-cash" style="bottom: 120px; right: 200px; width: 50px; height: 50px;">
+                            API Service<br/>8%
+                        </div>
+                        <div class="product-bubble bubble-problem" style="top: 100px; left: 120px; width: 40px; height: 40px;">
+                            Trial<br/>4%
+                        </div>
+                        <div class="product-bubble" style="bottom: 140px; left: 140px; width: 35px; height: 35px; background: #8e8e93;">
+                            Others<br/>2%
+                        </div>
+
+                        <div class="matrix-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: linear-gradient(135deg, #ff8c00, #e67e00);"></div>
+                                <span>Star Products (3)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: linear-gradient(135deg, #107c10, #0e6b0e);"></div>
+                                <span>Cash Cow (2)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot" style="background: linear-gradient(135deg, #d13438, #b02a2f);"></div>
+                                <span>Question Mark (1)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-summary">⭐ Star Products: 3 | 💰 Cash Cow: 2 | ❓ Question Mark: 1 | 🐕 Dogs: 0</div>
+            </div>
+        </div>
+
+        <div class="email-footer">
+            <p>Generated by EmailWidget | Report by Business Analytics Team</p>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<h2 id="_12">⚡ 快捷方法<a class="headerlink" href="#_12" title="Anchor link to this section">&para;</a></h2>
+<p>Email 类提供了 <code>add_chart</code> 快捷方法：</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 基础快捷方法</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_chart</span><span class="p">(</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="n">image_url</span><span class="o">=</span><span class="s2">&quot;sales_chart.png&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;销售图表&quot;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 带详细信息的快捷方法</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><a href="#__codelineno-9-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_chart</span><span class="p">(</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><a href="#__codelineno-9-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="n">image_url</span><span class="o">=</span><span class="s2">&quot;performance_chart.png&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><a href="#__codelineno-9-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;性能监控&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><a href="#__codelineno-9-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;系统关键指标实时监控&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><a href="#__codelineno-9-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="n">data_summary</span><span class="o">=</span><span class="s2">&quot;响应时间: 245ms | QPS: 12.5K&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><a href="#__codelineno-9-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="n">max_width</span><span class="o">=</span><span class="s2">&quot;800px&quot;</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><a href="#__codelineno-9-14"><span class="linenos" data-linenos="14 "></span></a><span class="p">)</span>
+</code></pre></div>
+<h2 id="_13">🎯 样式和尺寸控制<a class="headerlink" href="#_13" title="Anchor link to this section">&para;</a></h2>
+<h3 id="_14">图片尺寸优化<a class="headerlink" href="#_14" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 设置最大宽度避免图片过大</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">large_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">large_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;wide_chart.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">large_chart</span><span class="o">.</span><span class="n">set_max_width</span><span class="p">(</span><span class="s2">&quot;800px&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><a href="#__codelineno-10-5"><span class="linenos" data-linenos="5 "></span></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><a href="#__codelineno-10-6"><span class="linenos" data-linenos="6 "></span></a><span class="c1"># 移动端自适应</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><a href="#__codelineno-10-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">responsive_chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><a href="#__codelineno-10-8"><span class="linenos" data-linenos="8 "></span></a><span class="n">responsive_chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;responsive_chart.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><a href="#__codelineno-10-9"><span class="linenos" data-linenos="9 "></span></a><span class="n">responsive_chart</span><span class="o">.</span><span class="n">set_max_width</span><span class="p">(</span><span class="s2">&quot;100%&quot;</span><span class="p">)</span>  <span class="c1"># 自动适配容器宽度</span>
+</code></pre></div>
+<h3 id="_15">提供清晰的标题和描述<a class="headerlink" href="#_15" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">chart</span> <span class="o">=</span> <span class="n">ChartWidget</span><span class="p">()</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Q4营收分析&quot;</span><span class="p">)</span>  <span class="c1"># 简洁明确的标题</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;展示第四季度月度营收变化及同比增长情况&quot;</span><span class="p">)</span>  <span class="c1"># 详细说明</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;总营收: ¥2.4M | 增长率: +15%&quot;</span><span class="p">)</span>  <span class="c1"># 关键数据</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_alt_text</span><span class="p">(</span><span class="s2">&quot;Q4营收分析柱状图&quot;</span><span class="p">)</span>  <span class="c1"># 无障碍访问</span>
+</code></pre></div>
+<h2 id="_16">🐛 常见问题<a class="headerlink" href="#_16" title="Anchor link to this section">&para;</a></h2>
+<h3 id="q">Q: 图片无法显示怎么办？<a class="headerlink" href="#q" title="Anchor link to this section">&para;</a></h3>
+<p>A: 检查以下几点：
+- 确认图片URL是否正确
+- 验证图片文件是否存在
+- 检查网络连接和访问权限</p>
+<h3 id="q_1">Q: 如何选择合适的图片格式？<a class="headerlink" href="#q_1" title="Anchor link to this section">&para;</a></h3>
+<p>A: 推荐使用PNG格式以获得最佳兼容性：
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_image_url</span><span class="p">(</span><span class="s2">&quot;chart.png&quot;</span><span class="p">)</span>  <span class="c1"># ✅ 推荐</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a><span class="c1"># chart.set_image_url(&quot;chart.webp&quot;)  # ❌ 兼容性较差</span>
+</code></pre></div></p>
+<h3 id="q_2">Q: 图表在移动端显示异常？<a class="headerlink" href="#q_2" title="Anchor link to this section">&para;</a></h3>
+<p>A: 设置合适的最大宽度：
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_max_width</span><span class="p">(</span><span class="s2">&quot;100%&quot;</span><span class="p">)</span>  <span class="c1"># 自动适配</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_max_width</span><span class="p">(</span><span class="s2">&quot;600px&quot;</span><span class="p">)</span>  <span class="c1"># 限制最大宽度</span>
+</code></pre></div></p>
+<h3 id="q_3">Q: 如何添加数据摘要？<a class="headerlink" href="#q_3" title="Anchor link to this section">&para;</a></h3>
+<p>A: 使用<code>set_data_summary()</code>方法：
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">chart</span><span class="o">.</span><span class="n">set_data_summary</span><span class="p">(</span><span class="s2">&quot;关键指标: 转化率 12% | ROI 3.2x | 客单价 ¥890&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="_17">🚨 注意事项<a class="headerlink" href="#_17" title="Anchor link to this section">&para;</a></h2>
+<ol>
+<li><strong>图片格式</strong>: 推荐使用PNG格式以获得最佳兼容性</li>
+<li><strong>文件大小</strong>: 控制图片文件大小，避免邮件过大</li>
+<li><strong>网络访问</strong>: 确保网络图片URL在邮件发送时可访问</li>
+<li><strong>替代文本</strong>: 为所有图表设置有意义的alt_text</li>
+<li><strong>移动适配</strong>: 使用百分比宽度确保移动设备显示正常</li>
+</ol>
+<h2 id="_18">🔗 相关组件<a class="headerlink" href="#_18" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><a href="../image-widget/">ImageWidget</a> - 基础图片展示组件</li>
+<li><a href="../metric-widget/">MetricWidget</a> - 数据指标展示组件</li>
+<li><a href="../card-widget/">CardWidget</a> - 可以包含图表的卡片组件</li>
+<li><a href="../text-widget/">TextWidget</a> - 图表标题和说明文字</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../column-widget/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 布局组件">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                布局组件
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../log-widget/" class="md-footer__link md-footer__link--next" aria-label="下一页: 日志组件">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                日志组件
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 PythonImporter
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/271374667" target="_blank" rel="noopener" title="GitHub - PythonImporter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://space.bilibili.com/282527875" target="_blank" rel="noopener" title="Bilibili - PythonImporter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:271374667@qq.com" target="_blank" rel="noopener" title="邮件联系" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/project/EmailWidget/" target="_blank" rel="noopener" title="PyPI包" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

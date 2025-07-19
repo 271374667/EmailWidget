@@ -1,12 +1,12 @@
 
 <!doctype html>
-<html lang="zh" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="一个强大而美观的Python邮件组件库，用于生成HTML邮件报告。经过600+个测试用例验证，90%+代码覆盖率。">
+        <meta name="description" content="A powerful and beautiful Python email component library for generating HTML email reports. Verified by 600+ test cases with 90%+ code coverage.">
       
       
         <meta name="author" content="PythonImporter">
@@ -26,7 +26,7 @@
     
     
       
-        <title>创建Widget - EmailWidget - 邮件组件库</title>
+        <title>Creating Widgets - EmailWidget</title>
       
     
     
@@ -92,8 +92,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#widget" class="md-skip">
-          跳转至
+        <a href="#creating-custom-widgets" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -111,8 +111,8 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="EmailWidget - 邮件组件库" class="md-header__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EmailWidget" class="md-header__button md-logo" aria-label="EmailWidget" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
@@ -126,13 +126,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            EmailWidget - 邮件组件库
+            EmailWidget
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              创建Widget
+              Creating Widgets
             
           </span>
         </div>
@@ -155,6 +155,32 @@
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/development/creating-widgets/" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
     
       
       
@@ -166,21 +192,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="查找">
+      <nav class="md-search__options" aria-label="Search">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -193,7 +219,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -205,7 +231,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+        <a href="https://github.com/271374667/EmailWidget" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -220,7 +246,7 @@
   
     
       
-<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -236,7 +262,7 @@
   
     
   
-  首页
+  Home
 
       </a>
     </li>
@@ -257,7 +283,7 @@
   
     
   
-  快速开始
+  Getting Started
 
         </a>
       </li>
@@ -279,7 +305,7 @@
   
     
   
-  用户指南
+  User Guide
 
         </a>
       </li>
@@ -301,7 +327,7 @@
   
     
   
-  API参考
+  API Reference
 
         </a>
       </li>
@@ -323,7 +349,7 @@
   
     
   
-  示例代码
+  Examples
 
         </a>
       </li>
@@ -347,7 +373,7 @@
   
     
   
-  开发指南
+  Development
 
         </a>
       </li>
@@ -383,19 +409,19 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="EmailWidget - 邮件组件库" class="md-nav__button md-logo" aria-label="EmailWidget - 邮件组件库" data-md-component="logo">
+    <a href="../.." title="EmailWidget" class="md-nav__button md-logo" aria-label="EmailWidget" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
 
     </a>
-    EmailWidget - 邮件组件库
+    EmailWidget
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/271374667/EmailWidget" title="前往仓库" class="md-source" data-md-component="source">
+      <a href="https://github.com/271374667/EmailWidget" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -420,7 +446,7 @@
   
   
   <span class="md-ellipsis">
-    首页
+    Home
     
   </span>
   
@@ -476,7 +502,7 @@
   
   
   <span class="md-ellipsis">
-    快速开始
+    Getting Started
     
   </span>
   
@@ -568,7 +594,7 @@
   
   
   <span class="md-ellipsis">
-    用户指南
+    User Guide
     
   </span>
   
@@ -662,7 +688,7 @@
   
   
   <span class="md-ellipsis">
-    API参考
+    API Reference
     
   </span>
   
@@ -726,7 +752,7 @@
   
   
   <span class="md-ellipsis">
-    示例代码
+    Examples
     
   </span>
   
@@ -794,7 +820,7 @@
   
   
   <span class="md-ellipsis">
-    开发指南
+    Development
     
   </span>
   
@@ -811,7 +837,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            开发指南
+            Development
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -829,7 +855,7 @@
   
   
   <span class="md-ellipsis">
-    贡献指南
+    Contributing
     
   </span>
   
@@ -852,7 +878,7 @@
   
   
   <span class="md-ellipsis">
-    开发环境
+    Setup Environment
     
   </span>
   
@@ -884,7 +910,7 @@
   
   
   <span class="md-ellipsis">
-    创建Widget
+    Creating Widgets
     
   </span>
   
@@ -897,7 +923,7 @@
   
   
   <span class="md-ellipsis">
-    创建Widget
+    Creating Widgets
     
   </span>
   
@@ -906,7 +932,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目录">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -915,24 +941,24 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#widget_1" class="md-nav__link">
+  <a href="#widget-architecture-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 Widget 架构概述
+      🎯 Widget Architecture Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Widget 架构概述">
+    <nav class="md-nav" aria-label="🎯 Widget Architecture Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      核心概念
+      Core Concepts
     </span>
   </a>
   
@@ -944,37 +970,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#system" class="md-nav__link">
+  <a href="#template-system" class="md-nav__link">
     <span class="md-ellipsis">
-      🎨 模板System
+      🎨 Template System
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎨 模板System">
+    <nav class="md-nav" aria-label="🎨 Template System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#jinja2" class="md-nav__link">
+  <a href="#jinja2-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      Jinja2集成
+      Jinja2 Integration
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#template-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      模板结构
+      Template Structure
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#custom-templates" class="md-nav__link">
     <span class="md-ellipsis">
-      自定义模板
+      Custom Templates
     </span>
   </a>
   
@@ -986,37 +1012,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#rendering-process" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 渲染流程
+      🔄 Rendering Process
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🔄 渲染流程">
+    <nav class="md-nav" aria-label="🔄 Rendering Process">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#rendering-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      渲染过程
+      Rendering Flow
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#performance-optimization" class="md-nav__link">
     <span class="md-ellipsis">
-      性能优化
+      Performance Optimization
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#basewidget" class="md-nav__link">
+  <a href="#basewidget-base-class" class="md-nav__link">
     <span class="md-ellipsis">
-      BaseWidget 基类
+      BaseWidget Base Class
     </span>
   </a>
   
@@ -1028,56 +1054,56 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#development-process" class="md-nav__link">
     <span class="md-ellipsis">
-      🛠️ 开发流程
+      🛠️ Development Process
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🛠️ 开发流程">
+    <nav class="md-nav" aria-label="🛠️ Development Process">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#1-design-phase" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 设计阶段
+      1. Design Phase
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#2-implementation-phase" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 实现阶段
+      2. Implementation Phase
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 实现阶段">
+    <nav class="md-nav" aria-label="2. Implementation Phase">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
+  <a href="#step-1-create-basic-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤 1：创建基本结构
+      Step 1: Create Basic Structure
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
+  <a href="#step-2-implement-configuration-methods" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤 2：实现配置方法
+      Step 2: Implement Configuration Methods
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#step-3-implement-rendering-logic" class="md-nav__link">
     <span class="md-ellipsis">
-      步骤 3：实现渲染逻辑
+      Step 3: Implement Rendering Logic
     </span>
   </a>
   
@@ -1094,64 +1120,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#card-widget" class="md-nav__link">
+  <a href="#complete-example-rating-card-widget" class="md-nav__link">
     <span class="md-ellipsis">
-      📝 完整示例：评分Card Widget
+      📝 Complete Example: Rating Card Widget
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#widget_2" class="md-nav__link">
+  <a href="#testing-custom-widgets" class="md-nav__link">
     <span class="md-ellipsis">
-      🧪 测试自定义 Widget
+      🧪 Testing Custom Widgets
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
-      📋 最佳实践
+      📋 Best Practices
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📋 最佳实践">
+    <nav class="md-nav" aria-label="📋 Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
+  <a href="#1-follow-design-principles" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 遵循设计原则
+      1. Follow Design Principles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2_2" class="md-nav__link">
+  <a href="#2-code-quality" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 代码质量
+      2. Code Quality
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
+  <a href="#3-email-client-compatibility" class="md-nav__link">
     <span class="md-ellipsis">
-      3. 邮件客户端兼容性
+      3. Email Client Compatibility
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
+  <a href="#4-documentation-and-examples" class="md-nav__link">
     <span class="md-ellipsis">
-      4. 文档和示例
+      4. Documentation and Examples
     </span>
   </a>
   
@@ -1163,37 +1189,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#advanced-techniques" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 进阶技巧
+      🚀 Advanced Techniques
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🚀 进阶技巧">
+    <nav class="md-nav" aria-label="🚀 Advanced Techniques">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-system" class="md-nav__link">
+  <a href="#1-template-system-support" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 支持模板System
+      1. Template System Support
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-responsive" class="md-nav__link">
+  <a href="#2-responsive-design" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Responsive设计
+      2. Responsive Design
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-data" class="md-nav__link">
+  <a href="#3-data-binding" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Data绑定
+      3. Data Binding
     </span>
   </a>
   
@@ -1205,37 +1231,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#widget_3" class="md-nav__link">
+  <a href="#publishing-custom-widgets" class="md-nav__link">
     <span class="md-ellipsis">
-      📦 发布自定义 Widget
+      📦 Publishing Custom Widgets
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📦 发布自定义 Widget">
+    <nav class="md-nav" aria-label="📦 Publishing Custom Widgets">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1_3" class="md-nav__link">
+  <a href="#1-code-organization" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 代码组织
+      1. Code Organization
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-widget" class="md-nav__link">
+  <a href="#2-register-widget" class="md-nav__link">
     <span class="md-ellipsis">
-      2. 注册 Widget
+      2. Register Widget
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
+  <a href="#3-add-to-convenience-methods" class="md-nav__link">
     <span class="md-ellipsis">
-      3. 添加到便捷方法
+      3. Add to Convenience Methods
     </span>
   </a>
   
@@ -1247,9 +1273,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      🎉 总结
+      🎉 Summary
     </span>
   </a>
   
@@ -1276,7 +1302,7 @@
   
   
   <span class="md-ellipsis">
-    测试指南
+    Testing Guide
     
   </span>
   
@@ -1299,7 +1325,7 @@
   
   
   <span class="md-ellipsis">
-    发布流程
+    Release Process
     
   </span>
   
@@ -1336,22 +1362,22 @@
   
 
 
-<h1 id="widget">创建自定义 Widget<a class="headerlink" href="#widget" title="Anchor link to this section">&para;</a></h1>
-<p>本指南将详细介绍如何在 EmailWidget 中创建自定义组件，从基础概念到完整实现。</p>
-<h2 id="widget_1">🎯 Widget 架构概述<a class="headerlink" href="#widget_1" title="Anchor link to this section">&para;</a></h2>
-<h3 id="_1">核心概念<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h3>
-<p>EmailWidget 采用组件化架构，所有显示元素都是 Widget：</p>
-<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a>BaseWidget (抽象基类)
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a>├── TextWidget (Text组件)
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a>├── TableWidget (表格组件)
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a>├── ProgressWidget (Progress条组件)
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a>├── AlertWidget (Alert框组件)
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos="6 "></span></a>├── CustomWidget (您的自定义组件)
+<h1 id="creating-custom-widgets">Creating Custom Widgets<a class="headerlink" href="#creating-custom-widgets" title="Anchor link to this section">&para;</a></h1>
+<p>This guide provides detailed instructions on how to create custom components in EmailWidget, from basic concepts to complete implementation.</p>
+<h2 id="widget-architecture-overview">🎯 Widget Architecture Overview<a class="headerlink" href="#widget-architecture-overview" title="Anchor link to this section">&para;</a></h2>
+<h3 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Anchor link to this section">&para;</a></h3>
+<p>EmailWidget uses a component-based architecture where all display elements are Widgets:</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a>BaseWidget (Abstract Base Class)
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a>├── TextWidget (Text component)
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a>├── TableWidget (Table component)
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a>├── ProgressWidget (Progress bar component)
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a>├── AlertWidget (Alert box component)
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos="6 "></span></a>├── CustomWidget (Your custom component)
 <a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos="7 "></span></a>└── ...
 </code></pre></div>
-<h2 id="system">🎨 模板System<a class="headerlink" href="#system" title="Anchor link to this section">&para;</a></h2>
-<h3 id="jinja2">Jinja2集成<a class="headerlink" href="#jinja2" title="Anchor link to this section">&para;</a></h3>
-<p>EmailWidget使用Jinja2作为模板引擎：</p>
+<h2 id="template-system">🎨 Template System<a class="headerlink" href="#template-system" title="Anchor link to this section">&para;</a></h2>
+<h3 id="jinja2-integration">Jinja2 Integration<a class="headerlink" href="#jinja2-integration" title="Anchor link to this section">&para;</a></h3>
+<p>EmailWidget uses Jinja2 as its template engine:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.template_engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">TemplateEngine</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a><span class="c1"># 获取模板引擎</span>
@@ -1361,8 +1387,8 @@
 <a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">template</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;widget_template.html&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos="8 "></span></a><span class="n">html</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Title&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;内容&quot;</span><span class="p">})</span>
 </code></pre></div>
-<h3 id="_2">模板结构<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h3>
-<p>典型的Widget模板结构：</p>
+<h3 id="template-structure">Template Structure<a class="headerlink" href="#template-structure" title="Anchor link to this section">&para;</a></h3>
+<p>Typical Widget template structure:</p>
 <div class="language-html highlight"><span class="filename">HTML</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="cm">&lt;!-- widget_template.html --&gt;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;widget {{ widget_type }}&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;{{ widget_id }}&quot;</span><span class="p">&gt;</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;widget-header&quot;</span><span class="p">&gt;</span>
@@ -1373,8 +1399,8 @@
 <a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos="8 "></span></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos="9 "></span></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
-<h3 id="_3">自定义模板<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h3>
-<p>可以为自定义Widget创建模板：</p>
+<h3 id="custom-templates">Custom Templates<a class="headerlink" href="#custom-templates" title="Anchor link to this section">&para;</a></h3>
+<p>You can create templates for custom Widgets:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomWidget</span><span class="p">(</span><span class="n">BaseWidget</span><span class="p">):</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -1387,26 +1413,26 @@
 <a id="__codelineno-3-10" name="__codelineno-3-10"></a><a href="#__codelineno-3-10"><span class="linenos" data-linenos="10 "></span></a>            <span class="o">**</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_template_context</span><span class="p">()</span>
 <a id="__codelineno-3-11" name="__codelineno-3-11"></a><a href="#__codelineno-3-11"><span class="linenos" data-linenos="11 "></span></a>        <span class="p">}</span>
 </code></pre></div>
-<h2 id="_4">🔄 渲染流程<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h2>
-<h3 id="_5">渲染过程<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h3>
-<p>EmailWidget的渲染流程：</p>
+<h2 id="rendering-process">🔄 Rendering Process<a class="headerlink" href="#rendering-process" title="Anchor link to this section">&para;</a></h2>
+<h3 id="rendering-flow">Rendering Flow<a class="headerlink" href="#rendering-flow" title="Anchor link to this section">&para;</a></h3>
+<p>EmailWidget's rendering process:</p>
 <pre class="mermaid"><code>graph TD
-    A["Email.export_html()"] --&gt; B["收集所有Widget"]
-    B --&gt; C["验证WidgetData"]
-    C --&gt; D["渲染各个Widget"]
-    D --&gt; E["生成CSS样式"]
-    E --&gt; F["合并HTML模板"]
-    F --&gt; G["输出最终HTML"]</code></pre>
-<h3 id="_6">性能优化<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h3>
-<p>EmailWidget在渲染过程中进行了多项优化：</p>
+    A["Email.export_html()"] --&gt; B["Collect all Widgets"]
+    B --&gt; C["Validate Widget Data"]
+    C --&gt; D["Render each Widget"]
+    D --&gt; E["Generate CSS styles"]
+    E --&gt; F["Merge HTML template"]
+    F --&gt; G["Output final HTML"]</code></pre>
+<h3 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Anchor link to this section">&para;</a></h3>
+<p>EmailWidget performs multiple optimizations during rendering:</p>
 <ul>
-<li><strong>模板缓存</strong> - 避免重复解析模板</li>
-<li><strong>懒加载</strong> - 按需加载资源</li>
-<li><strong>HTML压缩</strong> - 减小文件大小</li>
-<li><strong>Image优化</strong> - 自动压缩和编码</li>
+<li><strong>Template Caching</strong> - Avoid repeated template parsing</li>
+<li><strong>Lazy Loading</strong> - Load resources on demand</li>
+<li><strong>HTML Compression</strong> - Reduce file size</li>
+<li><strong>Image Optimization</strong> - Automatic compression and encoding</li>
 </ul>
-<h3 id="basewidget">BaseWidget 基类<a class="headerlink" href="#basewidget" title="Anchor link to this section">&para;</a></h3>
-<p>所有 Widget 都必须继承自 <code>BaseWidget</code>：</p>
+<h3 id="basewidget-base-class">BaseWidget Base Class<a class="headerlink" href="#basewidget-base-class" title="Anchor link to this section">&para;</a></h3>
+<p>All Widgets must inherit from <code>BaseWidget</code>:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseWidget</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a>
@@ -1439,23 +1465,23 @@
 <a id="__codelineno-4-30" name="__codelineno-4-30"></a><a href="#__codelineno-4-30"><span class="linenos" data-linenos="30 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_custom_styles</span><span class="p">[</span><span class="n">property_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 <a id="__codelineno-4-31" name="__codelineno-4-31"></a><a href="#__codelineno-4-31"><span class="linenos" data-linenos="31 "></span></a>        <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div>
-<h2 id="_7">🛠️ 开发流程<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h2>
-<h3 id="1">1. 设计阶段<a class="headerlink" href="#1" title="Anchor link to this section">&para;</a></h3>
-<p>在开始编码前，先明确以下问题：</p>
-<p><strong>功能定义</strong>
-- Widget 的主要用途是什么？
-- 需要Display哪些Data？
-- 用户如何与它Interactive？</p>
-<p><strong>API 设计</strong>
-- 需要哪些配置方法？
-- 参数类型和默认值是什么？
-- 是否支持链式调用？</p>
-<p><strong>样式设计</strong>
-- 默认样式是什么？
-- 支持哪些自定义选项？
-- 如何确保邮件客户端兼容性？</p>
-<h3 id="2">2. 实现阶段<a class="headerlink" href="#2" title="Anchor link to this section">&para;</a></h3>
-<h4 id="1_1">步骤 1：创建基本结构<a class="headerlink" href="#1_1" title="Anchor link to this section">&para;</a></h4>
+<h2 id="development-process">🛠️ Development Process<a class="headerlink" href="#development-process" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1-design-phase">1. Design Phase<a class="headerlink" href="#1-design-phase" title="Anchor link to this section">&para;</a></h3>
+<p>Before starting to code, clarify the following questions:</p>
+<p><strong>Functionality Definition</strong>
+- What is the primary purpose of the Widget?
+- What data needs to be displayed?
+- How will users interact with it?</p>
+<p><strong>API Design</strong>
+- What configuration methods are needed?
+- What are the parameter types and default values?
+- Should it support method chaining?</p>
+<p><strong>Style Design</strong>
+- What are the default styles?
+- What customization options are supported?
+- How to ensure email client compatibility?</p>
+<h3 id="2-implementation-phase">2. Implementation Phase<a class="headerlink" href="#2-implementation-phase" title="Anchor link to this section">&para;</a></h3>
+<h4 id="step-1-create-basic-structure">Step 1: Create Basic Structure<a class="headerlink" href="#step-1-create-basic-structure" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseWidget</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.validators</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeValidator</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
@@ -1482,7 +1508,7 @@
 <a id="__codelineno-5-24" name="__codelineno-5-24"></a><a href="#__codelineno-5-24"><span class="linenos" data-linenos="24 "></span></a>        <span class="c1"># 实现渲染逻辑</span>
 <a id="__codelineno-5-25" name="__codelineno-5-25"></a><a href="#__codelineno-5-25"><span class="linenos" data-linenos="25 "></span></a>        <span class="k">pass</span>
 </code></pre></div>
-<h4 id="2_1">步骤 2：实现配置方法<a class="headerlink" href="#2_1" title="Anchor link to this section">&para;</a></h4>
+<h4 id="step-2-implement-configuration-methods">Step 2: Implement Configuration Methods<a class="headerlink" href="#step-2-implement-configuration-methods" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">set_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CustomWidget&#39;</span><span class="p">:</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;设置Title&quot;&quot;&quot;</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_validators</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -1503,7 +1529,7 @@
 <a id="__codelineno-6-18" name="__codelineno-6-18"></a><a href="#__codelineno-6-18"><span class="linenos" data-linenos="18 "></span></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_theme</span> <span class="o">=</span> <span class="n">theme</span>
 <a id="__codelineno-6-19" name="__codelineno-6-19"></a><a href="#__codelineno-6-19"><span class="linenos" data-linenos="19 "></span></a>    <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div>
-<h4 id="3">步骤 3：实现渲染逻辑<a class="headerlink" href="#3" title="Anchor link to this section">&para;</a></h4>
+<h4 id="step-3-implement-rendering-logic">Step 3: Implement Rendering Logic<a class="headerlink" href="#step-3-implement-rendering-logic" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;渲染为 HTML&quot;&quot;&quot;</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="c1"># 生成 CSS 类名</span>
@@ -1567,8 +1593,8 @@
 <a id="__codelineno-7-61" name="__codelineno-7-61"></a><a href="#__codelineno-7-61"><span class="linenos" data-linenos="61 "></span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;生成样式字符串&quot;&quot;&quot;</span>
 <a id="__codelineno-7-62" name="__codelineno-7-62"></a><a href="#__codelineno-7-62"><span class="linenos" data-linenos="62 "></span></a>    <span class="k">return</span> <span class="s1">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">styles</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
 </code></pre></div>
-<h2 id="card-widget">📝 完整示例：评分Card Widget<a class="headerlink" href="#card-widget" title="Anchor link to this section">&para;</a></h2>
-<p>让我们创建一个完整的评分Card组件作为示例：</p>
+<h2 id="complete-example-rating-card-widget">📝 Complete Example: Rating Card Widget<a class="headerlink" href="#complete-example-rating-card-widget" title="Anchor link to this section">&para;</a></h2>
+<p>Let's create a complete rating card component as an example:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="  1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseWidget</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="  2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.core.validators</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeValidator</span><span class="p">,</span> <span class="n">RangeValidator</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="  3 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
@@ -1840,8 +1866,8 @@
 <a id="__codelineno-8-269" name="__codelineno-8-269"></a><a href="#__codelineno-8-269"><span class="linenos" data-linenos="269 "></span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 <a id="__codelineno-8-270" name="__codelineno-8-270"></a><a href="#__codelineno-8-270"><span class="linenos" data-linenos="270 "></span></a>    <span class="n">demo_rating_card</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="widget_2">🧪 测试自定义 Widget<a class="headerlink" href="#widget_2" title="Anchor link to this section">&para;</a></h2>
-<p>创建对应的测试文件 <code>tests/test_rating_card_widget.py</code>：</p>
+<h2 id="testing-custom-widgets">🧪 Testing Custom Widgets<a class="headerlink" href="#testing-custom-widgets" title="Anchor link to this section">&para;</a></h2>
+<p>Create corresponding test file <code>tests/test_rating_card_widget.py</code>:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.widgets.rating_card_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">RatingCardWidget</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos=" 3 "></span></a>
@@ -1926,19 +1952,19 @@
 <a id="__codelineno-9-82" name="__codelineno-9-82"></a><a href="#__codelineno-9-82"><span class="linenos" data-linenos="82 "></span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 <a id="__codelineno-9-83" name="__codelineno-9-83"></a><a href="#__codelineno-9-83"><span class="linenos" data-linenos="83 "></span></a>    <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="vm">__file__</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">])</span>
 </code></pre></div>
-<h2 id="_8">📋 最佳实践<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h2>
-<h3 id="1_2">1. 遵循设计原则<a class="headerlink" href="#1_2" title="Anchor link to this section">&para;</a></h3>
-<p><strong>单一职责原则</strong>
-- 每个 Widget 只负责一种特定的显示功能
-- 避免创建功能过于复杂的组件</p>
-<p><strong>开闭原则</strong>
-- 对扩展开放，对修改封闭
-- 通过继承和组合实现功能扩展</p>
-<p><strong>里氏替换原则</strong>
-- 子类应该能够替换父类使用
-- 保持接口一致性</p>
-<h3 id="2_2">2. 代码质量<a class="headerlink" href="#2_2" title="Anchor link to this section">&para;</a></h3>
-<p><strong>输入验证</strong>
+<h2 id="best-practices">📋 Best Practices<a class="headerlink" href="#best-practices" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1-follow-design-principles">1. Follow Design Principles<a class="headerlink" href="#1-follow-design-principles" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Single Responsibility Principle</strong>
+- Each Widget should only be responsible for one specific display function
+- Avoid creating overly complex components</p>
+<p><strong>Open/Closed Principle</strong>
+- Open for extension, closed for modification
+- Implement functionality extension through inheritance and composition</p>
+<p><strong>Liskov Substitution Principle</strong>
+- Subclasses should be able to replace parent classes
+- Maintain interface consistency</p>
+<h3 id="2-code-quality">2. Code Quality<a class="headerlink" href="#2-code-quality" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Input Validation</strong>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CustomWidget&#39;</span><span class="p">:</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;设置值时进行验证&quot;&quot;&quot;</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_value</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
@@ -1951,7 +1977,7 @@
 <a id="__codelineno-10-10" name="__codelineno-10-10"></a><a href="#__codelineno-10-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="c1"># 实现具体的验证逻辑</span>
 <a id="__codelineno-10-11" name="__codelineno-10-11"></a><a href="#__codelineno-10-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="k">return</span> <span class="kc">True</span>
 </code></pre></div></p>
-<p><strong>错误处理</strong>
+<p><strong>Error Handling</strong>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;安全的渲染方法&quot;&quot;&quot;</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="k">try</span><span class="p">:</span>
@@ -1965,7 +1991,7 @@
 <a id="__codelineno-11-11" name="__codelineno-11-11"></a><a href="#__codelineno-11-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="c1"># 实现渲染</span>
 <a id="__codelineno-11-12" name="__codelineno-11-12"></a><a href="#__codelineno-11-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="k">pass</span>
 </code></pre></div></p>
-<p><strong>性能优化</strong>
+<p><strong>Performance Optimization</strong>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a>
 <a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomWidget</span><span class="p">(</span><span class="n">BaseWidget</span><span class="p">):</span>
@@ -1976,8 +2002,8 @@
 <a id="__codelineno-12-8" name="__codelineno-12-8"></a><a href="#__codelineno-12-8"><span class="linenos" data-linenos="8 "></span></a>        <span class="c1"># 避免重复生成相同的模板</span>
 <a id="__codelineno-12-9" name="__codelineno-12-9"></a><a href="#__codelineno-12-9"><span class="linenos" data-linenos="9 "></span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_template</span><span class="p">(</span><span class="n">template_key</span><span class="p">)</span>
 </code></pre></div></p>
-<h3 id="3_1">3. 邮件客户端兼容性<a class="headerlink" href="#3_1" title="Anchor link to this section">&para;</a></h3>
-<p><strong>使用内联样式</strong>
+<h3 id="3-email-client-compatibility">3. Email Client Compatibility<a class="headerlink" href="#3-email-client-compatibility" title="Anchor link to this section">&para;</a></h3>
+<p><strong>Use Inline Styles</strong>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="c1"># 好：使用内联样式</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="k">return</span> <span class="s1">&#39;&lt;div class=&quot;email-preview-wrapper&quot;&gt;</span>
@@ -1987,7 +2013,7 @@
 <a id="__codelineno-13-7" name="__codelineno-13-7"></a><a href="#__codelineno-13-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="c1"># 避免：使用外部 CSS 类（很多邮件客户端不支持）</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8"></a><a href="#__codelineno-13-8"><span class="linenos" data-linenos="8 "></span></a>    <span class="c1"># return &#39;&lt;div class=&quot;my-class&quot;&gt;内容&lt;/div&gt;&#39;</span>
 </code></pre></div></p>
-<p><strong>避免复杂Layout</strong>
+<p><strong>Avoid Complex Layouts</strong>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 好：使用表格Layout</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">_render_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3"></a><a href="#__codelineno-14-3"><span class="linenos" data-linenos=" 3 "></span></a>    <span class="k">return</span> <span class="s1">&#39;&#39;&#39;</span>
@@ -2001,13 +2027,13 @@
 <a id="__codelineno-14-11" name="__codelineno-14-11"></a><a href="#__codelineno-14-11"><span class="linenos" data-linenos="11 "></span></a>
 <a id="__codelineno-14-12" name="__codelineno-14-12"></a><a href="#__codelineno-14-12"><span class="linenos" data-linenos="12 "></span></a><span class="c1"># 避免：使用 flexbox 或 grid（兼容性差）</span>
 </code></pre></div></p>
-<p><strong>测试多个邮件客户端</strong>
+<p><strong>Test Multiple Email Clients</strong>
 - Outlook 2013/2016/2019
-- Gmail (网页版和移动版)
+- Gmail (web and mobile)
 - Apple Mail
 - Thunderbird</p>
-<h3 id="4">4. 文档和示例<a class="headerlink" href="#4" title="Anchor link to this section">&para;</a></h3>
-<p>为您的 Widget 编写清晰的文档：</p>
+<h3 id="4-documentation-and-examples">4. Documentation and Examples<a class="headerlink" href="#4-documentation-and-examples" title="Anchor link to this section">&para;</a></h3>
+<p>Write clear documentation for your Widget:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomWidget</span><span class="p">(</span><span class="n">BaseWidget</span><span class="p">):</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="sd">    自定义 Widget 组件</span>
@@ -2034,8 +2060,8 @@
 <a id="__codelineno-15-24" name="__codelineno-15-24"></a><a href="#__codelineno-15-24"><span class="linenos" data-linenos="24 "></span></a><span class="sd">        ValueError: 当参数值无效时</span>
 <a id="__codelineno-15-25" name="__codelineno-15-25"></a><a href="#__codelineno-15-25"><span class="linenos" data-linenos="25 "></span></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>
-<h2 id="_9">🚀 进阶技巧<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h2>
-<h3 id="1-system">1. 支持模板System<a class="headerlink" href="#1-system" title="Anchor link to this section">&para;</a></h3>
+<h2 id="advanced-techniques">🚀 Advanced Techniques<a class="headerlink" href="#advanced-techniques" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1-template-system-support">1. Template System Support<a class="headerlink" href="#1-template-system-support" title="Anchor link to this section">&para;</a></h3>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">jinja2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Template</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2"></a><a href="#__codelineno-16-2"><span class="linenos" data-linenos=" 2 "></span></a>
 <a id="__codelineno-16-3" name="__codelineno-16-3"></a><a href="#__codelineno-16-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">AdvancedWidget</span><span class="p">(</span><span class="n">BaseWidget</span><span class="p">):</span>
@@ -2061,7 +2087,7 @@
 <a id="__codelineno-16-23" name="__codelineno-16-23"></a><a href="#__codelineno-16-23"><span class="linenos" data-linenos="23 "></span></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
 <a id="__codelineno-16-24" name="__codelineno-16-24"></a><a href="#__codelineno-16-24"><span class="linenos" data-linenos="24 "></span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_render</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="2-responsive">2. Responsive设计<a class="headerlink" href="#2-responsive" title="Anchor link to this section">&para;</a></h3>
+<h3 id="2-responsive-design">2. Responsive Design<a class="headerlink" href="#2-responsive-design" title="Anchor link to this section">&para;</a></h3>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">ResponsiveWidget</span><span class="p">(</span><span class="n">BaseWidget</span><span class="p">):</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;支持Responsive的 Widget&quot;&quot;&quot;</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3"></a><a href="#__codelineno-17-3"><span class="linenos" data-linenos=" 3 "></span></a>
@@ -2081,7 +2107,7 @@
 <a id="__codelineno-17-17" name="__codelineno-17-17"></a><a href="#__codelineno-17-17"><span class="linenos" data-linenos="17 "></span></a><span class="s1">        &lt;/div&gt;</span>
 <a id="__codelineno-17-18" name="__codelineno-17-18"></a><a href="#__codelineno-17-18"><span class="linenos" data-linenos="18 "></span></a><span class="s1">        &#39;&#39;&#39;</span>
 </code></pre></div>
-<h3 id="3-data">3. Data绑定<a class="headerlink" href="#3-data" title="Anchor link to this section">&para;</a></h3>
+<h3 id="3-data-binding">3. Data Binding<a class="headerlink" href="#3-data-binding" title="Anchor link to this section">&para;</a></h3>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos=" 2 "></span></a>
 <a id="__codelineno-18-3" name="__codelineno-18-3"></a><a href="#__codelineno-18-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">DataBoundWidget</span><span class="p">(</span><span class="n">BaseWidget</span><span class="p">):</span>
@@ -2098,13 +2124,13 @@
 <a id="__codelineno-18-14" name="__codelineno-18-14"></a><a href="#__codelineno-18-14"><span class="linenos" data-linenos="14 "></span></a>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_from_dataframe</span><span class="p">()</span>
 <a id="__codelineno-18-15" name="__codelineno-18-15"></a><a href="#__codelineno-18-15"><span class="linenos" data-linenos="15 "></span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_render_static</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="widget_3">📦 发布自定义 Widget<a class="headerlink" href="#widget_3" title="Anchor link to this section">&para;</a></h2>
-<h3 id="1_3">1. 代码组织<a class="headerlink" href="#1_3" title="Anchor link to this section">&para;</a></h3>
+<h2 id="publishing-custom-widgets">📦 Publishing Custom Widgets<a class="headerlink" href="#publishing-custom-widgets" title="Anchor link to this section">&para;</a></h2>
+<h3 id="1-code-organization">1. Code Organization<a class="headerlink" href="#1-code-organization" title="Anchor link to this section">&para;</a></h3>
 <div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos=" 1 "></span></a>email_widget/
 <a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos=" 2 "></span></a>├── widgets/
 <a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos=" 3 "></span></a>│   ├── __init__.py
-<a id="__codelineno-19-4" name="__codelineno-19-4"></a><a href="#__codelineno-19-4"><span class="linenos" data-linenos=" 4 "></span></a>│   ├── custom_widget.py          # 您的 Widget
-<a id="__codelineno-19-5" name="__codelineno-19-5"></a><a href="#__codelineno-19-5"><span class="linenos" data-linenos=" 5 "></span></a>│   └── rating_card_widget.py     # 评分Card Widget
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><a href="#__codelineno-19-4"><span class="linenos" data-linenos=" 4 "></span></a>│   ├── custom_widget.py          # Your Widget
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a><a href="#__codelineno-19-5"><span class="linenos" data-linenos=" 5 "></span></a>│   └── rating_card_widget.py     # Rating Card Widget
 <a id="__codelineno-19-6" name="__codelineno-19-6"></a><a href="#__codelineno-19-6"><span class="linenos" data-linenos=" 6 "></span></a>├── tests/
 <a id="__codelineno-19-7" name="__codelineno-19-7"></a><a href="#__codelineno-19-7"><span class="linenos" data-linenos=" 7 "></span></a>│   ├── test_widgets/
 <a id="__codelineno-19-8" name="__codelineno-19-8"></a><a href="#__codelineno-19-8"><span class="linenos" data-linenos=" 8 "></span></a>│   │   ├── test_custom_widget.py
@@ -2114,8 +2140,8 @@
 <a id="__codelineno-19-12" name="__codelineno-19-12"></a><a href="#__codelineno-19-12"><span class="linenos" data-linenos="12 "></span></a>        ├── custom_widget.md
 <a id="__codelineno-19-13" name="__codelineno-19-13"></a><a href="#__codelineno-19-13"><span class="linenos" data-linenos="13 "></span></a>        └── rating_card_widget.md
 </code></pre></div>
-<h3 id="2-widget">2. 注册 Widget<a class="headerlink" href="#2-widget" title="Anchor link to this section">&para;</a></h3>
-<p>在 <code>email_widget/widgets/__init__.py</code> 中注册：</p>
+<h3 id="2-register-widget">2. Register Widget<a class="headerlink" href="#2-register-widget" title="Anchor link to this section">&para;</a></h3>
+<p>Register in <code>email_widget/widgets/__init__.py</code>:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.custom_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomWidget</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2"></a><a href="#__codelineno-20-2"><span class="linenos" data-linenos="2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.rating_card_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">RatingCardWidget</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3"></a><a href="#__codelineno-20-3"><span class="linenos" data-linenos="3 "></span></a>
@@ -2125,8 +2151,8 @@
 <a id="__codelineno-20-7" name="__codelineno-20-7"></a><a href="#__codelineno-20-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="c1"># ... 其他 Widget</span>
 <a id="__codelineno-20-8" name="__codelineno-20-8"></a><a href="#__codelineno-20-8"><span class="linenos" data-linenos="8 "></span></a><span class="p">]</span>
 </code></pre></div>
-<h3 id="3_2">3. 添加到便捷方法<a class="headerlink" href="#3_2" title="Anchor link to this section">&para;</a></h3>
-<p>在 <code>Email</code> 类中添加便捷方法：</p>
+<h3 id="3-add-to-convenience-methods">3. Add to Convenience Methods<a class="headerlink" href="#3-add-to-convenience-methods" title="Anchor link to this section">&para;</a></h3>
+<p>Add convenience methods to <code>Email</code> class:</p>
 <div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Email</span><span class="p">:</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_rating_card</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">max_rating</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span> 
 <a id="__codelineno-21-3" name="__codelineno-21-3"></a><a href="#__codelineno-21-3"><span class="linenos" data-linenos="3 "></span></a>                       <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Email&#39;</span><span class="p">:</span>
@@ -2137,18 +2163,18 @@
 <a id="__codelineno-21-8" name="__codelineno-21-8"></a><a href="#__codelineno-21-8"><span class="linenos" data-linenos="8 "></span></a>            <span class="n">widget</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
 <a id="__codelineno-21-9" name="__codelineno-21-9"></a><a href="#__codelineno-21-9"><span class="linenos" data-linenos="9 "></span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_widget</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_10">🎉 总结<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h2>
-<p>创建自定义 Widget 的关键要点：</p>
+<h2 id="summary">🎉 Summary<a class="headerlink" href="#summary" title="Anchor link to this section">&para;</a></h2>
+<p>Key points for creating custom Widgets:</p>
 <ol>
-<li><strong>继承 BaseWidget</strong> - 遵循架构约定</li>
-<li><strong>实现 render 方法</strong> - 核心渲染逻辑</li>
-<li><strong>支持链式调用</strong> - 提升 API 易用性</li>
-<li><strong>输入验证</strong> - 确保Data安全性</li>
-<li><strong>邮件兼容性</strong> - 使用内联样式</li>
-<li><strong>编写测试</strong> - 保证代码质量</li>
-<li><strong>完善文档</strong> - 帮助其他开发者</li>
+<li><strong>Inherit BaseWidget</strong> - Follow architectural conventions</li>
+<li><strong>Implement render method</strong> - Core rendering logic</li>
+<li><strong>Support method chaining</strong> - Improve API usability</li>
+<li><strong>Input validation</strong> - Ensure data safety</li>
+<li><strong>Email compatibility</strong> - Use inline styles</li>
+<li><strong>Write tests</strong> - Ensure code quality</li>
+<li><strong>Complete documentation</strong> - Help other developers</li>
 </ol>
-<p>现在您已经掌握了创建自定义 Widget 的完整流程。开始创建您自己的组件吧！🚀 </p>
+<p>Now you have mastered the complete process of creating custom Widgets. Start creating your own components! 🚀</p>
 
 
 
@@ -2176,7 +2202,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  回到页面顶部
+  Back to top
 </button>
         
       </main>
@@ -2185,33 +2211,33 @@
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../setup/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 开发环境">
+          <a href="../setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup Environment">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                上一页
+                Previous
               </span>
               <div class="md-ellipsis">
-                开发环境
+                Setup Environment
               </div>
             </div>
           </a>
         
         
           
-          <a href="../testing/" class="md-footer__link md-footer__link--next" aria-label="下一页: 测试指南">
+          <a href="../testing/" class="md-footer__link md-footer__link--next" aria-label="Next: Testing Guide">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                下一页
+                Next
               </span>
               <div class="md-ellipsis">
-                测试指南
+                Testing Guide
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2282,7 +2308,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.prune", "navigation.indexes", "toc.follow", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "search.share", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
