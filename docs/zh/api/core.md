@@ -2,34 +2,42 @@
 
 核心模块提供了 EmailWidget 的基础架构，包括 Widget 基类、模板引擎、缓存系统等核心组件。
 
-## BaseWidget
+!!! info "API 参考"
+    完整的 API 文档请参考 [英文版本](../../en/api/core.md)，此处提供核心模块的中文说明。
 
-::: email_widget.core.base.BaseWidget
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+## BaseWidget - 基础组件类
 
-## TemplateEngine
+所有 EmailWidget 组件的基类，提供了组件的基本功能和接口。
 
-::: email_widget.core.template_engine.TemplateEngine
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+### 主要功能
+- 组件 ID 管理
+- HTML 渲染接口  
+- 父子组件关系管理
+- 样式和属性设置
 
-## ImageCache
+## TemplateEngine - 模板引擎
 
-::: email_widget.core.cache.ImageCache
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+负责 HTML 模板的渲染和管理。
 
-## Logger
+### 主要功能
+- Jinja2 模板渲染
+- 模板缓存管理
+- 自定义过滤器支持
 
-::: email_widget.core.logger.EmailWidgetLogger
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+## ImageCache - 图片缓存
+
+管理图片资源的缓存和优化。
+
+### 主要功能
+- 图片本地缓存
+- Base64 编码转换
+- 缓存清理和管理
+
+## Logger - 日志记录器
+
+EmailWidget 专用的日志记录系统。
+
+### 主要功能
+- 分级日志记录
+- 自定义日志格式
+- 调试信息输出

@@ -1,18 +1,6 @@
-# TimelineWidget API
+# timeline-widget API
 
-::: email_widget.widgets.timeline_widget.TimelineWidget
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 2
-      members:
-        - __init__
-        - add_event
-        - set_title
-        - show_timestamps
-        - set_reverse_order
-        - clear_events
-        - remove_event
-        - events
-        - title
-        - event_count
+!!! info "API 参考"
+    完整的 API 文档请参考 [英文版本](../../en/api/timeline-widget.md)，此处提供中文说明。
+
+此组件的详细功能说明请参考英文版 API 文档。

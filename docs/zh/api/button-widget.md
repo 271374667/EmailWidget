@@ -1,7 +1,20 @@
-# ButtonWidget API
+# 按钮组件 API
 
-::: email_widget.widgets.button_widget.ButtonWidget
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+!!! info "API 参考"
+    完整的 API 文档请参考 [英文版本](../../en/api/button-widget.md)，此处提供中文说明。
+
+`ButtonWidget` 是用于在邮件中添加可点击按钮的组件，支持多种样式和链接功能。
+
+## 核心功能
+
+- **自定义文本**：可设置按钮显示文字
+- **链接功能**：支持添加点击跳转链接
+- **样式定制**：支持自定义颜色、大小和圆角
+- **响应式设计**：在不同设备上保持良好显示效果
+
+## 主要方法
+
+- `set_text(text)`: 设置按钮文字
+- `set_url(url)`: 设置点击链接
+- `set_color(color)`: 设置按钮颜色
+- `set_size(size)`: 设置按钮大小

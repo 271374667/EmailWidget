@@ -47,42 +47,84 @@ A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、�
 
 ---
 
+!!! info "API 参考"
+    完整的 API 文档请参考 [英文版本](../../en/api/email-sender.md)，此处提供中文说明。
+
 `EmailSender` 模块提供了一套完整且易于使用的邮件发送解决方案，它内置了对多种主流邮箱服务商的支持。
 
 ## 发送器基类
 
-所有具体的发送器都继承自 `EmailSender` 抽象基类。
+`EmailSender` 是所有具体发送器的抽象基类，定义了邮件发送的标准接口。
 
-::: email_widget.email_sender.EmailSender
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+### 主要方法
+
+- `send(email, to_addrs, subject=None, **kwargs)`: 发送邮件的主要方法
+  - `email`: Email 对象实例
+  - `to_addrs`: 收件人地址（字符串或列表）
+  - `subject`: 邮件主题（可选）
+  - `**kwargs`: 其他邮件选项
+
+### 配置属性
+
+- `smtp_server`: SMTP 服务器地址
+- `smtp_port`: SMTP 服务器端口
+- `username`: 发件人邮箱地址
+- `password`: 邮箱密码或授权码
+- `use_tls`: 是否使用 TLS 加密
 
 ## 工厂函数
 
-为了方便使用，我们推荐使用 `create_email_sender` 工厂函数来创建发送器实例。
+`create_email_sender(email_type, username, password, **kwargs)` 是创建发送器实例的推荐方式。
 
-::: email_widget.email_sender.create_email_sender
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+### 参数说明
+
+- `email_type`: 邮箱类型，支持 'qq', 'netease', 'gmail', 'outlook' 等
+- `username`: 发件人邮箱地址
+- `password`: 邮箱密码或授权码
+- `**kwargs`: 其他配置选项
+
+### 使用示例
+
+```python
+from email_widget.email_sender import create_email_sender
+
+# 创建 QQ 邮箱发送器
+sender = create_email_sender('qq', 'your_email@qq.com', 'your_auth_code')
+
+# 发送邮件
+sender.send(email, 'recipient@example.com', '测试邮件')
+```
 
 ## 具体实现
 
-以下是针对不同邮箱服务商的具体实现类。通常你只需要通过工厂函数来使用它们。
-
 ### QQEmailSender
 
-::: email_widget.email_sender.QQEmailSender
-    options:
-        show_root_heading: false
-        heading_level: 4
+专门针对 QQ 邮箱的发送器实现，预配置了 QQ 邮箱的 SMTP 参数。
+
+- **SMTP 服务器**: smtp.qq.com
+- **端口**: 465 (SSL)
+- **认证**: 需要使用授权码而非登录密码
 
 ### NetEaseEmailSender
 
-::: email_widget.email_sender.NetEaseEmailSender
-    options:
-        show_root_heading: false
-        heading_level: 4
+专门针对网易邮箱（163、126等）的发送器实现。
+
+- **SMTP 服务器**: smtp.163.com 或 smtp.126.com
+- **端口**: 465 (SSL)
+- **认证**: 需要使用授权码而非登录密码
+
+### GmailSender
+
+针对 Gmail 的发送器实现。
+
+- **SMTP 服务器**: smtp.gmail.com
+- **端口**: 587 (TLS)
+- **认证**: 需要使用应用专用密码
+
+### OutlookSender
+
+针对 Outlook/Hotmail 的发送器实现。
+
+- **SMTP 服务器**: smtp-mail.outlook.com
+- **端口**: 587 (TLS)
+- **认证**: 支持标准密码和应用专用密码

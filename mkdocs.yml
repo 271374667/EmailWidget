@@ -174,8 +174,24 @@ plugins:
     - search:
         lang: ['zh', 'en']
         separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+    - mkdocstrings:
+          handlers:
+              python:
+                  paths: [email_widget]
+                  options:
+                      docstring_style: google
+                      show_source: false
+                      show_root_heading: false
+                      show_root_full_path: false
+                      show_category_heading: true
+                      merge_init_into_class: true
+                      show_bases: true
+                      show_inheritance_diagram: false
+                      extra:
+                          show_private_members: false
     - i18n:
         docs_structure: folder
+        reconfigure_material: true
         languages:
           - locale: en
             default: true
@@ -227,22 +243,6 @@ plugins:
               Creating Widgets: 创建Widget
               Testing Guide: 测试指南
               Release Process: 发布流程
-
-    - mkdocstrings:
-          handlers:
-              python:
-                  paths: [email_widget]
-                  options:
-                      docstring_style: google
-                      show_source: false
-                      show_root_heading: false
-                      show_root_full_path: false
-                      show_category_heading: true
-                      merge_init_into_class: true
-                      show_bases: true
-                      show_inheritance_diagram: false
-                      extra:
-                          show_private_members: false
 
 extra:
     social:

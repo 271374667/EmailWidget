@@ -1,32 +1,6 @@
-# SeparatorWidget API
+# separator-widget API
 
-::: email_widget.widgets.separator_widget.SeparatorWidget
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 2
-      members:
-        - __init__
-        - set_type
-        - set_color
-        - set_thickness
-        - set_width
-        - set_margin
-        - set_theme_color
-        - set_style
-        - reset_to_default
-        - separator_type
-        - color
-        - thickness
-        - width
-        - margin
+!!! info "API 参考"
+    完整的 API 文档请参考 [英文版本](../../en/api/separator-widget.md)，此处提供中文说明。
 
-## 枚举类型
-
-### SeparatorType
-
-::: email_widget.core.enums.SeparatorType
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
+此组件的详细功能说明请参考英文版 API 文档。

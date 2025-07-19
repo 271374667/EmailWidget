@@ -1,19 +1,6 @@
-# MetricWidget API
+# metric-widget API
 
-::: email_widget.widgets.metric_widget.MetricWidget
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 2
-      members:
-        - __init__
-        - add_metric
-        - set_title
-        - set_layout
-        - show_trends
-        - clear_metrics
-        - remove_metric
-        - metrics
-        - title
-        - metric_count
-        - layout
+!!! info "API 参考"
+    完整的 API 文档请参考 [英文版本](../../en/api/metric-widget.md)，此处提供中文说明。
+
+此组件的详细功能说明请参考英文版 API 文档。

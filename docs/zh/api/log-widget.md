@@ -1,15 +1,6 @@
-# LogWidget API
+# log-widget API
 
-::: email_widget.widgets.log_widget.LogWidget
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 3
+!!! info "API 参考"
+    完整的 API 文档请参考 [英文版本](../../en/api/log-widget.md)，此处提供中文说明。
 
-## 日志条目 (LogEntry)
-
-::: email_widget.widgets.log_widget.LogEntry
-    options:
-        show_root_heading: true
-        show_source: false
-        heading_level: 4
+此组件的详细功能说明请参考英文版 API 文档。
