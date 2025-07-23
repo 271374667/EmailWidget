@@ -9,6 +9,10 @@ The core modules provide the foundational architecture for EmailWidget, includin
         show_root_heading: true
         show_source: false
         heading_level: 3
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ## TemplateEngine
 
@@ -17,6 +21,10 @@ The core modules provide the foundational architecture for EmailWidget, includin
         show_root_heading: true
         show_source: false
         heading_level: 3
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ## ImageCache
 
@@ -25,6 +33,10 @@ The core modules provide the foundational architecture for EmailWidget, includin
         show_root_heading: true
         show_source: false
         heading_level: 3
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ## Logger
 
@@ -33,3 +45,7 @@ The core modules provide the foundational architecture for EmailWidget, includin
         show_root_heading: true
         show_source: false
         heading_level: 3
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"

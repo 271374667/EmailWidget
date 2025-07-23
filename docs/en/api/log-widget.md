@@ -5,6 +5,10 @@
         show_root_heading: true
         show_source: false
         heading_level: 3
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ## Log Entry (LogEntry)
 
@@ -13,3 +17,7 @@
         show_root_heading: true
         show_source: false
         heading_level: 4
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"

@@ -70,6 +70,10 @@ All concrete senders inherit from the `EmailSender` abstract base class.
         show_root_heading: true
         show_source: false
         heading_level: 3
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ## Factory Function
 
@@ -80,6 +84,10 @@ For convenience, we recommend using the `create_email_sender` factory function t
         show_root_heading: true
         show_source: false
         heading_level: 3
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ## Concrete Implementations
 
@@ -91,6 +99,10 @@ Below are specific implementation classes for different email service providers.
     options:
         show_root_heading: false
         heading_level: 4
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ### NetEaseEmailSender
 
@@ -98,6 +110,10 @@ Below are specific implementation classes for different email service providers.
     options:
         show_root_heading: false
         heading_level: 4
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
 
 ### GmailEmailSender
 
@@ -105,3 +121,7 @@ Below are specific implementation classes for different email service providers.
     options:
         show_root_heading: false
         heading_level: 4
+        filters:
+          - "!^_"
+          - "!^.*args$"
+          - "!^.*kwargs$"
