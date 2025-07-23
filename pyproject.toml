@@ -1,6 +1,6 @@
 [project]
 name = "EmailWidget"
-version = "0.22.2"
+version = "0.23.1"
 authors = [
     { name = "PythonImporter", email = "271374667@qq.com"}
     ]
