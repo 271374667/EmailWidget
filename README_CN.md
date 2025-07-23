@@ -7,6 +7,7 @@
 **🚀 一个现代化、易用的 Python 邮件组件库，让你轻松创建美观的 HTML 邮件报告**
 
 [![PyPI version](https://badge.fury.io/py/EmailWidget.svg)](https://badge.fury.io/py/EmailWidget)
+[![Downloads](https://static.pepy.tech/badge/EmailWidget)](https://pepy.tech/project/EmailWidget)
 [![Python versions](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/EmailWidget/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Codecov](https://codecov.io/gh/271374667/EmailWidget/branch/master/graph/badge.svg)](https://codecov.io/gh/271374667/EmailWidget)

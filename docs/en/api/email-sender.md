@@ -8,6 +8,7 @@ Below are the SMTP server parameters and authorization code setup methods for ma
 |------------|--------------------|------|------------|-----------------|-----------------|
 | QQ Email   | smtp.qq.com        | 465  | SSL        | Full email address | Authorization code |
 | 163 Email  | smtp.163.com       | 465  | SSL        | Full email address | Authorization code |
+| Gmail      | smtp.gmail.com     | 587  | TLS        | Full email address | App Password    |
 
 ---
 
@@ -26,6 +27,17 @@ Below are the SMTP server parameters and authorization code setup methods for ma
 4. When configuring email client, use the full email address as username and authorization code as password.
 - Official help center: [NetEase Email Help](https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2c9926ce59ec02fa9)
 - Reference blog: [Mailbird 163 Email Configuration](https://www.getmailbird.com/setup/access-163-com-via-imap-smtp)
+
+### Gmail
+1. Log in to your Google Account at [Google Account Settings](https://myaccount.google.com).
+2. Navigate to "Security" > "2-Step Verification" and enable 2-Factor Authentication if not already enabled.
+3. Go to "Security" > "App passwords" and generate a new app password:
+   - Select "Mail" as the app type
+   - Choose your device or enter a custom name
+   - Copy the generated 16-character password (without spaces)
+4. When configuring email client, use your full Gmail address as username and the generated App Password as password.
+- Official documentation: [Google Account Help - App passwords](https://support.google.com/accounts/answer/185833)
+- Gmail SMTP settings: [Gmail IMAP and SMTP settings](https://support.google.com/mail/answer/7126229)
 
 ---
 
@@ -83,6 +95,13 @@ Below are specific implementation classes for different email service providers.
 ### NetEaseEmailSender
 
 ::: email_widget.email_sender.NetEaseEmailSender
+    options:
+        show_root_heading: false
+        heading_level: 4
+
+### GmailEmailSender
+
+::: email_widget.email_sender.GmailEmailSender
     options:
         show_root_heading: false
         heading_level: 4

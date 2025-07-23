@@ -1,6 +1,9 @@
 [project]
 name = "EmailWidget"
 version = "0.22.2"
+authors = [
+    { name = "PythonImporter", email = "271374667@qq.com"}
+    ]
 description = "🚀 A modern and user-friendly Python email component library that enables you to easily create beautiful HTML email reports"
 requires-python = ">=3.10"
 readme = "README.md"

@@ -16,6 +16,7 @@ import pytest
 
 from email_widget.email_sender import (
     EmailSender,
+    GmailEmailSender,
     NetEaseEmailSender,
     QQEmailSender,
     create_email_sender,
@@ -187,6 +188,240 @@ class TestNetEaseEmailSender:
         assert sender._get_default_smtp_server() == "smtp.126.com"
 
 
+class TestGmailEmailSender:
+    """Gmail邮箱发送器测试"""
+
+    def test_init(self):
+        """测试Gmail发送器初始化"""
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        assert sender.username == "test@gmail.com"
+        assert sender.password == "app_password"
+
+    def test_init_with_tls(self):
+        """测试Gmail发送器TLS初始化"""
+        sender = GmailEmailSender("test@gmail.com", "app_password", use_tls=True)
+        assert sender.use_tls == True
+        assert sender._get_default_smtp_port() == 587
+
+    def test_init_with_ssl(self):
+        """测试Gmail发送器SSL初始化"""
+        sender = GmailEmailSender("test@gmail.com", "app_password", use_tls=False)
+        assert sender.use_tls == False
+        assert sender._get_default_smtp_port() == 465
+
+    def test_smtp_configuration(self):
+        """测试SMTP配置"""
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        assert sender._get_default_smtp_server() == "smtp.gmail.com"
+        assert sender._get_default_smtp_port() == 587  # 默认使用TLS
+
+    def test_smtp_configuration_ssl(self):
+        """测试SSL SMTP配置"""
+        sender = GmailEmailSender("test@gmail.com", "app_password", use_tls=False)
+        assert sender._get_default_smtp_server() == "smtp.gmail.com"
+        assert sender._get_default_smtp_port() == 465  # SSL端口
+
+    @patch("smtplib.SMTP")
+    def test_send_email_success_tls(self, mock_smtp):
+        """测试通过TLS成功发送邮件"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("Gmail测试邮件")
+
+        # 发送邮件
+        sender.send(email, to=["recipient@example.com"])
+
+        # 验证SMTP调用 - Gmail使用TLS
+        mock_smtp.assert_called_once_with("smtp.gmail.com", 587)
+        mock_server.starttls.assert_called_once()
+        mock_server.login.assert_called_once_with("test@gmail.com", "app_password")
+        mock_server.send_message.assert_called_once()
+
+    @patch("smtplib.SMTP_SSL")
+    def test_send_email_success_ssl(self, mock_smtp_ssl):
+        """测试通过SSL成功发送邮件"""
+        mock_server = Mock()
+        mock_smtp_ssl.return_value = mock_server
+
+        sender = GmailEmailSender("test@gmail.com", "app_password", use_tls=False)
+        email = MockEmail("Gmail SSL测试邮件")
+
+        # 发送邮件
+        sender.send(email, to=["recipient@example.com"])
+
+        # 验证SMTP_SSL调用 - Gmail使用SSL
+        mock_smtp_ssl.assert_called_once_with("smtp.gmail.com", 465)
+        # SSL不需要调用starttls
+        mock_server.login.assert_called_once_with("test@gmail.com", "app_password")
+        mock_server.send_message.assert_called_once()
+
+    @patch("smtplib.SMTP")
+    def test_send_email_smtp_exception(self, mock_smtp):
+        """测试SMTP异常处理"""
+        mock_smtp.side_effect = smtplib.SMTPConnectError(421, "Gmail连接失败")
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("Gmail异常测试")
+
+        with pytest.raises(smtplib.SMTPException):
+            sender.send(email, to=["recipient@example.com"])
+
+    @patch("smtplib.SMTP")
+    def test_send_email_auth_exception(self, mock_smtp):
+        """测试Gmail认证异常处理"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+        mock_server.login.side_effect = smtplib.SMTPAuthenticationError(535, "Gmail认证失败")
+
+        sender = GmailEmailSender("test@gmail.com", "wrong_app_password")
+        email = MockEmail("Gmail认证测试")
+
+        with pytest.raises(smtplib.SMTPException):
+            sender.send(email, to=["recipient@example.com"])
+
+    @patch("smtplib.SMTP") 
+    def test_send_email_with_multiple_recipients(self, mock_smtp):
+        """测试Gmail多收件人邮件发送"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("Gmail多收件人测试")
+        recipients = ["user1@example.com", "user2@example.com", "user3@example.com"]
+
+        sender.send(email, to=recipients)
+
+        mock_server.send_message.assert_called_once()
+
+    @patch("smtplib.SMTP")
+    def test_send_email_empty_subject_and_body(self, mock_smtp):
+        """测试Gmail空主题和内容"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("")  # 空标题
+
+        sender.send(email, to=["recipient@example.com"])
+
+        mock_server.send_message.assert_called_once()
+
+    @patch("smtplib.SMTP")
+    def test_send_email_with_custom_smtp_settings(self, mock_smtp):
+        """测试Gmail自定义SMTP设置"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+
+        # 使用自定义SMTP设置
+        sender = GmailEmailSender(
+            "test@gmail.com", 
+            "app_password",
+            smtp_server="custom.gmail.com",
+            smtp_port=2587
+        )
+        email = MockEmail("Gmail自定义设置测试")
+
+        sender.send(email, to=["recipient@example.com"])
+
+        # 验证使用了自定义设置
+        mock_smtp.assert_called_once_with("custom.gmail.com", 2587)
+        mock_server.send_message.assert_called_once()
+
+    def test_gmail_domain_validation(self):
+        """测试Gmail域名验证"""
+        # Gmail发送器可以用于任何邮箱地址，但通常用于Gmail
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        assert sender.username == "test@gmail.com"
+        
+        # 也可以用于Google Workspace域名
+        sender_workspace = GmailEmailSender("test@company.com", "app_password")
+        assert sender_workspace.username == "test@company.com"
+
+    def test_default_values(self):
+        """测试默认值设置"""
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        
+        # 默认使用TLS
+        assert sender.use_tls == True
+        assert sender.smtp_server == "smtp.gmail.com"
+        assert sender.smtp_port == 587
+
+    @patch("smtplib.SMTP")
+    def test_send_email_recipients_refused(self, mock_smtp):
+        """测试Gmail收件人被拒绝异常"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+        mock_server.send_message.side_effect = smtplib.SMTPRecipientsRefused({
+            "invalid@example.com": (550, "Invalid recipient")
+        })
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("Gmail收件人拒绝测试")
+
+        with pytest.raises(smtplib.SMTPException):
+            sender.send(email, to=["invalid@example.com"])
+
+    @patch("smtplib.SMTP")
+    def test_send_email_sender_refused(self, mock_smtp):
+        """测试Gmail发件人被拒绝异常"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+        mock_server.send_message.side_effect = smtplib.SMTPSenderRefused(
+            550, "Sender refused", "test@gmail.com"
+        )
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("Gmail发件人拒绝测试")
+
+        with pytest.raises(smtplib.SMTPException):
+            sender.send(email, to=["recipient@example.com"])
+
+    @patch("smtplib.SMTP")
+    def test_send_email_data_error(self, mock_smtp):
+        """测试Gmail数据错误异常"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+        mock_server.send_message.side_effect = smtplib.SMTPDataError(552, "Message too large")
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("Gmail数据错误测试")
+
+        with pytest.raises(smtplib.SMTPException):
+            sender.send(email, to=["recipient@example.com"])
+
+    @patch("smtplib.SMTP")
+    def test_connection_cleanup_on_success(self, mock_smtp):
+        """测试成功发送后连接清理"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+
+        sender = GmailEmailSender("test@gmail.com", "app_password")
+        email = MockEmail("Gmail连接清理测试")
+
+        sender.send(email, to=["recipient@example.com"])
+
+        # 验证quit被调用以清理连接
+        mock_server.quit.assert_called_once()
+
+    @patch("smtplib.SMTP")
+    def test_connection_cleanup_on_exception(self, mock_smtp):
+        """测试异常时连接清理"""
+        mock_server = Mock()
+        mock_smtp.return_value = mock_server
+        mock_server.login.side_effect = smtplib.SMTPAuthenticationError(535, "Auth failed")
+
+        sender = GmailEmailSender("test@gmail.com", "wrong_password")
+        email = MockEmail("Gmail异常清理测试")
+
+        with pytest.raises(smtplib.SMTPException):
+            sender.send(email, to=["recipient@example.com"])
+
+        # 即使发生异常，quit也应该被调用
+        mock_server.quit.assert_called_once()
+
+
 class TestCreateEmailSender:
     """工厂函数测试"""
 
@@ -218,6 +453,13 @@ class TestCreateEmailSender:
         assert sender.username == "test@126.com"
         assert sender.password == "password"
 
+    def test_create_gmail_sender(self):
+        """测试创建Gmail发送器"""
+        sender = create_email_sender("gmail", "test@gmail.com", "app_password")
+        assert isinstance(sender, GmailEmailSender)
+        assert sender.username == "test@gmail.com"
+        assert sender.password == "app_password"
+
     def test_create_sender_case_insensitive(self):
         """测试工厂函数大小写不敏感"""
         sender = create_email_sender("QQ", "test@qq.com", "password")
@@ -226,14 +468,17 @@ class TestCreateEmailSender:
         sender = create_email_sender("NetEase", "test@163.com", "password")
         assert isinstance(sender, NetEaseEmailSender)
 
+        sender = create_email_sender("GMAIL", "test@gmail.com", "app_password")
+        assert isinstance(sender, GmailEmailSender)
+
     def test_create_sender_unsupported_provider(self):
         """测试不支持的邮箱服务商"""
         with pytest.raises(ValueError) as exc_info:
-            create_email_sender("gmail", "test@gmail.com", "password")
+            create_email_sender("outlook", "test@outlook.com", "password")
         assert "Unsupported email provider" in str(exc_info.value)
 
         with pytest.raises(ValueError) as exc_info:
-            create_email_sender("outlook", "test@outlook.com", "password")
+            create_email_sender("yahoo", "test@yahoo.com", "password")
         assert "Unsupported email provider" in str(exc_info.value)
 
     def test_create_sender_with_kwargs(self):
@@ -370,6 +615,7 @@ class TestEmailSenderIntegration:
         senders = [
             QQEmailSender("test@qq.com", "password"),
             NetEaseEmailSender("test@163.com", "password"),
+            GmailEmailSender("test@gmail.com", "app_password"),
         ]
 
         for sender in senders:
@@ -391,6 +637,7 @@ class TestEmailSenderIntegration:
         senders_configs = [
             (QQEmailSender, "test@qq.com"),
             (NetEaseEmailSender, "test@163.com"),
+            (GmailEmailSender, "test@gmail.com"),
         ]
 
         for sender_class, email_addr in senders_configs:
@@ -411,6 +658,12 @@ class TestEmailSenderIntegration:
 
         with pytest.raises(ValueError):
             NetEaseEmailSender(None, "password")
+
+        with pytest.raises(ValueError):
+            GmailEmailSender("", "app_password")
+
+        with pytest.raises(ValueError):
+            GmailEmailSender("test@gmail.com", "")
 
 
 class TestEmailSenderEdgeCases:

@@ -8,6 +8,7 @@
 |------------|--------------------|------|----------|------------------|------------|
 | QQ邮箱     | smtp.qq.com        | 465  | SSL      | 完整邮箱地址     | 授权码     |
 | 163邮箱    | smtp.163.com       | 465  | SSL      | 完整邮箱地址     | 授权码     |
+| Gmail      | smtp.gmail.com     | 587  | TLS      | 完整邮箱地址     | 应用专用密码 |
 
 ---
 
@@ -26,6 +27,17 @@
 4. 邮件客户端配置时，用户名为完整邮箱，密码为授权码。
 - 官方帮助中心：[网易邮箱帮助](https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2c9926ce59ec02fa9)
 - 参考博客：[Mailbird 163邮箱配置](https://www.getmailbird.com/setup/access-163-com-via-imap-smtp)
+
+### Gmail
+1. 登录Google账户，访问[Google账户设置](https://myaccount.google.com)。
+2. 导航到"安全性" > "两步验证"，如未启用请先启用两步验证。
+3. 前往"安全性" > "应用专用密码"，生成新的应用专用密码：
+   - 选择"邮件"作为应用类型
+   - 选择设备或输入自定义名称
+   - 复制生成的16位密码（不含空格）
+4. 邮件客户端配置时，用户名为完整Gmail地址，密码为生成的应用专用密码。
+- 官方文档：[Google账户帮助 - 应用专用密码](https://support.google.com/accounts/answer/185833)
+- Gmail SMTP设置：[Gmail IMAP和SMTP设置](https://support.google.com/mail/answer/7126229)
 
 ---
 
@@ -78,7 +90,7 @@ A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、�
 
 ### 参数说明
 
-- `email_type`: 邮箱类型，支持 'qq', 'netease', 'gmail', 'outlook' 等
+- `email_type`: 邮箱类型，支持 'qq', 'netease', '163', '126', 'gmail' 等
 - `username`: 发件人邮箱地址
 - `password`: 邮箱密码或授权码
 - `**kwargs`: 其他配置选项
@@ -91,8 +103,11 @@ from email_widget.email_sender import create_email_sender
 # 创建 QQ 邮箱发送器
 sender = create_email_sender('qq', 'your_email@qq.com', 'your_auth_code')
 
+# 创建 Gmail 发送器
+gmail_sender = create_email_sender('gmail', 'your_email@gmail.com', 'your_app_password')
+
 # 发送邮件
-sender.send(email, 'recipient@example.com', '测试邮件')
+sender.send(email, to=['recipient@example.com'])
 ```
 
 ## 具体实现
@@ -113,18 +128,28 @@ sender.send(email, 'recipient@example.com', '测试邮件')
 - **端口**: 465 (SSL)
 - **认证**: 需要使用授权码而非登录密码
 
-### GmailSender
+### GmailEmailSender
 
-针对 Gmail 的发送器实现。
+专门针对 Gmail 的发送器实现，预配置了 Gmail 的 SMTP 参数。
 
 - **SMTP 服务器**: smtp.gmail.com
-- **端口**: 587 (TLS)
-- **认证**: 需要使用应用专用密码
+- **端口**: 587 (TLS，默认) 或 465 (SSL)
+- **认证**: 需要使用应用专用密码而非普通登录密码
+- **重要提醒**: 必须先启用两步验证，然后生成应用专用密码
 
-### OutlookSender
+### 使用示例
 
-针对 Outlook/Hotmail 的发送器实现。
+```python
+from email_widget.email_sender import GmailEmailSender
+from email_widget import Email
 
-- **SMTP 服务器**: smtp-mail.outlook.com
-- **端口**: 587 (TLS)
-- **认证**: 支持标准密码和应用专用密码
+# 创建 Gmail 发送器
+sender = GmailEmailSender("your_email@gmail.com", "your_app_password")
+
+# 创建邮件
+email = Email("测试邮件")
+email.add_text("这是通过Gmail发送的测试邮件")
+
+# 发送邮件
+sender.send(email, to=["recipient@example.com"])
+```

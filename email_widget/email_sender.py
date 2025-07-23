@@ -1,7 +1,7 @@
 """Email sending module
 
 This module provides abstract interfaces for email sending and specific implementations for various email service providers.
-Supports QQ Mail and NetEase Mail.
+Supports QQ Mail, NetEase Mail, and Gmail.
 
 Examples:
     >>> from email_widget import Email
@@ -379,12 +379,107 @@ class NetEaseEmailSender(EmailSender):
         return 465  # NetEase Email only supports SSL port 465
 
 
+class GmailEmailSender(EmailSender):
+    """Gmail email sender.
+
+    Specifically designed for sending emails through Gmail SMTP service.
+    It presets the SMTP server address and recommended port for Gmail.
+
+    Important notes:
+        - **Must use App Password**: For security reasons, Gmail's SMTP service requires using an "App Password" instead of your regular Gmail password. You need to:
+          1. Enable 2-Factor Authentication on your Google account
+          2. Generate an App Password in Google Account settings (Security > App passwords)
+        - **Less Secure App Access**: Alternatively, you can enable "Less secure app access" in Gmail settings, but App Password is the recommended approach.
+        - **SMTP Service**: Gmail SMTP service is enabled by default for all accounts.
+
+    Examples:
+        ```python
+        from email_widget import Email, GmailEmailSender
+        import os
+
+        # Recommend reading sensitive information from environment variables
+        # export GMAIL_USER="your_account@gmail.com"
+        # export GMAIL_APP_PASSWORD="your_generated_app_password"
+
+        gmail_user = os.getenv("GMAIL_USER")
+        app_password = os.getenv("GMAIL_APP_PASSWORD")
+
+        # Create email content
+        email = Email("Report from Gmail")
+        email.add_text("This is a test email sent through EmailWidget via Gmail.")
+
+        # Initialize Gmail sender
+        sender = GmailEmailSender(username=gmail_user, password=app_password)
+
+        # Send email to one or more recipients
+        try:
+            sender.send(email, to=["recipient1@example.com", "recipient2@example.com"])
+            print("Email sent successfully!")
+        except Exception as e:
+            print(f"Email sending failed: {e}")
+        ```
+
+    Setup Instructions:
+        1. **Enable 2-Factor Authentication**:
+           - Go to Google Account settings (https://myaccount.google.com)
+           - Navigate to Security > 2-Step Verification
+           - Follow the setup process
+
+        2. **Generate App Password**:
+           - Go to Security > App passwords
+           - Select "Mail" and your device
+           - Copy the generated 16-character password (without spaces)
+
+        3. **Use in EmailWidget**:
+           - Use your full Gmail address as username
+           - Use the generated App Password (not your regular password)
+    """
+
+    def __init__(
+        self, username: str, password: str, use_tls: bool = True, *args: Any, **kwargs: Any
+    ) -> None:
+        """Initialize Gmail sender.
+
+        Args:
+            username: Gmail address (e.g., "user@gmail.com")
+            password: Gmail App Password (16-character generated password)
+            use_tls: Whether to use TLS encryption, defaults to True
+            *args: Other positional arguments
+            **kwargs: Other keyword arguments
+
+        Note:
+            Gmail supports both TLS (port 587) and SSL (port 465). TLS is recommended.
+        """
+        super().__init__(username, password, use_tls, *args, **kwargs)
+
+    def _get_default_smtp_server(self) -> str:
+        """Get default SMTP server address for Gmail.
+
+        Returns:
+            Gmail SMTP server address
+        """
+        return "smtp.gmail.com"
+
+    def _get_default_smtp_port(self) -> int:
+        """Get default SMTP port for Gmail.
+
+        Returns:
+            Gmail SMTP port number
+
+        Note:
+            Gmail supports both TLS (port 587) and SSL (port 465).
+            TLS is the recommended approach.
+        """
+        return 587 if self.use_tls else 465
+
+
 # Email provider mapping dictionary for user convenience
 EMAIL_PROVIDERS: dict[str, type] = {
     "qq": QQEmailSender,
     "netease": NetEaseEmailSender,
     "163": NetEaseEmailSender,
     "126": NetEaseEmailSender,
+    "gmail": GmailEmailSender,
 }
 
 
@@ -398,7 +493,7 @@ def create_email_sender(
 
     Args:
         provider (str): Email provider identifier. Supported values (case-insensitive) include:
-                      'qq', 'netease', '163', '126'.
+                      'qq', 'netease', '163', '126', 'gmail'.
         username (str): Email account, usually the complete email address.
         password (str): Email authorization code or app password.
         **kwargs: Other keyword arguments, will be passed directly to the selected sender class constructor.
