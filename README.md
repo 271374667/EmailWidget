@@ -1,3 +1,5 @@
+![EmailWidget](https://socialify.git.ci/271374667/EmailWidget/image?custom_description=A+unified+storage+unit+library+for+Python+with+cross-platform+file+size+support.&description=1&font=Inter&language=1&name=1&pattern=Plus&theme=Light)
+
 <div align="center">
 
 **Language:** [English](README.md) | [简体中文](README_CN.md)
