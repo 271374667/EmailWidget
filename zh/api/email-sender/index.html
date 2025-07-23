@@ -848,6 +848,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#gmail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gmail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#faq" class="md-nav__link">
     <span class="md-ellipsis">
       FAQ
@@ -956,18 +965,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#gmailsender" class="md-nav__link">
+  <a href="#gmailemailsender" class="md-nav__link">
     <span class="md-ellipsis">
-      GmailSender
+      GmailEmailSender
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#outlooksender" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      OutlookSender
+      使用示例
     </span>
   </a>
   
@@ -1563,6 +1572,14 @@
 <td>完整邮箱地址</td>
 <td>授权码</td>
 </tr>
+<tr>
+<td>Gmail</td>
+<td>smtp.gmail.com</td>
+<td>587</td>
+<td>TLS</td>
+<td>完整邮箱地址</td>
+<td>应用专用密码</td>
+</tr>
 </tbody>
 </table>
 <hr />
@@ -1583,6 +1600,18 @@
 <li>邮件客户端配置时，用户名为完整邮箱，密码为授权码。</li>
 <li>官方帮助中心：<a href="https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2c9926ce59ec02fa9">网易邮箱帮助</a></li>
 <li>参考博客：<a href="https://www.getmailbird.com/setup/access-163-com-via-imap-smtp">Mailbird 163邮箱配置</a></li>
+</ol>
+<h3 id="gmail">Gmail<a class="headerlink" href="#gmail" title="Anchor link to this section">&para;</a></h3>
+<ol>
+<li>登录Google账户，访问<a href="https://myaccount.google.com">Google账户设置</a>。</li>
+<li>导航到"安全性" &gt; "两步验证"，如未启用请先启用两步验证。</li>
+<li>前往"安全性" &gt; "应用专用密码"，生成新的应用专用密码：</li>
+<li>选择"邮件"作为应用类型</li>
+<li>选择设备或输入自定义名称</li>
+<li>复制生成的16位密码（不含空格）</li>
+<li>邮件客户端配置时，用户名为完整Gmail地址，密码为生成的应用专用密码。</li>
+<li>官方文档：<a href="https://support.google.com/accounts/answer/185833">Google账户帮助 - 应用专用密码</a></li>
+<li>Gmail SMTP设置：<a href="https://support.google.com/mail/answer/7126229">Gmail IMAP和SMTP设置</a></li>
 </ol>
 <hr />
 <h3 id="faq">FAQ<a class="headerlink" href="#faq" title="Anchor link to this section">&para;</a></h3>
@@ -1623,19 +1652,22 @@ A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、�
 <p><code>create_email_sender(email_type, username, password, **kwargs)</code> 是创建发送器实例的推荐方式。</p>
 <h3 id="_6">参数说明<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h3>
 <ul>
-<li><code>email_type</code>: 邮箱类型，支持 'qq', 'netease', 'gmail', 'outlook' 等</li>
+<li><code>email_type</code>: 邮箱类型，支持 'qq', 'netease', '163', '126', 'gmail' 等</li>
 <li><code>username</code>: 发件人邮箱地址</li>
 <li><code>password</code>: 邮箱密码或授权码</li>
 <li><code>**kwargs</code>: 其他配置选项</li>
 </ul>
 <h3 id="_7">使用示例<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h3>
-<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.email_sender</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_email_sender</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="c1"># 创建 QQ 邮箱发送器</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">sender</span> <span class="o">=</span> <span class="n">create_email_sender</span><span class="p">(</span><span class="s1">&#39;qq&#39;</span><span class="p">,</span> <span class="s1">&#39;your_email@qq.com&#39;</span><span class="p">,</span> <span class="s1">&#39;your_auth_code&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos="5 "></span></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos="6 "></span></a><span class="c1"># 发送邮件</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="s1">&#39;recipient@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;测试邮件&#39;</span><span class="p">)</span>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.email_sender</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_email_sender</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="c1"># 创建 QQ 邮箱发送器</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">sender</span> <span class="o">=</span> <span class="n">create_email_sender</span><span class="p">(</span><span class="s1">&#39;qq&#39;</span><span class="p">,</span> <span class="s1">&#39;your_email@qq.com&#39;</span><span class="p">,</span> <span class="s1">&#39;your_auth_code&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="c1"># 创建 Gmail 发送器</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">gmail_sender</span> <span class="o">=</span> <span class="n">create_email_sender</span><span class="p">(</span><span class="s1">&#39;gmail&#39;</span><span class="p">,</span> <span class="s1">&#39;your_email@gmail.com&#39;</span><span class="p">,</span> <span class="s1">&#39;your_app_password&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># 发送邮件</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;recipient@example.com&#39;</span><span class="p">])</span>
 </code></pre></div>
 <h2 id="_8">具体实现<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h2>
 <h3 id="qqemailsender">QQEmailSender<a class="headerlink" href="#qqemailsender" title="Anchor link to this section">&para;</a></h3>
@@ -1652,20 +1684,28 @@ A：常见原因包括未开启SMTP服务、未使用授权码/专用密码、�
 <li><strong>端口</strong>: 465 (SSL)</li>
 <li><strong>认证</strong>: 需要使用授权码而非登录密码</li>
 </ul>
-<h3 id="gmailsender">GmailSender<a class="headerlink" href="#gmailsender" title="Anchor link to this section">&para;</a></h3>
-<p>针对 Gmail 的发送器实现。</p>
+<h3 id="gmailemailsender">GmailEmailSender<a class="headerlink" href="#gmailemailsender" title="Anchor link to this section">&para;</a></h3>
+<p>专门针对 Gmail 的发送器实现，预配置了 Gmail 的 SMTP 参数。</p>
 <ul>
 <li><strong>SMTP 服务器</strong>: smtp.gmail.com</li>
-<li><strong>端口</strong>: 587 (TLS)</li>
-<li><strong>认证</strong>: 需要使用应用专用密码</li>
+<li><strong>端口</strong>: 587 (TLS，默认) 或 465 (SSL)</li>
+<li><strong>认证</strong>: 需要使用应用专用密码而非普通登录密码</li>
+<li><strong>重要提醒</strong>: 必须先启用两步验证，然后生成应用专用密码</li>
 </ul>
-<h3 id="outlooksender">OutlookSender<a class="headerlink" href="#outlooksender" title="Anchor link to this section">&para;</a></h3>
-<p>针对 Outlook/Hotmail 的发送器实现。</p>
-<ul>
-<li><strong>SMTP 服务器</strong>: smtp-mail.outlook.com</li>
-<li><strong>端口</strong>: 587 (TLS)</li>
-<li><strong>认证</strong>: 支持标准密码和应用专用密码</li>
-</ul>
+<h3 id="_9">使用示例<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget.email_sender</span><span class="w"> </span><span class="kn">import</span> <span class="n">GmailEmailSender</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">email_widget</span><span class="w"> </span><span class="kn">import</span> <span class="n">Email</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 创建 Gmail 发送器</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">sender</span> <span class="o">=</span> <span class="n">GmailEmailSender</span><span class="p">(</span><span class="s2">&quot;your_email@gmail.com&quot;</span><span class="p">,</span> <span class="s2">&quot;your_app_password&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 创建邮件</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">email</span> <span class="o">=</span> <span class="n">Email</span><span class="p">(</span><span class="s2">&quot;测试邮件&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">email</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;这是通过Gmail发送的测试邮件&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><a href="#__codelineno-1-10"><span class="linenos" data-linenos="10 "></span></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><a href="#__codelineno-1-11"><span class="linenos" data-linenos="11 "></span></a><span class="c1"># 发送邮件</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><a href="#__codelineno-1-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">sender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;recipient@example.com&quot;</span><span class="p">])</span>
+</code></pre></div>
 
 
 
